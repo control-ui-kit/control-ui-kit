@@ -1,6 +1,6 @@
 <?php
 
-namespace ControlUIKit\Components\Panels;
+namespace ControlUIKit\Components\Dropdowns;
 
 use Illuminate\View\Component;
 
@@ -10,6 +10,6 @@ class Divider extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.panels.divider');
+        return view('control-ui-kit::control-ui-kit.dropdowns.divider');
     }
 }

@@ -4,7 +4,7 @@ namespace ControlUIKit\Components\Panels;
 
 use Illuminate\View\Component;
 
-class PanelTitleComponent extends Component
+class Title extends Component
 {
     public function __construct() {}
 
