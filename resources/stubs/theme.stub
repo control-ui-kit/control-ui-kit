@@ -1,0 +1,280 @@
+/* purgecss start ignore */
+
+@import "functions";
+
+{{ gray-colors }}
+
+$white: #FFFFFF;
+$black: #000000;
+
+{{ brand-colors }}
+
+$success: #5FA65A;
+$error: #DC4547;
+$warning: #FCBE45;
+$info: #047B93;
+$debug: #FF0000;
+
+$chart-100: #FCBE45;
+$chart-200: #047B93;
+$chart-300: #015162;
+$chart-400: #E09FE1;
+$chart-500: #F5F1ED;
+$chart-600: #FCBE45;
+$chart-700: #047B93;
+$chart-800: #015162;
+$chart-900: #E09FE1;
+
+.branding {
+
+    --brand-lightest               : #{$brand-lightest};
+    --brand-lighter                : #{$brand-lighter};
+    --brand-light                  : #{$brand-light};
+    --brand-default                : #{$brand-default};
+    --brand-dark                   : #{$brand-dark};
+    --brand-darker                 : #{$brand-darker};
+    --brand-darkest                : #{$brand-darkest};
+
+    --success                      : #{$success};
+    --error                        : #{$error};
+    --warning                      : #{$warning};
+    --info                         : #{$info};
+    --debug                        : #{$debug};
+
+    --chart-100                    : #{$chart-100};
+    --chart-200                    : #{$chart-200};
+    --chart-300                    : #{$chart-300};
+    --chart-400                    : #{$chart-400};
+    --chart-500                    : #{$chart-500};
+    --chart-600                    : #{$chart-600};
+    --chart-700                    : #{$chart-700};
+    --chart-800                    : #{$chart-800};
+    --chart-900                    : #{$chart-900};
+
+}
+
+.theme[data-theme="light"] {
+
+    /* Framework Defaults */
+    --app-bg                       : #{$gray-50};        // bg *
+    --default                      : #{$gray-800};       // text *
+    --muted                        : #{$gray-400};       // text *
+    --link                         : #{$brand-default};  // text *
+    --link-hover                   : #{$brand-darker};   // text *
+    --border                       : #{$gray-250};       // border *
+
+    /* Header Bar */
+    --header-bg                    : #{$gray-1000};      // bg *
+    --header-bg-hover              : #{$gray-900};       // bg *
+    --header                       : #{$white};          // text *
+    --header-border                : #{$gray-850};       // border *
+    --header-muted                 : #{$gray-400};       // text *
+    --header-link                  : #{$brand-default};  // text *
+    --header-link-hover            : #{$brand-light};    // text *
+
+    /* Footer Bar */
+    --footer-bg                    : #{$white};          // bg *
+    --footer-border                : #{$gray-250};       // border *
+
+    /* Nav */
+    --nav-bar-bg                   : #{$gray-850};       // bg *
+    --nav-bar-bg-hover             : #{$gray-950};       // bg *
+    --nav-bar                      : #{$white};          // text *
+    --nav-bar-hover                : #{$brand-default};  // text *
+    --nav-option-bg                : #{$white};          // bg *
+    --nav-option-bg-hover          : #{$gray-100};       // bg *
+    --nav-option                   : #{$gray-700};       // text *
+    --nav-option-hover             : #{$gray-800};       // text *
+    --nav-divider                  : #{$gray-200};       // border *
+    --nav-border                   : #{$gray-200};       // border
+    --nav-icon                     : #{$gray-350};       // text *
+    --nav-icon-hover               : #{$gray-450};       // text *
+    --nav-profile                  : #{$gray-800};       // text *
+    --nav-muted                    : #{$gray-600};       // text *
+    --nav-profile-header-bg        : #{$gray-50};        // bg *
+    --nav-avatar-border            : #{$gray-200};       // border *
+
+    /* Tool Bar */
+    --toolbar                      : #{$gray-800};       // text
+    --toolbar-bg                   : #{$white};          // bg
+    --toolbar-border               : #{$gray-250};       // border
+
+    /* Buttons */
+    --button-brand-bg              : #{$brand-default};  // bg
+    --button-brand-bg-hover        : #{$gray-50};        // bg
+    --button-brand                 : #{$white};          // text
+    --button-brand-hover           : #{$brand-default};  // text
+    --button-brand-border          : #{$brand-default};  // border
+    --button-brand-border-hover    : #{$brand-default};  // border
+    --button-brand-icon            : #{$white};          // text
+    --button-brand-icon-hover      : #{$brand-default};  // text
+
+    --button-default-bg            : #{$white};          // bg
+    --button-default-bg-hover      : #{$gray-50};        // bg
+    --button-default               : #{$gray-800};       // text
+    --button-default-hover         : #{$brand-default};  // text
+    --button-default-border        : #{$gray-200};       // border
+    --button-default-border-hover  : #{$brand-default};  // border
+    --button-default-icon          : #{$gray-400};       // text
+    --button-default-icon-hover    : #{$brand-default};  // text
+
+    --button-muted-bg              : #{$gray-100};       // bg
+    --button-muted-bg-hover        : #{$gray-50};        // bg
+    --button-muted                 : #{$gray-500};       // text
+    --button-muted-hover           : #{$gray-600};       // text
+    --button-muted-border          : #{$gray-200};       // border
+    --button-muted-border-hover    : #{$gray-300};       // border
+    --button-muted-icon            : #{$gray-300};       // text
+    --button-muted-icon-hover      : #{$gray-400};       // text
+
+    /* List */
+    --table-header-bg              : #{$gray-150};       // bg
+    --table-header                 : #{$gray-600};       // text
+    --table-header-hover           : #{$gray-400};       // text
+    --table-divider                : #{$gray-200};       // border
+    --table-border                 : #{$gray-200};       // border
+    --table-row-bg-1               : #{$white};          // bg
+    --table-row-bg-2               : #{$gray-50};        // bg
+    --table-row                    : #{$gray-800};       // text
+    --table-row-muted-bg           : #{$gray-150};       // bg
+    --table-row-muted              : #{$gray-500};       // text
+
+    /* Form & Layout */
+    --panel                        : #{$gray-800};       // text *
+    --panel-bg                     : #{$white};          // bg *
+    --panel-header                 : #{$gray-800};       // text *
+    --panel-border                 : #{$white};          // border *
+    --panel-divider                : #{$gray-250};       // border *
+
+    --input-border                 : #{$gray-200};       // border
+    --input-focus-border           : #{$brand-default};  // border
+    --input                        : #{$gray-800};       // text
+    --input-bg                     : #{$gray-50};        // bg
+    --input-muted-bg               : #{$gray-200};       // bg
+    --input-muted                  : #{$error};          // text
+    --input-placeholder            : #{$gray-400};       // text
+
+    --modal                        : #{$gray-800};       // text *
+    --modal-muted                  : #{$gray-800};       // text *
+    --modal-border                 : #{$gray-200};       // border *
+    --modal-bg                     : #{$white};          // bg *
+    --modal-blur-bg                : #{$gray-800};       // bg *
+    --modal-header-bg              : #{$gray-100};       // text *
+    --modal-footer-bg              : #{$gray-100};       // text *
+
+    @include input-svg($gray-50);
+}
+
+.theme[data-theme="dark"] {
+
+    /* Framework Defaults */
+    --app-bg                       : #{$black};          // bg
+    --default                      : #{$white};          // text
+    --muted                        : #{$gray-600};       // text
+    --link                         : #{$brand-default};  // text
+    --link-hover                   : #{$brand-dark};     // text
+    --border                       : #{$gray-900};       // border
+
+    /* Header Bar */
+    --header-bg                    : #{$black};          // bg
+    --header-bg-hover              : #{$gray-1000};      // bg
+    --header                       : #{$white};          // text
+    --header-border                : #{$gray-900};       // border
+    --header-muted                 : #{$gray-350};       // text
+    --header-link                  : #{$brand-default};  // text
+    --header-link-hover            : #{$brand-light};    // text
+
+    /* Footer Bar */
+    --footer-bg                    : #{$gray-1000};      // bg
+    --footer-border                : #{$gray-900};       // border
+
+    /* Nav */
+    --nav-bar-bg                   : #{$gray-950};       // bg
+    --nav-bar-bg-hover             : #{$gray-900};       // bg
+    --nav-bar                      : #{$white};          // text
+    --nav-bar-hover                : #{$brand-default};  // text
+    --nav-option-bg                : #{$gray-950};       // bg
+    --nav-option-bg-hover          : #{$gray-900};       // bg
+    --nav-option                   : #{$white};          // text
+    --nav-option-hover             : #{$gray-200};       // text
+    --nav-divider                  : #{$gray-900};       // border
+    --nav-border                   : #{$gray-900};       // border
+    --nav-icon                     : #{$gray-400};       // text
+    --nav-icon-hover               : #{$gray-600};       // text
+    --nav-profile                  : #{$gray-800};       // text
+    --nav-muted                    : #{$gray-500};       // text
+    --nav-profile-header-bg        : #{$gray-950};       // bg
+    --nav-avatar-border            : #{$gray-200};       // border
+
+    /* Tool Bar */
+    --toolbar                      : #{$white};          // text
+    --toolbar-bg                   : #{$gray-1000};      // bg
+    --toolbar-border               : #{$gray-900};       // border
+
+    /* Buttons */
+    --button-brand-bg              : #{$brand-default};  // bg
+    --button-brand-bg-hover        : #{$gray-900};       // bg
+    --button-brand                 : #{$white};          // text
+    --button-brand-hover           : #{$white};          // text
+    --button-brand-border          : #{$brand-default};  // border
+    --button-brand-border-hover    : #{$brand-default};  // border
+    --button-brand-icon            : #{$gray-200};       // text
+    --button-brand-icon-hover      : #{$gray-400};       // text
+
+    --button-default-bg            : #{$gray-900};       // bg
+    --button-default-bg-hover      : #{$gray-900};       // bg
+    --button-default               : #{$white};          // text
+    --button-default-hover         : #{$white};          // text
+    --button-default-border        : #{$gray-800};       // border
+    --button-default-border-hover  : #{$brand-default};  // border
+    --button-default-icon          : #{$gray-400};       // text
+    --button-default-icon-hover    : #{$gray-400};       // text
+
+    --button-muted-bg              : #{$gray-900};       // bg
+    --button-muted-bg-hover        : #{$gray-850};       // bg
+    --button-muted                 : #{$gray-600};       // text
+    --button-muted-hover           : #{$gray-400};       // text
+    --button-muted-border          : #{$gray-800};       // border
+    --button-muted-border-hover    : #{$gray-650};       // border
+    --button-muted-icon            : #{$gray-600};       // text
+    --button-muted-icon-hover      : #{$gray-400};       // text
+
+    /* List */
+    --table-header-bg              : #{$gray-850};       // bg
+    --table-header                 : #{$gray-400};       // text
+    --table-header-hover           : #{$gray-400};       // text
+    --table-divider                : #{$gray-900};       // border
+    --table-border                 : #{$gray-900};       // border
+    --table-row-bg-1               : #{$gray-950};       // bg
+    --table-row-bg-2               : #{$gray-900};        // bg
+    --table-row                    : #{$gray-800};       // text
+    --table-row-muted-bg           : #{$gray-150};       // bg
+    --table-row-muted              : #{$gray-500};       // text
+
+    /* Form & Layout */
+    --panel                        : #{$white};          // text
+    --panel-bg                     : #{$gray-950};       // bg
+    --panel-header                 : #{$white};          // text
+    --panel-border                 : #{$gray-900};       // border
+    --panel-divider                : #{$gray-900};       // border
+
+    --input-border                 : #{$gray-900};       // border
+    --input-focus-border           : #{$gray-700};       // border
+    --input                        : #{$white};          // text
+    --input-bg                     : #{$gray-1000};      // bg
+    --input-muted-bg               : #{$gray-750};       // bg
+    --input-muted                  : #{$error};          // text
+    --input-placeholder            : #{$gray-650};       // text
+
+    --modal                        : #{$gray-800};       // text
+    --modal-muted                  : #{$gray-400};       // text
+    --modal-border                 : #{$gray-900};       // border
+    --modal-bg                     : #{$gray-950};       // bg
+    --modal-blur-bg                : #{$black};          // bg
+    --modal-header-bg              : #{$gray-1000};      // text
+    --modal-footer-bg              : #{$gray-1000};      // text
+
+    @include input-svg($gray-1000);
+}
+
+/* purgecss end ignore */

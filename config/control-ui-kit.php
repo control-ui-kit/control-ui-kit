@@ -46,7 +46,11 @@ return [
         'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
 
-        'layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
+        'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
+        'layout.footer' => \ControlUIKit\Components\Layouts\Footer::class,
+        'layout.header' => \ControlUIKit\Components\Layouts\Header::class,
+
+        'form.layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
 
         'modal' => \ControlUIKit\Components\Modals\Modal::class,
         'modal.dialog' => \ControlUIKit\Components\Modals\Dialog::class,
@@ -67,6 +71,17 @@ return [
         'tabs.panel' => \ControlUIKit\Components\Tabs\Panel::class,
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Language Files
+    |--------------------------------------------------------------------------
+    |
+    | The UI kit can be configured to use language files.
+    |
+    */
+
+    'use_language_files' => false,
 
     /*
     |--------------------------------------------------------------------------
