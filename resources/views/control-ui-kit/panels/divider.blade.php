@@ -1,1 +1,1 @@
-<div class="border-b border-panel-divider"></div>
+<div  {{ $attributes->merge([ 'class' => "border-b border-panel-divider"]) }}></div>

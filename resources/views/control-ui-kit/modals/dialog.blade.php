@@ -12,7 +12,7 @@
             {{ $content }}
         </div>
 
-        <div class="flex item-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-2 py-2">
+        <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-2 py-2">
             {{ $footer }}
         </div>
 
