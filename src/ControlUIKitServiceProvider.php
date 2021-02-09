@@ -2,6 +2,7 @@
 
 namespace ControlUIKit;
 
+use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\ThemeCommand;
 use ControlUIKit\Middleware\SetLanguageFileMiddleware;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ThemeCommand::class,
+                BrandColorCommand::class,
             ]);
         }
     }

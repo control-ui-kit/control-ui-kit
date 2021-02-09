@@ -52,6 +52,9 @@ return [
 
         'form.layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
 
+        'markdown' => \ControlUIKit\Components\Markdown\Markdown::class,
+        'toc' => \ControlUIKit\Components\Markdown\ToC::class,
+
         'modal' => \ControlUIKit\Components\Modals\Modal::class,
         'modal.dialog' => \ControlUIKit\Components\Modals\Dialog::class,
         'modal.confirmation' => \ControlUIKit\Components\Modals\Confirmation::class,
@@ -71,6 +74,18 @@ return [
         'tabs.panel' => \ControlUIKit\Components\Tabs\Panel::class,
 
     ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Icon Classes
+    |--------------------------------------------------------------------------
+    |
+    | These classes will be applied to all icon components by default.
+    |
+    */
+
+    'icon_class' => 'h-5 w-5 fill-current',
 
     /*
     |--------------------------------------------------------------------------
@@ -216,8 +231,6 @@ return [
 
 
     ],
-
-    'icon_class' => 'h-5 w-5 fill-current',
 
     /*
     |--------------------------------------------------------------------------
