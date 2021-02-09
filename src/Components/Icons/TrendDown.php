@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class TrendDown extends _Base
+class TrendDown extends BaseIconComponent
 {
     public function render()
     {

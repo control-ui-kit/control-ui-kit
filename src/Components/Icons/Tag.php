@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Tag extends _Base
+class Tag extends BaseIconComponent
 {
     public function render()
     {

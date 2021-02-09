@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class StatusDanger extends _Base
+class StatusDanger extends BaseIconComponent
 {
     public function render()
     {

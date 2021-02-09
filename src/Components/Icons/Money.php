@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Money extends _Base
+class Money extends BaseIconComponent
 {
     public function render()
     {

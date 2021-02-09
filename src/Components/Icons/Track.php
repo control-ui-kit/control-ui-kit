@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Track extends _Base
+class Track extends BaseIconComponent
 {
     public function render()
     {

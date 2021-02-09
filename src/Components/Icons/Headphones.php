@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Headphones extends _Base
+class Headphones extends BaseIconComponent
 {
     public function render()
     {

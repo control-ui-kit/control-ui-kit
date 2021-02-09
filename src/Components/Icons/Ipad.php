@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Ipad extends _Base
+class Ipad extends BaseIconComponent
 {
     public function render()
     {

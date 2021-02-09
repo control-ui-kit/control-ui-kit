@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Newspaper extends _Base
+class Newspaper extends BaseIconComponent
 {
     public function render()
     {

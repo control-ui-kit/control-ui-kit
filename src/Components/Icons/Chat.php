@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Chat extends _Base
+class Chat extends BaseIconComponent
 {
     public function render()
     {

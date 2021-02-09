@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ArrowLeft extends _Base
+class ArrowLeft extends BaseIconComponent
 {
     public function render()
     {

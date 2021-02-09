@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Preorder extends _Base
+class Preorder extends BaseIconComponent
 {
     public function render()
     {

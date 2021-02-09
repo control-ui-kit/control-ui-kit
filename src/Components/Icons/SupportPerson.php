@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class SupportPerson extends _Base
+class SupportPerson extends BaseIconComponent
 {
     public function render()
     {

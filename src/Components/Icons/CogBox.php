@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CogBox extends _Base
+class CogBox extends BaseIconComponent
 {
     public function render()
     {

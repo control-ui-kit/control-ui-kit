@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Question extends _Base
+class Question extends BaseIconComponent
 {
     public function render()
     {

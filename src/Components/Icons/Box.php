@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Box extends _Base
+class Box extends BaseIconComponent
 {
     public function render()
     {

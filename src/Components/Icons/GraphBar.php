@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class GraphBar extends _Base
+class GraphBar extends BaseIconComponent
 {
     public function render()
     {

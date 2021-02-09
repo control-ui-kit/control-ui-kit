@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Tape extends _Base
+class Tape extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Clock extends _Base
+class Clock extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class DocumentSettings extends _Base
+class DocumentSettings extends BaseIconComponent
 {
     public function render()
     {

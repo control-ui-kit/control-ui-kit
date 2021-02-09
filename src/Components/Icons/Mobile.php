@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Mobile extends _Base
+class Mobile extends BaseIconComponent
 {
     public function render()
     {

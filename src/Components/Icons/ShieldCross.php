@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ShieldCross extends _Base
+class ShieldCross extends BaseIconComponent
 {
     public function render()
     {

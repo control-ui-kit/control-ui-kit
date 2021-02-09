@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Burger extends _Base
+class Burger extends BaseIconComponent
 {
     public function render()
     {

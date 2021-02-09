@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class MusicNoteDouble extends _Base
+class MusicNoteDouble extends BaseIconComponent
 {
     public function render()
     {

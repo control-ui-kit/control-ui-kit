@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class LogOut extends _Base
+class LogOut extends BaseIconComponent
 {
     public function render()
     {

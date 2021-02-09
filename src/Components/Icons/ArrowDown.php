@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ArrowDown extends _Base
+class ArrowDown extends BaseIconComponent
 {
     public function render()
     {

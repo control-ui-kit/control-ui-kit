@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Draft extends _Base
+class Draft extends BaseIconComponent
 {
     public function render()
     {

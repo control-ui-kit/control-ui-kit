@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Pause extends _Base
+class Pause extends BaseIconComponent
 {
     public function render()
     {

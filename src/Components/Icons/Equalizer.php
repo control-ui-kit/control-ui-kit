@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Equalizer extends _Base
+class Equalizer extends BaseIconComponent
 {
     public function render()
     {

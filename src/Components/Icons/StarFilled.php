@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class StarFilled extends _Base
+class StarFilled extends BaseIconComponent
 {
     public function render()
     {

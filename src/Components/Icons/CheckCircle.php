@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CheckCircle extends _Base
+class CheckCircle extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Dj extends _Base
+class Dj extends BaseIconComponent
 {
     public function render()
     {

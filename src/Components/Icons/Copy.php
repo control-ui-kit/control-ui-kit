@@ -2,9 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-use Illuminate\View\Component;
-
-class Copy extends Component
+class Copy extends BaseIconComponent
 {
     public function render()
     {

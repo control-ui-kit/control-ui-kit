@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Reload extends _Base
+class Reload extends BaseIconComponent
 {
     public function render()
     {

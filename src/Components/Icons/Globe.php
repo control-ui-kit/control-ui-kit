@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Globe extends _Base
+class Globe extends BaseIconComponent
 {
     public function render()
     {

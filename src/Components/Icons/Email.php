@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Email extends _Base
+class Email extends BaseIconComponent
 {
     public function render()
     {

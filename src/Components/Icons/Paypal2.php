@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Paypal2 extends _Base
+class Paypal2 extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Camera extends _Base
+class Camera extends BaseIconComponent
 {
     public function render()
     {

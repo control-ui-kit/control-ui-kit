@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Drag extends _Base
+class Drag extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Delete extends _Base
+class Delete extends BaseIconComponent
 {
     public function render()
     {

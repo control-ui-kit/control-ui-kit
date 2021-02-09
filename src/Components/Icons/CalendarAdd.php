@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CalendarAdd extends _Base
+class CalendarAdd extends BaseIconComponent
 {
     public function render()
     {

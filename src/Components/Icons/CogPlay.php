@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CogPlay extends _Base
+class CogPlay extends BaseIconComponent
 {
     public function render()
     {

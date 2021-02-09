@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Contact extends _Base
+class Contact extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class FileUpload extends _Base
+class FileUpload extends BaseIconComponent
 {
     public function render()
     {

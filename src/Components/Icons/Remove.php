@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Remove extends _Base
+class Remove extends BaseIconComponent
 {
     public function render()
     {

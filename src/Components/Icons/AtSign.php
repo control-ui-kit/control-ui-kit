@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class AtSign extends _Base
+class AtSign extends BaseIconComponent
 {
     public function render()
     {

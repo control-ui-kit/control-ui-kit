@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class EventAdd extends _Base
+class EventAdd extends BaseIconComponent
 {
     public function render()
     {

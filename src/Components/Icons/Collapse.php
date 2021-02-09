@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Collapse extends _Base
+class Collapse extends BaseIconComponent
 {
     public function render()
     {

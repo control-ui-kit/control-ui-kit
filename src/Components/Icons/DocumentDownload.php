@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class DocumentDownload extends _Base
+class DocumentDownload extends BaseIconComponent
 {
     public function render()
     {

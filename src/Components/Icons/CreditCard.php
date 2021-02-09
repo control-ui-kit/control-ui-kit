@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CreditCard extends _Base
+class CreditCard extends BaseIconComponent
 {
     public function render()
     {

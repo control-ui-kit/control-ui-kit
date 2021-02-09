@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Star extends _Base
+class Star extends BaseIconComponent
 {
     public function render()
     {

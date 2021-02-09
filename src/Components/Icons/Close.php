@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Close extends _Base
+class Close extends BaseIconComponent
 {
     public function render()
     {

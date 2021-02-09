@@ -2,9 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-use Illuminate\View\Component;
-
-class Eye extends Component
+class Eye extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ZoomOut extends _Base
+class ZoomOut extends BaseIconComponent
 {
     public function render()
     {

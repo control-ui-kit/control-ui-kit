@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CreditCardDownload extends _Base
+class CreditCardDownload extends BaseIconComponent
 {
     public function render()
     {

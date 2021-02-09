@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Imac extends _Base
+class Imac extends BaseIconComponent
 {
     public function render()
     {

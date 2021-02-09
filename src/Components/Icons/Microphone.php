@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Microphone extends _Base
+class Microphone extends BaseIconComponent
 {
     public function render()
     {

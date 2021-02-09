@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ChevronLeft extends _Base
+class ChevronLeft extends BaseIconComponent
 {
     public function render()
     {

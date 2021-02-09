@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class GraphPie extends _Base
+class GraphPie extends BaseIconComponent
 {
     public function render()
     {

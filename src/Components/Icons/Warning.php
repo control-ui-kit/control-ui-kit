@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Warning extends _Base
+class Warning extends BaseIconComponent
 {
     public function render()
     {

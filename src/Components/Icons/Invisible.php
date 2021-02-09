@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Invisible extends _Base
+class Invisible extends BaseIconComponent
 {
     public function render()
     {

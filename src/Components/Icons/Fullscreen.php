@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Fullscreen extends _Base
+class Fullscreen extends BaseIconComponent
 {
     public function render()
     {

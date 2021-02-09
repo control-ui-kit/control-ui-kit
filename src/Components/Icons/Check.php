@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Check extends _Base
+class Check extends BaseIconComponent
 {
     public function render()
     {

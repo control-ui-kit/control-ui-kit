@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Dot extends _Base
+class Dot extends BaseIconComponent
 {
     public function render()
     {

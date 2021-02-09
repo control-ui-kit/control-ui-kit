@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Message extends _Base
+class Message extends BaseIconComponent
 {
     public function render()
     {

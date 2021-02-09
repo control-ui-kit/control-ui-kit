@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Grid extends _Base
+class Grid extends BaseIconComponent
 {
     public function render()
     {

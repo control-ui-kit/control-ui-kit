@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Stripe extends _Base
+class Stripe extends BaseIconComponent
 {
     public function render()
     {

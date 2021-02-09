@@ -4,7 +4,7 @@ namespace ControlUIKit\Components\Icons;
 
 use Illuminate\View\Component;
 
-class Cog extends _Base
+class Cog extends BaseIconComponent
 {
     public function render()
     {

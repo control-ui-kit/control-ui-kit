@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Exclamation extends _Base
+class Exclamation extends BaseIconComponent
 {
     public function render()
     {

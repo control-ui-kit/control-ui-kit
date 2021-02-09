@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class ZoomIn extends _Base
+class ZoomIn extends BaseIconComponent
 {
     public function render()
     {

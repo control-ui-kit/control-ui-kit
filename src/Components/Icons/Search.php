@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Search extends _Base
+class Search extends BaseIconComponent
 {
     public function render()
     {

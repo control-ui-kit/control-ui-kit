@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Subtract extends _Base
+class Subtract extends BaseIconComponent
 {
     public function render()
     {

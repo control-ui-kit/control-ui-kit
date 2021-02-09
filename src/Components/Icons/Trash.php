@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Trash extends _Base
+class Trash extends BaseIconComponent
 {
     public function render()
     {

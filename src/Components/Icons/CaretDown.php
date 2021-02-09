@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CaretDown extends _Base
+class CaretDown extends BaseIconComponent
 {
     public function render()
     {

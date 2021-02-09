@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Options extends _Base
+class Options extends BaseIconComponent
 {
     public function render()
     {

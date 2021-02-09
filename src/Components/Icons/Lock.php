@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Lock extends _Base
+class Lock extends BaseIconComponent
 {
     public function render()
     {

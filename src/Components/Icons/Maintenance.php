@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Maintenance extends _Base
+class Maintenance extends BaseIconComponent
 {
     public function render()
     {

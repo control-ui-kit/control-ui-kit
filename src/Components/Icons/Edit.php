@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Edit extends _Base
+class Edit extends BaseIconComponent
 {
     public function render()
     {

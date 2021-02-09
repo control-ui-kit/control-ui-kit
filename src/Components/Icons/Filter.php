@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Filter extends _Base
+class Filter extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class StatusInfo extends _Base
+class StatusInfo extends BaseIconComponent
 {
     public function render()
     {

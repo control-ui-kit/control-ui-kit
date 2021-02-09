@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class CloseCircle extends _Base
+class CloseCircle extends BaseIconComponent
 {
     public function render()
     {

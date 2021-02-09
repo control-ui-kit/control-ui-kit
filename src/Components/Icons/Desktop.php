@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Desktop extends _Base
+class Desktop extends BaseIconComponent
 {
     public function render()
     {

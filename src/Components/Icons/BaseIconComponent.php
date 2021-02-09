@@ -4,7 +4,7 @@ namespace ControlUIKit\Components\Icons;
 
 use Illuminate\View\Component;
 
-class _Base extends Component
+class BaseIconComponent extends Component
 {
     public string $class;
 

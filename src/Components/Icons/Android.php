@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Android extends _Base
+class Android extends BaseIconComponent
 {
     public function render()
     {

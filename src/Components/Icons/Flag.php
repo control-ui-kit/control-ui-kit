@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Flag extends _Base
+class Flag extends BaseIconComponent
 {
     public function render()
     {

@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Notifications extends _Base
+class Notifications extends BaseIconComponent
 {
     public function render()
     {

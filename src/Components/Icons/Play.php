@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Play extends _Base
+class Play extends BaseIconComponent
 {
     public function render()
     {

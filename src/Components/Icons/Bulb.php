@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Bulb extends _Base
+class Bulb extends BaseIconComponent
 {
     public function render()
     {

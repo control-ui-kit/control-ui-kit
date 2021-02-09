@@ -2,7 +2,7 @@
 
 namespace ControlUIKit\Components\Icons;
 
-class Archive extends _Base
+class Archive extends BaseIconComponent
 {
     public function render()
     {
