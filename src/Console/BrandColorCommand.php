@@ -11,19 +11,19 @@ use Illuminate\Filesystem\Filesystem;
 
 final class BrandColorCommand extends Command
 {
-    protected $signature = 'uikit:brand-colors {--color= : Hex code of primary color}';
+    protected $signature = 'uikit:brand-colors {color}';
 
     protected $description = 'Export brand colors based on supplied hex color.';
 
-    public function handle(Filesystem $filesystem): int
+    public function handle(): int
     {
-        if (! $this->option('color')) {
+        if (! $this->argument('color')) {
             $this->error('You must supply a color');
             return 1;
         }
 
         try {
-            $palette = app(ColorPalette::class, ['color' => $this->option('color')])->createPalette();
+            $palette = app(ColorPalette::class, ['color' => $this->argument('color')])->createPalette();
         } catch (InvalidColorException $e) {
             $this->error('The color specified is invalid.');
             return 1;
