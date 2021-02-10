@@ -8,8 +8,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 use League\CommonMark\MarkdownConverterInterface;
+use League\CommonMark\Extension\Table\TableExtension;
 
 class Markdown extends Component
 {
@@ -70,7 +72,13 @@ class Markdown extends Component
             return new GithubFlavoredMarkdownConverter($options);
         }
 
-        return new CommonMarkConverter($options);
+        // Obtain a pre-configured Environment with all the CommonMark parsers/renderers ready-to-go
+        $environment = Environment::createCommonMarkEnvironment();
+
+        // Add this extension
+        $environment->addExtension(new TableExtension());
+
+        return new CommonMarkConverter($options, $environment);
     }
 
     protected function generateAnchors(string $markdown): string

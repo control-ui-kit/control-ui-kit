@@ -7,8 +7,6 @@
         <div class="max-w-xl">
             {{ $slot }}
         </div>
-        @error($name)
-            <div class="text-error mt-1">{{ $message }}</div>
-        @enderror
+        <x-error field="{{ $name }}"/>
     </div>
 </div>

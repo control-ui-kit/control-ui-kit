@@ -27,6 +27,7 @@ return [
         'dropdown.menu' => \ControlUIKit\Components\Dropdowns\Menu::class,
         'dropdown.option' => \ControlUIKit\Components\Dropdowns\Option::class,
 
+        'error' => \ControlUIKit\Components\Forms\Error::class,
         'form' => \ControlUIKit\Components\Forms\Form::class,
         'label' => \ControlUIKit\Components\Forms\Label::class,
 
