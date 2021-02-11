@@ -1,4 +1,4 @@
-<div class="mx-6" id="{{ $name }}" x-data="alpine()" x-init="init()">
+<div {{ $attributes }} id="{{ $name }}" x-data="alpine()" x-init="init()">
 
     <div class="hidden sm:block">
         <div class="border-b border-panel">
@@ -13,7 +13,7 @@
     <script>
         const alpine = () => ({
             name: '{{ $name }}',
-            showTab: '{{ $selected }}',
+            showTab: @if($selected) '{{ $selected }}' @else document.querySelector('#{{ $name }} a').id.replace('{{ $name }}_', '') @endif,
             tab(id) {
                 this.showTab = id;
             },

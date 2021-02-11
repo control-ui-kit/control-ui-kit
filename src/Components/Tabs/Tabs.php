@@ -6,13 +6,11 @@ use Illuminate\View\Component;
 
 class Tabs extends Component
 {
-    /** @var string */
-    public $selected;
+    public ?string $selected;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    public function __construct(string $selected, string $name = 'tabs') {
+    public function __construct(string $selected = null, string $name = 'tabs') {
         $this->selected = $selected;
         $this->name = $name;
     }

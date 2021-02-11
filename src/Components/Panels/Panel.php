@@ -6,28 +6,22 @@ use Illuminate\View\Component;
 
 class Panel extends Component
 {
-    /** @var string|null */
-    public $title;
+    public ?string $title;
 
-    /** @var string */
-    public $shadow;
+    public string $shadow;
 
-    /** @var string */
-    public $rounded;
+    public string $rounded;
 
-    /** @var bool */
-    public $padding;
+    public bool $padding;
 
-    /** @var bool */
-    public $margin;
+    public bool $margin;
 
-    /** @var bool */
-    public $border;
+    public bool $border;
 
     public function __construct(
         $title = null,
-        ?string $shadow = 'shadow',
-        ?string $rounded = 'sm:rounded',
+        string $shadow = 'shadow',
+        string $rounded = 'sm:rounded',
         bool $paddingless = false,
         bool $marginless = false,
         bool $borderless = false
