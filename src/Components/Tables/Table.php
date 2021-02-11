@@ -6,7 +6,29 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
-    public function __construct() {}
+    public string $shadow;
+
+    public string $rounded;
+
+    public bool $padding;
+
+    public bool $margin;
+
+    public bool $border;
+
+    public function __construct(
+        string $shadow = 'shadow',
+        string $rounded = 'sm:rounded',
+        bool $paddingless = false,
+        bool $marginless = false,
+        bool $borderless = false
+    ) {
+        $this->shadow = $shadow;
+        $this->rounded = $rounded;
+        $this->padding = $paddingless ? '' : 'p-6';
+        $this->margin = $marginless ? '' : 'sm:mx-6';
+        $this->border = $borderless ? '' : 'border border-table';
+    }
 
     public function render()
     {
