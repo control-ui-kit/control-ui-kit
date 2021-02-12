@@ -1,17 +1,24 @@
-<div {{ $attributes }} id="{{ $name }}" x-data="alpine()" x-init="init()">
+<div {{ $attributes }} id="{{ $name }}" x-data="{{ $name }}Data()" x-init="init()">
+
+    <div class="sm:hidden">
+        <select id="{{ $name }}" name="{{ $name }}" x-model="showTab"
+                class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
+            @foreach($getHeadingsArray($name, $headings) as $tab => $heading)
+                <option value="{{ str_replace("#{$name}-", "", $tab) }}">{{ $heading }}</option>
+            @endforeach
+        </select>
+    </div>
 
     <div class="hidden sm:block">
-        <div class="border-b border-panel">
-            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                {{ $headings }}
-            </nav>
-        </div>
+        <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+            {{ $headings }}
+        </nav>
     </div>
 
     {{ $panels }}
 
     <script>
-        const alpine = () => ({
+        const {{ $name }}Data = () => ({
             name: '{{ $name }}',
             showTab: @if($selected) '{{ $selected }}' @else document.querySelector('#{{ $name }} a').id.replace('{{ $name }}_', '') @endif,
             tab(id) {
@@ -31,5 +38,3 @@
         });
     </script>
 </div>
-
-

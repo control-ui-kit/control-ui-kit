@@ -6,12 +6,14 @@ use Illuminate\View\Component;
 
 class Panel extends Component
 {
-    /** @var string */
-    public $id;
+    public string $id;
 
-    public function __construct(string $id)
+    public ?string $component;
+
+    public function __construct(string $id, string $component = null)
     {
         $this->id = $id;
+        $this->component = $component;
     }
 
     public function render()
