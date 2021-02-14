@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-class SetLanguageFileMiddleware
+class ControlUIKitLanguageFileMiddleware
 {
     public function handle($request, Closure $next)
     {

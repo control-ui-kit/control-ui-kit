@@ -31,7 +31,7 @@ return [
         'form' => \ControlUIKit\Components\Forms\Form::class,
         'label' => \ControlUIKit\Components\Forms\Label::class,
 
-        'legend' => \ControlUIKit\Components\Forms\Legend::class,
+        'title' => \ControlUIKit\Components\Forms\Title::class,
         'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,

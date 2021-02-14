@@ -1,6 +1,6 @@
 <a href="#{{ $name }}-{{ $id }}" x-on:click="tab('{{ $id }}')"
-   :class="{ 'border-brand hover:text-gray-700 hover:border-gray-300' : showTab == '{{ $id }}' , 'border-transparent' : showTab != '{{ $id }}'}"
-   {{ $attributes->merge(['class' => "flex items-center space-x-2 py-1.5 border-b-2 font-medium"]) }}
+   :class="{ '{{ $active }}' : showTab == '{{ $id }}' , '{{ $inactive }}' : showTab != '{{ $id }}'}"
+   {{ $attributes->merge(['class' => "$padding $border $font"]) }}
    id="{{ $name }}_{{$id}}"
 >
     @if($icon)

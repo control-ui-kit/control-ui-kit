@@ -14,7 +14,9 @@
         "illuminate/filesystem": "^7.0|^8.0",
         "illuminate/support": "^7.0|^8.0",
         "illuminate/view": "^7.0|^8.0",
-        "nesbot/carbon": "^2.38"
+        "nesbot/carbon": "^2.38",
+        "ext-dom": "*",
+        "ext-libxml": "*"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0|^6.0",

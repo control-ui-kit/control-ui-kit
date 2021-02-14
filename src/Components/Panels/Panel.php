@@ -2,36 +2,40 @@
 
 namespace ControlUIKit\Components\Panels;
 
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Panel extends Component
 {
+    use UseThemeFile;
+
     public ?string $title;
-
-    public string $shadow;
-
+    public string $background;
+    public string $border;
+    public string $color;
+    public string $padding;
     public string $rounded;
-
-    public bool $padding;
-
-    public bool $margin;
-
-    public bool $border;
+    public string $shadow;
+    public ?string $dynamicComponent;
 
     public function __construct(
         $title = null,
-        string $shadow = 'shadow',
-        string $rounded = 'sm:rounded',
-        bool $paddingless = false,
-        bool $marginless = false,
-        bool $borderless = false
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null,
+        string $component = null
     ) {
         $this->title = $title;
-        $this->shadow = $shadow;
-        $this->rounded = $rounded;
-        $this->padding = $paddingless ? '' : 'p-6';
-        $this->margin = $marginless ? '' : 'sm:mx-6';
-        $this->border = $borderless ? '' : 'border border-panel';
+        $this->background = $this->style('panel', 'background', $background);
+        $this->border = $this->style('panel', 'border', $border);
+        $this->color = $this->style('panel', 'color', $color);
+        $this->padding = $this->style('panel', 'padding', $padding);
+        $this->rounded = $this->style('panel', 'rounded', $rounded);
+        $this->shadow = $this->style('panel', 'shadow', $shadow);
+        $this->dynamicComponent = $component;
     }
 
     public function render()

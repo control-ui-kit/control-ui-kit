@@ -1,16 +1,16 @@
-<div {{ $attributes }} id="{{ $name }}" x-data="{{ $name }}Data()" x-init="init()">
+<div {{ $attributes }} id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()">
 
     <div class="sm:hidden">
         <select id="{{ $name }}" name="{{ $name }}" x-model="showTab"
                 class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
-            @foreach($getHeadingsArray($name, $headings) as $tab => $heading)
+            @foreach($getHeadingsArray($headings) as $tab => $heading)
                 <option value="{{ str_replace("#{$name}-", "", $tab) }}">{{ $heading }}</option>
             @endforeach
         </select>
     </div>
 
     <div class="hidden sm:block">
-        <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+        <nav class="flex items-center {{ $spacing }}" aria-label="Tabs">
             {{ $headings }}
         </nav>
     </div>
@@ -18,7 +18,7 @@
     {{ $panels }}
 
     <script>
-        const {{ $name }}Data = () => ({
+        const {{ Str::camel($name) }}Data = () => ({
             name: '{{ $name }}',
             showTab: @if($selected) '{{ $selected }}' @else document.querySelector('#{{ $name }} a').id.replace('{{ $name }}_', '') @endif,
             tab(id) {

@@ -5,7 +5,8 @@ namespace ControlUIKit;
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
-use ControlUIKit\Middleware\SetLanguageFileMiddleware;
+use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
+use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 
@@ -23,6 +24,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/control-ui-kit.php', 'control-ui-kit');
         $this->mergeConfigFrom(__DIR__ . '/../config/language-files.php', 'language-files');
+        $this->mergeConfigFrom(__DIR__ . '/../config/themes/default.php', 'themes.default');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -58,6 +60,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
             ], 'control-ui-kit-config');
 
             $this->publishes([
+                __DIR__ . '/../config/themes/default.php' => $this->app->configPath('themes/default.php'),
+            ], 'control-ui-kit-theme');
+
+            $this->publishes([
                 __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/control-ui-kit'),
             ], 'control-ui-kit-views');
 
@@ -67,7 +73,8 @@ class ControlUIKitServiceProvider extends ServiceProvider
     protected function registerMiddleware(): void
     {
         $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', SetLanguageFileMiddleware::class);
+        $router->pushMiddlewareToGroup('web', ControlUIKitThemeMiddleware::class);
+        $router->pushMiddlewareToGroup('web', ControlUIKitLanguageFileMiddleware::class);
     }
 
     protected function registerViews(): void
