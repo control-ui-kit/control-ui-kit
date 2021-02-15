@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseLanguageString;
@@ -9,23 +11,19 @@ class Base extends Component
 {
     use UseLanguageString;
 
-    /** @var string */
-    public $name;
+    public string $name;
+    public string $id;
+    public string $type;
+    public string $value;
+    public string $placeholder;
 
-    /** @var string */
-    public $id;
-
-    /** @var string */
-    public $type;
-
-    /** @var string */
-    public $value;
-
-    /** @var string */
-    public $placeholder;
-
-    public function __construct(string $name, string $id = null, string $type = 'text', ?string $value = null, ?string $placeholder = null)
-    {
+    public function __construct(
+        string $name,
+        string $id = null,
+        string $type = 'text',
+        ?string $value = null,
+        ?string $placeholder = null
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->type = $type;

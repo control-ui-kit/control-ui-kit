@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Tabs;
 
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
-use Str;
 
 class Heading extends Component
 {
@@ -25,7 +26,7 @@ class Heading extends Component
     public function __construct(
         string $id,
         string $name = 'tabs',
-        ?string $icon = null,
+        string $icon = null,
         string $iconSize = null,
         string $shadow = null,
         string $rounded = null,

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Dropdowns;
 
 use Illuminate\View\Component;
@@ -8,7 +10,9 @@ class Option extends Component
 {
     public ?string $url;
 
-    public function __construct(string $url = null) {
+    public function __construct(
+        string $url = null
+    ) {
         $this->url = $url;
     }
 

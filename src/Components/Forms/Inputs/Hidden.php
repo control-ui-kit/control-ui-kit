@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use Illuminate\View\Component;
 
 class Hidden extends Component
 {
-    /** @var string */
-    public $name;
+    public string $name;
+    public string $id;
+    public string $value;
 
-    /** @var string */
-    public $id;
-
-    /** @var string */
-    public $value;
-
-    public function __construct(string $name, string $id = null, ?string $value = null)
-    {
+    public function __construct(
+        string $name,
+        string $id = null,
+        ?string $value = null
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');

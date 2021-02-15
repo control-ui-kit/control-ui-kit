@@ -1,23 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms;
 
 use Illuminate\View\Component;
 
 class Form extends Component
 {
-    /** @var string */
-    public $route;
+    public string $action;
+    public string $method;
+    public bool $uploads;
 
-    /** @var string */
-    public $method;
-
-    /** @var bool */
-    public $uploads;
-
-    public function __construct(string $route, string $method = 'POST', bool $uploads = false)
-    {
-        $this->route = $route;
+    public function __construct(
+        string $action,
+        string $method = 'POST',
+        bool $uploads = false
+    ) {
+        $this->action = $action;
         $this->method = strtoupper($method);
         $this->uploads = $uploads;
     }

@@ -10,11 +10,12 @@ use Illuminate\View\Component;
 class Error extends Component
 {
     public string $field;
-
     public string $bag;
 
-    public function __construct(string $field, string $bag = 'default')
-    {
+    public function __construct(
+        string $field,
+        string $bag = 'default'
+    ) {
         $this->field = $field;
         $this->bag = $bag;
     }

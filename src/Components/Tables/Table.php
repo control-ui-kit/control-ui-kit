@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Tables;
 
 use Illuminate\View\Component;
@@ -7,14 +9,10 @@ use Illuminate\View\Component;
 class Table extends Component
 {
     public string $shadow;
-
     public string $rounded;
-
-    public bool $padding;
-
-    public bool $margin;
-
-    public bool $border;
+    public string $padding;
+    public string $margin;
+    public string $border;
 
     public function __construct(
         string $shadow = 'shadow',

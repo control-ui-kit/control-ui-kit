@@ -15,23 +15,12 @@ use League\CommonMark\Extension\Table\TableExtension;
 
 class Markdown extends Component
 {
-    /** @var string */
-    protected $flavor;
-
-    /** @var string */
-    protected $htmlInput;
-
-    /** @var bool */
-    protected $allowUnsafeLinks;
-
-    /** @var array */
-    protected $options;
-
-    /** @var bool */
-    protected $anchors;
-
-    /** @var string */
-    protected $url;
+    protected string $flavor;
+    protected string $htmlInput;
+    protected bool $allowUnsafeLinks;
+    protected array $options;
+    protected bool $anchors;
+    protected string $url;
 
     public function __construct(
         string $flavor = 'default',

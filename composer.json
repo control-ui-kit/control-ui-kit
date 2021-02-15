@@ -19,12 +19,14 @@
         "ext-libxml": "*"
     },
     "require-dev": {
+        "gajus/dindent": "^2.0",
+        "league/commonmark": "^1.4",
         "orchestra/testbench": "^5.0|^6.0",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
-            "ControlUIKit\\": "src/"
+            "ControlUIKit\\": "src"
         }
     },
     "autoload-dev": {
@@ -38,5 +40,11 @@
                 "ControlUIKit\\ControlUIKitServiceProvider"
             ]
         }
+    },
+    "suggest": {
+        "league/commonmark": "Required to use the markdown component (^1.4)."
+    },
+    "config": {
+        "sort-packages": true
     }
 }

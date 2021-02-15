@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit;
 
 class GrayColors
@@ -9,7 +11,7 @@ class GrayColors
     public function getScale($gray = 'classic'): string
     {
         if (! $gray || ! in_array($gray, $this->grays, true)) {
-            return false;
+            return '';
         }
 
         if ($gray === 'blue') {

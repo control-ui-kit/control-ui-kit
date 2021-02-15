@@ -1,25 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Buttons;
 
 use Illuminate\View\Component;
 
 class Base extends Component
 {
-    /** @var string */
-    public $href;
+    public string $href;
+    public ?string $icon;
+    public string $version;
+    public string $element;
 
-    /** @var string */
-    public $icon;
-
-    /** @var string */
-    public $version;
-
-    /** @var string */
-    public $element;
-
-    public function __construct(string $href = null, string $icon = null, string $version = 'default')
-    {
+    public function __construct(
+        string $href = null,
+        string $icon = null,
+        string $version = 'default'
+    ) {
         $this->href = $href ?? 'href="' . $href . '"';
         $this->icon = $icon;
         $this->version = $version;

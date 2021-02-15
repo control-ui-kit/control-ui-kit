@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms;
 
 use ControlUIKit\Traits\UseThemeFile;
@@ -39,5 +41,4 @@ class Title extends Component
     {
         return view('control-ui-kit::control-ui-kit.forms.title');
     }
-
 }

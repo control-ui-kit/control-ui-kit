@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Tabs;
 
 use ControlUIKit\Traits\UseThemeFile;
@@ -33,7 +35,7 @@ class Tabs extends Component
     {
         $dom = new DomDocument();
         libxml_use_internal_errors(true);
-        $dom->loadHTML($html, true);
+        $dom->loadHTML($html);
 
         $nodes = $dom->getElementsByTagName('a');
         $matches = [];

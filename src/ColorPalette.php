@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit;
 
 use ControlUIKit\Exceptions\InvalidColorException;

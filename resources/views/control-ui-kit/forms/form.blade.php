@@ -1,4 +1,4 @@
-<form method="{{ $method !== 'GET' ? 'POST' : 'GET' }}" action="{{ $route }}" {!! $uploads ? 'enctype="multipart/form-data"' : '' !!} {{ $attributes }}>
+<form method="{{ $method !== 'GET' ? 'POST' : 'GET' }}" action="{{ $action }}" {!! $uploads ? 'enctype="multipart/form-data"' : '' !!} {{ $attributes }}>
     @csrf
     @method($method)
 

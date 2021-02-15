@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Buttons;
 
 use Illuminate\View\Component;
 
 class Muted extends Component
 {
-    /** @var string */
-    public $href;
+    public string $href;
+    public string $icon;
 
-    /** @var string */
-    public $icon;
-
-    public function __construct(string $href = '', string $icon = '')
-    {
+    public function __construct(
+        string $href = '',
+        string $icon = ''
+    ) {
         $this->href = $href;
         $this->icon = $icon;
     }

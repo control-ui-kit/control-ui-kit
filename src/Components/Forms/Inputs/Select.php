@@ -1,26 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use Illuminate\View\Component;
 
 class Select extends Component
 {
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $id;
-
-    /** @var string */
-    public $value;
+    public string $name;
+    public string $id;
+    public string $value;
 
     public $options;
     public $optionValue;
     public $optionText;
 
-    public function __construct(string $name, string $id = null, $options = [], ?string $value = null)
-    {
+    public function __construct(
+        string $name,
+        string $id = null,
+        $options = [],
+        ?string $value = null
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');

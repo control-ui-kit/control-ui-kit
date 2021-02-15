@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Modals;
 
 use Illuminate\View\Component;
 
 class Modal extends Component
 {
-    /** @var string */
-    public $id;
+    public ?string $id;
+    public string $maxWidth;
 
-    /** @var string */
-    public $maxWidth;
-
-    public function __construct(?string $id = null, string $maxWidth = '2xl')
-    {
+    public function __construct(
+        string $id = null,
+        string $maxWidth = '2xl'
+    ) {
         $this->id = $id;
         $this->maxWidth = $this->maxWidth($maxWidth);
     }

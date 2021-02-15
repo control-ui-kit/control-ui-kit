@@ -11,11 +11,11 @@ use Illuminate\View\Component;
 
 class ToC extends Component
 {
-    /** @var string */
-    public $url;
+    public string $url;
 
-    public function __construct($url = null)
-    {
+    public function __construct(
+        $url = null
+    ) {
         $this->url = $url ?? '';
     }
 

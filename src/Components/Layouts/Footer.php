@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Layouts;
 
 use Illuminate\View\Component;
@@ -7,7 +9,6 @@ use Illuminate\View\Component;
 class Footer extends Component
 {
     public string $padding;
-
     public string $border;
 
     public function __construct(

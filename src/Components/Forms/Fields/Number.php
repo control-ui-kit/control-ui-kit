@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Forms\Fields;
 
 use ControlUIKit\Traits\UseLanguageString;
@@ -9,23 +11,12 @@ class Number extends Component
 {
     use UseLanguageString;
 
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $id;
-
-    /** @var string */
-    public $value;
-
-    /** @var string */
-    public $label;
-
-    /** @var string */
-    public $placeholder;
-
-    /** @var string */
-    public $help;
+    public string $name;
+    public string $id;
+    public string $value;
+    public string $label;
+    public string $placeholder;
+    public string $help;
 
     public function __construct(
         string $name,

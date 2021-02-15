@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Code;
 
 use Illuminate\View\Component;
 
 class Block extends Component
 {
-    public $language;
+    public string $language;
 
-    public function __construct(string $language = 'html') {
+    public function __construct(
+        string $language = 'html'
+    ) {
         $this->language = $language;
     }
 

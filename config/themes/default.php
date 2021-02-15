@@ -18,6 +18,9 @@ return [
         'rounded' => 'rounded',
         'shadow' => 'shadow',
     ],
+    'panel-divider' => [
+        'border' => 'border-b border-panel-divider'
+    ],
     'tabs' => [
         'tabs' => [
             'spacing' => 'space-x-6',

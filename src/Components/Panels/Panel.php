@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ControlUIKit\Components\Panels;
 
 use ControlUIKit\Traits\UseThemeFile;
