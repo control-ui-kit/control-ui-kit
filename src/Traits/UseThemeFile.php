@@ -36,9 +36,15 @@ trait UseThemeFile
         }
     }
 
-    public function styles(): string
+    private function styles(): string
     {
         return collect($this->props)->filter()->implode(' ');
+    }
+
+    public function classes(string $class = ''): array
+    {
+        $class .= $this->styles() ? ' ' . $this->styles() : '';
+        return $class ? ['class' => $class] : [];
     }
 
 }

@@ -1,1 +1,1 @@
-<div @if ($styles()) {{ $attributes->merge(['class' => $styles()]) }} @endif></div>
+<div {{ $attributes->merge($classes()) }}></div>

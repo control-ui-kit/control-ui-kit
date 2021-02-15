@@ -15,6 +15,7 @@ class Panel extends Component
 
     public ?string $title;
     public ?string $dynamicComponent;
+    public string $stacked;
 
     public string $background;
     public string $border;
@@ -35,7 +36,8 @@ class Panel extends Component
         string $other = null,
         string $padding = null,
         string $rounded = null,
-        string $shadow = null
+        string $shadow = null,
+        bool $stacked = false
     ) {
         $this->title = $title;
         $this->dynamicComponent = $component;
@@ -48,7 +50,8 @@ class Panel extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
+            'stacked' => $stacked ? null : 'none',
         ]);
     }
 

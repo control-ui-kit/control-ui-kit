@@ -30,6 +30,7 @@ class PanelTest extends ComponentTestCase
         Config::set('themes.default.panel.padding', 'padding');
         Config::set('themes.default.panel.rounded', 'rounded');
         Config::set('themes.default.panel.shadow', 'shadow');
+        Config::set('themes.default.panel.stacked', 'stacked');
     }
 
     /** @test */
@@ -115,6 +116,23 @@ class PanelTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background border color font other padding rounded shadow">
                 <h3 class="background border color font other padding rounded shadow"></h3>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_panel_component_can_be_rendered_stacked(): void
+    {
+        $template = <<<'HTML'
+            <x-panel stacked>
+                Panel content
+            </x-panel>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color font other padding rounded shadow stacked"> Panel content
             </div>
             HTML;
 

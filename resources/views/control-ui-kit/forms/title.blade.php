@@ -1,1 +1,1 @@
-<h3 {{ $attributes }} @if ($styles()) {{ $attributes->merge(['class' => $styles()]) }} @endif>{{ $slot }}</h3>
+<h3 {{ $attributes->merge($classes()) }}>{{ $slot }}</h3>

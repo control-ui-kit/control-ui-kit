@@ -10,6 +10,7 @@ return [
         'padding' => 'p-6',
         'rounded' => 'rounded',
         'shadow' => 'shadow',
+        'stacked' => 'flex flex-col space-y-2'
     ],
     'panel-divider' => [
         'border' => 'border-b border-panel-divider',
