@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ControlUIKit\Components\Tabs;
+namespace ControlUIKit\Components\Panels;
 
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
@@ -11,15 +11,7 @@ class Heading extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'tabs-heading';
-
-    public string $id;
-    public string $name;
-    public ?string $icon;
-    public string $size;
-
-    public string $active;
-    public string $inactive;
+    protected string $component = 'panel-heading';
 
     public string $background;
     public string $border;
@@ -31,15 +23,6 @@ class Heading extends Component
     public string $shadow;
 
     public function __construct(
-        string $id,
-        string $name = 'tabs',
-
-        string $icon = null,
-        string $iconSize = null,
-
-        string $active = null,
-        string $inactive = null,
-
         string $background = null,
         string $border = null,
         string $color = null,
@@ -49,10 +32,6 @@ class Heading extends Component
         string $rounded = null,
         string $shadow = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->icon = $icon;
-
         $this->setConfigStyles([
             'background' => $background,
             'border' => $border,
@@ -63,14 +42,10 @@ class Heading extends Component
             'rounded' => $rounded,
             'shadow' => $shadow
         ]);
-
-        $this->active = $this->style('tabs-heading', 'active', $active);
-        $this->inactive = $this->style('tabs-heading', 'inactive', $inactive);
-        $this->size = $this->style('tabs-heading', 'icon-size', $iconSize);
     }
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.tabs.heading');
+        return view('control-ui-kit::control-ui-kit.panels.heading');
     }
 }

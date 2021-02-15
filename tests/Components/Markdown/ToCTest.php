@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 class ToCTest extends ComponentTestCase
 {
     /** @test */
-    public function it_can_render_markdown_to_html()
+    public function it_can_render_markdown_toc_to_html(): void
     {
         $template = <<<'HTML'
             <x-toc>
@@ -38,25 +38,19 @@ class ToCTest extends ComponentTestCase
         $expected = <<<'HTML'
             <ul>
                 <li>
-                    <a href="#sub-title-level-2">
-                Sub Title level 2 </a>
-                
+                    <a href="#sub-title-level-2"> Sub Title level 2 </a>
                     <ul>
                         <li>
-                <a href="#sub-sub-title-level-3">
-                Sub Sub Title level 3 </a>
-                </li>
+                            <a href="#sub-sub-title-level-3"> Sub Sub Title level 3 </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#other-sub-title-level-2">
-                Other Sub Title level 2 </a>
-                
+                    <a href="#other-sub-title-level-2"> Other Sub Title level 2 </a>
                     <ul>
                         <li>
-                <a href="#sub-sub-title-level-3">
-                Sub Sub Title level 3 </a>
-                </li>
+                            <a href="#sub-sub-title-level-3"> Sub Sub Title level 3 </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -66,7 +60,7 @@ class ToCTest extends ComponentTestCase
     }
 
     /** @test */
-    public function it_accepts_a_base_url()
+    public function it_accepts_a_base_url(): void
     {
         $template = <<<'HTML'
             <x-toc url="http://example.com/foo">
@@ -87,14 +81,11 @@ class ToCTest extends ComponentTestCase
         $expected = <<<'HTML'
             <ul>
                 <li>
-                    <a href="http://example.com/foo#sub-title-level-2">
-                Sub Title level 2 </a>
-                
+                    <a href="http://example.com/foo#sub-title-level-2"> Sub Title level 2 </a>
                     <ul>
                         <li>
-                <a href="http://example.com/foo#sub-sub-title-level-3">
-                Sub Sub Title level 3 </a>
-                </li>
+                            <a href="http://example.com/foo#sub-sub-title-level-3"> Sub Sub Title level 3 </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -127,8 +118,7 @@ class ToCTest extends ComponentTestCase
         $expected = <<<'HTML'
             <ul>
                 <li>
-                <a href="#sub-title-level-2">
-                Sub Title level 2 </a>
+                    <a href="#sub-title-level-2"> Sub Title level 2 </a>
                 </li>
             </ul>
             HTML;

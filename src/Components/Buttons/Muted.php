@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Muted extends Component
 {
+    protected string $component = 'button-muted';
+
     public string $href;
     public string $icon;
 

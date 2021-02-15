@@ -10,6 +10,8 @@ use Illuminate\View\Component;
 
 class Label extends Component
 {
+    protected string $component = 'label';
+
     public string $for;
 
     public function __construct(

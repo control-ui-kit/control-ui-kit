@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Block extends Component
 {
+    protected string $component = 'code-block';
+
     public string $language;
 
     public function __construct(

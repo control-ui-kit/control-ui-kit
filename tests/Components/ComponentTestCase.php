@@ -41,12 +41,20 @@ abstract class ComponentTestCase extends TestCase
         $indenter = new Indenter();
         $indenter->setElementType('h1', Indenter::ELEMENT_TYPE_INLINE);
         $indenter->setElementType('del', Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('a', Indenter::ELEMENT_TYPE_BLOCK);
 
         $blade = (string) $this->blade($template, $data);
         $indented = $indenter->indent($blade);
+
+        //        $cleaned = str_replace(
+//            [' >', "\n/>", '> ', "\n>"],
+//            ['>', ' />', ">\n    ", '>'],
+//            $indented,
+//        );
+
         $cleaned = str_replace(
-            [' >', "\n/>", ' </div>', '> ', "\n>"],
-            ['>', ' />', "\n</div>", ">\n    ", '>'],
+            [' >'],
+            ['>'],
             $indented,
         );
 

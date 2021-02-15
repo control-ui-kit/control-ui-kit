@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Menu extends Component
 {
+    protected string $component = 'dropdown.menu';
+
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.dropdowns.menu');

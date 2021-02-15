@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Form extends Component
 {
+    protected string $component = 'form';
+
     public string $action;
     public string $method;
     public bool $uploads;

@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Footer extends Component
 {
+    protected string $component = 'footer';
+
     public string $padding;
     public string $border;
 

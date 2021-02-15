@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Body extends Component
 {
+    protected string $component = 'body';
+
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.layouts.body');

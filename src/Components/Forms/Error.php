@@ -9,6 +9,8 @@ use Illuminate\View\Component;
 
 class Error extends Component
 {
+    protected string $component = 'error';
+
     public string $field;
     public string $bag;
 

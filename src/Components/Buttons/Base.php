@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Base extends Component
 {
+    protected string $component = 'button-base';
+
     public string $href;
     public ?string $icon;
     public string $version;

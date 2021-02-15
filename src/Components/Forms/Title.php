@@ -11,10 +11,13 @@ class Title extends Component
 {
     use UseThemeFile;
 
+    protected string $component = 'title';
+
     public string $background;
     public string $border;
     public string $color;
     public string $font;
+    public string $other;
     public string $padding;
     public string $rounded;
     public string $shadow;
@@ -24,17 +27,21 @@ class Title extends Component
         string $border = null,
         string $color = null,
         string $font = null,
+        string $other = null,
         string $padding = null,
         string $rounded = null,
         string $shadow = null
     ) {
-        $this->background = $this->style('title', 'background', $background);
-        $this->border = $this->style('title', 'border', $border);
-        $this->color = $this->style('title', 'color', $color);
-        $this->font = $this->style('title', 'font', $font);
-        $this->padding = $this->style('title', 'padding', $padding);
-        $this->rounded = $this->style('title', 'rounded', $rounded);
-        $this->shadow = $this->style('title', 'shadow', $shadow);
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow
+        ]);
     }
 
     public function render()

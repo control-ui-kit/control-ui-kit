@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 class MarkdownTest extends ComponentTestCase
 {
     /** @test */
-    public function it_can_render_markdown_to_html()
+    public function it_can_render_markdown_to_html(): void
     {
         $template = <<<'HTML'
             <x-markdown>
@@ -17,7 +17,7 @@ class MarkdownTest extends ComponentTestCase
 
             Blade UI components are **awesome**.
 
-            Check them out [here](https://github.com/blade-ui-kit).
+            Check them out[here](https://github.com/blade-ui-kit).
             </x-markdown>
             HTML;
 
@@ -26,7 +26,11 @@ class MarkdownTest extends ComponentTestCase
                 <h1>Hello World</h1>
 
                 <p>Blade UI components are <strong>awesome</strong>.</p>
-                <p>Check them out <a href="https://github.com/blade-ui-kit">here</a>.</p>
+                <p>
+                    Check them out
+                    <a href="https://github.com/blade-ui-kit">here</a>
+                    .
+                </p>
             </div>
             HTML;
 
@@ -34,7 +38,7 @@ class MarkdownTest extends ComponentTestCase
     }
 
     /** @test */
-    public function it_can_render_github_flavored_markdown_to_html()
+    public function it_can_render_github_flavored_markdown_to_html(): void
     {
         $template = <<<'HTML'
             <x-markdown flavor="github">
@@ -52,7 +56,7 @@ class MarkdownTest extends ComponentTestCase
     }
 
     /** @test */
-    public function options_can_be_passed()
+    public function options_can_be_passed(): void
     {
         $template = <<<'HTML'
             <x-markdown :options="['use_asterisk' => false]">
@@ -74,7 +78,7 @@ class MarkdownTest extends ComponentTestCase
     }
 
     /** @test */
-    public function anchors_can_be_generated()
+    public function anchors_can_be_generated(): void
     {
         $template = <<<'HTML'
             <x-markdown anchors>
@@ -97,12 +101,16 @@ class MarkdownTest extends ComponentTestCase
                 <h1>Hello World</h1>
 
                 <p>Blade UI components are <em>awesome</em>.</p>
-                <p><a class="anchor" name="foo-title"></a></p>
+                <p>
+                    <a class="anchor" name="foo-title"></a>
+                </p>
                 <h2>
                     Foo Title
                 </h2>
                 <p>Some content.</p>
-                <p><a class="anchor" name="baz-title"></a></p>
+                <p>
+                    <a class="anchor" name="baz-title"></a>
+                </p>
                 <h3>
                     Baz Title
                 </h3>
@@ -114,7 +122,7 @@ class MarkdownTest extends ComponentTestCase
     }
 
     /** @test */
-    public function anchors_are_not_generated_for_headers_in_code_blocks()
+    public function anchors_are_not_generated_for_headers_in_code_blocks(): void
     {
         $template = <<<'HTML'
             <x-markdown anchors>
@@ -143,7 +151,9 @@ class MarkdownTest extends ComponentTestCase
                 <h1>Hello World</h1>
 
                 <p>Blade UI components are <strong>awesome</strong>.</p>
-                <p><a class="anchor" name="sub-title-level-2"></a></p>
+                <p>
+                    <a class="anchor" name="sub-title-level-2"></a>
+                </p>
                 <h2>
                     Sub Title level 2
                 </h2>

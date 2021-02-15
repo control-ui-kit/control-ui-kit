@@ -11,12 +11,12 @@ class Divider extends Component
 {
     use UseThemeFile;
 
+    protected string $component = 'panel-divider';
+
     public string $border;
 
-    public function __construct(
-        string $border = null
-    ) {
-        $this->border = $this->style('panel-divider', 'border', $border);
+    public function __construct(string $border = null) {
+        $this->setConfigStyles(['border' => $border]);
     }
 
     public function render()

@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
+    protected string $component = 'table';
+
     public string $shadow;
     public string $rounded;
     public string $padding;

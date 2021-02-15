@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class EmptyRow extends Component
 {
+    protected string $component = 'table.empty';
+
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.tables.empty');

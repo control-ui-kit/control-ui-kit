@@ -12,6 +12,8 @@ class Tabs extends Component
 {
     use UseThemeFile;
 
+    protected string $component = 'tabs';
+
     public string $name;
     public ?string $selected;
     public string $spacing;
@@ -23,7 +25,7 @@ class Tabs extends Component
     ) {
         $this->name = $name;
         $this->selected = $selected;
-        $this->spacing = $this->style('tabs.tabs', 'spacing', $spacing);
+        $this->spacing = $this->style('tabs', 'spacing', $spacing);
     }
 
     public function render()

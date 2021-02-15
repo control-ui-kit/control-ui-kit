@@ -62,7 +62,7 @@ return [
 
         'panel' => \ControlUIKit\Components\Panels\Panel::class,
         'panel.divider' => \ControlUIKit\Components\Panels\Divider::class,
-        'panel.title' => \ControlUIKit\Components\Panels\Title::class,
+        'panel.heading' => \ControlUIKit\Components\Panels\Heading::class,
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,

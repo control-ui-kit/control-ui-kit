@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Button extends Component
 {
+    protected string $component = 'button';
+
     public string $href;
     public string $icon;
 

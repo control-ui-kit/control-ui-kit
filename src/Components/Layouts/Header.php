@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
+    protected string $component = 'header';
+
     public string $padding;
     public string $border;
 
