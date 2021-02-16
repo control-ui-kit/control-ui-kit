@@ -45,18 +45,7 @@ abstract class ComponentTestCase extends TestCase
 
         $blade = (string) $this->blade($template, $data);
         $indented = $indenter->indent($blade);
-
-        //        $cleaned = str_replace(
-//            [' >', "\n/>", '> ', "\n>"],
-//            ['>', ' />', ">\n    ", '>'],
-//            $indented,
-//        );
-
-        $cleaned = str_replace(
-            [' >'],
-            ['>'],
-            $indented,
-        );
+        $cleaned = str_replace(' >', '>', $indented);
 
         self::assertSame($expected, $cleaned);
     }
