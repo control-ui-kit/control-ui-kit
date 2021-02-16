@@ -155,6 +155,7 @@ return [
         'icon.email' => \ControlUIKit\Components\Icons\Email::class,
         'icon.equalizer-2' => \ControlUIKit\Components\Icons\Equalizer2::class,
         'icon.equalizer' => \ControlUIKit\Components\Icons\Equalizer::class,
+        'icon.event' => \ControlUIKit\Components\Icons\Event::class,
         'icon.event-add' => \ControlUIKit\Components\Icons\EventAdd::class,
         'icon.exclamation' => \ControlUIKit\Components\Icons\Exclamation::class,
         'icon.expand' => \ControlUIKit\Components\Icons\Expand::class,

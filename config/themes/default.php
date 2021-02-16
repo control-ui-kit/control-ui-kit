@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'icon' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+        'size' => 'w-5 h-5',
+    ],
     'panel' => [
         'background' => 'bg-panel',
         'border' => 'border border-panel',

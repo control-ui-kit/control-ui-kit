@@ -1,1 +1,1 @@
-<svg {{ $attributes->merge(['class' => $class]) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 22v-4H4c-1.103 0-2-.897-2-2V4c0-1.104.897-2 2-2h16c1.103 0 2 .896 2 2v12c0 1.103-.897 2-2 2h-8.667L6 22zM4 4v12h4v2l2.667-2H20V4H4z" /></svg>
+<svg {{ $attributes->merge($classes('fill-current')) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 22v-4H4c-1.103 0-2-.897-2-2V4c0-1.104.897-2 2-2h16c1.103 0 2 .896 2 2v12c0 1.103-.897 2-2 2h-8.667L6 22zM4 4v12h4v2l2.667-2H20V4H4z" /></svg>

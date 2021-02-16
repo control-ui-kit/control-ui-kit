@@ -85,7 +85,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile">
-                <svg class="fill-current icon-size" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                     <span>Heading content</span>
@@ -106,7 +106,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile">
-                <svg class="fill-current ::new-size" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="::new-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                     <span>Heading content</span>
