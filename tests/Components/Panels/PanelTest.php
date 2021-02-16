@@ -138,4 +138,22 @@ class PanelTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+
+    /** @test */
+    public function a_panel_component_can_be_rendered_with_additional_attributes(): void
+    {
+        $template = <<<'HTML'
+            <x-panel id="profile" padding="none" wire:model="something">
+                Panel content
+            </x-panel>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color font other rounded shadow" id="profile" wire:model="something"> Panel content
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

@@ -1,4 +1,4 @@
-<div {{ $attributes }} id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()">
+<div id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()" {{ $attributes->merge($classes()) }}>
 
     <div class="sm:hidden">
         <select id="{{ $name }}" name="{{ $name }}" x-model="showTab"

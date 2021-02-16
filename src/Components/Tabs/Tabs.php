@@ -17,14 +17,42 @@ class Tabs extends Component
     public string $name;
     public ?string $selected;
     public string $spacing;
+    public string $background;
+    public string $border;
+    public string $color;
+    public string $font;
+    public string $other;
+    public string $padding;
+    public string $rounded;
+    public string $shadow;
 
     public function __construct(
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
         string $name = 'tabs',
+        string $padding = null,
+        string $rounded = null,
         string $selected = null,
+        string $shadow = null,
         string $spacing = null
     ) {
         $this->name = $name;
         $this->selected = $selected;
+
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow
+        ]);
+
         $this->spacing = $this->style('tabs', 'spacing', $spacing);
     }
 

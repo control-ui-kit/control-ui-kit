@@ -38,15 +38,20 @@ abstract class ComponentTestCase extends TestCase
 
     public function assertComponentRenders(string $expected, string $template, array $data = []): void
     {
+        $blade = (string) $this->blade($template, $data);
+
+        self::assertSame($expected, $this->indent($blade));
+    }
+
+    public function indent($html)
+    {
         $indenter = new Indenter();
         $indenter->setElementType('h1', Indenter::ELEMENT_TYPE_INLINE);
         $indenter->setElementType('del', Indenter::ELEMENT_TYPE_INLINE);
         $indenter->setElementType('a', Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('svg', Indenter::ELEMENT_TYPE_INLINE);
 
-        $blade = (string) $this->blade($template, $data);
-        $indented = $indenter->indent($blade);
-        $cleaned = str_replace(' >', '>', $indented);
-
-        self::assertSame($expected, $cleaned);
+        $indented = $indenter->indent($html);
+        return str_replace([" >", " \n"], [">", "\n"], $indented);
     }
 }
