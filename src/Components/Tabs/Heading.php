@@ -21,15 +21,6 @@ class Heading extends Component
     public string $active;
     public string $inactive;
 
-    public string $background;
-    public string $border;
-    public string $color;
-    public string $font;
-    public string $other;
-    public string $padding;
-    public string $rounded;
-    public string $shadow;
-
     public function __construct(
         string $id,
         string $name = 'tabs',
@@ -64,9 +55,9 @@ class Heading extends Component
             'shadow' => $shadow
         ]);
 
-        $this->active = $this->style('tabs-heading', 'active', $active);
-        $this->inactive = $this->style('tabs-heading', 'inactive', $inactive);
-        $this->size = $this->style('tabs-heading', 'icon-size', $iconSize);
+        $this->active = $this->style($this->component, 'active', $active);
+        $this->inactive = $this->style($this->component, 'inactive', $inactive);
+        $this->size = $this->style($this->component, 'icon-size', $iconSize);
     }
 
     public function render()

@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 class FormTest extends ComponentTestCase
 {
     /** @test */
-    public function a_form_can_be_rendered(): void
+    public function a_form_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
             <x-form action="http://example.com">
@@ -30,7 +30,7 @@ class FormTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_form_with_method_can_be_set(): void
+    public function a_form_component_with_method_can_be_set(): void
     {
         $template = <<<'HTML'
             <x-form method="PUT" action="http://example.com">
@@ -51,7 +51,7 @@ class FormTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_form_with_uploads_enabled(): void
+    public function a_form_component_with_uploads_enabled(): void
     {
         $template = <<<'HTML'
             <x-form method="PUT" action="http://example.com" uploads>

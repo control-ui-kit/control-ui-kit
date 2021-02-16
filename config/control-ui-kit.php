@@ -48,8 +48,10 @@ return [
         'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
+        'layout.content' => \ControlUIKit\Components\Layouts\Content::class,
         'layout.footer' => \ControlUIKit\Components\Layouts\Footer::class,
         'layout.header' => \ControlUIKit\Components\Layouts\Header::class,
+        'layout.toolbar' => \ControlUIKit\Components\Layouts\Toolbar::class,
 
         'form.layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
 

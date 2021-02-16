@@ -21,7 +21,7 @@ class IconsTest extends ComponentTestCase
     }
 
     /** @test */
-    public function all_icons_can_be_rendered(): void
+    public function all_icons_components_can_be_rendered(): void
     {
         $icons = collect(config('control-ui-kit.icons'))->keys();
 
@@ -38,7 +38,7 @@ class IconsTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_icon_can_be_rendered_with_inline_styles(): void
+    public function an_icon_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
             <x-icon.add background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" size="9" />
@@ -54,7 +54,7 @@ class IconsTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_icon_can_be_rendered_with_custom_size(): void
+    public function an_icon_component_can_be_rendered_with_custom_size(): void
     {
         $template = <<<'HTML'
             <x-icon.add size="w-2 h-2" />
@@ -70,7 +70,7 @@ class IconsTest extends ComponentTestCase
     }
 
     /** @test */
-    public function coverage_test(): void
+    public function icon_component_coverage_test(): void
     {
         $icon = new BaseIconComponent();
         self::assertEmpty($icon->render());

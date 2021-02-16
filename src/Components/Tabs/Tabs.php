@@ -17,14 +17,6 @@ class Tabs extends Component
     public string $name;
     public ?string $selected;
     public string $spacing;
-    public string $background;
-    public string $border;
-    public string $color;
-    public string $font;
-    public string $other;
-    public string $padding;
-    public string $rounded;
-    public string $shadow;
 
     public function __construct(
         string $background = null,
@@ -53,7 +45,7 @@ class Tabs extends Component
             'shadow' => $shadow
         ]);
 
-        $this->spacing = $this->style('tabs', 'spacing', $spacing);
+        $this->spacing = $this->style($this->component, 'spacing', $spacing);
     }
 
     public function render()

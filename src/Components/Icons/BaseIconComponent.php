@@ -13,16 +13,6 @@ class BaseIconComponent extends Component
 
     protected string $component = 'icon';
 
-    public string $background;
-    public string $border;
-    public string $color;
-    public string $font;
-    public string $other;
-    public string $padding;
-    public string $rounded;
-    public string $shadow;
-    public string $size;
-
     public function __construct(
         string $background = null,
         string $border = null,

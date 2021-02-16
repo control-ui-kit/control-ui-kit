@@ -13,8 +13,6 @@ class Divider extends Component
 
     protected string $component = 'panel-divider';
 
-    public string $border;
-
     public function __construct(string $border = null) {
         $this->setConfigStyles(['border' => $border]);
     }

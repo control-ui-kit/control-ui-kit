@@ -43,7 +43,7 @@ abstract class ComponentTestCase extends TestCase
         self::assertSame($expected, $this->indent($blade));
     }
 
-    public function indent($html)
+    public function indent($html): string
     {
         $indenter = new Indenter();
         $indenter->setElementType('h1', Indenter::ELEMENT_TYPE_INLINE);

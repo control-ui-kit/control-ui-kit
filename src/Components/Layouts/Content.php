@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ControlUIKit\Components\Panels;
+namespace ControlUIKit\Components\Layouts;
 
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Heading extends Component
+class Content extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'panel-heading';
+    protected string $component = 'layout-content';
 
     public function __construct(
         string $background = null,
@@ -31,12 +31,12 @@ class Heading extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
     }
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.panels.heading');
+        return view('control-ui-kit::control-ui-kit.layouts.content');
     }
 }

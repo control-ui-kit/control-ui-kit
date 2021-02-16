@@ -24,7 +24,7 @@ class TitleTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_title_can_be_rendered(): void
+    public function a_title_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
             <x-title>The Title</x-title>
@@ -40,7 +40,7 @@ class TitleTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_title_can_be_rendered_with_none_classes(): void
+    public function a_title_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
             <x-title background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">The Title</x-title>
@@ -56,7 +56,7 @@ class TitleTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_title_can_be_rendered_with_inline_classes(): void
+    public function a_title_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
             <x-title background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">The Title</x-title>

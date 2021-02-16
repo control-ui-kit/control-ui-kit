@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 class ToCTest extends ComponentTestCase
 {
     /** @test */
-    public function it_can_render_markdown_toc_to_html(): void
+    public function a_toc_component_can_render_markdown_to_html(): void
     {
         $template = <<<'HTML'
             <x-toc>
@@ -60,7 +60,7 @@ class ToCTest extends ComponentTestCase
     }
 
     /** @test */
-    public function it_accepts_a_base_url(): void
+    public function a_toc_component_can_accepts_a_base_url(): void
     {
         $template = <<<'HTML'
             <x-toc url="http://example.com/foo">
@@ -95,7 +95,7 @@ class ToCTest extends ComponentTestCase
     }
 
     /** @test */
-    public function headings_in_code_blocks_are_skipped()
+    public function a_toc_component_skips_headings_in_code_blocks(): void
     {
         $template = <<<'HTML'
             <x-toc>

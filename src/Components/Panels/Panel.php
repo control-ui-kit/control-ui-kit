@@ -15,16 +15,6 @@ class Panel extends Component
 
     public ?string $title;
     public ?string $dynamicComponent;
-    public string $stacked;
-
-    public string $background;
-    public string $border;
-    public string $color;
-    public string $font;
-    public string $other;
-    public string $padding;
-    public string $rounded;
-    public string $shadow;
 
     public function __construct(
         string $title = null,

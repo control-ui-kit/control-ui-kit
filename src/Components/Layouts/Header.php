@@ -4,21 +4,35 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Layouts;
 
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Header extends Component
 {
-    protected string $component = 'header';
+    use UseThemeFile;
 
-    public string $padding;
-    public string $border;
+    protected string $component = 'layout-header';
 
     public function __construct(
-        bool $paddingless = false,
-        bool $borderless = false
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null
     ) {
-        $this->padding = $paddingless ? '' : 'py-8';
-        $this->border = $borderless ? '' : 'border border-header';
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ]);
     }
 
     public function render()
