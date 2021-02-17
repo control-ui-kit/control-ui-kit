@@ -19,6 +19,7 @@ return [
         'button.brand' => \ControlUIKit\Components\Buttons\Brand::class,
         'button' => \ControlUIKit\Components\Buttons\Button::class,
         'button.muted' => \ControlUIKit\Components\Buttons\Muted::class,
+        'logout' => \ControlUIKit\Components\Buttons\Logout::class,
 
         'code.block' => \ControlUIKit\Components\Code\Block::class,
         'code' => \ControlUIKit\Components\Code\Inline::class,

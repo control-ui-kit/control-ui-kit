@@ -1,6 +1,43 @@
 <?php
 
 return [
+
+    'button' => [
+
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'icon-size' => 'w-4 h-4',
+        'other' => 'w-max flex items-center justify-center group cursor-pointer outline-none focus:outline-none',
+        'padding' => 'space-x-1.5 px-2 py-2',
+        'rounded' => 'rounded-md',
+        'shadow' => '',
+
+        'default' => [
+            'background' => 'bg-button-default hover:bg-button-default-hover',
+            'border' => 'border border-button-default hover:border-button-default-hover',
+            'color' => 'text-button-default hover:text-button-default-hover',
+            'icon' => 'text-button-default-icon group-hover:text-button-default-icon-hover',
+        ],
+
+        'brand' => [
+            'background' => 'bg-button-brand hover:bg-button-brand-hover',
+            'border' => 'border border-button-brand hover:border-button-brand-hover',
+            'color' => 'text-button-brand hover:text-button-brand-hover',
+            'icon' => 'text-button-brand-icon group-hover:text-button-brand-icon-hover',
+        ],
+
+        'muted' => [
+            'background' => 'bg-button-muted hover:bg-button-muted-hover',
+            'border' => 'border border-button-muted hover:border-button-muted-hover',
+            'color' => 'text-button-muted hover:text-button-muted-hover',
+            'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
+        ],
+
+    ],
+
+
     'layout-body' => [
         'background' => 'bg-app',
         'border' => '',
