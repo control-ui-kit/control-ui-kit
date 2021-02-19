@@ -4,13 +4,15 @@ return [
 
     'button' => [
 
+        'default-style' => 'default',
+
         'background' => '',
         'border' => '',
         'color' => '',
         'font' => '',
         'icon-size' => 'w-4 h-4',
         'other' => 'w-max flex items-center justify-center group cursor-pointer outline-none focus:outline-none',
-        'padding' => 'space-x-1.5 px-2 py-2',
+        'padding' => 'space-x-1.5 px-2 py-1.5',
         'rounded' => 'rounded-md',
         'shadow' => '',
 
@@ -28,6 +30,34 @@ return [
             'icon' => 'text-button-brand-icon group-hover:text-button-brand-icon-hover',
         ],
 
+        'danger' => [
+            'background' => 'bg-button-danger hover:bg-button-danger-hover',
+            'border' => 'border border-button-danger hover:border-button-danger-hover',
+            'color' => 'text-button-danger hover:text-button-danger-hover',
+            'icon' => 'text-button-danger-icon group-hover:text-button-danger-icon-hover',
+        ],
+
+        'info' => [
+            'background' => 'bg-button-info hover:bg-button-info-hover',
+            'border' => 'border border-button-info hover:border-button-info-hover',
+            'color' => 'text-button-info hover:text-button-info-hover',
+            'icon' => 'text-button-info-icon group-hover:text-button-info-icon-hover',
+        ],
+
+        'link' => [
+            'background' => 'bg-button-link hover:bg-button-link-hover',
+            'border' => 'border border-button-link hover:border-button-link-hover',
+            'color' => 'text-button-link hover:text-button-link-hover hover:underline',
+            'icon' => 'text-button-link-icon group-hover:text-button-link-icon-hover',
+        ],
+
+        'success' => [
+            'background' => 'bg-button-success hover:bg-button-success-hover',
+            'border' => 'border border-button-success hover:border-button-success-hover',
+            'color' => 'text-button-success hover:text-button-success-hover',
+            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
+        ],
+
         'muted' => [
             'background' => 'bg-button-muted hover:bg-button-muted-hover',
             'border' => 'border border-button-muted hover:border-button-muted-hover',
@@ -35,6 +65,12 @@ return [
             'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
         ],
 
+        'warning' => [
+            'background' => 'bg-button-warning hover:bg-button-warning-hover',
+            'border' => 'border border-button-warning hover:border-button-warning-hover',
+            'color' => 'text-button-warning hover:text-button-warning-hover',
+            'icon' => 'text-button-warning-icon group-hover:text-button-warning-icon-hover',
+        ],
     ],
 
 

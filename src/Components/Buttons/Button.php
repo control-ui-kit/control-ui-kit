@@ -11,7 +11,7 @@ class Button extends Component
 {
     use UseThemeFile;
 
-    private const VERSIONS = ['default', 'brand', 'muted'];
+    private const STYLES = ['default', 'brand', 'danger', 'info', 'link', 'success', 'muted', 'warning'];
 
     protected string $component = 'button';
     public ?string $href;
@@ -37,9 +37,23 @@ class Button extends Component
         string $bstyle = null,
         bool $default = false,
         bool $brand = false,
-        bool $muted = false
+        bool $danger = false,
+        bool $info = false,
+        bool $link = false,
+        bool $success = false,
+        bool $muted = false,
+        bool $warning = false
     ) {
-        $this->bstyle = $this->buttonVersion($bstyle, $default, $brand, $muted);
+        $this->bstyle = $this->buttonVersion($bstyle, [
+            'default' => $default,
+            'brand' => $brand,
+            'danger' => $danger,
+            'info' => $info,
+            'link' => $link,
+            'success' => $success,
+            'muted' => $muted,
+            'warning' => $warning,
+        ]);
 
         $this->setConfigStyles([
             'background' => $background,
@@ -53,7 +67,7 @@ class Button extends Component
         ], ['background', 'border', 'color'], 'button.' . $this->bstyle);
 
         $this->href = $href ? "href=\"{$href}\"" : '';
-        $this->icon = $icon;
+        $this->icon = $icon === 'none' ? null : $icon;
         $this->element = $this->href ? 'a' : 'button';
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->iconStyles = $this->style('button.' . $this->bstyle, 'icon', $iconStyle);
@@ -64,29 +78,23 @@ class Button extends Component
         return view('control-ui-kit::control-ui-kit.buttons.button');
     }
 
-    private function buttonVersion($version, $default, $brand, $muted): string
+    private function buttonVersion($bstyle, $styles): string
     {
-        if ($this->validVersion($version)) {
-            return $version;
+        if ($this->validStyle($bstyle)) {
+            return $bstyle;
         }
 
-        if ($brand) {
-            return 'brand';
-        }
-
-        if ($muted) {
-            return 'muted';
-        }
-
-        if ($default) {
-            return 'default';
+        foreach ($styles as $style => $enable) {
+            if ($enable) {
+                return $style;
+            }
         }
 
         return 'default';
     }
 
-    private function validVersion($version): bool
+    private function validStyle($style): bool
     {
-        return in_array($version, self::VERSIONS, true);
+        return in_array($style, self::STYLES, true);
     }
 }
