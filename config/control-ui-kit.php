@@ -15,10 +15,7 @@ return [
 
     'components' => [
 
-        'button.base' => \ControlUIKit\Components\Buttons\Base::class,
-        'button.brand' => \ControlUIKit\Components\Buttons\Brand::class,
         'button' => \ControlUIKit\Components\Buttons\Button::class,
-        'button.muted' => \ControlUIKit\Components\Buttons\Muted::class,
         'logout' => \ControlUIKit\Components\Buttons\Logout::class,
 
         'code.block' => \ControlUIKit\Components\Code\Block::class,
@@ -106,6 +103,7 @@ return [
 
         'icon.add' => \ControlUIKit\Components\Icons\Add::class,
         'icon.add-circle' => \ControlUIKit\Components\Icons\AddCircle::class,
+        'icon.alert-circle' => \ControlUIKit\Components\Icons\AlertCircle::class,
         'icon.android' => \ControlUIKit\Components\Icons\Android::class,
         'icon.application' => \ControlUIKit\Components\Icons\Application::class,
         'icon.archive' => \ControlUIKit\Components\Icons\Archive::class,

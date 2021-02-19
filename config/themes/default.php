@@ -4,15 +4,17 @@ return [
 
     'button' => [
 
-        'default-style' => 'default',
+        'primary-button' => 'default',
 
         'background' => '',
         'border' => '',
         'color' => '',
+        'cursor' => 'cursor-pointer',
+        'disabled' => 'opacity-60 cursor-default',
         'font' => '',
-        'icon-size' => 'w-4 h-4',
-        'other' => 'w-max flex items-center justify-center group cursor-pointer outline-none focus:outline-none',
-        'padding' => 'space-x-1.5 px-2 py-1.5',
+        'icon-size' => 'w-5 h-5',
+        'other' => 'w-max h-9 flex items-center justify-center group outline-none focus:outline-none',
+        'padding' => 'space-x-1 px-2 py-1.5',
         'rounded' => 'rounded-md',
         'shadow' => '',
 

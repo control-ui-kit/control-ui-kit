@@ -4,27 +4,31 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Buttons;
 
+use ControlUIKit\Traits\UseButtons;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Button extends Component
 {
-    use UseThemeFile;
-
-    private const STYLES = ['default', 'brand', 'danger', 'info', 'link', 'success', 'muted', 'warning'];
+    use UseThemeFile, UseButtons;
 
     protected string $component = 'button';
+
     public ?string $href;
     public ?string $icon;
     public string $bstyle;
     public string $element;
     public string $iconSize;
     public string $iconStyles;
+    public string $type;
+    public string $role_type;
+    public string $disabled;
 
     public function __construct(
         string $background = null,
         string $border = null,
         string $color = null,
+        string $cursor = null,
         string $font = null,
         string $iconSize = null,
         string $iconStyle = null,
@@ -35,9 +39,11 @@ class Button extends Component
         string $href = null,
         string $icon = null,
         string $bstyle = null,
+        string $type = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,
+        bool $disabled = false,
         bool $info = false,
         bool $link = false,
         bool $success = false,
@@ -59,6 +65,8 @@ class Button extends Component
             'background' => $background,
             'border' => $border,
             'color' => $color,
+            'cursor' => $disabled ? '' : $cursor,
+            'disabled' => $disabled ? null : '',
             'font' => $font,
             'other' => $other,
             'padding' => $padding,
@@ -66,9 +74,12 @@ class Button extends Component
             'shadow' => $shadow
         ], ['background', 'border', 'color'], 'button.' . $this->bstyle);
 
-        $this->href = $href ? "href=\"{$href}\"" : '';
+        $this->type = $this->buttonType($type, $href);
+        $this->href = $href && ! $disabled ? "href=\"{$href}\"" : '';
         $this->icon = $icon === 'none' ? null : $icon;
         $this->element = $this->href ? 'a' : 'button';
+        $this->disabled = $disabled ? 'disabled' : '';
+        $this->role_type = $this->element === 'a' ? 'role' : 'type';
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->iconStyles = $this->style('button.' . $this->bstyle, 'icon', $iconStyle);
     }
@@ -76,25 +87,5 @@ class Button extends Component
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.buttons.button');
-    }
-
-    private function buttonVersion($bstyle, $styles): string
-    {
-        if ($this->validStyle($bstyle)) {
-            return $bstyle;
-        }
-
-        foreach ($styles as $style => $enable) {
-            if ($enable) {
-                return $style;
-            }
-        }
-
-        return 'default';
-    }
-
-    private function validStyle($style): bool
-    {
-        return in_array($style, self::STYLES, true);
     }
 }

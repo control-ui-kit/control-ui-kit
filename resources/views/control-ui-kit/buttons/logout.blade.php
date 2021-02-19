@@ -1,7 +1,18 @@
 <form method="POST" action="{{ $action }}">
     @csrf
 
-    <button type="submit" {{ $attributes }}>
-        {{ $slot->isEmpty() ? __('Log out') : $slot }}
-    </button>
+    @if($bstyle)
+
+        <x-button :bstyle="$bstyle" :icon="$icon" type="submit" {{ $attributes }}>
+            {{ $slot->isEmpty() ? __('Log out') : $slot }}
+        </x-button>
+
+    @else
+
+        <button type="submit" {{ $attributes }}>
+            {{ $slot->isEmpty() ? __('Log out') : $slot }}
+        </button>
+
+    @endif
+
 </form>

@@ -10,10 +10,15 @@ trait UseThemeFile
 {
     public array $props = [];
 
+    private function theme()
+    {
+        return app('control-ui-kit.theme');
+    }
+
     private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null): string
     {
         if (is_null($input)) {
-            $theme = app('control-ui-kit.theme') ;
+            $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
 
             if (! config()->has($key)) {
