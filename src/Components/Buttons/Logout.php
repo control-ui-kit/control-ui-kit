@@ -15,6 +15,7 @@ class Logout extends Component
     public string $action;
     public string $bstyle;
     public string $icon;
+    public bool $iconOnly;
 
     public function __construct(
         string $action = null,
@@ -27,10 +28,12 @@ class Logout extends Component
         bool $link = false,
         bool $success = false,
         bool $muted = false,
-        bool $warning = false
+        bool $warning = false,
+        bool $iconOnly = false
     ) {
         $this->action = $action ?? route('logout');
         $this->icon = $icon ?? '';
+        $this->iconOnly = $iconOnly;
 
         $this->bstyle = $this->buttonVersion($bstyle, [
             'default' => $default,

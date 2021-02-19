@@ -51,7 +51,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="">
-                <button type="submit"> Log out </button>
+                <button type="submit"> Log Out </button>
             </form>
             HTML;
 
@@ -85,7 +85,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="">
-                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Log out
+                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Log Out
             </button>
             </form>
             HTML;
@@ -125,7 +125,29 @@ class LogoutTest extends ComponentTestCase
                     <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
-                        <span>Log out</span>
+                        <span>Log Out</span>
+                    </button>
+                </form>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function an_icon_only_button_logout_component_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-logout brand icon-only icon="icon.dot" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <form method="POST" action="http://localhost/logout">
+                <input type="hidden" name="_token" value="">
+                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit">
+                    <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
                     </button>
                 </form>
             HTML;
