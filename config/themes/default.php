@@ -75,6 +75,79 @@ return [
         ],
     ],
 
+    'table' => [
+        'background' => '',
+        'body-styles' => 'divide-y divide-table-divider bg-table bg-brand',
+        'border' => 'border border-table',
+        'color' => '',
+        'font' => 'text-left',
+        'head-styles' => 'items-center uppercase bg-table-header border-b border-table-divider',
+        'other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
+        'padding' => '',
+        'rounded' => 'sm:rounded',
+        'shadow' => 'shadow',
+    ],
+
+    'table-cell' => [
+        'align' => 'text-left',
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'whitespace-no-wrap leading-5',
+        'padding' => 'px-2 py-2',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'table-empty' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+//    'table-filter' => [
+//        'background' => '',
+//        'border' => '',
+//        'color' => '',
+//        'font' => '',
+//        'other' => '',
+//        'padding' => '',
+//        'rounded' => '',
+//    ],
+
+    'table-heading' => [
+        'align' => 'text-left',
+        'background' => '',
+        'border' => '',
+        'color' => 'text-table-header',
+        'font' => 'leading-4 font-medium uppercase tracking-wider',
+        'icon-asc' => 'icon.chevron-up',
+        'icon-desc' => 'icon.chevron-down',
+        'icon-size' => 'w-4 h-4',
+        'method' => 'session',
+        'other' => '',
+        'padding' => 'px-2 py-2',
+        'rounded' => '',
+        'shadow' => '',
+        'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:underline',
+    ],
+
+    'table-row' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
 
     'layout-body' => [
         'background' => 'bg-app',
@@ -87,6 +160,7 @@ return [
         'shadow' => '',
         'theme' => 'light',
     ],
+
     'layout-content' => [
         'background' => '',
         'border' => '',
@@ -97,6 +171,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'layout-header' => [
         'background' => 'bg-header',
         'border' => 'border border-header',
@@ -107,6 +182,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'layout-footer' => [
         'background' => 'bg-footer',
         'border' => 'border border-footer',
@@ -117,6 +193,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'layout-toolbar' => [
         'background' => '',
         'border' => '',
@@ -127,6 +204,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'icon' => [
         'background' => '',
         'border' => '',
@@ -138,6 +216,7 @@ return [
         'shadow' => '',
         'size' => 'w-5 h-5',
     ],
+
     'panel' => [
         'background' => 'bg-panel',
         'border' => 'border border-panel',
@@ -149,9 +228,11 @@ return [
         'shadow' => 'shadow',
         'stacked' => 'flex flex-col space-y-2'
     ],
+
     'panel-divider' => [
         'border' => 'border-b border-panel-divider',
     ],
+
     'panel-heading' => [
         'background' => '',
         'border' => '',
@@ -162,6 +243,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'tabs' => [
         'background' => '',
         'border' => '',
@@ -173,6 +255,7 @@ return [
         'shadow' => '',
         'spacing' => 'space-x-6',
     ],
+
     'tabs-heading' => [
         'active' => 'border-brand cursor-default',
         'background' => '',
@@ -186,6 +269,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'tabs-panel' => [
         'background' => '',
         'border' => '',
@@ -196,6 +280,7 @@ return [
         'rounded' => '',
         'shadow' => '',
     ],
+
     'title' => [
         'background' => '',
         'border' => '',

@@ -4,11 +4,41 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Cell extends Component
 {
-    protected string $component = 'table.cell';
+    use UseThemeFile;
+
+    protected string $component = 'table-cell';
+
+    public string $align;
+
+    public function __construct(
+        string $align = null,
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null
+    ) {
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ]);
+
+        $this->align = $this->style($this->component, 'align', $align);
+    }
 
     public function render()
     {

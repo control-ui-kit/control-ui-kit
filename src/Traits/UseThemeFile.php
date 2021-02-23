@@ -64,4 +64,34 @@ trait UseThemeFile
         $class = trim(collect($this->props)->filter()->implode(' '));
         return $class ? ['class' => $class] : [];
     }
+
+    private function align(?string $align, bool $left, bool $center, bool $right): ?string
+    {
+        if ($align === '') {
+            return '';
+        }
+
+        if ($align === 'right' || $align === 'text-right' || $right) {
+            return 'text-right';
+        }
+
+        if ($align === 'center' || $align === 'text-center' || $center) {
+            return 'text-center';
+        }
+
+        if ($align === 'left' || $align === 'text-left' || $left) {
+            return 'text-left';
+        }
+
+        return null;
+    }
+
+    private function direction($direction): string
+    {
+        if (isset($direction) && strtolower($direction) === 'desc') {
+            return 'desc';
+        }
+
+        return 'asc';
+    }
 }

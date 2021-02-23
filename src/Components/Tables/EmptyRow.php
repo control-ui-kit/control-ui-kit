@@ -4,11 +4,36 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class EmptyRow extends Component
 {
-    protected string $component = 'table.empty';
+    use UseThemeFile;
+
+    protected string $component = 'table-empty';
+
+    public function __construct(
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null
+    ) {
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ]);
+    }
 
     public function render()
     {

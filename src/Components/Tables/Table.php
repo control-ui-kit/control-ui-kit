@@ -4,30 +4,43 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Table extends Component
 {
+    use UseThemeFile;
+
     protected string $component = 'table';
 
-    public string $shadow;
-    public string $rounded;
-    public string $padding;
-    public string $margin;
-    public string $border;
+    public string $headStyles;
+    public string $bodyStyles;
 
     public function __construct(
-        string $shadow = 'shadow',
-        string $rounded = 'sm:rounded',
-        bool $paddingless = false,
-        bool $marginless = false,
-        bool $borderless = false
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null,
+        string $headStyles = null,
+        string $bodyStyles = null
     ) {
-        $this->shadow = $shadow;
-        $this->rounded = $rounded;
-        $this->padding = $paddingless ? '' : 'p-6';
-        $this->margin = $marginless ? '' : 'sm:mx-6';
-        $this->border = $borderless ? '' : 'border border-table';
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ]);
+
+        $this->headStyles = $this->style($this->component, 'head-styles', $headStyles);
+        $this->bodyStyles = $this->style($this->component, 'body-styles', $bodyStyles);
     }
 
     public function render()
