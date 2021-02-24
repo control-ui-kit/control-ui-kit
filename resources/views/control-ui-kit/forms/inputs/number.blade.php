@@ -1,8 +1,6 @@
-<x-input.text
-    name="{{ $name }}"
-    id="{{ $id }}"
-    type="number"
-    :value="$value"
-    :placeholder="$placeholder"
-    :attributes="$attributes"
-/>
+<input name="{{ $name }}"
+       type="number"
+       id="{{ $id }}"
+       @if($value)value="{{ $value }}"@endif
+       @if($placeholder)placeholder="{{ $placeholder }}"@endif
+        {{ $attributes->merge($classes()) }} />

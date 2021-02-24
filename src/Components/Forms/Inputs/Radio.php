@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\UseLanguageString;
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Radio extends Component
 {
+    use UseThemeFile, UseLanguageString;
+
+    protected string $component = 'input-radio';
+
     public string $name;
     public string $id;
     public ?string $value;

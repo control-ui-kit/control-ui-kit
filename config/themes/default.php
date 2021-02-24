@@ -75,6 +75,27 @@ return [
         ],
     ],
 
+    'input-text' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-number' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
 
     'layout-body' => [
         'background' => 'bg-app',
