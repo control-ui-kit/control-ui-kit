@@ -97,6 +97,17 @@ return [
         'shadow' => '',
     ],
 
+    'input-radio' => [
+        'background' => 'bg-input',
+        'border' => 'focus:ring-brand border-input',
+        'color' => '',
+        'font' => 'text-brand',
+        'other' => 'h-4 w-4 cursor-pointer',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
     'layout-body' => [
         'background' => 'bg-app',
         'border' => '',

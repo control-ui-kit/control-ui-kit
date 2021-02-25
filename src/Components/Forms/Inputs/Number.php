@@ -30,7 +30,6 @@ class Number extends Component
         string $rounded = null,
         string $shadow = null,
         string $id = null,
-        string $type = 'text',
         string $value = null,
         string $placeholder = null
     ) {
@@ -50,6 +49,7 @@ class Number extends Component
             'shadow' => $shadow,
         ]);
     }
+
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.number');
