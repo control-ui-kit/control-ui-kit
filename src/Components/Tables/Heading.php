@@ -21,7 +21,6 @@ class Heading extends Component
     public string $iconAsc;
     public string $iconDesc;
     public string $iconSize;
-    public string $method;
     public ?string $field;
     public string $sortLink;
     public ?string $currentOrder;
@@ -43,7 +42,6 @@ class Heading extends Component
         string $iconAsc = null,
         string $iconDesc = null,
         string $iconSize = null,
-        string $method = null,
         string $other = null,
         string $padding = null,
         string $rounded = null,
@@ -70,15 +68,24 @@ class Heading extends Component
         $this->iconAsc = $this->style($this->component, 'icon-asc', $iconAsc);
         $this->iconDesc = $this->style($this->component, 'icon-desc', $iconDesc);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
-        $this->method = $this->style($this->component, 'method', $method);
         $this->sortLink = $this->style($this->component, 'sort-link', $sortLink);
         $this->field = $field;
-        $this->currentOrder = $currentOrder;
-        $this->currentSort = $this->cleanDirection($currentSort);
+        $this->currentOrder = $currentOrder ?? $this->currentOrder();
+        $this->currentSort = $currentOrder ? $this->cleanDirection($currentSort) : $this->currentSort();
 
         $this->href = $this->buildHref($href, $field, $currentSort);
 
         $this->setIcons();
+    }
+
+    public function currentOrder(): ?string
+    {
+        return request($this->fieldOrder);
+    }
+
+    public function currentSort(): ?string
+    {
+        return request($this->fieldSort);
     }
 
     public function render()

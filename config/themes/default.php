@@ -137,8 +137,7 @@ return [
         'field-order' => 'order',
         'field-sort' => 'sort',
         'icon-asc' => 'icon.caret-up',
-        'icon-desc' => 'icon.caret-down',
-        'method' => 'session',
+        'icon-desc' => 'icon.caret-down'
     ],
 
     'table-row' => [
