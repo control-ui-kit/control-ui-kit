@@ -13,7 +13,7 @@ class Table extends Component
 
     protected string $component = 'table';
 
-    public string $headStyles;
+    public string $headingStyles;
     public string $bodyStyles;
 
     public function __construct(
@@ -25,7 +25,7 @@ class Table extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
-        string $headStyles = null,
+        string $headingStyles = null,
         string $bodyStyles = null
     ) {
         $this->setConfigStyles([
@@ -39,7 +39,7 @@ class Table extends Component
             'shadow' => $shadow,
         ]);
 
-        $this->headStyles = $this->style($this->component, 'head-styles', $headStyles);
+        $this->headingStyles = $this->style($this->component, 'heading-styles', $headingStyles);
         $this->bodyStyles = $this->style($this->component, 'body-styles', $bodyStyles);
     }
 

@@ -18,7 +18,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table.border', 'border');
         Config::set('themes.default.table.color', 'color');
         Config::set('themes.default.table.font', 'font');
-        Config::set('themes.default.table.head-styles', 'head-styles');
+        Config::set('themes.default.table.heading-styles', 'heading-styles');
         Config::set('themes.default.table.other', 'other');
         Config::set('themes.default.table.padding', 'padding');
         Config::set('themes.default.table.rounded', 'rounded');
@@ -63,6 +63,23 @@ class TableTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_table_component_can_be_rendered_with_appended_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table background="... something" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <table class="background something border color font other padding rounded shadow">
+                <tbody class="body-styles"></tbody>
+            </table>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
     public function a_table_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -88,6 +105,92 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <table class="1 3 4 5 6 7 8 9">
                 <tbody class="2"></tbody>
+            </table>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_component_can_be_rendered_with_inline_heading_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table heading-styles="something">
+                <x-slot name="headings"></x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <table class="background border color font other padding rounded shadow">
+                <thead>
+                    <tr class="something"></tr>
+                </thead>
+                <tbody class="body-styles"></tbody>
+            </table>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_component_can_be_rendered_with_no_heading_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table heading-styles="none">
+                <x-slot name="headings"></x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <table class="background border color font other padding rounded shadow">
+                <thead>
+                    <tr class=""></tr>
+                </thead>
+                <tbody class="body-styles"></tbody>
+            </table>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_component_can_be_rendered_with_appended_heading_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table heading-styles="...something">
+                <x-slot name="headings"></x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <table class="background border color font other padding rounded shadow">
+                <thead>
+                    <tr class="heading-styles something"></tr>
+                </thead>
+                <tbody class="body-styles"></tbody>
+            </table>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_component_can_be_rendered_with_appended_heading_styles_even_if_no_header_style_set(): void
+    {
+        Config::set('themes.default.table.heading-styles', '');
+
+        $template = <<<'HTML'
+            <x-table heading-styles="...something">
+                <x-slot name="headings"></x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <table class="background border color font other padding rounded shadow">
+                <thead>
+                    <tr class="something"></tr>
+                </thead>
+                <tbody class="body-styles"></tbody>
             </table>
             HTML;
 

@@ -18,14 +18,18 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.border', 'border');
         Config::set('themes.default.table-heading.color', 'color');
         Config::set('themes.default.table-heading.font', 'font');
-        Config::set('themes.default.table-heading.icon-asc', 'icon.chevron-up');
-        Config::set('themes.default.table-heading.icon-desc', 'icon.chevron-down');
         Config::set('themes.default.table-heading.icon-size', 'icon-size');
         Config::set('themes.default.table-heading.other', 'other');
         Config::set('themes.default.table-heading.padding', 'padding');
         Config::set('themes.default.table-heading.rounded', 'rounded');
         Config::set('themes.default.table-heading.shadow', 'shadow');
         Config::set('themes.default.table-heading.sort-link', 'sort-link');
+
+        Config::set('themes.default.table-heading.field-order', 'order');
+        Config::set('themes.default.table-heading.field-sort', 'sort');
+        Config::set('themes.default.table-heading.icon-asc', 'icon.caret-up');
+        Config::set('themes.default.table-heading.icon-desc', 'icon.caret-down');
+        Config::set('themes.default.table-heading.method', 'session');
     }
 
     /** @test */
@@ -181,7 +185,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow">
-                <a href="http://example.com"> ::Some Heading </a>
+                <a href="http://example.com">::Some Heading</a>
             </th>
             HTML;
 
@@ -232,19 +236,171 @@ class HeadingTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_heading_component_with_sorting_can_be_rendered(): void
+    public function a_table_heading_component_with_sorting_and_href_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading name="example" href="http://example.com">::Some Heading</x-table.heading>
+            <x-table.heading field="example" href="http://example.com">::Some Heading</x-table.heading>
             HTML;
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow">
-                <a href="http://example.com?orderby=example&sort=asc" class="sort-link">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_href_and_current_sort_asc_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" href="http://example.com" currentOrder="example" currentSort="asc">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://example.com?order=example&amp;sort=desc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_href_and_current_sort_desc_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" href="http://example.com" currentOrder="example" currentSort="desc">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7 9l5 5 5-5H7z"/>
+                            </svg>
+                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M17 14l-5-5-5 5h10z"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_current_sort_asc_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" currentOrder="example" currentSort="asc">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=desc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_current_sort_desc_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" currentOrder="example" currentSort="desc">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7 9l5 5 5-5H7z"/>
+                            </svg>
+                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M17 14l-5-5-5 5h10z"/>
+                                </svg>
+                            </span>
+                        </a>
+                    </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_icon_size_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" icon-size="::some-size">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="::some-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                        </span>
                     </a>
                 </th>
             HTML;

@@ -7,14 +7,13 @@
 @endisset
 
 <table {{ $attributes->merge($classes()) }}>
-    @isset($head)
+    @isset($headings)
     <thead>
-    <tr class="{{ $headStyles }}">
-        {{ $head }}
+    <tr class="{{ $headingStyles }}">
+        {{ $headings }}
     </tr>
     </thead>
     @endif
-
     <tbody class="{{ $bodyStyles }}">
     @if (isset($body))
     {{ $body }}
