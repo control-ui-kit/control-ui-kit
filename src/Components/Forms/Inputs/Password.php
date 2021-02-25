@@ -8,11 +8,11 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Percentage extends Component
+class Password extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-percent';
+    protected string $component = 'input-password';
 
     public string $name;
     public string $id;
@@ -49,8 +49,9 @@ class Percentage extends Component
             'shadow' => $shadow,
         ]);
     }
+
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.percent');
+        return view('control-ui-kit::control-ui-kit.forms.inputs.password');
     }
 }

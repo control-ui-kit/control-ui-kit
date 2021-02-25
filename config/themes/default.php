@@ -86,6 +86,61 @@ return [
         'shadow' => '',
     ],
 
+    'input-decimal' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-currency' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-password' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-email' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-textarea' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
     'input-number' => [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
@@ -116,6 +171,44 @@ return [
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-percent' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'w-20',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-toggle' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'w-20',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-hidden' => [
+        'other' => '',
+        'padding' => '',
+    ],
+
+    'input-select' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-20',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
         'shadow' => '',
     ],
 

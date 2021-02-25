@@ -1,10 +1,8 @@
-<x-input.text
-    name="{{ $name }}"
-    id="{{ $id }}"
-    type="number"
-    :value="$value"
-    :placeholder="$placeholder"
-    :attributes="$attributes->merge([ 'class' => 'w-20'])"
-    min="0"
-    max="100"
-/>
+<input name="{{ $name }}"
+       type="number"
+       id="{{ $id }}"
+       @if($value)value="{{ $value }}"@endif
+       @if($placeholder)placeholder="{{ $placeholder }}"@endif
+       min="0"
+       max="100"
+       {{ $attributes->merge($classes()) }} />

@@ -44,6 +44,11 @@ return [
         'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
         'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
+        'input.password' => \ControlUIKit\Components\Forms\Inputs\Password::class,
+        'input.email' => \ControlUIKit\Components\Forms\Inputs\Email::class,
+        'input.decimal' => \ControlUIKit\Components\Forms\Inputs\Decimal::class,
+        'input.currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
+        'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,
