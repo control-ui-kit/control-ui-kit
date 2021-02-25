@@ -15,9 +15,21 @@ trait UseThemeFile
         return app('control-ui-kit.theme');
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null): string
+    private function appendStyles($input): string
     {
         if (is_null($input)) {
+            return '';
+        }
+
+        $append = strpos($input, '...') === 0;
+        return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
+    }
+
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null): string
+    {
+        $append_input = $this->appendStyles($input);
+
+        if ($append_input || is_null($input)) {
             $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
 
@@ -39,7 +51,7 @@ trait UseThemeFile
 
             }
 
-            return trim($configStyle);
+            return trim($configStyle . $append_input);
         }
 
         return ($input === 'none' ? '' : $input);
@@ -50,7 +62,6 @@ trait UseThemeFile
         $this->props = $props;
 
         foreach ($this->props as $prop => $value) {
-
             $keyMerge = ($config && count($merge) && in_array($prop, $merge, true)) ? $config : null;
 
             $this->$prop = $this->style($this->component, $prop, $value, $keyMerge);
@@ -86,7 +97,7 @@ trait UseThemeFile
         return null;
     }
 
-    private function direction($direction): string
+    private function cleanDirection($direction): string
     {
         if (isset($direction) && strtolower($direction) === 'desc') {
             return 'desc';
