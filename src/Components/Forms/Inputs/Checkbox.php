@@ -4,25 +4,50 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\UseLanguageString;
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Checkbox extends Component
 {
+    use UseThemeFile, UseLanguageString;
+
+    protected string $component = 'input-checkbox';
+
     public string $name;
     public string $id;
-    public string $value;
+    public ?string $value;
     private ?string $checked;
 
     public function __construct(
         string $name,
-        string $value = '1',
+        string $background = null,
+        string $border = null,
+        string $color = null,
+        string $font = null,
+        string $other = null,
+        string $padding = null,
+        string $rounded = null,
+        string $shadow = null,
         string $id = null,
+        string $value = null,
         string $checked = null
     ) {
         $this->name = $name;
-        $this->id = $id ?? $name;
+        $this->id = $id ?? $name . '_' . str_replace(' ', '_', $value);
         $this->value = old($name, $value ?? '');
         $this->checked = $checked ?? '';
+
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ]);
     }
 
     public function render()
