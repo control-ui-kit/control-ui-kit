@@ -10,13 +10,15 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
+        "ext-dom": "*",
         "ext-json": "*",
+        "ext-libxml": "*",
         "illuminate/filesystem": "^7.0|^8.0",
         "illuminate/support": "^7.0|^8.0",
         "illuminate/view": "^7.0|^8.0",
-        "nesbot/carbon": "^2.38",
-        "ext-dom": "*",
-        "ext-libxml": "*"
+        "league/uri": "^6.4",
+        "league/uri-components": "^2.3",
+        "nesbot/carbon": "^2.38"
     },
     "require-dev": {
         "gajus/dindent": "^2.0",
