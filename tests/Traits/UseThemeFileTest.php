@@ -81,5 +81,4 @@ class UseThemeFileTest extends TestCase
         $this->expectExceptionMessage("Merge config key not found [{$error_key}] in [{$theme}]");
         $this->style('title', 'background', null, "merge-key");
     }
-
 }

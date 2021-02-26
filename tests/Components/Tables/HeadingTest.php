@@ -29,7 +29,6 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.field-sort', 'sort');
         Config::set('themes.default.table-heading.icon-asc', 'icon.caret-up');
         Config::set('themes.default.table-heading.icon-desc', 'icon.caret-down');
-        Config::set('themes.default.table-heading.method', 'session');
     }
 
     /** @test */
@@ -449,6 +448,25 @@ class HeadingTest extends ComponentTestCase
                         </span>
                     </a>
                 </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_disabled_icons_can_be_rendered(): void
+    {
+        Config::set('themes.default.table-heading.icon-asc', '');
+        Config::set('themes.default.table-heading.icon-desc', '');
+
+        $template = <<<'HTML'
+            <x-table.heading field="example">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sort-link"> ::Some Heading </a>
+            </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

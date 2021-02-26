@@ -75,86 +75,6 @@ return [
         ],
     ],
 
-    'table' => [
-        'background' => '',
-        'body-styles' => 'divide-y divide-table-divider bg-table bg-brand',
-        'border' => 'border border-table',
-        'color' => '',
-        'font' => 'text-left',
-        'heading-styles' => 'items-center uppercase bg-table-header border-b border-table-divider',
-        'other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
-        'padding' => '',
-        'rounded' => 'sm:rounded',
-        'shadow' => 'shadow',
-    ],
-
-    'table-cell' => [
-        'align' => 'text-left',
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => 'whitespace-no-wrap leading-5',
-        'padding' => 'px-2 py-2',
-        'rounded' => '',
-        'shadow' => '',
-    ],
-
-    'table-empty' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => '',
-        'padding' => '',
-        'rounded' => '',
-        'shadow' => '',
-    ],
-
-//    'table-filter' => [
-//        'background' => '',
-//        'border' => '',
-//        'color' => '',
-//        'font' => '',
-//        'other' => '',
-//        'padding' => '',
-//        'rounded' => '',
-//    ],
-
-    'table-heading' => [
-
-        // Styles
-        'align' => 'text-left',
-        'background' => '',
-        'border' => '',
-        'color' => 'text-table-header',
-        'font' => 'leading-4 font-medium uppercase tracking-wider',
-        'icon-size' => 'w-5 h-5',
-        'other' => '',
-        'padding' => 'px-2 py-2',
-        'rounded' => '',
-        'shadow' => '',
-        'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:underline',
-
-        // Config
-        'field-order' => 'order',
-        'field-sort' => 'sort',
-        'icon-asc' => 'icon.caret-up',
-        'icon-desc' => 'icon.caret-down'
-
-    ],
-
-    'table-row' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => '',
-        'padding' => '',
-        'rounded' => '',
-        'shadow' => '',
-    ],
-
     'layout-body' => [
         'background' => 'bg-app',
         'border' => '',
@@ -245,6 +165,86 @@ return [
         'color' => '',
         'font' => 'font-semibold text-lg',
         'other' => 'w-full',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'table' => [
+        'background' => '',
+        'body-styles' => 'divide-y divide-table-divider bg-table bg-brand',
+        'border' => 'border border-table',
+        'color' => '',
+        'font' => 'text-left',
+        'heading-styles' => 'items-center uppercase bg-table-header border-b border-table-divider',
+        'other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
+        'padding' => '',
+        'rounded' => 'sm:rounded',
+        'shadow' => 'shadow',
+    ],
+
+    'table-cell' => [
+        'align' => 'text-left',
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'whitespace-no-wrap leading-5',
+        'padding' => 'px-2 py-2',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'table-empty' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+//    'table-filter' => [
+//        'background' => '',
+//        'border' => '',
+//        'color' => '',
+//        'font' => '',
+//        'other' => '',
+//        'padding' => '',
+//        'rounded' => '',
+//    ],
+
+    'table-heading' => [
+
+        // Styles
+        'align' => 'text-left',
+        'background' => '',
+        'border' => '',
+        'color' => 'text-table-header',
+        'font' => 'leading-4 font-medium uppercase tracking-wider',
+        'icon-size' => 'w-5 h-5',
+        'other' => '',
+        'padding' => 'px-2 py-2',
+        'rounded' => '',
+        'shadow' => '',
+        'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:underline',
+
+        // Config
+        'field-order' => 'order',
+        'field-sort' => 'sort',
+        'icon-asc' => 'icon.caret-up',
+        'icon-desc' => 'icon.caret-down',
+
+    ],
+
+    'table-row' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
         'padding' => '',
         'rounded' => '',
         'shadow' => '',
