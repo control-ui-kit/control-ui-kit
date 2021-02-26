@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
@@ -15,6 +16,7 @@ class Heading extends Component
     protected string $component = 'table-heading';
 
     public string $align;
+    public ?string $anchor;
     public ?string $href;
     public string $icon;
     public string $iconAlt;
@@ -31,6 +33,7 @@ class Heading extends Component
 
     public function __construct(
         string $align = null,
+        string $anchor = null,
         string $background = null,
         string $border = null,
         string $color = null,
@@ -70,10 +73,10 @@ class Heading extends Component
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->sortLink = $this->style($this->component, 'sort-link', $sortLink);
         $this->field = $field;
+        $this->anchor = $anchor;
         $this->currentOrder = $currentOrder ?? $this->currentOrder();
         $this->currentSort = $currentOrder ? $this->cleanDirection($currentSort) : $this->currentSort();
-
-        $this->href = $this->buildHref($href, $field, $currentSort);
+        $this->href = $this->buildHref($href, $field, $this->currentSort);
 
         $this->setIcons();
     }
@@ -108,10 +111,10 @@ class Heading extends Component
         $orderUrl = "{$this->fieldOrder}={$field}&{$this->fieldSort}={$sort}";
 
         if ($href && $field) {
-            return $href . '?' . $orderUrl;
+            return $this->appendUrl($href, $this->anchor, $orderUrl);
         }
 
-        return Request::url() . '?' . $orderUrl;
+        return $this->appendUrl(Request::fullUrl(), $this->anchor, $orderUrl);
     }
 
     public function isCurrentSort(): bool
@@ -128,5 +131,10 @@ class Heading extends Component
     {
         $this->icon = $this->currentSort === 'asc' ? $this->iconAsc : $this->iconDesc;
         $this->iconAlt = $this->currentSort === 'asc' ? $this->iconDesc : $this->iconAsc;
+    }
+
+    private function appendUrl($url, $anchor, $query): string
+    {
+        return (new UrlManipulation)->url($url)->withAnchor($anchor)->append($query);
     }
 }

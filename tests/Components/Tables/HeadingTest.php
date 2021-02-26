@@ -407,4 +407,50 @@ class HeadingTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_and_anchor_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading field="example" anchor="cheese">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_heading_component_with_sorting_href_and_anchor_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.heading href="http://example.com" field="example" anchor="cheese">::Some Heading</x-table.heading>
+            HTML;
+
+        $expected = <<<'HTML'
+            <th class="align background border color font other padding rounded shadow">
+                <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sort-link">
+                    <span>::Some Heading</span>
+                    <span class="relative flex items-center">
+                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </th>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

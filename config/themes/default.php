@@ -122,6 +122,8 @@ return [
 //    ],
 
     'table-heading' => [
+
+        // Styles
         'align' => 'text-left',
         'background' => '',
         'border' => '',
@@ -134,10 +136,12 @@ return [
         'shadow' => '',
         'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:underline',
 
+        // Config
         'field-order' => 'order',
         'field-sort' => 'sort',
         'icon-asc' => 'icon.caret-up',
         'icon-desc' => 'icon.caret-down'
+
     ],
 
     'table-row' => [
