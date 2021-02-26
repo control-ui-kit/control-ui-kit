@@ -44,7 +44,7 @@ trait UseThemeFile
                 $key = "{$theme}.{$keyMerge}.{$attribute}";
 
                 if (! config()->has($key)) {
-                    throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
+                    throw new ControlUIKitException("Merge config key not found [{$key}] in [{$theme}]");
                 }
 
                 $configStyle .= ' ' . config($key);
