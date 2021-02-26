@@ -29,9 +29,9 @@ class UrlManipulation
         $uri = Uri::createFromString($this->url);
 
         if ($this->anchor) {
-            return (string) UriModifier::appendQuery($uri->withFragment($this->anchor), $query);
+            return (string) UriModifier::mergeQuery($uri->withFragment($this->anchor), $query);
         }
 
-        return (string) UriModifier::appendQuery($uri, $query);
+        return (string) UriModifier::mergeQuery($uri, $query);
     }
 }

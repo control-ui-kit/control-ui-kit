@@ -18,6 +18,16 @@ class UrlManipulationTest extends TestCase
     }
 
     /** @test */
+    public function a_basic_url_does_not_double_parameters_if_they_are_already_present(): void
+    {
+        $url = 'https://example.com?new=parameter';
+        $query = 'new=parameter';
+        $expected = 'https://example.com?new=parameter';
+
+        self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
+    }
+
+    /** @test */
     public function a_parameter_url_can_be_appended(): void
     {
         $url = 'https://example.com?previous=option';
