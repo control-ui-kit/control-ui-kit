@@ -1,5 +1,5 @@
 <x-table.row>
-    <x-table.cell colspan="100%">
+    <x-table.cell :colspan="$colspan" align="none">
         <div {{ $attributes->merge($classes($stacked)) }}>
             @if ($icon)<x-dynamic-component :component="$icon" :size="$iconSize" :class="$iconStyle" /><span>@endif
             @if($slot->isEmpty()) {{ $text }} @else {{ $slot }} @endif

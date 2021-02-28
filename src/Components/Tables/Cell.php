@@ -24,9 +24,13 @@ class Cell extends Component
         string $other = null,
         string $padding = null,
         string $rounded = null,
-        string $shadow = null
+        string $shadow = null,
+        bool $left = false,
+        bool $center = false,
+        bool $right = false
     ) {
         $this->setConfigStyles([
+            'align' => $this->align($this->style($this->component, 'align', $align), $left, $center, $right),
             'background' => $background,
             'border' => $border,
             'color' => $color,

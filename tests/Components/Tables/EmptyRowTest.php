@@ -25,6 +25,7 @@ class EmptyRowTest extends ComponentTestCase
         Config::set('themes.default.table-empty.background', 'background');
         Config::set('themes.default.table-empty.border', 'border');
         Config::set('themes.default.table-empty.color', 'color');
+        Config::set('themes.default.table-empty.colspan', 'colspan');
         Config::set('themes.default.table-empty.font', 'font');
         Config::set('themes.default.table-empty.icon-size', 'icon-size');
         Config::set('themes.default.table-empty.icon-style', 'icon-style');
@@ -53,7 +54,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow"> No records found </div>
                 </td>
             </tr>
@@ -79,7 +80,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div> No records found </div>
                 </td>
             </tr>
@@ -105,7 +106,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="1 2 3 4 5 6 7 8"> No records found </div>
                 </td>
             </tr>
@@ -123,7 +124,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow"> ::CUSTOM TEXT </div>
                 </td>
             </tr>
@@ -144,7 +145,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow">
                         <strong>::CUSTOM TEXT</strong>
                         <a href="#">Some hyperlink</a>
@@ -165,7 +166,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow stacked"> ::Stacked </div>
                 </td>
             </tr>
@@ -183,7 +184,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow">
                         <svg class="icon-size fill-current icon-style" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -206,7 +207,7 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="100%">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
                     <div class="background border color font other padding rounded shadow">
                         <svg class="custom-size fill-current custom-style" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -215,6 +216,24 @@ class EmptyRowTest extends ComponentTestCase
                         </div>
                     </td>
                 </tr>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_empty_row_component_can_be_rendered_with_custom_colspan(): void
+    {
+        $template = <<<'HTML'
+            <x-table.empty colspan="4" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="4">
+                    <div class="background border color font other padding rounded shadow"> No records found </div>
+                </td>
+            </tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

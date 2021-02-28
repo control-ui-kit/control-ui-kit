@@ -201,6 +201,7 @@ return [
         'background' => '',
         'border' => '',
         'color' => '',
+        'colspan' => '100%',
         'font' => 'font-medium',
         'icon-size' => 'w-5 h-5',
         'icon-style' => '',
@@ -249,6 +250,7 @@ return [
     ],
 
     'table-row' => [
+
         'background' => '',
         'border' => '',
         'color' => '',
@@ -257,6 +259,41 @@ return [
         'padding' => 'px-3 py-2',
         'rounded' => '',
         'shadow' => '',
+
+        'odd' => [
+            'background' => '',
+            'border' => '',
+            'color' => '',
+            'font' => '',
+            'other' => '',
+            'padding' => 'px-3 py-2',
+            'rounded' => '',
+            'shadow' => '',
+        ],
+
+        'even' => [
+            'background' => '',
+            'border' => '',
+            'color' => '',
+            'font' => '',
+            'other' => '',
+            'padding' => 'px-3 py-2',
+            'rounded' => '',
+            'shadow' => '',
+        ],
+
+        'muted' => [
+            'background' => '',
+            'border' => '',
+            'color' => '',
+            'font' => '',
+            'other' => '',
+            'padding' => 'px-3 py-2',
+            'rounded' => '',
+            'shadow' => '',
+        ],
+
+
     ],
 
     'tabs' => [

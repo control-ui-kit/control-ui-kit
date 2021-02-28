@@ -12,6 +12,7 @@ class CellTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.table-cell.align', 'align');
         Config::set('themes.default.table-cell.background', 'background');
         Config::set('themes.default.table-cell.border', 'border');
         Config::set('themes.default.table-cell.color', 'color');
@@ -30,7 +31,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="background border color font other padding rounded shadow"></td>
+            <td class="align background border color font other padding rounded shadow"></td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -40,7 +41,8 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.cell background="none"
+            <x-table.cell align="none"
+                          background="none"
                           border="none"
                           color="none"
                           font="none"
@@ -61,7 +63,8 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.cell background="1"
+            <x-table.cell align="0"
+                          background="1"
                           border="2"
                           color="3"
                           font="4"
@@ -72,7 +75,97 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="1 2 3 4 5 6 7 8"></td>
+            <td class="align 1 2 3 4 5 6 7 8"></td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_shorthand_left_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell left>::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-left background border color font other padding rounded shadow"> ::Some Data
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_attribute_left_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell align="left">::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-left background border color font other padding rounded shadow"> ::Some Data
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_shorthand_right_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell right>::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-right background border color font other padding rounded shadow"> ::Some Data
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_attribute_right_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell align="right">::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-right background border color font other padding rounded shadow"> ::Some Data
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_shorthand_center_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell center>::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-center background border color font other padding rounded shadow"> ::Some Data
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_align_attribute_center_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell align="center">::Some Data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-center background border color font other padding rounded shadow"> ::Some Data
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

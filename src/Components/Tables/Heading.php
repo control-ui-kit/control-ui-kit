@@ -15,7 +15,6 @@ class Heading extends Component
 
     protected string $component = 'table-heading';
 
-    public string $align;
     public ?string $anchor;
     public ?string $href;
     public string $icon;

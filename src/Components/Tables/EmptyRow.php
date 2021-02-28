@@ -12,6 +12,8 @@ class EmptyRow extends Component
     use UseThemeFile;
 
     protected string $component = 'table-empty';
+
+    public string $colspan;
     public ?string $icon;
     public ?string $iconSize;
     public ?string $iconStyle;
@@ -22,6 +24,7 @@ class EmptyRow extends Component
         string $background = null,
         string $border = null,
         string $color = null,
+        string $colspan = null,
         string $font = null,
         string $icon = null,
         string $iconSize = null,
@@ -43,6 +46,7 @@ class EmptyRow extends Component
             'shadow' => $shadow,
         ]);
 
+        $this->colspan = $this->style($this->component, 'colspan', $colspan);
         $this->icon = $icon;
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->iconStyle = $this->style($this->component, 'icon-style', $iconStyle);
