@@ -196,14 +196,23 @@ return [
     ],
 
     'table-empty' => [
+
+        // Styles
         'background' => '',
         'border' => '',
         'color' => '',
-        'font' => '',
-        'other' => '',
-        'padding' => '',
+        'font' => 'font-medium',
+        'icon-size' => 'w-5 h-5',
+        'icon-style' => '',
+        'other' => 'flex justify-center items-center',
+        'padding' => 'space-x-2 py-8',
         'rounded' => '',
         'shadow' => '',
+        'stacked' => 'flex flex-col space-y-2 items-center',
+
+        // Config
+        'default-text' => 'No records found',
+
     ],
 
 //    'table-filter' => [
@@ -245,7 +254,7 @@ return [
         'color' => '',
         'font' => '',
         'other' => '',
-        'padding' => '',
+        'padding' => 'px-3 py-2',
         'rounded' => '',
         'shadow' => '',
     ],
