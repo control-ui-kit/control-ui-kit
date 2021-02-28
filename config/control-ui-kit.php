@@ -49,6 +49,7 @@ return [
         'input.decimal' => \ControlUIKit\Components\Forms\Inputs\Decimal::class,
         'input.currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
         'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
+        'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,

@@ -196,6 +196,19 @@ return [
         'shadow' => '',
     ],
 
+    'input-date' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'w-40',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+
+        'icon' => 'icon.calendar'
+    ],
+
     'input-hidden' => [
         'other' => '',
         'padding' => '',
