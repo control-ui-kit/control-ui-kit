@@ -8,11 +8,11 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Date extends Component
+class DateRange extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-date';
+    protected string $component = 'input-date-range';
 
     public string $name;
     public string $id;
@@ -62,6 +62,6 @@ class Date extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.date');
+        return view('control-ui-kit::control-ui-kit.forms.inputs.date-range');
     }
 }

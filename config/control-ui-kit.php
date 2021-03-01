@@ -50,6 +50,7 @@ return [
         'input.currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
         'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
         'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
+        'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,

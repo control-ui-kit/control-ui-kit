@@ -197,15 +197,30 @@ return [
     ],
 
     'input-date' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => 'w-40',
-        'padding' => '',
-        'rounded' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
         'shadow' => '',
 
+        'format' => 'DD/MM/YYYY',
+        'icon' => 'icon.calendar'
+    ],
+
+    'input-date-range' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => 'w-64',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'format' => 'DD/MM/YYYY',
         'icon' => 'icon.calendar'
     ],
 
