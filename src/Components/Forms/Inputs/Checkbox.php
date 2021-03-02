@@ -30,11 +30,11 @@ class Checkbox extends Component
         string $rounded = null,
         string $shadow = null,
         string $id = null,
-        string $value = null,
+        string $value = '1',
         string $checked = null
     ) {
         $this->name = $name;
-        $this->id = $id ?? $name . '_' . str_replace(' ', '_', $value);
+        $this->id = $id ?? ($value === '1' ? $name : $name . '_' . str_replace(' ', '_', $value));
         $this->value = old($name, $value ?? '');
         $this->checked = $checked ?? '';
 
@@ -57,8 +57,18 @@ class Checkbox extends Component
         ]);
     }
 
-    private function checked()
+    private function checked(): string
     {
-        return $this->checked === '1' || $this->checked === $this->value ? 'checked' : '';
+        $checked_values = ['1', 'true', 1, true, 'checked'];
+
+        if (in_array($this->checked, $checked_values, true)) {
+            return 'checked';
+        }
+
+        if ($this->checked === $this->value) {
+            return 'checked';
+        }
+
+        return '';
     }
 }
