@@ -58,10 +58,18 @@ trait UseThemeFile
         }
     }
 
-    public function classes(string $class = ''): array
+    public function classes(string $class = '', array $only = []): array
     {
-        $this->props[] = $class;
-        $class = trim(collect($this->props)->filter()->implode(' '));
+        $collect = collect($this->props)->filter();
+
+        if ($only) {
+            $collect = $collect->only($only);
+        }
+
+        $collect[] = $class;
+
+        $class = trim($collect->implode(' '));
+
         return $class ? ['class' => $class] : [];
     }
 }
