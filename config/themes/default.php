@@ -172,7 +172,7 @@ return [
 
     'table' => [
         'background' => '',
-        'body-styles' => 'divide-y divide-table-divider bg-table bg-brand',
+        'body-styles' => 'divide-y divide-table-divider bg-table',
         'border' => 'border border-table',
         'color' => '',
         'font' => 'text-left',
@@ -260,39 +260,40 @@ return [
         'rounded' => '',
         'shadow' => '',
 
-        'odd' => [
-            'background' => '',
-            'border' => '',
+        'default' => [
+            'background' => 'bg-table-row-1 even:bg-table-row-2 hover:bg-table-row-hover even:bg-table-hover',
             'color' => '',
-            'font' => '',
-            'other' => '',
-            'padding' => 'px-3 py-2',
-            'rounded' => '',
-            'shadow' => '',
         ],
 
-        'even' => [
-            'background' => '',
-            'border' => '',
-            'color' => '',
-            'font' => '',
-            'other' => '',
-            'padding' => 'px-3 py-2',
-            'rounded' => '',
-            'shadow' => '',
+        'brand' => [
+            'background' => 'bg-alert-brand hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-brand',
+        ],
+
+        'danger' => [
+            'background' => 'bg-alert-danger hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-danger',
+        ],
+
+        'info' => [
+            'background' => 'bg-alert-info hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-info',
         ],
 
         'muted' => [
-            'background' => '',
-            'border' => '',
-            'color' => '',
-            'font' => '',
-            'other' => '',
-            'padding' => 'px-3 py-2',
-            'rounded' => '',
-            'shadow' => '',
+            'background' => 'bg-alert-muted hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-muted',
         ],
 
+        'success' => [
+            'background' => 'bg-alert-success hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-success',
+        ],
+
+        'warning' => [
+            'background' => 'bg-alert-warning hover:bg-table-hover hover:bg-table-row-hover',
+            'color' => 'text-alert-warning',
+        ],
 
     ],
 
