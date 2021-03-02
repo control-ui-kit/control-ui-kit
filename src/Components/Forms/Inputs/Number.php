@@ -81,11 +81,11 @@ class Number extends Component
             return;
         }
 
-        if (! is_null($this->min) && $this->value < $this->min) {
+        if ($this->value < $this->min && ! is_null($this->min)) {
             throw (new InputNumberException)::make('valueLowerSolution', 'Value cannot be lower than specified min');
         }
 
-        if (! is_null($this->max) && $this->value > $this->max) {
+        if ($this->value > $this->max && ! is_null($this->max)) {
             throw (new InputNumberException)::make('valueHigherSolution', 'Value cannot be higher than specified max');
         }
     }
