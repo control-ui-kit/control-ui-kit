@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Components\Forms\Inputs;
 
-use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
 class HiddenTest extends ComponentTestCase

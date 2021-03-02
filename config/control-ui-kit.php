@@ -274,4 +274,6 @@ return [
 
     'prefix' => '',
 
+    'docs-url' => 'https://ui-kit.labelworx.dev/'
+
 ];
