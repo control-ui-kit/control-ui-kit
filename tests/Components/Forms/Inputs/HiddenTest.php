@@ -9,14 +9,6 @@ use Tests\Components\ComponentTestCase;
 
 class HiddenTest extends ComponentTestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Config::set('themes.default.input-hidden.other', 'other');
-        Config::set('themes.default.input-hidden.padding', 'padding');
-    }
-
     /** @test */
     public function an_input_hidden_component_can_be_rendered(): void
     {
@@ -25,49 +17,35 @@ class HiddenTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" class="other padding" />
+            <input name="name" type="hidden" id="name" value="name" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
-    public function an_input_hidden_component_can_be_rendered_with_no_styles(): void
+    public function an_input_hidden_component_with_id_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.hidden name="name" other="none" padding="none" />
+            <x-input.hidden name="name" id="something_else" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" />
+            <input name="name" type="hidden" id="something_else" value="name" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
-    public function an_input_hidden_component_can_be_rendered_with_inline_styles(): void
-    {
-        $template = <<<'HTML'
-            <x-input.hidden name="name" other="5" padding="6" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" class="5 6" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
-    public function an_input_hidden_component_with_value_amended(): void
+    public function an_input_hidden_component_with_value_can_be_rendered(): void
     {
         $template = <<<'HTML'
             <x-input.hidden name="name" value="test_value" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" value="test_value" class="other padding" />
+            <input name="name" type="hidden" id="name" value="test_value" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

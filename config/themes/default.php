@@ -75,25 +75,15 @@ return [
         ],
     ],
 
-    'input-text' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5 ',
-        'rounded' => 'rounded',
-        'shadow' => '',
-    ],
 
-    'input-decimal' => [
+    'input-checkbox' => [
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5 ',
-        'rounded' => 'rounded',
+        'border' => 'focus:ring-brand border-input',
+        'color' => '',
+        'font' => 'text-brand',
+        'other' => 'h-4 w-4 cursor-pointer',
+        'padding' => '',
+        'rounded' => '',
         'shadow' => '',
     ],
 
@@ -108,7 +98,42 @@ return [
         'shadow' => '',
     ],
 
-    'input-password' => [
+    'input-date' => [
+
+        // Style
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        // Config
+        'format' => 'DD/MM/YYYY',
+        'icon' => 'icon.calendar'
+    ],
+
+    'input-date-range' => [
+
+        // Style
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => 'w-64',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        // Config
+        'format' => 'DD/MM/YYYY',
+        'icon' => 'icon.calendar'
+
+    ],
+
+    'input-decimal' => [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -130,7 +155,7 @@ return [
         'shadow' => '',
     ],
 
-    'input-textarea' => [
+    'input-number' => [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -141,7 +166,40 @@ return [
         'shadow' => '',
     ],
 
-    'input-number' => [
+    'input-password' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-percent' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'w-20',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-text' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5 ',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-textarea' => [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -163,25 +221,14 @@ return [
         'shadow' => '',
     ],
 
-    'input-checkbox' => [
+    'input-select' => [
         'background' => 'bg-input',
-        'border' => 'focus:ring-brand border-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
-        'font' => 'text-brand',
-        'other' => 'h-4 w-4 cursor-pointer',
-        'padding' => '',
-        'rounded' => '',
-        'shadow' => '',
-    ],
-
-    'input-percent' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
+        'font' => 'text-md text-input',
         'other' => 'w-20',
-        'padding' => '',
-        'rounded' => '',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
         'shadow' => '',
     ],
 
@@ -193,50 +240,6 @@ return [
         'other' => 'w-20',
         'padding' => '',
         'rounded' => '',
-        'shadow' => '',
-    ],
-
-    'input-date' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5 ',
-        'rounded' => 'rounded',
-        'shadow' => '',
-
-        'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
-    ],
-
-    'input-date-range' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => 'w-64',
-        'padding' => 'p-1.5 ',
-        'rounded' => 'rounded',
-        'shadow' => '',
-
-        'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
-    ],
-
-    'input-hidden' => [
-        'other' => '',
-        'padding' => '',
-    ],
-
-    'input-select' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => '',
-        'font' => 'text-md text-input',
-        'other' => 'w-20',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
         'shadow' => '',
     ],
 
