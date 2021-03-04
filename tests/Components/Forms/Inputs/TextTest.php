@@ -409,4 +409,42 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_prefix_slot(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" prefix="slot">
+                ::SOME SLOT CONTENT
+            </x-input.text>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left"> ::SOME SLOT CONTENT </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_suffix_slot(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" suffix="slot">
+                ::SOME SLOT CONTENT
+            </x-input.text>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
+                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::SOME SLOT CONTENT </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
