@@ -177,38 +177,96 @@ return [
         'shadow' => '',
     ],
 
-    'input-percent' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => 'flex w-40',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
-    ],
-
-    'input-right-icon' => [
+    'input-icon-wrapper' => [
         'background' => '',
         'border' => '',
         'color' => '',
         'font' => '',
-        'other' => 'inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500',
+        'other' => 'flex rounded border border-input bg-input w-full',
         'padding' => '',
         'rounded' => 'rounded',
         'shadow' => '',
     ],
 
-    'input-text' => [
+    'input-percent' => [
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => '',
+        'other' => 'flex-1 min-w-0 block w-full',
         'padding' => 'p-1.5',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-l',
+        'shadow' => '',
+        'wrapper' => '',
+    ],
+
+    'input-embed' => [
+        'background' => '',
+        'border' => 'border-input',
+        'color' => 'opacity-60',
+        'font' => '',
+        'left' => 'left-0 border-r',
+        'right' => 'right-0 border-l',
+        'icon-size' => 'w-4 h-4',
+        'other' => 'absolute inset-y-0 flex items-center pointer-events-none justify-center min-w-10 px-3',
+        'padding' => '',
+        'rounded' => '',
         'shadow' => '',
     ],
+
+    'input' => [
+        'basic' => [
+            'background' => 'bg-input',
+            'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+            'color' => 'text-input placeholder-input',
+            'font' => '',
+            'other' => '',
+            'padding' => 'py-1.5 px-3',
+            'rounded' => 'rounded',
+            'shadow' => '',
+        ],
+        'wrapper' => [
+            'background' => 'bg-input',
+            'border' => 'border border-input',
+            'color' => '',
+            'font' => '',
+            'other' => 'relative w-full',
+            'padding' => '',
+            'rounded' => 'rounded',
+            'shadow' => '',
+        ],
+        'input' => [
+            'background' => 'bg-input',
+            'border' => 'border-0 focus:outline-none focus:ring-brand',
+            'color' => 'text-input placeholder-input',
+            'font' => '',
+            'left' => 'pl-12',
+            'right' => 'pr-12',
+            'other' => 'flex-1 min-w-0 block w-full',
+            'padding' => 'py-1.5 px-3',
+            'rounded' => 'rounded',
+            'shadow' => '',
+        ],
+    ],
+
+    'input-text' => [
+        'basic' => [],
+        'wrapper' => [],
+        'input' => []
+    ],
+
+
+
+//    'input-text' => [
+//        'background' => 'bg-input',
+//        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+//        'color' => 'text-input placeholder-input',
+//        'font' => '',
+//        'other' => '',
+//        'padding' => 'p-1.5',
+//        'rounded' => 'rounded',
+//        'shadow' => '',
+//    ],
 
     'input-textarea' => [
         'background' => 'bg-input',
