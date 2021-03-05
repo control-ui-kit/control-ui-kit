@@ -51,6 +51,7 @@ return [
         'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
         'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
         'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
+        'input.integer' => \ControlUIKit\Components\Forms\Inputs\Integer::class,
         'input.icon-right' => \ControlUIKit\Components\Forms\Inputs\IconRight::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,

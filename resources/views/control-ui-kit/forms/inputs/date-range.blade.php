@@ -21,25 +21,29 @@
     new Litepicker({
         element: document.getElementById('{{ $id }}'),
         format: "{{ $format }}",
-        @if ($start)
-            minDate: moment("{{ $start }}", "{{ $format }}"),
-        @endif
-        @if ($end)
-            maxDate: moment("{{ $end }}", "{{ $format }}"),
-        @endif
+        minDate: {!! $minDate() !!},
+        maxDate: {!! $maxDate() !!},
         singleMode: false,
         allowRepick: true,
-        numberOfColumns: 2,
-        numberOfMonths: 2,
+        numberOfColumns: {{ $columns }},
+        numberOfMonths: {{ $months }},
         dropdowns: {
-            minYear: @if ($start) getYearFromFormat("{{ $start }}", "{{ $format }}") @else new Date().getFullYear() - 15 @endif,
-            maxYear: @if ($end) getYearFromFormat("{{ $end }}", "{{ $format }}") @else new Date().getFullYear() + 5 @endif,
+            minYear: {!! $minYear() !!},
+            maxYear: {!! $maxYear() !!},
             months: true,
             years: "asc"
         },
-        resetButton: true,
-        scrollToDate: false,
-        splitView: true,
-        showTooltip: false
+        plugins: [{!! $getPluginsList() !!}],
+        resetButton: {{ $reset }},
+        splitView: {{ $split }},
+        showTooltip: {{ $tooltip }},
+        firstDay: {{ $firstDay }},
+        scrollToDate: true,
+        lang: "{{ $lang }}",
+        @if ($minDate() !== "null")
+            setup: function() {
+                this.gotoDate("{{ $minDate(true) }}")
+            }
+        @endif
     });
 </script>

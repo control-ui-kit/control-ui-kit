@@ -99,7 +99,6 @@ return [
     ],
 
     'input-date' => [
-
         // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
@@ -111,12 +110,16 @@ return [
         'shadow' => '',
 
         // Config
+        'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
+        'icon' => 'icon.calendar',
+        'keyboard-navigation' => 'true',
+        'lang' => 'en-GB',
+        'mobile-friendly' => 'true',
+        'reset' => 'false',
     ],
 
     'input-date-range' => [
-
         // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
@@ -128,9 +131,16 @@ return [
         'shadow' => '',
 
         // Config
+        'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
-
+        'icon' => 'icon.calendar',
+        'keyboard-navigation' => 'true',
+        'lang' => 'en-GB',
+        'mobile-friendly' => 'true',
+        'predefined-ranges' => 'false',
+        'reset' => 'false',
+        'split' => 'true',
+        'tooltip' => 'false',
     ],
 
     'input-decimal' => [
@@ -153,6 +163,23 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+    ],
+
+    'input-integer' => [
+        // Styles
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        // Config
+        'min' => '',
+        'max' => '',
+        'step' => "1",
     ],
 
     'input-number' => [
