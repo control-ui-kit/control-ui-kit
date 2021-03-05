@@ -98,6 +98,20 @@ class TextTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_text_component_can_be_rendered_with_appended_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" background="...1" border="...2"/>
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background 1 border 2 color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_text_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
