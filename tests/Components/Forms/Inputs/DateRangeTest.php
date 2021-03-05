@@ -65,7 +65,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -114,7 +114,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -163,7 +163,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -212,7 +212,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -261,7 +261,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -310,7 +310,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -359,7 +359,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 4,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -408,7 +408,10 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                                setup: function() {
+                            this.gotoDate("01/01/2019")
+                        }
+                        });
             </script>
             HTML;
 
@@ -457,7 +460,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "ru",
-                });
+                        });
             </script>
             HTML;
 
@@ -506,7 +509,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -555,7 +558,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
@@ -604,7 +607,7 @@ class DateRangeTest extends ComponentTestCase
                     firstDay: 0,
                     scrollToDate: true,
                     lang: "en-GB",
-                });
+                        });
             </script>
             HTML;
 
