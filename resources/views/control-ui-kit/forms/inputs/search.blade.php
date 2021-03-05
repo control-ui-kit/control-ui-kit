@@ -1,19 +1,24 @@
-@props([
-    'placeholder' => 'search'
-])
+<x-input name="{{ $name }}"
+         type="search"
+         id="{{ $id }}"
+         :value="$value"
+         placeholder="{{ $placeholder }}"
+{{--         :$attributes="$attributes"--}}
+         :icon-left="$iconLeft"
+         :icon-right="$iconRight"
+/>
 
-<form wire:submit.prevent="action">
-    <div class="flex relative">
-        <div class="absolute flex inset-y-0 items-center left-0 pl-1 pointer-events-none">
-            <x-icon.search class="text-muted p-0.5" />
-        </div>
-        <x-input.text
-            name="{{ $name }}"
-            name="{{ $id }}"
-            type="search"
-            placeholder="{{ $placeholder }}"
-            wire:keydown.enter="action"
-            {{ $attributes->merge([ 'class' => 'pl-7' ]) }}
-        />
-    </div>
-</form>
+{{--    <div {{ $attributes->merge($wrapperClasses())->only('class') }}>--}}
+{{--        <input name="{{ $name }}"--}}
+{{--               type="number"--}}
+{{--               id="{{ $id }}"--}}
+{{--               min="0"--}}
+{{--               max="100"--}}
+{{--               @isset($step)step="{{ $step }}"@endif--}}
+{{--               @if($value)value="{{ $value }}"@endif--}}
+{{--               @if($placeholder)placeholder="{{ $placeholder }}"@endif--}}
+{{--               class="{{ $inputClasses() }}"--}}
+{{--               {{ $attributes->except('class') }}--}}
+{{--        />--}}
+{{--        <x-input.embed position="right" :icon="$iconRight" :icon-size="$iconSize" :styles="$iconStyles" />--}}
+{{--    </div>--}}

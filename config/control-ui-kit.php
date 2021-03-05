@@ -35,6 +35,7 @@ return [
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field.text' => \ControlUIKit\Components\Forms\Fields\Text::class,
 
+        'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
         'input.checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,
         'input.hidden' => \ControlUIKit\Components\Forms\Inputs\Hidden::class,
         'input.number' => \ControlUIKit\Components\Forms\Inputs\Number::class,

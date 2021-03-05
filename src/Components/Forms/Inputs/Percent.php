@@ -18,8 +18,6 @@ class Percent extends Component
     public string $name;
     public string $id;
     public ?string $icon = null;
-//    public string $icon = 'icon.percent';
-//    public string $iconPosition = 'right';
     public ?string $value;
     public ?string $placeholder;
 
@@ -33,14 +31,17 @@ class Percent extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $wrapper = null,
         string $id = null,
         string $value = null,
-        string $placeholder = null
+        string $placeholder = null,
+        string $icon = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
         $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
+        $this->icon = $icon;
 
         $this->setConfigStyles([
             'background' => $background,
@@ -51,6 +52,7 @@ class Percent extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'wrapper' => $wrapper,
         ]);
     }
 

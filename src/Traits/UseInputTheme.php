@@ -11,6 +11,10 @@ trait UseInputTheme
     protected array $basicStyles;
     protected array $wrapperStyles;
     protected array $inputStyles;
+    protected array $validTypes = [
+        'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number',
+        'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week',
+    ];
 
     private function setInputStyles(array $props, string $keyOverride, string $style, string $config, string $prefix = ''): void
     {
@@ -39,5 +43,10 @@ trait UseInputTheme
     public function inputClasses(): string
     {
         return $this->classList($this->inputStyles);
+    }
+
+    private function isValidType(string $type): bool
+    {
+        return in_array($type, $this->validTypes, true);
     }
 }
