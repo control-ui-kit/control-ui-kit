@@ -16,9 +16,7 @@
     }
 @endphp
 
-<th
-    {{ $attributes->merge(['class' => 'px-2 py-2 ' . $align])->only('class') }}
->
+<th {{ $attributes->merge(['class' => 'px-2 py-2 ' . $align])->only('class') }}>
     @unless ($sortable)
         <span class="text-table-header leading-4 font-medium uppercase tracking-wider">{{ $slot }}</span>
     @else

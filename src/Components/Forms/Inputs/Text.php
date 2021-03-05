@@ -21,8 +21,8 @@ class Text extends Component
     public ?string $iconLeft;
     public ?string $iconRight;
     public ?string $iconSize;
-    public ?string $prefix;
-    public ?string $suffix;
+    public ?string $prefixText;
+    public ?string $suffixText;
     public array $iconStyles = [];
     public array $prefixStyles = [];
     public array $suffixStyles = [];
@@ -78,8 +78,8 @@ class Text extends Component
         string $suffixRounded = null,
         string $suffixShadow = null,
 
-        string $prefix = null,
-        string $suffix = null,
+        string $prefixText = null,
+        string $suffixText = null,
 
         string $iconLeft = null,
         string $iconRight = null,
@@ -89,8 +89,8 @@ class Text extends Component
         $this->name = $name;
         $this->iconLeft = $iconLeft;
         $this->iconRight = $iconRight;
-        $this->prefix = $prefix;
-        $this->suffix = $suffix;
+        $this->prefixText = $prefixText;
+        $this->suffixText = $suffixText;
         $this->iconSize = $iconSize;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
@@ -105,9 +105,7 @@ class Text extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-        ], 'input-text.basic',
-            'basicStyles',
-            'input.basic');
+        ], 'input-text', 'basicStyles', 'input');
 
         $this->setInputStyles([
             'background' => $background,
@@ -118,9 +116,7 @@ class Text extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-        ], 'input-text.wrapper',
-            'wrapperStyles',
-            'input.wrapper');
+        ], 'input-text', 'wrapperStyles', 'input', 'wrapper-');
 
         $this->setInputStyles([
             'background' => $inputBackground,
@@ -131,9 +127,7 @@ class Text extends Component
             'padding' => $inputPadding,
             'rounded' => $inputRounded,
             'shadow' => $inputShadow,
-        ], 'input-text.input',
-            'inputStyles',
-            'input.input');
+        ], 'input-text', 'inputStyles', 'input', 'input-');
 
         $this->setStyle('iconStyles', 'background', $iconBackground);
         $this->setStyle('iconStyles', 'border', $iconBorder);
@@ -177,6 +171,6 @@ class Text extends Component
 
     public function needsWrapper(): bool
     {
-        return $this->iconRight || $this->iconLeft || $this->prefix || $this->suffix;
+        return $this->iconRight || $this->iconLeft || $this->prefixText || $this->suffixText;
     }
 }

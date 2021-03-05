@@ -206,67 +206,47 @@ return [
         'color' => 'text-muted',
         'font' => '',
         'left' => 'border-r',
-        'right' => 'border-l',
         'icon-size' => 'w-4 h-4',
         'other' => 'flex items-center justify-center self-stretch',
         'padding' => 'px-3',
         'rounded' => '',
+        'right' => 'border-l',
         'shadow' => '',
     ],
 
     'input' => [
-        'basic' => [
-            'background' => 'bg-input',
-            'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-            'color' => 'text-input placeholder-input',
-            'font' => '',
-            'other' => '',
-            'padding' => 'py-1.5 px-3',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
-        'wrapper' => [
-            'background' => 'bg-input',
-            'border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
-            'color' => '',
-            'font' => '',
-            'other' => 'flex items-center',
-            'padding' => '',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
-        'input' => [
-            'background' => 'bg-input',
-            'border' => 'border-0 focus:outline-none focus:ring-0',
-            'color' => 'text-input placeholder-input',
-            'font' => '',
-            'left' => '',
-            'right' => '',
-            'other' => 'block w-full appearance-none',
-            'padding' => 'py-1.5 px-3',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
+
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'py-1.5 px-3',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => '',
+        'input-other' => 'block w-full appearance-none',
+        'input-padding' => 'py-1.5 px-3',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
+
+        'wrapper-background' => 'bg-input',
+        'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+        'wrapper-other' => 'flex items-center',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => 'rounded',
+        'wrapper-shadow' => '',
     ],
 
     'input-text' => [
-        'basic' => [],
-        'wrapper' => [],
-        'input' => []
+
     ],
-
-
-
-//    'input-text' => [
-//        'background' => 'bg-input',
-//        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-//        'color' => 'text-input placeholder-input',
-//        'font' => '',
-//        'other' => '',
-//        'padding' => 'p-1.5',
-//        'rounded' => 'rounded',
-//        'shadow' => '',
-//    ],
 
     'input-textarea' => [
         'background' => 'bg-input',

@@ -12,19 +12,12 @@ trait UseInputTheme
     protected array $wrapperStyles;
     protected array $inputStyles;
 
-    private function inputPadding(): string
-    {
-        $padding[] = $this->iconLeft || $this->prefix ? $this->style('input.input', 'left', null, '', $this->component . '.left') : '';
-        $padding[] = $this->iconRight || $this->suffix ? $this->style('input.input', 'right', null, '', $this->component . '.right') : '';
-        return collect($padding)->filter()->implode(' ');
-    }
-
-    private function setInputStyles(array $props, string $keyOverride, string $style, string $config): void
+    private function setInputStyles(array $props, string $keyOverride, string $style, string $config, string $prefix = ''): void
     {
         $this->$style = $props;
 
         foreach ($this->$style as $prop => $value) {
-            $this->$prop = $this->style($config, $prop, $value, '', $keyOverride);
+            $this->$prop = $this->style($config, $prefix.$prop, $value, '', $keyOverride);
             $this->$style[$prop] = $this->$prop;
         }
     }
@@ -45,7 +38,6 @@ trait UseInputTheme
 
     public function inputClasses(): string
     {
-        $this->inputStyles[] = $this->inputPadding();
         return $this->classList($this->inputStyles);
     }
 }
