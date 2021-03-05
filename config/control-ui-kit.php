@@ -53,6 +53,7 @@ return [
         'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
         'input.integer' => \ControlUIKit\Components\Forms\Inputs\Integer::class,
         'input.icon-right' => \ControlUIKit\Components\Forms\Inputs\IconRight::class,
+        'input.embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,
