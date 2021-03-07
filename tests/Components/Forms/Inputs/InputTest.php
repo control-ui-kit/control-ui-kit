@@ -747,13 +747,13 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_zero_values_and_prefix(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" prefix-text="::prefix" value="0" min="0" max="0" />
+            <x-input name="number" type="number" prefix-text="::prefix" value="0" min="0" max="0" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
-                <input name="name" type="text" id="name" value="0" min="0" max="0" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <input name="number" type="number" id="number" value="0" min="0" max="0" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 

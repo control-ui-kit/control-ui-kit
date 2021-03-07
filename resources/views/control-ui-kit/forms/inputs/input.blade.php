@@ -20,7 +20,7 @@
             <x-input.embed prefix :styles="$prefixStyles" >{{ $prefix ?? $prefixText }}</x-input.embed>
         @endif
         <input name="{{ $name }}"
-               type="text"
+               type="{{ $type }}"
                id="{{ $id }}"
                @isset($value) value="{{ $value }}" @endisset
                @if($placeholder) placeholder="{{ $placeholder }}" @endif

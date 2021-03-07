@@ -15,6 +15,9 @@ class PercentTest extends ComponentTestCase
 
         Config::set('themes.default.input-percent.icon-right', 'none');
         Config::set('themes.default.input-percent.icon-left', 'none');
+        Config::set('themes.default.input-percent.min', 2);
+        Config::set('themes.default.input-percent.max', 98);
+        Config::set('themes.default.input-percent.step', 2);
 
         Config::set('themes.default.input-percent.background', 'background');
         Config::set('themes.default.input-percent.border', 'border');
@@ -90,7 +93,7 @@ class PercentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="0" max="100" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -104,7 +107,7 @@ class PercentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="0" max="100" />
+            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -118,7 +121,7 @@ class PercentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="0" max="100" class="1 2 3 4 5 6 7 8" />
+            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" class="1 2 3 4 5 6 7 8" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -132,7 +135,7 @@ class PercentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="new_test_value" min="0" max="100" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="new_test_value" min="2" max="98" step="2" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
