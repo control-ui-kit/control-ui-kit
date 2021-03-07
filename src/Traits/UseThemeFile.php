@@ -15,17 +15,17 @@ trait UseThemeFile
         return app('control-ui-kit.theme');
     }
 
-    private function appendStyles($input): string
+    private function appendStyles($input): ?string
     {
         if (is_null($input)) {
-            return '';
+            return null;
         }
 
         $append = strpos($input, '...') === 0;
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): string
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): ?string
     {
         $append_input = $this->appendStyles($input);
 
@@ -63,7 +63,11 @@ trait UseThemeFile
                 $configStyle .= ($configStyle === config($key)) ? '' : ' ' . config($key);
             }
 
-            return trim($configStyle . $append_input);
+//            if ($attribute == 'min') {
+//                dd($configStyle, $append_input, trim($configStyle . $append_input));
+//            }
+
+            return is_null($configStyle) && is_null($append_input) ? null : trim($configStyle . $append_input);
         }
 
         return ($input === 'none' ? '' : $input);

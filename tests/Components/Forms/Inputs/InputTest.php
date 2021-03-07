@@ -14,6 +14,18 @@ class InputTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input.decimals', '');
+        Config::set('themes.default.input.type', 'text');
+        Config::set('themes.default.input.icon-left', '');
+        Config::set('themes.default.input.icon-right', '');
+        Config::set('themes.default.input.min', null);
+        Config::set('themes.default.input.max', null);
+        Config::set('themes.default.input.onblur', '');
+        Config::set('themes.default.input.onchange', '');
+        Config::set('themes.default.input.prefix-text', '');
+        Config::set('themes.default.input.step', '');
+        Config::set('themes.default.input.suffix-text', '');
+
         Config::set('themes.default.input.background', 'background');
         Config::set('themes.default.input.border', 'border');
         Config::set('themes.default.input.color', 'color');
@@ -22,15 +34,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.padding', 'padding');
         Config::set('themes.default.input.rounded', 'rounded');
         Config::set('themes.default.input.shadow', 'shadow');
-
-        Config::set('themes.default.input.wrapper-background', 'wrapper-background');
-        Config::set('themes.default.input.wrapper-border', 'wrapper-border');
-        Config::set('themes.default.input.wrapper-color', 'wrapper-color');
-        Config::set('themes.default.input.wrapper-font', 'wrapper-font');
-        Config::set('themes.default.input.wrapper-other', 'wrapper-other');
-        Config::set('themes.default.input.wrapper-padding', 'wrapper-padding');
-        Config::set('themes.default.input.wrapper-rounded', 'wrapper-rounded');
-        Config::set('themes.default.input.wrapper-shadow', 'wrapper-shadow');
 
         Config::set('themes.default.input.input-background', 'input-background');
         Config::set('themes.default.input.input-border', 'input-border');
@@ -41,17 +44,52 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.input-rounded', 'input-rounded');
         Config::set('themes.default.input.input-shadow', 'input-shadow');
 
-        Config::set('themes.default.input-embed.background', 'embed-background');
-        Config::set('themes.default.input-embed.border', 'embed-border');
-        Config::set('themes.default.input-embed.color', 'embed-color');
-        Config::set('themes.default.input-embed.font', 'embed-font');
-        Config::set('themes.default.input-embed.left', 'embed-left');
-        Config::set('themes.default.input-embed.icon-size', 'embed-icon-size');
-        Config::set('themes.default.input-embed.other', 'embed-other');
-        Config::set('themes.default.input-embed.padding', 'embed-padding');
-        Config::set('themes.default.input-embed.right', 'embed-right');
-        Config::set('themes.default.input-embed.rounded', 'embed-rounded');
-        Config::set('themes.default.input-embed.shadow', 'embed-shadow');
+        Config::set('themes.default.input.icon-left-background', 'icon-left-background');
+        Config::set('themes.default.input.icon-left-border', 'icon-left-border');
+        Config::set('themes.default.input.icon-left-color', 'icon-left-color');
+        Config::set('themes.default.input.icon-left-font', 'icon-left-font');
+        Config::set('themes.default.input.icon-left-other', 'icon-left-other');
+        Config::set('themes.default.input.icon-left-padding', 'icon-left-padding');
+        Config::set('themes.default.input.icon-left-rounded', 'icon-left-rounded');
+        Config::set('themes.default.input.icon-left-shadow', 'icon-left-shadow');
+        Config::set('themes.default.input.icon-left-size', 'icon-left-size');
+
+        Config::set('themes.default.input.icon-right-background', 'icon-right-background');
+        Config::set('themes.default.input.icon-right-border', 'icon-right-border');
+        Config::set('themes.default.input.icon-right-color', 'icon-right-color');
+        Config::set('themes.default.input.icon-right-font', 'icon-right-font');
+        Config::set('themes.default.input.icon-right-other', 'icon-right-other');
+        Config::set('themes.default.input.icon-right-padding', 'icon-right-padding');
+        Config::set('themes.default.input.icon-right-rounded', 'icon-right-rounded');
+        Config::set('themes.default.input.icon-right-shadow', 'icon-right-shadow');
+        Config::set('themes.default.input.icon-right-size', 'icon-right-size');
+
+        Config::set('themes.default.input.prefix-background', 'prefix-background');
+        Config::set('themes.default.input.prefix-border', 'prefix-border');
+        Config::set('themes.default.input.prefix-color', 'prefix-color');
+        Config::set('themes.default.input.prefix-font', 'prefix-font');
+        Config::set('themes.default.input.prefix-other', 'prefix-other');
+        Config::set('themes.default.input.prefix-padding', 'prefix-padding');
+        Config::set('themes.default.input.prefix-rounded', 'prefix-rounded');
+        Config::set('themes.default.input.prefix-shadow', 'prefix-shadow');
+
+        Config::set('themes.default.input.suffix-background', 'suffix-background');
+        Config::set('themes.default.input.suffix-border', 'suffix-border');
+        Config::set('themes.default.input.suffix-color', 'suffix-color');
+        Config::set('themes.default.input.suffix-font', 'suffix-font');
+        Config::set('themes.default.input.suffix-other', 'suffix-other');
+        Config::set('themes.default.input.suffix-padding', 'suffix-padding');
+        Config::set('themes.default.input.suffix-rounded', 'suffix-rounded');
+        Config::set('themes.default.input.suffix-shadow', 'suffix-shadow');
+
+        Config::set('themes.default.input.wrapper-background', 'wrapper-background');
+        Config::set('themes.default.input.wrapper-border', 'wrapper-border');
+        Config::set('themes.default.input.wrapper-color', 'wrapper-color');
+        Config::set('themes.default.input.wrapper-font', 'wrapper-font');
+        Config::set('themes.default.input.wrapper-other', 'wrapper-other');
+        Config::set('themes.default.input.wrapper-padding', 'wrapper-padding');
+        Config::set('themes.default.input.wrapper-rounded', 'wrapper-rounded');
+        Config::set('themes.default.input.wrapper-shadow', 'wrapper-shadow');
     }
 
     /** @test */
@@ -151,7 +189,7 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input-text.shadow', 'config-shadow');
 
         $template = <<<'HTML'
-            <x-input name="name" type="text" />
+            <x-input.text name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -170,8 +208,8 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -192,8 +230,8 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                    <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -212,7 +250,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left"> ::prefix </div>
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -230,7 +268,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -246,7 +284,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -268,7 +306,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -288,8 +326,8 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div>
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -309,8 +347,8 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8 embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div class="1 2 3 4 5 6 7 8">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -330,7 +368,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-left"> ::prefix </div>
+                <div> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -347,7 +385,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8 embed-left"> ::prefix </div>
+                <div class="1 2 3 4 5 6 7 8"> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -365,7 +403,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="embed-right"> ::suffix </div>
+                <div> ::suffix </div>
             </div>
             HTML;
 
@@ -382,7 +420,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="1 2 3 4 5 6 7 8 embed-right"> ::suffix </div>
+                <div class="1 2 3 4 5 6 7 8"> ::suffix </div>
             </div>
             HTML;
 
@@ -399,7 +437,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -416,7 +454,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -434,7 +472,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left"> ::SOME SLOT CONTENT </div>
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::SOME SLOT CONTENT </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -454,7 +492,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::SOME SLOT CONTENT </div>
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::SOME SLOT CONTENT </div>
             </div>
             HTML;
 
@@ -476,7 +514,7 @@ class InputTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_input_component_can_be_rendered_with_embed_and_event(): void
+    public function an_input_component_can_be_rendered_with_suffix_and_event(): void
     {
         $template = <<<'HTML'
             <x-input name="name" type="text" suffix-text="$" @click="something" />
@@ -485,7 +523,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" @click="something" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> $ </div>
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> $ </div>
             </div>
             HTML;
 
@@ -518,6 +556,219 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="name" type="number" id="name" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_type_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.type', 'range');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="range" id="name" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_icon_left_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.icon-left', 'icon.dot');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </div>
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_icon_right_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.icon-right', 'icon.dot');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                    <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function an_input_component_uses_config_prefix_text_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.prefix-text', '::prefix-text');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix-text </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_suffix_text_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.suffix-text', '::suffix-text');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix-text </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_onblur_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.onblur', '::onblur');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" onblur="::onblur" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_onchange_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.onblur', '::onchange');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" onblur="::onchange" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_uses_config_min_max_step_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.min', '5');
+        Config::set('themes.default.input.max', '100');
+        Config::set('themes.default.input.step', '5');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" min="5" max="100" step="5" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function an_input_component_uses_config_decimals_when_none_is_passed(): void
+    {
+        Config::set('themes.default.input.decimals', '2');
+
+        $template = <<<'HTML'
+            <x-input name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_zero_values(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="name" type="text" value="0" min="0" max="0" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="0" min="0" max="0" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_zero_values_and_prefix(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="name" prefix-text="::prefix" value="0" min="0" max="0" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
+                <input name="name" type="text" id="name" value="0" min="0" max="0" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_search_type(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="searching" type="search"/>
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="searching" type="search" id="searching" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

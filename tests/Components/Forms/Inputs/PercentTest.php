@@ -13,6 +13,9 @@ class PercentTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-percent.icon-right', 'none');
+        Config::set('themes.default.input-percent.icon-left', 'none');
+
         Config::set('themes.default.input-percent.background', 'background');
         Config::set('themes.default.input-percent.border', 'border');
         Config::set('themes.default.input-percent.color', 'color');
@@ -21,6 +24,62 @@ class PercentTest extends ComponentTestCase
         Config::set('themes.default.input-percent.padding', 'padding');
         Config::set('themes.default.input-percent.rounded', 'rounded');
         Config::set('themes.default.input-percent.shadow', 'shadow');
+
+        Config::set('themes.default.input-percent.input-background', 'input-background');
+        Config::set('themes.default.input-percent.input-border', 'input-border');
+        Config::set('themes.default.input-percent.input-color', 'input-color');
+        Config::set('themes.default.input-percent.input-font', 'input-font');
+        Config::set('themes.default.input-percent.input-other', 'input-other');
+        Config::set('themes.default.input-percent.input-padding', 'input-padding');
+        Config::set('themes.default.input-percent.input-rounded', 'input-rounded');
+        Config::set('themes.default.input-percent.input-shadow', 'input-shadow');
+
+        Config::set('themes.default.input-percent.icon-left-background', 'icon-left-background');
+        Config::set('themes.default.input-percent.icon-left-border', 'icon-left-border');
+        Config::set('themes.default.input-percent.icon-left-color', 'icon-left-color');
+        Config::set('themes.default.input-percent.icon-left-font', 'icon-left-font');
+        Config::set('themes.default.input-percent.icon-left-other', 'icon-left-other');
+        Config::set('themes.default.input-percent.icon-left-padding', 'icon-left-padding');
+        Config::set('themes.default.input-percent.icon-left-rounded', 'icon-left-rounded');
+        Config::set('themes.default.input-percent.icon-left-shadow', 'icon-left-shadow');
+        Config::set('themes.default.input-percent.icon-left-size', 'icon-left-size');
+
+        Config::set('themes.default.input-percent.icon-right-background', 'icon-right-background');
+        Config::set('themes.default.input-percent.icon-right-border', 'icon-right-border');
+        Config::set('themes.default.input-percent.icon-right-color', 'icon-right-color');
+        Config::set('themes.default.input-percent.icon-right-font', 'icon-right-font');
+        Config::set('themes.default.input-percent.icon-right-other', 'icon-right-other');
+        Config::set('themes.default.input-percent.icon-right-padding', 'icon-right-padding');
+        Config::set('themes.default.input-percent.icon-right-rounded', 'icon-right-rounded');
+        Config::set('themes.default.input-percent.icon-right-shadow', 'icon-right-shadow');
+        Config::set('themes.default.input-percent.icon-right-size', 'icon-right-size');
+
+        Config::set('themes.default.input-percent.prefix-background', 'prefix-background');
+        Config::set('themes.default.input-percent.prefix-border', 'prefix-border');
+        Config::set('themes.default.input-percent.prefix-color', 'prefix-color');
+        Config::set('themes.default.input-percent.prefix-font', 'prefix-font');
+        Config::set('themes.default.input-percent.prefix-other', 'prefix-other');
+        Config::set('themes.default.input-percent.prefix-padding', 'prefix-padding');
+        Config::set('themes.default.input-percent.prefix-rounded', 'prefix-rounded');
+        Config::set('themes.default.input-percent.prefix-shadow', 'prefix-shadow');
+
+        Config::set('themes.default.input-percent.suffix-background', 'suffix-background');
+        Config::set('themes.default.input-percent.suffix-border', 'suffix-border');
+        Config::set('themes.default.input-percent.suffix-color', 'suffix-color');
+        Config::set('themes.default.input-percent.suffix-font', 'suffix-font');
+        Config::set('themes.default.input-percent.suffix-other', 'suffix-other');
+        Config::set('themes.default.input-percent.suffix-padding', 'suffix-padding');
+        Config::set('themes.default.input-percent.suffix-rounded', 'suffix-rounded');
+        Config::set('themes.default.input-percent.suffix-shadow', 'suffix-shadow');
+
+        Config::set('themes.default.input-percent.wrapper-background', 'wrapper-background');
+        Config::set('themes.default.input-percent.wrapper-border', 'wrapper-border');
+        Config::set('themes.default.input-percent.wrapper-color', 'wrapper-color');
+        Config::set('themes.default.input-percent.wrapper-font', 'wrapper-font');
+        Config::set('themes.default.input-percent.wrapper-other', 'wrapper-other');
+        Config::set('themes.default.input-percent.wrapper-padding', 'wrapper-padding');
+        Config::set('themes.default.input-percent.wrapper-rounded', 'wrapper-rounded');
+        Config::set('themes.default.input-percent.wrapper-shadow', 'wrapper-shadow');
     }
 
     /** @test */

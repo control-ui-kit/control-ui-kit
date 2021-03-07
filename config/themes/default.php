@@ -189,32 +189,15 @@ return [
     ],
 
     'input-percent' => [
-        'background' => 'bg-input',
-        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => 'flex-1 min-w-0 block w-full',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded-l',
-        'shadow' => '',
-        'wrapper' => '',
-    ],
-
-    'input-embed' => [
-        'background' => '',
-        'border' => 'border-input',
-        'color' => 'text-muted',
-        'font' => '',
-        'left' => 'border-r',
-        'icon-size' => 'w-4 h-4',
-        'other' => 'flex items-center justify-center self-stretch',
-        'padding' => 'px-3',
-        'rounded' => '',
-        'right' => 'border-l',
-        'shadow' => '',
+        'type' => 'number',
+        'icon-right' => 'icon.percent',
+        'min' => 0,
+        'max' => 100,
     ],
 
     'input' => [
+
+        // Styles
 
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
@@ -225,7 +208,47 @@ return [
         'rounded' => 'rounded',
         'shadow' => '',
 
-        'input-background' => 'bg-input',
+        'icon-left-background' => '',
+        'icon-left-border' => 'border-r border-input',
+        'icon-left-color' => 'text-muted',
+        'icon-left-font' => '',
+        'icon-left-size' => 'w-4 h-4',
+        'icon-left-other' => 'flex items-center justify-center self-stretch',
+        'icon-left-padding' => 'px-3',
+        'icon-left-rounded' => '',
+        'icon-left-shadow' => '',
+
+        'icon-right-background' => '',
+        'icon-right-border' => 'border-l border-input',
+        'icon-right-color' => 'text-muted',
+        'icon-right-font' => '',
+        'icon-right-size' => 'w-4 h-4',
+        'icon-right-other' => 'flex items-center justify-center self-stretch',
+        'icon-right-padding' => 'px-3',
+        'icon-right-rounded' => '',
+        'icon-right-shadow' => '',
+
+        'prefix-background' => '',
+        'prefix-border' => 'border-r border-input',
+        'prefix-color' => 'text-muted',
+        'prefix-font' => '',
+        'prefix-icon-size' => 'w-4 h-4',
+        'prefix-other' => 'flex items-center justify-center self-stretch',
+        'prefix-padding' => 'px-3',
+        'prefix-rounded' => '',
+        'prefix-shadow' => '',
+
+        'suffix-background' => '',
+        'suffix-border' => 'border-l border-input',
+        'suffix-color' => 'text-muted',
+        'suffix-font' => '',
+        'suffix-icon-size' => 'w-4 h-4',
+        'suffix-other' => 'flex items-center justify-center self-stretch',
+        'suffix-padding' => 'px-3',
+        'suffix-rounded' => '',
+        'suffix-shadow' => '',
+
+        'input-background' => 'bg-transparent',
         'input-border' => 'border-0 focus:outline-none focus:ring-0',
         'input-color' => 'text-input placeholder-input',
         'input-font' => '',
@@ -242,10 +265,29 @@ return [
         'wrapper-padding' => '',
         'wrapper-rounded' => 'rounded',
         'wrapper-shadow' => '',
+
+        // Config
+
+        'decimals' => '',
+        'type' => 'text',
+        'icon-left' => '',
+        'icon-right' => '',
+        'min' => null,
+        'max' => null,
+        'onblur' => '',
+        'onchange' => '',
+        'prefix-text' => '',
+        'step' => null,
+        'suffix-text' => '',
     ],
 
     'input-text' => [
+        'type' => 'text',
+    ],
 
+    'input-search' => [
+        'type' => 'search',
+        'icon-right' => 'icon.search',
     ],
 
     'input-textarea' => [

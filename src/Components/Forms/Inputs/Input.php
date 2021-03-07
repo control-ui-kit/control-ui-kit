@@ -16,16 +16,24 @@ class Input extends Component
     protected string $component = 'input';
 
     public string $name;
-    public ?string $type;
+    public string $type;
     public string $id;
     public ?string $value;
     public ?string $placeholder;
     public ?string $iconLeft;
     public ?string $iconRight;
-    public ?string $iconSize;
+    public ?string $iconLeftSize;
+    public ?string $iconRightSize;
     public ?string $prefixText;
     public ?string $suffixText;
-    public array $iconStyles = [];
+    public ?string $onblur;
+    public ?string $onchange;
+    public ?string $decimals;
+    public ?string $min;
+    public ?string $max;
+    public ?string $step;
+    public array $iconLeftStyles = [];
+    public array $iconRightStyles = [];
     public array $prefixStyles = [];
     public array $suffixStyles = [];
 
@@ -35,6 +43,12 @@ class Input extends Component
         string $id = null,
         string $value = null,
         string $placeholder = null,
+        string $onblur = null,
+        string $onchange = null,
+        string $decimals = null,
+        string $min = null,
+        string $max = null,
+        string $step = null,
 
         string $background = null,
         string $border = null,
@@ -53,6 +67,27 @@ class Input extends Component
         string $iconPadding = null,
         string $iconRounded = null,
         string $iconShadow = null,
+        string $iconSize = null,
+
+        string $iconLeftBackground = null,
+        string $iconLeftBorder = null,
+        string $iconLeftColor = null,
+        string $iconLeftFont = null,
+        string $iconLeftOther = null,
+        string $iconLeftPadding = null,
+        string $iconLeftRounded = null,
+        string $iconLeftShadow = null,
+        string $iconLeftSize = null,
+
+        string $iconRightBackground = null,
+        string $iconRightBorder = null,
+        string $iconRightColor = null,
+        string $iconRightFont = null,
+        string $iconRightOther = null,
+        string $iconRightPadding = null,
+        string $iconRightRounded = null,
+        string $iconRightShadow = null,
+        string $iconRightSize = null,
 
         string $inputBackground = null,
         string $inputBorder = null,
@@ -85,22 +120,40 @@ class Input extends Component
         string $suffixText = null,
 
         string $iconLeft = null,
-        string $iconRight = null,
-        string $iconSize = null
+        string $iconRight = null
 
     ) {
         $this->name = $name;
-        $this->type = $type;
-        $this->iconLeft = $iconLeft;
-        $this->iconRight = $iconRight;
-        $this->prefixText = $prefixText;
-        $this->suffixText = $suffixText;
-        $this->iconSize = $iconSize;
+        $this->type = $this->style('input', 'type', $type, '', $this->component);
+        $this->iconLeft = $this->style('input', 'icon-left', $iconLeft, '', $this->component);
+        $this->iconRight = $this->style('input', 'icon-right', $iconRight, '', $this->component);
+        $this->prefixText = $this->style('input', 'prefix-text', $prefixText, '', $this->component);
+        $this->suffixText = $this->style('input', 'suffix-text', $suffixText, '', $this->component);
+        $this->onblur = $this->style('input', 'onblur', $onblur, '', $this->component);
+        $this->onchange = $this->style('input', 'onchange', $onchange, '', $this->component);
+        $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
+        $this->min = $this->style('input', 'min', $min, '', $this->component);
+        $this->max = $this->style('input', 'max', $max, '', $this->component);
+        $this->step = $this->decimals($decimals, $step);
+
+        $this->iconLeftSize = $iconLeftSize ?? $iconSize;
+        $this->iconRightSize = $iconRightSize ?? $iconSize;
+
         $this->id = $id ?? $name;
-        $this->value = old($name, $value ?? '');
+        $this->value = old($name, $value ?? '') === '' ? null : old($name, $value ?? '');
+
         $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
 
-        $this->init();
+        $this->setInputStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+        ], $this->component, 'basicStyles', 'input');
 
         $this->setInputStyles([
             'background' => $background,
@@ -111,18 +164,7 @@ class Input extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-        ], 'input-text', 'basicStyles', 'input');
-
-        $this->setInputStyles([
-            'background' => $background,
-            'border' => $border,
-            'color' => $color,
-            'font' => $font,
-            'other' => $other,
-            'padding' => $padding,
-            'rounded' => $rounded,
-            'shadow' => $shadow,
-        ], 'input-text', 'wrapperStyles', 'input', 'wrapper-');
+        ], $this->component, 'wrapperStyles', 'input', 'wrapper-');
 
         $this->setInputStyles([
             'background' => $inputBackground,
@@ -133,39 +175,61 @@ class Input extends Component
             'padding' => $inputPadding,
             'rounded' => $inputRounded,
             'shadow' => $inputShadow,
-        ], 'input-text', 'inputStyles', 'input', 'input-');
+        ], $this->component, 'inputStyles', 'input', 'input-');
 
-        $this->setStyle('iconStyles', 'background', $iconBackground);
-        $this->setStyle('iconStyles', 'border', $iconBorder);
-        $this->setStyle('iconStyles', 'color', $iconColor);
-        $this->setStyle('iconStyles', 'font', $iconFont);
-        $this->setStyle('iconStyles', 'other', $iconOther);
-        $this->setStyle('iconStyles', 'padding', $iconPadding);
-        $this->setStyle('iconStyles', 'rounded', $iconRounded);
-        $this->setStyle('iconStyles', 'shadow', $iconShadow);
+        $this->setInputStyles([
+            'background' => $iconLeftBackground ?? $iconBackground,
+            'border' => $iconLeftBorder ?? $iconBorder,
+            'color' => $iconLeftColor ?? $iconColor,
+            'font' => $iconLeftFont ?? $iconFont,
+            'other' => $iconLeftOther ?? $iconOther,
+            'padding' => $iconLeftPadding ?? $iconPadding,
+            'rounded' => $iconLeftRounded ?? $iconRounded,
+            'shadow' => $iconLeftShadow ?? $iconShadow,
+            'size' => $iconLeftFont ?? $iconSize,
+        ], $this->component, 'iconLeftStyles', 'input', 'icon-left-');
 
-        $this->setStyle('prefixStyles', 'background', $prefixBackground);
-        $this->setStyle('prefixStyles', 'border', $prefixBorder);
-        $this->setStyle('prefixStyles', 'color', $prefixColor);
-        $this->setStyle('prefixStyles', 'font', $prefixFont);
-        $this->setStyle('prefixStyles', 'other', $prefixOther);
-        $this->setStyle('prefixStyles', 'padding', $prefixPadding);
-        $this->setStyle('prefixStyles', 'rounded', $prefixRounded);
-        $this->setStyle('prefixStyles', 'shadow', $prefixShadow);
+        $this->setInputStyles([
+            'background' => $iconRightBackground ?? $iconBackground,
+            'border' => $iconRightBorder ?? $iconBorder,
+            'color' => $iconRightColor ?? $iconColor,
+            'font' => $iconRightFont ?? $iconFont,
+            'other' => $iconRightOther ?? $iconOther,
+            'padding' => $iconRightPadding ?? $iconPadding,
+            'rounded' => $iconRightRounded ?? $iconRounded,
+            'shadow' => $iconRightShadow ?? $iconShadow,
+            'size' => $iconRightSize ?? $iconSize,
+        ], $this->component, 'iconRightStyles', 'input', 'icon-right-');
 
-        $this->setStyle('suffixStyles', 'background', $suffixBackground);
-        $this->setStyle('suffixStyles', 'border', $suffixBorder);
-        $this->setStyle('suffixStyles', 'color', $suffixColor);
-        $this->setStyle('suffixStyles', 'font', $suffixFont);
-        $this->setStyle('suffixStyles', 'other', $suffixOther);
-        $this->setStyle('suffixStyles', 'padding', $suffixPadding);
-        $this->setStyle('suffixStyles', 'rounded', $suffixRounded);
-        $this->setStyle('suffixStyles', 'shadow', $suffixShadow);
+        $this->setInputStyles([
+            'background' => $prefixBackground,
+            'border' => $prefixBorder,
+            'color' => $prefixColor,
+            'font' => $prefixFont,
+            'other' => $prefixOther,
+            'padding' => $prefixPadding,
+            'rounded' => $prefixRounded,
+            'shadow' => $prefixShadow,
+        ], $this->component, 'prefixStyles', 'input', 'prefix-');
 
+        $this->setInputStyles([
+            'background' => $suffixBackground,
+            'border' => $suffixBorder,
+            'color' => $suffixColor,
+            'font' => $suffixFont,
+            'other' => $suffixOther,
+            'padding' => $suffixPadding,
+            'rounded' => $suffixRounded,
+            'shadow' => $suffixShadow,
+        ], $this->component, 'suffixStyles', 'input', 'suffix-');
+
+        $this->componentConfig();
+
+        $this->validateIcon();
         $this->validateInputType();
     }
 
-    protected function init(): void {}
+    protected function componentConfig(): void {}
 
     private function setStyle($array, $id, $value): void
     {
@@ -189,5 +253,39 @@ class Input extends Component
         if (! $this->isValidType($this->type)) {
             throw (new InputException())::make('invalidTypeSolution', 'Specified HTML input type invalid');
         }
+    }
+
+    private function validateIcon(): void
+    {
+        if ($this->iconLeft === 'none') {
+            $this->iconLeft = null;
+        }
+
+        if ($this->iconRight === 'none') {
+            $this->iconRight = null;
+        }
+    }
+
+    private function decimals(?string $decimals, ?string $step)
+    {
+        $decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
+        $step = $this->style('input', 'step', $step, '', $this->component);
+
+        if (! $decimals && ! $step) {
+            return null;
+        }
+
+        if ($step) {
+            return $step;
+        }
+
+        $i = 0;
+        $s = 1;
+        while ($i < $decimals) {
+            $s /= 10;
+            $i++;
+        }
+
+        return (string) $s;
     }
 }
