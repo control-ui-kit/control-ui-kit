@@ -8,19 +8,19 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Select extends Component
+class DateRange extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-select';
+    protected string $component = 'input-date-range';
 
     public string $name;
     public string $id;
-    public string $value;
+    public ?string $value;
 
-    public $options;
-    public $optionValue;
-    public $optionText;
+    public ?string $format;
+    public ?string $start;
+    public ?string $end;
 
     public function __construct(
         string $name,
@@ -32,14 +32,21 @@ class Select extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+
+        string $format = null,
+        string $start = null,
+        string $end = null,
+
         string $id = null,
-        $options = [],
-        ?string $value = null
+        string $value = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
-        $this->options = $options;
+
+        $this->format = is_null($format) ? 'DD/MM/YYYY' : $format;
+        $this->start = $start;
+        $this->end = $end;
 
         $this->setConfigStyles([
             'background' => $background,
@@ -55,17 +62,6 @@ class Select extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select', [
-//            'selected' => $this->selected()
-        ]);
-    }
-
-    public function selected($option)
-    {
-        if ($this->value === 'all') {
-            return false;
-        }
-
-        return $option === $this->value ? 'selected=selected' : '';
+        return view('control-ui-kit::control-ui-kit.forms.inputs.date-range');
     }
 }

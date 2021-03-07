@@ -8,19 +8,16 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Textarea extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-select';
+    protected string $component = 'input-textarea';
 
     public string $name;
     public string $id;
-    public string $value;
-
-    public $options;
-    public $optionValue;
-    public $optionText;
+    public ?string $value;
+    public ?string $placeholder;
 
     public function __construct(
         string $name,
@@ -33,13 +30,13 @@ class Select extends Component
         string $rounded = null,
         string $shadow = null,
         string $id = null,
-        $options = [],
-        ?string $value = null
+        string $value = null,
+        string $placeholder = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
-        $this->options = $options;
+        $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
 
         $this->setConfigStyles([
             'background' => $background,
@@ -55,17 +52,6 @@ class Select extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select', [
-//            'selected' => $this->selected()
-        ]);
-    }
-
-    public function selected($option)
-    {
-        if ($this->value === 'all') {
-            return false;
-        }
-
-        return $option === $this->value ? 'selected=selected' : '';
+        return view('control-ui-kit::control-ui-kit.forms.inputs.textarea');
     }
 }

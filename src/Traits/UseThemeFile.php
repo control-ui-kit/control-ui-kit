@@ -15,9 +15,22 @@ trait UseThemeFile
         return app('control-ui-kit.theme');
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null): string
+    private function appendStyles($input): ?string
     {
         if (is_null($input)) {
+            return null;
+        }
+
+        $append = strpos($input, '...') === 0;
+        return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
+    }
+
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): ?string
+    {
+        $append_input = $this->appendStyles($input);
+
+        if ($append_input || is_null($input)) {
+
             $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
 
@@ -27,6 +40,18 @@ trait UseThemeFile
 
             $configStyle = config($key);
 
+            if ($keyOverride) {
+
+                $key = "{$theme}.{$keyOverride}.{$attribute}";
+
+                if (config()->has($key)) {
+                    $configStyle = config($key) !== '' ? config($key) : $configStyle;
+                    //throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
+                }
+
+
+            }
+
             if ($keyMerge) {
 
                 $key = "{$theme}.{$keyMerge}.{$attribute}";
@@ -35,33 +60,48 @@ trait UseThemeFile
                     throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
                 }
 
-                $configStyle .= ' ' . config($key);
-
+                $configStyle .= ($configStyle === config($key)) ? '' : ' ' . config($key);
             }
 
-            return trim($configStyle);
+//            if ($attribute == 'min') {
+//                dd($configStyle, $append_input, trim($configStyle . $append_input));
+//            }
+
+            return is_null($configStyle) && is_null($append_input) ? null : trim($configStyle . $append_input);
         }
 
         return ($input === 'none' ? '' : $input);
     }
 
-    private function setConfigStyles(array $props, array $merge = [], string $config = null): void
+    private function setConfigStyles(array $props, array $merge = [], string $config = null, $array = 'props'): void
     {
-        $this->props = $props;
+        $this->$array = $props;
 
-        foreach ($this->props as $prop => $value) {
-
+        foreach ($this->$array as $prop => $value) {
             $keyMerge = ($config && count($merge) && in_array($prop, $merge, true)) ? $config : null;
 
             $this->$prop = $this->style($this->component, $prop, $value, $keyMerge);
-            $this->props[$prop] = $this->$prop;
+            $this->$array[$prop] = $this->$prop;
         }
     }
 
-    public function classes(string $class = ''): array
+    public function classes(string $class = '', array $only = []): array
     {
-        $this->props[] = $class;
-        $class = trim(collect($this->props)->filter()->implode(' '));
-        return $class ? ['class' => $class] : [];
+        $classList = $this->classList($this->props, $class, $only);
+
+        return $classList ? ['class' => $classList] : [];
+    }
+
+    public function classList(array $classes, string $merge = '', array $only = []): string
+    {
+        $collect = collect($classes)->filter()->unique();
+
+        if ($only) {
+            $collect = $collect->only($only);
+        }
+
+        $collect[] = $merge;
+
+        return trim($collect->implode(' '));
     }
 }
