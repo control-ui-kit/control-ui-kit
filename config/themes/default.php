@@ -287,7 +287,9 @@ return [
 
     'input-search' => [
         'type' => 'search',
-        'icon-right' => 'icon.search',
+        'icon-left' => 'icon.search',
+        'icon-left-border' => 'border-0',
+        'icon-left-padding' => 'pl-3 pr-0',
     ],
 
     'input-textarea' => [
