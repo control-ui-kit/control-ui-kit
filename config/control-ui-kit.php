@@ -35,15 +35,25 @@ return [
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field.text' => \ControlUIKit\Components\Forms\Fields\Text::class,
 
+        'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
         'input.checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,
         'input.hidden' => \ControlUIKit\Components\Forms\Inputs\Hidden::class,
         'input.number' => \ControlUIKit\Components\Forms\Inputs\Number::class,
-        'input.percent' => \ControlUIKit\Components\Forms\Inputs\Percentage::class,
+        'input.percent' => \ControlUIKit\Components\Forms\Inputs\Percent::class,
         'input.radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
         'input.search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
         'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
         'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
+        'input.password' => \ControlUIKit\Components\Forms\Inputs\Password::class,
+        'input.email' => \ControlUIKit\Components\Forms\Inputs\Email::class,
+        'input.decimal' => \ControlUIKit\Components\Forms\Inputs\Decimal::class,
+        'input.currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
+        'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
+        'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
+        'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
+
+        'input.embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,
@@ -196,6 +206,7 @@ return [
         'icon.pause' => \ControlUIKit\Components\Icons\Pause::class,
         'icon.paypal-2' => \ControlUIKit\Components\Icons\Paypal2::class,
         'icon.paypal' => \ControlUIKit\Components\Icons\Paypal::class,
+        'icon.percent' => \ControlUIKit\Components\Icons\Percent::class,
         'icon.pictures' => \ControlUIKit\Components\Icons\Pictures::class,
         'icon.play-filled' => \ControlUIKit\Components\Icons\PlayFilled::class,
         'icon.play' => \ControlUIKit\Components\Icons\Play::class,
@@ -266,5 +277,7 @@ return [
     */
 
     'prefix' => '',
+
+    'docs-url' => 'https://ui-kit.labelworx.dev/'
 
 ];

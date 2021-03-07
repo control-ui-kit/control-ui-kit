@@ -18,6 +18,7 @@
         "illuminate/view": "^7.0|^8.0",
         "league/uri": "^6.4",
         "league/uri-components": "^2.3",
+        "facade/ignition-contracts": "^1.0",
         "nesbot/carbon": "^2.38"
     },
     "require-dev": {

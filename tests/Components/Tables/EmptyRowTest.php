@@ -43,6 +43,8 @@ class EmptyRowTest extends ComponentTestCase
         Config::set('themes.default.table-row.padding', 'row-padding');
         Config::set('themes.default.table-row.rounded', 'row-rounded');
         Config::set('themes.default.table-row.shadow', 'row-shadow');
+
+        Config::set('themes.default.table-row.default.background', 'row-background');
     }
 
     /** @test */
