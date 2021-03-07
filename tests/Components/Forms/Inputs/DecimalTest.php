@@ -64,32 +64,4 @@ class DecimalTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
-    /** @test */
-    public function an_input_decimal_component_with_placeholder_amended(): void
-    {
-        $template = <<<'HTML'
-            <x-input.decimal name="name" placeholder="placeholder text" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="0.01" placeholder="placeholder text" class="background border color font other padding rounded shadow" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
-    public function an_input_decimal_component_with_value_amended(): void
-    {
-        $template = <<<'HTML'
-            <x-input.decimal name="name" value="test_value" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="0.01" value="test_value" class="background border color font other padding rounded shadow" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
 }

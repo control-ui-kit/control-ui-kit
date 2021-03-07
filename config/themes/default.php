@@ -175,14 +175,9 @@ return [
     ],
 
     'input-currency' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
+        'prefix-text' => '£',
+        'decimals' => 2,
     ],
 
     'input-date' => [
@@ -221,47 +216,20 @@ return [
     ],
 
     'input-decimal' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
+        'decimals' => 2,
     ],
 
     'input-email' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'email',
     ],
 
     'input-number' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
     ],
 
     'input-password' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'password',
     ],
 
     'input-percent' => [

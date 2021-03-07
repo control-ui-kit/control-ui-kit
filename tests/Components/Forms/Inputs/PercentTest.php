@@ -89,11 +89,11 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="1" />
+            <x-input.percent name="name" value="50" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="50" min="2" max="98" step="2" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -103,11 +103,11 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="1" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.percent name="name" value="50" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" />
+            <input name="name" type="number" id="name" value="50" min="2" max="98" step="2" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -117,25 +117,11 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="1" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.percent name="name" value="50" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="1" min="2" max="98" step="2" class="1 2 3 4 5 6 7 8" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
-    public function an_input_percent_component_can_be_rendered_with_value_amended(): void
-    {
-        $template = <<<'HTML'
-            <x-input.percent name="name" value="new_test_value" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="new_test_value" min="2" max="98" step="2" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="50" min="2" max="98" step="2" class="1 2 3 4 5 6 7 8" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

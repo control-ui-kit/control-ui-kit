@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Exceptions\InputException;
+use ControlUIKit\Exceptions\InputNumberException;
 use ControlUIKit\Traits\UseInputTheme;
 use ControlUIKit\Traits\UseLanguageString;
 use Illuminate\View\Component;
@@ -16,7 +17,7 @@ class Input extends Component
     protected string $component = 'input';
 
     public string $name;
-    public string $type;
+    public ?string $type;
     public string $id;
     public ?string $value;
     public ?string $placeholder;
@@ -132,9 +133,9 @@ class Input extends Component
         $this->onblur = $this->style('input', 'onblur', $onblur, '', $this->component);
         $this->onchange = $this->style('input', 'onchange', $onchange, '', $this->component);
         $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
-        $this->min = $this->style('input', 'min', $min, '', $this->component);
-        $this->max = $this->style('input', 'max', $max, '', $this->component);
-        $this->step = $this->decimals($decimals, $step);
+        $this->min = $this->validateNumber($this->style('input', 'min', $min, '', $this->component), 'Min');
+        $this->max = $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
+        $this->step = $this->validateNumber($this->decimals($decimals, $step), 'Step');
 
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
@@ -226,6 +227,8 @@ class Input extends Component
         $this->componentConfig();
 
         $this->validateIcon();
+        $this->validateMinMax();
+        $this->validateValue();
         $this->validateInputType();
     }
 
@@ -287,5 +290,40 @@ class Input extends Component
         }
 
         return (string) $s;
+    }
+
+    private function validateMinMax(): void
+    {
+        if ($this->min > $this->max) {
+            throw (new InputNumberException)::make('minMaxSolution', 'Specified min cannot be higher than specified max');
+        }
+    }
+
+    private function validateValue(): void
+    {
+        if (is_null($this->value)) {
+            return;
+        }
+
+        if ($this->value < $this->min && ! is_null($this->min)) {
+            throw (new InputNumberException)::make('valueLowerSolution', 'Value cannot be lower than specified min');
+        }
+
+        if ($this->value > $this->max && ! is_null($this->max)) {
+            throw (new InputNumberException)::make('valueHigherSolution', 'Value cannot be higher than specified max');
+        }
+    }
+
+    private function validateNumber($number, $type): ?string
+    {
+        if (is_null($number)) {
+            return null;
+        }
+
+        if (is_numeric($number)) {
+            return $number;
+        }
+
+        throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric ['.$type.']');
     }
 }
