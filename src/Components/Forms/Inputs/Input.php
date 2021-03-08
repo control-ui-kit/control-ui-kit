@@ -316,7 +316,7 @@ class Input extends Component
 
     private function validateNumber($number, $type): ?string
     {
-        if (is_null($number)) {
+        if ($number === '' || is_null($number)) {
             return null;
         }
 

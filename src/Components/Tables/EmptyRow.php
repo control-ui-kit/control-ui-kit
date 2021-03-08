@@ -13,12 +13,12 @@ class EmptyRow extends Component
 
     protected string $component = 'table-empty';
 
-    public ?string $colspan;
+    public string $colspan;
     public ?string $icon;
-    public ?string $iconSize;
-    public ?string $iconStyle;
-    public ?string $text;
-    public ?string $stacked;
+    public string $iconSize;
+    public string $iconStyle;
+    public string $text;
+    public string $stacked;
 
     public function __construct(
         string $background = null,

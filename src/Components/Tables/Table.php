@@ -13,8 +13,8 @@ class Table extends Component
 
     protected string $component = 'table';
 
-    public ?string $headingStyles;
-    public ?string $bodyStyles;
+    public string $headingStyles;
+    public string $bodyStyles;
 
     public function __construct(
         string $background = null,

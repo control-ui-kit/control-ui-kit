@@ -25,7 +25,7 @@ trait UseThemeFile
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): ?string
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): string
     {
         $append_input = $this->appendStyles($input);
 
@@ -62,7 +62,7 @@ trait UseThemeFile
                 $configStyle .= ($configStyle === config($key)) ? '' : ' ' . config($key);
             }
 
-            return is_null($configStyle) && is_null($append_input) ? null : trim($configStyle . $append_input);
+            return is_null($configStyle) && is_null($append_input) ? '' : trim($configStyle . $append_input);
         }
 
         return ($input === 'none' ? '' : $input);
