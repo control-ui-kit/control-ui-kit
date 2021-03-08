@@ -1,4 +1,3 @@
-
 @isset($filters)
 <div>
     {{ $filters }}
