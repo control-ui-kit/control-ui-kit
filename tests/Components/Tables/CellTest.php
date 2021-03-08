@@ -89,8 +89,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-left background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-left background border color font other padding rounded shadow"> ::Some Data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -104,8 +103,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-left background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-left background border color font other padding rounded shadow"> ::Some Data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -119,8 +117,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-right background border color font other padding rounded shadow"> ::Some Data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -134,8 +131,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-right background border color font other padding rounded shadow"> ::Some Data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -149,8 +145,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-center background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-center background border color font other padding rounded shadow"> ::Some Data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -164,8 +159,35 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-center background border color font other padding rounded shadow"> ::Some Data
-            </td>
+            <td class="text-center background border color font other padding rounded shadow"> ::Some Data </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_data_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="::some value" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> ::some value </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2.0312" format="decimal:10,2" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 2.0312 </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

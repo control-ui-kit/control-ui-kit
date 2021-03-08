@@ -1,3 +1,3 @@
 <td {{ $attributes->merge($classes()) }}>
-    {{ $slot }}
+    @if ($value) {{ $value }} @else {{ $slot }} @endif
 </td>
