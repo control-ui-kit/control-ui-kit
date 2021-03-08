@@ -317,12 +317,59 @@ return [
         'shadow' => '',
     ],
 
+    'input-range' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'min' => '1',
+        'max' => '100',
+    ],
+
     'input-select' => [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
         'font' => 'text-md text-input',
-        'other' => 'w-20',
+        'other' => 'w-64 inline-block',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-select-avatar' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-20 relative',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-select-custom' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-20 relative',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
+    'input-select-secondary-text' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-20 relative',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
@@ -336,6 +383,17 @@ return [
         'other' => 'w-20',
         'padding' => '',
         'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-color-picker' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-40 relative',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
         'shadow' => '',
     ],
 

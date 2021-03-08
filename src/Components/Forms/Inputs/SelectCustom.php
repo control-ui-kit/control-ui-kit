@@ -8,11 +8,11 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Select extends Component
+class SelectCustom extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-select';
+    protected string $component = 'input-select-custom';
 
     public string $name;
     public string $id;
@@ -55,7 +55,7 @@ class Select extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select');
+        return view('control-ui-kit::control-ui-kit.forms.inputs.select-custom');
     }
 
     public function selected($option)

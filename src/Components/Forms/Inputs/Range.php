@@ -8,19 +8,17 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Range extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-select';
+    protected string $component = 'input-range';
 
     public string $name;
     public string $id;
-    public string $value;
-
-    public $options;
-    public $optionValue;
-    public $optionText;
+    public string $min;
+    public string $max;
+    public ?string $value;
 
     public function __construct(
         string $name,
@@ -32,14 +30,14 @@ class Select extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $min = null,
+        string $max = null,
         string $id = null,
-        $options = [],
-        ?string $value = null
+        string $value = '1'
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
-        $this->options = $options;
 
         $this->setConfigStyles([
             'background' => $background,
@@ -51,19 +49,13 @@ class Select extends Component
             'rounded' => $rounded,
             'shadow' => $shadow,
         ]);
+
+        $this->min = $this->style($this->component, 'min', $min);
+        $this->max = $this->style($this->component, 'max', $max);
     }
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select');
-    }
-
-    public function selected($option)
-    {
-        if ($this->value === 'all') {
-            return false;
-        }
-
-        return $option === $this->value ? 'selected=selected' : '';
+        return view('control-ui-kit::control-ui-kit.forms.inputs.range');
     }
 }
