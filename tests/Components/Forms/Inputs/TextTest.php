@@ -13,46 +13,70 @@ class TextTest extends ComponentTestCase
     {
         parent::setUp();
 
-        Config::set('themes.default.input.basic.background', 'background');
-        Config::set('themes.default.input.basic.border', 'border');
-        Config::set('themes.default.input.basic.color', 'color');
-        Config::set('themes.default.input.basic.font', 'font');
-        Config::set('themes.default.input.basic.other', 'other');
-        Config::set('themes.default.input.basic.padding', 'padding');
-        Config::set('themes.default.input.basic.rounded', 'rounded');
-        Config::set('themes.default.input.basic.shadow', 'shadow');
+        Config::set('themes.default.input-text.background', 'background');
+        Config::set('themes.default.input-text.border', 'border');
+        Config::set('themes.default.input-text.color', 'color');
+        Config::set('themes.default.input-text.font', 'font');
+        Config::set('themes.default.input-text.other', 'other');
+        Config::set('themes.default.input-text.padding', 'padding');
+        Config::set('themes.default.input-text.rounded', 'rounded');
+        Config::set('themes.default.input-text.shadow', 'shadow');
 
-        Config::set('themes.default.input.wrapper.background', 'wrapper-background');
-        Config::set('themes.default.input.wrapper.border', 'wrapper-border');
-        Config::set('themes.default.input.wrapper.color', 'wrapper-color');
-        Config::set('themes.default.input.wrapper.font', 'wrapper-font');
-        Config::set('themes.default.input.wrapper.other', 'wrapper-other');
-        Config::set('themes.default.input.wrapper.padding', 'wrapper-padding');
-        Config::set('themes.default.input.wrapper.rounded', 'wrapper-rounded');
-        Config::set('themes.default.input.wrapper.shadow', 'wrapper-shadow');
+        Config::set('themes.default.input-text.input-background', 'input-background');
+        Config::set('themes.default.input-text.input-border', 'input-border');
+        Config::set('themes.default.input-text.input-color', 'input-color');
+        Config::set('themes.default.input-text.input-font', 'input-font');
+        Config::set('themes.default.input-text.input-other', 'input-other');
+        Config::set('themes.default.input-text.input-padding', 'input-padding');
+        Config::set('themes.default.input-text.input-rounded', 'input-rounded');
+        Config::set('themes.default.input-text.input-shadow', 'input-shadow');
 
-        Config::set('themes.default.input.input.background', 'input-background');
-        Config::set('themes.default.input.input.border', 'input-border');
-        Config::set('themes.default.input.input.color', 'input-color');
-        Config::set('themes.default.input.input.font', 'input-font');
-        Config::set('themes.default.input.input.left', 'input-left');
-        Config::set('themes.default.input.input.other', 'input-other');
-        Config::set('themes.default.input.input.padding', 'input-padding');
-        Config::set('themes.default.input.input.right', 'input-right');
-        Config::set('themes.default.input.input.rounded', 'input-rounded');
-        Config::set('themes.default.input.input.shadow', 'input-shadow');
+        Config::set('themes.default.input-text.icon-left-background', 'icon-left-background');
+        Config::set('themes.default.input-text.icon-left-border', 'icon-left-border');
+        Config::set('themes.default.input-text.icon-left-color', 'icon-left-color');
+        Config::set('themes.default.input-text.icon-left-font', 'icon-left-font');
+        Config::set('themes.default.input-text.icon-left-other', 'icon-left-other');
+        Config::set('themes.default.input-text.icon-left-padding', 'icon-left-padding');
+        Config::set('themes.default.input-text.icon-left-rounded', 'icon-left-rounded');
+        Config::set('themes.default.input-text.icon-left-shadow', 'icon-left-shadow');
+        Config::set('themes.default.input-text.icon-left-size', 'icon-left-size');
 
-        Config::set('themes.default.input-embed.background', 'embed-background');
-        Config::set('themes.default.input-embed.border', 'embed-border');
-        Config::set('themes.default.input-embed.color', 'embed-color');
-        Config::set('themes.default.input-embed.font', 'embed-font');
-        Config::set('themes.default.input-embed.left', 'embed-left');
-        Config::set('themes.default.input-embed.icon-size', 'embed-icon-size');
-        Config::set('themes.default.input-embed.other', 'embed-other');
-        Config::set('themes.default.input-embed.padding', 'embed-padding');
-        Config::set('themes.default.input-embed.right', 'embed-right');
-        Config::set('themes.default.input-embed.rounded', 'embed-rounded');
-        Config::set('themes.default.input-embed.shadow', 'embed-shadow');
+        Config::set('themes.default.input-text.icon-right-background', 'icon-right-background');
+        Config::set('themes.default.input-text.icon-right-border', 'icon-right-border');
+        Config::set('themes.default.input-text.icon-right-color', 'icon-right-color');
+        Config::set('themes.default.input-text.icon-right-font', 'icon-right-font');
+        Config::set('themes.default.input-text.icon-right-other', 'icon-right-other');
+        Config::set('themes.default.input-text.icon-right-padding', 'icon-right-padding');
+        Config::set('themes.default.input-text.icon-right-rounded', 'icon-right-rounded');
+        Config::set('themes.default.input-text.icon-right-shadow', 'icon-right-shadow');
+        Config::set('themes.default.input-text.icon-right-size', 'icon-right-size');
+
+        Config::set('themes.default.input-text.prefix-background', 'prefix-background');
+        Config::set('themes.default.input-text.prefix-border', 'prefix-border');
+        Config::set('themes.default.input-text.prefix-color', 'prefix-color');
+        Config::set('themes.default.input-text.prefix-font', 'prefix-font');
+        Config::set('themes.default.input-text.prefix-other', 'prefix-other');
+        Config::set('themes.default.input-text.prefix-padding', 'prefix-padding');
+        Config::set('themes.default.input-text.prefix-rounded', 'prefix-rounded');
+        Config::set('themes.default.input-text.prefix-shadow', 'prefix-shadow');
+
+        Config::set('themes.default.input-text.suffix-background', 'suffix-background');
+        Config::set('themes.default.input-text.suffix-border', 'suffix-border');
+        Config::set('themes.default.input-text.suffix-color', 'suffix-color');
+        Config::set('themes.default.input-text.suffix-font', 'suffix-font');
+        Config::set('themes.default.input-text.suffix-other', 'suffix-other');
+        Config::set('themes.default.input-text.suffix-padding', 'suffix-padding');
+        Config::set('themes.default.input-text.suffix-rounded', 'suffix-rounded');
+        Config::set('themes.default.input-text.suffix-shadow', 'suffix-shadow');
+
+        Config::set('themes.default.input-text.wrapper-background', 'wrapper-background');
+        Config::set('themes.default.input-text.wrapper-border', 'wrapper-border');
+        Config::set('themes.default.input-text.wrapper-color', 'wrapper-color');
+        Config::set('themes.default.input-text.wrapper-font', 'wrapper-font');
+        Config::set('themes.default.input-text.wrapper-other', 'wrapper-other');
+        Config::set('themes.default.input-text.wrapper-padding', 'wrapper-padding');
+        Config::set('themes.default.input-text.wrapper-rounded', 'wrapper-rounded');
+        Config::set('themes.default.input-text.wrapper-shadow', 'wrapper-shadow');
     }
 
     /** @test */
@@ -98,6 +122,20 @@ class TextTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_text_component_can_be_rendered_with_appended_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" background="...1" border="...2"/>
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background 1 border 2 color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_text_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -128,14 +166,14 @@ class TextTest extends ComponentTestCase
     /** @test */
     public function an_input_text_component_can_be_rendered_using_override_config_styles(): void
     {
-        Config::set('themes.default.input-text.basic.background', 'config-background');
-        Config::set('themes.default.input-text.basic.border', 'config-border');
-        Config::set('themes.default.input-text.basic.color', 'config-color');
-        Config::set('themes.default.input-text.basic.font', 'config-font');
-        Config::set('themes.default.input-text.basic.other', 'config-other');
-        Config::set('themes.default.input-text.basic.padding', 'config-padding');
-        Config::set('themes.default.input-text.basic.rounded', 'config-rounded');
-        Config::set('themes.default.input-text.basic.shadow', 'config-shadow');
+        Config::set('themes.default.input-text.background', 'config-background');
+        Config::set('themes.default.input-text.border', 'config-border');
+        Config::set('themes.default.input-text.color', 'config-color');
+        Config::set('themes.default.input-text.font', 'config-font');
+        Config::set('themes.default.input-text.other', 'config-other');
+        Config::set('themes.default.input-text.padding', 'config-padding');
+        Config::set('themes.default.input-text.rounded', 'config-rounded');
+        Config::set('themes.default.input-text.shadow', 'config-shadow');
 
         $template = <<<'HTML'
             <x-input.text name="name" />
@@ -157,12 +195,12 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
-                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 </div>
             HTML;
 
@@ -178,9 +216,9 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                    <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -194,13 +232,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix="::prefix" />
+            <x-input.text name="name" prefix-text="::prefix" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left"> ::prefix </div>
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 
@@ -211,13 +249,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="::suffix" />
+            <x-input.text name="name" suffix-text="::suffix" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -233,12 +271,12 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
-                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 </div>
             HTML;
 
@@ -254,8 +292,8 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -275,12 +313,12 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div>
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
-                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 </div>
             HTML;
 
@@ -296,12 +334,12 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8 embed-left">
-                    <svg class="embed-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <div class="1 2 3 4 5 6 7 8">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
-                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 </div>
             HTML;
 
@@ -312,13 +350,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix="::prefix" prefix-background="none" prefix-border="none" prefix-color="none" prefix-font="none" prefix-other="none" prefix-padding="none" prefix-rounded="none" prefix-shadow="none" />
+            <x-input.text name="name" prefix-text="::prefix" prefix-background="none" prefix-border="none" prefix-color="none" prefix-font="none" prefix-other="none" prefix-padding="none" prefix-rounded="none" prefix-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-left"> ::prefix </div>
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                <div> ::prefix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 
@@ -329,13 +367,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix="::prefix" prefix-background="1" prefix-border="2" prefix-color="3" prefix-font="4" prefix-other="5" prefix-padding="6" prefix-rounded="7" prefix-shadow="8" />
+            <x-input.text name="name" prefix-text="::prefix" prefix-background="1" prefix-border="2" prefix-color="3" prefix-font="4" prefix-other="5" prefix-padding="6" prefix-rounded="7" prefix-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8 embed-left"> ::prefix </div>
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                <div class="1 2 3 4 5 6 7 8"> ::prefix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 
@@ -346,13 +384,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="::suffix" suffix-background="none" suffix-border="none" suffix-color="none" suffix-font="none" suffix-other="none" suffix-padding="none" suffix-rounded="none" suffix-shadow="none" />
+            <x-input.text name="name" suffix-text="::suffix" suffix-background="none" suffix-border="none" suffix-color="none" suffix-font="none" suffix-other="none" suffix-padding="none" suffix-rounded="none" suffix-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="embed-right"> ::suffix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div> ::suffix </div>
             </div>
             HTML;
 
@@ -363,13 +401,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="::suffix" suffix-background="1" suffix-border="2" suffix-color="3" suffix-font="4" suffix-other="5" suffix-padding="6" suffix-rounded="7" suffix-shadow="8" />
+            <x-input.text name="name" suffix-text="::suffix" suffix-background="1" suffix-border="2" suffix-color="3" suffix-font="4" suffix-other="5" suffix-padding="6" suffix-rounded="7" suffix-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="1 2 3 4 5 6 7 8 embed-right"> ::suffix </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="1 2 3 4 5 6 7 8"> ::suffix </div>
             </div>
             HTML;
 
@@ -380,13 +418,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_input_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="::suffix" input-background="none" input-border="none" input-color="none" input-font="none" input-other="none" input-padding="none" input-rounded="none" input-shadow="none" />
+            <x-input.text name="name" suffix-text="::suffix" input-background="none" input-border="none" input-color="none" input-font="none" input-other="none" input-padding="none" input-rounded="none" input-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <input name="name" type="text" id="name" class="" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -397,13 +435,13 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_input_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="::suffix" input-background="1" input-border="2" input-color="3" input-font="4" input-other="5" input-padding="6" input-rounded="7" input-shadow="8" />
+            <x-input.text name="name" suffix-text="::suffix" input-background="1" input-border="2" input-color="3" input-font="4" input-other="5" input-padding="6" input-rounded="7" input-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8 input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::suffix </div>
+                <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
 
@@ -414,15 +452,15 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_slot(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix="slot">
-                ::SOME SLOT CONTENT
+            <x-input.text name="name">
+                <x-slot name="prefix">::SOME SLOT CONTENT</x-slot>
             </x-input.text>
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-left"> ::SOME SLOT CONTENT </div>
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-left" />
+                <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::SOME SLOT CONTENT </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 
@@ -433,15 +471,46 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_slot(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix="slot">
-                ::SOME SLOT CONTENT
+            <x-input.text name="name">
+                <x-slot name="suffix">::SOME SLOT CONTENT</x-slot>
             </x-input.text>
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-right" />
-                <div class="embed-background embed-border embed-color embed-font embed-other embed-padding embed-rounded embed-shadow embed-right"> ::SOME SLOT CONTENT </div>
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::SOME SLOT CONTENT </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_event(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" @click="something" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow" @click="something" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_embed_and_event(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" suffix-text="$" @click="something" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" @click="something" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> $ </div>
             </div>
             HTML;
 

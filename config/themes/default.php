@@ -76,6 +76,93 @@ return [
     ],
 
 
+    'input' => [
+
+        // Styles
+
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'py-1.5 px-3',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'icon-left-background' => '',
+        'icon-left-border' => 'border-r border-input',
+        'icon-left-color' => 'text-muted',
+        'icon-left-font' => '',
+        'icon-left-size' => 'w-4 h-4',
+        'icon-left-other' => 'flex items-center justify-center self-stretch',
+        'icon-left-padding' => 'px-3',
+        'icon-left-rounded' => '',
+        'icon-left-shadow' => '',
+
+        'icon-right-background' => '',
+        'icon-right-border' => 'border-l border-input',
+        'icon-right-color' => 'text-muted',
+        'icon-right-font' => '',
+        'icon-right-size' => 'w-4 h-4',
+        'icon-right-other' => 'flex items-center justify-center self-stretch',
+        'icon-right-padding' => 'px-3',
+        'icon-right-rounded' => '',
+        'icon-right-shadow' => '',
+
+        'prefix-background' => '',
+        'prefix-border' => 'border-r border-input',
+        'prefix-color' => 'text-muted',
+        'prefix-font' => '',
+        'prefix-icon-size' => 'w-4 h-4',
+        'prefix-other' => 'flex items-center justify-center self-stretch',
+        'prefix-padding' => 'px-3',
+        'prefix-rounded' => '',
+        'prefix-shadow' => '',
+
+        'suffix-background' => '',
+        'suffix-border' => 'border-l border-input',
+        'suffix-color' => 'text-muted',
+        'suffix-font' => '',
+        'suffix-icon-size' => 'w-4 h-4',
+        'suffix-other' => 'flex items-center justify-center self-stretch',
+        'suffix-padding' => 'px-3',
+        'suffix-rounded' => '',
+        'suffix-shadow' => '',
+
+        'input-background' => 'bg-transparent',
+        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => '',
+        'input-other' => 'block w-full appearance-none',
+        'input-padding' => 'py-1.5 px-3',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
+
+        'wrapper-background' => 'bg-input',
+        'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+        'wrapper-other' => 'flex items-center',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => 'rounded',
+        'wrapper-shadow' => '',
+
+        // Config
+
+        'decimals' => '',
+        'type' => 'text',
+        'icon-left' => '',
+        'icon-right' => '',
+        'min' => null,
+        'max' => null,
+        'onblur' => '',
+        'onchange' => '',
+        'prefix-text' => '',
+        'step' => null,
+        'suffix-text' => '',
+    ],
+
+
     'input-checkbox' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input',
@@ -88,14 +175,9 @@ return [
     ],
 
     'input-currency' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
+        'prefix-text' => '£',
+        'decimals' => 2,
     ],
 
     'input-date' => [
@@ -144,25 +226,12 @@ return [
     ],
 
     'input-decimal' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
+        'decimals' => 2,
     ],
 
     'input-email' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'email',
     ],
 
     'input-integer' => [
@@ -183,117 +252,24 @@ return [
     ],
 
     'input-number' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'number',
     ],
 
     'input-password' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
-    ],
-
-    'input-icon-wrapper' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => 'flex rounded border border-input bg-input w-full',
-        'padding' => '',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'type' => 'password',
     ],
 
     'input-percent' => [
-        'background' => 'bg-input',
-        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => 'flex-1 min-w-0 block w-full',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded-l',
-        'shadow' => '',
-        'wrapper' => '',
-    ],
-
-    'input-embed' => [
-        'background' => '',
-        'border' => 'border-input',
-        'color' => 'opacity-60',
-        'font' => '',
-        'left' => 'left-0 border-r',
-        'right' => 'right-0 border-l',
-        'icon-size' => 'w-4 h-4',
-        'other' => 'absolute inset-y-0 flex items-center pointer-events-none justify-center min-w-10 px-3',
-        'padding' => '',
-        'rounded' => '',
-        'shadow' => '',
-    ],
-
-    'input' => [
-        'basic' => [
-            'background' => 'bg-input',
-            'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-            'color' => 'text-input placeholder-input',
-            'font' => '',
-            'other' => '',
-            'padding' => 'py-1.5 px-3',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
-        'wrapper' => [
-            'background' => 'bg-input',
-            'border' => 'border border-input',
-            'color' => '',
-            'font' => '',
-            'other' => 'relative w-full',
-            'padding' => '',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
-        'input' => [
-            'background' => 'bg-input',
-            'border' => 'border-0 focus:outline-none focus:ring-brand',
-            'color' => 'text-input placeholder-input',
-            'font' => '',
-            'left' => 'pl-12',
-            'right' => 'pr-12',
-            'other' => 'flex-1 min-w-0 block w-full',
-            'padding' => 'py-1.5 px-3',
-            'rounded' => 'rounded',
-            'shadow' => '',
-        ],
+        'type' => 'number',
+        'icon-right' => 'icon.percent',
+        'min' => 0,
+        'max' => 100,
+        'step' => 1,
     ],
 
     'input-text' => [
-        'basic' => [],
-        'wrapper' => [],
-        'input' => []
+        'type' => 'text',
     ],
-
-
-
-//    'input-text' => [
-//        'background' => 'bg-input',
-//        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-//        'color' => 'text-input placeholder-input',
-//        'font' => '',
-//        'other' => '',
-//        'padding' => 'p-1.5',
-//        'rounded' => 'rounded',
-//        'shadow' => '',
-//    ],
 
     'input-textarea' => [
         'background' => 'bg-input',
@@ -331,7 +307,15 @@ return [
         'max' => '100',
     ],
 
+    'input-search' => [
+        'type' => 'search',
+        'icon-left' => 'icon.search',
+        'icon-left-border' => 'border-0',
+        'icon-left-padding' => 'pl-3 pr-0',
+    ],
+
     'input-select' => [
+        // Base Styles
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
@@ -340,6 +324,32 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        // Config
+        'type' => 'select',
+        'please-select-text' => 'Please Select ...',
+        'chevron-icon' => 'icon.chevron-down',
+        'chevron-icon-size' => 'w-5 h-5',
+        'selected-icon' => 'icon.check',
+        'selected-icon-size' => 'w-5 h-5',
+
+        'title-name' => 'title',
+        'subtitle' => '',
+        'subtitle-name' => 'subtitle',
+        'image' => '',
+        'image-name' => 'image',
+        'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
+
+        'icon-right-icon' => 'icon.chevron-down',
+        'icon-right-background' => '',
+        'icon-right-border' => 'border-l border-input',
+        'icon-right-color' => 'text-muted',
+        'icon-right-font' => '',
+        'icon-right-size' => 'w-4 h-4',
+        'icon-right-other' => 'absolute',
+        'icon-right-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+        'icon-right-rounded' => '',
+        'icon-right-shadow' => '',
     ],
 
     'input-select-avatar' => [
@@ -347,10 +357,31 @@ return [
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
         'font' => 'text-md text-input',
-        'other' => 'w-20 relative',
+        'other' => 'w-20 relative overflow-hiden',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        'type' => 'select',
+        'please-select-text' => 'Please Select ...',
+        'default-avatar' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
+        'chevron-icon' => 'icon.chevron-down',
+        'chevron-icon-size' => 'w-5 h-5',
+        'selected-icon' => 'icon.check',
+        'selected-icon-size' => 'w-5 h-5',
+
+        'icon-right-icon' => 'icon.chevron-down',
+        'icon-right-background' => '',
+        'icon-right-border' => 'border-l border-input',
+        'icon-right-color' => 'text-muted',
+        'icon-right-font' => '',
+        'icon-right-size' => 'w-4 h-4',
+        'icon-right-other' => 'absolute',
+        'icon-right-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+        'icon-right-rounded' => '',
+        'icon-right-shadow' => '',
+
+        // inset-y-0 right-0 flex items-center pr-2 pointer-events-none
     ],
 
     'input-select-custom' => [
@@ -362,6 +393,12 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        'type' => 'select',
+        'chevron-icon' => 'icon.chevron-down',
+        'chevron-icon-size' => 'w-5 h-5',
+        'selected-icon' => 'icon.check',
+        'selected-icon-size' => 'w-5 h-5',
     ],
 
     'input-select-secondary-text' => [
@@ -373,6 +410,12 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        'type' => 'select',
+        'chevron-icon' => 'icon.chevron-down',
+        'chevron-icon-size' => 'w-5 h-5',
+        'selected-icon' => 'icon.check',
+        'selected-icon-size' => 'w-5 h-5',
     ],
 
     'input-toggle' => [
@@ -414,7 +457,7 @@ return [
         'color' => '',
         'font' => '',
         'other' => '',
-        'padding' => 'p-6',
+        'padding' => 'sm:p-6',
         'rounded' => '',
         'shadow' => '',
     ],

@@ -13,6 +13,8 @@ class CurrencyTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-currency.prefix-text', '');
+        
         Config::set('themes.default.input-currency.background', 'background');
         Config::set('themes.default.input-currency.border', 'border');
         Config::set('themes.default.input-currency.color', 'color');
@@ -31,7 +33,7 @@ class CurrencyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="any" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" step="0.01" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -45,7 +47,7 @@ class CurrencyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="any" />
+            <input name="name" type="number" id="name" step="0.01" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -59,7 +61,7 @@ class CurrencyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="any" class="1 2 3 4 5 6 7 8" />
+            <input name="name" type="number" id="name" step="0.01" class="1 2 3 4 5 6 7 8" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -73,7 +75,7 @@ class CurrencyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="any" placeholder="placeholder text" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" placeholder="placeholder text" step="0.01" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -83,11 +85,11 @@ class CurrencyTest extends ComponentTestCase
     public function an_input_currency_component_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.currency name="name" value="test_value" />
+            <x-input.currency name="name" value="123" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" step="any" value="test_value" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="123" step="0.01" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

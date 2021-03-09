@@ -11,20 +11,17 @@ trait UseInputTheme
     protected array $basicStyles;
     protected array $wrapperStyles;
     protected array $inputStyles;
+    protected array $validTypes = [
+        'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number',
+        'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week',
+    ];
 
-    private function inputPadding(): string
-    {
-        $padding[] = $this->iconLeft || $this->prefix ? $this->style('input.input', 'left', null, '', $this->component . '.left') : '';
-        $padding[] = $this->iconRight || $this->suffix ? $this->style('input.input', 'right', null, '', $this->component . '.right') : '';
-        return collect($padding)->filter()->implode(' ');
-    }
-
-    private function setInputStyles(array $props, string $keyOverride, string $style, string $config): void
+    private function setInputStyles(array $props, string $keyOverride, string $style, string $config, string $prefix = ''): void
     {
         $this->$style = $props;
 
         foreach ($this->$style as $prop => $value) {
-            $this->$prop = $this->style($config, $prop, $value, '', $keyOverride);
+            $this->$prop = $this->style($config, $prefix.$prop, $value, '', $keyOverride);
             $this->$style[$prop] = $this->$prop;
         }
     }
@@ -45,7 +42,11 @@ trait UseInputTheme
 
     public function inputClasses(): string
     {
-        $this->inputStyles[] = $this->inputPadding();
         return $this->classList($this->inputStyles);
+    }
+
+    private function isValidType(string $type): bool
+    {
+        return in_array($type, $this->validTypes, true);
     }
 }
