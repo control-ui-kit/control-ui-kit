@@ -234,13 +234,6 @@ class Input extends Component
 
     protected function componentConfig(): void {}
 
-    private function setStyle($array, $id, $value): void
-    {
-        if ($value) {
-            $this->$array[$id] = $value;
-        }
-    }
-
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.input');
