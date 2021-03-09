@@ -2,6 +2,7 @@
 
 namespace Tests\Helpers\Formatters;
 
+use ControlUIKit\Exceptions\DecimalFormatterException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use Orchestra\Testbench\TestCase;
 
@@ -243,6 +244,30 @@ class DecimalFormatterTest extends TestCase
         $options = '2|cheese';
         $value = '2.012';
         $expected = '2.012';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_throws_exception_if_no_option_passed(): void
+    {
+        $options = '';
+        $value = '2.012';
+        $expected = '';
+
+        $this->expectException(DecimalFormatterException::class);
+        $this->expectExceptionMessage('Decimal places not specified');
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+
+    /** @test */
+    public function decimal_formatter_handles_empty_value_correctly(): void
+    {
+        $options = '2';
+        $value = '';
+        $expected = '';
 
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }

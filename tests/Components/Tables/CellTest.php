@@ -250,7 +250,7 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_can_be_rendered_currency_and_symbol(): void
+    public function a_table_cell_component_can_be_rendered_with_currency_formatting_and_symbol(): void
     {
         $template = <<<'HTML'
             <x-table.cell value="12.0912" format="currency" prefix="£" />
@@ -258,6 +258,62 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow"> £ 12.09 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2021-03-09 15:16:17" format="date:d/m/Y" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 09/03/2021 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_mdY(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2021-03-09 15:16:17" format="date:mdY" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 03092021 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_dmY(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2021-03-09 15:16:17" format="date:d/m/Y" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 09/03/2021 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2021-03-09 15:16:17" format="date:mdY" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 03092021 </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

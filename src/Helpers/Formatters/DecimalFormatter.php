@@ -2,6 +2,8 @@
 
 namespace ControlUIKit\Helpers\Formatters;
 
+use ControlUIKit\Exceptions\DecimalFormatterException;
+
 class DecimalFormatter extends BaseFormatter
 {
     protected string $decimalSeparator = '.';
@@ -11,6 +13,10 @@ class DecimalFormatter extends BaseFormatter
 
     public function format(string $value, ?string $options): string
     {
+        if (! $options) {
+            throw (new DecimalFormatterException())::make('missingOptionSolution', 'Decimal places not specified');
+        }
+
         $this->options($options);
 
         return $this->parse($value);

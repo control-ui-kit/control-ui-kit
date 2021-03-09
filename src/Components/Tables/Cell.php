@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
 use ControlUIKit\Helpers\Formatters\CurrencyFormatter;
+use ControlUIKit\Helpers\Formatters\DateFormatter;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
@@ -83,8 +84,9 @@ class Cell extends Component
     private function getFormatter($formatter): string
     {
         $formatters = [
-            'decimal' => DecimalFormatter::class,
             'currency' => CurrencyFormatter::class,
+            'decimal' => DecimalFormatter::class,
+            'date' => DateFormatter::class,
         ];
 
         if (array_key_exists($formatter, $formatters)) {
