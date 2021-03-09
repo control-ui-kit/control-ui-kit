@@ -180,14 +180,84 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
+    public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_2(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2.0312" format="decimal:10,2" />
+            <x-table.cell value="2.0312" format="decimal:2" />
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 2.0312 </td>
+            <td class="align background border color font other padding rounded shadow"> 2.03 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_8(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="2323.0312324323423" format="decimal:8" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 2323.03123243 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="12.0912" format="currency" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 12.09 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_prefix(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="12.0912" prefix="::prefix" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> ::prefix 12.0912 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_suffix(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="12.0912" suffix="::suffix" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 12.0912 ::suffix </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_currency_and_symbol(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell value="12.0912" format="currency" prefix="£" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> £ 12.09 </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
