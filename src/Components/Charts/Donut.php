@@ -6,7 +6,6 @@ namespace ControlUIKit\Components\Charts;
 
 use ControlUIKit\Helpers\Chart;
 use Illuminate\View\Component;
-use phpDocumentor\Reflection\Types\Integer;
 
 class Donut extends Component
 {
