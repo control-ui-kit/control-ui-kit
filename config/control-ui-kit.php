@@ -21,6 +21,11 @@ return [
         'code.block' => \ControlUIKit\Components\Code\Block::class,
         'code' => \ControlUIKit\Components\Code\Inline::class,
 
+        'bar-chart' => \ControlUIKit\Components\Charts\Bar::class,
+        'donut-chart' => \ControlUIKit\Components\Charts\Donut::class,
+        'line-chart' => \ControlUIKit\Components\Charts\Line::class,
+        'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
+
         'dropdown.divider' => \ControlUIKit\Components\Dropdowns\Divider::class,
         'dropdown.menu' => \ControlUIKit\Components\Dropdowns\Menu::class,
         'dropdown.option' => \ControlUIKit\Components\Dropdowns\Option::class,
