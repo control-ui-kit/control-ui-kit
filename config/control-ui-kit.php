@@ -31,6 +31,7 @@ return [
 
         'title' => \ControlUIKit\Components\Forms\Title::class,
         'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
+        'form.field' => \ControlUIKit\Components\Forms\Field::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field.text' => \ControlUIKit\Components\Forms\Fields\Text::class,

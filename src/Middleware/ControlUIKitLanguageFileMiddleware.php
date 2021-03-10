@@ -60,6 +60,10 @@ class ControlUIKitLanguageFileMiddleware
      */
     protected function checkResult($files)
     {
+        if ($this->ignoreRoutes()) {
+            return '';
+        }
+
         if (count($files) === 1) {
             return config('language-files')[$files->first()];
         }
@@ -73,6 +77,15 @@ class ControlUIKitLanguageFileMiddleware
         }
 
         throw new LanguageFileException('Set language file exception');
+    }
+
+    private function ignoreRoutes(): bool
+    {
+        throw new \Exception(Route::currentRouteName());
+
+        return in_array(Route::currentRouteName(), [
+            'livewire.message',
+        ]);
     }
 
     private function shouldUseLanguageFiles()
