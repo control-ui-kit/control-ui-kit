@@ -3,7 +3,6 @@
 namespace ControlUIKit\Helpers\Formatters;
 
 use Carbon\Carbon;
-use ControlUIKit\Exceptions\DateFormatterException;
 
 class DateFormatter extends BaseFormatter
 {
@@ -13,10 +12,29 @@ class DateFormatter extends BaseFormatter
             return "-";
         }
 
+        Carbon::setLocale($this->getLocale());
+
         if (! $options) {
-            throw (new DateFormatterException())::make('missingOptionSolution', 'Date format not specified');
+            return Carbon::parse($value)->isoFormat('L');
+        }
+
+        if ($options === 'diffForHumans') {
+            return Carbon::parse($value, $this->getTimeZone())
+                ->diffForHumans();
         }
 
         return Carbon::parse($value)->format($options);
+    }
+
+    private function getLocale(): string
+    {
+        $locale = \App::currentLocale() ?? config('app.locale');
+        return $locale === 'en' ? 'en_GB' : $locale;
+    }
+
+    private function getTimeZone(): string
+    {
+        $field = config('control-ui-kit.user_timezone_field');
+        return auth()->user()->$field ?? config('app.timezone');
     }
 }

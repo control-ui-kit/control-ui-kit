@@ -21,7 +21,7 @@ class ControlUIKitLanguageFileMiddleware
         return $next($request);
     }
 
-    protected function setModuleLanguageFile()
+    protected function setModuleLanguageFile(): void
     {
         $route = Route::currentRouteName();
 
@@ -69,7 +69,7 @@ class ControlUIKitLanguageFileMiddleware
         }
 
         if (! count($files)) {
-            throw new LanguageFileException('Language file not set for route [/' . Route::currentRouteName() . ']');
+            throw new LanguageFileException('Language file not set for route [' . Route::currentRouteName() . ']');
         }
 
         if (count($files) !== 1) {
@@ -81,15 +81,11 @@ class ControlUIKitLanguageFileMiddleware
 
     private function ignoreRoutes(): bool
     {
-        throw new \Exception(Route::currentRouteName());
-
-        return in_array(Route::currentRouteName(), [
-            'livewire.message',
-        ]);
+        return in_array(Route::currentRouteName(), config('language-files.ignore-routes'), true);
     }
 
     private function shouldUseLanguageFiles()
     {
-        return config('control-ui.kit.use_language_files', false);
+        return config('control-ui-kit.use_language_files', false);
     }
 }
