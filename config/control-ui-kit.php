@@ -43,9 +43,10 @@ return [
         'input.radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
         'input.search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
         'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
-        'input.select-avatar' => \ControlUIKit\Components\Forms\Inputs\SelectAvatar::class,
-        'input.select-custom' => \ControlUIKit\Components\Forms\Inputs\SelectCustom::class,
-        'input.select-secondary-text' => \ControlUIKit\Components\Forms\Inputs\SelectSecondaryText::class,
+        'input.select.image' => \ControlUIKit\Components\Forms\Inputs\SelectImage::class,
+        'input.select.checked-icon' => \ControlUIKit\Components\Forms\Inputs\SelectCheckedIcon::class,
+        'input.select.text' => \ControlUIKit\Components\Forms\Inputs\SelectText::class,
+
         'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
         'input.password' => \ControlUIKit\Components\Forms\Inputs\Password::class,

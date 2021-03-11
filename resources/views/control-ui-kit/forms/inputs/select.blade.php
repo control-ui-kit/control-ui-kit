@@ -11,14 +11,10 @@
                 aria-labelledby="listbox-label"
                 {{ $attributes->merge($classes('flex items-center space-x-2 py-0 px-0')) }}
         >
-            <span class="flex items-center w-full pl-2">
-                @if ($image)
-                    <img x-bind:src="image" src="{{ $imageDefault }}"
-                         alt=""
-                         class="flex-shrink-0 h-6 w-6 rounded-full"
-                    >
-                @endif
-                <span x-text="title" class="ml-3 block truncate grow py-1.5"></span>
+            <span class="flex items-center w-full pl-2 space-x-2">
+                @if ($image)<x-input.select.image x-bind:src="image" src="{{ $imageDefault }}" />@endif
+                <span x-text="text" class="ml-3 block truncate grow py-1.5"></span>
+                @if ($subtext)<span x-text="subtext" class="truncate text-gray-500"></span>@endif
             </span>
             <x-input.embed icon-right :icon="$iconRightIcon" :size="$iconRightSize" class="flex-shrink-0" />
         </button>
@@ -47,50 +43,31 @@
                 @if ($type === 'select')
                     <li id="listbox-item-{{ $id }}-0"
                         role="option"
-                        data-title="{{ $pleaseSelectText }}"
-                        @if ($subtitle)
-                            data-subtitle=""
-                        @endif
-                        @if ($image)
-                            data-image="{{ $imageDefault }}"
-                        @endif
+                        data-text="{{ $pleaseSelectText }}"
+                        @if ($subtext)data-subtext=""@endif
+                        @if ($image)data-image="{{ $imageDefault }}"@endif
                         @click="choose(0)"
                         @mouseenter="selected = 0"
                         @mouseleave="selected = null"
                         :class="{ 'text-white bg-gray-600': selected === 0, 'text-gray-900': !(selected === 0) }"
                         class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
                     >
-                        <div class="flex items-center">
-                            @if ($image)
-                                <img src="{{ $imageDefault }}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
-                            @endif
-                            <span :class="{ 'font-semibold': value === 0, 'font-normal': !(value === 0) }"
-                                  class="ml-3 block font-normal truncate"
-                            >
-                                {{ $pleaseSelectText }}
-                            </span>
+                        <div class="flex items-center space-x-2">
+                            @if ($image)<x-input.select.image src="{{ $imageDefault }}" />@endif
+
+                            <x-input.select.text value="0" :option="$pleaseSelectText" :text="$textName()" />
                         </div>
 
-                        <span x-show="value === 0"
-                              :class="{ 'text-white': selected === 0, 'text-gray-600': !(selected === 0) }"
-                              class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-600"
-                              style="display: none;"
-                        >
-                            <x-dynamic-component :component="$selectedIcon" :size="$selectedIconSize" />
-                        </span>
+                        <x-input.select.checked-icon value="0" :selected-icon="$selectedIcon" :selected-icon-size="$selectedIconSize" />
                     </li>
                 @endif
 
                 @foreach ($options as $option_id => $option)
                     <li id="listbox-item-{{ $id }}-{{ $option_id }}"
                         role="option"
-                        data-title="{{ is_string($option) ? $option : $option[$titleName()] }}"
-                        @if ($subtitle)
-                            data-subtitle="{{ $option[$subtitleName] }}"
-                        @endif
-                        @if ($image)
-                            data-image="{{ $option[$imageName] }}"
-                        @endif
+                        data-text="{{ is_string($option) ? $option : $option[$textName()] }}"
+                        @if ($subtext)data-subtext="{{ $option[$subtext] }}"@endif
+                        @if ($image)data-image="{{ $option[$image] }}"@endif
                         @click="choose({{ $option_id }})"
                         @mouseenter="selected = {{ $option_id }}"
                         @mouseleave="selected = null"
@@ -98,30 +75,11 @@
                         class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
                     >
                         <div class="flex items-center space-x-2">
-                            @if ($image)
-                                <img src="{{ $option[$imageName] }}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
-                            @endif
-                            <span :class="{ 'font-semibold': value === {{ $option_id }}, 'font-normal': !(value === {{ $option_id }}) }"
-                                  class="ml-3 block font-normal truncate"
-                            >
-                                {{ is_string($option) ? $option : $option[$titleName()] }}
-                            </span>
-                            @if ($subtitle)
-                                <span :class="{ 'text-gray-200': selected === {{ $option_id }}, 'text-gray-500': !(selected === {{ $option_id }}) }"
-                                      class="truncate text-gray-500"
-                                >
-                                    {{ $option[$subtitleName] }}
-                                </span>
-                            @endif
+                            @if ($image)<x-input.select.image src="{{ $option[$image] }}" />@endif
+                            <x-input.select.text value="{{ $option_id }}" :option="$option" :text="$textName()"  :subtext="$subtext" />
                         </div>
 
-                        <span x-show="value === {{ $option_id }}"
-                              :class="{ 'text-white': selected === {{ $option_id }}, 'text-gray-600': !(selected === {{ $option_id }}) }"
-                              class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-600"
-                              style="display: none;"
-                        >
-                            <x-dynamic-component :component="$selectedIcon" :size="$selectedIconSize" />
-                        </span>
+                        <x-input.select.checked-icon value="{{ $option_id }}" :selected-icon="$selectedIcon" :selected-icon-size="$selectedIconSize" />
                     </li>
                 @endforeach
             </ul>
@@ -134,13 +92,9 @@
         return {
             init() {
                 if (this.selected !== undefined) {
-                    this.title = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.title;
-                    @if ($subtitle)
-                        this.subtitle = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.subtitle;
-                    @endif
-                    @if ($image)
-                        this.image = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.image;
-                    @endif
+                    this.text = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.text;
+                    @if ($subtext)this.subtext = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.subtext;@endif
+                    @if ($image)this.image = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.image;@endif
                 }
             },
             activeDescendant: null,
@@ -148,24 +102,18 @@
             open: false,
             selected: null,
             value: 0,
-            title: '',
-            @if ($subtitle)
-                subtitle: '',
-            @endif
-            @if ($image)
-                image: '',
-            @endif
+            text: '',
+            @if ($subtext)subtext: '',@endif
+            @if ($image)image: '',@endif
             changed() {
-                this.title = document.getElementById('listbox-item-{{ $id }}-' + this.value).dataset.title;
-                @if ($image)
-                    this.image = document.getElementById('listbox-item-{{ $id }}-' + this.value).dataset.image;
-                @endif
+                this.text = document.getElementById('listbox-item-{{ $id }}-' + this.value).dataset.text;
+                @if ($subtext)this.subtext = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.subtext;@endif
+                @if ($image)this.image = document.getElementById('listbox-item-{{ $id }}-' + this.value).dataset.image;@endif
             },
             choose(option_id) {
-                this.title = document.getElementById('listbox-item-{{ $id }}-' + option_id).dataset.title;
-                @if ($image)
-                    this.image = document.getElementById('listbox-item-{{ $id }}-' + option_id).dataset.image;
-                @endif
+                this.text = document.getElementById('listbox-item-{{ $id }}-' + option_id).dataset.text;
+                @if ($subtext)this.subtext = document.getElementById('listbox-item-{{ $id }}-' + this.selected).dataset.subtext;@endif
+                @if ($image)this.image = document.getElementById('listbox-item-{{ $id }}-' + option_id).dataset.image;@endif
 
                 document.getElementById("{{ $id }}").value = option_id;
 

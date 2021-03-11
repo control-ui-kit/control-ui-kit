@@ -33,11 +33,9 @@ class Select extends Component
     public ?string $iconRightPadding;
     public ?string $iconRightRounded;
     public ?string $iconRightShadow;
-    public ?string $titleName;
-    public ?string $subtitle;
-    public ?string $subtitleName;
+    public ?string $textName;
+    public ?string $subtext;
     public ?string $image;
-    public ?string $imageName;
     public ?string $imageDefault;
     public array $options;
 
@@ -67,11 +65,9 @@ class Select extends Component
         string $iconRightPadding = null,
         string $iconRightRounded = null,
         string $iconRightShadow = null,
-        string $titleName = null,
-        string $subtitle = null,
-        string $subtitleName = null,
+        string $textName = null,
+        string $subtext = null,
         string $image = null,
-        string $imageName = null,
         string $imageDefault = null,
         string $id = null,
         array $options = [],
@@ -89,13 +85,10 @@ class Select extends Component
         $this->selectedIconSize = $this->style($this->component, 'selected-icon-size', $selectedIconSize);
         $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
 
-        $this->titleName = $this->style($this->component, 'title-name', $titleName);
+        $this->textName = $this->style($this->component, 'text-name', $textName);
+        $this->subtext = $this->subtext($this->style($this->component, 'subtext', $subtext));
 
-        $this->subtitle = $this->style($this->component, 'subtitle', $subtitle);
-        $this->subtitleName = $this->style($this->component, 'subtitle-name', $subtitleName);
-
-        $this->image = $this->style($this->component, 'image', $image);
-        $this->imageName = $this->style($this->component, 'image-name', $imageName);
+        $this->image = $this->image($this->style($this->component, 'image', $image));
         $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
 
         $this->iconRightIcon = $this->style($this->component, 'icon-right-icon', $iconRightIcon);
@@ -130,6 +123,24 @@ class Select extends Component
         ]);
     }
 
+    private function subtext($subtext): ?string
+    {
+        if (is_null($subtext)) {
+            return null;
+        }
+
+        return $subtext === "1" ? 'subtext' : $subtext ;
+    }
+
+    private function image($image): ?string
+    {
+        if (is_null($image)) {
+            return null;
+        }
+
+        return $image === "1" ? 'image' : $image;
+    }
+
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.select');
@@ -146,8 +157,8 @@ class Select extends Component
         return 'null';
     }
 
-    public function titleName(): string
+    public function textName(): string
     {
-        return $this->titleName;
+        return $this->textName;
     }
 }

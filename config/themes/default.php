@@ -333,11 +333,9 @@ return [
         'selected-icon' => 'icon.check',
         'selected-icon-size' => 'w-5 h-5',
 
-        'title-name' => 'title',
-        'subtitle' => '',
-        'subtitle-name' => 'subtitle',
-        'image' => '',
-        'image-name' => 'image',
+        'text-name' => 'text',
+        'subtext' => false,
+        'image' => false,
         'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
 
         'icon-right-icon' => 'icon.chevron-down',
