@@ -18,6 +18,9 @@ class Cell extends Component
     protected string $component = 'table-cell';
 
     public string $align;
+    public ?string $href;
+    public ?string $icon;
+    public ?string $iconSize;
     public ?string $prefix;
     public ?string $suffix;
     public ?string $value;
@@ -29,6 +32,9 @@ class Cell extends Component
         string $color = null,
         string $font = null,
         string $format = null,
+        string $href = null,
+        string $icon = null,
+        string $iconSize = null,
         string $other = null,
         string $padding = null,
         string $prefix = null,
@@ -52,11 +58,15 @@ class Cell extends Component
             'shadow' => $shadow,
         ]);
 
+        $this->align = $this->style($this->component, 'align', $align);
+        $this->href = $href;
+        $this->icon = $icon;
+        $this->iconSize = $iconSize;
         $this->prefix = $prefix;
         $this->suffix = $suffix;
         $this->value = $value;
+
         $this->format($format);
-        $this->align = $this->style($this->component, 'align', $align);
     }
 
     public function render()

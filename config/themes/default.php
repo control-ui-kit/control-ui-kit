@@ -355,7 +355,7 @@ return [
         'border' => '',
         'color' => '',
         'font' => '',
-        'other' => '',
+        'other' => 'inline-block',
         'padding' => '',
         'rounded' => '',
         'shadow' => '',

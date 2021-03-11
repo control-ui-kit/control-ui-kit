@@ -21,6 +21,10 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.table-cell.padding', 'padding');
         Config::set('themes.default.table-cell.rounded', 'rounded');
         Config::set('themes.default.table-cell.shadow', 'shadow');
+
+        Config::set('app.timezone', 'UTC');
+        Config::set('app.locale', 'en');
+        Config::set('control-ui-kit.user_timezone_field', 'timezone');
     }
 
     /** @test */
@@ -278,7 +282,7 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_mdY(): void
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
     {
         $template = <<<'HTML'
             <x-table.cell value="2021-03-09 15:16:17" format="date:mdY" />
@@ -292,10 +296,10 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_dmY(): void
+    public function a_table_cell_component_can_be_rendered_with_default_date_formatting(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date:d/m/Y" />
+            <x-table.cell value="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -306,14 +310,101 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
+    public function a_table_cell_component_can_be_rendered_with_default_date_formatting_set_to_en_US(): void
     {
+        Config::set('app.locale', 'en_US');
+
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date:mdY" />
+            <x-table.cell value="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 03092021 </td>
+            <td class="align background border color font other padding rounded shadow"> 03/09/2021 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_can_be_rendered_with_diff_for_humans(): void
+    {
+        $template = <<<'HTML'
+            @php $date = now()->subHours(2); @endphp
+            <x-table.cell :value="$date" format="date:diff" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> 2 hours ago </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_href_has_hyperlink_around_value(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell href="http://example.com">::data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <a href="http://example.com"> ::data </a>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_href_and_text_align_works_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell href="http://example.com" right>::data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-right background border color font other padding rounded shadow">
+                <a href="http://example.com"> ::data </a>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_icon_and_icon_size_works_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell icon="icon.dot" icon-size="::size" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_icon_and_href_and_alignment_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell icon="icon.dot" href="http://example.com/testing" right icon-size="::size" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="text-right background border color font other padding rounded shadow">
+                <a href="http://example.com/testing">
+                    <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </a>
+                </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

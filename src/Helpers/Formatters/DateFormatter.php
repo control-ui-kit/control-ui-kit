@@ -18,7 +18,7 @@ class DateFormatter extends BaseFormatter
             return Carbon::parse($value)->isoFormat('L');
         }
 
-        if ($options === 'diffForHumans') {
+        if ($options === 'diffForHumans' || $options === 'diff') {
             return Carbon::parse($value, $this->getTimeZone())
                 ->diffForHumans();
         }

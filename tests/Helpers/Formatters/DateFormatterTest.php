@@ -41,7 +41,7 @@ class DateFormatterTest extends TestCase
     /** @test */
     public function date_formatter_returns_diff_for_humans_correctly(): void
     {
-        $options = 'diffForHumans';
+        $options = 'diff';
         $value = Carbon::now()->subDays(2);
         $expected = '2 days ago';
 
