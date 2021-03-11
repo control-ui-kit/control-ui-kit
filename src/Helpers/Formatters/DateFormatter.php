@@ -23,6 +23,11 @@ class DateFormatter extends BaseFormatter
                 ->diffForHumans();
         }
 
+        if ($options === 'datetime') {
+            return Carbon::parse($value, $this->getTimeZone())
+                ->isoFormat('L LTS');
+        }
+
         return Carbon::parse($value)->format($options);
     }
 

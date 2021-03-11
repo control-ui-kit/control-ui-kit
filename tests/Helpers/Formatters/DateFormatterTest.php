@@ -71,6 +71,28 @@ class DateFormatterTest extends TestCase
     }
 
     /** @test */
+    public function date_formatter_handles_datetime_default_correctly(): void
+    {
+        $options = 'datetime';
+        $value = '2021-03-09 14:56:23';
+        $expected = '09/03/2021 14:56:23';
+
+        self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function date_formatter_handles_datetime_us_correctly(): void
+    {
+        Config::set('app.locale', 'en_US');
+
+        $options = 'datetime';
+        $value = '2021-03-09 14:56:23';
+        $expected = '03/09/2021 2:56:23 PM';
+
+        self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
     public function date_formatter_returns_timezone_altered_date_if_user_timezone_set(): void
     {
         $options = 'diffForHumans';
@@ -81,7 +103,6 @@ class DateFormatterTest extends TestCase
 
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
-
 
     /** @test */
     public function date_formatter_handles_empty_date_correctly(): void
