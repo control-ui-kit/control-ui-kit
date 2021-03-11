@@ -58,7 +58,7 @@ class ControlUIKitLanguageFileMiddleware
      * @return mixed
      * @throws LanguageFileException
      */
-    protected function checkResult($files)
+    protected function checkResult($files): string
     {
         if ($this->ignoreRoutes()) {
             return '';
@@ -84,7 +84,7 @@ class ControlUIKitLanguageFileMiddleware
         return in_array(Route::currentRouteName(), config('language-files.ignore-routes'), true);
     }
 
-    private function shouldUseLanguageFiles()
+    private function shouldUseLanguageFiles(): bool
     {
         return config('control-ui-kit.use_language_files', false);
     }
