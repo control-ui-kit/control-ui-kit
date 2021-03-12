@@ -70,6 +70,33 @@ class IconsTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_icon_component_can_be_rendered_with_styles_array(): void
+    {
+        $template = <<<'HTML'
+            @php $styles = [
+                'background' => 'custom-background',
+                'border' => 'custom-border',
+                'color' => 'custom-color',
+                'font' => 'custom-font',
+                'other' => 'custom-other',
+                'padding' => 'custom-padding',
+                'rounded' => 'custom-rounded',
+                'shadow' => 'custom-shadow',
+                'size' => 'custom-size',
+            ]; @endphp
+            <x-icon.add :styles="$styles" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <svg class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5h-2v6H5v2h6v6h2v-6h6v-2h-6V5z"/>
+            </svg>
+            HTML;
+
+        $this->assertComponentRenders($this->indent($expected), $template);
+    }
+
+    /** @test */
     public function icon_component_coverage_test(): void
     {
         $icon = new BaseIconComponent();

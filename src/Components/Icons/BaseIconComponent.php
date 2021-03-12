@@ -22,18 +22,19 @@ class BaseIconComponent extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
-        string $size = null
+        string $size = null,
+        array $styles = null
     ) {
         $this->setConfigStyles([
-            'background' => $background,
-            'border' => $border,
-            'color' => $color,
-            'font' => $font,
-            'other' => $other,
-            'padding' => $padding,
-            'rounded' => $rounded,
-            'shadow' => $shadow,
-            'size' => $size,
+            'background' => $styles['background'] ?? $background,
+            'border' => $styles['border'] ?? $border,
+            'color' => $styles['color'] ?? $color,
+            'font' => $styles['font'] ?? $font,
+            'other' => $styles['other'] ?? $other,
+            'padding' => $styles['padding'] ?? $padding,
+            'rounded' => $styles['rounded'] ?? $rounded,
+            'shadow' => $styles['shadow'] ?? $shadow,
+            'size' => $styles['size'] ?? $size,
         ]);
     }
 

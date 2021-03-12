@@ -22,7 +22,7 @@ class Cell extends Component
     public ?string $href;
     public ?string $icon;
     public ?string $iconSize;
-    public ?string $iconStyle;
+    public ?array $iconStyles = null;
     public ?string $image;
     public ?string $imageStyle;
     public ?string $imageAlt;
@@ -39,8 +39,15 @@ class Cell extends Component
         string $format = null,
         string $href = null,
         string $icon = null,
+        string $iconBackground = null,
+        string $iconBorder = null,
+        string $iconColor = null,
+        string $iconFont = null,
+        string $iconOther = null,
+        string $iconPadding = null,
+        string $iconRounded = null,
+        string $iconShadow = null,
         string $iconSize = null,
-        string $iconStyle = null,
         string $image = null,
         string $imageStyle = null,
         string $imageAlt = null,
@@ -70,8 +77,22 @@ class Cell extends Component
         $this->align = $this->style($this->component, 'align', $align);
         $this->href = $href;
         $this->icon = $icon;
-        $this->iconStyle = $iconStyle;
         $this->iconSize = $iconSize;
+
+        if ($icon) {
+            $this->iconStyles = [
+                'background' => $iconBackground,
+                'border' => $iconBorder,
+                'color' => $iconColor,
+                'font' => $iconFont,
+                'other' => $iconOther,
+                'padding' => $iconPadding,
+                'rounded' => $iconRounded,
+                'shadow' => $iconShadow,
+                'size' => $iconSize,
+            ];
+        }
+
         $this->image = $image;
         $this->imageStyle = trim('inline-block ' . $imageStyle);
         $this->imageAlt = $imageAlt;

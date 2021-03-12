@@ -475,12 +475,15 @@ class HeadingTest extends ComponentTestCase
     /** @test */
     public function a_table_heading_component_with_sorting_and_alignment_can_be_rendered(): void
     {
+        Config::set('themes.default.table-heading.icon-asc', '');
+        Config::set('themes.default.table-heading.icon-desc', '');
+
         $template = <<<'HTML'
             <x-table.heading field="example" right>::Some Heading</x-table.heading>
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="text-right background border color font other padding rounded shadow">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link"> ::Some Heading </a>
             </th>
             HTML;
