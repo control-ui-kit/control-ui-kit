@@ -328,8 +328,6 @@ return [
         // Config
         'type' => 'select',
         'please-select-text' => 'Please Select ...',
-        'chevron-icon' => 'icon.chevron-down',
-        'chevron-icon-size' => 'w-5 h-5',
         'selected-icon' => 'icon.check',
         'selected-icon-size' => 'w-5 h-5',
 

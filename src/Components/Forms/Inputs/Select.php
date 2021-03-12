@@ -18,8 +18,6 @@ class Select extends Component
     public string $id;
     public string $value;
     public ?string $type;
-    public ?string $chevronIcon;
-    public ?string $chevronIconSize;
     public ?string $selectedIcon;
     public ?string $selectedIconSize;
     public ?string $pleaseSelectText;
@@ -50,8 +48,6 @@ class Select extends Component
         string $rounded = null,
         string $shadow = null,
         string $type = null,
-        string $chevronIcon = null,
-        string $chevronIconSize = null,
         string $selectedIcon = null,
         string $selectedIconSize = null,
         string $pleaseSelectText = null,
@@ -79,8 +75,6 @@ class Select extends Component
         $this->options = $options;
 
         $this->type = $this->style($this->component, 'type', $type);
-        $this->chevronIcon = $this->style($this->component, 'chevron-icon', $chevronIcon);
-        $this->chevronIconSize = $this->style($this->component, 'chevron-icon-size', $chevronIconSize);
         $this->selectedIcon = $this->style($this->component, 'selected-icon', $selectedIcon);
         $this->selectedIconSize = $this->style($this->component, 'selected-icon-size', $selectedIconSize);
         $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
