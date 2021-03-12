@@ -349,7 +349,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com"> ::data </a>
+                <a href="http://example.com" class="inline-block"> ::data </a>
             </td>
             HTML;
 
@@ -365,7 +365,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com"> ::data </a>
+                <a href="http://example.com" class="inline-block"> ::data </a>
             </td>
             HTML;
 
@@ -399,12 +399,28 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com/testing">
+                <a href="http://example.com/testing" class="inline-block">
                     <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </a>
                 </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_image_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell image="http://example.com/testing.jpg" image-style="::styles" image-alt="::alt" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <img src="http://example.com/testing.jpg" class="inline-block ::styles" alt="::alt" />
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

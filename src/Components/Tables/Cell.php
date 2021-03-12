@@ -22,6 +22,9 @@ class Cell extends Component
     public ?string $href;
     public ?string $icon;
     public ?string $iconSize;
+    public ?string $image;
+    public ?string $imageStyle;
+    public ?string $imageAlt;
     public ?string $prefix;
     public ?string $suffix;
     public ?string $value;
@@ -36,6 +39,9 @@ class Cell extends Component
         string $href = null,
         string $icon = null,
         string $iconSize = null,
+        string $image = null,
+        string $imageStyle = null,
+        string $imageAlt = null,
         string $other = null,
         string $padding = null,
         string $prefix = null,
@@ -63,6 +69,9 @@ class Cell extends Component
         $this->href = $href;
         $this->icon = $icon;
         $this->iconSize = $iconSize;
+        $this->image = $image;
+        $this->imageStyle = trim('inline-block ' . $imageStyle);
+        $this->imageAlt = $imageAlt;
         $this->prefix = $prefix;
         $this->suffix = $suffix;
         $this->value = $value;
@@ -106,5 +115,17 @@ class Cell extends Component
         }
 
         throw new ControlUIKitException('Formatter does not exist for ['.$formatter.']');
+    }
+
+    private function appendDisplay($style)
+    {
+        $classes = explode(" ", $style);
+
+
+        $displayOptions = [ 'inline', 'block', 'contents', 'flex', 'grid', 'inline-block', 'inline-flex', 'inline-grid',
+            'inline-table', 'list-item', 'run-in', 'table', 'table-caption', 'table-column-group',
+            'table-header-group', 'table-footer-group', 'table-row-group', 'table-cell', 'table-column', 'table-row',
+            'none', 'initial', 'inherit' ];
+//        if ()
     }
 }
