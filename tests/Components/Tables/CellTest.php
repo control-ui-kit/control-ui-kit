@@ -22,6 +22,8 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.table-cell.rounded', 'rounded');
         Config::set('themes.default.table-cell.shadow', 'shadow');
 
+        Config::set('themes.default.icon.size', '::icon-size');
+
         Config::set('app.timezone', 'UTC');
         Config::set('app.locale', 'en');
         Config::set('control-ui-kit.user_timezone_field', 'timezone');
@@ -382,6 +384,24 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
                 <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="3" cy="3" r="3"/>
+                    </svg>
+                </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_icon_and_icon_style_works_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell icon="icon.dot" icon-style="::style" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <svg class="::icon-size fill-current ::style" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </td>
