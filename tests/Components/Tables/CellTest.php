@@ -359,6 +359,22 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_table_cell_component_with_href_and_target_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell href="http://example.com" target="_blank">::data</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <a href="http://example.com" class="inline-block" target="_blank"> ::data </a>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_table_cell_component_with_href_and_text_align_works_correctly(): void
     {
         $template = <<<'HTML'

@@ -1,5 +1,5 @@
-<td {{ $attributes->merge($classes()) }}>
-    @if ($href)<a href="{{ $href }}" class="inline-block">@endif
+<td {{ $attributes->merge($classes())->except('target') }}>
+    @if ($href)<a href="{{ $href }}" class="inline-block" {{ $attributes->merge()->only('target') }}>@endif
     @if ($icon) <x-dynamic-component :component="$icon" :size="$iconSize" :styles="$iconStyles" /> @endif
     @if ($image)
         <img src="{{ $image }}"

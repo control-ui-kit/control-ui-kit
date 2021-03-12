@@ -35,6 +35,7 @@ class Cell extends Component
         string $background = null,
         string $border = null,
         string $color = null,
+        string $data = null,
         string $font = null,
         string $format = null,
         string $href = null,
@@ -57,7 +58,6 @@ class Cell extends Component
         string $rounded = null,
         string $shadow = null,
         string $suffix = null,
-        string $data = null,
         bool $left = false,
         bool $center = false,
         bool $right = false
