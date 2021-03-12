@@ -28,7 +28,7 @@ class Cell extends Component
     public ?string $imageAlt;
     public ?string $prefix;
     public ?string $suffix;
-    public ?string $value;
+    public ?string $cellData;
 
     public function __construct(
         string $align = null,
@@ -57,7 +57,7 @@ class Cell extends Component
         string $rounded = null,
         string $shadow = null,
         string $suffix = null,
-        string $value = null,
+        string $data = null,
         bool $left = false,
         bool $center = false,
         bool $right = false
@@ -98,7 +98,7 @@ class Cell extends Component
         $this->imageAlt = $imageAlt;
         $this->prefix = $prefix;
         $this->suffix = $suffix;
-        $this->value = $value;
+        $this->cellData = $data;
 
         $this->format($format);
     }
@@ -122,7 +122,7 @@ class Cell extends Component
 
         $formatter = $this->getFormatter($formatter);
 
-        $this->value = app($formatter)->format($this->value, $options);
+        $this->cellData = app($formatter)->format($this->cellData, $options);
     }
 
     private function getFormatter($formatter): string

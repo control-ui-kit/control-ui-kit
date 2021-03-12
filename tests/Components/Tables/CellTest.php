@@ -175,11 +175,11 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_data_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="::some value" />
+            <x-table.cell data="::some data" />
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> ::some value </td>
+            <td class="align background border color font other padding rounded shadow"> ::some data </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -189,7 +189,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_2(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2.0312" format="decimal:2" />
+            <x-table.cell data="2.0312" format="decimal:2" />
             HTML;
 
         $expected = <<<'HTML'
@@ -203,7 +203,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_8(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2323.0312324323423" format="decimal:8" />
+            <x-table.cell data="2323.0312324323423" format="decimal:8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -217,7 +217,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="12.0912" format="currency" />
+            <x-table.cell data="12.0912" format="currency" />
             HTML;
 
         $expected = <<<'HTML'
@@ -231,7 +231,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="12.0912" prefix="::prefix" />
+            <x-table.cell data="12.0912" prefix="::prefix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -245,7 +245,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="12.0912" suffix="::suffix" />
+            <x-table.cell data="12.0912" suffix="::suffix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -259,7 +259,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_currency_formatting_and_symbol(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="12.0912" format="currency" prefix="£" />
+            <x-table.cell data="12.0912" format="currency" prefix="£" />
             HTML;
 
         $expected = <<<'HTML'
@@ -273,7 +273,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date:d/m/Y" />
+            <x-table.cell data="2021-03-09 15:16:17" format="date:d/m/Y" />
             HTML;
 
         $expected = <<<'HTML'
@@ -287,7 +287,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date:mdY" />
+            <x-table.cell data="2021-03-09 15:16:17" format="date:mdY" />
             HTML;
 
         $expected = <<<'HTML'
@@ -301,7 +301,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_default_date_formatting(): void
     {
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date" />
+            <x-table.cell data="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -317,7 +317,7 @@ class CellTest extends ComponentTestCase
         Config::set('app.locale', 'en_US');
 
         $template = <<<'HTML'
-            <x-table.cell value="2021-03-09 15:16:17" format="date" />
+            <x-table.cell data="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -332,7 +332,7 @@ class CellTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $date = now()->subHours(2); @endphp
-            <x-table.cell :value="$date" format="date:diff" />
+            <x-table.cell :data="$date" format="date:diff" />
             HTML;
 
         $expected = <<<'HTML'
@@ -343,7 +343,7 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_with_href_has_hyperlink_around_value(): void
+    public function a_table_cell_component_with_href_has_hyperlink_around_data(): void
     {
         $template = <<<'HTML'
             <x-table.cell href="http://example.com">::data</x-table.cell>

@@ -8,7 +8,7 @@
         />
     @endif
     @if ($prefix) {{ $prefix }} @endif
-    @if ($value) {{ $value }} @else {{ $slot }} @endif
+    @if ($cellData) {{ $cellData }} @else {{ $slot }} @endif
     @if ($suffix) {{ $suffix }} @endif
     @if ($href)</a>@endif
 </td>

@@ -11,7 +11,7 @@ class DecimalFormatter extends BaseFormatter
     protected int $decimals;
     protected ?string $rounding = null;
 
-    public function format(string $value, ?string $options): string
+    public function format(string $data, ?string $options): string
     {
         if (! $options) {
             throw (new DecimalFormatterException())::make('missingOptionSolution', 'Decimal places not specified');
@@ -19,7 +19,7 @@ class DecimalFormatter extends BaseFormatter
 
         $this->options($options);
 
-        return $this->parse($value);
+        return $this->parse($data);
     }
 
     private function options(string $options): void
@@ -32,42 +32,42 @@ class DecimalFormatter extends BaseFormatter
         [$this->decimals, $this->rounding] = explode('|', $options);
     }
 
-    private function parse($value): string
+    private function parse($data): string
     {
-        if (! is_numeric($value)) {
-            return $value;
+        if (! is_numeric($data)) {
+            return $data;
         }
 
         if (! $this->rounding) {
-            return $this->numberFormat($value);
+            return $this->numberFormat($data);
         }
 
         if ($this->rounding === 'round-down') {
-            return $this->numberFormat($this->roundDown($value));
+            return $this->numberFormat($this->roundDown($data));
         }
 
         if ($this->rounding === 'round-up') {
-            return $this->numberFormat($this->roundUp($value));
+            return $this->numberFormat($this->roundUp($data));
         }
 
-        return $value;
+        return $data;
     }
 
-    private function roundDown($value)
+    private function roundDown($data)
     {
-        $sign = $value > 0 ? 1 : -1;
+        $sign = $data > 0 ? 1 : -1;
         $base = 10 ** $this->decimals;
-        return floor(abs($value) * $base) / $base * $sign;
+        return floor(abs($data) * $base) / $base * $sign;
     }
 
-    private function roundUp($value)
+    private function roundUp($data)
     {
         $multi = 10 ** $this->decimals; // Can be cached in lookup table
-        return ceil($value * $multi) / $multi;
+        return ceil($data * $multi) / $multi;
     }
 
-    private function numberFormat($value): string
+    private function numberFormat($data): string
     {
-        return number_format($value * 1, $this->decimals, $this->decimalSeparator, $this->thousandsSeparator);
+        return number_format($data * 1, $this->decimals, $this->decimalSeparator, $this->thousandsSeparator);
     }
 }
