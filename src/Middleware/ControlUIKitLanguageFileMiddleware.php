@@ -21,7 +21,7 @@ class ControlUIKitLanguageFileMiddleware
         return $next($request);
     }
 
-    protected function setModuleLanguageFile()
+    protected function setModuleLanguageFile(): void
     {
         $route = Route::currentRouteName();
 
@@ -58,14 +58,18 @@ class ControlUIKitLanguageFileMiddleware
      * @return mixed
      * @throws LanguageFileException
      */
-    protected function checkResult($files)
+    protected function checkResult($files): string
     {
+        if ($this->ignoreRoutes()) {
+            return '';
+        }
+
         if (count($files) === 1) {
             return config('language-files')[$files->first()];
         }
 
         if (! count($files)) {
-            throw new LanguageFileException('Language file not set for route [/' . Route::currentRouteName() . ']');
+            throw new LanguageFileException('Language file not set for route [' . Route::currentRouteName() . ']');
         }
 
         if (count($files) !== 1) {
@@ -75,8 +79,13 @@ class ControlUIKitLanguageFileMiddleware
         throw new LanguageFileException('Set language file exception');
     }
 
-    private function shouldUseLanguageFiles()
+    private function ignoreRoutes(): bool
     {
-        return config('control-ui.kit.use_language_files', false);
+        return in_array(Route::currentRouteName(), config('language-files.ignore-routes'), true);
+    }
+
+    private function shouldUseLanguageFiles(): bool
+    {
+        return config('control-ui-kit.use_language_files', false);
     }
 }

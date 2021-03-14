@@ -516,4 +516,18 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_maxlength(): void
+    {
+        $template = <<<'HTML'
+            <x-input.text name="name" maxlength="3" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow" maxlength="3" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

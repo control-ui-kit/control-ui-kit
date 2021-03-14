@@ -9,15 +9,18 @@ use Illuminate\View\Component;
 class Inline extends Component
 {
     public string $name;
+    public string $input;
     public string $label;
-    public string $help;
+    public ?string $help;
 
     public function __construct(
         string $name,
+        string $input,
         string $label,
-        string $help
+        string $help = null
     ) {
         $this->name = $name;
+        $this->input = $input;
         $this->label = $label;
         $this->help = $help;
     }

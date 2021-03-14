@@ -16,9 +16,6 @@ class Embed extends Component
 
     public ?string $icon = null;
     public ?string $size = null;
-    private array $options = [
-        'image' => 'imageProcessor'
-    ];
     private string $type;
 
     public function __construct(

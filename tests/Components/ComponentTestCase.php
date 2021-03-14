@@ -6,6 +6,7 @@ namespace Tests\Components;
 
 use ControlUIKit\ControlUIKitServiceProvider;
 use Gajus\Dindent\Indenter;
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
 use Tests\InteractsWithViews;
 
@@ -22,6 +23,8 @@ abstract class ComponentTestCase extends TestCase
         });
 
         $this->artisan('view:clear');
+
+        Config::set('themes.default.icon.other', '');
     }
 
     protected function flashOld(array $input): void

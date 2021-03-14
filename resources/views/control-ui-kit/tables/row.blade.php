@@ -1,3 +1,3 @@
-<tr {{ $attributes->merge(['class' => 'px-3 py-2']) }}>
+<tr {{ $attributes->merge($classes()) }}>
     {{ $slot }}
 </tr>

@@ -22,4 +22,20 @@ return [
     '*' => 'app',
     //'login*' => 'login',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Routes to Ignore
+    |--------------------------------------------------------------------------
+    |
+    | By default if the language files are enabled and we cannot find an
+    | entry into this file an exception is thrown.  You can specify selected
+    | routes to be ignored by this action.
+    |
+    */
+
+    'ignore-routes' => [
+        'livewire.message',
+    ],
+
 ];
