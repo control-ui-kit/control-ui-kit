@@ -232,24 +232,6 @@ return [
         'type' => 'email',
     ],
 
-    'input-integer' => [
-
-        // Style
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
-
-        // Config
-        'min' => '',
-        'max' => '',
-        'step' => "1",
-    ],
-
     'input-number' => [
         'type' => 'number',
     ],
@@ -319,8 +301,8 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
-        'font' => 'text-md text-input',
-        'other' => 'w-64 inline-block',
+        'font' => 'text-input',
+        'other' => 'inline-block',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',

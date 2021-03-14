@@ -62,8 +62,6 @@ return [
         'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
         'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
         'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
-        'input.integer' => \ControlUIKit\Components\Forms\Inputs\Integer::class,
-        'input.icon-right' => \ControlUIKit\Components\Forms\Inputs\IconRight::class,
         'input.embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,
         'input.range' => \ControlUIKit\Components\Forms\Inputs\Range::class,
         'input.color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
