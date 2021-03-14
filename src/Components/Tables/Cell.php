@@ -27,6 +27,9 @@ class Cell extends Component
     public ?string $imageStyle;
     public ?string $imageAlt;
     public ?string $prefix;
+    public ?string $pillStyle = null;
+    public ?array $pillStyles = null;
+    public ?string $pillName = null;
     public ?string $suffix;
     public ?string $cellData;
 
@@ -54,6 +57,15 @@ class Cell extends Component
         string $imageAlt = null,
         string $other = null,
         string $padding = null,
+        string $pill = null,
+        string $pillBackground = null,
+        string $pillBorder = null,
+        string $pillColor = null,
+        string $pillFont = null,
+        string $pillOther = null,
+        string $pillPadding = null,
+        string $pillRounded = null,
+        string $pillShadow = null,
         string $prefix = null,
         string $rounded = null,
         string $shadow = null,
@@ -93,6 +105,19 @@ class Cell extends Component
             ];
         }
 
+        if ($pill) {
+            $this->pillStyles = [
+                'background' => $pillBackground,
+                'border' => $pillBorder,
+                'color' => $pillColor,
+                'font' => $pillFont,
+                'other' => $pillOther,
+                'padding' => $pillPadding,
+                'rounded' => $pillRounded,
+                'shadow' => $pillShadow,
+            ];
+        }
+
         $this->image = $image;
         $this->imageStyle = trim('inline-block ' . $imageStyle);
         $this->imageAlt = $imageAlt;
@@ -100,6 +125,7 @@ class Cell extends Component
         $this->suffix = $suffix;
         $this->cellData = $data;
 
+        $this->setPillStyle($pill);
         $this->format($format);
     }
 
@@ -139,5 +165,23 @@ class Cell extends Component
         }
 
         throw new ControlUIKitException('Formatter does not exist for ['.$formatter.']');
+    }
+
+    private function setPillStyle($style): void
+    {
+        if (! $style) {
+            return;
+        }
+
+        if ($style === '1') {
+            $style = 'default';
+        }
+
+        if (in_array($style, ['default', 'brand', 'danger', 'info', 'muted', 'success', 'warning'])) {
+            $this->pillStyle = $style;
+            return;
+        }
+
+        $this->pillName = $style;
     }
 }

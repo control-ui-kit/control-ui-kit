@@ -37,6 +37,7 @@ class Pill extends Component
         string $rounded = null,
         string $pillStyle = null,
         string $shadow = null,
+        array $styles = null,
         bool $brand = false,
         bool $danger = false,
         bool $default = false,
@@ -70,16 +71,15 @@ class Pill extends Component
         }
 
         $this->setConfigStyles([
-            'background' => $background,
-            'border' => $border,
-            'color' => $color,
-            'font' => $font,
-            'other' => $other,
-            'padding' => $padding,
-            'rounded' => $rounded,
-            'shadow' => $shadow,
+            'background' => $styles['background'] ?? $background,
+            'border' => $styles['border'] ?? $border,
+            'color' => $styles['color'] ?? $color,
+            'font' => $styles['font'] ?? $font,
+            'other' => $styles['other'] ?? $other,
+            'padding' => $styles['padding'] ?? $padding,
+            'rounded' => $styles['rounded'] ?? $rounded,
+            'shadow' => $styles['shadow'] ?? $shadow,
         ], ['background', 'color'], $this->component. '.' . $this->pillStyle);
-
     }
 
     public function render()

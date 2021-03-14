@@ -27,6 +27,36 @@ class CellTest extends ComponentTestCase
         Config::set('app.timezone', 'UTC');
         Config::set('app.locale', 'en');
         Config::set('control-ui-kit.user_timezone_field', 'timezone');
+
+        Config::set('themes.default.pill.background', 'pill-background');
+        Config::set('themes.default.pill.border', 'pill-border');
+        Config::set('themes.default.pill.color', 'pill-color');
+        Config::set('themes.default.pill.font', 'pill-font');
+        Config::set('themes.default.pill.other', 'pill-other');
+        Config::set('themes.default.pill.padding', 'pill-padding');
+        Config::set('themes.default.pill.rounded', 'pill-rounded');
+        Config::set('themes.default.pill.shadow', 'pill-shadow');
+
+        Config::set('themes.default.pill.default.background', 'pill-background-default');
+        Config::set('themes.default.pill.default.color', 'pill-color-default');
+
+        Config::set('themes.default.pill.brand.background', 'pill-background-brand');
+        Config::set('themes.default.pill.brand.color', 'pill-color-brand');
+
+        Config::set('themes.default.pill.danger.background', 'pill-background-danger');
+        Config::set('themes.default.pill.danger.color', 'pill-color-danger');
+
+        Config::set('themes.default.pill.info.background', 'pill-background-info');
+        Config::set('themes.default.pill.info.color', 'pill-color-info');
+
+        Config::set('themes.default.pill.muted.background', 'pill-background-muted');
+        Config::set('themes.default.pill.muted.color', 'pill-color-muted');
+
+        Config::set('themes.default.pill.success.background', 'pill-background-success');
+        Config::set('themes.default.pill.success.color', 'pill-color-success');
+
+        Config::set('themes.default.pill.warning.background', 'pill-background-warning');
+        Config::set('themes.default.pill.warning.color', 'pill-color-warning');
     }
 
     /** @test */
@@ -461,4 +491,341 @@ class CellTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function a_table_cell_component_with_pill_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill> :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_pill_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_default_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="default" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_default_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="default" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_brand_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="brand" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_brand_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="brand" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_danger_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="danger" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_danger_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="danger" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_info_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="info" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_info_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="info" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_muted_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="muted" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_muted_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="muted" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_success_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="success" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_success_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="success" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_warning_pill_style_and_slot_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="warning" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_warning_pill_style_and_data_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="warning" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_custom_pill_style_and_slot_renders_correctly(): void
+    {
+        Config::set('themes.default.pill.custom.background', 'pill-background-custom');
+        Config::set('themes.default.pill.custom.color', 'pill-color-custom');
+
+        $template = <<<'HTML'
+            <x-table.cell pill="custom" > :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_custom_pill_style_and_data_renders_correctly(): void
+    {
+        Config::set('themes.default.pill.custom.background', 'pill-background-custom');
+        Config::set('themes.default.pill.custom.color', 'pill-color-custom');
+
+        $template = <<<'HTML'
+            <x-table.cell pill="custom" data=":: pill" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_custom_pill_style_and_no_data_or_slot_renders_correctly(): void
+    {
+        Config::set('themes.default.pill.new-release.background', 'pill-background-new-release');
+        Config::set('themes.default.pill.new-release.color', 'pill-color-new-release');
+
+        $template = <<<'HTML'
+            <x-table.cell pill="New Release" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-new-release pill-border pill-color pill-color-new-release pill-font pill-other pill-padding pill-rounded pill-shadow"> New Release </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_pill_and_href_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="warning" href="https://example.com">:: warning</x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <a href="https://example.com" class="inline-block"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_pill_and_custom_inline_pill_styles_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="warning"
+                          pill-background="1"
+                          pill-border="2"
+                          pill-color="3"
+                          pill-font="4"
+                          pill-other="5"
+                          pill-padding="6"
+                          pill-rounded="7"
+                          pill-shadow="8"> :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span class="1 2 3 4 5 6 7 8"> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_pill_and_inline_pill_styles_set_to_none_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell pill="warning"
+                          pill-background="none"
+                          pill-border="none"
+                          pill-color="none"
+                          pill-font="none"
+                          pill-other="none"
+                          pill-padding="none"
+                          pill-rounded="none"
+                          pill-shadow="none"> :: pill </x-table.cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> <span> :: pill </span> </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
 }

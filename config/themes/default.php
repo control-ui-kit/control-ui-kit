@@ -402,7 +402,7 @@ return [
         'shadow' => '',
 
         'default' => [
-            'background' => 'bg-gray-100',
+            'background' => 'bg-gray-200',
             'color' => 'text-gray-800',
         ],
 
