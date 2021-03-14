@@ -80,6 +80,8 @@ return [
         'panel.divider' => \ControlUIKit\Components\Panels\Divider::class,
         'panel.heading' => \ControlUIKit\Components\Panels\Heading::class,
 
+        'pill' => \ControlUIKit\Components\Pills\Pill::class,
+
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
         'table.row' => \ControlUIKit\Components\Tables\Row::class,

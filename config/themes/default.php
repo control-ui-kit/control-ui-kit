@@ -73,12 +73,12 @@ return [
             'color' => 'text-button-warning hover:text-button-warning-hover',
             'icon' => 'text-button-warning-icon group-hover:text-button-warning-icon-hover',
         ],
+
     ],
 
     'input' => [
 
         // Styles
-
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -147,7 +147,6 @@ return [
         'wrapper-shadow' => '',
 
         // Config
-
         'decimals' => '',
         'type' => 'text',
         'icon-left' => '',
@@ -159,8 +158,8 @@ return [
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
-    ],
 
+    ],
 
     'input-checkbox' => [
         'background' => 'bg-input',
@@ -194,6 +193,7 @@ return [
         // Config
         'format' => 'DD/MM/YYYY',
         'icon' => 'icon.calendar'
+
     ],
 
     'input-date-range' => [
@@ -387,6 +387,54 @@ return [
         'padding' => '',
         'rounded' => '',
         'shadow' => '',
+    ],
+
+    'pill' => [
+
+        // Styles
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => 'text-xs font-medium leading-4 capitalize',
+        'other' => 'inline-flex items-center w-max',
+        'padding' => 'px-2.5 py-0.5 ',
+        'rounded' => 'rounded-full',
+        'shadow' => '',
+
+        'default' => [
+            'background' => 'bg-gray-100',
+            'color' => 'text-gray-800',
+        ],
+
+        'brand' => [
+            'background' => 'bg-alert-brand',
+            'color' => 'text-alert-brand',
+        ],
+
+        'danger' => [
+            'background' => 'bg-alert-danger',
+            'color' => 'text-alert-danger',
+        ],
+
+        'info' => [
+            'background' => 'bg-alert-info',
+            'color' => 'text-alert-info',
+        ],
+
+        'muted' => [
+            'background' => 'bg-alert-muted',
+            'color' => 'text-alert-muted',
+        ],
+
+        'success' => [
+            'background' => 'bg-alert-success',
+            'color' => 'text-alert-success',
+        ],
+
+        'warning' => [
+            'background' => 'bg-alert-warning',
+            'color' => 'text-alert-warning',
+        ],
     ],
 
     'table' => [
