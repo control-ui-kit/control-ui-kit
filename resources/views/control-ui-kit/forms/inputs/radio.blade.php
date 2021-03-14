@@ -3,4 +3,4 @@
        id="{{ $id }}"
        value="{{ $value }}"
        {{ $checked }}
-        {{ $attributes->merge($classes()) }} />
+       {{ $attributes->merge($classes()) }} />

@@ -8,35 +8,23 @@
        {{ $attributes->merge($classes()) }}
        autocomplete="off" />
 <script>
-    getYearFromFormat = function(date, format) {
-        if (format === 'YYYY-MM-DD') {
-            return date.substr(0, 4);
-        } else if (format === 'MM/DD/YYYY') {
-            return date.substr(6, 4);
-        }
-
-        return date.substr(6, 4);
-    };
-
     new Litepicker({
         element: document.getElementById('{{ $id }}'),
-        singleMode: true,
         format: "{{ $format }}",
-        @if ($start)
-            minDate: moment("{{ $start }}", "{{ $format }}"),
-        @endif
-        @if ($end)
-            maxDate: moment("{{ $end }}", "{{ $format }}"),
-        @endif
+        minDate: {!! $minDate() !!},
+        maxDate: {!! $maxDate() !!},
+        singleMode: true,
+        allowRepick: true,
         dropdowns: {
-            minYear: @if ($start) getYearFromFormat("{{ $start }}", "{{ $format }}") @else new Date().getFullYear() - 15 @endif,
-            maxYear: @if ($end) getYearFromFormat("{{ $end }}", "{{ $format }}") @else new Date().getFullYear() + 5 @endif,
+            minYear: {!! $minYear() !!},
+            maxYear: {!! $maxYear() !!},
             months: true,
             years: "asc"
         },
-        allowRepick: true,
-        resetButton: true,
-        scrollToDate: false,
-        showTooltip: false
+        plugins: [{!! $getPluginsList() !!}],
+        resetButton: {{ $reset }},
+        scrollToDate: true,
+        firstDay: {{ $firstDay }},
+        lang: "{{ $lang }}",
     })
 </script>

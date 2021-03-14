@@ -73,12 +73,11 @@ return [
             'color' => 'text-button-warning hover:text-button-warning-hover',
             'icon' => 'text-button-warning-icon group-hover:text-button-warning-icon-hover',
         ],
-
     ],
 
     'input' => [
 
-        // Styles
+        // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -158,7 +157,6 @@ return [
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
-
     ],
 
     'input-checkbox' => [
@@ -191,9 +189,13 @@ return [
         'shadow' => '',
 
         // Config
+        'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
-
+        'icon' => 'icon.calendar',
+        'keyboard-navigation' => 'true',
+        'lang' => 'en-GB',
+        'mobile-friendly' => 'true',
+        'reset' => 'false',
     ],
 
     'input-date-range' => [
@@ -209,9 +211,16 @@ return [
         'shadow' => '',
 
         // Config
+        'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar'
-
+        'icon' => 'icon.calendar',
+        'keyboard-navigation' => 'true',
+        'lang' => 'en-GB',
+        'mobile-friendly' => 'true',
+        'predefined-ranges' => 'false',
+        'reset' => 'false',
+        'split' => 'true',
+        'tooltip' => 'false',
     ],
 
     'input-decimal' => [
@@ -221,6 +230,24 @@ return [
 
     'input-email' => [
         'type' => 'email',
+    ],
+
+    'input-integer' => [
+
+        // Style
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        // Config
+        'min' => '',
+        'max' => '',
+        'step' => "1",
     ],
 
     'input-number' => [
@@ -265,6 +292,20 @@ return [
         'shadow' => '',
     ],
 
+    'input-range' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'min' => '1',
+        'max' => '100',
+    ],
+
     'input-search' => [
         'type' => 'search',
         'icon-left' => 'icon.search',
@@ -273,14 +314,39 @@ return [
     ],
 
     'input-select' => [
+
+        // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => '',
-        'font' => 'text-input',
-        'other' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-64 inline-block',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        // Config
+        'type' => 'select',
+        'please-select-text' => 'Please Select ...',
+        'selected-icon' => 'icon.check',
+        'selected-icon-size' => 'w-5 h-5',
+
+        'text-name' => 'text',
+        'subtext' => false,
+        'image' => false,
+        'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
+
+        'icon-right-icon' => 'icon.chevron-down',
+        'icon-right-background' => '',
+        'icon-right-border' => 'border-l border-input',
+        'icon-right-color' => 'text-muted',
+        'icon-right-font' => '',
+        'icon-right-size' => 'w-4 h-4',
+        'icon-right-other' => 'absolute',
+        'icon-right-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+        'icon-right-rounded' => '',
+        'icon-right-shadow' => '',
+
     ],
 
     'input-toggle' => [
@@ -291,6 +357,17 @@ return [
         'other' => 'w-20',
         'padding' => '',
         'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'input-color-picker' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-md text-input',
+        'other' => 'w-40 relative',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
         'shadow' => '',
     ],
 
@@ -391,7 +468,7 @@ return [
 
     'pill' => [
 
-        // Styles
+        // Style
         'background' => '',
         'border' => '',
         'color' => '',
@@ -464,7 +541,7 @@ return [
 
     'table-empty' => [
 
-        // Styles
+        // Style
         'background' => '',
         'border' => '',
         'color' => '',
@@ -480,7 +557,6 @@ return [
 
         // Config
         'default-text' => 'No records found',
-
     ],
 
 //    'table-filter' => [
@@ -495,7 +571,7 @@ return [
 
     'table-heading' => [
 
-        // Styles
+        // Style
         'align' => 'text-left',
         'background' => '',
         'border' => '',
@@ -513,7 +589,6 @@ return [
         'field-sort' => 'sort',
         'icon-asc' => 'icon.caret-up',
         'icon-desc' => 'icon.caret-down',
-
     ],
 
     'table-row' => [
@@ -561,7 +636,6 @@ return [
             'background' => 'bg-alert-warning hover:bg-alert-warning-hover',
             'color' => '',
         ],
-
     ],
 
     'tabs' => [
