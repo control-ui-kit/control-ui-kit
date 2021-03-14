@@ -36,6 +36,7 @@ return [
 
         'title' => \ControlUIKit\Components\Forms\Title::class,
         'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
+        'form.field' => \ControlUIKit\Components\Forms\Field::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field.text' => \ControlUIKit\Components\Forms\Fields\Text::class,
@@ -85,6 +86,8 @@ return [
         'panel' => \ControlUIKit\Components\Panels\Panel::class,
         'panel.divider' => \ControlUIKit\Components\Panels\Divider::class,
         'panel.heading' => \ControlUIKit\Components\Panels\Heading::class,
+
+        'pill' => \ControlUIKit\Components\Pills\Pill::class,
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
@@ -268,6 +271,17 @@ return [
     */
 
     'use_language_files' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Timezone Field
+    |--------------------------------------------------------------------------
+    |
+    | The timezone field on your user table.
+    |
+    */
+
+    'user_timezone_field' => 'timezone',
 
     /*
     |--------------------------------------------------------------------------

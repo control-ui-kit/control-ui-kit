@@ -25,12 +25,11 @@ trait UseThemeFile
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): ?string
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): string
     {
         $append_input = $this->appendStyles($input);
 
         if ($append_input || is_null($input)) {
-
             $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
 
@@ -57,17 +56,13 @@ trait UseThemeFile
                 $key = "{$theme}.{$keyMerge}.{$attribute}";
 
                 if (! config()->has($key)) {
-                    throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
+                    throw new ControlUIKitException("Merge config key not found [{$key}] in [{$theme}]");
                 }
 
                 $configStyle .= ($configStyle === config($key)) ? '' : ' ' . config($key);
             }
 
-//            if ($attribute == 'min') {
-//                dd($configStyle, $append_input, trim($configStyle . $append_input));
-//            }
-
-            return is_null($configStyle) && is_null($append_input) ? null : trim($configStyle . $append_input);
+            return is_null($configStyle) && is_null($append_input) ? '' : trim($configStyle . $append_input);
         }
 
         return ($input === 'none' ? '' : $input);
@@ -103,5 +98,35 @@ trait UseThemeFile
         $collect[] = $merge;
 
         return trim($collect->implode(' '));
+    }
+
+    private function align(?string $align, bool $left, bool $center, bool $right): ?string
+    {
+        if ($align === '') {
+            return '';
+        }
+
+        if ($align === 'right' || $align === 'text-right' || $right) {
+            return 'text-right';
+        }
+
+        if ($align === 'center' || $align === 'text-center' || $center) {
+            return 'text-center';
+        }
+
+        if ($align === 'left' || $align === 'text-left' || $left) {
+            return 'text-left';
+        }
+
+        return null;
+    }
+
+    private function cleanDirection($direction): string
+    {
+        if (isset($direction) && strtolower($direction) === 'desc') {
+            return 'desc';
+        }
+
+        return 'asc';
     }
 }

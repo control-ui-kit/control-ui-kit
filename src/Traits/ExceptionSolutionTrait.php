@@ -2,6 +2,7 @@
 
 namespace ControlUIKit\Traits;
 
+use Facade\IgnitionContracts\BaseSolution;
 use Facade\IgnitionContracts\Solution;
 
 trait ExceptionSolutionTrait
@@ -17,7 +18,7 @@ trait ExceptionSolutionTrait
     {
         $this->solution = $this->$solution()
             ->setDocumentationLinks([
-                'Number Input' => config('control-ui-kit.docs-url') . $this->url,
+                $this->urlText => config('control-ui-kit.docs-url') . $this->url,
             ]);
 
         return $this;
@@ -26,5 +27,10 @@ trait ExceptionSolutionTrait
     public function getSolution(): Solution
     {
         return $this->solution;
+    }
+
+    public function solution(string $title, string $markdown): BaseSolution
+    {
+        return BaseSolution::create($title)->setSolutionDescription($markdown);
     }
 }

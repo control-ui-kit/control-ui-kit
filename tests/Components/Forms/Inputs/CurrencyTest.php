@@ -14,7 +14,7 @@ class CurrencyTest extends ComponentTestCase
         parent::setUp();
 
         Config::set('themes.default.input-currency.prefix-text', '');
-        
+
         Config::set('themes.default.input-currency.background', 'background');
         Config::set('themes.default.input-currency.border', 'border');
         Config::set('themes.default.input-currency.color', 'color');
