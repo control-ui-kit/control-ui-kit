@@ -244,6 +244,11 @@ return [
     ],
 
     'input-number' => [
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
+        'onblur' => 'formatNumber(this)',
+        'step' => 1,
         'type' => 'number',
     ],
 
