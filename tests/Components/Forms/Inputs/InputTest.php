@@ -822,4 +822,21 @@ class InputTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_component_with_default_step_can_be_disabled_inline(): void
+    {
+        Config::set('themes.default.input.default', '');
+        Config::set('themes.default.input.step', '1');
+
+        $template = <<<'HTML'
+            <x-input name="test" type="number" step="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

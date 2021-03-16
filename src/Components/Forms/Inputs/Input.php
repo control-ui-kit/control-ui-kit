@@ -335,7 +335,7 @@ class Input extends Component
         ];
 
         $replace = [
-            $this->decimals,
+            $this->decimals === '' ? '0' : $this->decimals,
         ];
 
         return str_replace($search, $replace, $this->onblur);

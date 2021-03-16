@@ -247,7 +247,8 @@ return [
         'default' => 0,
         'font' => 'text-right',
         'input-font' => 'text-right',
-        'onblur' => 'formatNumber(this)',
+//        'onblur' => 'formatNumber(this)',
+        'onblur' => 'formatDecimal(this, {{ $decimals }})',
         'step' => 1,
         'type' => 'number',
     ],
@@ -257,7 +258,11 @@ return [
     ],
 
     'input-percent' => [
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
         'icon-right' => 'icon.percent',
+        'onblur' => 'formatDecimal(this, {{ $decimals }})',
         'max' => 100,
         'min' => 0,
         'step' => 1,
