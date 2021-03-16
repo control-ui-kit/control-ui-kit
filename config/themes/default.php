@@ -174,6 +174,7 @@ return [
     'input-currency' => [
         'decimals' => 2,
         'default' => '0.00',
+        'input-font' => 'text-right',
         'onblur' => 'formatCurrency(this, {{ $decimals }})',
         'prefix-text' => '£',
         'type' => 'number',
