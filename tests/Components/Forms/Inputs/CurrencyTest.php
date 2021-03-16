@@ -146,6 +146,23 @@ class CurrencyTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_currency_component_can_be_rendered_with_onblur_containing_variable_from_inline(): void
+    {
+        Config::set('themes.default.input-currency.decimals', '2');
+        Config::set('themes.default.input-currency.onblur', 'formatCurrency(this, {{ $decimals }})');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" decimals="3" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="formatCurrency(this, 3)" step="0.001" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_currency_component_can_be_rendered_with_config_default(): void
     {
         Config::set('themes.default.input-currency.decimals', '2');
