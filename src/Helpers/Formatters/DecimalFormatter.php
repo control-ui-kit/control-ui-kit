@@ -10,6 +10,7 @@ class DecimalFormatter extends BaseFormatter
     protected string $thousandsSeparator = '';
     protected int $decimals;
     protected ?string $rounding = null;
+    protected bool $fixed = false;
 
     public function format(string $data, ?string $options): string
     {
@@ -29,7 +30,31 @@ class DecimalFormatter extends BaseFormatter
             return;
         }
 
-        [$this->decimals, $this->rounding] = explode('|', $options);
+        $config = explode('|', $options);
+        $this->decimals = $config[0];
+
+        if ($this->shouldRoundUp($config)) {
+            $this->rounding = 'round-up';
+        } else if ($this->shouldRoundDown($config)) {
+            $this->rounding = 'round-down';
+        }
+
+        $this->fixed = $this->hasFixedDecimals($config);
+    }
+
+    private function shouldRoundDown(array $config): bool
+    {
+        return in_array('round-down', $config, true);
+    }
+
+    private function shouldRoundUp(array $config): bool
+    {
+        return in_array('round-up', $config, true);
+    }
+
+    private function hasFixedDecimals(array $config): bool
+    {
+        return in_array('fixed', $config, true);
     }
 
     private function parse($data): string
@@ -68,6 +93,10 @@ class DecimalFormatter extends BaseFormatter
 
     private function numberFormat($data): string
     {
-        return number_format($data * 1, $this->decimals, $this->decimalSeparator, $this->thousandsSeparator);
+        if ($this->fixed) {
+            return number_format($data * 1, $this->decimals, $this->decimalSeparator, $this->thousandsSeparator);
+        }
+
+        return round($data * 1, $this->decimals);
     }
 }

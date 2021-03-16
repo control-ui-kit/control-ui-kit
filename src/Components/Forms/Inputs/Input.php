@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Exceptions\InputException;
 use ControlUIKit\Exceptions\InputNumberException;
+use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseInputTheme;
 use ControlUIKit\Traits\UseLanguageString;
 use Illuminate\View\Component;
@@ -19,7 +20,7 @@ class Input extends Component
     public string $name;
     public string $id;
     public ?string $decimals;
-    public ?string $default;
+    public ?string $decimalsFixed;
     public ?string $iconLeft;
     public ?string $iconLeftSize;
     public ?string $iconRight;
@@ -45,6 +46,7 @@ class Input extends Component
         string $id = null,
 
         string $decimals = null,
+        string $decimalsFixed = null,
         string $default = null,
         string $max = null,
         string $min = null,
@@ -132,7 +134,8 @@ class Input extends Component
         $this->id = $id ?? $name;
 
         $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
-        $this->default = $this->style('input', 'default', $default, '', $this->component);
+        $this->decimalsFixed = $this->style('input', 'decimals-fixed', $decimalsFixed, '', $this->component);
+        $default = $this->style('input', 'default', $default, '', $this->component);
         $this->iconLeft = $this->style('input', 'icon-left', $iconLeft, '', $this->component);
         $this->iconRight = $this->style('input', 'icon-right', $iconRight, '', $this->component);
         $this->max = $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
@@ -146,9 +149,6 @@ class Input extends Component
 
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
-
-        $value = $value ?? $this->default;
-        $this->value = old($name, $value ?? '') === '' ? null : old($name, $value ?? '');
 
         $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
 
@@ -233,6 +233,7 @@ class Input extends Component
 
         $this->componentConfig();
 
+        $this->formatValue($value, $default);
         $this->validateIcon();
         $this->validateMinMax();
         $this->validateValue();
@@ -338,5 +339,21 @@ class Input extends Component
         ];
 
         return str_replace($search, $replace, $this->onblur);
+    }
+
+    private function formatValue($value, $default): void
+    {
+        $value = $value ?? $default;
+        $this->value = old($this->name, $value ?? '') === '' ? null : old($this->name, $value ?? '');
+
+        if ($this->decimals && ! is_null($this->value)) {
+
+            $options = $this->decimals;
+            if ($this->decimalsFixed) {
+                $options .=  '|fixed';
+            }
+
+            $this->value = app(DecimalFormatter::class)->format($this->value, $options);
+        }
     }
 }

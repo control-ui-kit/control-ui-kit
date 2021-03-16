@@ -147,6 +147,7 @@ return [
 
         // Config
         'decimals' => '',
+        'decimals-fixed' => false,
         'default' => '',
         'icon-left' => '',
         'icon-right' => '',
@@ -173,7 +174,9 @@ return [
 
     'input-currency' => [
         'decimals' => 2,
+        'decimals-fixed' => true,
         'default' => '0.00',
+        'font' => 'text-right',
         'input-font' => 'text-right',
         'onblur' => 'formatCurrency(this, {{ $decimals }})',
         'prefix-text' => '£',
@@ -229,6 +232,10 @@ return [
 
     'input-decimal' => [
         'decimals' => 2,
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
+        'onblur' => 'formatDecimal(this, {{ $decimals }})',
         'type' => 'number',
     ],
 
