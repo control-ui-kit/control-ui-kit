@@ -5,7 +5,7 @@
         id="{{ $id }}"
         @isset($value) value="{{ $value }}" @endisset
         @if($placeholder) placeholder="{{ $placeholder }}" @endif
-        @if($onblur) onblur="{{ $onblur }}" @endif
+        @if($onblur) onblur="{{ $formatOnBlur() }}" @endif
         @if($onchange) onchange="{{ $onchange }}" @endif
         @isset($min) min="{{ $min }}" @endisset
         @isset($max) max="{{ $max }}" @endisset
@@ -24,7 +24,7 @@
                id="{{ $id }}"
                @isset($value) value="{{ $value }}" @endisset
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
-               @if($onblur) onblur="{{ $onblur }}" @endif
+               @if($onblur) onblur="{{ $formatOnBlur() }}" @endif
                @if($onchange) onchange="{{ $onchange }}" @endif
                @isset($min) min="{{ $min }}" @endisset
                @isset($max) max="{{ $max }}" @endisset

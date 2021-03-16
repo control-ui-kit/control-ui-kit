@@ -17,22 +17,24 @@ class Input extends Component
     protected string $component = 'input';
 
     public string $name;
-    public ?string $type;
     public string $id;
-    public ?string $value;
-    public ?string $placeholder;
+    public ?string $decimals;
+    public ?string $default;
     public ?string $iconLeft;
-    public ?string $iconRight;
     public ?string $iconLeftSize;
+    public ?string $iconRight;
     public ?string $iconRightSize;
-    public ?string $prefixText;
-    public ?string $suffixText;
+    public ?string $max;
+    public ?string $min;
     public ?string $onblur;
     public ?string $onchange;
-    public ?string $decimals;
-    public ?string $min;
-    public ?string $max;
+    public ?string $placeholder;
+    public ?string $prefixText;
     public ?string $step;
+    public ?string $suffixText;
+    public ?string $type;
+    public ?string $value;
+
     public array $iconLeftStyles = [];
     public array $iconRightStyles = [];
     public array $prefixStyles = [];
@@ -40,16 +42,18 @@ class Input extends Component
 
     public function __construct(
         string $name,
-        string $type = null,
         string $id = null,
-        string $value = null,
-        string $placeholder = null,
+
+        string $decimals = null,
+        string $default = null,
+        string $max = null,
+        string $min = null,
         string $onblur = null,
         string $onchange = null,
-        string $decimals = null,
-        string $min = null,
-        string $max = null,
+        string $placeholder = null,
         string $step = null,
+        string $type = null,
+        string $value = null,
 
         string $background = null,
         string $border = null,
@@ -125,22 +129,25 @@ class Input extends Component
 
     ) {
         $this->name = $name;
-        $this->type = $this->style('input', 'type', $type, '', $this->component);
+        $this->id = $id ?? $name;
+
+        $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
+        $this->default = $this->style('input', 'default', $default, '', $this->component);
         $this->iconLeft = $this->style('input', 'icon-left', $iconLeft, '', $this->component);
         $this->iconRight = $this->style('input', 'icon-right', $iconRight, '', $this->component);
-        $this->prefixText = $this->style('input', 'prefix-text', $prefixText, '', $this->component);
-        $this->suffixText = $this->style('input', 'suffix-text', $suffixText, '', $this->component);
+        $this->max = $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
+        $this->min = $this->validateNumber($this->style('input', 'min', $min, '', $this->component), 'Min');
         $this->onblur = $this->style('input', 'onblur', $onblur, '', $this->component);
         $this->onchange = $this->style('input', 'onchange', $onchange, '', $this->component);
-        $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
-        $this->min = $this->validateNumber($this->style('input', 'min', $min, '', $this->component), 'Min');
-        $this->max = $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
+        $this->prefixText = $this->style('input', 'prefix-text', $prefixText, '', $this->component);
         $this->step = $this->validateNumber($this->decimals($decimals, $step), 'Step');
+        $this->suffixText = $this->style('input', 'suffix-text', $suffixText, '', $this->component);
+        $this->type = $this->style('input', 'type', $type, '', $this->component);
 
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
 
-        $this->id = $id ?? $name;
+        $value = $value ?? $this->default;
         $this->value = old($name, $value ?? '') === '' ? null : old($name, $value ?? '');
 
         $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
@@ -318,5 +325,18 @@ class Input extends Component
         }
 
         throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric ['.$type.']');
+    }
+
+    public function formatOnBlur(): string
+    {
+        $search = [
+            '{{ $decimals }}',
+        ];
+
+        $replace = [
+            $this->decimals,
+        ];
+
+        return str_replace($search, $replace, $this->onblur);
     }
 }

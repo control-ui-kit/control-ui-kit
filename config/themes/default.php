@@ -147,16 +147,17 @@ return [
 
         // Config
         'decimals' => '',
-        'type' => 'text',
+        'default' => '',
         'icon-left' => '',
         'icon-right' => '',
-        'min' => null,
         'max' => null,
+        'min' => null,
         'onblur' => '',
         'onchange' => '',
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
+        'type' => 'text',
     ],
 
     'input-checkbox' => [
@@ -171,9 +172,11 @@ return [
     ],
 
     'input-currency' => [
-        'type' => 'number',
-        'prefix-text' => '£',
         'decimals' => 2,
+        'default' => '0.00',
+        'onblur' => 'formatCurrency(this, {{ $decimals }})',
+        'prefix-text' => '£',
+        'type' => 'number',
     ],
 
     'input-date' => [
@@ -224,8 +227,8 @@ return [
     ],
 
     'input-decimal' => [
-        'type' => 'number',
         'decimals' => 2,
+        'type' => 'number',
     ],
 
     'input-email' => [
@@ -241,11 +244,11 @@ return [
     ],
 
     'input-percent' => [
-        'type' => 'number',
         'icon-right' => 'icon.percent',
-        'min' => 0,
         'max' => 100,
+        'min' => 0,
         'step' => 1,
+        'type' => 'number',
     ],
 
     'input-text' => [
@@ -289,10 +292,10 @@ return [
     ],
 
     'input-search' => [
-        'type' => 'search',
         'icon-left' => 'icon.search',
         'icon-left-border' => 'border-0',
         'icon-left-padding' => 'pl-3 pr-0',
+        'type' => 'search',
     ],
 
     'input-select' => [
