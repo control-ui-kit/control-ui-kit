@@ -9,21 +9,21 @@ use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Pie extends Component
+class DateLine extends Component
 {
     use UseThemeFile, UseLanguageString;
 
     protected string $legend = 'charts.defaults.legend';
     protected string $legendLabel = 'charts.defaults.legend.label';
     protected string $defaultTitle = 'charts.defaults.title';
-    protected string $component = 'chart-pie';
+    protected string $component = 'chart-line';
 
     public Chart $chart;
     public string $id;
-    public ?string $title;
-    public $colors;
     public ?array $data;
-    public array $hoverColors;
+    public $colors;
+    public array $labels;
+    public array $datasets;
 
     public ?string $legendDisplay;
     public ?string $legendPosition;
@@ -38,6 +38,7 @@ class Pie extends Component
     public ?string $labelFamily;
     public ?string $labelPadding;
 
+    public ?string $title;
     public ?string $titleDisplay;
     public ?string $titlePosition;
     public ?string $titleSize;
@@ -49,9 +50,8 @@ class Pie extends Component
 
     public function __construct(
         string $id,
-        string $title = null,
-        $colors = null,
         array $data = null,
+        $colors = null,
 
         string $legendDisplay = null,
         string $legendPosition = null,
@@ -66,6 +66,7 @@ class Pie extends Component
         string $labelFamily = null,
         string $labelPadding = null,
 
+        string $title = null,
         string $titleDisplay = null,
         string $titlePosition = null,
         string $titleSize = null,
@@ -76,11 +77,8 @@ class Pie extends Component
         string $titleHeight = null
     ) {
         $this->id = $id;
-        $this->title = $title;
         $this->data = $data;
-
         $this->colors = $this->getColours($colors);
-        $this->hoverColors = $this->getHoverColours();
 
         $this->legendDisplay = $this->style($this->legend, 'display', $legendDisplay);
         $this->legendPosition = $this->position($this->style($this->legend, 'position', $legendPosition));
@@ -95,6 +93,7 @@ class Pie extends Component
         $this->labelFamily = $this->style($this->legendLabel, 'fontFamily', $labelFamily);
         $this->labelPadding = $this->style($this->legendLabel, 'padding', $labelPadding);
 
+        $this->title = $title;
         $this->titleDisplay = $this->style($this->defaultTitle, 'display', $titleDisplay);
         $this->titlePosition = $this->position($this->style($this->defaultTitle, 'position', $titlePosition));
         $this->titleSize = $this->style($this->defaultTitle, 'size', $titleSize);
@@ -103,23 +102,19 @@ class Pie extends Component
         $this->titleStyle = $this->style($this->defaultTitle, 'style', $titleStyle);
         $this->titlePadding = $this->style($this->defaultTitle, 'padding', $titlePadding);
         $this->titleHeight = $this->style($this->defaultTitle, 'height', $titleHeight);
+
+        $this->labels = $this->labels();
+        $this->datasets = $this->datasets();
     }
 
     public function render(): string
     {
         $this->chart = app(Chart::class)
             ->name($this->id)
-            ->type('pie')
-            ->size(['width' => 400, 'height' => 200])
-            ->labels(array_keys($this->data))
-            ->datasets([
-                [
-                    'backgroundColor' => $this->colors,
-                    'hoverBackgroundColor' => $this->hoverColors,
-                    'data' => array_values($this->data)
-                ]
-            ])
-            ->options($this->options());
+                ->type('line')
+                ->size(['width' => 400, 'height' => 200])
+                ->datasets($this->datasets)
+                ->options($this->options());
 
         return <<<'blade'
             {!! $chart->render() !!}
@@ -135,16 +130,10 @@ class Pie extends Component
         return $colors;
     }
 
-    private function getHoverColours(): array
-    {
-        return array_map(function($arg) {
-            return $this->colorLuminance($arg, 0.3);
-        }, $this->colors);
-    }
-
     private function options(): array
     {
         return [
+            'responsive' => true,
             'legend' => [
                 'display' => $this->booleanFromString($this->legendDisplay),
                 'position' => $this->legendPosition,
@@ -170,35 +159,38 @@ class Pie extends Component
                 'fontStyle' => $this->titleStyle,
                 'padding' => (int)$this->titlePadding,
                 'lineHeight' => (float)$this->titleHeight,
-            ]
+            ],
+            'scales' => [
+                'xAxes' => [
+                    [
+                        'type' => 'time',
+                        'time' => [
+                            'format' => 'DD/MM/YYYY',
+                            'tooltipFormat' => 'll'
+                        ],
+                        'scaleLabel' => [
+                            'display' => true,
+                            'labelString' => 'Date'
+                        ]
+                    ]
+                ],
+                'yAxes' => [
+                    [
+                        'scaleLabel' => [
+                            'display' => true,
+                            'labelString' => 'value'
+                        ]
+                    ]
+                ]
+            ],
+            'showLines' => true,
+            'spanGaps' => false
         ];
     }
 
     private function booleanFromString($arg): bool
     {
         return $arg === 'true';
-    }
-
-    private function colorLuminance($hex, $percent): string
-    {
-        /*
-         * Source : https://gist.github.com/stephenharris/5532899
-         */
-        $hex = preg_replace('/[^0-9a-f]/i', '', $hex);
-        $new = '#';
-
-        if (strlen($hex) < 6) {
-            $hex = $hex[0] + $hex[0] + $hex[1] + $hex[1] + $hex[2] + $hex[2];
-        }
-
-        for ($i = 0; $i < 3; $i++) {
-            $dec = hexdec(substr($hex, $i * 2, 2));
-            $dec = min(max(0, $dec + $dec * $percent), 255);
-
-            $new .= str_pad(dechex($dec), 2, '0', STR_PAD_LEFT);
-        }
-
-        return $new;
     }
 
     private function position($position): string
@@ -217,5 +209,40 @@ class Pie extends Component
         }
 
         return 'center';
+    }
+
+    private function labels(): array
+    {
+        if (!is_array($this->data) || !array_key_exists('labels', $this->data) || !is_array($this->data['labels'])) {
+            return [];
+        }
+
+        return $this->data['labels'];
+    }
+
+    private function datasets(): array
+    {
+        if (!is_array($this->data)) {
+            return [];
+        }
+
+        $response = [];
+
+        if (is_array($this->data['items'])) {
+            $iteration = 0;
+
+            foreach ($this->data['items'] as $array) {
+                $response[] = [
+                    'label' => $array['label'],
+                    'data' => $array['data'],
+                    'fill' => false,
+                    'borderColor' => $this->colors[$iteration] ?? 'red'
+                ];
+
+                $iteration++;
+            }
+        }
+
+        return $response;
     }
 }

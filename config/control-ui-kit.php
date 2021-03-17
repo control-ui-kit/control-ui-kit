@@ -25,6 +25,7 @@ return [
         'donut-chart' => \ControlUIKit\Components\Charts\Donut::class,
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
+        'date-line-chart' => \ControlUIKit\Components\Charts\DateLine::class,
 
         'dropdown.divider' => \ControlUIKit\Components\Dropdowns\Divider::class,
         'dropdown.menu' => \ControlUIKit\Components\Dropdowns\Menu::class,

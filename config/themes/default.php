@@ -75,6 +75,57 @@ return [
         ],
     ],
 
+    'charts' => [
+        'defaults' => [
+            'legend' => [
+                'display' => 'true',
+                'position' => 'left',
+                'align' => 'center',
+                'fullWidth' => 'true',
+                'reverse' => 'false',
+                'label' => [
+                    'boxWidth' => 40,
+                    'fontSize' => 12,
+                    'fontStyle' => 'normal',
+                    'fontColor' => '#666',
+                    'fontFamily' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                    'padding' => 10
+                ]
+            ],
+            'title' => [
+                'display' => false,
+                'position' => 'top',
+                'size' => 12,
+                'family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                'color' => '#666',
+                'style' => 'bold',
+                'padding' => 10,
+                'height' => '1.2',
+            ],
+            'colors' => [
+                '#e6194b',
+                '#3cb44b',
+                '#ffe119',
+                '#4363d8',
+                '#f58231',
+                '#911eb4',
+                '#46f0f0',
+                '#f032e6',
+                '#bcf60c',
+                '#fabebe',
+                '#008080',
+                '#e6beff',
+            ]
+        ]
+    ],
+
+    'chart-pie' => [
+        // Nothing yet.
+    ],
+
+    'chart-donut' => [
+        // Nothing yet.
+    ],
 
     'input' => [
 
