@@ -13,7 +13,12 @@ class CurrencyTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-currency.decimals', 2);
+        Config::set('themes.default.input-currency.decimals-fixed', true);
+        Config::set('themes.default.input-currency.onblur', '');
+        Config::set('themes.default.input-currency.default', '');
         Config::set('themes.default.input-currency.prefix-text', '');
+        Config::set('themes.default.input-currency.type', 'number');
 
         Config::set('themes.default.input-currency.background', 'background');
         Config::set('themes.default.input-currency.border', 'border');
@@ -89,7 +94,106 @@ class CurrencyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" value="123" step="0.01" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" value="123.00" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_onblur_inline(): void
+    {
+        $template = <<<'HTML'
+            <x-input.currency name="name" onblur="::someBlur" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="::someBlur" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_onblur_from_config(): void
+    {
+        Config::set('themes.default.input-currency.onblur', '::someBlur');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="::someBlur" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_onblur_containing_variable_from_config(): void
+    {
+        Config::set('themes.default.input-currency.decimals', '2');
+        Config::set('themes.default.input-currency.onblur', 'formatCurrency(this, {{ $decimals }})');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="formatCurrency(this, 2)" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_onblur_containing_variable_from_inline(): void
+    {
+        Config::set('themes.default.input-currency.decimals', '2');
+        Config::set('themes.default.input-currency.onblur', 'formatCurrency(this, {{ $decimals }})');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" decimals="3" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="formatCurrency(this, 3)" step="0.001" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_large_decimal_value_which_is_rounded(): void
+    {
+        Config::set('themes.default.input-currency.decimals', '2');
+        Config::set('themes.default.input-currency.default', '0.00');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" value="24.99999999999" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" value="25.00" step="0.01" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_currency_component_can_be_rendered_with_config_default(): void
+    {
+        Config::set('themes.default.input-currency.decimals', '2');
+        Config::set('themes.default.input-currency.decimals-fixed', true);
+        Config::set('themes.default.input-currency.default', '0.00');
+
+        $template = <<<'HTML'
+            <x-input.currency name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" value="0.00" step="0.01" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

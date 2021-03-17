@@ -147,16 +147,18 @@ return [
 
         // Config
         'decimals' => '',
-        'type' => 'text',
+        'decimals-fixed' => false,
+        'default' => '',
         'icon-left' => '',
         'icon-right' => '',
-        'min' => null,
         'max' => null,
+        'min' => null,
         'onblur' => '',
         'onchange' => '',
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
+        'type' => 'text',
     ],
 
     'input-checkbox' => [
@@ -171,9 +173,14 @@ return [
     ],
 
     'input-currency' => [
-        'type' => 'number',
-        'prefix-text' => '£',
         'decimals' => 2,
+        'decimals-fixed' => true,
+        'default' => '0.00',
+        'font' => 'text-right',
+        'input-font' => 'text-right',
+        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
+        'prefix-text' => '£',
+        'type' => 'number',
     ],
 
     'input-date' => [
@@ -224,8 +231,12 @@ return [
     ],
 
     'input-decimal' => [
-        'type' => 'number',
         'decimals' => 2,
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
+        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
+        'type' => 'number',
     ],
 
     'input-email' => [
@@ -233,6 +244,11 @@ return [
     ],
 
     'input-number' => [
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
+        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
+        'step' => 1,
         'type' => 'number',
     ],
 
@@ -241,11 +257,15 @@ return [
     ],
 
     'input-percent' => [
-        'type' => 'number',
+        'default' => 0,
+        'font' => 'text-right',
+        'input-font' => 'text-right',
         'icon-right' => 'icon.percent',
-        'min' => 0,
+        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'max' => 100,
+        'min' => 0,
         'step' => 1,
+        'type' => 'number',
     ],
 
     'input-text' => [
@@ -289,10 +309,10 @@ return [
     ],
 
     'input-search' => [
-        'type' => 'search',
         'icon-left' => 'icon.search',
         'icon-left-border' => 'border-0',
         'icon-left-padding' => 'pl-3 pr-0',
+        'type' => 'search',
     ],
 
     'input-select' => [

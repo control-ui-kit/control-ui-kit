@@ -29,9 +29,29 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
-    public function decimal_formatter_handles_2_decimal_places_with_suffix_zeros_correctly(): void
+    public function decimal_formatter_handles_2_decimal_places_correctly(): void
     {
         $options = '2';
+        $value = '2.1';
+        $expected = '2.1';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_handles_2_decimal_places_correctly_2(): void
+    {
+        $options = '2';
+        $value = '2';
+        $expected = '2';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_handles_2_decimal_places_with_fixed_decimal_zeros_correctly(): void
+    {
+        $options = '2|fixed';
         $value = '2.1';
         $expected = '2.10';
 
@@ -39,9 +59,9 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
-    public function decimal_formatter_handles_2_decimal_places_with_round_up_correctly_2(): void
+    public function decimal_formatter_handles_2_decimal_places_with_fixed_decimal_zeros_correctly_2(): void
     {
-        $options = '2';
+        $options = '2|fixed';
         $value = '2';
         $expected = '2.00';
 
@@ -79,9 +99,29 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
-    public function decimal_formatter_handles_3_decimal_places_with_suffix_zeros_correctly(): void
+    public function decimal_formatter_handles_3_decimal_places_correctly(): void
     {
         $options = '3';
+        $value = '2.1';
+        $expected = '2.1';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_handles_3_decimal_places_correctly_2(): void
+    {
+        $options = '3';
+        $value = '2';
+        $expected = '2';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_handles_3_decimal_places_with_fixed_zeros_correctly(): void
+    {
+        $options = '3|fixed';
         $value = '2.1';
         $expected = '2.100';
 
@@ -89,9 +129,9 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
-    public function decimal_formatter_handles_3_decimal_places_with_suffix_zeros_correctly_2(): void
+    public function decimal_formatter_handles_3_decimal_places_with_fixed_zeros_correctly_2(): void
     {
-        $options = '3';
+        $options = '3|fixed';
         $value = '2';
         $expected = '2.000';
 
@@ -229,6 +269,16 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
+    public function decimal_formatter_handles_round_up_and_fixed_decimals_correctly(): void
+    {
+        $options = '3|round-up|fixed';
+        $value = '2.1199000000';
+        $expected = '2.120';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
     public function decimal_formatter_handles_invalid_number_correctly(): void
     {
         $options = '2';
@@ -239,11 +289,11 @@ class DecimalFormatterTest extends TestCase
     }
 
     /** @test */
-    public function decimal_formatter_handles_invalid_round_up_string_correctly(): void
+    public function decimal_formatter_handles_invalid_option_string_correctly(): void
     {
         $options = '2|cheese';
         $value = '2.012';
-        $expected = '2.012';
+        $expected = '2.01';
 
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
@@ -261,13 +311,22 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-
     /** @test */
     public function decimal_formatter_handles_empty_value_correctly(): void
     {
         $options = '2';
         $value = '';
         $expected = '';
+
+        self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    /** @test */
+    public function decimal_formatter_handles_zero_value_correctly(): void
+    {
+        $options = '2|fixed';
+        $value = '0.00';
+        $expected = '0.00';
 
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
