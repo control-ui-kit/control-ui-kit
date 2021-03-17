@@ -5,8 +5,11 @@ namespace ControlUIKit;
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
+use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 
@@ -15,8 +18,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerComponents();
-        $this->registerPublishes();
+        $this->registerBladeDirectives();
         $this->registerMiddleware();
+        $this->registerPublishes();
+        $this->registerRoutes();
         $this->registerViews();
     }
 
@@ -50,6 +55,20 @@ class ControlUIKitServiceProvider extends ServiceProvider
         });
     }
 
+    protected function registerBladeDirectives(): void
+    {
+        Blade::directive('controlUiKitScripts', function () {
+            return "<?php echo '<script src=\"control-ui-kit/javascript/control-ui-kit.js\"></script>'; ?>";
+        });
+    }
+
+    protected function registerMiddleware(): void
+    {
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('web', ControlUIKitThemeMiddleware::class);
+        $router->pushMiddlewareToGroup('web', ControlUIKitLanguageFileMiddleware::class);
+    }
+
     private function registerPublishes(): void
     {
         if ($this->app->runningInConsole()) {
@@ -70,16 +89,13 @@ class ControlUIKitServiceProvider extends ServiceProvider
         }
     }
 
-    protected function registerMiddleware(): void
+    private function registerRoutes(): void
     {
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', ControlUIKitThemeMiddleware::class);
-        $router->pushMiddlewareToGroup('web', ControlUIKitLanguageFileMiddleware::class);
+        Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
     }
 
     protected function registerViews(): void
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'control-ui-kit');
     }
-
 }

@@ -332,10 +332,16 @@ class Input extends Component
     {
         $search = [
             '{{ $decimals }}',
+            '{{ $fixed }}',
+            '{{ $max }}',
+            '{{ $min }}',
         ];
 
         $replace = [
             $this->decimals === '' ? '0' : $this->decimals,
+            $this->decimalsFixed ? 'true' : 'false',
+            is_null($this->max) ? "''" : $this->max,
+            is_null($this->min) ? "''" : $this->min,
         ];
 
         return str_replace($search, $replace, $this->onblur);
