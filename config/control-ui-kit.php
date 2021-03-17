@@ -89,6 +89,7 @@ return [
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
+        'table.filter' => \ControlUIKit\Components\Tables\Filter::class,
         'table.row' => \ControlUIKit\Components\Tables\Row::class,
         'table.heading' => \ControlUIKit\Components\Tables\Heading::class,
         'table.empty' => \ControlUIKit\Components\Tables\EmptyRow::class,
@@ -230,6 +231,7 @@ return [
         'icon.remove' => \ControlUIKit\Components\Icons\Remove::class,
         'icon.save' => \ControlUIKit\Components\Icons\Save::class,
         'icon.search' => \ControlUIKit\Components\Icons\Search::class,
+        'icon.search-cog' => \ControlUIKit\Components\Icons\SearchCog::class,
         'icon.shield-cross' => \ControlUIKit\Components\Icons\ShieldCross::class,
         'icon.star-filled' => \ControlUIKit\Components\Icons\StarFilled::class,
         'icon.star' => \ControlUIKit\Components\Icons\Star::class,

@@ -517,6 +517,8 @@ return [
     ],
 
     'table' => [
+
+        // Style
         'background' => '',
         'body-styles' => 'divide-y table-divider bg-table',
         'border' => 'border-0 border-table',
@@ -527,6 +529,9 @@ return [
         'padding' => '',
         'rounded' => 'sm:rounded',
         'shadow' => 'shadow',
+
+        // Config
+        'search' => true,
     ],
 
     'table-cell' => [
@@ -561,15 +566,16 @@ return [
         'default-text' => 'No records found',
     ],
 
-//    'table-filter' => [
-//        'background' => '',
-//        'border' => '',
-//        'color' => '',
-//        'font' => '',
-//        'other' => '',
-//        'padding' => '',
-//        'rounded' => '',
-//    ],
+    'table-filter' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'flex items-center space-x-2 flex-no-wrap',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
 
     'table-heading' => [
 

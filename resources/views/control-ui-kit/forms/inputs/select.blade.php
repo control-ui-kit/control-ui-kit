@@ -1,4 +1,4 @@
-<div x-cloak x-data="customSelect{{ Str::slug($id, '_') }}({ open: false, value: {{ $value }}, selected: {{ $value }} })" x-init="init()">
+<div x-cloak x-data="customSelect{{ Str::slug($id, '_') }}({ selectOpen: false, value: {{ $value }}, selected: {{ $value }} })" x-init="init()">
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if($value)value="{{ $value }}"@endif x-model="value" x-on:change="changed()" />
 
     <div class="relative">
@@ -7,11 +7,11 @@
                 @keydown.arrow-up.stop.prevent="onButtonClick()"
                 @keydown.arrow-down.stop.prevent="onButtonClick()"
                 @click="onButtonClick()" aria-haspopup="listbox"
-                :aria-expanded="open"
+                :aria-expanded="selectOpen"
                 aria-labelledby="listbox-label"
                 {{ $attributes->merge($classes('flex items-center space-x-2 py-0 px-0')) }}
         >
-            <span class="flex items-center w-full pl-2 space-x-2">
+            <span class="flex items-center w-full space-x-2">
                 @if ($image)<x-input.select.image x-bind:src="image" src="{{ $imageDefault }}" />@endif
                 <span x-text="text" class="ml-3 block truncate grow py-1.5"></span>
                 @if ($subtext)<span x-text="subtext" class="truncate text-gray-500"></span>@endif
@@ -19,8 +19,8 @@
             <x-input.embed icon-right :icon="$iconRightIcon" :size="$iconRightSize" class="flex-shrink-0" />
         </button>
 
-        <div x-show="open"
-             @click.away="open = false"
+        <div x-show="selectOpen"
+             @click.away="selectOpen = false"
              x-transition:leave="transition ease-in duration-100"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
@@ -50,7 +50,7 @@
                         @mouseenter="selected = 0"
                         @mouseleave="selected = null"
                         :class="{ 'text-white bg-gray-600': selected === 0, 'text-gray-900': !(selected === 0) }"
-                        class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
+                        class="text-gray-900 cursor-default select-none relative py-2 pr-9"
                     >
                         <div class="flex items-center space-x-2">
                             @if ($image)<x-input.select.image src="{{ $imageDefault }}" />@endif
@@ -72,7 +72,7 @@
                         @mouseenter="selected = {{ $option_id }}"
                         @mouseleave="selected = null"
                         :class="{ 'text-white bg-gray-600': selected === {{ $option_id }}, 'text-gray-900': !(selected === {{ $option_id }}) }"
-                        class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
+                        class="text-gray-900 cursor-default select-none relative py-2 pr-9"
                     >
                         <div class="flex items-center space-x-2">
                             @if ($image)<x-input.select.image src="{{ $option[$image] }}" />@endif
@@ -99,7 +99,7 @@
             },
             activeDescendant: null,
             optionCount: null,
-            open: false,
+            selectOpen: false,
             selected: null,
             value: 0,
             text: '',
@@ -118,15 +118,15 @@
                 document.getElementById("{{ $id }}").value = option_id;
 
                 this.value = option_id;
-                this.open = false;
+                this.selectOpen = false;
             },
             onButtonClick() {
-                if (this.open) {
+                if (this.selectOpen) {
                     return;
                 }
 
                 this.selected = this.value;
-                this.open = true;
+                this.selectOpen = true;
             },
             onOptionSelect() {
                 // if (this.selected !== null) {

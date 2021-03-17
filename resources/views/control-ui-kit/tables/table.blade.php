@@ -1,9 +1,16 @@
-@isset($filters)
-<div>
-    {{ $filters }}
-{{--    <input type="search" class="w-1/4 p-2 border rounded outline-none" placeholder="Search" />--}}
+
+
+<div class="mb-4 grid grid-cols-3">
+
+    <x-input.search name="search" placeholder="Search..." background="bg-white" />
+
+    @isset($filters)
+        <div class="col-span-2 flex flex-wrap space-x-6 justify-end">
+            {{ $filters }}
+        </div>
+    @endisset
+
 </div>
-@endisset
 
 <table {{ $attributes->merge($classes()) }}>
     @isset($headings)
@@ -21,3 +28,5 @@
     @endif
     </tbody>
 </table>
+
+{{--<x-table.pagination />--}}
