@@ -13,9 +13,10 @@ class Line extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $legend = 'charts.defaults.legend';
-    protected string $legendLabel = 'charts.defaults.legend.label';
-    protected string $defaultTitle = 'charts.defaults.title';
+    protected string $legend;
+    protected string $legendLabel;
+    protected string $defaultTitle;
+    protected string $defaults = 'charts.defaults';
     protected string $component = 'chart-line';
 
     public Chart $chart;
@@ -48,6 +49,10 @@ class Line extends Component
     public ?string $titlePadding;
     public ?string $titleHeight;
 
+    public ?string $pointStyle;
+    public ?string $hideGrid;
+    public ?string $hideAxis;
+
     public function __construct(
         string $id,
         array $data = null,
@@ -74,8 +79,16 @@ class Line extends Component
         string $titleColor = null,
         string $titleStyle = null,
         string $titlePadding = null,
-        string $titleHeight = null
+        string $titleHeight = null,
+
+        string $pointStyle = null,
+        string $hideGrid = null,
+        string $hideAxis = null
     ) {
+        $this->legend = $this->defaults . '.legend';
+        $this->legendLabel = $this->legend . '.label';
+        $this->defaultTitle = $this->defaults . '.title';
+
         $this->id = $id;
         $this->data = $data;
         $this->colors = $this->getColours($colors);
@@ -103,44 +116,22 @@ class Line extends Component
         $this->titlePadding = $this->style($this->defaultTitle, 'padding', $titlePadding);
         $this->titleHeight = $this->style($this->defaultTitle, 'height', $titleHeight);
 
+        $this->pointStyle = $this->style($this->defaults . '.point', 'style', $pointStyle);
+        $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
+        $this->hideAxis = $this->style($this->defaults, 'hide-axis', $hideAxis);
+
         $this->labels = $this->labels();
         $this->datasets = $this->datasets();
-        #dd($this->datasets);
-
-        /**
-        [
-            [
-                "label" => "My First dataset",
-                'backgroundColor' => "rgba(38, 185, 154, 0.31)",
-                'borderColor' => "rgba(38, 185, 154, 0.7)",
-                "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
-                "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
-                "pointHoverBackgroundColor" => "#fff",
-                "pointHoverBorderColor" => "rgba(220,220,220,1)",
-                'data' => [65, 59, 80, 81, 56, 55, 40],
-            ], [
-                "label" => "My Second dataset",
-                'backgroundColor' => "rgba(100, 100, 100, 0.31)",
-                'borderColor' => "rgba(100, 100, 100, 0.7)",
-                "pointBorderColor" => "rgba(100, 100, 100, 0.7)",
-                "pointBackgroundColor" => "rgba(100, 100, 100, 0.7)",
-                "pointHoverBackgroundColor" => "#fff",
-                "pointHoverBorderColor" => "rgba(100, 100, 100, 1)",
-                'data' => [12, null, 44, 44, 55, 23, 40],
-            ]
-        ];
-        */
     }
 
     public function render(): string
     {
         $this->chart = app(Chart::class)
             ->name($this->id)
-                ->type('line')
-                ->size(['width' => 400, 'height' => 200])
-                ->labels($this->labels)
-                ->datasets($this->datasets)
-                ->options($this->options());
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->datasets($this->datasets)
+            ->options($this->options());
 
         return <<<'blade'
             {!! $chart->render() !!}
@@ -159,6 +150,7 @@ class Line extends Component
     private function options(): array
     {
         return [
+            'responsive' => true,
             'legend' => [
                 'display' => $this->booleanFromString($this->legendDisplay),
                 'position' => $this->legendPosition,
@@ -185,7 +177,44 @@ class Line extends Component
                 'padding' => (int)$this->titlePadding,
                 'lineHeight' => (float)$this->titleHeight,
             ],
-            'spanGaps' => true
+            'scales' => [
+                'xAxes' => [
+                    [
+                        'display' => $this->hideAxis === "false",
+                        'type' => 'time',
+                        'time' => [
+                            'format' => 'DD/MM/YYYY',
+                            'tooltipFormat' => 'll'
+                        ],
+                        'scaleLabel' => [
+                            'display' => true,
+                            'labelString' => 'Date'
+                        ],
+                        'gridLines' => [
+                            'display' => $this->hideGrid === "false"
+                        ]
+                    ]
+                ],
+                'yAxes' => [
+                    [
+                        'display' => $this->hideAxis === "false",
+                        'scaleLabel' => [
+                            'display' => $this->hideAxis === "false",
+                            'labelString' => 'value'
+                        ],
+                        'gridLines' => [
+                            'display' => $this->hideGrid === "false"
+                        ]
+                    ]
+                ]
+            ],
+            'elements' => [
+                'point' => [
+                    'pointStyle' => $this->pointStyle
+                ]
+            ],
+            'showLines' => true,
+            'spanGaps' => false
         ];
     }
 
@@ -214,7 +243,7 @@ class Line extends Component
 
     private function labels(): array
     {
-        if (!is_array($this->data) || !is_array($this->data['labels'])) {
+        if (!is_array($this->data) || !array_key_exists('labels', $this->data) || !is_array($this->data['labels'])) {
             return [];
         }
 
@@ -230,20 +259,33 @@ class Line extends Component
         $response = [];
 
         if (is_array($this->data['items'])) {
-            // todo: make this index colour arrays!
             $iteration = 0;
 
-            foreach ($this->data['items'] as $key => $array) {
-                $response[] = [
-                    'label' => $key,
-                    'backgroundColor' => 'rgba(38, 185, 154, 0.31)',
-                    'borderColor' => 'rgba(38, 185, 154, 0.7)',
-                    'pointBorderColor' => 'rgba(38, 185, 154, 0.7)',
-                    'pointBackgroundColor' => 'rgba(38, 185, 154, 0.7)',
-                    'pointHoverBackgroundColor' => '#fff',
-                    'pointHoverBorderColor' => 'rgba(220, 220 ,220, 1)',
-                    'data' => $array['data']
+            foreach ($this->data['items'] as $array) {
+                $response[$iteration] = [
+                    'label' => $array['label'],
+                    'data' => $array['data'],
+                    'fill' => false,
+                    'borderColor' => $this->colors[$iteration] ?? 'red',
+                    'backgroundColor' => $this->colors[$iteration] ?? 'red'
                 ];
+
+                if (array_key_exists('dashed', $array)) {
+                    $response[$iteration]['borderDash'] = is_array($array['dashed'])
+                        ? $array['dashed']
+                        : $this->style('charts.defaults', 'dashed', $array['dashed'] ?? null) ;
+                }
+
+                if (array_key_exists('radius', $array)) {
+                    $response[$iteration]['pointRadius'] = $this->style($this->defaults . '.point', 'radius', $array['radius']);
+                }
+
+                if (array_key_exists('hover-radius', $array)) {
+                    $response[$iteration]['pointHoverRadius'] = $this->style($this->defaults . '.point', 'hoverRadius', $array['hover-radius']);
+                }
+
+
+                $iteration++;
             }
         }
 

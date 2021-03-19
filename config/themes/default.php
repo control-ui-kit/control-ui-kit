@@ -115,16 +115,17 @@ return [
                 '#fabebe',
                 '#008080',
                 '#e6beff',
-            ]
+            ],
+            'point' => [
+                'style' => 'circle',
+                'radius' => 3,
+                'hoverRadius' => 4
+            ],
+            'dashed' => [5, 5],
+            'hide-grid' => 'false',
+            'hide-axis' => 'false',
+            'background-color' => 'rgba(0, 0, 0, 0.1)'
         ]
-    ],
-
-    'chart-pie' => [
-        // Nothing yet.
-    ],
-
-    'chart-donut' => [
-        // Nothing yet.
     ],
 
     'input' => [
