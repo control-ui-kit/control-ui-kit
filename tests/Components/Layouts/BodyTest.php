@@ -35,9 +35,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body class="background border color font other padding rounded shadow" data-theme="light">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
@@ -55,9 +53,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body data-theme="light">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
@@ -75,9 +71,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body class="1 2 3 4 5 6 7 8" data-theme="light">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
@@ -95,9 +89,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body class="background border color font other padding rounded shadow" data-theme="dark">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
@@ -115,9 +107,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body class="background border color font other padding rounded shadow" data-theme="light">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
@@ -135,9 +125,7 @@ class BodyTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <body class="background border color font other padding rounded shadow" data-theme="light">
-                Document html
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+            Document html
             </body>
             HTML;
 
