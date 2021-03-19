@@ -1,4 +1,3 @@
-
 @isset($filters)
 <div>
     {{ $filters }}
@@ -6,22 +5,19 @@
 </div>
 @endisset
 
-<div {{ $attributes->merge([ 'class' => "align-middle min-w-full overflow-x-auto overflow-hidden $padding $margin $border $shadow $rounded"]) }}>
-    <table class="table-fixed data-table min-w-full text-left">
-        @isset($head)
-        <thead>
-        <tr class="items-center uppercase bg-table-header border-b border-table-divider">
-            {{ $head }}
-        </tr>
-        </thead>
-        @endisset
-
-        <tbody class="divide-y divide-table-divider bg-table">
-        @if ($body)
-        {{ $body }}
-        @else
-        {{ $slot }}
-        @endif
-        </tbody>
-    </table>
-</div>
+<table {{ $attributes->merge($classes()) }}>
+    @isset($headings)
+    <thead>
+    <tr class="{{ $headingStyles }}">
+        {{ $headings }}
+    </tr>
+    </thead>
+    @endif
+    <tbody class="{{ $bodyStyles }}">
+    @if (isset($body))
+    {{ $body }}
+    @else
+    {{ $slot }}
+    @endif
+    </tbody>
+</table>

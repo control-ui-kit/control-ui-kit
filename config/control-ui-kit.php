@@ -36,6 +36,7 @@ return [
 
         'title' => \ControlUIKit\Components\Forms\Title::class,
         'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
+        'form.field' => \ControlUIKit\Components\Forms\Field::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field.text' => \ControlUIKit\Components\Forms\Fields\Text::class,
@@ -61,8 +62,6 @@ return [
         'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
         'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
         'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
-        'input.integer' => \ControlUIKit\Components\Forms\Inputs\Integer::class,
-        'input.icon-right' => \ControlUIKit\Components\Forms\Inputs\IconRight::class,
         'input.embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,
         'input.range' => \ControlUIKit\Components\Forms\Inputs\Range::class,
         'input.color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
@@ -85,6 +84,8 @@ return [
         'panel' => \ControlUIKit\Components\Panels\Panel::class,
         'panel.divider' => \ControlUIKit\Components\Panels\Divider::class,
         'panel.heading' => \ControlUIKit\Components\Panels\Heading::class,
+
+        'pill' => \ControlUIKit\Components\Pills\Pill::class,
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
@@ -268,6 +269,17 @@ return [
     */
 
     'use_language_files' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Timezone Field
+    |--------------------------------------------------------------------------
+    |
+    | The timezone field on your user table.
+    |
+    */
+
+    'user_timezone_field' => 'timezone',
 
     /*
     |--------------------------------------------------------------------------

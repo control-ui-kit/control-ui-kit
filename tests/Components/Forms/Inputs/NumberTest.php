@@ -15,6 +15,10 @@ class NumberTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-number.default', '');
+        Config::set('themes.default.input-number.onblur', '');
+        Config::set('themes.default.input-number.step', '');
+
         Config::set('themes.default.input-number.background', 'background');
         Config::set('themes.default.input-number.border', 'border');
         Config::set('themes.default.input-number.color', 'color');
@@ -104,6 +108,38 @@ class NumberTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="age" type="number" id="age" value="9" min="0" max="9" step="1" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_number_component_with_onblur_and_no_decimals_can_be_rendered(): void
+    {
+        Config::set('themes.default.input-number.onblur',  '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})');
+
+        $template = <<<'HTML'
+            <x-input.number name="age" value="9" min="0" max="9" step="1" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="age" type="number" id="age" value="9" onblur="_controlNumber(this, 0, 0, 9, false)" min="0" max="9" step="1" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_number_component_with_onblur_and_min_and_max_needs_onblur_to_validate_the_min_and_max(): void
+    {
+        Config::set('themes.default.input-number.onblur',  '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})');
+
+        $template = <<<'HTML'
+            <x-input.number name="age" value="25" min="10" max="90" step="1" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="age" type="number" id="age" value="25" onblur="_controlNumber(this, 0, 10, 90, false)" min="10" max="90" step="1" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

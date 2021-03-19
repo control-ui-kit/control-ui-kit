@@ -13,6 +13,12 @@ class DecimalTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-decimal.onblur', '');
+        Config::set('themes.default.input-decimal.decimals', 2);
+        Config::set('themes.default.input-decimal.default', '');
+        Config::set('themes.default.input-decimal.prefix-text', '');
+        Config::set('themes.default.input-decimal.type', 'number');
+
         Config::set('themes.default.input-decimal.background', 'background');
         Config::set('themes.default.input-decimal.border', 'border');
         Config::set('themes.default.input-decimal.color', 'color');
@@ -60,6 +66,24 @@ class DecimalTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="name" type="number" id="name" step="0.01" class="1 2 3 4 5 6 7 8" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function an_input_decimal_component_can_be_rendered_with_onblur_containing_decimal_variable(): void
+    {
+        Config::set('themes.default.input-decimal.decimals', '3');
+        Config::set('themes.default.input-decimal.onblur', 'formatDecimal(this, {{ $decimals }})');
+
+        $template = <<<'HTML'
+            <x-input.decimal name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="number" id="name" onblur="formatDecimal(this, 3)" step="0.001" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

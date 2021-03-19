@@ -15,6 +15,7 @@ class InputTest extends ComponentTestCase
         parent::setUp();
 
         Config::set('themes.default.input.decimals', '');
+        Config::set('themes.default.input.default', '');
         Config::set('themes.default.input.type', 'text');
         Config::set('themes.default.input.icon-left', '');
         Config::set('themes.default.input.icon-right', '');
@@ -769,6 +770,71 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="searching" type="search" id="searching" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_config_default(): void
+    {
+        Config::set('themes.default.input.default', '::default');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text"/>
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="::default" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_inline_default(): void
+    {
+        Config::set('themes.default.input.default', '');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" default="::inline"/>
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="::inline" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_inline_default_and_value(): void
+    {
+        Config::set('themes.default.input.default', '');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" default="::inline" value="::value" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="::value" class="background border color font other padding rounded shadow" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_default_step_can_be_disabled_inline(): void
+    {
+        Config::set('themes.default.input.default', '');
+        Config::set('themes.default.input.step', '1');
+
+        $template = <<<'HTML'
+            <x-input name="test" type="number" step="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

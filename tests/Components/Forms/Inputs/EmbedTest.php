@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\View\ViewException;
 use Tests\Components\ComponentTestCase;
 
 class EmbedTest extends ComponentTestCase
@@ -307,5 +308,18 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_embed_component_throws_an_exception_if_embed_type_not_set(): void
+    {
+        $template = <<<'HTML'
+            <x-input.embed icon="icon.dot" />
+            HTML;
+
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Embed type not set');
+
+        $this->assertComponentRenders('', $template);
     }
 }

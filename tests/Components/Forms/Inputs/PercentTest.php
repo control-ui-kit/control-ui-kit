@@ -13,6 +13,8 @@ class PercentTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-percent.default', '');
+                Config::set('themes.default.input-percent.onblur', '');
         Config::set('themes.default.input-percent.icon-right', 'none');
         Config::set('themes.default.input-percent.icon-left', 'none');
         Config::set('themes.default.input-percent.min', 2);
@@ -122,6 +124,24 @@ class PercentTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="name" type="number" id="name" value="50" min="2" max="98" step="2" class="1 2 3 4 5 6 7 8" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_percent_component_with_defaults_can_be_disabled_inline(): void
+    {
+        Config::set('themes.default.input-percent.step', 2);
+        Config::set('themes.default.input-percent.min', 2);
+        Config::set('themes.default.input-percent.max', 2);
+
+        $template = <<<'HTML'
+            <x-input.percent name="test" step="none" min="none" max="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
