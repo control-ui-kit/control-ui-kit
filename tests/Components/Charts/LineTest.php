@@ -12,15 +12,6 @@ class LineTest extends ComponentTestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        Config::set('themes.default.input-date.background', 'background');
-        Config::set('themes.default.input-date.border', 'border');
-        Config::set('themes.default.input-date.color', 'color');
-        Config::set('themes.default.input-date.font', 'font');
-        Config::set('themes.default.input-date.other', 'other');
-        Config::set('themes.default.input-date.padding', 'padding');
-        Config::set('themes.default.input-date.rounded', 'rounded');
-        Config::set('themes.default.input-date.shadow', 'shadow');
     }
 
     /** @test */
