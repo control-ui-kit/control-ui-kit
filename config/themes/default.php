@@ -77,6 +77,36 @@ return [
 
     'charts' => [
         'defaults' => [
+            'axes' => [
+                'x' => [
+                    'label' => 'Date',
+                    'ticks' => [
+                        'display' => 'true',
+                        'color' => '#666',
+                        'family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                        'size' => 12,
+                        'style' => 'normal',
+                        'height' => 1.2,
+                        'reverse' => 'false',
+                        'padding' => 0,
+                        'z-index' => 0
+                    ]
+                ],
+                'y' => [
+                    'label' => 'Value',
+                    'ticks' => [
+                        'display' => 'true',
+                        'color' => '#666',
+                        'family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                        'size' => 12,
+                        'style' => 'normal',
+                        'height' => 1.2,
+                        'reverse' => 'false',
+                        'padding' => 0,
+                        'z-index' => 0
+                    ]
+                ]
+            ],
             'legend' => [
                 'display' => 'true',
                 'position' => 'left',
@@ -121,10 +151,48 @@ return [
                 'radius' => 3,
                 'hoverRadius' => 4
             ],
+            'tooltips' => [
+                'enabled' => true,
+                'mode' => 'nearest',
+                'intersect' => true,
+                'position' => 'average',
+                'background-color' => 'rgba(0, 0, 0, 0.8)',
+                'x-padding' => 6,
+                'y-padding' => 6,
+                'caret-padding' => 2,
+                'caret-size' => 5,
+                'corner-radius' => 6,
+                'multikey-background' => '#fff',
+                'display-colors' => true,
+                'border-color' => 'rgba(0, 0, 0, 0)',
+                'border-width' => 0,
+                'rtl' => false,
+                'title-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                'title-size' => 12,
+                'title-style' => 'bold',
+                'title-color' => '#fff',
+                'title-align' => 'left',
+                'title-spacing' => 2,
+                'title-margin-bottom' => 6,
+                'body-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                'body-size' => 12,
+                'body-style' => 'normal',
+                'body-color' => '#fff',
+                'body-align' => 'left',
+                'body-spacing' => 2,
+                'footer-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                'footer-size' => 12,
+                'footer-style' => 'bold',
+                'footer-color' => '#fff',
+                'footer-align' => 'left',
+                'footer-spacing' => 2,
+                'footer-margin-top' => 6,
+            ],
             'dashed' => [5, 5],
             'hide-grid' => 'false',
             'hide-axis' => 'false',
-            'background-color' => 'rgba(0, 0, 0, 0.1)'
+            'background-color' => 'rgba(0, 0, 0, 0.1)',
+            'grid-color' => 'rgba(0, 0, 0, 0.1)'
         ]
     ],
 
