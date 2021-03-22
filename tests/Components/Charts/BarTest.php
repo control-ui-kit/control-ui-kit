@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
-use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
-class LineTest extends ComponentTestCase
+class BarTest extends ComponentTestCase
 {
     public function setUp(): void
     {
@@ -15,10 +14,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_can_be_rendered(): void
+    public function a_bar_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -38,14 +37,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -62,10 +61,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_multiple_data_sets_can_be_rendered(): void
+    public function a_bar_chart_component_with_multiple_data_sets_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -96,14 +95,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"},{"label":"Downloads","data":[{"x":"01\/01\/2020","y":120},{"x":"02\/01\/2020","y":165},{"x":"03\/01\/2020","y":40},{"x":"04\/01\/2020","y":32},{"x":"05\/01\/2020","y":79},{"x":"06\/01\/2020","y":203},{"x":"07\/01\/2020","y":3}],"fill":false,"borderColor":"#3cb44b","backgroundColor":"#3cb44b"}]
@@ -120,10 +119,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_custom_colours_can_be_rendered(): void
+    public function a_bar_chart_component_with_custom_colours_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -144,14 +143,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"red","backgroundColor":"red"}]
@@ -168,10 +167,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_legend_disabled_can_be_rendered(): void
+    public function a_bar_chart_component_with_legend_disabled_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -192,14 +191,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -216,10 +215,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_position_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -240,14 +239,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -264,10 +263,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_legend_alignment_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_legend_alignment_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -287,14 +286,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -311,10 +310,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_legend_width_amended_can_be_rendered(): void
+    public function a_bar_chart_component_with_legend_width_amended_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -334,14 +333,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -358,10 +357,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_width_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_width_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -381,14 +380,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -405,10 +404,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_size_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -428,14 +427,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -452,10 +451,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_style_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -475,14 +474,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -499,10 +498,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_colour_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_colour_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -522,14 +521,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -546,10 +545,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_family_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -569,14 +568,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -593,10 +592,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_label_padding_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_label_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -616,14 +615,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -640,10 +639,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -663,14 +662,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -687,10 +686,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_display_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -710,14 +709,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -734,10 +733,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_position_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -757,14 +756,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -781,10 +780,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_size_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -804,14 +803,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -828,10 +827,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_family_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -851,14 +850,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -875,10 +874,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_color_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -898,14 +897,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -922,10 +921,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_style_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -945,14 +944,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -969,10 +968,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_padding_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -992,14 +991,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1016,10 +1015,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_title_line_height_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_title_line_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1039,14 +1038,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1063,10 +1062,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_point_style_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_point_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1086,14 +1085,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1110,10 +1109,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_grid_hidden_can_be_rendered(): void
+    public function a_bar_chart_component_with_grid_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1133,14 +1132,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1157,10 +1156,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_axis_labels_hidden_can_be_rendered(): void
+    public function a_bar_chart_component_with_axis_labels_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1180,14 +1179,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1204,10 +1203,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_display_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1227,14 +1226,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1251,10 +1250,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_color_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1274,14 +1273,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1298,10 +1297,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_family_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1321,14 +1320,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1345,10 +1344,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_size_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1368,14 +1367,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1392,10 +1391,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_style_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1415,14 +1414,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1439,10 +1438,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_height_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1462,14 +1461,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1486,10 +1485,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1509,14 +1508,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1533,10 +1532,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1556,14 +1555,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1580,10 +1579,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1603,14 +1602,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1627,10 +1626,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_display_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1650,14 +1649,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1674,10 +1673,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_color_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1697,14 +1696,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1721,10 +1720,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_family_set_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_family_set_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1744,14 +1743,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1768,10 +1767,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_size_changed__can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_size_changed__can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1791,14 +1790,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1815,10 +1814,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_style_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1838,14 +1837,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1862,10 +1861,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_height_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1885,14 +1884,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1909,10 +1908,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1932,14 +1931,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -1956,10 +1955,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -1979,14 +1978,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2003,10 +2002,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2026,14 +2025,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2050,10 +2049,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2073,14 +2072,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2097,10 +2096,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2127,14 +2126,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2151,10 +2150,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2180,14 +2179,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2204,10 +2203,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2234,14 +2233,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
@@ -2258,10 +2257,10 @@ class LineTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_line_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
+    public function a_bar_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart" 
+            <x-bar-chart id="bar_chart" 
                 :data="[
                     'items' => [
                         [
@@ -2291,14 +2290,14 @@ class LineTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
+            <canvas id="bar_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
+                            var ctx = document.getElementById("bar_chart");
+                            window.bar_chart = new Chart(ctx, {
+                                type: 'bar',
                                 data: {
                                     labels: [],
                                     datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]

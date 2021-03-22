@@ -176,6 +176,16 @@ class Line extends Component
         string $tooltipIntersect = null,
         string $tooltipPosition = null,
         string $tooltipBackgroundColor = null,
+        string $tooltipXPadding = null,
+        string $tooltipYPadding = null,
+        string $tooltipCaretPadding = null,
+        string $tooltipCaretSize = null,
+        string $tooltipCornerRadius = null,
+        string $tooltipMultiKeyBackground = null,
+        string $tooltipDisplayColors = null,
+        string $tooltipBorderColor = null,
+        string $tooltipBorderWidth = null,
+        string $tooltipRtl = null,
 
         string $tooltipTitleFamily = null,
         string $tooltipTitleSize = null,
@@ -198,18 +208,7 @@ class Line extends Component
         string $tooltipFooterColor = null,
         string $tooltipFooterAlign = null,
         string $tooltipFooterSpacing = null,
-        string $tooltipFooterMarginTop = null,
-
-        string $tooltipXPadding = null,
-        string $tooltipYPadding = null,
-        string $tooltipCaretPadding = null,
-        string $tooltipCaretSize = null,
-        string $tooltipCornerRadius = null,
-        string $tooltipMultiKeyBackground = null,
-        string $tooltipDisplayColors = null,
-        string $tooltipBorderColor = null,
-        string $tooltipBorderWidth = null,
-        string $tooltipRtl = null
+        string $tooltipFooterMarginTop = null
     ) {
         $this->legend = $this->defaults . '.legend';
         $this->legendLabel = $this->legend . '.label';
@@ -391,7 +390,7 @@ class Line extends Component
                             'fontSize' => (int)$this->xTickSize,
                             'fontStyle' => $this->xTickStyle,
                             'lineHeight' => $this->xTickHeight,
-                            'reverse' => $this->xTickReverse,
+                            'reverse' => $this->xTickReverse !== "false",
                             'padding' => (int)$this->xTickPadding,
                             'z' => (int)$this->xTickZIndex
                         ]
@@ -415,7 +414,7 @@ class Line extends Component
                             'fontSize' => (int)$this->yTickSize,
                             'fontStyle' => $this->yTickStyle,
                             'lineHeight' => $this->yTickHeight,
-                            'reverse' => $this->yTickReverse,
+                            'reverse' => $this->yTickReverse !== "false",
                             'padding' => (int)$this->yTickPadding,
                             'z' => (int)$this->yTickZIndex
                         ]
@@ -514,7 +513,6 @@ class Line extends Component
 
             foreach ($this->data['items'] as $array) {
                 $response[$iteration] = [
-                    // todo: check if can pass html to the label for tooltip.
                     'label' => $array['label'],
                     'data' => $array['data'],
                     'fill' => false,

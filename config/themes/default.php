@@ -167,6 +167,7 @@ return [
                 'border-color' => 'rgba(0, 0, 0, 0)',
                 'border-width' => 0,
                 'rtl' => false,
+
                 'title-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
                 'title-size' => 12,
                 'title-style' => 'bold',
@@ -174,12 +175,14 @@ return [
                 'title-align' => 'left',
                 'title-spacing' => 2,
                 'title-margin-bottom' => 6,
+
                 'body-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
                 'body-size' => 12,
                 'body-style' => 'normal',
                 'body-color' => '#fff',
                 'body-align' => 'left',
                 'body-spacing' => 2,
+
                 'footer-family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
                 'footer-size' => 12,
                 'footer-style' => 'bold',
