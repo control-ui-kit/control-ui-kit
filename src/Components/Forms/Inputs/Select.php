@@ -35,7 +35,7 @@ class Select extends Component
     public ?string $subtext;
     public ?string $image;
     public ?string $imageDefault;
-    public array $options;
+    public $options;
 
     public function __construct(
         string $name,
@@ -66,7 +66,7 @@ class Select extends Component
         string $image = null,
         string $imageDefault = null,
         string $id = null,
-        array $options = [],
+        $options = [],
         ?string $value = null
     ) {
         $this->name = $name;

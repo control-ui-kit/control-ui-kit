@@ -87,6 +87,7 @@
     </div>
 </div>
 
+
 <script>
     function customSelect{{ Str::slug($id, '_') }}(options) {
         return {
