@@ -75,6 +75,28 @@ return [
         ],
     ],
 
+    'matrix' => [
+        'color' => 'green',
+        'format' => 'LL',
+        'axes' => [
+            'x' => [
+                'label' => [
+                    'visible' => "true",
+                    'position' => 'bottom'
+                ],
+                'margin' => "1"
+            ],
+            'y' => [
+                'label' => [
+                    'visible' => "true",
+                    'position' => 'left'
+                ],
+                'margin' => "1",
+                'reverse' => 'true'
+            ]
+        ]
+    ],
+
     'charts' => [
         'defaults' => [
             'axes' => [
