@@ -648,14 +648,51 @@ return [
         'border' => 'border-0 border-table',
         'color' => '',
         'font' => 'text-left',
-        'heading-styles' => 'items-center uppercase bg-table-header border-b border-table-divider',
+        'heading-styles' => 'items-center uppercase bg-table-header border-table-divider',
         'other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
         'padding' => '',
         'rounded' => 'sm:rounded',
         'shadow' => 'shadow',
 
+        'table-filters-background' => 'bg-table-filters',
+        'table-filters-border' => 'border border-table-filters divide-x table-filters-divider',
+        'table-filters-color' => '',
+        'table-filters-font' => '',
+        'table-filters-other' => 'inline-flex ',
+        'table-filters-padding' => '',
+        'table-filters-rounded' => 'rounded-md',
+        'table-filters-shadow' => '',
+
         // Config
+        'clear-filters-event' => '',
+        'clear-filters-href' => '',
+        'clear-filters-text' => 'Clear Filters',
+        'clear-filters-background' => '',
+        'clear-filters-border' => '',
+        'clear-filters-color' => 'text-brand hover:text-brand-lighter',
+        'clear-filters-font' => '',
+        'clear-filters-other' => '',
+        'clear-filters-padding' => '',
+        'clear-filters-rounded' => '',
+        'clear-filters-shadow' => '',
+
         'search' => true,
+    ],
+
+    'table-active-filter' => [
+        'background' => 'bg-active-filter',
+        'border' => 'border border-active-filter',
+        'color' => 'text-active-filter',
+        'font' => 'text-sm',
+        'other' => 'flex items-center space-x-1 w-max',
+        'padding' => 'px-1.5 py-0.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        // Config
+        'icon' => 'icon.close',
+        'icon-color' => 'text-active-filter-icon hover:text-active-filter-icon-hover cursor-pointer',
+        'icon-size' => 'w-4 h-4',
     ],
 
     'table-cell' => [
@@ -691,14 +728,18 @@ return [
     ],
 
     'table-filter' => [
-        'background' => '',
-        'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => 'flex items-center space-x-2 flex-no-wrap',
-        'padding' => '',
+        'background' => 'hover:bg-table-filters-hover',
+        'border' => 'focus:z-10 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500',
+        'color' => 'text-table-filters hover:text-table-filters-hover',
+        'font' => 'text-sm font-medium',
+        'other' => 'relative inline-flex items-center focus:outline-none group',
+        'padding' => 'pl-3.5 pr-2 py-2 space-x-1',
         'rounded' => '',
         'shadow' => '',
+
+        'icon' => 'icon.caret-down',
+        'icon-color' => 'text-table-filters-icon group-hover:text-table-filters-icon-hover',
+        'icon-size' => 'w-4 h-4',
     ],
 
     'table-heading' => [

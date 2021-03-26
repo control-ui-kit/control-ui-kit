@@ -7,12 +7,13 @@ namespace ControlUIKit\Components\Tables;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Filter extends Component
+class ActiveFilter extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'table-filter';
+    protected string $component = 'table-active-filter';
 
+    public ?string $href;
     public string $label;
     public string $icon;
     public string $iconColor;
@@ -24,6 +25,7 @@ class Filter extends Component
         string $border = null,
         string $color = null,
         string $font = null,
+        string $href = null,
         string $icon = null,
         string $iconColor = null,
         string $iconSize = null,
@@ -43,6 +45,7 @@ class Filter extends Component
             'shadow' => $shadow,
         ]);
 
+        $this->href = $href;
         $this->label = $label;
         $this->icon = $this->style($this->component, 'icon', $icon);
         $this->iconColor = $this->style($this->component, 'icon-color', $iconColor);
@@ -51,6 +54,6 @@ class Filter extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.tables.filter');
+        return view('control-ui-kit::control-ui-kit.tables.active-filter');
     }
 }

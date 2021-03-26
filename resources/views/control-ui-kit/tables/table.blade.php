@@ -1,32 +1,54 @@
 
+<div class="flex flex-col space-y-4">
 
-<div class="mb-4 grid grid-cols-3">
+    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0">
 
-    <x-input.search name="search" placeholder="Search..." background="bg-white" />
-
-    @isset($filters)
-        <div class="col-span-2 flex flex-wrap space-x-6 justify-end">
-            {{ $filters }}
+        <div class="w-full md:w-1/3">
+            <x-input.search name="search" placeholder="Search..." background="bg-white" />
         </div>
-    @endisset
+
+        @isset($filters)
+            <div class="w-full md:w-2/3 flex justify-end">
+                <span class="{{ $tableFilterClasses() }}">
+                {{ $filters }}
+                </span>
+            </div>
+        @endisset
+
+    </div>
+
+    @isset($active)
+    <div class="flex items-center justify-between text-sm">
+
+        <div class="flex flex-wrap items-center space-x-2">
+            <span>Filters :</span>
+            {{ $active }}
+        </div>
+
+        <a class="{{ $clearFilterClasses() }}"
+            @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
+            @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
+        >{{ $clearFiltersText }}</a>
+    </div>
+    @endif
+
+    <table {{ $attributes->merge($classes()) }}>
+        @isset($headings)
+        <thead>
+        <tr class="{{ $headingStyles }}">
+            {{ $headings }}
+        </tr>
+        </thead>
+        @endif
+        <tbody class="{{ $bodyStyles }}">
+        @if (isset($body))
+        {{ $body }}
+        @else
+        {{ $slot }}
+        @endif
+        </tbody>
+    </table>
 
 </div>
-
-<table {{ $attributes->merge($classes()) }}>
-    @isset($headings)
-    <thead>
-    <tr class="{{ $headingStyles }}">
-        {{ $headings }}
-    </tr>
-    </thead>
-    @endif
-    <tbody class="{{ $bodyStyles }}">
-    @if (isset($body))
-    {{ $body }}
-    @else
-    {{ $slot }}
-    @endif
-    </tbody>
-</table>
 
 {{--<x-table.pagination />--}}

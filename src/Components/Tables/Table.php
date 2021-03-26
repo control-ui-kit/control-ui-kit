@@ -13,8 +13,13 @@ class Table extends Component
 
     protected string $component = 'table';
 
+    public ?string $clearFiltersEvent;
+    public ?string $clearFiltersHref;
+    public ?string $clearFiltersText;
     public string $headingStyles;
     public string $bodyStyles;
+    public array $tableFilterStyles;
+    public array $clearFilterStyles;
 
     public function __construct(
         string $background = null,
@@ -25,8 +30,30 @@ class Table extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+
+        string $clearFiltersBackground = null,
+        string $clearFiltersBorder = null,
+        string $clearFiltersColor = null,
+        string $clearFiltersFont = null,
+        string $clearFiltersOther = null,
+        string $clearFiltersPadding = null,
+        string $clearFiltersRounded = null,
+        string $clearFiltersShadow = null,
+
+        string $tableFiltersBackground = null,
+        string $tableFiltersBorder = null,
+        string $tableFiltersColor = null,
+        string $tableFiltersFont = null,
+        string $tableFiltersOther = null,
+        string $tableFiltersPadding = null,
+        string $tableFiltersRounded = null,
+        string $tableFiltersShadow = null,
+
         string $headingStyles = null,
-        string $bodyStyles = null
+        string $bodyStyles = null,
+        string $clearFiltersEvent = null,
+        string $clearFiltersHref = null,
+        string $clearFiltersText = null
     ) {
         $this->setConfigStyles([
             'background' => $background,
@@ -39,12 +66,48 @@ class Table extends Component
             'shadow' => $shadow,
         ]);
 
+        $this->setConfigStyles([
+            'clear-filters-background' => $clearFiltersBackground,
+            'clear-filters-border' => $clearFiltersBorder,
+            'clear-filters-color' => $clearFiltersColor,
+            'clear-filters-font' => $clearFiltersFont,
+            'clear-filters-other' => $clearFiltersOther,
+            'clear-filters-padding' => $clearFiltersPadding,
+            'clear-filters-rounded' => $clearFiltersRounded,
+            'clear-filters-shadow' => $clearFiltersShadow,
+        ], [], null, 'clearFilterStyles');
+
+        $this->setConfigStyles([
+            'table-filters-background' => $tableFiltersBackground,
+            'table-filters-border' => $tableFiltersBorder,
+            'table-filters-color' => $tableFiltersColor,
+            'table-filters-font' => $tableFiltersFont,
+            'table-filters-other' => $tableFiltersOther,
+            'table-filters-padding' => $tableFiltersPadding,
+            'table-filters-rounded' => $tableFiltersRounded,
+            'table-filters-shadow' => $tableFiltersShadow,
+        ], [], null, 'tableFilterStyles');
+
         $this->headingStyles = $this->style($this->component, 'heading-styles', $headingStyles);
         $this->bodyStyles = $this->style($this->component, 'body-styles', $bodyStyles);
+
+        $this->clearFiltersEvent = $this->style($this->component, 'clear-filters-event', $clearFiltersEvent);
+        $this->clearFiltersHref = $this->style($this->component, 'clear-filters-href', $clearFiltersHref);
+        $this->clearFiltersText = $this->style($this->component, 'clear-filters-text', $clearFiltersText);
     }
 
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.tables.table');
+    }
+
+    public function tableFilterClasses(): string
+    {
+        return $this->classList($this->tableFilterStyles);
+    }
+
+    public function clearFilterClasses(): string
+    {
+        return $this->classList($this->clearFilterStyles);
     }
 }

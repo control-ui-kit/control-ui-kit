@@ -1,4 +1,6 @@
-<div {{ $attributes->merge($classes()) }}>
+<button type="button" {{ $attributes->merge($classes()) }}>
     <span>{{ $label }}</span>
-    {{ $slot }}
-</div>
+    @if ($icon)
+    <x-dynamic-component :component="$icon" :size="$iconSize" :color="$iconColor" />
+    @endif
+</button>

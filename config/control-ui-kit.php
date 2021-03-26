@@ -88,6 +88,7 @@ return [
         'pill' => \ControlUIKit\Components\Pills\Pill::class,
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
+        'table.active-filter' => \ControlUIKit\Components\Tables\ActiveFilter::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
         'table.filter' => \ControlUIKit\Components\Tables\Filter::class,
         'table.row' => \ControlUIKit\Components\Tables\Row::class,
