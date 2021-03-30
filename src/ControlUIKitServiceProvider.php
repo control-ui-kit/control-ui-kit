@@ -70,9 +70,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/mobilefriendly.js"></script>
 
-                <script src="https://cdn.jsdelivr.net/npm/chart.js@next/dist/chart.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@next/dist/chartjs-chart-matrix.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@1.1.0-alpha/dist/chartjs-adapter-date-fns.bundle.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
                 <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
 

@@ -26,6 +26,7 @@ return [
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
         'matrix-chart' => \ControlUIKit\Components\Charts\Matrix::class,
+        'change-chart' => \ControlUIKit\Components\Charts\Change::class,
 
         'dropdown.divider' => \ControlUIKit\Components\Dropdowns\Divider::class,
         'dropdown.menu' => \ControlUIKit\Components\Dropdowns\Menu::class,
