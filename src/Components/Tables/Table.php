@@ -51,6 +51,7 @@ class Table extends Component
 
         string $headingStyles = null,
         string $bodyStyles = null,
+
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
         string $clearFiltersText = null

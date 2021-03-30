@@ -110,7 +110,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/control-ui-kit'),
             ], 'control-ui-kit-views');
-
         }
     }
 

@@ -48,9 +48,11 @@ return [
         'input.percent' => \ControlUIKit\Components\Forms\Inputs\Percent::class,
         'input.radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
         'input.search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
+        'input.select.new' => \ControlUIKit\Components\Forms\Inputs\SelectNew::class,
         'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
-        'input.select.image' => \ControlUIKit\Components\Forms\Inputs\SelectImage::class,
         'input.select.checked-icon' => \ControlUIKit\Components\Forms\Inputs\SelectCheckedIcon::class,
+        'input.select.option' => \ControlUIKit\Components\Forms\Inputs\SelectOption::class,
+        'input.select.image' => \ControlUIKit\Components\Forms\Inputs\SelectImage::class,
         'input.select.text' => \ControlUIKit\Components\Forms\Inputs\SelectText::class,
 
         'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,

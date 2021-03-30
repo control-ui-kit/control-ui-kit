@@ -442,14 +442,54 @@ return [
     'input-select' => [
 
         // Style
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => '',
-        'font' => 'text-input',
-        'other' => 'inline-block',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'button-background' => 'bg-input',
+        'button-border' => 'border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand',
+        'button-color' => '',
+        'button-font' => 'text-input',
+        'button-other' => 'relative w-full flex items-center cursor-default',
+        'button-padding' => 'space-x-2 py-1.5 px-3',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+
+        'list-background' => 'bg-input',
+        'list-border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'list-color' => '',
+        'list-font' => 'text-input',
+        'list-other' => 'inline-block',
+        'list-padding' => '',
+        'list-rounded' => 'rounded',
+        'list-shadow' => '',
+
+        'option-background' => '',
+        'option-border' => '',
+        'option-color' => '',
+        'option-font' => '',
+        'option-other' => 'cursor-pointer select-none relative',
+        'option-padding' => 'py-2 pr-9',
+        'option-rounded' => '',
+        'option-shadow' => '',
+//        'option-selected' => 'bg-input-item-hover text-input-item-hover',
+        'option-selected' => 'bg-debug text-white',
+        'option-unselected' => 'bg-input-item text-input-item',
+
+        'option-check-background' => '',
+        'option-check-border' => '',
+        'option-check-color' => '',
+        'option-check-font' => '',
+        'option-check-other' => 'absolute inset-y-0 right-0 flex items-center',
+        'option-check-padding' => 'pr-4',
+        'option-check-rounded' => '',
+        'option-check-shadow' => '',
+        'option-check-selected' => 'text-input-item-hover',
+        'option-check-unselected' => 'text-input-item',
+
+        'option-text-styles' => 'block truncate',
+        'option-text-selected' => 'font-bold text-input-item-hover',
+        'option-text-unselected' => 'font-normal text-input-item',
+
+        'option-subtext-styles' => 'truncate text-gray-500',
+        'option-subtext-selected' => 'text-gray-200',
+        'option-subtext-unselected' => 'text-gray-500',
 
         // Config
         'type' => 'select',
@@ -462,16 +502,17 @@ return [
         'image' => false,
         'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
 
-        'icon-right-icon' => 'icon.chevron-down',
-        'icon-right-background' => '',
-        'icon-right-border' => 'border-l border-input',
-        'icon-right-color' => 'text-muted',
-        'icon-right-font' => '',
-        'icon-right-size' => 'w-4 h-4',
-        'icon-right-other' => 'absolute',
-        'icon-right-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
-        'icon-right-rounded' => '',
-        'icon-right-shadow' => '',
+        'button-icon' => 'icon.chevron-down',
+
+        'button-icon-background' => '',
+        'button-icon-border' => 'border-l border-input',
+        'button-icon-color' => 'text-muted',
+        'button-icon-font' => '',
+        'button-icon-size' => 'w-4 h-4',
+        'button-icon-other' => 'absolute',
+        'button-icon-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
+        'button-icon-rounded' => '',
+        'button-icon-shadow' => '',
 
     ],
 
@@ -677,6 +718,7 @@ return [
         'clear-filters-shadow' => '',
 
         'search' => true,
+        'search-event' => '',
     ],
 
     'table-active-filter' => [

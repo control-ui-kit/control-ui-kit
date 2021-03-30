@@ -9,7 +9,7 @@ use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Select extends Component
+class SelectNew extends Component
 {
     use UseThemeFile, UseLanguageString;
 
@@ -18,7 +18,7 @@ class Select extends Component
     public string $name;
     public string $id;
     public string $value;
-    public $options;
+    public array $options;
 
     public ?string $type;
     public ?string $selectedIcon;
@@ -116,13 +116,20 @@ class Select extends Component
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? 'null');
-        $this->options = $options;
 
         $this->type = $this->style($this->component, 'type', $type);
+        $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
+
+        if ($this->type === 'select') {
+            $null = [null => $this->pleaseSelectText];
+            $this->options = $null + $options;
+        } else {
+            $this->options = $options;
+        }
+
         $this->selectedIcon = $this->style($this->component, 'selected-icon', $selectedIcon);
         $this->selectedIconSize = $this->style($this->component, 'selected-icon-size', $selectedIconSize);
 
-        $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
 
         $this->textStyles = [
             'text-styles' => $this->style($this->component, 'option-text-styles', $listOptionTextStyles),
@@ -138,10 +145,6 @@ class Select extends Component
 
         $this->image = $this->image($this->style($this->component, 'image', $image));
         $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
-
-        if ($this->type === 'select') {
-//            $this->options = array_merge([0 => $this->pleaseSelectText], $this->options);
-        }
 
         if ($this->value === 'null') {
             if ($type === 'required') {
@@ -234,7 +237,7 @@ class Select extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select');
+        return view('control-ui-kit::control-ui-kit.forms.inputs.select-new');
     }
 
     private function getFirstOptionKey(): string
@@ -261,5 +264,10 @@ class Select extends Component
     public function listClasses(): string
     {
         return $this->classList($this->listStyles);
+    }
+
+    public function optionsEncode(): string
+    {
+        return htmlentities(json_encode((object) $this->options, JSON_THROW_ON_ERROR));
     }
 }

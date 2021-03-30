@@ -4,7 +4,7 @@
     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0">
 
         <div class="w-full md:w-1/3">
-            <x-input.search name="search" placeholder="Search..." background="bg-white" />
+            <x-input.search name="search" placeholder="Search..." background="bg-table-filters" {{ $attributes->whereStartsWith('wire:model') }} />
         </div>
 
         @isset($filters)
@@ -32,7 +32,7 @@
     </div>
     @endif
 
-    <table {{ $attributes->merge($classes()) }}>
+    <table {{ $attributes->merge($classes())->whereDoesntStartWith('wire:model') }}>
         @isset($headings)
         <thead>
         <tr class="{{ $headingStyles }}">

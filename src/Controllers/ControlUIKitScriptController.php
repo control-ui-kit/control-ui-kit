@@ -8,7 +8,99 @@ class ControlUIKitScriptController extends Controller
 {
     public function __invoke(): string
     {
+        $this->disablePackageConflicts();
+
         return <<<blade
+            window.Components = {
+                listbox(options) {
+                    let id = options.id || 'selected'
+
+                    return {
+                        init() {
+                            this.optionCount = this.\$refs['listbox-' + id].children.length
+                            this.\$watch('activeIndex', (highlightIndex) => {
+                                if (!this.open) return
+
+                                if (this.activeIndex === null) {
+                                    this.activeDescendant = ''
+                                    return
+                                }
+
+                                this.activeDescendant = this.\$refs['listbox-' + id].children[this.activeIndex].id
+                            })
+
+                            for (let i = 0; i < this.\$refs['listbox-' + id].children.length; i++) {
+                                if (this.\$refs['listbox-' + id].children[i].dataset.value === this.value) {
+                                    this.highlightIndex = i
+                                    this.activeIndex = i
+                                }
+                            }
+
+                            if (this.highlightIndex !== null) {
+                                this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
+                            }
+                        },
+                        activeDescendant: null,
+                        optionCount: null,
+                        open: false,
+                        text: null,
+                        activeIndex: 0,
+                        highlightIndex: 0,
+                        value: null,
+                        onMouseSelect(activeIndex) {
+                            this.highlightIndex = activeIndex
+                            this.open = false
+                            this.text = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.text
+                            this.value = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.value
+                        },
+                        onButtonClick() {
+                            if (this.open) return
+                            this.activeIndex = this.highlightIndex
+                            this.open = true
+                            this.\$nextTick(() => {
+                                this.\$refs['listbox-' + id].focus()
+                                if (this.activeIndex) {
+                                    this.\$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                                }
+                            })
+                        },
+                        onKeyboardSelect() {
+                            if (this.activeIndex !== null) {
+                                this.highlightIndex = this.activeIndex
+                            }
+                            this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
+                            this.value = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.value
+                            this.open = false
+                            this.\$refs.button.focus()
+                        },
+                        onValueChange() {
+                            for (let i = 0; i < this.\$refs['listbox-' + id].children.length; i++) {
+                                if (this.\$refs['listbox-' + id].children[i].dataset.value === this.value) {
+                                    this.highlightIndex = i
+                                    this.activeIndex = i
+                                    this.text = this.\$refs['listbox-' + id].children[i].dataset.text
+                                    this.value = this.\$refs['listbox-' + id].children[i].dataset.value
+                                    break
+                                }
+                            }
+                        },
+                        onEscape() {
+                            this.open = false
+                            this.\$refs.button.focus()
+                        },
+                        onArrowUp() {
+                            this.activeIndex = this.activeIndex - 1 < 0 ? this.optionCount - 1 : this.activeIndex - 1
+                            this.\$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                        },
+                        onArrowDown() {
+                            this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
+                            this.\$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                        },
+                        ...options,
+                    }
+                },
+            }
+
             function _controlNumber(input, decimals, min, max, fixed) {
                 let number = input.value.replace(/[^\d\.-]/g, "") * 1;
 
@@ -26,6 +118,13 @@ class ControlUIKitScriptController extends Controller
                     input.value = (input.value * 1).toFixed(decimals);
                 }
             }
-            blade;
+        blade;
+    }
+
+    private function disablePackageConflicts(): void
+    {
+        if (config('debugbar.enabled')) {
+            app('debugbar')->disable();
+        }
     }
 }

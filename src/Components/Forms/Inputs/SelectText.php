@@ -9,29 +9,24 @@ use Illuminate\View\Component;
 class SelectText extends Component
 {
     public string $value;
-    public string $text;
     public ?string $subtext;
-    public $option;
+    public string $text;
+    public array $styles;
 
     public function __construct(
         string $value,
         string $text,
-        string $subtext = null,
-        $option = null
+        array $styles,
+        string $subtext = null
     ) {
         $this->value = $value;
-        $this->text = $text;
-        $this->option = $option;
         $this->subtext = $subtext;
+        $this->text = $text;
+        $this->styles = $styles;
     }
 
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.select.text');
-    }
-
-    public function usingOptionArray(): bool
-    {
-        return is_array($this->option);
     }
 }

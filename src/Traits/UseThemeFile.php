@@ -87,12 +87,16 @@ trait UseThemeFile
         return $classList ? ['class' => $classList] : [];
     }
 
-    public function classList(array $classes, string $merge = '', array $only = []): string
+    public function classList(array $classes, string $merge = '', array $only = [], array $except = []): string
     {
         $collect = collect($classes)->filter()->unique();
 
         if ($only) {
             $collect = $collect->only($only);
+        }
+
+        if ($except) {
+            $collect = $collect->except($except);
         }
 
         $collect[] = $merge;
