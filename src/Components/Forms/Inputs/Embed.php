@@ -21,6 +21,7 @@ class Embed extends Component
     public function __construct(
         bool $prefix = false,
         bool $suffix = false,
+
         bool $iconLeft = false,
         bool $iconRight = false,
         string $background = null,

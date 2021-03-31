@@ -17,36 +17,44 @@ class Select extends Component
 
     public string $name;
     public string $id;
-    public string $value;
-    public $options;
+    public $value;
+    public array $options;
+    public int $activeIndex = 0;
 
-    public ?string $type;
-    public ?string $selectedIcon;
-    public ?string $selectedIconSize;
+    public ?string $checkIcon;
+    public ?string $checkIconSize;
     public ?string $pleaseSelectText;
 
-    public ?string $buttonIcon;
-    public ?string $buttonIconSize;
-    public array $buttonIconStyles;
+    public ?string $icon;
+    public ?string $iconSize;
 
-    public ?string $textName;
-    public ?string $subtext;
-    public ?string $image;
-    public ?string $imageDefault;
+    public array $iconStyles;
+
+//    public ?string $textName;
+//    public ?string $subtext;
+//    public ?string $image;
+//    public ?string $imageDefault;
 
     public array $listStyles;
     public array $checkStyles;
     public array $optionStyles;
     public array $textStyles;
+    public array $subtextStyles;
 
     public function __construct(
+
         string $name,
+        $options = [],
+        $value = null,
 
-        string $type = null,
-        string $selectedIcon = null,
-        string $selectedIconSize = null,
+        string $id = null,
+//        string $image = null,
+//        string $imageDefault = null,
         string $pleaseSelectText = null,
-
+        bool $required = false,
+//        string $subtext = null,
+//        string $textName = null,
+//
         string $buttonBackground = null,
         string $buttonBorder = null,
         string $buttonColor = null,
@@ -55,17 +63,18 @@ class Select extends Component
         string $buttonPadding = null,
         string $buttonRounded = null,
         string $buttonShadow = null,
+        string $buttonWidth = null,
 
-        string $buttonIcon = null,
-        string $buttonIconBackground = null,
-        string $buttonIconBorder = null,
-        string $buttonIconColor = null,
-        string $buttonIconFont = null,
-        string $buttonIconSize = null,
-        string $buttonIconOther = null,
-        string $buttonIconPadding = null,
-        string $buttonIconRounded = null,
-        string $buttonIconShadow = null,
+        string $icon = null,
+        string $iconBackground = null,
+        string $iconBorder = null,
+        string $iconColor = null,
+        string $iconFont = null,
+        string $iconSize = null,
+        string $iconOther = null,
+        string $iconPadding = null,
+        string $iconRounded = null,
+        string $iconShadow = null,
 
         string $listBackground = null,
         string $listBorder = null,
@@ -75,6 +84,7 @@ class Select extends Component
         string $listPadding = null,
         string $listRounded = null,
         string $listShadow = null,
+        string $listWidth = null,
 
         string $optionBackground = null,
         string $optionBorder = null,
@@ -84,72 +94,66 @@ class Select extends Component
         string $optionPadding = null,
         string $optionRounded = null,
         string $optionShadow = null,
-        string $optionSelected = null,
-        string $optionUnselected = null,
+        string $optionActive = null,
+        string $optionInactive = null,
 
-        string $optionCheckBackground = null,
-        string $optionCheckBorder = null,
-        string $optionCheckColor = null,
-        string $optionCheckFont = null,
-        string $optionCheckOther = null,
-        string $optionCheckPadding = null,
-        string $optionCheckRounded = null,
-        string $optionCheckShadow = null,
-        string $optionCheckSelected = null,
-        string $optionCheckUnselected = null,
+        string $textBackground = null,
+        string $textBorder = null,
+        string $textColor = null,
+        string $textFont = null,
+        string $textOther = null,
+        string $textPadding = null,
+        string $textRounded = null,
+        string $textShadow = null,
+        string $textActive = null,
+        string $textInactive = null,
 
-        string $listOptionTextStyles = null,
-        string $listOptionTextSelected = null,
-        string $listOptionTextUnselected = null,
-        string $listOptionSubTextStyles = null,
-        string $listOptionSubTextSelected = null,
-        string $listOptionSubTextUnselected = null,
+        string $subtextBackground = null,
+        string $subtextBorder = null,
+        string $subtextColor = null,
+        string $subtextFont = null,
+        string $subtextOther = null,
+        string $subtextPadding = null,
+        string $subtextRounded = null,
+        string $subtextShadow = null,
+        string $subtextActive = null,
+        string $subtextInactive = null,
 
-        string $textName = null,
-        string $subtext = null,
-        string $image = null,
-        string $imageDefault = null,
-        string $id = null,
-        $options = [],
-        ?string $value = null
+        string $checkBackground = null,
+        string $checkBorder = null,
+        string $checkColor = null,
+        string $checkFont = null,
+        string $checkIcon = null,
+        string $checkIconSize = null,
+        string $checkOther = null,
+        string $checkPadding = null,
+        string $checkRounded = null,
+        string $checkShadow = null,
+        string $checkActive = null,
+        string $checkInactive = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->value = old($name, $value ?? 'null');
-        $this->options = $options;
-
-        $this->type = $this->style($this->component, 'type', $type);
-        $this->selectedIcon = $this->style($this->component, 'selected-icon', $selectedIcon);
-        $this->selectedIconSize = $this->style($this->component, 'selected-icon-size', $selectedIconSize);
+        $this->value = old($name, $value);
 
         $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
 
-        $this->textStyles = [
-            'text-styles' => $this->style($this->component, 'option-text-styles', $listOptionTextStyles),
-            'text-selected' => $this->style($this->component, 'option-text-selected', $listOptionTextSelected),
-            'text-unselected' => $this->style($this->component, 'option-text-unselected', $listOptionTextUnselected),
-            'subtext-styles' => $this->style($this->component, 'option-subtext-styles', $listOptionSubTextStyles),
-            'subtext-selected' => $this->style($this->component, 'option-subtext-selected', $listOptionSubTextSelected),
-            'subtext-unselected' => $this->style($this->component, 'option-subtext-unselected', $listOptionSubTextUnselected),
-        ];
+        if (! $required) {
+            $null = [null => $this->pleaseSelectText];
+            $this->options = $null + $options;
+        } else {
+            $this->options = $options;
 
-        $this->textName = $this->style($this->component, 'text-name', $textName);
-        $this->subtext = $this->subtext($this->style($this->component, 'subtext', $subtext));
-
-        $this->image = $this->image($this->style($this->component, 'image', $image));
-        $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
-
-        if ($this->type === 'select') {
-//            $this->options = array_merge([0 => $this->pleaseSelectText], $this->options);
-        }
-
-        if ($this->value === 'null') {
-            if ($type === 'required') {
-                $this->value = $this->getFirstOptionKey();
-            } elseif ($this->type === 'select') {
-                $this->value = '0';
+            if ($this->value === null) {
+                $this->value = array_key_first($options);
             }
         }
+
+//        $this->textName = $this->style($this->component, 'text-name', $textName);
+//        $this->subtext = $this->subtext($this->style($this->component, 'subtext', $subtext));
+//
+//        $this->image = $this->image($this->style($this->component, 'image', $image));
+//        $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -160,21 +164,22 @@ class Select extends Component
             'button-padding' => $buttonPadding,
             'button-rounded' => $buttonRounded,
             'button-shadow' => $buttonShadow,
+            'button-width' => $buttonWidth,
         ]);
 
-        $this->buttonIcon = $this->style($this->component, 'button-icon', $buttonIcon);
-        $this->buttonIconSize = $this->style($this->component, 'button-icon-size', $buttonIconSize);
+        $this->icon = $this->style($this->component, 'icon', $icon);
+        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
 
         $this->setConfigStyles([
-            'button-icon-background' => $buttonIconBackground,
-            'button-icon-border' => $buttonIconBorder,
-            'button-icon-color' => $buttonIconColor,
-            'button-icon-font' => $buttonIconFont,
-            'button-icon-other' => $buttonIconOther,
-            'button-icon-padding' => $buttonIconPadding,
-            'button-icon-rounded' => $buttonIconRounded,
-            'button-icon-shadow' => $buttonIconShadow,
-        ], [], null, 'buttonIconStyles');
+            'icon-background' => $iconBackground,
+            'icon-border' => $iconBorder,
+            'icon-color' => $iconColor,
+            'icon-font' => $iconFont,
+            'icon-other' => $iconOther,
+            'icon-padding' => $iconPadding,
+            'icon-rounded' => $iconRounded,
+            'icon-shadow' => $iconShadow,
+        ], [], null, 'iconStyles');
 
         $this->setConfigStyles([
             'list-background' => $listBackground,
@@ -185,6 +190,7 @@ class Select extends Component
             'list-padding' => $listPadding,
             'list-rounded' => $listRounded,
             'list-shadow' => $listShadow,
+            'list-width' => $listWidth,
         ], [], null, 'listStyles');
 
         $this->setConfigStyles([
@@ -196,70 +202,133 @@ class Select extends Component
             'option-padding' => $optionPadding,
             'option-rounded' => $optionRounded,
             'option-shadow' => $optionShadow,
-            'option-selected' => $optionSelected,
-            'option-unselected' => $optionUnselected,
+            'option-active' => $optionActive,
+            'option-inactive' => $optionInactive,
         ], [], null, 'optionStyles');
 
         $this->setConfigStyles([
-            'option-check-background' => $optionCheckBackground,
-            'option-check-border' => $optionCheckBorder,
-            'option-check-color' => $optionCheckColor,
-            'option-check-font' => $optionCheckFont,
-            'option-check-other' => $optionCheckOther,
-            'option-check-padding' => $optionCheckPadding,
-            'option-check-rounded' => $optionCheckRounded,
-            'option-check-shadow' => $optionCheckShadow,
-            'option-check-selected' => $optionCheckSelected,
-            'option-check-unselected' => $optionCheckUnselected,
+            'text-background' => $textBackground,
+            'text-border' => $textBorder,
+            'text-color' => $textColor,
+            'text-font' => $textFont,
+            'text-other' => $textOther,
+            'text-padding' => $textPadding,
+            'text-rounded' => $textRounded,
+            'text-shadow' => $textShadow,
+            'text-active' => $textActive,
+            'text-inactive' => $textInactive,
+        ], [], null, 'textStyles');
+
+        $this->setConfigStyles([
+            'subtext-background' => $subtextBackground,
+            'subtext-border' => $subtextBorder,
+            'subtext-color' => $subtextColor,
+            'subtext-font' => $subtextFont,
+            'subtext-other' => $subtextOther,
+            'subtext-padding' => $subtextPadding,
+            'subtext-rounded' => $subtextRounded,
+            'subtext-shadow' => $subtextShadow,
+            'subtext-active' => $subtextActive,
+            'subtext-inactive' => $subtextInactive,
+        ], [], null, 'subtextStyles');
+
+        $this->setConfigStyles([
+            'check-background' => $checkBackground,
+            'check-border' => $checkBorder,
+            'check-color' => $checkColor,
+            'check-font' => $checkFont,
+            'check-other' => $checkOther,
+            'check-padding' => $checkPadding,
+            'check-rounded' => $checkRounded,
+            'check-shadow' => $checkShadow,
+            'check-active' => $checkActive,
+            'check-inactive' => $checkInactive,
         ], [], null, 'checkStyles');
+
+        $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
+        $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
     }
 
-    private function subtext($subtext): ?string
-    {
-        if (is_null($subtext)) {
-            return null;
-        }
-
-        return $subtext === "1" ? 'subtext' : $subtext ;
-    }
-
-    private function image($image): ?string
-    {
-        if (is_null($image)) {
-            return null;
-        }
-
-        return $image === "1" ? 'image' : $image;
-    }
+//    private function subtext($subtext): ?string
+//    {
+//        if (is_null($subtext)) {
+//            return null;
+//        }
+//
+//        return $subtext === "1" ? 'subtext' : $subtext ;
+//    }
+//
+//    private function image($image): ?string
+//    {
+//        if (is_null($image)) {
+//            return null;
+//        }
+//
+//        return $image === "1" ? 'image' : $image;
+//    }
 
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.select');
     }
 
-    private function getFirstOptionKey(): string
-    {
-        if ($this->options) {
-            foreach ($this->options as $key => $object) {
-                return (string)$key;
-            }
-        }
-
-        return 'null';
-    }
-
-    public function textName(): string
-    {
-        return $this->textName;
-    }
-
-    public function alpineData(): string
-    {
-        return Str::camel('ui-select-' . $this->id);
-    }
+//    public function textName(): string
+//    {
+//        return $this->textName;
+//    }
 
     public function listClasses(): string
     {
         return $this->classList($this->listStyles);
+    }
+
+    public function iconClasses(): string
+    {
+        return $this->classList($this->iconStyles);
+    }
+
+    public function optionClasses(): string
+    {
+        return $this->classList($this->optionStyles, '', [], ['option-active', 'option-inactive']);
+    }
+
+    public function optionActive(): string
+    {
+        return $this->optionStyles['option-active'];
+    }
+
+    public function optionInactive(): string
+    {
+        return $this->optionStyles['option-inactive'];
+    }
+
+    public function textClasses(): string
+    {
+        return $this->classList($this->textStyles, '', [], ['text-active', 'text-inactive']);
+    }
+
+    public function textActive(): string
+    {
+        return $this->textStyles['text-active'];
+    }
+
+    public function textInactive(): string
+    {
+        return $this->textStyles['text-inactive'];
+    }
+
+    public function checkClasses(): string
+    {
+        return $this->classList($this->checkStyles, '', [], ['check-active', 'check-inactive']);
+    }
+
+    public function checkActive(): string
+    {
+        return $this->checkStyles['check-active'];
+    }
+
+    public function checkInactive(): string
+    {
+        return $this->checkStyles['check-inactive'];
     }
 }
