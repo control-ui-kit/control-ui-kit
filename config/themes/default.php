@@ -249,7 +249,7 @@ return [
         'suffix-rounded' => '',
         'suffix-shadow' => '',
 
-        'input-background' => 'bg-transparent',
+        'input-background' => 'bg-input',
         'input-border' => 'border-0 focus:outline-none focus:ring-0',
         'input-color' => 'text-input placeholder-input',
         'input-font' => '',
