@@ -1,6 +1,6 @@
 <div x-cloak x-data="Components.listbox({ id: '{{ $id }}', value: '{{ $value }}' })" x-init="init()">
 
-    <input type="text" name="{{ $name }}" id="{{ $id }}" @if($value) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
+    <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if($value) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
 
 {{--    <label id="listbox-label" class="block text-sm font-medium text-gray-700" @click="$refs.button.focus()">--}}
 {{--        Assigned to--}}
@@ -53,16 +53,23 @@
                     @mouseleave="activeIndex = null"
                     :class="{ '{{ $optionActive() }}': activeIndex === {{ $activeIndex }}, '{{ $optionInactive() }}': !(activeIndex === {{ $activeIndex }}) }"
                 >
-                    <span class="{{ $textClasses() }}"
-                          :class="{ '{{ $textActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $textInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
-                    >{{ $text($option) }}</span>
+                    <div class="flex items-center {{ $optionSpacing() }}">
 
-                    @if ($value && $subtext($option))
-{{--                        @dd($value, $subtext)--}}
-                    <span class="{{ $subtextClasses() }}"
-                          :class="{ '{{ $subtextActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $subtextInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
-                    >{{ $subtext($option) }}</span>
-                    @endif
+                        @if ($image($option))
+                        <img src="{{ $image($option) }}" alt="" class="{{ $imageClasses() }}">
+                        @endif
+
+                        <span class="{{ $textClasses() }}"
+                              :class="{ '{{ $textActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $textInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
+                        >{{ $text($option) }}</span>
+
+                        @if ($value && $subtext($option))
+                        <span class="{{ $subtextClasses() }}"
+                              :class="{ '{{ $subtextActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $subtextInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
+                        >{{ $subtext($option) }}</span>
+                        @endif
+
+                    </div>
 
                     @if ($checkIcon)
                     <span class="{{ $checkClasses() }}"

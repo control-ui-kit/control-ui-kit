@@ -47,6 +47,16 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.icon-shadow', 'icon-shadow');
         Config::set('themes.default.input-select.icon-size', 'icon-size');
 
+        Config::set('themes.default.input-select.image-background', 'image-background');
+        Config::set('themes.default.input-select.image-border', 'image-border');
+        Config::set('themes.default.input-select.image-color', 'image-color');
+        Config::set('themes.default.input-select.image-font', 'image-font');
+        Config::set('themes.default.input-select.image-other', 'image-other');
+        Config::set('themes.default.input-select.image-padding', 'image-padding');
+        Config::set('themes.default.input-select.image-rounded', 'image-rounded');
+        Config::set('themes.default.input-select.image-shadow', 'image-shadow');
+        Config::set('themes.default.input-select.image-size', 'image-size');
+
         Config::set('themes.default.input-select.list-background', 'list-background');
         Config::set('themes.default.input-select.list-border', 'list-border');
         Config::set('themes.default.input-select.list-color', 'list-color');
@@ -65,6 +75,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.option-padding', 'option-padding');
         Config::set('themes.default.input-select.option-rounded', 'option-rounded');
         Config::set('themes.default.input-select.option-shadow', 'option-shadow');
+        Config::set('themes.default.input-select.option-spacing', 'option-spacing');
         Config::set('themes.default.input-select.option-active', 'option-active');
         Config::set('themes.default.input-select.option-inactive', 'option-inactive');
 
@@ -103,7 +114,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -115,7 +126,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -123,7 +134,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -131,7 +142,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -158,7 +169,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -170,7 +181,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -178,7 +189,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -186,7 +197,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -213,7 +224,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -225,7 +236,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -233,7 +244,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="en" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -241,7 +252,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="es" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -277,7 +288,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -289,7 +300,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -297,7 +308,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -305,7 +316,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -341,7 +352,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -353,7 +364,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -361,7 +372,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -369,7 +380,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -405,7 +416,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -417,7 +428,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -425,7 +436,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -433,7 +444,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -469,7 +480,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -481,7 +492,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -489,7 +500,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -497,7 +508,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -526,6 +537,7 @@ class SelectTest extends ComponentTestCase
                 option-padding="custom-padding"
                 option-rounded="custom-rounded"
                 option-shadow="custom-shadow"
+                option-spacing="custom-spacing"
                 option-active="custom-active"
                 option-inactive="custom-inactive"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -534,7 +546,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -546,7 +558,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'custom-active': activeIndex === 0, 'custom-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center custom-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -554,7 +566,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'custom-active': activeIndex === 1, 'custom-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center custom-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -562,7 +574,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'custom-active': activeIndex === 2, 'custom-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center custom-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -591,6 +603,7 @@ class SelectTest extends ComponentTestCase
                 option-padding="none"
                 option-rounded="none"
                 option-shadow="none"
+                option-spacing="none"
                 option-active="none"
                 option-inactive="none"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -599,7 +612,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -611,7 +624,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ '': activeIndex === 0, '': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center "> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -619,7 +632,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ '': activeIndex === 1, '': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center "> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -627,7 +640,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ '': activeIndex === 2, '': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center "> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -664,7 +677,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -676,7 +689,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 0, 'custom-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 0, 'custom-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -684,7 +697,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 1, 'custom-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 1, 'custom-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -692,7 +705,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 2, 'custom-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 2, 'custom-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -729,7 +742,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -741,7 +754,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="" :class="{ '': highlightIndex === 0, '': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="" :class="{ '': highlightIndex === 0, '': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -749,7 +762,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="" :class="{ '': highlightIndex === 1, '': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="" :class="{ '': highlightIndex === 1, '': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -757,7 +770,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="" :class="{ '': highlightIndex === 2, '': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="" :class="{ '': highlightIndex === 2, '': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -775,8 +788,6 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_subtext_styles(): void
     {
-        $this->markTestIncomplete('need subtext first');
-
         $template = <<<HTML
             <x-input.select
                 name="language"
@@ -790,13 +801,16 @@ class SelectTest extends ComponentTestCase
                 subtext-shadow="custom-shadow"
                 subtext-active="custom-active"
                 subtext-inactive="custom-inactive"
-                :options="[ 1 => 'English', 2 => 'Spanish' ]"
+                :options="[
+                    1 => ['text' => 'English', 'subtext' => '::subtext1'],
+                    2 => ['text' => 'Spanish', 'subtext' => '::subtext2'],
+                ]"
             />
             HTML;
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -808,7 +822,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -816,7 +830,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 1, 'custom-inactive': !(highlightIndex === 1) }">::subtext1</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -824,7 +838,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 2, 'custom-inactive': !(highlightIndex === 2) }">::subtext2</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -842,8 +856,6 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_subtext_styles(): void
     {
-        $this->markTestIncomplete('need subtext first');
-
         $template = <<<HTML
             <x-input.select
                 name="language"
@@ -857,13 +869,16 @@ class SelectTest extends ComponentTestCase
                 subtext-shadow="none"
                 subtext-active="none"
                 subtext-inactive="none"
-                :options="[ 1 => 'English', 2 => 'Spanish' ]"
+                :options="[
+                    1 => ['text' => 'English', 'subtext' => '::subtext1'],
+                    2 => ['text' => 'Spanish', 'subtext' => '::subtext2'],
+                ]"
             />
             HTML;
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -875,7 +890,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -883,7 +898,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="" :class="{ '': highlightIndex === 1, '': !(highlightIndex === 1) }">::subtext1</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -891,7 +906,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="" :class="{ '': highlightIndex === 2, '': !(highlightIndex === 2) }">::subtext2</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -930,7 +945,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -942,7 +957,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': activeIndex === 0, 'custom-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="custom-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="3" cy="3" r="3"/>
@@ -950,7 +965,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': activeIndex === 1, 'custom-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="custom-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="3" cy="3" r="3"/>
@@ -958,7 +973,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': activeIndex === 2, 'custom-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="custom-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="3" cy="3" r="3"/>
@@ -995,7 +1010,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1007,7 +1022,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="" :class="{ '': activeIndex === 0, '': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1015,7 +1030,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="" :class="{ '': activeIndex === 1, '': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1023,7 +1038,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="" :class="{ '': activeIndex === 2, '': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1060,7 +1075,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1072,7 +1087,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1080,7 +1095,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1088,7 +1103,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1124,7 +1139,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1136,7 +1151,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1144,7 +1159,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1152,7 +1167,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1182,7 +1197,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1194,7 +1209,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1202,7 +1217,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1210,7 +1225,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1241,7 +1256,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1253,7 +1268,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1261,7 +1276,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1269,7 +1284,7 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span> </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1300,7 +1315,7 @@ class SelectTest extends ComponentTestCase
 
         $expected = <<<HTML
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
-                <input type="text" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <div class="relative">
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <span x-text="text" class="block truncate"></span>
@@ -1312,7 +1327,7 @@ class SelectTest extends ComponentTestCase
                         </button>
                         <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                             <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span>
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
                                 <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
                                     <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1320,7 +1335,7 @@ class SelectTest extends ComponentTestCase
                                     </span>
                                 </li>
                                 <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
-                                    <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span>
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">::subtext1</span> </div>
                                     <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
                                         <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
@@ -1328,7 +1343,282 @@ class SelectTest extends ComponentTestCase
                                         </span>
                                     </li>
                                     <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
-                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span>
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">::subtext2</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_image(): void
+    {
+        $template = <<<HTML
+            <x-input.select
+                name="language"
+                :options="[
+                    1 => ['text' => 'English', 'image' => 'english.jpg'],
+                    2 => ['text' => 'Spanish', 'image' => 'spanish.jpg'],
+                ]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <div class="relative">
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <span x-text="text" class="block truncate"></span>
+                        <span class="icon-background icon-border icon-color icon-font icon-other icon-padding icon-rounded icon-shadow">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                    <div class="flex items-center option-spacing">
+                                        <img src="english.jpg" alt="" class="image-background image-border image-color image-font image-other image-padding image-rounded image-shadow image-size">
+                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                        <div class="flex items-center option-spacing">
+                                            <img src="spanish.jpg" alt="" class="image-background image-border image-color image-font image-other image-padding image-rounded image-shadow image-size">
+                                            <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_image_name(): void
+    {
+        $template = <<<HTML
+            <x-input.select
+                name="language"
+                image="image-url"
+                :options="[
+                    1 => ['text' => 'English', 'image-url' => 'english.jpg'],
+                    2 => ['text' => 'Spanish', 'image-url' => 'spanish.jpg'],
+                ]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <div class="relative">
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <span x-text="text" class="block truncate"></span>
+                        <span class="icon-background icon-border icon-color icon-font icon-other icon-padding icon-rounded icon-shadow">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                    <div class="flex items-center option-spacing">
+                                        <img src="english.jpg" alt="" class="image-background image-border image-color image-font image-other image-padding image-rounded image-shadow image-size">
+                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                        <div class="flex items-center option-spacing">
+                                            <img src="spanish.jpg" alt="" class="image-background image-border image-color image-font image-other image-padding image-rounded image-shadow image-size">
+                                            <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_image_and_custom_image_styles(): void
+    {
+        $template = <<<HTML
+            <x-input.select
+                name="language"
+                image-background="custom-background"
+                image-border="custom-border"
+                image-color="custom-color"
+                image-font="custom-font"
+                image-other="custom-other"
+                image-padding="custom-padding"
+                image-rounded="custom-rounded"
+                image-shadow="custom-shadow"
+                image-size="custom-size"
+                :options="[
+                    1 => ['text' => 'English', 'image' => 'english.jpg'],
+                    2 => ['text' => 'Spanish', 'image' => 'spanish.jpg'],
+                ]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <div class="relative">
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <span x-text="text" class="block truncate"></span>
+                        <span class="icon-background icon-border icon-color icon-font icon-other icon-padding icon-rounded icon-shadow">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                    <div class="flex items-center option-spacing">
+                                        <img src="english.jpg" alt="" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size">
+                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                        <div class="flex items-center option-spacing">
+                                            <img src="spanish.jpg" alt="" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size">
+                                            <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_image_and_no_image_styles(): void
+    {
+        $template = <<<HTML
+            <x-input.select
+                name="language"
+                image-background="none"
+                image-border="none"
+                image-color="none"
+                image-font="none"
+                image-other="none"
+                image-padding="none"
+                image-rounded="none"
+                image-shadow="none"
+                image-size="none"
+                :options="[
+                    1 => ['text' => 'English', 'image' => 'english.jpg'],
+                    2 => ['text' => 'Spanish', 'image' => 'spanish.jpg'],
+                ]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: '' })" x-init="init()">
+                <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
+                <div class="relative">
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <span x-text="text" class="block truncate"></span>
+                        <span class="icon-background icon-border icon-color icon-font icon-other icon-padding icon-rounded icon-shadow">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="English" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                    <div class="flex items-center option-spacing">
+                                        <img src="english.jpg" alt="" class="">
+                                        <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">English</span>
+                                    </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Spanish" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                        <div class="flex items-center option-spacing">
+                                            <img src="spanish.jpg" alt="" class="">
+                                            <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Spanish</span>
+                                        </div>
                                         <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
                                             <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />

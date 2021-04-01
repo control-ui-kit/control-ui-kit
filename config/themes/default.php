@@ -470,6 +470,7 @@ return [
         'option-padding' => 'py-2 pl-3 pr-9',
         'option-rounded' => '',
         'option-shadow' => '',
+        'option-spacing' => 'space-x-2',
         'option-active' => 'bg-debug text-white',
         'option-inactive' => 'bg-input-option text-input-option',
 
@@ -513,9 +514,10 @@ return [
 
         'text-name' => 'text',
         'subtext-name' => 'subtext',
+        'image-name' => 'image',
 
-        'image' => false,
-        'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
+//        'image' => false,
+//        'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
 
         // absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none
         'icon' => 'icon.chevron-down',
@@ -529,6 +531,15 @@ return [
         'icon-rounded' => '',
         'icon-shadow' => '',
 
+        'image-background' => '',
+        'image-border' => '',
+        'image-color' => '',
+        'image-font' => '',
+        'image-size' => 'h-6 w-auto',
+        'image-other' => 'flex-shrink-0',
+        'image-padding' => '',
+        'image-rounded' => '',
+        'image-shadow' => '',
     ],
 
     'input-toggle' => [

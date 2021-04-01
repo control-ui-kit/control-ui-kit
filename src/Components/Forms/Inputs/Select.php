@@ -32,14 +32,15 @@ class Select extends Component
 
     public ?string $textName;
     public ?string $subtextName;
-//    public ?string $image;
+    public ?string $imageName;
 //    public ?string $imageDefault;
 
-    public array $listStyles;
     public array $checkStyles;
+    public array $imageStyles;
+    public array $listStyles;
     public array $optionStyles;
-    public array $textStyles;
     public array $subtextStyles;
+    public array $textStyles;
 
     public function __construct(
 
@@ -48,7 +49,7 @@ class Select extends Component
         $value = null,
 
         string $id = null,
-//        string $image = null,
+        string $image = null,
 //        string $imageDefault = null,
         string $pleaseSelectText = null,
         bool $required = false,
@@ -76,6 +77,16 @@ class Select extends Component
         string $iconRounded = null,
         string $iconShadow = null,
 
+        string $imageBackground = null,
+        string $imageBorder = null,
+        string $imageColor = null,
+        string $imageFont = null,
+        string $imageSize = null,
+        string $imageOther = null,
+        string $imagePadding = null,
+        string $imageRounded = null,
+        string $imageShadow = null,
+
         string $listBackground = null,
         string $listBorder = null,
         string $listColor = null,
@@ -94,6 +105,7 @@ class Select extends Component
         string $optionPadding = null,
         string $optionRounded = null,
         string $optionShadow = null,
+        string $optionSpacing = null,
         string $optionActive = null,
         string $optionInactive = null,
 
@@ -151,8 +163,7 @@ class Select extends Component
 
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
-//
-//        $this->image = $this->image($this->style($this->component, 'image', $image));
+        $this->imageName = $this->style($this->component, 'image-name', $image);
 //        $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
 
         $this->setConfigStyles([
@@ -182,6 +193,18 @@ class Select extends Component
         ], [], null, 'iconStyles');
 
         $this->setConfigStyles([
+            'image-background' => $imageBackground,
+            'image-border' => $imageBorder,
+            'image-color' => $imageColor,
+            'image-font' => $imageFont,
+            'image-other' => $imageOther,
+            'image-padding' => $imagePadding,
+            'image-rounded' => $imageRounded,
+            'image-shadow' => $imageShadow,
+            'image-size' => $imageSize,
+        ], [], null, 'imageStyles');
+
+        $this->setConfigStyles([
             'list-background' => $listBackground,
             'list-border' => $listBorder,
             'list-color' => $listColor,
@@ -202,6 +225,7 @@ class Select extends Component
             'option-padding' => $optionPadding,
             'option-rounded' => $optionRounded,
             'option-shadow' => $optionShadow,
+            'option-spacing' => $optionSpacing,
             'option-active' => $optionActive,
             'option-inactive' => $optionInactive,
         ], [], null, 'optionStyles');
@@ -249,25 +273,10 @@ class Select extends Component
         $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
     }
 
-//
-//    private function image($image): ?string
-//    {
-//        if (is_null($image)) {
-//            return null;
-//        }
-//
-//        return $image === "1" ? 'image' : $image;
-//    }
-
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.select');
     }
-
-//    public function textName(): string
-//    {
-//        return $this->textName;
-//    }
 
     public function listClasses(): string
     {
@@ -281,7 +290,7 @@ class Select extends Component
 
     public function optionClasses(): string
     {
-        return $this->classList($this->optionStyles, '', [], ['option-active', 'option-inactive']);
+        return $this->classList($this->optionStyles, '', [], ['option-active', 'option-inactive', 'option-spacing']);
     }
 
     public function optionActive(): string
@@ -292,6 +301,11 @@ class Select extends Component
     public function optionInactive(): string
     {
         return $this->optionStyles['option-inactive'];
+    }
+
+    public function optionSpacing(): string
+    {
+        return $this->optionStyles['option-spacing'];
     }
 
     public function textClasses(): string
@@ -347,5 +361,15 @@ class Select extends Component
     public function subtext($option): ?string
     {
         return is_array($option) && array_key_exists($this->subtextName, $option) ? $option[$this->subtextName] : null;
+    }
+
+    public function image($option): ?string
+    {
+        return is_array($option) && array_key_exists($this->imageName, $option) ? $option[$this->imageName] : null;
+    }
+
+    public function imageClasses(): string
+    {
+        return $this->classList($this->imageStyles);
     }
 }
