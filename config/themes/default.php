@@ -512,7 +512,8 @@ return [
         'please-select-text' => 'Please Select ...',
 
         'text-name' => 'text',
-        'subtext' => false,
+        'subtext-name' => 'subtext',
+
         'image' => false,
         'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
 

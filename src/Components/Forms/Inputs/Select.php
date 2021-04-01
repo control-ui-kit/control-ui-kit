@@ -30,8 +30,8 @@ class Select extends Component
 
     public array $iconStyles;
 
-//    public ?string $textName;
-//    public ?string $subtext;
+    public ?string $textName;
+    public ?string $subtextName;
 //    public ?string $image;
 //    public ?string $imageDefault;
 
@@ -52,9 +52,9 @@ class Select extends Component
 //        string $imageDefault = null,
         string $pleaseSelectText = null,
         bool $required = false,
-//        string $subtext = null,
-//        string $textName = null,
-//
+        string $subtext = null,
+        string $text = null,
+
         string $buttonBackground = null,
         string $buttonBorder = null,
         string $buttonColor = null,
@@ -149,8 +149,8 @@ class Select extends Component
             }
         }
 
-//        $this->textName = $this->style($this->component, 'text-name', $textName);
-//        $this->subtext = $this->subtext($this->style($this->component, 'subtext', $subtext));
+        $this->textName = $this->style($this->component, 'text-name', $text);
+        $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
 //
 //        $this->image = $this->image($this->style($this->component, 'image', $image));
 //        $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
@@ -249,14 +249,6 @@ class Select extends Component
         $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
     }
 
-//    private function subtext($subtext): ?string
-//    {
-//        if (is_null($subtext)) {
-//            return null;
-//        }
-//
-//        return $subtext === "1" ? 'subtext' : $subtext ;
-//    }
 //
 //    private function image($image): ?string
 //    {
@@ -317,6 +309,21 @@ class Select extends Component
         return $this->textStyles['text-inactive'];
     }
 
+    public function subtextClasses(): string
+    {
+        return $this->classList($this->subtextStyles, '', [], ['subtext-active', 'subtext-inactive']);
+    }
+
+    public function subtextActive(): string
+    {
+        return $this->subtextStyles['subtext-active'];
+    }
+
+    public function subtextInactive(): string
+    {
+        return $this->subtextStyles['subtext-inactive'];
+    }
+
     public function checkClasses(): string
     {
         return $this->classList($this->checkStyles, '', [], ['check-active', 'check-inactive']);
@@ -330,5 +337,15 @@ class Select extends Component
     public function checkInactive(): string
     {
         return $this->checkStyles['check-inactive'];
+    }
+
+    public function text($option): string
+    {
+        return is_string($option) ? $option : $option[$this->textName];
+    }
+
+    public function subtext($option): ?string
+    {
+        return is_array($option) && array_key_exists($this->subtextName, $option) ? $option[$this->subtextName] : null;
     }
 }

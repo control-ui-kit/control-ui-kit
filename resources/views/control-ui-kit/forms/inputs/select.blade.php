@@ -46,7 +46,7 @@
             @foreach ($options as $value => $option)
                 <li class="{{ $optionClasses() }}"
                     role="option"
-                    data-text="{{ $option }}"
+                    data-text="{{ $text($option) }}"
                     data-value="{{ $value }}"
                     @click="onMouseSelect({{ $activeIndex }})"
                     @mouseenter="activeIndex = {{ $activeIndex }}"
@@ -55,7 +55,14 @@
                 >
                     <span class="{{ $textClasses() }}"
                           :class="{ '{{ $textActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $textInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
-                    >{{ $option }}</span>
+                    >{{ $text($option) }}</span>
+
+                    @if ($value && $subtext($option))
+{{--                        @dd($value, $subtext)--}}
+                    <span class="{{ $subtextClasses() }}"
+                          :class="{ '{{ $subtextActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $subtextInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
+                    >{{ $subtext($option) }}</span>
+                    @endif
 
                     @if ($checkIcon)
                     <span class="{{ $checkClasses() }}"
