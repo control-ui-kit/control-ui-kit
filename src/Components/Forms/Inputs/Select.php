@@ -23,7 +23,6 @@ class Select extends Component
 
     public ?string $checkIcon;
     public ?string $checkIconSize;
-    public ?string $pleaseSelectText;
 
     public ?string $icon;
     public ?string $iconSize;
@@ -33,7 +32,6 @@ class Select extends Component
     public ?string $textName;
     public ?string $subtextName;
     public ?string $imageName;
-//    public ?string $imageDefault;
 
     public array $checkStyles;
     public array $imageStyles;
@@ -50,8 +48,7 @@ class Select extends Component
 
         string $id = null,
         string $image = null,
-//        string $imageDefault = null,
-        string $pleaseSelectText = null,
+        $pleaseSelect = null,
         bool $required = false,
         string $subtext = null,
         string $text = null,
@@ -70,17 +67,13 @@ class Select extends Component
         string $iconBackground = null,
         string $iconBorder = null,
         string $iconColor = null,
-        string $iconFont = null,
         string $iconSize = null,
         string $iconOther = null,
         string $iconPadding = null,
         string $iconRounded = null,
         string $iconShadow = null,
 
-        string $imageBackground = null,
         string $imageBorder = null,
-        string $imageColor = null,
-        string $imageFont = null,
         string $imageSize = null,
         string $imageOther = null,
         string $imagePadding = null,
@@ -148,23 +141,20 @@ class Select extends Component
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
 
-        $this->pleaseSelectText = $this->style($this->component, 'please-select-text', $pleaseSelectText);
-
         if (! $required) {
-            $null = [null => $this->pleaseSelectText];
-            $this->options = $null + $options;
+            $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
+            $this->options = $pleaseSelectOption + $options;
         } else {
             $this->options = $options;
+        }
 
-            if ($this->value === null) {
-                $this->value = array_key_first($options);
-            }
+        if ($this->value === null) {
+            $this->setFirstValue();
         }
 
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
         $this->imageName = $this->style($this->component, 'image-name', $image);
-//        $this->imageDefault = $this->style($this->component, 'image-default', $imageDefault);
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -185,7 +175,6 @@ class Select extends Component
             'icon-background' => $iconBackground,
             'icon-border' => $iconBorder,
             'icon-color' => $iconColor,
-            'icon-font' => $iconFont,
             'icon-other' => $iconOther,
             'icon-padding' => $iconPadding,
             'icon-rounded' => $iconRounded,
@@ -193,10 +182,7 @@ class Select extends Component
         ], [], null, 'iconStyles');
 
         $this->setConfigStyles([
-            'image-background' => $imageBackground,
             'image-border' => $imageBorder,
-            'image-color' => $imageColor,
-            'image-font' => $imageFont,
             'image-other' => $imageOther,
             'image-padding' => $imagePadding,
             'image-rounded' => $imageRounded,
@@ -371,5 +357,54 @@ class Select extends Component
     public function imageClasses(): string
     {
         return $this->classList($this->imageStyles);
+    }
+
+    private function transPleaseSelectText(array $pleaseSelect, ?string $text): string
+    {
+        if (array_key_exists('trans', $pleaseSelect)) {
+            return trans($pleaseSelect['trans']);
+        }
+
+        return $this->style($this->component, 'please-select-trans', $text);
+    }
+
+    private function pleaseSelect($pleaseSelect): array
+    {
+        if (! is_array($pleaseSelect)) {
+            $value = $this->style($this->component, 'please-select-value', null);
+            $text = $this->style($this->component, 'please-select-text', $pleaseSelect);
+            $trans = $this->style($this->component, 'please-select-trans', null);
+
+            if (is_null($pleaseSelect) && $trans) {
+                $text = trans($trans);
+            }
+
+            return [$value => $text];
+        }
+
+        $text = (array_key_exists('text', $pleaseSelect))
+            ? $pleaseSelect['text']
+            : $this->style($this->component, 'please-select-text', null);
+        $value = $pleaseSelect['value'] ?? null;
+
+        if (is_null($this->value)) {
+            $this->value = $value;
+        }
+
+        return [$value => $this->transPleaseSelectText($pleaseSelect, $text)];
+    }
+
+    public function jsonValue()
+    {
+        if (is_null($this->value)) {
+            return 'null';
+        }
+
+        return is_numeric($this->value) ? $this->value : "'{$this->value}'";
+    }
+
+    private function setFirstValue(): void
+    {
+        $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options) ;
     }
 }

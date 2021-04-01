@@ -1,6 +1,6 @@
-<div x-cloak x-data="Components.listbox({ id: '{{ $id }}', value: '{{ $value }}' })" x-init="init()">
+<div x-cloak x-data="Components.listbox({ id: '{{ $id }}', value: {!! $jsonValue() !!} })" x-init="init()">
 
-    <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if($value) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
+    <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if(! is_null($value)) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
 
 {{--    <label id="listbox-label" class="block text-sm font-medium text-gray-700" @click="$refs.button.focus()">--}}
 {{--        Assigned to--}}

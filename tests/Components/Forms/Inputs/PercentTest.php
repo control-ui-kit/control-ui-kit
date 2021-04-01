@@ -42,7 +42,6 @@ class PercentTest extends ComponentTestCase
         Config::set('themes.default.input-percent.icon-left-background', 'icon-left-background');
         Config::set('themes.default.input-percent.icon-left-border', 'icon-left-border');
         Config::set('themes.default.input-percent.icon-left-color', 'icon-left-color');
-        Config::set('themes.default.input-percent.icon-left-font', 'icon-left-font');
         Config::set('themes.default.input-percent.icon-left-other', 'icon-left-other');
         Config::set('themes.default.input-percent.icon-left-padding', 'icon-left-padding');
         Config::set('themes.default.input-percent.icon-left-rounded', 'icon-left-rounded');
@@ -52,7 +51,6 @@ class PercentTest extends ComponentTestCase
         Config::set('themes.default.input-percent.icon-right-background', 'icon-right-background');
         Config::set('themes.default.input-percent.icon-right-border', 'icon-right-border');
         Config::set('themes.default.input-percent.icon-right-color', 'icon-right-color');
-        Config::set('themes.default.input-percent.icon-right-font', 'icon-right-font');
         Config::set('themes.default.input-percent.icon-right-other', 'icon-right-other');
         Config::set('themes.default.input-percent.icon-right-padding', 'icon-right-padding');
         Config::set('themes.default.input-percent.icon-right-rounded', 'icon-right-rounded');

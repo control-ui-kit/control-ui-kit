@@ -17,7 +17,6 @@ class EmbedTest extends ComponentTestCase
         Config::set('themes.default.input.icon-left-background', 'icon-left-background');
         Config::set('themes.default.input.icon-left-border', 'icon-left-border');
         Config::set('themes.default.input.icon-left-color', 'icon-left-color');
-        Config::set('themes.default.input.icon-left-font', 'icon-left-font');
         Config::set('themes.default.input.icon-left-other', 'icon-left-other');
         Config::set('themes.default.input.icon-left-padding', 'icon-left-padding');
         Config::set('themes.default.input.icon-left-rounded', 'icon-left-rounded');
@@ -27,7 +26,6 @@ class EmbedTest extends ComponentTestCase
         Config::set('themes.default.input.icon-right-background', 'icon-right-background');
         Config::set('themes.default.input.icon-right-border', 'icon-right-border');
         Config::set('themes.default.input.icon-right-color', 'icon-right-color');
-        Config::set('themes.default.input.icon-right-font', 'icon-right-font');
         Config::set('themes.default.input.icon-right-other', 'icon-right-other');
         Config::set('themes.default.input.icon-right-padding', 'icon-right-padding');
         Config::set('themes.default.input.icon-right-rounded', 'icon-right-rounded');
@@ -145,7 +143,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+            <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                 <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -181,7 +179,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="1 2 3 4 5 6 7 8">
+            <div class="1 2 3 5 6 7 8">
                 <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -200,7 +198,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+            <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                 <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -218,7 +216,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+            <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                 <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -254,7 +252,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="1 2 3 4 5 6 7 8">
+            <div class="1 2 3 5 6 7 8">
                 <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -272,7 +270,7 @@ class EmbedTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+            <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                 <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -290,18 +288,18 @@ class EmbedTest extends ComponentTestCase
                 'background' => '1',
                 'border' => '2',
                 'color' => '3',
-                'font' => '4',
-                'other' => '5',
-                'padding' => '6',
-                'rounded' => '7',
-                'shadow' => '8',
-                'size' => '9',
+                'other' => '4',
+                'padding' => '5',
+                'rounded' => '6',
+                'shadow' => '7',
+                'size' => '8',
+
             ]"/>
             HTML;
 
         $expected = <<<'HTML'
-            <div class="1 2 3 4 5 6 7 8">
-                <svg class="9 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+            <div class="1 2 3 4 5 6 7">
+                <svg class="8 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </div>

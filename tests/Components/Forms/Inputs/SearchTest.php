@@ -47,7 +47,6 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.icon-right-background', 'search-icon-background');
         Config::set('themes.default.input-search.icon-right-border', 'search-icon-border');
         Config::set('themes.default.input-search.icon-right-color', 'search-icon-color');
-        Config::set('themes.default.input-search.icon-right-font', 'search-icon-font');
         Config::set('themes.default.input-search.icon-right-size', 'search-icon-size');
         Config::set('themes.default.input-search.icon-right-other', 'search-icon-other');
         Config::set('themes.default.input-search.icon-right-padding', 'search-icon-padding');
@@ -136,7 +135,7 @@ class SearchTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="search" type="search" id="search" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="search-icon-background search-icon-border search-icon-color search-icon-font search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
+                <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
                     <svg class="search-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>

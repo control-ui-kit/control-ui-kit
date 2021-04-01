@@ -48,7 +48,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.icon-left-background', 'icon-left-background');
         Config::set('themes.default.input.icon-left-border', 'icon-left-border');
         Config::set('themes.default.input.icon-left-color', 'icon-left-color');
-        Config::set('themes.default.input.icon-left-font', 'icon-left-font');
         Config::set('themes.default.input.icon-left-other', 'icon-left-other');
         Config::set('themes.default.input.icon-left-padding', 'icon-left-padding');
         Config::set('themes.default.input.icon-left-rounded', 'icon-left-rounded');
@@ -58,7 +57,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.icon-right-background', 'icon-right-background');
         Config::set('themes.default.input.icon-right-border', 'icon-right-border');
         Config::set('themes.default.input.icon-right-color', 'icon-right-color');
-        Config::set('themes.default.input.icon-right-font', 'icon-right-font');
         Config::set('themes.default.input.icon-right-other', 'icon-right-other');
         Config::set('themes.default.input.icon-right-padding', 'icon-right-padding');
         Config::set('themes.default.input.icon-right-rounded', 'icon-right-rounded');
@@ -209,7 +207,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -231,7 +229,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -285,7 +283,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -307,7 +305,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -322,7 +320,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-font="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
+            <x-input name="name" type="text" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -343,12 +341,12 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-font="4" icon-other="5" icon-padding="6" icon-rounded="7" icon-shadow="8" />
+            <x-input name="name" type="text" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8">
+                <div class="1 2 3 4 5 6 7">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -589,7 +587,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -613,7 +611,7 @@ class InputTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
