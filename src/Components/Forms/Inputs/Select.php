@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
@@ -141,6 +142,10 @@ class Select extends Component
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
+
+        if ($options instanceof Collection) {
+            $options = collect($options)->toArray();
+        }
 
         if (! $required) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
