@@ -37,6 +37,8 @@ class ControlUIKitScriptController extends Controller
                             }
 
                             if (this.highlightIndex !== null) {
+                                this.image = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.image
+                                this.subtext = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
                                 this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
                             }
                         },
@@ -44,12 +46,19 @@ class ControlUIKitScriptController extends Controller
                         optionCount: null,
                         open: false,
                         text: null,
+                        subtext: null,
+                        image: null,
                         activeIndex: 0,
                         highlightIndex: 0,
                         value: null,
+                        showButtonImage() {
+                            return image !== undefined
+                        },
                         onMouseSelect(activeIndex) {
                             this.highlightIndex = activeIndex
                             this.open = false
+                            this.image = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.image
+                            this.subtext = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
                             this.text = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.text
                             this.value = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.value
                         },
@@ -68,6 +77,8 @@ class ControlUIKitScriptController extends Controller
                             if (this.activeIndex !== null) {
                                 this.highlightIndex = this.activeIndex
                             }
+                            this.image = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.image
+                            this.subtext = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
                             this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
                             this.value = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.value
                             this.open = false
@@ -78,6 +89,8 @@ class ControlUIKitScriptController extends Controller
                                 if (this.\$refs['listbox-' + id].children[i].dataset.value === this.value) {
                                     this.highlightIndex = i
                                     this.activeIndex = i
+                                    this.image = this.\$refs['listbox-' + id].children[i].dataset.image
+                                    this.subtext = this.\$refs['listbox-' + id].children[i].dataset.subtext
                                     this.text = this.\$refs['listbox-' + id].children[i].dataset.text
                                     this.value = this.\$refs['listbox-' + id].children[i].dataset.value
                                     break

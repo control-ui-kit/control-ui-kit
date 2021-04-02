@@ -476,7 +476,7 @@ return [
         'image-border' => '',
         'image-size' => 'h-6 w-auto',
         'image-other' => 'flex-shrink-0',
-        'image-padding' => '',
+        'image-padding' => 'pr-2',
         'image-rounded' => '',
         'image-shadow' => '',
 
@@ -490,6 +490,11 @@ return [
         'list-shadow' => 'shadow-md',
         'list-width' => 'w-full',
 
+        'list-text-active' => 'font-semibold',
+        'list-text-inactive' => 'font-normal',
+        'list-subtext-active' => '',
+        'list-subtext-inactive' => '',
+
         'option-background' => '',
         'option-border' => '',
         'option-color' => '',
@@ -498,7 +503,7 @@ return [
         'option-padding' => 'py-2 pl-3 pr-9',
         'option-rounded' => '',
         'option-shadow' => '',
-        'option-spacing' => 'space-x-2',
+        'option-spacing' => '',
         'option-active' => 'bg-input-option-hover',
         'option-inactive' => 'bg-input-option text-input-option',
 
@@ -510,19 +515,15 @@ return [
         'text-padding' => '',
         'text-rounded' => '',
         'text-shadow' => '',
-        'text-active' => 'font-semibold',
-        'text-inactive' => 'font-normal',
 
         'subtext-background' => '',
         'subtext-border' => '',
         'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
         'subtext-font' => '',
         'subtext-other' => 'block truncate',
-        'subtext-padding' => '',
+        'subtext-padding' => 'pl-2',
         'subtext-rounded' => '',
         'subtext-shadow' => '',
-        'subtext-active' => '',
-        'subtext-inactive' => '',
 
         // Config
         'please-select-text' => 'Please Select ...',

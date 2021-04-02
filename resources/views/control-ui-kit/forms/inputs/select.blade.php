@@ -18,7 +18,11 @@
                 aria-labelledby="listbox-label"
                 aria-expanded="true"
         >
-            <span x-text="text" class="block truncate"></span>
+            <div class="flex items-center">
+                <img x-show="image !== undefined" :src="image" class="{{ $imageClasses() }}">
+                <span x-text="text" class="{{ $textClasses() }}"></span>
+                <span x-text="subtext" class="{{ $subtextClasses() }}"></span>
+            </div>
             <span class="{{ $iconClasses() }}">
                 <x-dynamic-component :component="$icon" :size="$iconSize" />
             </span>
@@ -46,6 +50,8 @@
             @foreach ($options as $value => $option)
                 <li class="{{ $optionClasses() }}"
                     role="option"
+                    @if ($image($option)) data-image="{{ $image($option) }}" @endif
+                    @if ($value && $subtext($option)) data-subtext="{{ $subtext($option) }}" @endif
                     data-text="{{ $text($option) }}"
                     data-value="{{ $value }}"
                     @click="onMouseSelect({{ $activeIndex }})"
