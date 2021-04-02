@@ -2,10 +2,6 @@
 
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if(! is_null($value)) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
 
-{{--    <label id="listbox-label" class="block text-sm font-medium text-gray-700" @click="$refs.button.focus()">--}}
-{{--        Assigned to--}}
-{{--    </label>--}}
-
     <div class="relative">
         <button type="button"
                 {{ $attributes->merge($classes()) }}

@@ -30,17 +30,16 @@ class ControlUIKitScriptController extends Controller
                             })
 
                             for (let i = 0; i < this.\$refs['listbox-' + id].children.length; i++) {
-                                if (this.\$refs['listbox-' + id].children[i].dataset.value === this.value) {
+                                console.log(this.\$refs['listbox-' + id].children[i].dataset.value, this.value)
+                                if (this.\$refs['listbox-' + id].children[i].dataset.value == this.value) {
                                     this.highlightIndex = i
                                     this.activeIndex = i
                                 }
                             }
 
-                            if (this.highlightIndex !== null) {
-                                this.image = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.image
-                                this.subtext = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
-                                this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
-                            }
+                            this.image = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.image
+                            this.subtext = this.\$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
+                            this.text = this.\$refs['listbox-' + id].children[this.highlightIndex].dataset.text
                         },
                         activeDescendant: null,
                         optionCount: null,
