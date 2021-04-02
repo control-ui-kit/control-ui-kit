@@ -110,6 +110,14 @@ class ControlUIKitScriptController extends Controller
                         ...options,
                     }
                 },
+                toggle(options) {
+                    return {
+                        toggle() {
+                            this.value = (this.value === this.on) ? this.off : this.on
+                        },
+                        ...options,
+                    }
+                },
             }
 
             function _controlNumber(input, decimals, min, max, fixed) {

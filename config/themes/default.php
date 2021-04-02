@@ -399,6 +399,8 @@ return [
     ],
 
     'input-textarea' => [
+
+        // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -545,12 +547,33 @@ return [
     'input-toggle' => [
         'background' => '',
         'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => 'w-20',
+        'other' => '',
         'padding' => '',
-        'rounded' => '',
         'shadow' => '',
+
+        'base-animation' => 'ease-in-out duration-200 transition-colors',
+        'base-background' => '',
+        'base-border' => 'border-2 border-transparent',
+        'base-color' => '',
+        'base-focus' => 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand focus:ring-offset-input',
+        'base-other' => 'inline-flex flex-shrink-0 cursor-pointer ',
+        'base-rounded' => 'rounded-full',
+        'base-shadow' => '',
+        'base-size' => 'h-6 w-11',
+        'base-state-off' => 'bg-input-muted',
+        'base-state-on' => 'bg-input-brand',
+
+        'switch-animation' => 'translate-x-0 transform transition ease-in-out duration-200',
+        'switch-background' => 'bg-input',
+        'switch-border' => '',
+        'switch-color' => '',
+        'switch-focus' => 'ring-0',
+        'switch-other' => 'pointer-events-none inline-block',
+        'switch-rounded' => 'rounded-full',
+        'switch-shadow' => 'shadow',
+        'switch-size' => 'h-5 w-5',
+        'switch-state-off' => 'translate-x-0',
+        'switch-state-on' => 'translate-x-5',
     ],
 
     'input-color-picker' => [
