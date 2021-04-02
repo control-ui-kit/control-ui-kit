@@ -268,6 +268,11 @@ class Select extends Component
         return view('control-ui-kit::control-ui-kit.forms.inputs.select');
     }
 
+    public function buttonWidth(): string
+    {
+        return $this->props['button-width'];
+    }
+
     public function listClasses(): string
     {
         return $this->classList($this->listStyles);

@@ -444,7 +444,7 @@ return [
         'button-border' => 'border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand',
         'button-color' => '',
         'button-font' => 'text-input',
-        'button-other' => 'relative flex items-center cursor-pointer',
+        'button-other' => 'flex items-center cursor-pointer',
         'button-padding' => 'space-x-2 py-1.5 px-3',
         'button-rounded' => 'rounded',
         'button-shadow' => '',
