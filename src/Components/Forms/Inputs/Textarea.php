@@ -18,6 +18,7 @@ class Textarea extends Component
     public string $id;
     public ?string $value;
     public ?string $placeholder;
+    public ?string $rows;
 
     public function __construct(
         string $name,
@@ -32,12 +33,14 @@ class Textarea extends Component
         string $width = null,
         string $id = null,
         string $value = null,
-        string $placeholder = null
+        string $placeholder = null,
+        string $rows = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
         $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
+        $this->rows = $this->style('input-textarea', 'rows', $rows, '', $this->component);
 
         $this->setConfigStyles([
             'background' => $background,

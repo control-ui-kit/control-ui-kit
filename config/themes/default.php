@@ -403,10 +403,14 @@ return [
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => 'w-full',
+        'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-full',
+
+        //Config
+        'rows' => 4,
     ],
 
     'input-radio' => [
