@@ -13,6 +13,8 @@ class PasswordTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-password.icon-left', '');
+
         Config::set('themes.default.input-password.background', 'background');
         Config::set('themes.default.input-password.border', 'border');
         Config::set('themes.default.input-password.color', 'color');

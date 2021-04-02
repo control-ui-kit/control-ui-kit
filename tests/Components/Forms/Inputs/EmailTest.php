@@ -13,6 +13,8 @@ class EmailTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-email.prefix-text', '');
+
         Config::set('themes.default.input-email.background', 'background');
         Config::set('themes.default.input-email.border', 'border');
         Config::set('themes.default.input-email.color', 'color');

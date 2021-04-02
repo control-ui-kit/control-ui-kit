@@ -286,8 +286,8 @@ return [
     'input-checkbox' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input',
-        'color' => '',
-        'font' => 'text-brand',
+        'color' => 'text-brand',
+        'font' => '',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => '',
@@ -362,6 +362,7 @@ return [
     ],
 
     'input-email' => [
+        'prefix-text' => '@',
         'type' => 'email',
     ],
 
@@ -375,6 +376,7 @@ return [
     ],
 
     'input-password' => [
+        'icon-left' => 'icon.eye',
         'type' => 'password',
     ],
 
