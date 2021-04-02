@@ -30,7 +30,6 @@ class ControlUIKitScriptController extends Controller
                             })
 
                             for (let i = 0; i < this.\$refs['listbox-' + id].children.length; i++) {
-                                console.log(this.\$refs['listbox-' + id].children[i].dataset.value, this.value)
                                 if (this.\$refs['listbox-' + id].children[i].dataset.value == this.value) {
                                     this.highlightIndex = i
                                     this.activeIndex = i
