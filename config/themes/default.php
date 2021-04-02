@@ -206,10 +206,11 @@ return [
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => 'w-full',
+        'other' => '',
         'padding' => 'py-1.5 px-3',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-full',
 
         'icon-left-background' => '',
         'icon-left-border' => 'border-r border-input',
@@ -266,6 +267,7 @@ return [
         'wrapper-padding' => '',
         'wrapper-rounded' => 'rounded',
         'wrapper-shadow' => '',
+        'wrapper-width' => 'w-full',
 
         // Config
         'decimals' => '',
@@ -401,7 +403,7 @@ return [
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => '',
+        'other' => 'w-full',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
@@ -410,8 +412,7 @@ return [
     'input-radio' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input',
-        'color' => '',
-        'font' => 'text-brand',
+        'color' => 'text-brand',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => '',

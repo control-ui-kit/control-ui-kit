@@ -25,6 +25,7 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.padding', 'padding');
         Config::set('themes.default.input-search.rounded', 'rounded');
         Config::set('themes.default.input-search.shadow', 'shadow');
+        Config::set('themes.default.input-search.width', 'width');
 
         Config::set('themes.default.input-search.wrapper-background', 'wrapper-background');
         Config::set('themes.default.input-search.wrapper-border', 'wrapper-border');
@@ -34,6 +35,7 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.wrapper-padding', 'wrapper-padding');
         Config::set('themes.default.input-search.wrapper-rounded', 'wrapper-rounded');
         Config::set('themes.default.input-search.wrapper-shadow', 'wrapper-shadow');
+        Config::set('themes.default.input-search.wrapper-width', 'wrapper-width');
 
         Config::set('themes.default.input-search.input-background', 'input-background');
         Config::set('themes.default.input-search.input-border', 'input-border');
@@ -62,7 +64,7 @@ class SearchTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow" />
+            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -76,7 +78,7 @@ class SearchTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow" />
+            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -86,7 +88,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.search name="search" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -100,11 +102,11 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.search name="search" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="search" type="search" id="search" class="1 2 3 4 5 6 7 8" />
+            <input name="search" type="search" id="search" class="1 2 3 4 5 6 7 8 9" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -118,7 +120,7 @@ class SearchTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="search" type="search" id="search" value="new_test_value" class="background border color font other padding rounded shadow" />
+            <input name="search" type="search" id="search" value="new_test_value" class="background border color font other padding rounded shadow width" />
             HTML;
         $this->assertComponentRenders($expected, $template);
     }
@@ -133,7 +135,7 @@ class SearchTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="search" type="search" id="search" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
                     <svg class="search-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
@@ -157,13 +159,14 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.padding', 'config-padding');
         Config::set('themes.default.input-search.rounded', 'config-rounded');
         Config::set('themes.default.input-search.shadow', 'config-shadow');
+        Config::set('themes.default.input-search.width', 'config-width');
 
         $template = <<<'HTML'
             <x-input.search name="search" icon-right="none" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="search" type="search" id="search" class="config-background config-border config-color config-font config-other config-padding config-rounded config-shadow" />
+            <input name="search" type="search" id="search" class="config-background config-border config-color config-font config-other config-padding config-rounded config-shadow config-width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

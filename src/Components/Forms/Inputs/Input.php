@@ -65,6 +65,7 @@ class Input extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $width = null,
 
         string $iconBackground = null,
         string $iconBorder = null,
@@ -158,6 +159,7 @@ class Input extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ], $this->component, 'basicStyles', 'input');
 
         $this->setInputStyles([
@@ -169,6 +171,7 @@ class Input extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ], $this->component, 'wrapperStyles', 'input', 'wrapper-');
 
         $this->setInputStyles([

@@ -29,6 +29,7 @@ class Textarea extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $width = null,
         string $id = null,
         string $value = null,
         string $placeholder = null
@@ -47,6 +48,7 @@ class Textarea extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ]);
     }
 
