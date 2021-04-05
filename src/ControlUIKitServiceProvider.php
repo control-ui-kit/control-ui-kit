@@ -61,7 +61,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
             return <<<'blade'
                 <?php
                 echo <<<'scripts'
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
 
                 <script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.10/dist/bundle.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -70,7 +70,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/mobilefriendly.js"></script>
 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-chart-matrix.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@2.1.0/build/Chart.Geo.min.js"></script>
 
                 <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
 
