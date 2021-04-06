@@ -1,4 +1,6 @@
 <div {{ $attributes->merge($classes()) }}>
     <span>{{ $label }}</span>
-    <x-dynamic-component :component="$icon" :size="$iconSize" :color="$iconColor" :href="$href" />
+    <a href="{{ $href }}" class="{{ $iconColor }} flex items-center">
+        <x-dynamic-component :component="$icon" :size="$iconSize" />
+    </a>
 </div>

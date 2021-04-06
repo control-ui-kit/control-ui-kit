@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class ActiveFilter extends Component
@@ -20,7 +22,10 @@ class ActiveFilter extends Component
     public string $iconSize;
 
     public function __construct(
-        string $label,
+        $filter = null,
+        string $type = null,
+        string $value = null,
+        string $label = null,
         string $background = null,
         string $border = null,
         string $color = null,
@@ -45,8 +50,26 @@ class ActiveFilter extends Component
             'shadow' => $shadow,
         ]);
 
-        $this->href = $href;
+//        dd($type, $value, $label);
+
+        if (is_null($href)) {
+            $this->href = $this->buildHref($type);
+        }
+
+//        dd($type, $this->href);
+
         $this->label = $label;
+
+//        if (! is_null($filter)) {
+//
+//            $this->setupFilter($type, $filter);
+//
+//
+//        } else {
+//            $this->href = $href;
+//            $this->label = $label;
+//        }
+
         $this->icon = $this->style($this->component, 'icon', $icon);
         $this->iconColor = $this->style($this->component, 'icon-color', $iconColor);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
@@ -55,5 +78,23 @@ class ActiveFilter extends Component
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.tables.active-filter');
+    }
+
+    private function setupFilter(?string $type, $filter)
+    {
+        if (is_array($filter)) {
+
+        }
+
+
+    }
+
+    private function buildHref($type): string
+    {
+        $resetValue = null;
+
+        $query = $type . '=' . $resetValue;
+
+        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
     }
 }

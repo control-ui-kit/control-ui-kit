@@ -143,15 +143,11 @@ class Select extends Component
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
 
-        if ($options instanceof Collection) {
-            $options = collect($options)->toArray();
-        }
-
         if (! $required) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
-            $this->options = $pleaseSelectOption + $options;
+            $this->options = $pleaseSelectOption + $this->options($options);
         } else {
-            $this->options = $options;
+            $this->options = $this->options($options);
         }
 
         if ($this->value === null) {
@@ -420,5 +416,14 @@ class Select extends Component
     private function setFirstValue(): void
     {
         $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options) ;
+    }
+
+    private function options($options): array
+    {
+        if ($options instanceof Collection) {
+            return collect($options)->toArray();
+        }
+
+        return (array) $options;
     }
 }

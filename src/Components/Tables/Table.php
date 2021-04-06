@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class Table extends Component
@@ -16,8 +17,10 @@ class Table extends Component
     public ?string $clearFiltersEvent;
     public ?string $clearFiltersHref;
     public ?string $clearFiltersText;
-    public string $headingStyles;
+    public array $activeFilters;
+    public ?string $search;
     public string $bodyStyles;
+    public string $headingStyles;
     public array $tableFilterStyles;
     public array $clearFilterStyles;
 
@@ -51,6 +54,9 @@ class Table extends Component
 
         string $headingStyles = null,
         string $bodyStyles = null,
+
+        array $activeFilters = [],
+        string $search = null,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
@@ -89,6 +95,10 @@ class Table extends Component
             'table-filters-shadow' => $tableFiltersShadow,
         ], [], null, 'tableFilterStyles');
 
+        $this->activeFilters = $activeFilters;
+
+        $this->search = is_null($search) ? request('search') : null;
+
         $this->headingStyles = $this->style($this->component, 'heading-styles', $headingStyles);
         $this->bodyStyles = $this->style($this->component, 'body-styles', $bodyStyles);
 
@@ -110,5 +120,15 @@ class Table extends Component
     public function clearFilterClasses(): string
     {
         return $this->classList($this->clearFilterStyles);
+    }
+
+    public function hasFilters(): bool
+    {
+        return count($this->activeFilters) !== 0;
+    }
+
+    public function searchUrl(): string
+    {
+        return Request::fullUrl();
     }
 }

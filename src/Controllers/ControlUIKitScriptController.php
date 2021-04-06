@@ -110,6 +110,65 @@ class ControlUIKitScriptController extends Controller
                         ...options,
                     }
                 },
+                table(options) {
+                    return {
+                        open: false,
+                        moreButton: false,
+                        openMore: false,
+                        availableSpace: 0,
+                        usedSpace: 0,
+                        search: null,
+                        filters: null,
+                        init() {
+
+
+                        },
+                        onButtonClick(filter) {
+                            if (this.open == filter) return
+                            this.open = filter
+                            console.log(filter, this.open)
+                        },
+                        onEscape() {
+                            this.open = false
+                        },
+                        onResize() {
+                            this.setupFilters()
+
+                        },
+                        onMoreButtonClick() {
+                            this.openMore = ! this.openMore
+                            this.open = false
+                        },
+                        setupFilters() {
+                            let availableSpace = document.getElementById('filterSpace').offsetWidth - 150
+                            let usedSpace = 0, filter = null, filterSpace = 0
+                            this.availableSpace = availableSpace
+
+                            let more = document.getElementById('more-filters');
+
+                            console.log(this.\$refs.filters.children)
+
+                            for (let i = 0; i < this.\$refs.filters.children.length; i++) {
+                                filter = this.\$refs.filters.children[i]
+                                filterSpace = filter.offsetWidth
+                                if (filter.nodeName == 'DIV') {
+                                    console.log(filterSpace, filter.nodeName)
+                                    if (usedSpace + filterSpace > availableSpace) {
+                                        more.append(filter)
+                                    }
+                                    usedSpace += filterSpace
+                                }
+                            }
+
+                            this.usedSpace = usedSpace
+                            this.moreButton = this.\$refs.moreFilters.children.length > 0
+
+                            console.log(this.moreButton, usedSpace, availableSpace)
+
+                        },
+                        ...options,
+                    }
+                },
                 toggle(options) {
                     return {
                         toggle() {
@@ -119,6 +178,11 @@ class ControlUIKitScriptController extends Controller
                     }
                 },
             }
+
+            function setupFilters() {
+                console.log('go go go ');
+            }
+
 
             function _controlNumber(input, decimals, min, max, fixed) {
                 let number = input.value.replace(/[^\d\.-]/g, "") * 1;
