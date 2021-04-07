@@ -1,7 +1,9 @@
-<div class="flex flex-col space-y-4" x-cloak x-data="Components.table()" x-init="init()" @filters.window="setupFilters">
-
-    <input x-model="open" />
-
+<div class="flex flex-col space-y-4"
+     x-cloak
+     x-data="Components.table()"
+     @ready="moveFilters"
+     x-init="init()"
+>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
         <div class="cols-1 flex-shrink-0">
@@ -19,42 +21,32 @@
 
         </div>
 
-
         @isset($filters)
-
-        <div id="filterSpace"
+        <div x-ref="filterSpace"
              @click.away="open = false"
              @keydown.escape="onEscape()"
-             class="col-span-1 sm:col-span-2 flex flex-col debug flex-shrink-0"
+             class="col-span-1 sm:col-span-2 flex flex-col items-end mb-2"
              x-on:resize.window="onResize()"
         >
-
-            <x-button @click="setupFilters()">Setup Filters</x-button>
-            <input x-model="availableSpace" />
-            <input x-model="usedSpace" />
-
-            <div class="{{ $tableFilterClasses() }} debug" x-ref="filters"
-{{--                <div class="bg-table-filters border border-table-filters divide-x table-filters-divider inline-flex rounded-md"--}}
-
+            <div
+{{--                class="{{ $tableFilterClasses() }} w-max" --}}
+                x-ref="filters"
+                class="bg-table-filters border border-table-filters divide-x table-filters-divider inline-flex rounded-md w-max"
             >
                 {{ $filters }}
 
-                <button class="px-4" x-show="moreButton" @click="onMoreButtonClick()">
-                    <span>More</span>
+                <button class="px-4 focus:outline-none focus:ring-0" id="moreButton" x-show="moreButton" @click="onMoreButtonClick()">
+                    <x-icon.options />
                 </button>
 
             </div>
 
-            <div id="more-filters" x-ref="moreFilters"
+            <div id="more-filters"
+                 x-ref="moreFilters"
                  x-show="openMore"
-                 class="w-full flex items-center debug mt-2 justify-end">
-
-            </div>
-
-
-
+                 class="bg-table-filters border border-table-filters border-table-filters divide-x table-filters-divider inline-flex rounded-md items-center mt-2 justify-end"
+            ></div>
         </div>
-
         @endisset
 
     </div>
@@ -62,9 +54,7 @@
     @if($hasFilters())
     <div class="flex flex-col md:flex-row items-center justify-between text-sm">
 
-        <div class="flex flex-row space-y-2 md:space-y-0 flex-wrap items-center space-x-2 mb-2 md:mb-0">
-            <span>Filters :</span>
-
+        <div class="flex flex-row flex-wrap items-center space-x-2">
             @foreach ($activeFilters as $type => $filters)
                 @foreach($filters as $value => $label)
                     <x-table.active-filter :type="$type" :value="$value" :label="$label" />
@@ -73,7 +63,7 @@
         </div>
 
 {{--        <a class="{{ $clearFilterClasses() }}"--}}
-        <a class="text-brand hover:text-brand-lighter"
+        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 mb-2"
             @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
             @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
         >{{ $clearFiltersText }}</a>
@@ -100,24 +90,3 @@
 </div>
 
 {{--<x-table.pagination />--}}
-
-<script>
-
-    //window.dispatchEvent(new CustomEvent('filters'));
-
-    // let filters = document.querySelectorAll('.table-filter');
-    // let more = document.getElementById('more-filters');
-    //
-    // let count = 0;
-    // Array.from(filters).forEach(function(filter) {
-    //     //sum = await sumFunction(sum, rating)
-    //     if (count >= 4) {
-    //         more.append(filter);
-    //     }
-    //     count++;
-    //
-    //
-    // })
-
-    // console.log(filters);
-</script>

@@ -775,7 +775,7 @@ return [
         'border' => 'border border-active-filter',
         'color' => 'text-active-filter',
         'font' => 'text-sm',
-        'other' => 'flex items-center space-x-1 w-max',
+        'other' => 'flex items-center space-x-1 w-max mb-2',
         'padding' => 'px-1.5 py-0.5',
         'rounded' => 'rounded',
         'shadow' => '',

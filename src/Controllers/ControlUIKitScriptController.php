@@ -115,13 +115,13 @@ class ControlUIKitScriptController extends Controller
                         open: false,
                         moreButton: false,
                         openMore: false,
-                        availableSpace: 0,
                         usedSpace: 0,
                         search: null,
                         filters: null,
                         init() {
-
-
+                            window.addEventListener('DOMContentLoaded', () => {
+                                this.\$el.dispatchEvent(new Event('ready'))
+                            });
                         },
                         onButtonClick(filter) {
                             if (this.open == filter) return
@@ -132,39 +132,38 @@ class ControlUIKitScriptController extends Controller
                             this.open = false
                         },
                         onResize() {
-                            this.setupFilters()
-
+                            this.moveFilters()
                         },
                         onMoreButtonClick() {
                             this.openMore = ! this.openMore
                             this.open = false
                         },
-                        setupFilters() {
-                            let availableSpace = document.getElementById('filterSpace').offsetWidth - 150
-                            let usedSpace = 0, filter = null, filterSpace = 0
-                            this.availableSpace = availableSpace
+                        moveFilters() {
 
-                            let more = document.getElementById('more-filters');
-
-                            console.log(this.\$refs.filters.children)
+                            let limit, usedSpace = 0, filter = null, filterSpace = 0
+                            let availableSpace = this.\$refs.filterSpace.offsetWidth - 130
+                            let moreFilters = this.\$refs.moreFilters;
 
                             for (let i = 0; i < this.\$refs.filters.children.length; i++) {
                                 filter = this.\$refs.filters.children[i]
                                 filterSpace = filter.offsetWidth
-                                if (filter.nodeName == 'DIV') {
-                                    console.log(filterSpace, filter.nodeName)
+                                if (filter.classList.contains('table-filter')) {
                                     if (usedSpace + filterSpace > availableSpace) {
-                                        more.append(filter)
+                                        limit = i--
+                                        usedSpace += filterSpace
+                                        break
                                     }
                                     usedSpace += filterSpace
                                 }
                             }
 
-                            this.usedSpace = usedSpace
-                            this.moreButton = this.\$refs.moreFilters.children.length > 0
+                            let move = this.\$refs.filters.children.length - 1 - limit
 
-                            console.log(this.moreButton, usedSpace, availableSpace)
+                            for (i = 0; i < move; i++) {
+                                moreFilters.append(this.\$refs.filters.children[limit])
+                            }
 
+                            this.moreButton = moreFilters.children.length > 0
                         },
                         ...options,
                     }
@@ -178,11 +177,6 @@ class ControlUIKitScriptController extends Controller
                     }
                 },
             }
-
-            function setupFilters() {
-                console.log('go go go ');
-            }
-
 
             function _controlNumber(input, decimals, min, max, fixed) {
                 let number = input.value.replace(/[^\d\.-]/g, "") * 1;

@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Table extends Component
