@@ -124,32 +124,4 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'control-ui-kit');
     }
-
-    protected function tectiong()
-    {
-        $js = 'go';
-
-        echo <<<'scripts'
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
-
-                <script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.10/dist/bundle.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-                <script src="https://unpkg.com/vanilla-picker@2.11.2/dist/vanilla-picker.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/keyboardnav.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/mobilefriendly.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-                <script src="$js"></script>
-
-                <!-- todo: we need to fix the styling on the litepicker !-->
-                <style>
-                    select.month-item-name, select.month-item-year {
-                        background-image: none;
-                        padding: 2px 5px !important;
-                        font-size: 14px;
-                        max-height:200px;
-                    }
-                </style>
-                scripts;
-    }
 }
