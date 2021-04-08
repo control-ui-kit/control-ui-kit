@@ -22,6 +22,7 @@ class Filter extends Component
     public string $id;
     public $value;
     public string $label;
+    public int $priority;
     public array $options;
     public int $activeIndex = 0;
 
@@ -53,6 +54,9 @@ class Filter extends Component
         $value = null,
 
         string $id = null,
+        bool $hideFirst = null,
+        bool $hideLast = null,
+        string $hideOrder = null,
         string $image = null,
         $pleaseSelect = null,
         bool $required = false,
@@ -147,6 +151,8 @@ class Filter extends Component
         $this->label = $label;
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
+
+        $this->priority = $this->setHideOrder($hideFirst, $hideLast, $hideOrder);
 
         $this->options = $this->options($options);
 
@@ -393,5 +399,18 @@ class Filter extends Component
         $query = $this->name . '=' . $value;
 
         return (new UrlManipulation)->url(Request::fullUrl())->append($query);
+    }
+
+    private function setHideOrder(?bool $hideFirst, ?bool $hideLast, ?string $hideOrder): int
+    {
+        if ($hideFirst === true) {
+            return 0;
+        }
+
+        if ($hideLast === true) {
+            return 99;
+        }
+
+        return is_null($hideOrder) ? 5 : (int) $hideOrder;
     }
 }

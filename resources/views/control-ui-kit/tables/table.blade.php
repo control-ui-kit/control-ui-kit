@@ -1,7 +1,7 @@
 <div class="flex flex-col space-y-4"
      x-cloak
      x-data="Components.table()"
-     @ready="moveFilters"
+     @ready="initFilters"
      x-init="init()"
 >
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -50,6 +50,8 @@
         @endisset
 
     </div>
+
+    <x-button @click="resizeFilters()">Resize Filters</x-button>
 
     @if($hasFilters())
     <div class="flex flex-col md:flex-row items-center justify-between text-sm">

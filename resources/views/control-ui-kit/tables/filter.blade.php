@@ -24,7 +24,7 @@
 
 {{--x-cloak x-data="Components.filter({ id: '{{ $id }}', value: {!! $jsonValue() !!} })" x-init="init()"--}}
 
-<div class="{{ $buttonWidth() }} relative table-filter">
+<div class="{{ $buttonWidth() }} relative table-filter" data-priority="{{ $priority }}"  data-label="{{ $label }}">
 
 {{--    <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if(! is_null($value)) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />--}}
 
