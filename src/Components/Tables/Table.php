@@ -20,6 +20,7 @@ class Table extends Component
     public ?string $clearFiltersText;
     public array $activeFilters;
     public ?string $search;
+    public bool $hideSearch;
     public string $bodyStyles;
     public string $headingStyles;
     public array $tableFilterStyles;
@@ -58,6 +59,7 @@ class Table extends Component
 
         array $activeFilters = [],
         string $search = null,
+        bool $hideSearch = false,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
@@ -98,6 +100,7 @@ class Table extends Component
 
         $this->activeFilters = $activeFilters;
 
+        $this->hideSearch = $hideSearch;
         $this->search = is_null($search) ? request('search') : null;
 
         $this->headingStyles = $this->style($this->component, 'heading-styles', $headingStyles);

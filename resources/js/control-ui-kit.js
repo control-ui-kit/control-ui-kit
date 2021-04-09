@@ -100,7 +100,7 @@ window.Components = {
     table(options) {
         return {
             open: false,
-            moreButton: false,
+            moreButton: true,
             openMore: false,
             usedSpace: 0,
             search: null,
@@ -117,35 +117,33 @@ window.Components = {
             onEscape() {
                 this.open = false
             },
-            onResize() {
-                this.resizeFilters()
-            },
-            onMoreButtonClick() {
+            onMoreButtonClicked() {
                 this.openMore = ! this.openMore
                 this.open = false
             },
             initFilters() {
-
                 let filter, width, filters = this.$refs.filters;
 
+                if (! this.hasFilters) {
+                    return;
+                }
+
                 for (let i = 0; i < filters.children.length; i++) {
+
                     filter = filters.children[i]
                     width = filter.offsetWidth
+
                     if (filter.classList.contains('table-filter')) {
-
                         filter.id = 'filter_' + this.randomString()
-
                         this.filters.push({
+                            display: i,
                             id: filter.id,
                             label: filter.dataset.label,
-                            priority:
-                            filter.dataset.priority,
+                            priority: filter.dataset.priority,
                             width: width,
                             element: filter,
                             location: 'filters'
                         })
-
-
                     }
                 }
 
@@ -157,72 +155,64 @@ window.Components = {
             },
             resizeFilters() {
 
-                let element, after, filter, used = 0, maxWidth = this.$refs.filterSpace.offsetWidth - 130
+                if (! this.hasFilters) {
+                    return;
+                }
 
-                console.log('Width available.....', maxWidth)
-                console.log('Filter Count.....', this.filters.length)
+                let filter, used = 0
+                let searchFieldWidth = (this.hasSearch) ? this.$refs.search.offsetWidth : 0
+                let moreButtonWidth = this.$refs.more.offsetWidth
+                let tableWidth = this.$refs.table.offsetWidth
+                let maxWidth = tableWidth - searchFieldWidth - moreButtonWidth - 10
 
                 for (let i = 0; i < this.filters.length; i++) {
 
                     filter = this.filters[i]
-                    element = document.getElementById(filter.id);
-
-                    console.log(filter.label + ' [' + filter.location + ']', filter.id);
-
                     used += filter.width
 
                     if (used > maxWidth && filter.location !== 'more') {
-                        after = this.getAfterElement(filter.id, 'more')
-                        this.moveFilter(element, this.$refs.filters, this.$refs.moreFilters, after)
+                        this.moveFilter(filter, this.$refs.overflow, 'more')
                         this.filters[i].location = 'more'
                     } else if (used < maxWidth && filter.location !== 'filters') {
-                        after = this.getAfterElement(filter.id, 'filters')
-                        this.moveFilter(element, this.$refs.moreFilters, this.$refs.filters, after)
+                        this.moveFilter(filter, this.$refs.filters, 'filters')
                         this.filters[i].location = 'filters'
-                    } else {
-                        console.log('nothing to move')
                     }
                 }
 
-                this.moreButton = this.$refs.moreFilters.children.length > 0
+                this.moreButton = this.$refs.overflow.children.length > 0
+                this.openMore = this.openMore ? this.moreButton : this.openMore
             },
-            moveFilter(filter, from, to, after) {
-
+            moveFilter(filter, to, location) {
+                let after = this.getAfterElement(filter, location)
                 if (after !== '') {
-                    console.log('move after...', filter, from, to, after)
-                    after.after(filter)
+                    after.after(filter.element)
                 } else {
-                    console.log('move append...', filter, from, to)
-                    to.append(filter)
+                    to.prepend(filter.element)
                 }
-
-                let button = document.getElementById('moreButton')
-                this.$refs.filters.append(button)
             },
-            getAfterElement(id, location) {
-
-                console.log('before', this.filters)
-
+            getAfterElement(filter, location) {
                 let filters = this.filters.filter(function(filter) {
-                    console.log(filter.id, filter.location, location)
-                    return filter.location === location;
-                });
+                    return filter.location === location
+                }).sort(this.sortByDisplayOrder)
 
-                console.log('filtered', filters)
-
-                let after = '';
-                for (let i = 0; i < filters.length; i++) {
-                    if (filters.id === id) {
-                        return after
+                if (filters.length) {
+                    for (let i = 0; i < filters.length; i++) {
+                        if (filters[i].display < filter.display) {
+                            return filters[i].element
+                        }
                     }
-
-                    after = filters.id
                 }
-
-                console.log('after....empty')
 
                 return ''
-
+            },
+            sortByDisplayOrder(a, b) {
+                if (a.display > b.display){
+                    return -1;
+                }
+                if (a.display < b.display){
+                    return 1;
+                }
+                return 0;
             },
             sortByPriority(a, b) {
                 if (a.priority > b.priority){
@@ -232,41 +222,6 @@ window.Components = {
                     return 1;
                 }
                 return 0;
-            },
-            moveFilters() {
-
-                let limit, usedSpace = 0, filter = null, filterSpace = 0
-                let availableSpace = this.$refs.filterSpace.offsetWidth - 130
-                let filters = this.$refs.filters;
-                let moreFilters = this.$refs.moreFilters;
-
-                //for (let i = 0; i < moreFilters.children.length; i++) {
-                //    filter = moreFilters.children[i]
-                //    if (filter.classList.contains('table-filter')) {
-                //        filters.append(filter)
-                //    }
-                //}
-
-                for (let i = 0; i < filters.children.length; i++) {
-                    filter = filters.children[i]
-                    filterSpace = filter.offsetWidth
-                    if (filter.classList.contains('table-filter')) {
-                        if (usedSpace + filterSpace > availableSpace) {
-                            limit = i--
-                            usedSpace += filterSpace
-                            break
-                        }
-                        usedSpace += filterSpace
-                    }
-                }
-
-                let move = filters.children.length - 1 - limit
-
-                for (let i = 0; i < move; i++) {
-                    moreFilters.append(filters.children[limit])
-                }
-
-                this.moreButton = moreFilters.children.length > 0
             },
             ...options,
         }
