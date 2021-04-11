@@ -8,12 +8,16 @@
      @ready="initFilters"
      x-init="init()"
 >
-    <div class="flex items-center flex-row justify-between">
-{{--    <div class="@if (! $hideSearch) grid grid-cols-1 sm:grid-cols-3 gap-4 @endif">--}}
+{{--    <div class="flex items-center flex-row justify-between">--}}
+    <div
+        class="@if (! $hideSearch) sm:grid table-grid-filters space-x-4 @endif flex"
+{{--        class=""--}}
+{{--         style="grid-template-columns: 300px auto"--}}
+    >
 
         @if (! $hideSearch)
-{{--        <div class="cols-1 flex-shrink-0">--}}
-        <div class="pl-4 sm:pl-0 w-5/6 sm:w-72 flex-shrink-0" x-ref="search">
+        <div class="w-full sm:flex-shrink-0" x-ref="search">
+{{--        <div class="" x-ref="search">--}}
 
             <x-form action="{{ $searchUrl() }}" method="get" name="searchfrm" id="searchfrm">
                 <x-input.search
@@ -33,22 +37,22 @@
         @isset($filters)
         <div x-ref="container"
 
-
-{{--             class="@if (! $hideSearch) col-span-1 sm:col-span-2 col-span-2 @endif flex flex-col items-end mb-2"--}}
-             class="w-1/6 pr-4 sm:w-full flex flex-col items-end"
+             class="@if (! $hideSearch) flex-grow items-end @endif flex-grow w-auto flex flex-col items-end mb-2"
+{{--             class=""--}}
+{{--             class="pr-4 flex-grow items-end"--}}
 
         >
             <div
                 @click.away="open = false"
                 @keydown.escape="onEscape()"
-{{--                class="{{ $tableFilterClasses() }} w-max" --}}
+{{--                class="{{ $tableFilterClasses() }} w-max"--}}
                 x-ref="filters"
-                class="bg-table-filters border border-table-filters divide-x table-filters-divider inline-flex rounded w-max"
+                class="bg-table-filters inline-flex border border-table-filters divide-x table-filters-divider rounded w-max"
             >
                 {{ $filters }}
 
                 <button class="px-4 h-9 focus:outline-none focus:ring-0 text-input-option" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
-                    <x-icon.options />
+                    <x-icon.filter />
                 </button>
 
             </div>

@@ -124,7 +124,7 @@ window.Components = {
             initFilters() {
                 let filter, width, filters = this.$refs.filters;
 
-                if (! this.hasFilters) {
+                if (!this.hasFilters) {
                     return;
                 }
 
@@ -144,16 +144,18 @@ window.Components = {
                             element: filter,
                             location: 'filters'
                         })
+
+                        filter.classList.add('hidden')
                     }
                 }
 
                 this.filters.sort(this.sortByPriority);
-                this.resizeFilters()
+                this.resizeFilters(true)
             },
             randomString() {
                 return Date.now().toString(36) + Math.random().toString(36).substring(2)
             },
-            resizeFilters() {
+            resizeFilters(first) {
 
                 if (! this.hasFilters) {
                     return;
@@ -163,11 +165,12 @@ window.Components = {
                 let searchFieldWidth = (this.hasSearch) ? this.$refs.search.offsetWidth : 0
                 let moreButtonWidth = this.$refs.more.offsetWidth
                 let tableWidth = this.$refs.table.offsetWidth
-                let maxWidth = tableWidth - searchFieldWidth - moreButtonWidth - 10
+                let maxWidth = tableWidth - searchFieldWidth - moreButtonWidth - 50
 
                 for (let i = 0; i < this.filters.length; i++) {
 
                     filter = this.filters[i]
+                    if (first) filter.element.classList.remove('hidden')
                     used += filter.width
 
                     if (used > maxWidth && filter.location !== 'more') {

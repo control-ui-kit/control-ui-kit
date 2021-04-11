@@ -199,6 +199,18 @@ return [
         ]
     ],
 
+    'dropdown-menu' => [
+        'background' => 'bg-nav-option',
+        'border' => 'border border-nav',
+        'color' => '',
+        'font' => '',
+        'other' => 'absolute flex flex-col z-50',
+        'padding' => '',
+        'rounded' => 'rounded',
+        'shadow' => 'shadow-md',
+        'width' => '',
+    ],
+
     'input' => [
 
         // Style
@@ -837,7 +849,7 @@ return [
         'button-border' => 'focus:outline-none focus:ring-0',
         'button-color' => '',
         'button-font' => 'text-input',
-        'button-other' => 'flex items-center cursor-pointer',
+        'button-other' => 'flex items-center flex-shrink-0 cursor-pointer',
         'button-padding' => 'h-9 space-x-2 py-1.5 px-3',
         'button-rounded' => 'rounded',
         'button-shadow' => '',
