@@ -10,7 +10,7 @@
 >
 {{--    <div class="flex items-center flex-row justify-between">--}}
     <div
-        class="@if (! $hideSearch) sm:grid table-grid-filters space-x-4 @endif flex"
+        class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex"
 {{--        class=""--}}
 {{--         style="grid-template-columns: 300px auto"--}}
     >
@@ -70,7 +70,7 @@
     @endisset
 
     @if($hasFilters())
-    <div class="mt-4 flex flex-col md:flex-row items-center justify-between text-sm min-w-full">
+    <div class="mt-4 flex flex-row justify-between text-sm min-w-full">
 
         <div class="flex flex-row flex-wrap items-center">
             @foreach ($activeFilters as $type => $filters)
@@ -81,7 +81,7 @@
         </div>
 
 {{--        <a class="{{ $clearFilterClasses() }}"--}}
-        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 mb-2"
+        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 mb-2 pt-0.5"
             @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
             @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
         >{{ $clearFiltersText }}</a>

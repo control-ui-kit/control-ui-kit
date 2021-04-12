@@ -617,7 +617,7 @@ return [
         'color' => '',
         'font' => '',
         'other' => '',
-        'padding' => 'py-4 sm:px-4',
+        'padding' => 'p-2 sm:p-4',
         'rounded' => '',
         'shadow' => '',
     ],
