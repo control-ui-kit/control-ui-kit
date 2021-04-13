@@ -1,39 +1,12 @@
-{{--<div x-data="{ show: false }">--}}
-{{--    <button type="button" {{ $attributes->merge($classes()) }} @click="show = !show">--}}
-{{--        <span>{{ $label }}</span>--}}
-{{--        @if ($icon)--}}
-{{--        <x-dynamic-component :component="$icon" :size="$iconSize" :color="$iconColor" />--}}
-{{--        @endif--}}
-{{--    </button>--}}
-{{--    <div x-show="show" class="absolute flex flex-col z-50 shadow-md rounded bg-nav-option border border-nav p-4">--}}
-{{--        @if ($slot->isNotEmpty())--}}
-{{--        {{ $slot }}--}}
-{{--        @endif--}}
-
-{{--        @foreach($options as $value => $option)--}}
-
-{{--            <div class="flex items-center space-x-2">--}}
-{{--                <x-input.radio :name="$name" :value="$value" />--}}
-{{--                <span>{{ $option }}</span>--}}
-{{--            </div>--}}
-
-{{--        @endforeach--}}
-
-{{--    </div>--}}
-{{--</div>--}}
-
-{{--x-cloak x-data="Components.filter({ id: '{{ $id }}', value: {!! $jsonValue() !!} })" x-init="init()"--}}
-
-<div class="{{ $buttonWidth() }} relative table-filter" data-priority="{{ $priority }}"  data-label="{{ $label }}">
+<div class="{{ $buttonWidth() }} sm:relative table-filter" data-ref="{{ $buttonRef() }}" data-priority="{{ $priority }}"  data-label="{{ $label }}">
 
 {{--    <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if(! is_null($value)) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />--}}
 
     <button type="button"
-            {{ $attributes->merge($classes()) }}
-{{--            x-ref="button"--}}
-{{--            @keydown.arrow-up.stop.prevent="onButtonClick()"--}}
-{{--            @keydown.arrow-down.stop.prevent="onButtonClick()"--}}
-            @click="onButtonClick('{{ $buttonRef() }}')"
+            {{ $attributes->merge($buttonClasses()) }}
+            @keydown.arrow-up.stop.prevent="onButtonClick('{{ $buttonRef() }}')"
+            @keydown.arrow-down.stop.prevent="onButtonClick('{{ $buttonRef() }}')"
+
 {{--            aria-haspopup="listbox"--}}
 {{--            :aria-expanded="open"--}}
 {{--            aria-labelledby="listbox-label"--}}
@@ -51,8 +24,8 @@
         x-transition:leave-end="opacity-0"
         class="{{ $listClasses() }}"
         x-max="1"
-{{--        @keydown.enter.stop.prevent="onKeyboardSelect()"--}}
-{{--        @keydown.space.stop.prevent="onKeyboardSelect()"--}}
+        @keydown.enter.stop.prevent="onKeyboardSelect()"
+        @keydown.space.stop.prevent="onKeyboardSelect()"
 {{--        @keydown.arrow-up.prevent="onArrowUp()"--}}
 {{--        @keydown.arrow-down.prevent="onArrowDown()"--}}
 {{--        x-ref="listbox-{{ $id }}"--}}

@@ -80,9 +80,9 @@ trait UseThemeFile
         }
     }
 
-    public function classes(string $class = '', array $only = []): array
+    public function classes(string $class = '', array $only = [], array $except = []): array
     {
-        $classList = $this->classList($this->props, $class, $only);
+        $classList = $this->classList($this->props, $class, $only, $except);
 
         return $classList ? ['class' => $classList] : [];
     }

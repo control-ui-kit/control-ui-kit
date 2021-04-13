@@ -105,16 +105,24 @@ window.Components = {
             usedSpace: 0,
             search: null,
             filters: [],
+            // activeIndex: 0,
+            // highlightIndex: 0,
             init() {
                 window.addEventListener('DOMContentLoaded', () => {
                     this.$el.dispatchEvent(new Event('ready'))
                 });
             },
             onButtonClick(filter) {
-                if (this.open === filter) return
+                if (this.open === filter) {
+                    this.open = false
+                    return
+                }
                 this.open = filter
             },
             onEscape() {
+                this.open = false
+            },
+            onClickAway() {
                 this.open = false
             },
             onMoreButtonClicked() {
@@ -124,9 +132,7 @@ window.Components = {
             initFilters() {
                 let filter, width, filters = this.$refs.filters;
 
-                if (!this.hasFilters) {
-                    return;
-                }
+                if (! this.hasFilters) return;
 
                 for (let i = 0; i < filters.children.length; i++) {
 
@@ -134,6 +140,12 @@ window.Components = {
                     width = filter.offsetWidth
 
                     if (filter.classList.contains('table-filter')) {
+
+                        filter.addEventListener('click', function(e) {
+                            e.stopPropagation()
+                            window.dispatchEvent(new CustomEvent('filter', {'detail': this.dataset.ref}))
+                        }, false)
+
                         filter.id = 'filter_' + this.randomString()
                         this.filters.push({
                             display: i,
@@ -156,6 +168,7 @@ window.Components = {
                 return Date.now().toString(36) + Math.random().toString(36).substring(2)
             },
             resizeFilters(first) {
+                this.open = false
 
                 if (! this.hasFilters) {
                     return;
@@ -173,7 +186,7 @@ window.Components = {
                     if (first) filter.element.classList.remove('hidden')
                     used += filter.width
 
-                    if (used > maxWidth && filter.location !== 'more') {
+                    if ((used > maxWidth || window.innerWidth < 640) && filter.location !== 'more') {
                         this.moveFilter(filter, this.$refs.overflow, 'more')
                         this.filters[i].location = 'more'
                     } else if (used < maxWidth && filter.location !== 'filters') {
@@ -208,6 +221,25 @@ window.Components = {
 
                 return ''
             },
+            onKeyboardSelect() {
+                // if (this.activeIndex !== null) {
+                //     this.highlightIndex = this.activeIndex
+                // }
+                // this.image = this.$refs['listbox-' + id].children[this.activeIndex].dataset.image
+                // this.subtext = this.$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
+                // this.text = this.$refs['listbox-' + id].children[this.highlightIndex].dataset.text
+                // this.value = this.$refs['listbox-' + id].children[this.highlightIndex].dataset.value
+                // this.open = false
+                this.$refs.button.focus()
+            },
+            // onArrowUp() {
+            //     this.activeIndex = this.activeIndex - 1 < 0 ? this.optionCount - 1 : this.activeIndex - 1
+            //     this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+            // },
+            // onArrowDown() {
+            //     this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
+            //     this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+            // },
             sortByDisplayOrder(a, b) {
                 if (a.display > b.display){
                     return -1;

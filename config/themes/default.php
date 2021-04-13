@@ -846,14 +846,16 @@ return [
 
         // Style
         'button-background' => '',
-        'button-border' => 'focus:outline-none focus:ring-0',
+//        'button-border' => 'focus:outline-none focus:ring-0',
+        'button-border' => 'focus:outline-none focus:ring-1 focus:ring-brand ring-inset',
+
         'button-color' => '',
         'button-font' => 'text-input',
         'button-other' => 'flex items-center flex-shrink-0 cursor-pointer',
         'button-padding' => 'h-9 space-x-2 py-1.5 px-3',
-        'button-rounded' => 'rounded',
-        'button-shadow' => '',
-        'button-width' => 'w-auto',
+        'button-rounded' => '',
+        'button-shadow' => 'rounded',
+        'button-width' => 'w-1/2 sm:w-auto',
 
         'check-background' => '',
         'check-border' => '',
@@ -889,11 +891,11 @@ return [
         'list-border' => 'border border-input focus:outline-none',
         'list-color' => '',
         'list-font' => '',
-        'list-other' => 'absolute right-0 mt-1 max-h-60 overflow-auto z-50',
+        'list-other' => 'absolute inset-x-2 sm:inset-auto sm:right-0 mt-1 max-h-60 overflow-auto z-50',
         'list-padding' => 'py-1',
         'list-rounded' => 'rounded',
         'list-shadow' => 'shadow-md',
-        'list-width' => 'w-max',
+        'list-width' => 'sm:w-max',
 
         'list-text-active' => 'font-semibold',
         'list-text-inactive' => 'font-normal',

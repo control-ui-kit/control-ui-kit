@@ -276,6 +276,11 @@ class Filter extends Component
         return $this->props['button-width'];
     }
 
+    public function buttonClasses(): array
+    {
+        return ['class' => $this->classList($this->props, '', [], ['button-width'])];
+    }
+
     public function listClasses(): string
     {
         return $this->classList($this->listStyles);

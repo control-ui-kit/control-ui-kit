@@ -7,70 +7,69 @@
      x-on:resize.window="resizeFilters()"
      @ready="initFilters"
      x-init="init()"
+     @filter.window="onButtonClick($event.detail)"
+{{--     @click.away="onClickAway()"--}}
+     @keydown.escape="onEscape()"
 >
-{{--    <div class="flex items-center flex-row justify-between">--}}
-    <div
-        class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex"
-{{--        class=""--}}
-{{--         style="grid-template-columns: 300px auto"--}}
-    >
+    <div @click.away="onClickAway()" @click.stop="onClickAway()">
 
-        @if (! $hideSearch)
-        <div class="w-full sm:flex-shrink-0" x-ref="search">
-{{--        <div class="" x-ref="search">--}}
+        <div class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex">
 
-            <x-form action="{{ $searchUrl() }}" method="get" name="searchfrm" id="searchfrm">
-                <x-input.search
-                    name="search"
-                    placeholder="Search..."
-                    background="bg-table-filters"
-                    input-background="bg-table-filters"
-                    :value="$search"
-                    onchange="document.search.submit();"
-                    {{ $attributes->whereStartsWith('wire:model') }}
-                />
-            </x-form>
+            @if (! $hideSearch)
+            <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
+                <x-form action="{{ $searchUrl() }}" method="get" name="searchfrm" id="searchfrm">
+                    <x-input.search
+                        name="search"
+                        placeholder="Search..."
+                        background="bg-table-filters"
+                        input-background="bg-table-filters"
+                        :value="$search"
+                        onchange="document.search.submit();"
+                        {{ $attributes->whereStartsWith('wire:model') }}
+                    />
+                </x-form>
+            </div>
+            @endif
+
+            @isset($filters)
+            <div x-ref="container"
+                 class="@if (! $hideSearch) flex-grow items-end @endif flex-grow w-auto flex flex-col items-end"
+            >
+                <div
+    {{--                class="{{ $tableFilterClasses() }} w-max"--}}
+                    x-ref="filters"
+                    class="bg-table-filters inline-flex border border-table-filters divide-x table-filters-divider rounded w-max"
+                >
+                    {{ $filters }}
+
+                    <button class="px-4 h-9 focus:outline-none focus:ring-0 text-input-option"
+                            x-ref="more"
+                            x-show="moreButton"
+                            @click="onMoreButtonClicked()"
+                    >
+                        <x-icon.filter />
+                    </button>
+
+                </div>
+            </div>
+            @endisset
 
         </div>
-        @endif
 
         @isset($filters)
-        <div x-ref="container"
-
-             class="@if (! $hideSearch) flex-grow items-end @endif flex-grow w-auto flex flex-col items-end mb-2"
-{{--             class=""--}}
-{{--             class="pr-4 flex-grow items-end"--}}
-
-        >
-            <div
-                @click.away="open = false"
-                @keydown.escape="onEscape()"
-{{--                class="{{ $tableFilterClasses() }} w-max"--}}
-                x-ref="filters"
-                class="bg-table-filters inline-flex border border-table-filters divide-x table-filters-divider rounded w-max"
-            >
-                {{ $filters }}
-
-                <button class="px-4 h-9 focus:outline-none focus:ring-0 text-input-option" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
-                    <x-icon.filter />
-                </button>
-
+            <div class="flex justify-end">
+                <div id="more-filters"
+                     x-ref="overflow"
+                     x-show="openMore"
+                     class="w-full sm:w-auto mt-2 sm:mt-4 bg-table-filters border border-table-filters border-table-filters divide-x table-filters-divider inline-flex rounded-md items-center justify-end flex-wrap"
+                ></div>
             </div>
-        </div>
         @endisset
 
     </div>
 
-    @isset($filters)
-    <div id="more-filters"
-         x-ref="overflow"
-         x-show="openMore"
-         class="mt-4 bg-table-filters border border-table-filters border-table-filters divide-x table-filters-divider inline-flex rounded-md items-center mt-2 justify-end flex-wrap"
-    ></div>
-    @endisset
-
     @if($hasFilters())
-    <div class="mt-4 flex flex-row justify-between text-sm min-w-full">
+    <div class="flex flex-row justify-between text-sm min-w-full mt-2 sm:mt-4">
 
         <div class="flex flex-row flex-wrap items-center">
             @foreach ($activeFilters as $type => $filters)
@@ -81,14 +80,14 @@
         </div>
 
 {{--        <a class="{{ $clearFilterClasses() }}"--}}
-        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 mb-2 pt-0.5"
+        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 pt-0.5"
             @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
             @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
         >{{ $clearFiltersText }}</a>
     </div>
     @endisset
 
-    <div class="overflow-x-auto border border-table rounded @if($hasFilters()) mt-2 @else mt-4 @endif" x-ref="table">
+    <div class="overflow-x-auto border border-table rounded @if($hasFilters()) mt-2 @else mt-2 sm:mt-4 @endif" x-ref="table">
         <table {{ $attributes->merge($classes())->whereDoesntStartWith('wire:model') }}>
             @isset($headings)
             <thead>
