@@ -198,6 +198,12 @@ window.Components = {
                 this.moreButton = this.$refs.overflow.children.length > 0
                 this.openMore = this.openMore ? this.moreButton : this.openMore
             },
+            hasActiveFilters() {
+                return this.$refs.active.children.length !== 0
+            },
+            tableWrapperClasses() {
+                return this.hasActiveFilters() ? this.withFilters : this.withoutFilters
+            },
             moveFilter(filter, to, location) {
                 let after = this.getAfterElement(filter, location)
                 if (after !== '') {
@@ -232,14 +238,14 @@ window.Components = {
                 // this.open = false
                 this.$refs.button.focus()
             },
-            // onArrowUp() {
-            //     this.activeIndex = this.activeIndex - 1 < 0 ? this.optionCount - 1 : this.activeIndex - 1
-            //     this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
-            // },
-            // onArrowDown() {
-            //     this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
-            //     this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
-            // },
+            onArrowUp() {
+                this.activeIndex = this.activeIndex - 1 < 0 ? this.optionCount - 1 : this.activeIndex - 1
+                this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+            },
+            onArrowDown() {
+                this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
+                this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+            },
             sortByDisplayOrder(a, b) {
                 if (a.display > b.display){
                     return -1;

@@ -2,13 +2,14 @@
      x-cloak
      x-data="Components.table({
         hasFilters: {{ isset($filters) ? 'true' : 'false' }},
-        hasSearch: {{ $hideSearch ? 'false' : 'true' }}
-     })"
+        hasSearch: {{ $hideSearch ? 'false' : 'true' }},
+        withFilters: '{{ $tableWrapperWithFilters() }}',
+        withoutFilters: '{{ $tableWrapperWithoutFilters() }}',
+      })"
      x-on:resize.window="resizeFilters()"
      @ready="initFilters"
      x-init="init()"
      @filter.window="onButtonClick($event.detail)"
-{{--     @click.away="onClickAway()"--}}
      @keydown.escape="onEscape()"
 >
     <div @click.away="onClickAway()" @click.stop="onClickAway()">
@@ -17,39 +18,34 @@
 
             @if (! $hideSearch)
             <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
-                <x-form action="{{ $searchUrl() }}" method="get" name="searchfrm" id="searchfrm">
-                    <x-input.search
-                        name="search"
-                        placeholder="Search..."
-                        background="bg-table-filters"
-                        input-background="bg-table-filters"
-                        :value="$search"
-                        onchange="document.search.submit();"
-                        {{ $attributes->whereStartsWith('wire:model') }}
-                    />
+                <x-form action="{{ $searchUrl() }}" method="get" name="{{ $searchFormName }}" id="{{ $searchFormName }}">
+                    <div class="{{ $searchWrapperClasses() }}">
+                        @if ($searchIcon())
+                        <div class="{{ $searchIconClasses() }}">
+                            <x-dynamic-component :component="$searchIcon()" :size="$searchIconSize()" />
+                        </div>
+                        @endif
+                        <input name="{{ $searchName }}"
+                               type="{{ $searchType }}"
+                               id="{{ $searchId }}"
+                               value="{{ $search }}"
+                               placeholder="{{ $searchPlaceholder }}"
+                               onchange="document.search.submit();"
+                               class="{{ $searchInputClasses() }}"
+                               {{ $attributes->whereStartsWith('wire:model') }}
+                        />
+                    </div>
                 </x-form>
             </div>
             @endif
 
             @isset($filters)
-            <div x-ref="container"
-                 class="@if (! $hideSearch) flex-grow items-end @endif flex-grow w-auto flex flex-col items-end"
-            >
-                <div
-    {{--                class="{{ $tableFilterClasses() }} w-max"--}}
-                    x-ref="filters"
-                    class="bg-table-filters inline-flex border border-table-filters divide-x table-filters-divider rounded w-max"
-                >
+            <div x-ref="container" class="{{ $tableFiltersContainer() }}">
+                <div class="{{ $tableFiltersClasses() }}" x-ref="filters">
                     {{ $filters }}
-
-                    <button class="px-4 h-9 focus:outline-none focus:ring-0 text-input-option"
-                            x-ref="more"
-                            x-show="moreButton"
-                            @click="onMoreButtonClicked()"
-                    >
-                        <x-icon.filter />
+                    <button class="{{ $moreButtonClasses() }}" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
+                        <x-dynamic-component :component="$moreButtonIcon()" :size="$moreButtonIconSize()" />
                     </button>
-
                 </div>
             </div>
             @endisset
@@ -58,20 +54,15 @@
 
         @isset($filters)
             <div class="flex justify-end">
-                <div id="more-filters"
-                     x-ref="overflow"
-                     x-show="openMore"
-                     class="w-full sm:w-auto mt-2 sm:mt-4 bg-table-filters border border-table-filters border-table-filters divide-x table-filters-divider inline-flex rounded-md items-center justify-end flex-wrap"
-                ></div>
+                <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFilterClasses() }}"></div>
             </div>
         @endisset
 
     </div>
 
     @if($hasFilters())
-    <div class="flex flex-row justify-between text-sm min-w-full mt-2 sm:mt-4">
-
-        <div class="flex flex-row flex-wrap items-center">
+    <div class="{{ $activeFilterWrapperClasses() }}">
+        <div class="{{ $activeFilterListClasses() }}" x-ref="active">
             @foreach ($activeFilters as $type => $filters)
                 @foreach($filters as $value => $label)
                     <x-table.active-filter :type="$type" :value="$value" :label="$label" />
@@ -79,24 +70,27 @@
             @endforeach
         </div>
 
-{{--        <a class="{{ $clearFilterClasses() }}"--}}
-        <a class="text-brand hover:text-brand-lighter flex-shrink-0 ml-2 pt-0.5"
+        <a class="{{ $clearFilterClasses() }}"
             @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
             @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
         >{{ $clearFiltersText }}</a>
     </div>
+    @else
+    <div x-ref="active"></div>
     @endisset
 
-    <div class="overflow-x-auto border border-table rounded @if($hasFilters()) mt-2 @else mt-2 sm:mt-4 @endif" x-ref="table">
+    <div class="{{ $tableWrapperClasses }}"
+         :class="tableWrapperClasses()"
+         x-ref="table">
         <table {{ $attributes->merge($classes())->whereDoesntStartWith('wire:model') }}>
             @isset($headings)
             <thead>
-            <tr class="{{ $headingStyles }}">
+            <tr class="{{ $tableHeadingsClasses() }}">
                 {{ $headings }}
             </tr>
             </thead>
             @endif
-            <tbody class="{{ $bodyStyles }}">
+            <tbody class="{{ $tableBodyClasses() }}">
             @if (isset($body))
             {{ $body }}
             @else
