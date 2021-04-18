@@ -103,12 +103,26 @@ window.Components = {
             moreButton: true,
             openMore: false,
             usedSpace: 0,
+            optionCount: null,
+            value: null,
             search: null,
             filters: [],
-            // activeIndex: 0,
-            // highlightIndex: 0,
+            activeIndex: 0,
+            highlightIndex: 0,
+            activeDescendant: null,
             init() {
+                this.$watch('activeIndex', () => {
+                    if (!this.open) return
+
+                    if (this.activeIndex === null) {
+                        this.activeDescendant = ''
+                        return
+                    }
+
+                    this.activeDescendant = this.$refs['listbox-' + this.open].children[this.activeIndex].id
+                })
                 window.addEventListener('DOMContentLoaded', () => {
+                    console.log('ready')
                     this.$el.dispatchEvent(new Event('ready'))
                 });
             },
@@ -117,7 +131,23 @@ window.Components = {
                     this.open = false
                     return
                 }
+                this.activeIndex = 0
+                this.highlightIndex = 0
                 this.open = filter
+                this.value = this.$refs['listbox-' + this.open].dataset.value
+                this.optionCount = this.$refs['listbox-' + this.open].children.length
+                for (let i = 0; i < this.optionCount; i++) {
+                    if (this.$refs['listbox-' + this.open].children[i].dataset.value === this.value) {
+                        this.highlightIndex = i
+                        this.activeIndex = i
+                    }
+                }
+                this.$nextTick(() => {
+                    this.$refs['listbox-' + this.open].focus()
+                    if (this.activeIndex) {
+                        this.$refs['listbox-' + this.open].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                    }
+                })
             },
             onEscape() {
                 this.open = false
@@ -130,6 +160,9 @@ window.Components = {
                 this.open = false
             },
             initFilters() {
+
+                console.log('initFilters')
+
                 let filter, width, filters = this.$refs.filters;
 
                 if (! this.hasFilters) return;
@@ -140,11 +173,6 @@ window.Components = {
                     width = filter.offsetWidth
 
                     if (filter.classList.contains('table-filter')) {
-
-                        filter.addEventListener('click', function(e) {
-                            e.stopPropagation()
-                            window.dispatchEvent(new CustomEvent('filter', {'detail': this.dataset.ref}))
-                        }, false)
 
                         filter.id = 'filter_' + this.randomString()
                         this.filters.push({
@@ -164,16 +192,15 @@ window.Components = {
                 this.filters.sort(this.sortByPriority);
                 this.resizeFilters(true)
             },
+            roundedBorders() {
+                return 'rounded'
+            },
             randomString() {
                 return Date.now().toString(36) + Math.random().toString(36).substring(2)
             },
             resizeFilters(first) {
                 this.open = false
-
-                if (! this.hasFilters) {
-                    return;
-                }
-
+                if (! this.hasFilters) return
                 let filter, used = 0
                 let searchFieldWidth = (this.hasSearch) ? this.$refs.search.offsetWidth : 0
                 let moreButtonWidth = this.$refs.more.offsetWidth
@@ -228,23 +255,23 @@ window.Components = {
                 return ''
             },
             onKeyboardSelect() {
-                // if (this.activeIndex !== null) {
-                //     this.highlightIndex = this.activeIndex
-                // }
-                // this.image = this.$refs['listbox-' + id].children[this.activeIndex].dataset.image
-                // this.subtext = this.$refs['listbox-' + id].children[this.activeIndex].dataset.subtext
-                // this.text = this.$refs['listbox-' + id].children[this.highlightIndex].dataset.text
-                // this.value = this.$refs['listbox-' + id].children[this.highlightIndex].dataset.value
-                // this.open = false
-                this.$refs.button.focus()
+                if (this.activeIndex !== null) this.highlightIndex = this.activeIndex
+                this.value = this.$refs['listbox-' + this.open].children[this.highlightIndex].dataset.value
+                this.$refs['listbox-' + this.open].dataset.value = this.value
+                this.$refs['button-' + this.open].focus()
+                this.open = false
+            },
+            onMouseSelect(activeIndex) {
+                this.highlightIndex = activeIndex
+                this.open = false
             },
             onArrowUp() {
                 this.activeIndex = this.activeIndex - 1 < 0 ? this.optionCount - 1 : this.activeIndex - 1
-                this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                this.$refs['listbox-' + this.open].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
             },
             onArrowDown() {
                 this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
-                this.$refs['listbox-' + id].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+                this.$refs['listbox-' + this.open].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
             },
             sortByDisplayOrder(a, b) {
                 if (a.display > b.display){

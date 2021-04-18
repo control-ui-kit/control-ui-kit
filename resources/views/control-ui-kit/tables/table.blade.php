@@ -7,11 +7,14 @@
         withoutFilters: '{{ $tableWrapperWithoutFilters() }}',
       })"
      x-on:resize.window="resizeFilters()"
-     @ready="initFilters"
+{{--     @ready.window="initFilters()"--}}
+     @ready="initFilters()"
      x-init="init()"
-     @filter.window="onButtonClick($event.detail)"
      @keydown.escape="onEscape()"
+{{--     @arrow-up.window.prevent="onArrowUp()"--}}
+{{--     @arrow-down.window.prevent="onArrowDown()"--}}
 >
+
     <div @click.away="onClickAway()" @click.stop="onClickAway()">
 
         <div class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex">
@@ -43,9 +46,11 @@
             <div x-ref="container" class="{{ $tableFiltersContainer() }}">
                 <div class="{{ $tableFiltersClasses() }}" x-ref="filters">
                     {{ $filters }}
-                    <button class="{{ $moreButtonClasses() }}" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
-                        <x-dynamic-component :component="$moreButtonIcon()" :size="$moreButtonIconSize()" />
-                    </button>
+                    <div>
+                        <button class="{{ $moreButtonClasses() }}" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
+                            <x-dynamic-component :component="$moreButtonIcon()" :size="$moreButtonIconSize()" />
+                        </button>
+                    </div>
                 </div>
             </div>
             @endisset
@@ -60,14 +65,10 @@
 
     </div>
 
-    @if($hasFilters())
+    @if(isset($active))
     <div class="{{ $activeFilterWrapperClasses() }}">
         <div class="{{ $activeFilterListClasses() }}" x-ref="active">
-            @foreach ($activeFilters as $type => $filters)
-                @foreach($filters as $value => $label)
-                    <x-table.active-filter :type="$type" :value="$value" :label="$label" />
-                @endforeach
-            @endforeach
+            {{ $active }}
         </div>
 
         <a class="{{ $clearFilterClasses() }}"

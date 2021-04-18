@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -27,7 +28,6 @@ class Table extends Component
     public string $searchPlaceholder;
     public string $searchType;
 
-//    public array $activeFilterStyles;
     public array $activeFilterListStyles;
     public array $activeFilterWrapperStyles;
     public array $clearFilterStyles;
@@ -185,17 +185,6 @@ class Table extends Component
         string $clearFiltersText = null
     ) {
         $this->setConfigStyles([
-            'table-background' => $tableBackground,
-            'table-border' => $tableBorder,
-            'table-color' => $tableColor,
-            'table-font' => $tableFont,
-            'table-other' => $tableOther,
-            'table-padding' => $tablePadding,
-            'table-rounded' => $tableRounded,
-            'table-shadow' => $tableShadow,
-        ]);
-
-        $this->setConfigStyles([
             'active-filters-list-background' => $activeFiltersListBackground,
             'active-filters-list-border' => $activeFiltersListBorder,
             'active-filters-list-color' => $activeFiltersListColor,
@@ -253,6 +242,17 @@ class Table extends Component
             'more-filters-shadow' => $moreFiltersShadow,
             'more-filters-width' => $moreFiltersWidth,
         ], [], null, 'moreFiltersStyles');
+
+        $this->setConfigStyles([
+            'table-background' => $tableBackground,
+            'table-border' => $tableBorder,
+            'table-color' => $tableColor,
+            'table-font' => $tableFont,
+            'table-other' => $tableOther,
+            'table-padding' => $tablePadding,
+            'table-rounded' => $tableRounded,
+            'table-shadow' => $tableShadow,
+        ]);
 
         $this->setConfigStyles([
             'table-body-background' => $tableBodyBackground,
@@ -465,5 +465,14 @@ class Table extends Component
     public function searchUrl(): string
     {
         return Request::fullUrl();
+    }
+
+    private function activeFilterHref($type): string
+    {
+        $resetValue = null;
+
+        $query = $type . '=' . $resetValue;
+
+        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
     }
 }

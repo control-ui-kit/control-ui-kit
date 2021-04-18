@@ -18,26 +18,32 @@ class ActiveFilter extends Component
     public ?string $href;
     public string $label;
     public string $icon;
-    public string $iconColor;
-    public string $iconSize;
+    private array $iconStyles;
 
     public function __construct(
-        $filter = null,
-        string $type = null,
-        string $value = null,
-        string $label = null,
+        string $label,
+        string $name = null,
+        string $resetValue = null,
+        string $href = null,
+
         string $background = null,
         string $border = null,
         string $color = null,
         string $font = null,
-        string $href = null,
-        string $icon = null,
-        string $iconColor = null,
-        string $iconSize = null,
         string $other = null,
         string $padding = null,
         string $rounded = null,
-        string $shadow = null
+        string $shadow = null,
+
+        string $icon = null,
+        string $iconBackground = null,
+        string $iconBorder = null,
+        string $iconColor = null,
+        string $iconOther = null,
+        string $iconPadding = null,
+        string $iconRounded = null,
+        string $iconShadow = null,
+        string $iconSize = null
     ) {
         $this->setConfigStyles([
             'background' => $background,
@@ -50,29 +56,24 @@ class ActiveFilter extends Component
             'shadow' => $shadow,
         ]);
 
-//        dd($type, $value, $label);
+        $this->setConfigStyles([
+            'icon-background' => $iconBackground,
+            'icon-border' => $iconBorder,
+            'icon-color' => $iconColor,
+            'icon-other' => $iconOther,
+            'icon-padding' => $iconPadding,
+            'icon-rounded' => $iconRounded,
+            'icon-shadow' => $iconShadow,
+            'icon-size' => $iconSize,
+        ], [], null, 'iconStyles');
 
         if (is_null($href)) {
-            $this->href = $this->buildHref($type);
+            $this->href = $this->buildHref($name, $resetValue);
         }
-
-//        dd($type, $this->href);
 
         $this->label = $label;
 
-//        if (! is_null($filter)) {
-//
-//            $this->setupFilter($type, $filter);
-//
-//
-//        } else {
-//            $this->href = $href;
-//            $this->label = $label;
-//        }
-
         $this->icon = $this->style($this->component, 'icon', $icon);
-        $this->iconColor = $this->style($this->component, 'icon-color', $iconColor);
-        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
     }
 
     public function render()
@@ -80,21 +81,17 @@ class ActiveFilter extends Component
         return view('control-ui-kit::control-ui-kit.tables.active-filter');
     }
 
-    private function setupFilter(?string $type, $filter)
+    public function iconStyles($styles = []): array
     {
-        if (is_array($filter)) {
-
+        foreach($this->iconStyles as $key => $value) {
+            $styles[substr($key, 5)] = $value;
         }
 
-
+        return $styles;
     }
 
-    private function buildHref($type): string
+    private function buildHref($name, $resetValue): string
     {
-        $resetValue = null;
-
-        $query = $type . '=' . $resetValue;
-
-        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
+        return (new UrlManipulation)->url(Request::fullUrl())->append($name . '=' . $resetValue);
     }
 }

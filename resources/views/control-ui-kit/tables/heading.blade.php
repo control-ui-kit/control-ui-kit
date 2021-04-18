@@ -2,7 +2,7 @@
 <th {{ $attributes->merge($classes()) }}>{{ $slot }}</th>
 @elseif (! $field && $href)
 <th {{ $attributes->merge($classes())->only('class') }}>
-    <a href="{{ $href }}" {{ $attributes->except('class') }}>{{ $slot }}</a>
+    <a href="{{ $href }}" {{ $attributes->except('class') }} class="{{ $sortLink }}">{{ $slot }}</a>
 </th>
 @else
 <th {{ $attributes->merge($classes())->only('class') }}>
