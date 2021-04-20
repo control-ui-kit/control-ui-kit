@@ -9,10 +9,8 @@
             aria-labelledby="listbox-label"
             aria-expanded="true"
     >
-        <div class="{{ $textClasses() }}">
-            {{ $label }}
-            <x-dynamic-component :component="$icon" :size="$iconSize" />
-        </div>
+        <span>{{ $label }}</span>
+        <x-dynamic-component :component="$icon" :size="$iconSize" />
     </button>
 
     <ul x-show="open == '{{ $buttonRef() }}'"
@@ -39,7 +37,7 @@
                 role="option"
                 data-value="{{ $optionValue }}"
 {{--                @click="onMouseSelect({{ $activeIndex }})"--}}
-                @mouseenter="activeIndex = {{ $activeIndex }}; console.log('mouseenter')"
+                @mouseenter="activeIndex = {{ $activeIndex }}"
                 @mouseleave="activeIndex = null"
                 :class="{ '{{ $optionActive() }}': activeIndex === {{ $activeIndex }}, '{{ $optionInactive() }}': !(activeIndex === {{ $activeIndex }}) }"
             >

@@ -957,8 +957,6 @@ return [
     'table-filter' => [
 
         // Style
-
-        #TODO - test
         'button-background' => 'bg-table-filters',
         'button-border' => 'focus:outline-none focus:ring-0 w-full border border-table-filters focus:border-brand',
         'button-color' => '',
@@ -1002,7 +1000,6 @@ return [
         'image-shadow' => '',
         'image-size' => 'h-6 w-auto',
 
-        #TODO - test
         'list-background' => 'bg-input',
         'list-border' => 'border border-input focus:outline-none',
         'list-color' => '',
@@ -1013,13 +1010,13 @@ return [
         'list-shadow' => 'shadow-md',
         'list-width' => 'sm:w-max',
 
-        #TODO - test
         'list-text-active' => 'font-semibold',
         'list-text-inactive' => 'font-normal',
+
+        #TODO - test
         'list-subtext-active' => '',
         'list-subtext-inactive' => '',
 
-        #TODO - test
         'option-background' => '',
         'option-border' => '',
         'option-color' => '',
@@ -1031,8 +1028,7 @@ return [
         'option-spacing' => 'space-x-2',
         'option-active' => 'bg-input-option-hover',
         'option-inactive' => 'bg-input-option text-input-option',
-
-        #TODO - test
+        
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
@@ -1052,7 +1048,6 @@ return [
         'subtext-rounded' => '',
         'subtext-shadow' => '',
 
-        #TODO - test
         'wrapper-background' => '',
         'wrapper-border' => '',
         'wrapper-color' => '',
