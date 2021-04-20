@@ -45,6 +45,7 @@ class Filter extends Component
     public array $optionStyles;
     public array $subtextStyles;
     public array $textStyles;
+    public array $wrapperStyles;
 
     public function __construct(
 
@@ -72,6 +73,19 @@ class Filter extends Component
         string $buttonRounded = null,
         string $buttonShadow = null,
         string $buttonWidth = null,
+
+        string $checkBackground = null,
+        string $checkBorder = null,
+        string $checkColor = null,
+        string $checkFont = null,
+        string $checkIcon = null,
+        string $checkIconSize = null,
+        string $checkOther = null,
+        string $checkPadding = null,
+        string $checkRounded = null,
+        string $checkShadow = null,
+        string $checkActive = null,
+        string $checkInactive = null,
 
         string $icon = null,
         string $iconBackground = null,
@@ -134,18 +148,15 @@ class Filter extends Component
         string $subtextRounded = null,
         string $subtextShadow = null,
 
-        string $checkBackground = null,
-        string $checkBorder = null,
-        string $checkColor = null,
-        string $checkFont = null,
-        string $checkIcon = null,
-        string $checkIconSize = null,
-        string $checkOther = null,
-        string $checkPadding = null,
-        string $checkRounded = null,
-        string $checkShadow = null,
-        string $checkActive = null,
-        string $checkInactive = null
+        string $wrapperBackground = null,
+        string $wrapperBorder = null,
+        string $wrapperColor = null,
+        string $wrapperFont = null,
+        string $wrapperOther = null,
+        string $wrapperPadding = null,
+        string $wrapperRounded = null,
+        string $wrapperShadow = null,
+        string $wrapperWidth = null
     ) {
         $this->name = $name;
         $this->label = $label;
@@ -153,9 +164,9 @@ class Filter extends Component
         $this->value = old($name, $value);
 
         $this->priority = $this->setHideOrder($hideFirst, $hideLast, $hideOrder);
-
         $this->options = $this->options($options);
-
+        $this->icon = $this->style($this->component, 'icon', $icon);
+        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
         $this->imageName = $this->style($this->component, 'image-name', $image);
@@ -172,8 +183,18 @@ class Filter extends Component
             'button-width' => $buttonWidth,
         ]);
 
-        $this->icon = $this->style($this->component, 'icon', $icon);
-        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
+        $this->setConfigStyles([
+            'check-background' => $checkBackground,
+            'check-border' => $checkBorder,
+            'check-color' => $checkColor,
+            'check-font' => $checkFont,
+            'check-other' => $checkOther,
+            'check-padding' => $checkPadding,
+            'check-rounded' => $checkRounded,
+            'check-shadow' => $checkShadow,
+            'check-active' => $checkActive,
+            'check-inactive' => $checkInactive,
+        ], [], null, 'checkStyles');
 
         $this->setConfigStyles([
             'icon-background' => $iconBackground,
@@ -250,17 +271,16 @@ class Filter extends Component
         ], [], null, 'subtextStyles');
 
         $this->setConfigStyles([
-            'check-background' => $checkBackground,
-            'check-border' => $checkBorder,
-            'check-color' => $checkColor,
-            'check-font' => $checkFont,
-            'check-other' => $checkOther,
-            'check-padding' => $checkPadding,
-            'check-rounded' => $checkRounded,
-            'check-shadow' => $checkShadow,
-            'check-active' => $checkActive,
-            'check-inactive' => $checkInactive,
-        ], [], null, 'checkStyles');
+            'wrapper-background' => $wrapperBackground,
+            'wrapper-border' => $wrapperBorder,
+            'wrapper-color' => $wrapperColor,
+            'wrapper-font' => $wrapperFont,
+            'wrapper-other' => $wrapperOther,
+            'wrapper-padding' => $wrapperPadding,
+            'wrapper-rounded' => $wrapperRounded,
+            'wrapper-shadow' => $wrapperShadow,
+            'wrapper-width' => $wrapperWidth,
+        ], [], null, 'wrapperStyles');
 
         $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
         $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
@@ -271,14 +291,9 @@ class Filter extends Component
         return view('control-ui-kit::control-ui-kit.tables.filter');
     }
 
-    public function buttonWidth(): string
+    public function wrapperClasses(string $append = ''): string
     {
-        return $this->props['button-width'];
-    }
-
-    public function buttonClasses(): array
-    {
-        return ['class' => $this->classList($this->props, '', [], ['button-width'])];
+        return collect([$this->classList($this->wrapperStyles), $append])->filter()->implode(' ');
     }
 
     public function listClasses(): string

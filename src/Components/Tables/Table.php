@@ -21,7 +21,8 @@ class Table extends Component
     public ?string $clearFiltersText;
     public array $activeFilters;
     public ?string $search;
-    public bool $showSearch;
+    private ?bool $showSearch;
+    private ?bool $hideSearch;
 
     public string $searchBar;
     public string $searchBarSpacing;
@@ -187,7 +188,8 @@ class Table extends Component
 
         array $activeFilters = [],
         string $search = null,
-        bool $noSearch = false,
+        bool $hideSearch = null,
+        bool $showSearch = null,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
@@ -350,7 +352,8 @@ class Table extends Component
 
         $this->activeFilters = $activeFilters;
 
-        $this->showSearch = ! $noSearch;
+        $this->showSearch = $showSearch;
+        $this->hideSearch = $hideSearch;
         $this->search = is_null($search) ? request('search') : null;
 
         $this->searchBar = $this->style($this->component, 'search-bar', $searchBar);
@@ -492,5 +495,20 @@ class Table extends Component
         $query = $type . '=' . $resetValue;
 
         return (new UrlManipulation)->url(Request::fullUrl())->append($query);
+    }
+
+    public function showSearch()
+    {
+        $configSearch = $this->style($this->component, 'search-enable', null);
+
+        if (! $configSearch && $this->showSearch) {
+            return true;
+        }
+
+        if ($configSearch && $this->hideSearch) {
+            return false;
+        }
+
+        return $configSearch;
     }
 }

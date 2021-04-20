@@ -743,6 +743,7 @@ return [
 
     'table' => [
 
+        # TODO - test
         'active-filters-list-background' => '',
         'active-filters-list-border' => '',
         'active-filters-list-color' => '',
@@ -753,6 +754,7 @@ return [
         'active-filters-list-shadow' => '',
         'active-filters-list-width' => '',
 
+        # TODO - test
         'active-filters-wrapper-background' => '',
         'active-filters-wrapper-border' => '',
         'active-filters-wrapper-color' => '',
@@ -763,6 +765,7 @@ return [
         'active-filters-wrapper-shadow' => '',
         'active-filters-wrapper-width' => 'min-w-full',
 
+        # TODO - test
         'clear-filters-event' => '',
         'clear-filters-href' => '',
         'clear-filters-text' => 'Clear Filters',
@@ -775,6 +778,7 @@ return [
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
 
+        # TODO - test
         'more-button-background' => 'bg-table-filters',
         'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
         'more-button-color' => 'text-input',
@@ -787,6 +791,7 @@ return [
         'more-button-shadow' => '',
         'more-button-width' => 'w-max',
 
+        # TODO - test
         'more-filters-background' => '',
         'more-filters-border' => '',
         'more-filters-color' => '',
@@ -798,6 +803,7 @@ return [
         'more-filters-width' => 'w-full sm:w-auto',
         'more-filters-wrapper' => 'flex justify-end',
 
+        # TODO - test
         'search-icon-background' => '',
         'search-icon-border' => 'border-0 ',
         'search-icon-color' => 'text-muted',
@@ -808,6 +814,7 @@ return [
         'search-icon-rounded' => '',
         'search-icon-shadow' => '',
 
+        # TODO - test
         'search-input-background' => 'bg-table-filters',
         'search-input-border' => 'border-0 focus:outline-none focus:ring-0',
         'search-input-color' => 'text-input placeholder-input',
@@ -818,6 +825,7 @@ return [
         'search-input-shadow' => '',
         'search-input-width' => 'w-full',
 
+        # TODO - test
         'search-wrapper-background' => 'bg-table-filters',
         'search-wrapper-border' => 'border border-input focus-within:border-brand',
         'search-wrapper-color' => '',
@@ -828,9 +836,12 @@ return [
         'search-wrapper-shadow' => '',
         'search-wrapper-width' => 'w-full',
 
+        # TODO - test
+        'search-enable' => true,
         'search-bar' => 'flex mb-2 sm:mb-0',
         'search-bar-spacing' => 'sm:grid table-grid-filters space-x-2 sm:space-x-4',
         'search-container' => 'w-full sm:flex-shrink-0',
+        'search-event' => '',
         'search-id' => 'search',
         'search-type' => 'search',
         'search-form-name' => 'search_form',
@@ -855,6 +866,7 @@ return [
         'table-body-rounded' => '',
         'table-body-shadow' => '',
 
+        # TODO - test
         'table-filters-background' => '',
         'table-filters-border' => '',
         'table-filters-color' => '',
@@ -885,9 +897,6 @@ return [
         'table-wrapper-shadow' => '',
         'table-wrapper-with-filters' => 'mt-0 sm:mt-2',
         'table-wrapper-without-filters' => '',
-
-        'search' => true,
-        'search-event' => '',
     ],
 
     'table-active-filter' => [
@@ -948,6 +957,8 @@ return [
     'table-filter' => [
 
         // Style
+
+        #TODO - test
         'button-background' => 'bg-table-filters',
         'button-border' => 'focus:outline-none focus:ring-0 w-full border border-table-filters focus:border-brand',
         'button-color' => '',
@@ -956,8 +967,9 @@ return [
         'button-padding' => 'space-x-2 py-1.5 px-3 sm:mb-4',
         'button-rounded' => 'rounded',
         'button-shadow' => '',
-        'button-width' => 'w-full sm:w-auto',
+        'button-width' => '',
 
+        #TODO - test
         'check-background' => '',
         'check-border' => '',
         'check-color' => 'text-brand',
@@ -971,23 +983,26 @@ return [
         'check-icon' => 'icon.check',
         'check-icon-size' =>'w-6 h-6',
 
+        #TODO - test
         'icon' => 'icon.chevron-down',
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
         'icon-color' => '',
-        'icon-size' => 'w-4 h-4',
         'icon-other' => 'absolute flex items-center pointer-events-none',
         'icon-padding' => 'ml-3 px-3 inset-y-0 right-0',
         'icon-rounded' => '',
         'icon-shadow' => '',
+        'icon-size' => 'w-4 h-4',
 
+        #TODO - test
         'image-border' => '',
-        'image-size' => 'h-6 w-auto',
         'image-other' => 'flex-shrink-0',
         'image-padding' => 'pr-2',
         'image-rounded' => '',
         'image-shadow' => '',
+        'image-size' => 'h-6 w-auto',
 
+        #TODO - test
         'list-background' => 'bg-input',
         'list-border' => 'border border-input focus:outline-none',
         'list-color' => '',
@@ -998,11 +1013,13 @@ return [
         'list-shadow' => 'shadow-md',
         'list-width' => 'sm:w-max',
 
+        #TODO - test
         'list-text-active' => 'font-semibold',
         'list-text-inactive' => 'font-normal',
         'list-subtext-active' => '',
         'list-subtext-inactive' => '',
 
+        #TODO - test
         'option-background' => '',
         'option-border' => '',
         'option-color' => '',
@@ -1015,6 +1032,7 @@ return [
         'option-active' => 'bg-input-option-hover',
         'option-inactive' => 'bg-input-option text-input-option',
 
+        #TODO - test
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
@@ -1024,6 +1042,7 @@ return [
         'text-rounded' => '',
         'text-shadow' => '',
 
+        #TODO - test
         'subtext-background' => '',
         'subtext-border' => '',
         'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
@@ -1033,11 +1052,24 @@ return [
         'subtext-rounded' => '',
         'subtext-shadow' => '',
 
+        #TODO - test
+        'wrapper-background' => '',
+        'wrapper-border' => '',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+        'wrapper-other' => 'sm:relative',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => '',
+        'wrapper-shadow' => '',
+        'wrapper-width' => 'w-full sm:w-auto',
+
         // Config
+        #TODO - test
         'please-select-text' => 'Please Select ...',
         'please-select-value' => null,
         'please-select-trans' => '',
 
+        #TODO - test
         'image-name' => 'image',
         'subtext-name' => 'subtext',
         'text-name' => 'text',

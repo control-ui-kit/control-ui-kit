@@ -227,6 +227,10 @@ window.Components = {
                 this.openMore = this.openMore ? this.moreButton : this.openMore
             },
             hasActiveFilters() {
+                if (this.$refs.active === undefined) {
+                    return false;
+                }
+
                 return this.$refs.active.children.length !== 0
             },
             tableWrapperClasses() {

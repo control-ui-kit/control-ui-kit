@@ -1,7 +1,7 @@
-<div class="{{ $buttonWidth() }} sm:relative table-filter" data-ref="{{ $buttonRef() }}" data-priority="{{ $priority }}"  data-label="{{ $label }}">
+<div class="{{ $wrapperClasses('table-filter') }}" data-ref="{{ $buttonRef() }}" data-priority="{{ $priority }}"  data-label="{{ $label }}">
 
     <button type="button"
-            {{ $attributes->merge($buttonClasses()) }}
+            {{ $attributes->merge($classes()) }}
             x-ref="button-{{ $buttonRef() }}"
             @click.stop="onButtonClick('{{ $buttonRef() }}')"
             aria-haspopup="listbox"
@@ -49,7 +49,6 @@
                         <img src="{{ $image($option) }}" alt="" class="{{ $imageClasses() }}">
                     @endif
 
-{{--                        href="{{ $href($optionValue) }}"--}}
                     <span class="{{ $textClasses() }}"
                           :class="{ '{{ $textActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $textInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
                     >{{ $text($option) }}</span>
@@ -64,4 +63,5 @@
             @php $activeIndex++; @endphp
         @endforeach
     </ul>
+
 </div>
