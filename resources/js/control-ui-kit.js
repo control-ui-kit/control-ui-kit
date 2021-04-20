@@ -100,7 +100,7 @@ window.Components = {
     table(options) {
         return {
             open: false,
-            moreButton: true,
+            moreButton: false,
             openMore: false,
             usedSpace: 0,
             optionCount: null,
@@ -122,7 +122,6 @@ window.Components = {
                     this.activeDescendant = this.$refs['listbox-' + this.open].children[this.activeIndex].id
                 })
                 window.addEventListener('DOMContentLoaded', () => {
-                    console.log('ready')
                     this.$el.dispatchEvent(new Event('ready'))
                 });
             },
@@ -160,10 +159,7 @@ window.Components = {
                 this.open = false
             },
             initFilters() {
-
-                console.log('initFilters')
-
-                let filter, width, filters = this.$refs.filters;
+                let filter, width, ref, overflow, filters = this.$refs.filters;
 
                 if (! this.hasFilters) return;
 
@@ -174,14 +170,18 @@ window.Components = {
 
                     if (filter.classList.contains('table-filter')) {
 
+                        ref = filter.dataset.ref
+                        overflow = document.querySelector('#more-filters [data-ref=' + ref + ']');
+                        overflow.classList.add('hidden')
+
                         filter.id = 'filter_' + this.randomString()
                         this.filters.push({
-                            display: i,
                             id: filter.id,
                             label: filter.dataset.label,
                             priority: filter.dataset.priority,
                             width: width,
                             element: filter,
+                            overflow: overflow,
                             location: 'filters'
                         })
 
@@ -191,9 +191,6 @@ window.Components = {
 
                 this.filters.sort(this.sortByPriority);
                 this.resizeFilters(true)
-            },
-            roundedBorders() {
-                return 'rounded'
             },
             randomString() {
                 return Date.now().toString(36) + Math.random().toString(36).substring(2)
@@ -214,15 +211,19 @@ window.Components = {
                     used += filter.width
 
                     if ((used > maxWidth || window.innerWidth < 640) && filter.location !== 'more') {
-                        this.moveFilter(filter, this.$refs.overflow, 'more')
+                        this.toggleFilter(filter, 'more');
                         this.filters[i].location = 'more'
                     } else if (used < maxWidth && filter.location !== 'filters') {
-                        this.moveFilter(filter, this.$refs.filters, 'filters')
+                        this.toggleFilter(filter, 'filters');
                         this.filters[i].location = 'filters'
                     }
                 }
 
-                this.moreButton = this.$refs.overflow.children.length > 0
+                let moreFilterCount = this.filters.filter(function (filter) {
+                    return filter.location === 'more'
+                }).length
+
+                this.moreButton = moreFilterCount > 0
                 this.openMore = this.openMore ? this.moreButton : this.openMore
             },
             hasActiveFilters() {
@@ -231,28 +232,14 @@ window.Components = {
             tableWrapperClasses() {
                 return this.hasActiveFilters() ? this.withFilters : this.withoutFilters
             },
-            moveFilter(filter, to, location) {
-                let after = this.getAfterElement(filter, location)
-                if (after !== '') {
-                    after.after(filter.element)
+            toggleFilter(filter, to) {
+                if (to === 'more') {
+                    filter.element.classList.add('hidden')
+                    filter.overflow.classList.remove('hidden')
                 } else {
-                    to.prepend(filter.element)
+                    filter.element.classList.remove('hidden')
+                    filter.overflow.classList.add('hidden')
                 }
-            },
-            getAfterElement(filter, location) {
-                let filters = this.filters.filter(function(filter) {
-                    return filter.location === location
-                }).sort(this.sortByDisplayOrder)
-
-                if (filters.length) {
-                    for (let i = 0; i < filters.length; i++) {
-                        if (filters[i].display < filter.display) {
-                            return filters[i].element
-                        }
-                    }
-                }
-
-                return ''
             },
             onKeyboardSelect() {
                 if (this.activeIndex !== null) this.highlightIndex = this.activeIndex
@@ -272,15 +259,6 @@ window.Components = {
             onArrowDown() {
                 this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
                 this.$refs['listbox-' + this.open].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
-            },
-            sortByDisplayOrder(a, b) {
-                if (a.display > b.display){
-                    return -1;
-                }
-                if (a.display < b.display){
-                    return 1;
-                }
-                return 0;
             },
             sortByPriority(a, b) {
                 if (a.priority > b.priority){

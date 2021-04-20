@@ -2,7 +2,6 @@
 
     <button type="button"
             {{ $attributes->merge($buttonClasses()) }}
-            :class="roundedBorders('{{ $buttonRef() }}')"
             x-ref="button-{{ $buttonRef() }}"
             @click.stop="onButtonClick('{{ $buttonRef() }}')"
             aria-haspopup="listbox"

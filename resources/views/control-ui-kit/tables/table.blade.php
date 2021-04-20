@@ -7,17 +7,14 @@
         withoutFilters: '{{ $tableWrapperWithoutFilters() }}',
       })"
      x-on:resize.window="resizeFilters()"
-{{--     @ready.window="initFilters()"--}}
      @ready="initFilters()"
      x-init="init()"
      @keydown.escape="onEscape()"
-{{--     @arrow-up.window.prevent="onArrowUp()"--}}
-{{--     @arrow-down.window.prevent="onArrowDown()"--}}
 >
 
     <div @click.away="onClickAway()" @click.stop="onClickAway()">
 
-        <div class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex">
+        <div class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex mb-2 sm:mb-0">
 
             @if (! $hideSearch)
             <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
@@ -59,13 +56,15 @@
 
         @isset($filters)
             <div class="flex justify-end">
-                <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFilterClasses() }}"></div>
+                <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFilterClasses() }}">
+                    {{ $filters }}
+                </div>
             </div>
         @endisset
 
     </div>
 
-    @if(isset($active))
+    @if(isset($active) && $active->isNotEmpty())
     <div class="{{ $activeFilterWrapperClasses() }}">
         <div class="{{ $activeFilterListClasses() }}" x-ref="active">
             {{ $active }}
