@@ -447,7 +447,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <svg class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="custom-background custom-border custom-color custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </td>

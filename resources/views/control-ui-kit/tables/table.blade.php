@@ -1,23 +1,22 @@
-<div class="flex flex-col"
-     x-cloak
+<div x-cloak
      x-data="Components.table({
         hasFilters: {{ isset($filters) ? 'true' : 'false' }},
-        hasSearch: {{ $hideSearch ? 'false' : 'true' }},
+        hasSearch: {{ $showSearch ? 'true' : 'false' }},
         withFilters: '{{ $tableWrapperWithFilters() }}',
         withoutFilters: '{{ $tableWrapperWithoutFilters() }}',
       })"
+     x-on:resize.window="resizeFilters()"
      x-on:resize.window="resizeFilters()"
      @ready="initFilters()"
      x-init="init()"
      @keydown.escape="onEscape()"
 >
-
     <div @click.away="onClickAway()" @click.stop="onClickAway()">
 
-        <div class="@if (! $hideSearch) sm:grid table-grid-filters space-x-2 sm:space-x-4 @endif flex mb-2 sm:mb-0">
+        <div class="@if ($showSearch){{ $searchBarSpacing }}@endif {{ $searchBar }}">
 
-            @if (! $hideSearch)
-            <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
+            @if ($showSearch)
+            <div class="{{ $searchContainer }}" x-ref="search" @click="open = false">
                 <x-form action="{{ $searchUrl() }}" method="get" name="{{ $searchFormName }}" id="{{ $searchFormName }}">
                     <div class="{{ $searchWrapperClasses() }}">
                         @if ($searchIcon())
@@ -55,8 +54,8 @@
         </div>
 
         @isset($filters)
-            <div class="flex justify-end">
-                <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFilterClasses() }}">
+            <div class="{{ $moreFiltersWrapper() }}">
+                <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFiltersClasses() }}">
                     {{ $filters }}
                 </div>
             </div>
@@ -66,6 +65,7 @@
 
     @if(isset($active) && $active->isNotEmpty())
     <div class="{{ $activeFilterWrapperClasses() }}">
+
         <div class="{{ $activeFilterListClasses() }}" x-ref="active">
             {{ $active }}
         </div>
@@ -74,14 +74,14 @@
             @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif
             @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif
         >{{ $clearFiltersText }}</a>
+
     </div>
     @else
     <div x-ref="active"></div>
     @endisset
 
-    <div class="{{ $tableWrapperClasses }}"
-         :class="tableWrapperClasses()"
-         x-ref="table">
+    <div class="{{ $tableWrapperClasses }}" :class="tableWrapperClasses()" x-ref="table">
+
         <table {{ $attributes->merge($classes())->whereDoesntStartWith('wire:model') }}>
             @isset($headings)
             <thead>
@@ -98,6 +98,7 @@
             @endif
             </tbody>
         </table>
+
     </div>
 
 </div>

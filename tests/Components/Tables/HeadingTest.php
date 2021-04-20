@@ -184,7 +184,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow">
-                <a href="http://example.com">::Some Heading</a>
+                <a href="http://example.com" class="sort-link">::Some Heading</a>
             </th>
             HTML;
 

@@ -21,7 +21,11 @@ class Table extends Component
     public ?string $clearFiltersText;
     public array $activeFilters;
     public ?string $search;
-    public bool $hideSearch;
+    public bool $showSearch;
+
+    public string $searchBar;
+    public string $searchBarSpacing;
+    public string $searchContainer;
     public string $searchId;
     public string $searchFormName;
     public string $searchName;
@@ -99,6 +103,7 @@ class Table extends Component
         string $moreFiltersRounded = null,
         string $moreFiltersShadow = null,
         string $moreFiltersWidth = null,
+        string $moreFiltersWrapper = null,
 
         string $searchId = null,
         string $searchName = null,
@@ -125,6 +130,10 @@ class Table extends Component
         string $searchInputRounded = null,
         string $searchInputShadow = null,
         string $searchInputWidth = null,
+
+        string $searchBar = null,
+        string $searchBarSpacing = null,
+        string $searchContainer = null,
 
         string $searchWrapperBackground = null,
         string $searchWrapperBorder = null,
@@ -178,7 +187,7 @@ class Table extends Component
 
         array $activeFilters = [],
         string $search = null,
-        bool $hideSearch = false,
+        bool $noSearch = false,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
@@ -241,6 +250,7 @@ class Table extends Component
             'more-filters-rounded' => $moreFiltersRounded,
             'more-filters-shadow' => $moreFiltersShadow,
             'more-filters-width' => $moreFiltersWidth,
+            'more-filters-wrapper' => $moreFiltersWrapper,
         ], [], null, 'moreFiltersStyles');
 
         $this->setConfigStyles([
@@ -340,9 +350,12 @@ class Table extends Component
 
         $this->activeFilters = $activeFilters;
 
-        $this->hideSearch = $hideSearch;
+        $this->showSearch = ! $noSearch;
         $this->search = is_null($search) ? request('search') : null;
 
+        $this->searchBar = $this->style($this->component, 'search-bar', $searchBar);
+        $this->searchBarSpacing = $this->style($this->component, 'search-bar-spacing', $searchBarSpacing);
+        $this->searchContainer = $this->style($this->component, 'search-container', $searchContainer);
         $this->searchId = $this->style($this->component, 'search-id', $searchId ?: $searchName);
         $this->searchName = $this->style($this->component, 'search-name', $searchName);
         $this->searchFormName = $this->style($this->component, 'search-form-name', $searchFormName);
@@ -389,9 +402,14 @@ class Table extends Component
         return $this->moreButtonStyles['more-button-icon-size'];
     }
 
-    public function moreFilterClasses(): string
+    public function moreFiltersClasses(): string
     {
-        return $this->classList($this->moreFiltersStyles);
+        return $this->classList($this->moreFiltersStyles, '', [], ['more-filters-wrapper']);
+    }
+
+    public function moreFiltersWrapper(): string
+    {
+        return $this->moreFiltersStyles['more-filters-wrapper'];
     }
 
     public function tableBodyClasses(): string

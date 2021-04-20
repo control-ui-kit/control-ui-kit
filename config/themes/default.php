@@ -796,6 +796,7 @@ return [
         'more-filters-rounded' => '',
         'more-filters-shadow' => '',
         'more-filters-width' => 'w-full sm:w-auto',
+        'more-filters-wrapper' => 'flex justify-end',
 
         'search-icon-background' => '',
         'search-icon-border' => 'border-0 ',
@@ -827,6 +828,9 @@ return [
         'search-wrapper-shadow' => '',
         'search-wrapper-width' => 'w-full',
 
+        'search-bar' => 'flex mb-2 sm:mb-0',
+        'search-bar-spacing' => 'sm:grid table-grid-filters space-x-2 sm:space-x-4',
+        'search-container' => 'w-full sm:flex-shrink-0',
         'search-id' => 'search',
         'search-type' => 'search',
         'search-form-name' => 'search_form',
