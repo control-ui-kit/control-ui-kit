@@ -10,7 +10,9 @@
             aria-expanded="true"
     >
         <span>{{ $label }}</span>
-        <x-dynamic-component :component="$icon" :size="$iconSize" />
+        <span class="{{ $iconClasses() }}">
+            <x-dynamic-component :component="$icon" :size="$iconSize" />
+        </span>
     </button>
 
     <ul x-show="open == '{{ $buttonRef() }}'"
@@ -50,12 +52,20 @@
                     <span class="{{ $textClasses() }}"
                           :class="{ '{{ $textActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $textInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
                     >{{ $text($option) }}</span>
+
+                    @if ($optionValue && $subtext($option))
+                        <span class="{{ $subtextClasses() }}"
+                              :class="{ '{{ $subtextActive() }}': highlightIndex === {{ $activeIndex }}, '{{ $subtextInactive() }}': !(highlightIndex === {{ $activeIndex }}) }"
+                        >{{ $subtext($option) }}</span>
+                    @endif
                 </div>
 
                 @if ($checkIcon && $optionValue == $value)
-                    <span class="{{ $checkClasses() }} {{ $checkActive() }}">
-                    <x-dynamic-component :component="$checkIcon" :size="$checkIconSize" />
-                </span>
+                    <span class="{{ $checkClasses() }}"
+                          :class="{ '{{ $checkActive() }}': activeIndex === {{ $activeIndex }}, '{{ $checkInactive() }}': !(activeIndex === {{ $activeIndex }}) }"
+                    >
+                        <x-dynamic-component :component="$checkIcon" :size="$checkIconSize" />
+                    </span>
                 @endif
             </li>
             @php $activeIndex++; @endphp

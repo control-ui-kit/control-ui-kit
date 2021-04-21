@@ -38,7 +38,6 @@ class Filter extends Component
     public ?string $subtextName;
     public ?string $imageName;
 
-    public array $activeStyles;
     public array $checkStyles;
     public array $imageStyles;
     public array $listStyles;
@@ -59,8 +58,6 @@ class Filter extends Component
         bool $hideLast = null,
         string $hideOrder = null,
         string $image = null,
-        $pleaseSelect = null,
-        bool $required = false,
         string $subtext = null,
         string $text = null,
 
@@ -77,7 +74,6 @@ class Filter extends Component
         string $checkBackground = null,
         string $checkBorder = null,
         string $checkColor = null,
-        string $checkFont = null,
         string $checkIcon = null,
         string $checkIconSize = null,
         string $checkOther = null,
@@ -113,10 +109,6 @@ class Filter extends Component
         string $listRounded = null,
         string $listShadow = null,
         string $listWidth = null,
-        string $listSubtextActive = null,
-        string $listSubtextInactive = null,
-        string $listTextActive = null,
-        string $listTextInactive = null,
 
         string $optionBackground = null,
         string $optionBorder = null,
@@ -138,6 +130,8 @@ class Filter extends Component
         string $textPadding = null,
         string $textRounded = null,
         string $textShadow = null,
+        string $textActive = null,
+        string $textInactive = null,
 
         string $subtextBackground = null,
         string $subtextBorder = null,
@@ -147,6 +141,8 @@ class Filter extends Component
         string $subtextPadding = null,
         string $subtextRounded = null,
         string $subtextShadow = null,
+        string $subtextActive = null,
+        string $subtextInactive = null,
 
         string $wrapperBackground = null,
         string $wrapperBorder = null,
@@ -187,7 +183,6 @@ class Filter extends Component
             'check-background' => $checkBackground,
             'check-border' => $checkBorder,
             'check-color' => $checkColor,
-            'check-font' => $checkFont,
             'check-other' => $checkOther,
             'check-padding' => $checkPadding,
             'check-rounded' => $checkRounded,
@@ -250,14 +245,10 @@ class Filter extends Component
             'text-padding' => $textPadding,
             'text-rounded' => $textRounded,
             'text-shadow' => $textShadow,
-        ], [], null, 'textStyles');
+            'text-active' => $textActive,
+            'text-inactive' => $textInactive,
 
-        $this->setConfigStyles([
-            'list-subtext-active' => $listSubtextActive,
-            'list-subtext-inactive' => $listSubtextInactive,
-            'list-text-active' => $listTextActive,
-            'list-text-inactive' => $listTextInactive,
-        ], [], null, 'activeStyles');
+        ], [], null, 'textStyles');
 
         $this->setConfigStyles([
             'subtext-background' => $subtextBackground,
@@ -268,6 +259,8 @@ class Filter extends Component
             'subtext-padding' => $subtextPadding,
             'subtext-rounded' => $subtextRounded,
             'subtext-shadow' => $subtextShadow,
+            'subtext-active' => $subtextActive,
+            'subtext-inactive' => $subtextInactive,
         ], [], null, 'subtextStyles');
 
         $this->setConfigStyles([
@@ -328,32 +321,32 @@ class Filter extends Component
 
     public function textClasses(): string
     {
-        return $this->classList($this->textStyles);
+        return $this->classList($this->textStyles, '', [], ['text-active', 'text-inactive']);
     }
 
     public function textActive(): string
     {
-        return $this->activeStyles['list-text-active'];
+        return $this->textStyles['text-active'];
     }
 
     public function textInactive(): string
     {
-        return $this->activeStyles['list-text-inactive'];
+        return $this->textStyles['text-inactive'];
     }
 
     public function subtextClasses(): string
     {
-        return $this->classList($this->subtextStyles);
+        return $this->classList($this->subtextStyles, '', [], ['subtext-active', 'subtext-inactive']);
     }
 
     public function subtextActive(): string
     {
-        return $this->activeStyles['list-subtext-active'];
+        return $this->subtextStyles['subtext-active'];
     }
 
     public function subtextInactive(): string
     {
-        return $this->activeStyles['list-subtext-inactive'];
+        return $this->subtextStyles['subtext-inactive'];
     }
 
     public function checkClasses(): string

@@ -26,15 +26,14 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.check-background', 'check-background');
         Config::set('themes.default.table-filter.check-border', 'check-border');
         Config::set('themes.default.table-filter.check-color', 'check-color');
-        Config::set('themes.default.table-filter.check-font', 'check-font');
         Config::set('themes.default.table-filter.check-other', 'check-other');
         Config::set('themes.default.table-filter.check-padding', 'check-padding');
         Config::set('themes.default.table-filter.check-rounded', 'check-rounded');
         Config::set('themes.default.table-filter.check-shadow', 'check-shadow');
         Config::set('themes.default.table-filter.check-active', 'check-active');
         Config::set('themes.default.table-filter.check-inactive', 'check-inactive');
-        Config::set('themes.default.table-filter.check-icon', 'check-icon');
-        Config::set('themes.default.table-filter.check-size', 'check-size');
+        Config::set('themes.default.table-filter.check-icon', 'icon.check');
+        Config::set('themes.default.table-filter.check-icon-size', 'check-size');
 
         Config::set('themes.default.table-filter.icon', 'icon.chevron-down');
         Config::set('themes.default.table-filter.icon-background', 'icon-background');
@@ -63,11 +62,6 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.list-shadow', 'list-shadow');
         Config::set('themes.default.table-filter.list-width', 'list-width');
 
-        Config::set('themes.default.table-filter.list-text-active', 'list-text-active');
-        Config::set('themes.default.table-filter.list-text-inactive', 'list-text-inactive');
-        Config::set('themes.default.table-filter.list-subtext-active', 'list-subtext-active');
-        Config::set('themes.default.table-filter.list-subtext-inactive', 'list-subtext-inactive');
-
         Config::set('themes.default.table-filter.option-background', 'option-background');
         Config::set('themes.default.table-filter.option-border', 'option-border');
         Config::set('themes.default.table-filter.option-color', 'option-color');
@@ -88,6 +82,8 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.text-padding', 'text-padding');
         Config::set('themes.default.table-filter.text-rounded', 'text-rounded');
         Config::set('themes.default.table-filter.text-shadow', 'text-shadow');
+        Config::set('themes.default.table-filter.text-active', 'text-active');
+        Config::set('themes.default.table-filter.text-inactive', 'text-inactive');
 
         Config::set('themes.default.table-filter.subtext-background', 'subtext-background');
         Config::set('themes.default.table-filter.subtext-border', 'subtext-border');
@@ -97,6 +93,8 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.subtext-padding', 'subtext-padding');
         Config::set('themes.default.table-filter.subtext-rounded', 'subtext-rounded');
         Config::set('themes.default.table-filter.subtext-shadow', 'subtext-shadow');
+        Config::set('themes.default.table-filter.subtext-active', 'subtext-active');
+        Config::set('themes.default.table-filter.subtext-inactive', 'subtext-inactive');
 
         Config::set('themes.default.table-filter.wrapper-background', 'wrapper-background');
         Config::set('themes.default.table-filter.wrapper-border', 'wrapper-border');
@@ -108,13 +106,9 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.wrapper-shadow', 'wrapper-shadow');
         Config::set('themes.default.table-filter.wrapper-width', 'wrapper-width');
 
-        Config::set('themes.default.table-filter.please-select-text', 'please-select-text');
-        Config::set('themes.default.table-filter.please-select-value', 'please-select-value');
-        Config::set('themes.default.table-filter.please-select-trans', 'please-select-trans');
-
-        Config::set('themes.default.table-filter.image-name', 'image-name');
-        Config::set('themes.default.table-filter.subtext-name', 'subtext-name');
-        Config::set('themes.default.table-filter.text-name', 'text-name');
+        Config::set('themes.default.table-filter.image-name', 'image');
+        Config::set('themes.default.table-filter.subtext-name', 'subtext');
+        Config::set('themes.default.table-filter.text-name', 'text');
     }
 
     /** @test */
@@ -128,13 +122,101 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_text_array(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => ['text' => 'A'] ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_text_name(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" text="text2" :options="[ 1 => ['text2' => 'A'] ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_text_name_config_change(): void
+    {
+        Config::set('themes.default.table-filter.text-name', 'text2');
+
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => ['text2' => 'A'] ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -164,13 +246,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -200,13 +284,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -229,8 +315,6 @@ class FilterTest extends ComponentTestCase
                 list-rounded="none"
                 list-shadow="none"
                 list-width="none"
-                list-text-active="none"
-                list-text-inactive="none"
             />
             HTML;
 
@@ -238,13 +322,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ '': highlightIndex === 0, '': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -267,8 +353,6 @@ class FilterTest extends ComponentTestCase
                 list-rounded="custom-rounded"
                 list-shadow="custom-shadow"
                 list-width="custom-width"
-                list-text-active="custom-list-text-active"
-                list-text-inactive="custom-list-text-inactive"
             />
             HTML;
 
@@ -276,13 +360,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'custom-list-text-active': highlightIndex === 0, 'custom-list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -314,13 +400,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ '': activeIndex === 0, '': !(activeIndex === 0) }">
-                            <div class="flex items-center "> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center "> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -352,13 +440,15 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'custom-active': activeIndex === 0, 'custom-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center custom-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center custom-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -388,13 +478,15 @@ class FilterTest extends ComponentTestCase
             <div class="table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -424,13 +516,15 @@ class FilterTest extends ComponentTestCase
             <div class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -452,8 +546,8 @@ class FilterTest extends ComponentTestCase
                 text-padding="none"
                 text-rounded="none"
                 text-shadow="none"
-                list-text-active="none"
-                list-text-inactive="none"
+                text-active="none"
+                text-inactive="none"
             />
             HTML;
 
@@ -461,9 +555,11 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
@@ -489,8 +585,8 @@ class FilterTest extends ComponentTestCase
                 text-padding="custom-padding"
                 text-rounded="custom-rounded"
                 text-shadow="custom-shadow"
-                list-text-active="custom-active"
-                list-text-inactive="custom-inactive"
+                text-active="custom-active"
+                text-inactive="custom-inactive"
             />
             HTML;
 
@@ -498,9 +594,11 @@ class FilterTest extends ComponentTestCase
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
@@ -517,20 +615,86 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" />
+            <x-table.filter name="name" label="label"
+                :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
+            />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">::text</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 0, 'subtext-inactive': !(highlightIndex === 0) }">::subtext</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_subtext_and_subtext_name(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" subtext="subtext2"
+                :options="[ 1 => ['text' => '::text', 'subtext2' => '::subtext'] ]"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">::text</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 0, 'subtext-inactive': !(highlightIndex === 0) }">::subtext</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_subtext_and_subtext_config_update(): void
+    {
+        Config::set('themes.default.table-filter.subtext-name', 'subtext2');
+
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label"
+                :options="[ 1 => ['text' => '::text', 'subtext2' => '::subtext'] ]"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">::text</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 0, 'subtext-inactive': !(highlightIndex === 0) }">::subtext</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -543,7 +707,8 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext_and_no_subtext_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table.filter name="name" label="label"
+                :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
                 subtext-background="none"
                 subtext-border="none"
                 subtext-color="none"
@@ -552,20 +717,24 @@ class FilterTest extends ComponentTestCase
                 subtext-padding="none"
                 subtext-rounded="none"
                 subtext-shadow="none"
+                subtext-active="none"
+                subtext-inactive="none"
             />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
-                <button type="button" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">::text</span> <span class="" :class="{ '': highlightIndex === 0, '': !(highlightIndex === 0) }">::subtext</span> </div>
                         </li>
                     </ul>
                 </div>
@@ -578,7 +747,8 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext_and_override_subtext_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table.filter name="name" label="label"
+                :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
                 subtext-background="custom-background"
                 subtext-border="custom-border"
                 subtext-color="custom-color"
@@ -587,20 +757,453 @@ class FilterTest extends ComponentTestCase
                 subtext-padding="custom-padding"
                 subtext-rounded="custom-rounded"
                 subtext-shadow="custom-shadow"
+                subtext-active="custom-active"
+                subtext-inactive="custom-inactive"
             />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
-                <button type="button" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                     <span>label</span>
-                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                        </svg>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
                     </button>
                     <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
                         <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
-                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'list-text-active': highlightIndex === 0, 'list-text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">::text</span> <span class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': highlightIndex === 0, 'custom-inactive': !(highlightIndex === 0) }">::subtext</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_check_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="1" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <span class="check-background check-border check-color check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }">
+                                <svg class="check-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                    </svg>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_check_can_be_rendered_with_inline_icon(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+                check-icon="icon.dot"
+                check-icon-size="::custom-size"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="1" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <span class="check-background check-border check-color check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }">
+                                <svg class="::custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="3" cy="3" r="3"/>
+                                    </svg>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_check_can_be_rendered_with_no_check_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+                check-background="none"
+                check-border="none"
+                check-color="none"
+                check-other="none"
+                check-padding="none"
+                check-rounded="none"
+                check-shadow="none"
+                check-active="none"
+                check-inactive="none"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="1" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <span class="" :class="{ '': activeIndex === 0, '': !(activeIndex === 0) }">
+                                <svg class="check-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                    </svg>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_check_can_be_rendered_with_override_check_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+                check-background="custom-background"
+                check-border="custom-border"
+                check-color="custom-color"
+                check-other="custom-other"
+                check-padding="custom-padding"
+                check-rounded="custom-rounded"
+                check-shadow="custom-shadow"
+                check-active="custom-active"
+                check-inactive="custom-inactive"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="1" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                            <span class="custom-background custom-border custom-color custom-other custom-padding custom-rounded custom-shadow" :class="{ 'custom-active': activeIndex === 0, 'custom-inactive': !(activeIndex === 0) }">
+                                <svg class="check-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                    </svg>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_custom_icon_can_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+                icon="icon.dot"
+                icon-size="custom-size"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_can_be_rendered_with_no_icon_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+                icon-background="none"
+                icon-border="none"
+                icon-color="none"
+                icon-other="none"
+                icon-padding="none"
+                icon-rounded="none"
+                icon-shadow="none"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_with_can_be_rendered_with_override_icon_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+                icon-background="custom-background"
+                icon-border="custom-border"
+                icon-color="custom-color"
+                icon-other="custom-other"
+                icon-padding="custom-padding"
+                icon-rounded="custom-rounded"
+                icon-shadow="custom-shadow"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="custom-background custom-border custom-color custom-other custom-padding custom-rounded custom-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_an_image(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing">
+                                <img src="image.png" alt="" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_name(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" image="image2" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing">
+                                <img src="image.png" alt="" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_an_image_and_config_set_image_name(): void
+    {
+        Config::set('themes.default.table-filter.image-name', 'image2');
+
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing">
+                                <img src="image.png" alt="" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_an_image_and_no_image_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
+                image-border="none"
+                image-other="none"
+                image-padding="none"
+                image-rounded="none"
+                image-shadow="none"
+                image-size="none"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing">
+                                <img src="image.png" alt="" class="">
+                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
+                image-border="custom-border"
+                image-other="custom-other"
+                image-padding="custom-padding"
+                image-rounded="custom-rounded"
+                image-shadow="custom-shadow"
+                image-size="custom-size"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="nameButton" data-priority="5" data-label="label">
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-nameButton" @click.stop="onButtonClick('nameButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <span>label</span>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open == 'nameButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-nameButton" data-ref="nameButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing">
+                                <img src="image.png" alt="" class="custom-border custom-other custom-padding custom-rounded custom-shadow custom-size">
+                                <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span>
+                            </div>
                         </li>
                     </ul>
                 </div>

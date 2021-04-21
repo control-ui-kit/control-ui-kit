@@ -479,8 +479,8 @@ return [
         'check-padding' => 'pr-4',
         'check-rounded' => '',
         'check-shadow' => '',
-        'check-active' => 'text-input-option-hover',
-        'check-inactive' => 'text-input-option',
+        'check-active' => '',
+        'check-inactive' => '',
         'check-icon' => 'icon.check',
         'check-icon-size' =>'w-6 h-6',
 
@@ -511,11 +511,6 @@ return [
         'list-shadow' => 'shadow-md',
         'list-width' => 'w-full',
 
-        'list-text-active' => 'font-semibold',
-        'list-text-inactive' => 'font-normal',
-        'list-subtext-active' => '',
-        'list-subtext-inactive' => '',
-
         'option-background' => '',
         'option-border' => '',
         'option-color' => '',
@@ -536,6 +531,8 @@ return [
         'text-padding' => '',
         'text-rounded' => '',
         'text-shadow' => '',
+        'text-active' => 'font-semibold',
+        'text-inactive' => 'font-normal',
 
         'subtext-background' => '',
         'subtext-border' => '',
@@ -545,6 +542,8 @@ return [
         'subtext-padding' => 'pl-2',
         'subtext-rounded' => '',
         'subtext-shadow' => '',
+        'subtext-active' => '',
+        'subtext-inactive' => '',
 
         // Config
         'please-select-text' => 'Please Select ...',
@@ -778,7 +777,6 @@ return [
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
 
-        # TODO - test
         'more-button-background' => 'bg-table-filters',
         'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
         'more-button-color' => 'text-input',
@@ -791,7 +789,6 @@ return [
         'more-button-shadow' => '',
         'more-button-width' => 'w-max',
 
-        # TODO - test
         'more-filters-background' => '',
         'more-filters-border' => '',
         'more-filters-color' => '',
@@ -866,7 +863,6 @@ return [
         'table-body-rounded' => '',
         'table-body-shadow' => '',
 
-        # TODO - test
         'table-filters-background' => '',
         'table-filters-border' => '',
         'table-filters-color' => '',
@@ -967,32 +963,28 @@ return [
         'button-shadow' => '',
         'button-width' => '',
 
-        #TODO - test
         'check-background' => '',
         'check-border' => '',
         'check-color' => 'text-brand',
-        'check-font' => '',
         'check-other' => 'absolute inset-y-0 right-0 flex items-center',
         'check-padding' => 'pr-4',
         'check-rounded' => '',
         'check-shadow' => '',
-        'check-active' => 'text-input-option-hover',
-        'check-inactive' => 'text-input-option',
+        'check-active' => '',
+        'check-inactive' => '',
         'check-icon' => 'icon.check',
         'check-icon-size' =>'w-6 h-6',
 
-        #TODO - test
         'icon' => 'icon.chevron-down',
         'icon-background' => '',
-        'icon-border' => 'border-l border-input',
+        'icon-border' => '',
         'icon-color' => '',
-        'icon-other' => 'absolute flex items-center pointer-events-none',
-        'icon-padding' => 'ml-3 px-3 inset-y-0 right-0',
+        'icon-other' => '',
+        'icon-padding' => '',
         'icon-rounded' => '',
         'icon-shadow' => '',
         'icon-size' => 'w-4 h-4',
 
-        #TODO - test
         'image-border' => '',
         'image-other' => 'flex-shrink-0',
         'image-padding' => 'pr-2',
@@ -1010,13 +1002,6 @@ return [
         'list-shadow' => 'shadow-md',
         'list-width' => 'sm:w-max',
 
-        'list-text-active' => 'font-semibold',
-        'list-text-inactive' => 'font-normal',
-
-        #TODO - test
-        'list-subtext-active' => '',
-        'list-subtext-inactive' => '',
-
         'option-background' => '',
         'option-border' => '',
         'option-color' => '',
@@ -1028,7 +1013,7 @@ return [
         'option-spacing' => 'space-x-2',
         'option-active' => 'bg-input-option-hover',
         'option-inactive' => 'bg-input-option text-input-option',
-        
+
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
@@ -1037,8 +1022,9 @@ return [
         'text-padding' => '',
         'text-rounded' => '',
         'text-shadow' => '',
+        'text-active' => 'font-semibold',
+        'text-inactive' => 'font-normal',
 
-        #TODO - test
         'subtext-background' => '',
         'subtext-border' => '',
         'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
@@ -1047,6 +1033,8 @@ return [
         'subtext-padding' => 'pl-2',
         'subtext-rounded' => '',
         'subtext-shadow' => '',
+        'subtext-active' => '',
+        'subtext-inactive' => '',
 
         'wrapper-background' => '',
         'wrapper-border' => '',
@@ -1059,12 +1047,6 @@ return [
         'wrapper-width' => 'w-full sm:w-auto',
 
         // Config
-        #TODO - test
-        'please-select-text' => 'Please Select ...',
-        'please-select-value' => null,
-        'please-select-trans' => '',
-
-        #TODO - test
         'image-name' => 'image',
         'subtext-name' => 'subtext',
         'text-name' => 'text',

@@ -34,7 +34,6 @@ class Select extends Component
     public ?string $subtextName;
     public ?string $imageName;
 
-    public array $activeStyles;
     public array $checkStyles;
     public array $imageStyles;
     public array $listStyles;
@@ -91,10 +90,6 @@ class Select extends Component
         string $listRounded = null,
         string $listShadow = null,
         string $listWidth = null,
-        string $listSubtextActive = null,
-        string $listSubtextInactive = null,
-        string $listTextActive = null,
-        string $listTextInactive = null,
 
         string $optionBackground = null,
         string $optionBorder = null,
@@ -116,6 +111,8 @@ class Select extends Component
         string $textPadding = null,
         string $textRounded = null,
         string $textShadow = null,
+        string $textActive = null,
+        string $textInactive = null,
 
         string $subtextBackground = null,
         string $subtextBorder = null,
@@ -125,6 +122,8 @@ class Select extends Component
         string $subtextPadding = null,
         string $subtextRounded = null,
         string $subtextShadow = null,
+        string $subtextActive = null,
+        string $subtextInactive = null,
 
         string $checkBackground = null,
         string $checkBorder = null,
@@ -154,6 +153,10 @@ class Select extends Component
             $this->setFirstValue();
         }
 
+        $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
+        $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
+        $this->icon = $this->style($this->component, 'icon', $icon);
+        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
         $this->imageName = $this->style($this->component, 'image-name', $image);
@@ -170,8 +173,19 @@ class Select extends Component
             'button-width' => $buttonWidth,
         ]);
 
-        $this->icon = $this->style($this->component, 'icon', $icon);
-        $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
+
+        $this->setConfigStyles([
+            'check-background' => $checkBackground,
+            'check-border' => $checkBorder,
+            'check-color' => $checkColor,
+            'check-font' => $checkFont,
+            'check-other' => $checkOther,
+            'check-padding' => $checkPadding,
+            'check-rounded' => $checkRounded,
+            'check-shadow' => $checkShadow,
+            'check-active' => $checkActive,
+            'check-inactive' => $checkInactive,
+        ], [], null, 'checkStyles');
 
         $this->setConfigStyles([
             'icon-background' => $iconBackground,
@@ -227,14 +241,9 @@ class Select extends Component
             'text-padding' => $textPadding,
             'text-rounded' => $textRounded,
             'text-shadow' => $textShadow,
+            'text-active' => $textActive,
+            'text-inactive' => $textInactive,
         ], [], null, 'textStyles');
-
-        $this->setConfigStyles([
-            'list-subtext-active' => $listSubtextActive,
-            'list-subtext-inactive' => $listSubtextInactive,
-            'list-text-active' => $listTextActive,
-            'list-text-inactive' => $listTextInactive,
-        ], [], null, 'activeStyles');
 
         $this->setConfigStyles([
             'subtext-background' => $subtextBackground,
@@ -245,23 +254,9 @@ class Select extends Component
             'subtext-padding' => $subtextPadding,
             'subtext-rounded' => $subtextRounded,
             'subtext-shadow' => $subtextShadow,
+            'subtext-active' => $subtextActive,
+            'subtext-inactive' => $subtextInactive,
         ], [], null, 'subtextStyles');
-
-        $this->setConfigStyles([
-            'check-background' => $checkBackground,
-            'check-border' => $checkBorder,
-            'check-color' => $checkColor,
-            'check-font' => $checkFont,
-            'check-other' => $checkOther,
-            'check-padding' => $checkPadding,
-            'check-rounded' => $checkRounded,
-            'check-shadow' => $checkShadow,
-            'check-active' => $checkActive,
-            'check-inactive' => $checkInactive,
-        ], [], null, 'checkStyles');
-
-        $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
-        $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
     }
 
     public function render()
@@ -306,32 +301,32 @@ class Select extends Component
 
     public function textClasses(): string
     {
-        return $this->classList($this->textStyles);
+        return $this->classList($this->textStyles, '', [], ['text-active', 'text-inactive']);
     }
 
     public function textActive(): string
     {
-        return $this->activeStyles['list-text-active'];
+        return $this->textStyles['text-active'];
     }
 
     public function textInactive(): string
     {
-        return $this->activeStyles['list-text-inactive'];
+        return $this->textStyles['text-inactive'];
     }
 
     public function subtextClasses(): string
     {
-        return $this->classList($this->subtextStyles);
+        return $this->classList($this->subtextStyles, '', [], ['subtext-active', 'subtext-inactive']);
     }
 
     public function subtextActive(): string
     {
-        return $this->activeStyles['list-subtext-active'];
+        return $this->subtextStyles['subtext-active'];
     }
 
     public function subtextInactive(): string
     {
-        return $this->activeStyles['list-subtext-inactive'];
+        return $this->subtextStyles['subtext-inactive'];
     }
 
     public function checkClasses(): string

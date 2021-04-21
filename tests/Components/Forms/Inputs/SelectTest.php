@@ -67,11 +67,6 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.list-shadow', 'list-shadow');
         Config::set('themes.default.input-select.list-width', 'list-width');
 
-        Config::set('themes.default.input-select.list-subtext-active', 'subtext-active');
-        Config::set('themes.default.input-select.list-subtext-inactive', 'subtext-inactive');
-        Config::set('themes.default.input-select.list-text-active', 'text-active');
-        Config::set('themes.default.input-select.list-text-inactive', 'text-inactive');
-
         Config::set('themes.default.input-select.option-background', 'option-background');
         Config::set('themes.default.input-select.option-border', 'option-border');
         Config::set('themes.default.input-select.option-color', 'option-color');
@@ -92,6 +87,8 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.text-padding', 'text-padding');
         Config::set('themes.default.input-select.text-rounded', 'text-rounded');
         Config::set('themes.default.input-select.text-shadow', 'text-shadow');
+        Config::set('themes.default.input-select.text-active', 'text-active');
+        Config::set('themes.default.input-select.text-inactive', 'text-inactive');
 
         Config::set('themes.default.input-select.subtext-background', 'subtext-background');
         Config::set('themes.default.input-select.subtext-border', 'subtext-border');
@@ -101,6 +98,9 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.subtext-padding', 'subtext-padding');
         Config::set('themes.default.input-select.subtext-rounded', 'subtext-rounded');
         Config::set('themes.default.input-select.subtext-shadow', 'subtext-shadow');
+        Config::set('themes.default.input-select.subtext-active', 'subtext-active');
+        Config::set('themes.default.input-select.subtext-inactive', 'subtext-inactive');
+
     }
 
     /** @test */
@@ -679,8 +679,8 @@ class SelectTest extends ComponentTestCase
                 text-padding="custom-padding"
                 text-rounded="custom-rounded"
                 text-shadow="custom-shadow"
-                list-text-active="custom-active"
-                list-text-inactive="custom-inactive"
+                text-active="custom-active"
+                text-inactive="custom-inactive"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
             HTML;
@@ -745,8 +745,8 @@ class SelectTest extends ComponentTestCase
                 text-padding="none"
                 text-rounded="none"
                 text-shadow="none"
-                list-text-active="none"
-                list-text-inactive="none"
+                text-active="none"
+                text-inactive="none"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
             HTML;
@@ -811,8 +811,8 @@ class SelectTest extends ComponentTestCase
                 subtext-padding="custom-padding"
                 subtext-rounded="custom-rounded"
                 subtext-shadow="custom-shadow"
-                list-subtext-active="custom-active"
-                list-subtext-inactive="custom-inactive"
+                subtext-active="custom-active"
+                subtext-inactive="custom-inactive"
                 :options="[
                     1 => ['text' => 'English', 'subtext' => '::subtext1'],
                     2 => ['text' => 'Spanish', 'subtext' => '::subtext2'],
@@ -880,8 +880,8 @@ class SelectTest extends ComponentTestCase
                 subtext-padding="none"
                 subtext-rounded="none"
                 subtext-shadow="none"
-                list-subtext-active="none"
-                list-subtext-inactive="none"
+                subtext-active="none"
+                subtext-inactive="none"
                 :options="[
                     1 => ['text' => 'English', 'subtext' => '::subtext1'],
                     2 => ['text' => 'Spanish', 'subtext' => '::subtext2'],
