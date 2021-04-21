@@ -1293,6 +1293,169 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
+    /** @test */
+    public function a_table_component_can_be_rendered_with_active_filters(): void
+    {
+        $template = <<<'HTML'
+            <x-table>
+                <x-slot name="active">
+                    <x-table.active-filter name="{{ $name }}" :label="$label" />
+                </x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
+            >
+                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                    <div class=" search-bar">
+                        <div x-ref="container" class="table-filters-container">
+                            <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
+                                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="testButton" data-priority="5" data-label="test">
+                                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-testButton" @click.stop="onButtonClick('testButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                        <span>test</span>
+                                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <ul x-show="open == 'testButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-testButton" data-ref="testButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                                            </li>
+                                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="2" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">B</span> </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="more-button-background more-button-border more-button-color more-button-font more-button-other more-button-padding more-button-rounded more-button-shadow more-button-width" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
+                                            <svg class="more-button-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="3" cy="3" r="3"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="more-filters-wrapper">
+                                <div id="more-filters" x-ref="overflow" x-show="openMore" class="more-filters-background more-filters-border more-filters-color more-filters-font more-filters-other more-filters-padding more-filters-rounded more-filters-shadow more-filters-width">
+                                    <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="testButton" data-priority="5" data-label="test">
+                                        <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-testButton" @click.stop="onButtonClick('testButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                            <span>test</span>
+                                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <ul x-show="open == 'testButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-testButton" data-ref="testButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                                                </li>
+                                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="2" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">B</span> </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div x-ref="active"></div>
+                            <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow" :class="tableWrapperClasses()" x-ref="table">
+                                <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
+                                    <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
+                                </table>
+                            </div>
+                        </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function a_table_component_can_be_rendered_with_active_filters1(): void
+    {
+        $template = <<<'HTML'
+            <x-table>
+                <x-slot name="filters">
+                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                </x-slot>
+            </x-table>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
+            >
+                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                    <div class=" search-bar">
+                        <div x-ref="container" class="table-filters-container">
+                            <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
+                                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="testButton" data-priority="5" data-label="test">
+                                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-testButton" @click.stop="onButtonClick('testButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                        <span>test</span>
+                                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <ul x-show="open == 'testButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-testButton" data-ref="testButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                                            </li>
+                                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="2" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">B</span> </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="more-button-background more-button-border more-button-color more-button-font more-button-other more-button-padding more-button-rounded more-button-shadow more-button-width" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
+                                            <svg class="more-button-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="3" cy="3" r="3"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="more-filters-wrapper">
+                                <div id="more-filters" x-ref="overflow" x-show="openMore" class="more-filters-background more-filters-border more-filters-color more-filters-font more-filters-other more-filters-padding more-filters-rounded more-filters-shadow more-filters-width">
+                                    <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width table-filter" data-ref="testButton" data-priority="5" data-label="test">
+                                        <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button-testButton" @click.stop="onButtonClick('testButton')" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                            <span>test</span>
+                                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <ul x-show="open == 'testButton'" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-testButton" data-ref="testButton" data-value="" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="1" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">A</span> </div>
+                                                </li>
+                                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-value="2" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">B</span> </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div x-ref="active"></div>
+                            <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow" :class="tableWrapperClasses()" x-ref="table">
+                                <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
+                                    <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
+                                </table>
+                            </div>
+                        </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
 
 //    /** @test */
 //    public function a_table_component_can_be_rendered_with_search_override(): void

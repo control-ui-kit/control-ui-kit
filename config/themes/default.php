@@ -818,7 +818,7 @@ return [
         'search-input-font' => '',
         'search-input-other' => 'block appearance-none',
         'search-input-padding' => 'py-1.5 px-3',
-        'search-input-rounded' => 'rounded',
+        'search-input-rounded' => '',
         'search-input-shadow' => '',
         'search-input-width' => 'w-full',
 
@@ -827,7 +827,7 @@ return [
         'search-wrapper-border' => 'border border-input focus-within:border-brand',
         'search-wrapper-color' => '',
         'search-wrapper-font' => '',
-        'search-wrapper-other' => 'h-10 flex items-center',
+        'search-wrapper-other' => 'h-10 flex items-center overflow-hidden',
         'search-wrapper-padding' => '',
         'search-wrapper-rounded' => 'rounded',
         'search-wrapper-shadow' => '',
@@ -896,6 +896,8 @@ return [
     ],
 
     'table-active-filter' => [
+
+        // Style
         'background' => 'bg-active-filter',
         'border' => 'border border-active-filter focus-within:border-brand',
         'color' => 'text-active-filter',
@@ -905,9 +907,6 @@ return [
         'rounded' => 'rounded',
         'shadow' => '',
 
-        // Config
-        'icon' => 'icon.close',
-
         'icon-background' => '',
         'icon-border' => '',
         'icon-color' => 'text-active-filter-icon hover:text-active-filter-icon-hover',
@@ -916,6 +915,9 @@ return [
         'icon-rounded' => '',
         'icon-shadow' => '',
         'icon-size' => 'w-4 h-4',
+
+        // Config
+        'icon' => 'icon.close',
     ],
 
     'table-cell' => [
