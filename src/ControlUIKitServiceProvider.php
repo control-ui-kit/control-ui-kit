@@ -5,6 +5,9 @@ namespace ControlUIKit;
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
+use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapDataController;
+use ControlUIKit\Controllers\ControlUIKitMapGreatBritainDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
@@ -121,6 +124,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
     private function registerRoutes(): void
     {
         Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
+        Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
+        Route::get('control-ui-kit/map-data/great-britain.json', ControlUIKitMapGreatBritainDataController::class);
+        Route::get('control-ui-kit/map-data/america.json',  ControlUIKitMapAmericaDataController::class);
     }
 
     protected function registerViews(): void
