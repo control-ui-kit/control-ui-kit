@@ -49,6 +49,7 @@ class Heading extends Component
         string $rounded = null,
         string $shadow = null,
         string $sortLink = null,
+        string $width = null,
         bool $left = false,
         bool $center = false,
         bool $right = false
@@ -63,6 +64,7 @@ class Heading extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ]);
 
         $this->fieldOrder = $this->style($this->component, 'field-order', $iconDesc);

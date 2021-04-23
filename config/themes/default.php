@@ -867,6 +867,7 @@ return [
         'table-filters-border' => '',
         'table-filters-color' => '',
         'table-filters-container' => 'flex-grow w-auto flex flex-col sm:items-end',
+        'table-filters-empty' => 'hidden sm:block mb-0 sm:mb-4 h-10',
         'table-filters-font' => '',
         'table-filters-other' => 'inline-flex space-x-0.5',
         'table-filters-padding' => '',
@@ -1068,6 +1069,7 @@ return [
         'rounded' => '',
         'shadow' => '',
         'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:text-brand',
+        'width' => 'w-auto',
 
         // Config
         'field-order' => 'order',
@@ -1122,6 +1124,66 @@ return [
             'color' => '',
         ],
     ],
+
+    'table-pagination' => [
+        'icon-next' => 'icon.chevron-right',
+        'icon-previous' => 'icon.chevron-left',
+        'icon-size' => 'w-5 h-5',
+
+        'button-container' => 'relative z-0 inline-flex space-x-2',
+
+        'button-background' => 'bg-button-default hover:bg-button-default-hover',
+        'button-border' => 'border border-button-default hover:border-button-default-hover focus:outline-none',
+        'button-color' => 'text-button-default hover:text-button-default-hover',
+        'button-font' => 'font-medium',
+        'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150',
+        'button-padding' => '',
+        'button-rounded' => 'rounded-md',
+        'button-shadow' => '',
+        'button-width' => 'h-9 w-9',
+
+        'button-active-background' => 'bg-button-default',
+        'button-active-border' => 'border border-button-default-hover',
+        'button-active-color' => 'text-button-default-hover',
+        'button-active-font' => 'font-medium',
+        'button-active-other' => 'relative inline-flex items-center justify-center',
+        'button-active-padding' => '',
+        'button-active-rounded' => 'rounded-md',
+        'button-active-shadow' => '',
+        'button-active-width' => 'h-9 w-9',
+
+        'button-disabled-background' => 'bg-button-muted',
+        'button-disabled-border' => 'border border-button-default',
+        'button-disabled-color' => 'text-button-muted',
+        'button-disabled-font' => 'font-medium',
+        'button-disabled-other' => 'relative inline-flex items-center justify-center',
+        'button-disabled-padding' => '',
+        'button-disabled-rounded' => 'rounded-md',
+        'button-disabled-shadow' => '',
+        'button-disabled-width' => 'h-9 w-9',
+
+        'results-background' => '',
+        'results-border' => '',
+        'results-color' => '',
+        'results-font' => 'leading-5',
+        'results-other' => '',
+        'results-padding' => '',
+        'results-rounded' => '',
+        'results-shadow' => '',
+
+        'wrapper-background' => '',
+        'wrapper-border' => '',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+        'wrapper-other' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => '',
+        'wrapper-shadow' => '',
+
+        // Config
+        'show-always' => true,
+    ],
+
 
     'tabs' => [
         'background' => '',

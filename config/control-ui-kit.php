@@ -90,6 +90,7 @@ return [
         'table.row' => \ControlUIKit\Components\Tables\Row::class,
         'table.heading' => \ControlUIKit\Components\Tables\Heading::class,
         'table.empty' => \ControlUIKit\Components\Tables\EmptyRow::class,
+        'table.pagination' => \ControlUIKit\Components\Tables\Pagination::class,
 
         'tabs' => \ControlUIKit\Components\Tabs\Tabs::class,
         'tabs.heading' => \ControlUIKit\Components\Tabs\Heading::class,

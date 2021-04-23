@@ -167,6 +167,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table-heading.padding', 'headings-padding');
         Config::set('themes.default.table-heading.rounded', 'headings-rounded');
         Config::set('themes.default.table-heading.shadow', 'headings-shadow');
+        Config::set('themes.default.table-heading.width', 'headings-width');
 
         Config::set('themes.default.table-heading.field-order', 'order');
         Config::set('themes.default.table-heading.field-sort', 'sort');
@@ -478,9 +479,9 @@ class TableTest extends ComponentTestCase
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
                         <thead>
                             <tr class="table-headings-background table-headings-border table-headings-color table-headings-font table-headings-other table-headings-padding table-headings-rounded table-headings-shadow">
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">A</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">B</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">C</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">A</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">B</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">C</th>
                             </tr>
                         </thead>
                         <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
@@ -521,9 +522,9 @@ class TableTest extends ComponentTestCase
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
                         <thead>
                             <tr class="">
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">A</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">B</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">C</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">A</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">B</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">C</th>
                             </tr>
                         </thead>
                         <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
@@ -564,9 +565,9 @@ class TableTest extends ComponentTestCase
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
                         <thead>
                             <tr class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow">
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">A</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">B</th>
-                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow">C</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">A</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">B</th>
+                                <th class="headings-align headings-background headings-border headings-color headings-font headings-other headings-padding headings-rounded headings-shadow headings-width">C</th>
                             </tr>
                         </thead>
                         <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
@@ -1298,8 +1299,11 @@ class TableTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <x-table>
+                <x-slot name="filters">
+                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                </x-slot>
                 <x-slot name="active">
-                    <x-table.active-filter name="{{ $name }}" :label="$label" />
+                    <x-table.active-filter name="test" label="::label" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1362,13 +1366,25 @@ class TableTest extends ComponentTestCase
                                     </div>
                                 </div>
                             </div>
-                            <div x-ref="active"></div>
-                            <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow" :class="tableWrapperClasses()" x-ref="table">
-                                <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
-                                    <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
-                                </table>
+                            <div class="active-filters-wrapper-background active-filters-wrapper-border active-filters-wrapper-color active-filters-wrapper-font active-filters-wrapper-other active-filters-wrapper-padding active-filters-wrapper-rounded active-filters-wrapper-shadow">
+                                <div class="flex flex-row flex-wrap items-center" x-ref="active">
+                                    <div class="bg-active-filter border border-active-filter focus-within:border-brand text-active-filter text-sm flex items-center space-x-1 mr-2 w-max mb-2 px-1.5 py-0.5 rounded">
+                                        <span>::label</span>
+                                        <a href="http://localhost?test=" class="flex items-center focus:outline-none focus:ring-0">
+                                            <svg class="text-active-filter-icon hover:text-active-filter-icon-hover cursor-pointer w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a class="clear-filters-background clear-filters-border clear-filters-color clear-filters-font clear-filters-other clear-filters-padding clear-filters-rounded clear-filters-shadow" href="clear-filters-href" clear-filters-event>clear-filters-text</a>
+                                </div>
+                                <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow" :class="tableWrapperClasses()" x-ref="table">
+                                    <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
+                                        <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

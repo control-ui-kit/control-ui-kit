@@ -159,6 +159,7 @@ class Table extends Component
         string $tableFiltersBorder = null,
         string $tableFiltersColor = null,
         string $tableFiltersContainer = null,
+        string $tableFiltersEmpty = null,
         string $tableFiltersFont = null,
         string $tableFiltersOther = null,
         string $tableFiltersPadding = null,
@@ -282,6 +283,7 @@ class Table extends Component
             'table-filters-border' => $tableFiltersBorder,
             'table-filters-color' => $tableFiltersColor,
             'table-filters-container' => $tableFiltersContainer,
+            'table-filters-empty' => $tableFiltersEmpty,
             'table-filters-font' => $tableFiltersFont,
             'table-filters-other' => $tableFiltersOther,
             'table-filters-padding' => $tableFiltersPadding,
@@ -422,12 +424,17 @@ class Table extends Component
 
     public function tableFiltersClasses(): string
     {
-        return $this->classList($this->tableFiltersStyles, '', [], ['table-filters-container']);
+        return $this->classList($this->tableFiltersStyles, '', [], ['table-filters-container','table-filters-empty']);
     }
 
     public function tableFiltersContainer(): string
     {
         return $this->tableFiltersStyles['table-filters-container'];
+    }
+
+    public function tableFiltersEmpty(): string
+    {
+        return $this->tableFiltersStyles['table-filters-empty'];
     }
 
     public function tableHeadingsClasses(): string

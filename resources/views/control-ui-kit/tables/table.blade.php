@@ -40,28 +40,30 @@
                 </div>
                 @endif
 
-                @isset($filters)
-                <div x-ref="container" class="{{ $tableFiltersContainer() }}">
-                    <div class="{{ $tableFiltersClasses() }}" x-ref="filters">
-                        {{ $filters }}
-                        <div>
-                            <button class="{{ $moreButtonClasses() }}" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
-                                <x-dynamic-component :component="$moreButtonIcon()" :size="$moreButtonIconSize()" />
-                            </button>
+                @if(isset($filters) && $filters->isNotEmpty())
+                    <div x-ref="container" class="{{ $tableFiltersContainer() }}">
+                        <div class="{{ $tableFiltersClasses() }}" x-ref="filters">
+                            {{ $filters }}
+                            <div>
+                                <button class="{{ $moreButtonClasses() }}" x-ref="more" x-show="moreButton" @click="onMoreButtonClicked()">
+                                    <x-dynamic-component :component="$moreButtonIcon()" :size="$moreButtonIconSize()" />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endisset
+                @else
+                    <div class="{{ $tableFiltersEmpty() }}"></div>
+                @endif
 
             </div>
 
-            @isset($filters)
+            @if(isset($filters) && $filters->isNotEmpty())
                 <div class="{{ $moreFiltersWrapper() }}">
                     <div id="more-filters" x-ref="overflow" x-show="openMore" class="{{ $moreFiltersClasses() }}">
                         {{ $filters }}
                     </div>
                 </div>
-            @endisset
+            @endif
 
         </div>
 
@@ -106,5 +108,3 @@
     </div>
 
 </div>
-
-{{--<x-table.pagination />--}}
