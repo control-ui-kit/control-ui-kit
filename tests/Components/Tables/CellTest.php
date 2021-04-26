@@ -300,6 +300,21 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_with_null_value(): void
+    {
+        $template = <<<'HTML'
+            @php $date = null; @endphp
+            <x-table.cell :data="$date" format="date" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> - </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
     {
         $template = <<<'HTML'
