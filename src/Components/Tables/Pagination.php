@@ -19,6 +19,7 @@ class Pagination extends Component
     public string $iconPrevious;
     public string $iconSize;
     public bool $showAlways;
+    public int $eachSide;
 
     public array $buttonStyles;
     public array $buttonActiveStyles;
@@ -33,6 +34,7 @@ class Pagination extends Component
         string $iconPrevious = null,
         string $iconSize = null,
         bool $showAlways = null,
+        int $eachSide = null,
 
         string $buttonBackground = null,
         string $buttonBorder = null,
@@ -88,6 +90,7 @@ class Pagination extends Component
         $this->iconPrevious = $this->style($this->component, 'icon-previous', $iconPrevious);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->showAlways = (bool) $this->style($this->component, 'show-always', $showAlways);
+        $this->eachSide = (int) $this->style($this->component, 'each-side', $eachSide);
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -152,18 +155,20 @@ class Pagination extends Component
     public function render(): string
     {
         return <<<'blade'
-            {{ $paginator->links('control-ui-kit::control-ui-kit.tables.pagination', [
-                'iconNext' => $iconNext,
-                'iconPrevious' => $iconPrevious,
-                'iconSize' => $iconSize,
-                'showAlways' => $showAlways,
-                'buttonClasses' => $buttonClasses(),
-                'buttonActive' => $buttonActiveClasses(),
-                'buttonContainer' => $buttonStyles['button-container'],
-                'buttonDisabled' => $buttonDisabledClasses(),
-                'resultsClasses' => $resultsClasses(),
-                'wrapperClasses' => $wrapperClasses(),
-            ]) }}
+            {{ $paginator->onEachSide($eachSide)
+                ->links('control-ui-kit::control-ui-kit.tables.pagination', [
+                    'iconNext' => $iconNext,
+                    'iconPrevious' => $iconPrevious,
+                    'iconSize' => $iconSize,
+                    'showAlways' => $showAlways,
+                    'buttonClasses' => $buttonClasses(),
+                    'buttonActive' => $buttonActiveClasses(),
+                    'buttonContainer' => $buttonStyles['button-container'],
+                    'buttonDisabled' => $buttonDisabledClasses(),
+                    'resultsClasses' => $resultsClasses(),
+                    'wrapperClasses' => $wrapperClasses(),
+                ])
+            }}
         blade;
     }
 

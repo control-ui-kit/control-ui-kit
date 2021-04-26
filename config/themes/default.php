@@ -509,7 +509,7 @@ return [
         'list-padding' => 'py-1',
         'list-rounded' => 'rounded',
         'list-shadow' => 'shadow-md',
-        'list-width' => 'w-full',
+        'list-width' => 'w-auto',
 
         'option-background' => '',
         'option-border' => '',
@@ -926,6 +926,7 @@ return [
         'background' => '',
         'border' => '',
         'color' => '',
+        'href-color' => 'text-brand hover:text-brand-darkest',
         'font' => '',
         'other' => 'whitespace-no-wrap leading-5',
         'padding' => 'px-2 py-2',
@@ -1068,7 +1069,7 @@ return [
         'padding' => 'px-2 py-2',
         'rounded' => '',
         'shadow' => '',
-        'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:text-brand',
+        'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
         'width' => 'w-auto',
 
         // Config
@@ -1130,14 +1131,17 @@ return [
         'icon-previous' => 'icon.chevron-left',
         'icon-size' => 'w-5 h-5',
 
-        'button-container' => 'relative z-0 inline-flex space-x-2',
+        'button-container' => 'relative z-0 flex',
+
+//        'full-pagination' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+//        'mobile-pagination' => 'relative z-0 inline-flex space-x-2',
 
         'button-background' => 'bg-button-default hover:bg-button-default-hover',
         'button-border' => 'border border-button-default hover:border-button-default-hover focus:outline-none',
         'button-color' => 'text-button-default hover:text-button-default-hover',
         'button-font' => 'font-medium',
         'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150',
-        'button-padding' => '',
+        'button-padding' => 'mr-0.5',
         'button-rounded' => 'rounded-md',
         'button-shadow' => '',
         'button-width' => 'h-9 w-9',
@@ -1147,7 +1151,7 @@ return [
         'button-active-color' => 'text-button-default-hover',
         'button-active-font' => 'font-medium',
         'button-active-other' => 'relative inline-flex items-center justify-center',
-        'button-active-padding' => '',
+        'button-active-padding' => 'mr-0.5',
         'button-active-rounded' => 'rounded-md',
         'button-active-shadow' => '',
         'button-active-width' => 'h-9 w-9',
@@ -1157,7 +1161,7 @@ return [
         'button-disabled-color' => 'text-button-muted',
         'button-disabled-font' => 'font-medium',
         'button-disabled-other' => 'relative inline-flex items-center justify-center',
-        'button-disabled-padding' => '',
+        'button-disabled-padding' => 'mr-0.5',
         'button-disabled-rounded' => 'rounded-md',
         'button-disabled-shadow' => '',
         'button-disabled-width' => 'h-9 w-9',
@@ -1165,8 +1169,8 @@ return [
         'results-background' => '',
         'results-border' => '',
         'results-color' => '',
-        'results-font' => 'leading-5',
-        'results-other' => '',
+        'results-font' => '',
+        'results-other' => 'flex items-center space-x-1',
         'results-padding' => '',
         'results-rounded' => '',
         'results-shadow' => '',
@@ -1175,13 +1179,15 @@ return [
         'wrapper-border' => '',
         'wrapper-color' => '',
         'wrapper-font' => '',
-        'wrapper-other' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+//        'wrapper-other' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+        'wrapper-other' => 'flex-1 flex items-center justify-between',
         'wrapper-padding' => '',
         'wrapper-rounded' => '',
         'wrapper-shadow' => '',
 
         // Config
         'show-always' => true,
+        'each-side' => 1,
     ],
 
 

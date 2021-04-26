@@ -20,6 +20,7 @@ class Cell extends Component
 
     public string $align;
     public ?string $href;
+    public ?string $hrefColor;
     public ?string $icon;
     public ?string $iconSize;
     public ?array $iconStyles = null;
@@ -42,6 +43,7 @@ class Cell extends Component
         string $font = null,
         string $format = null,
         string $href = null,
+        string $hrefColor = null,
         string $icon = null,
         string $iconBackground = null,
         string $iconBorder = null,
@@ -52,6 +54,7 @@ class Cell extends Component
         string $iconRounded = null,
         string $iconShadow = null,
         string $iconSize = null,
+
         string $image = null,
         string $imageStyle = null,
         string $imageAlt = null,
@@ -87,6 +90,7 @@ class Cell extends Component
         ]);
 
         $this->align = $this->style($this->component, 'align', $align);
+        $this->hrefColor = $this->style($this->component, 'href-color', $hrefColor);
         $this->href = $href;
         $this->icon = $icon;
         $this->iconSize = $iconSize;

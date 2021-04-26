@@ -18,9 +18,11 @@
             <span x-text="text" class="{{ $textClasses() }}"></span>
             <span x-text="subtext" class="{{ $subtextClasses() }}"></span>
         </div>
+        @if ($icon)
         <span class="{{ $iconClasses() }}">
             <x-dynamic-component :component="$icon" :size="$iconSize" />
         </span>
+        @endif
     </button>
 
     <ul x-show="open"
