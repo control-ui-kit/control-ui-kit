@@ -846,10 +846,10 @@ return [
         'search-placeholder' => 'Search...',
 
         'table-background' => '',
-        'table-border' => 'border border-table',
+        'table-border' => '',
         'table-color' => '',
         'table-font' => 'text-left',
-        'table-other' => 'align-middle w-full min-w-full overflow-x-auto data-table',
+        'table-other' => 'align-middle min-w-full overflow-x-auto data-table',
         'table-padding' => '',
         'table-rounded' => 'sm:rounded',
         'table-shadow' => 'shadow',
@@ -1069,7 +1069,6 @@ return [
         'padding' => 'px-2 py-2',
         'rounded' => '',
         'shadow' => '',
-//        'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
         'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
         'width' => 'w-auto',
 
@@ -1143,7 +1142,7 @@ return [
         'button-font' => 'font-medium',
         'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150',
         'button-padding' => 'mr-0.5',
-        'button-rounded' => 'rounded-md',
+        'button-rounded' => 'rounded',
         'button-shadow' => '',
         'button-width' => 'h-9 w-9',
 
