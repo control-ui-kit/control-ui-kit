@@ -76,6 +76,9 @@ return [
 
         'form.layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
 
+        'map.world' => \ControlUIKit\Components\Maps\World::class,
+        'map.region' => \ControlUIKit\Components\Maps\Region::class,
+
         'markdown' => \ControlUIKit\Components\Markdown\Markdown::class,
         'toc' => \ControlUIKit\Components\Markdown\ToC::class,
 

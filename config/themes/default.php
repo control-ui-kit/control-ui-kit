@@ -2,6 +2,12 @@
 
 return [
 
+    'map-region' => [
+        'width'  => 'w-full',
+        'height' => 'h-full',
+        'name'   => 'Count',
+    ],
+
     'button' => [
 
         'primary-button' => 'default',

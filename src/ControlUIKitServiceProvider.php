@@ -6,8 +6,18 @@ use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
 use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapBrazilDataController;
+use ControlUIKit\Controllers\ControlUIKitMapCanadaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapController;
 use ControlUIKit\Controllers\ControlUIKitMapDataController;
+use ControlUIKit\Controllers\ControlUIKitMapFranceDataController;
+use ControlUIKit\Controllers\ControlUIKitMapGermanyDataController;
 use ControlUIKit\Controllers\ControlUIKitMapGreatBritainDataController;
+use ControlUIKit\Controllers\ControlUIKitMapMexicoDataController;
+use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
+use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
+use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
@@ -77,6 +87,11 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-chart-matrix.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@2.1.0/build/Chart.Geo.min.js"></script>
 
+                <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+                <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+                <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+
                 <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
 
                 <!-- todo: we need to fix the styling on the litepicker !-->
@@ -125,8 +140,23 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
-        Route::get('control-ui-kit/map-data/great-britain.json', ControlUIKitMapGreatBritainDataController::class);
-        Route::get('control-ui-kit/map-data/america.json',  ControlUIKitMapAmericaDataController::class);
+        Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
+
+        Route::get('control-ui-kit/map-data/ar.json', [ControlUIKitMapController::class, 'ar']);
+        Route::get('control-ui-kit/map-data/au.json', [ControlUIKitMapController::class, 'au']);
+        Route::get('control-ui-kit/map-data/br.json', [ControlUIKitMapController::class, 'br']);
+        Route::get('control-ui-kit/map-data/ca.json', [ControlUIKitMapController::class, 'ca']);
+        Route::get('control-ui-kit/map-data/cl.json', [ControlUIKitMapController::class, 'cl']);
+        Route::get('control-ui-kit/map-data/de.json', [ControlUIKitMapController::class, 'de']);
+        Route::get('control-ui-kit/map-data/es.json', [ControlUIKitMapController::class, 'es']);
+        Route::get('control-ui-kit/map-data/fr.json', [ControlUIKitMapController::class, 'fr']);
+        Route::get('control-ui-kit/map-data/gb.json', [ControlUIKitMapController::class, 'gb']);
+        Route::get('control-ui-kit/map-data/it.json', [ControlUIKitMapController::class, 'it']);
+        Route::get('control-ui-kit/map-data/mx.json', [ControlUIKitMapController::class, 'mx']);
+        Route::get('control-ui-kit/map-data/nl.json', [ControlUIKitMapController::class, 'nl']);
+        Route::get('control-ui-kit/map-data/ru.json', [ControlUIKitMapController::class, 'ru']);
+        Route::get('control-ui-kit/map-data/tr.json', [ControlUIKitMapController::class, 'tr']);
+        Route::get('control-ui-kit/map-data/us.json', [ControlUIKitMapController::class, 'us']);
     }
 
     protected function registerViews(): void
