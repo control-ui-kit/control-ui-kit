@@ -846,10 +846,10 @@ return [
         'search-placeholder' => 'Search...',
 
         'table-background' => '',
-        'table-border' => 'border-0 border-table',
+        'table-border' => 'border border-table',
         'table-color' => '',
         'table-font' => 'text-left',
-        'table-other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
+        'table-other' => 'align-middle w-full min-w-full overflow-x-auto data-table',
         'table-padding' => '',
         'table-rounded' => 'sm:rounded',
         'table-shadow' => 'shadow',
@@ -1069,6 +1069,7 @@ return [
         'padding' => 'px-2 py-2',
         'rounded' => '',
         'shadow' => '',
+//        'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
         'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
         'width' => 'w-auto',
 

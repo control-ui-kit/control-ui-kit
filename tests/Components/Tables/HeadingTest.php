@@ -249,8 +249,8 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -272,11 +272,11 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=desc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
                             </span>
@@ -298,11 +298,11 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M7 9l5 5 5-5H7z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M17 14l-5-5-5 5h10z"/>
                                 </svg>
                             </span>
@@ -324,8 +324,8 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -347,11 +347,11 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=desc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
                             </span>
@@ -373,11 +373,11 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M7 9l5 5 5-5H7z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M17 14l-5-5-5 5h10z"/>
                                 </svg>
                             </span>
@@ -399,8 +399,8 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="::some-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="::some-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -422,8 +422,8 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -445,8 +445,8 @@ class HeadingTest extends ComponentTestCase
             <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>

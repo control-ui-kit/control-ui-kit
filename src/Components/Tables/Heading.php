@@ -15,6 +15,7 @@ class Heading extends Component
 
     protected string $component = 'table-heading';
 
+    public ?string $align;
     public ?string $anchor;
     public ?string $href;
     public string $icon;
@@ -54,8 +55,10 @@ class Heading extends Component
         bool $center = false,
         bool $right = false
     ) {
+        $this->align = $this->align($this->style($this->component, 'align', $align), $left, $center, $right);
+
         $this->setConfigStyles([
-            'align' => $this->align($this->style($this->component, 'align', $align), $left, $center, $right),
+            'align' => $this->align,
             'background' => $background,
             'border' => $border,
             'color' => $color,

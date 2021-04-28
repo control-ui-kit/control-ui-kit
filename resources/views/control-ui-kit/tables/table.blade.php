@@ -87,7 +87,6 @@
     @endif
 
     <div class="{{ $tableWrapperClasses }}" :class="tableWrapperClasses()" x-ref="table">
-
         <table {{ $attributes->merge($classes())->whereDoesntStartWith('wire:model') }}>
             @isset($headings)
             <thead>
@@ -104,7 +103,6 @@
             @endif
             </tbody>
         </table>
-
     </div>
 
 </div>
