@@ -1,6 +1,6 @@
 
 @if ($showAlways || $paginator->hasPages())
-<nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between mt-4">
+<nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between mt-2 sm:mt-4">
 
 {{--    --}}{{-- Mobile Pagination --}}
 {{--    <div class="flex justify-between flex-1 sm:hidden">--}}
