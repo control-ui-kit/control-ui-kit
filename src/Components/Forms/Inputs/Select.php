@@ -142,6 +142,10 @@ class Select extends Component
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
 
+        if (! is_array($options)) {
+            $options = $this->buildOptionsArray($options);
+        }
+
         if (! $required) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
             $this->options = $pleaseSelectOption + $this->options($options);
@@ -420,5 +424,11 @@ class Select extends Component
         }
 
         return (array) $options;
+    }
+
+    private function buildOptionsArray(string $options): array
+    {
+        $values = array_filter(array_map('trim', str_getcsv($options)));
+        return array_combine($values, $values);
     }
 }
