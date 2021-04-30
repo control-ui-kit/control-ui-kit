@@ -33,6 +33,7 @@ class Select extends Component
     public ?string $textName;
     public ?string $subtextName;
     public ?string $imageName;
+    public ?string $optionValue;
 
     public array $checkStyles;
     public array $imageStyles;
@@ -53,6 +54,7 @@ class Select extends Component
         bool $required = false,
         string $subtext = null,
         string $text = null,
+        string $optionValue = null,
 
         string $buttonBackground = null,
         string $buttonBorder = null,
@@ -164,6 +166,7 @@ class Select extends Component
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
         $this->imageName = $this->style($this->component, 'image-name', $image);
+        $this->optionValue = $optionValue;
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -356,6 +359,15 @@ class Select extends Component
     public function subtext($option): ?string
     {
         return is_array($option) && array_key_exists($this->subtextName, $option) ? (string) $option[$this->subtextName] : null;
+    }
+
+    public function optionValue($key, $option)
+    {
+        if ($this->optionValue && is_array($option) && array_key_exists($this->optionValue, $option)) {
+            return $option[$this->optionValue];
+        }
+
+        return $key;
     }
 
     public function image($option): ?string

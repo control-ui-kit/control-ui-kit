@@ -50,7 +50,7 @@
                 @if ($image($option)) data-image="{{ $image($option) }}" @endif
                 @if ($value && $subtext($option)) data-subtext="{{ $subtext($option) }}" @endif
                 data-text="{{ $text($option) }}"
-                data-value="{{ $value }}"
+                data-value="{{ $optionValue($value, $option) }}"
                 @click="onMouseSelect({{ $activeIndex }})"
                 @mouseenter="activeIndex = {{ $activeIndex }}"
                 @mouseleave="activeIndex = null"

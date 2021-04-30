@@ -17,7 +17,7 @@ window.Components = {
                 })
 
                 for (let i = 0; i < this.$refs['listbox-' + id].children.length; i++) {
-                    if (this.$refs['listbox-' + id].children[i].dataset.value === this.value) {
+                    if (this.$refs['listbox-' + id].children[i].dataset.value == this.value) {  // leave as ==
                         this.highlightIndex = i
                         this.activeIndex = i
                     }
