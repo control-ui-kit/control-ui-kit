@@ -346,17 +346,17 @@ class Select extends Component
 
     public function text($option): string
     {
-        return is_string($option) ? $option : $option[$this->textName];
+        return is_string($option) || is_int($option) ? (string) $option : (string) $option[$this->textName];
     }
 
     public function subtext($option): ?string
     {
-        return is_array($option) && array_key_exists($this->subtextName, $option) ? $option[$this->subtextName] : null;
+        return is_array($option) && array_key_exists($this->subtextName, $option) ? (string) $option[$this->subtextName] : null;
     }
 
     public function image($option): ?string
     {
-        return is_array($option) && array_key_exists($this->imageName, $option) ? $option[$this->imageName] : null;
+        return is_array($option) && array_key_exists($this->imageName, $option) ? (string) $option[$this->imageName] : null;
     }
 
     public function imageClasses(): string
