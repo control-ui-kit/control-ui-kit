@@ -17,6 +17,11 @@ class ControlUIKitMapController extends Controller
         return response()->file(__DIR__ . '/../../storage/map-data/au.json');
     }
 
+    public function be()
+    {
+        return response()->file(__DIR__ . '/../../storage/map-data/be.json');
+    }
+
     public function br()
     {
         return response()->file(__DIR__ . '/../../storage/map-data/br.json');
@@ -52,6 +57,11 @@ class ControlUIKitMapController extends Controller
         return response()->file(__DIR__ . '/../../storage/map-data/gb.json');
     }
 
+    public function id()
+    {
+        return response()->file(__DIR__ . '/../../storage/map-data/id.json');
+    }
+
     public function it()
     {
         return response()->file(__DIR__ . '/../../storage/map-data/it.json');
@@ -67,9 +77,24 @@ class ControlUIKitMapController extends Controller
         return response()->file(__DIR__ . '/../../storage/map-data/nl.json');
     }
 
+    public function ph()
+    {
+        return response()->file(__DIR__ . '/../../storage/map-data/ph.json');
+    }
+
+    public function pl()
+    {
+        return response()->file(__DIR__ . '/../../storage/map-data/pl.json');
+    }
+
     public function ru()
     {
         return response()->file(__DIR__ . '/../../storage/map-data/ru.json');
+    }
+
+    public function se()
+    {
+        return response()->file(__DIR__ . '/../../storage/map-data/se.json');
     }
 
     public function tr()

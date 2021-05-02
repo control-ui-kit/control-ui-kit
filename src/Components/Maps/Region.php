@@ -28,7 +28,12 @@ class Region extends Component
         'tr',
         'ru',
         'cl',
-        'ar'
+        'ar',
+        'pl',
+        'se',
+        'ph',
+        'id',
+        'be'
     ];
 
     public string $iso;

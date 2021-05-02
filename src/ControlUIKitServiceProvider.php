@@ -144,6 +144,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
         Route::get('control-ui-kit/map-data/ar.json', [ControlUIKitMapController::class, 'ar']);
         Route::get('control-ui-kit/map-data/au.json', [ControlUIKitMapController::class, 'au']);
+        Route::get('control-ui-kit/map-data/be.json', [ControlUIKitMapController::class, 'be']);
         Route::get('control-ui-kit/map-data/br.json', [ControlUIKitMapController::class, 'br']);
         Route::get('control-ui-kit/map-data/ca.json', [ControlUIKitMapController::class, 'ca']);
         Route::get('control-ui-kit/map-data/cl.json', [ControlUIKitMapController::class, 'cl']);
@@ -151,10 +152,14 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Route::get('control-ui-kit/map-data/es.json', [ControlUIKitMapController::class, 'es']);
         Route::get('control-ui-kit/map-data/fr.json', [ControlUIKitMapController::class, 'fr']);
         Route::get('control-ui-kit/map-data/gb.json', [ControlUIKitMapController::class, 'gb']);
+        Route::get('control-ui-kit/map-data/id.json', [ControlUIKitMapController::class, 'id']);
         Route::get('control-ui-kit/map-data/it.json', [ControlUIKitMapController::class, 'it']);
         Route::get('control-ui-kit/map-data/mx.json', [ControlUIKitMapController::class, 'mx']);
         Route::get('control-ui-kit/map-data/nl.json', [ControlUIKitMapController::class, 'nl']);
+        Route::get('control-ui-kit/map-data/ph.json', [ControlUIKitMapController::class, 'ph']);
+        Route::get('control-ui-kit/map-data/pl.json', [ControlUIKitMapController::class, 'pl']);
         Route::get('control-ui-kit/map-data/ru.json', [ControlUIKitMapController::class, 'ru']);
+        Route::get('control-ui-kit/map-data/se.json', [ControlUIKitMapController::class, 'se']);
         Route::get('control-ui-kit/map-data/tr.json', [ControlUIKitMapController::class, 'tr']);
         Route::get('control-ui-kit/map-data/us.json', [ControlUIKitMapController::class, 'us']);
     }
