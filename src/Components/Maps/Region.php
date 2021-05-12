@@ -33,7 +33,50 @@ class Region extends Component
         'se',
         'ph',
         'id',
-        'be'
+        'be',
+        'ch',
+        'in',
+        'no',
+        'jp',
+        'sg',
+        'co',
+        'nz',
+        'at',
+        'fi',
+        'my',
+        'tw',
+        'dk',
+        'pt',
+        'ie',
+        'cz',
+        'hu',
+        'pe',
+        'za',
+        'ua',
+        'ro',
+        'gr',
+        'il',
+        'th',
+        'cr',
+        'vn',
+        'sk',
+        'lt',
+        'ec',
+        'gt',
+        'ee',
+        'lv',
+        'bg',
+        'ae',
+        'uy',
+        'py',
+        'do',
+        'by',
+        'pa',
+        'sa',
+        'ma',
+        'lu',
+        'is',
+        'eg'
     ];
 
     public string $iso;
@@ -48,6 +91,7 @@ class Region extends Component
         string $title = null,
         string $width = null,
         string $height = null,
+        string $other = null,
         string $name = null
     ) {
         $this->iso    = $iso;
@@ -57,7 +101,8 @@ class Region extends Component
 
         $this->setConfigStyles([
             'width'  => $width,
-            'height' => $height
+            'height' => $height,
+            'other'  => $other
         ]);
     }
 

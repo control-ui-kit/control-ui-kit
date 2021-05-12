@@ -5,6 +5,7 @@ return [
     'map-region' => [
         'width'  => 'w-full',
         'height' => 'h-full',
+        'other'  => '',
         'name'   => 'Count',
     ],
 
