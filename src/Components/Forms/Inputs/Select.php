@@ -21,6 +21,7 @@ class Select extends Component
     public $value;
     public array $options;
     public int $activeIndex = 0;
+    private bool $native = false;
 
     public ?string $checkIcon;
     public ?string $checkIconSize;
@@ -47,6 +48,7 @@ class Select extends Component
         string $name,
         $options = [],
         $value = null,
+        bool $native = false,
 
         string $id = null,
         string $image = null,
@@ -143,6 +145,7 @@ class Select extends Component
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
+        $this->native = $native;
 
         if (! is_array($options)) {
             $options = $this->buildOptionsArray($options);
@@ -268,6 +271,10 @@ class Select extends Component
 
     public function render()
     {
+        if ($this->native) {
+            return view('control-ui-kit::control-ui-kit.forms.inputs.select-native');
+        }
+
         return view('control-ui-kit::control-ui-kit.forms.inputs.select');
     }
 
