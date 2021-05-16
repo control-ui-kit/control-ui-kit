@@ -30,7 +30,7 @@
 
         <div class="{{ $resultsClasses }}">
             <span>{!! __('Display') !!}</span>
-            <x-input.select name="limit" :options="['5', '10', '25', '50', '100', '200']" required value="100" icon="" button-width="w-auto" />
+            <x-input.select native name="limit" options="5, 10, 25, 50, 100, 200" required value="{{ $pageLimit }}" />
             <span>{!! __('Results') !!}</span>
             <span class="font-medium">{{ $paginator->firstItem() }}-{{ $paginator->lastItem() }}</span>
             <span>{!! __('of') !!}</span>
@@ -52,7 +52,7 @@
             @endif
 
             {{-- Pagination Elements --}}
-            <div class="hidden sm:block px-0.5">
+            <div class="hidden md:block px-0.5">
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))

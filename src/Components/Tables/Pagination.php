@@ -18,6 +18,7 @@ class Pagination extends Component
     public string $iconNext;
     public string $iconPrevious;
     public string $iconSize;
+    public int $pageLimit;
     public bool $showAlways;
     public int $eachSide;
 
@@ -33,6 +34,8 @@ class Pagination extends Component
         string $iconNext = null,
         string $iconPrevious = null,
         string $iconSize = null,
+        string $limit = null,
+
         bool $showAlways = null,
         int $eachSide = null,
 
@@ -89,6 +92,7 @@ class Pagination extends Component
         $this->iconNext = $this->style($this->component, 'icon-next', $iconNext);
         $this->iconPrevious = $this->style($this->component, 'icon-previous', $iconPrevious);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
+        $this->pageLimit = (int) $limit;
         $this->showAlways = (bool) $this->style($this->component, 'show-always', $showAlways);
         $this->eachSide = (int) $this->style($this->component, 'each-side', $eachSide);
 
@@ -160,6 +164,7 @@ class Pagination extends Component
                     'iconNext' => $iconNext,
                     'iconPrevious' => $iconPrevious,
                     'iconSize' => $iconSize,
+                    'pageLimit' => $pageLimit,
                     'showAlways' => $showAlways,
                     'buttonClasses' => $buttonClasses(),
                     'buttonActive' => $buttonActiveClasses(),
