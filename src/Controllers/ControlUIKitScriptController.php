@@ -10,7 +10,9 @@ class ControlUIKitScriptController extends Controller
     {
         $this->disablePackageConflicts();
 
-        return file_get_contents(__DIR__ . '/../../resources/js/control-ui-kit.js');
+        header('Content-Type: text/javascript; charset=UTF8', true);
+        print file_get_contents(__DIR__ . '/../../resources/js/control-ui-kit.js');
+        exit;
     }
 
     private function disablePackageConflicts(): void
