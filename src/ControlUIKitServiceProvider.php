@@ -60,7 +60,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Blade::directive('controlUiKitAssets', function () {
             return <<<'blade'
                 <?php
-                echo <<<'scripts'
+                $control_script_path = url('/control-ui-kit/javascript/control-ui-kit.js');
+
+                echo <<<scripts
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
 
                 <script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.10/dist/bundle.js"></script>
@@ -69,12 +71,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/keyboardnav.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/mobilefriendly.js"></script>
-
                 <script src="https://cdn.jsdelivr.net/npm/chart.js@next/dist/chart.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@next/dist/chartjs-chart-matrix.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@1.1.0-alpha/dist/chartjs-adapter-date-fns.bundle.js"></script>
-
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+                <script src="$control_script_path"></script>
 
                 <!-- todo: we need to fix the styling on the litepicker !-->
                 <style>
@@ -114,7 +114,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/control-ui-kit'),
             ], 'control-ui-kit-views');
-
         }
     }
 

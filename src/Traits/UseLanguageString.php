@@ -6,7 +6,7 @@ namespace ControlUIKit\Traits;
 
 trait UseLanguageString
 {
-    public function getLanguageString($string)
+    public function getLanguageString($string): string
     {
         if ($this->shouldUseLanguageFiles()) {
             return trans(app('language.file') . '.' . $this->name . '.' . $string);
@@ -15,8 +15,8 @@ trait UseLanguageString
         return '';
     }
 
-    private function shouldUseLanguageFiles()
+    private function shouldUseLanguageFiles(): bool
     {
-        return config('control-ui.kit.use_language_files', false);
+        return config('control-ui-kit.use_language_files');
     }
 }

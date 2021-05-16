@@ -20,12 +20,13 @@ class Cell extends Component
 
     public string $align;
     public ?string $href;
+    public ?string $hrefColor;
     public ?string $icon;
     public ?string $iconSize;
-    public ?array $iconStyles = null;
+    private ?array $iconStyles = null;
     public ?string $image;
-    public ?string $imageStyle;
     public ?string $imageAlt;
+    private ?array $imageStyles = null;
     public ?string $prefix;
     public ?string $pillStyle = null;
     public ?array $pillStyles = null;
@@ -42,21 +43,31 @@ class Cell extends Component
         string $font = null,
         string $format = null,
         string $href = null,
+        string $hrefColor = null,
+
         string $icon = null,
         string $iconBackground = null,
         string $iconBorder = null,
         string $iconColor = null,
-        string $iconFont = null,
         string $iconOther = null,
         string $iconPadding = null,
         string $iconRounded = null,
         string $iconShadow = null,
         string $iconSize = null,
+
+        string $imageBorder = null,
+        string $imageOther = null,
+        string $imagePadding = null,
+        string $imageRounded = null,
+        string $imageShadow = null,
+        string $imageSize = null,
+
         string $image = null,
         string $imageStyle = null,
         string $imageAlt = null,
         string $other = null,
         string $padding = null,
+
         string $pill = null,
         string $pillBackground = null,
         string $pillBorder = null,
@@ -66,6 +77,7 @@ class Cell extends Component
         string $pillPadding = null,
         string $pillRounded = null,
         string $pillShadow = null,
+
         string $prefix = null,
         string $rounded = null,
         string $shadow = null,
@@ -87,22 +99,23 @@ class Cell extends Component
         ]);
 
         $this->align = $this->style($this->component, 'align', $align);
+        $this->hrefColor = $this->style($this->component, 'href-color', $hrefColor);
         $this->href = $href;
         $this->icon = $icon;
         $this->iconSize = $iconSize;
 
         if ($icon) {
-            $this->iconStyles = [
-                'background' => $iconBackground,
-                'border' => $iconBorder,
-                'color' => $iconColor,
-                'font' => $iconFont,
-                'other' => $iconOther,
-                'padding' => $iconPadding,
-                'rounded' => $iconRounded,
-                'shadow' => $iconShadow,
-                'size' => $iconSize,
-            ];
+
+            $this->setConfigStyles([
+                'icon-background' => $iconBackground,
+                'icon-border' => $iconBorder,
+                'icon-color' => $iconColor,
+                'icon-other' => $iconOther,
+                'icon-padding' => $iconPadding,
+                'icon-rounded' => $iconRounded,
+                'icon-shadow' => $iconShadow,
+                'icon-size' => $iconSize,
+            ], [], null, 'iconStyles');
         }
 
         if ($pill) {
@@ -118,6 +131,15 @@ class Cell extends Component
             ];
         }
 
+        $this->setConfigStyles([
+            'image-border' => $imageBorder,
+            'image-other' => $imageOther,
+            'image-padding' => $imagePadding,
+            'image-rounded' => $imageRounded,
+            'image-shadow' => $imageShadow,
+            'image-size' => $imageSize,
+        ], [], null, 'imageStyles');
+
         $this->image = $image;
         $this->imageStyle = trim('inline-block ' . $imageStyle);
         $this->imageAlt = $imageAlt;
@@ -132,6 +154,24 @@ class Cell extends Component
     public function render()
     {
         return view('control-ui-kit::control-ui-kit.tables.cell');
+    }
+
+    public function iconStyles($styles = []): array
+    {
+        foreach($this->iconStyles as $key => $value) {
+            $styles[substr($key, 5)] = $value;
+        }
+
+        // inline-block required or else alignment does not work.
+        $styles['other'] = $styles['other'] !== '' ? $styles['other'] . ' inline-block' : 'inline-block';
+
+        return $styles;
+    }
+
+    public function imageClasses(): string
+    {
+        // inline-block required or else alignment does not work.
+        return 'inline-block ' . $this->classList($this->imageStyles);
     }
 
     private function format(?string $format, ?string $options = null): void

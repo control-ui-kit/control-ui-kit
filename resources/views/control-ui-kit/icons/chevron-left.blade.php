@@ -1,1 +1,1 @@
-<svg {{ $attributes->merge($classes('fill-current')) }} viewBox="0 0 24 24"><path d="M16 7.645L14.4777 6 8 13l6.4777 7L16 18.355 11.0553 13 16 7.645z"/></svg>
+<svg {{ $attributes->merge($classes('fill-current')) }} viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/><path fill="none" d="M0 0h24v24H0z"/></svg>

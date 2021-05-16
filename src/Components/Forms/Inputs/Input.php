@@ -65,11 +65,11 @@ class Input extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $width = null,
 
         string $iconBackground = null,
         string $iconBorder = null,
         string $iconColor = null,
-        string $iconFont = null,
         string $iconOther = null,
         string $iconPadding = null,
         string $iconRounded = null,
@@ -79,7 +79,6 @@ class Input extends Component
         string $iconLeftBackground = null,
         string $iconLeftBorder = null,
         string $iconLeftColor = null,
-        string $iconLeftFont = null,
         string $iconLeftOther = null,
         string $iconLeftPadding = null,
         string $iconLeftRounded = null,
@@ -89,7 +88,6 @@ class Input extends Component
         string $iconRightBackground = null,
         string $iconRightBorder = null,
         string $iconRightColor = null,
-        string $iconRightFont = null,
         string $iconRightOther = null,
         string $iconRightPadding = null,
         string $iconRightRounded = null,
@@ -161,6 +159,7 @@ class Input extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ], $this->component, 'basicStyles', 'input');
 
         $this->setInputStyles([
@@ -172,6 +171,7 @@ class Input extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ], $this->component, 'wrapperStyles', 'input', 'wrapper-');
 
         $this->setInputStyles([
@@ -189,19 +189,17 @@ class Input extends Component
             'background' => $iconLeftBackground ?? $iconBackground,
             'border' => $iconLeftBorder ?? $iconBorder,
             'color' => $iconLeftColor ?? $iconColor,
-            'font' => $iconLeftFont ?? $iconFont,
             'other' => $iconLeftOther ?? $iconOther,
             'padding' => $iconLeftPadding ?? $iconPadding,
             'rounded' => $iconLeftRounded ?? $iconRounded,
             'shadow' => $iconLeftShadow ?? $iconShadow,
-            'size' => $iconLeftFont ?? $iconSize,
+            'size' => $iconLeftSize ?? $iconSize,
         ], $this->component, 'iconLeftStyles', 'input', 'icon-left-');
 
         $this->setInputStyles([
             'background' => $iconRightBackground ?? $iconBackground,
             'border' => $iconRightBorder ?? $iconBorder,
             'color' => $iconRightColor ?? $iconColor,
-            'font' => $iconRightFont ?? $iconFont,
             'other' => $iconRightOther ?? $iconOther,
             'padding' => $iconRightPadding ?? $iconPadding,
             'rounded' => $iconRightRounded ?? $iconRounded,

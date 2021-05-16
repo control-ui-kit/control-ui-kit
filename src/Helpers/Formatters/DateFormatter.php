@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class DateFormatter extends BaseFormatter
 {
-    public function format(string $data, ?string $options): string
+    public function format(?string $data, ?string $options): string
     {
         if (! $data) {
             return "-";

@@ -16,7 +16,6 @@ class RadioTest extends ComponentTestCase
         Config::set('themes.default.input-radio.background', 'background');
         Config::set('themes.default.input-radio.border', 'border');
         Config::set('themes.default.input-radio.color', 'color');
-        Config::set('themes.default.input-radio.font', 'font');
         Config::set('themes.default.input-radio.other', 'other');
         Config::set('themes.default.input-radio.padding', 'padding');
         Config::set('themes.default.input-radio.rounded', 'rounded');
@@ -31,7 +30,7 @@ class RadioTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_value_field" value="value_field" class="background border color font other padding rounded shadow" />
+            <input name="name" type="radio" id="name_value_field" value="value_field" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -41,7 +40,7 @@ class RadioTest extends ComponentTestCase
     public function an_input_radio_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.radio name="name" value="value_field" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.radio name="name" value="value_field" background="none" border="none" color="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -55,11 +54,11 @@ class RadioTest extends ComponentTestCase
     public function an_input_radio_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.radio name="name" value="value_field" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.radio name="name" value="value_field" background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_value_field" value="value_field" class="1 2 3 4 5 6 7 8" />
+            <input name="name" type="radio" id="name_value_field" value="value_field" class="1 2 3 4 5 6 7" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -73,7 +72,7 @@ class RadioTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_new_test_value" value="new_test_value" class="background border color font other padding rounded shadow" />
+            <input name="name" type="radio" id="name_new_test_value" value="new_test_value" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -87,7 +86,7 @@ class RadioTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_value_field" value="value_field" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="radio" id="name_value_field" value="value_field" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

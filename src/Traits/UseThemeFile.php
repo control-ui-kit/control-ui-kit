@@ -80,19 +80,23 @@ trait UseThemeFile
         }
     }
 
-    public function classes(string $class = '', array $only = []): array
+    public function classes(string $class = '', array $only = [], array $except = []): array
     {
-        $classList = $this->classList($this->props, $class, $only);
+        $classList = $this->classList($this->props, $class, $only, $except);
 
         return $classList ? ['class' => $classList] : [];
     }
 
-    public function classList(array $classes, string $merge = '', array $only = []): string
+    public function classList(array $classes, string $merge = '', array $only = [], array $except = []): string
     {
         $collect = collect($classes)->filter()->unique();
 
         if ($only) {
             $collect = $collect->only($only);
+        }
+
+        if ($except) {
+            $collect = $collect->except($except);
         }
 
         $collect[] = $merge;

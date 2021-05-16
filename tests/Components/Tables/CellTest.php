@@ -16,11 +16,28 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.table-cell.background', 'background');
         Config::set('themes.default.table-cell.border', 'border');
         Config::set('themes.default.table-cell.color', 'color');
+        Config::set('themes.default.table-cell.href-color', 'href-color');
         Config::set('themes.default.table-cell.font', 'font');
         Config::set('themes.default.table-cell.other', 'other');
         Config::set('themes.default.table-cell.padding', 'padding');
         Config::set('themes.default.table-cell.rounded', 'rounded');
         Config::set('themes.default.table-cell.shadow', 'shadow');
+
+        Config::set('themes.default.table-cell.icon-background', 'icon-background');
+        Config::set('themes.default.table-cell.icon-border', 'icon-border');
+        Config::set('themes.default.table-cell.icon-color', 'icon-color');
+        Config::set('themes.default.table-cell.icon-other', 'icon-other');
+        Config::set('themes.default.table-cell.icon-padding', 'icon-padding');
+        Config::set('themes.default.table-cell.icon-rounded', 'icon-rounded');
+        Config::set('themes.default.table-cell.icon-shadow', 'icon-shadow');
+        Config::set('themes.default.table-cell.icon-size', 'icon-size');
+
+        Config::set('themes.default.table-cell.image-border', 'image-border');
+        Config::set('themes.default.table-cell.image-other', 'image-other');
+        Config::set('themes.default.table-cell.image-padding', 'image-padding');
+        Config::set('themes.default.table-cell.image-rounded', 'image-rounded');
+        Config::set('themes.default.table-cell.image-shadow', 'image-shadow');
+        Config::set('themes.default.table-cell.image-size', 'image-size');
 
         Config::set('themes.default.icon.size', '::icon-size');
 
@@ -300,6 +317,21 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_with_null_value(): void
+    {
+        $template = <<<'HTML'
+            @php $date = null; @endphp
+            <x-table.cell :data="$date" format="date" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow"> - </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
     {
         $template = <<<'HTML'
@@ -381,7 +413,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block"> ::data </a>
+                <a href="http://example.com" class="inline-block href-color"> ::data </a>
             </td>
             HTML;
 
@@ -397,7 +429,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block" target="_blank"> ::data </a>
+                <a href="http://example.com" class="inline-block href-color" target="_blank"> ::data </a>
             </td>
             HTML;
 
@@ -413,7 +445,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block"> ::data </a>
+                <a href="http://example.com" class="inline-block href-color"> ::data </a>
             </td>
             HTML;
 
@@ -421,15 +453,31 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_table_cell_component_with_icon_and_icon_size_works_correctly(): void
+    public function a_table_cell_component_with_href_and_custom_href_color_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell icon="icon.dot" icon-size="::size" />
+            <x-table.cell href="http://example.com" href-color="custom-color">::data</x-table.cell>
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <a href="http://example.com" class="inline-block custom-color"> ::data </a>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_icon_and_custom_icon_styles_works_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell icon="icon.dot" icon-size="custom-size" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </td>
@@ -442,12 +490,22 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_icon_and_icon_styles_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell icon="icon.dot" icon-background="custom-background" icon-border="custom-border" icon-color="custom-color" icon-font="custom-font" icon-other="custom-other" icon-padding="custom-padding" icon-rounded="custom-rounded" icon-shadow="custom-shadow" icon-size="custom-size" />
+            <x-table.cell
+                icon="icon.dot"
+                icon-background="custom-background"
+                icon-border="custom-border"
+                icon-color="custom-color"
+                icon-other="custom-other"
+                icon-padding="custom-padding"
+                icon-rounded="custom-rounded"
+                icon-shadow="custom-shadow"
+                icon-size="custom-size"
+            />
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <svg class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </td>
@@ -465,8 +523,8 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com/testing" class="inline-block">
-                    <svg class="::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <a href="http://example.com/testing" class="inline-block href-color">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </a>
@@ -480,12 +538,60 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_image_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell image="http://example.com/testing.jpg" image-style="::styles" image-alt="::alt" />
+            <x-table.cell image="http://example.com/testing.jpg" image-alt="::alt" />
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <img src="http://example.com/testing.jpg" class="inline-block ::styles" alt="::alt" />
+                <img src="http://example.com/testing.jpg" class="inline-block image-border image-other image-padding image-rounded image-shadow image-size" alt="::alt" />
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_image_and_custom_image_styles_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell
+                image="http://example.com/testing.jpg"
+                image-border="custom-border"
+                image-other="custom-other"
+                image-padding="custom-padding"
+                image-rounded="custom-rounded"
+                image-shadow="custom-shadow"
+                image-size="custom-size"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <img src="http://example.com/testing.jpg" class="inline-block custom-border custom-other custom-padding custom-rounded custom-shadow custom-size" />
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_table_cell_component_with_image_and_no_image_styles_renders_correctly(): void
+    {
+        $template = <<<'HTML'
+            <x-table.cell
+                image="http://example.com/testing.jpg"
+                image-border="none"
+                image-other="none"
+                image-padding="none"
+                image-rounded="none"
+                image-shadow="none"
+                image-size="none"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other padding rounded shadow">
+                <img src="http://example.com/testing.jpg" class="inline-block " />
             </td>
             HTML;
 
@@ -776,7 +882,7 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other padding rounded shadow">
-                <a href="https://example.com" class="inline-block"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
+                <a href="https://example.com" class="inline-block href-color"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
             </td>
             HTML;
 

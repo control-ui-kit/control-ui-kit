@@ -2,26 +2,29 @@
 
 declare(strict_types=1);
 
-namespace ControlUIKit\Components\Forms\Inputs;
+namespace ControlUIKit\Components\Tables;
 
+use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Filter extends Component
 {
     use UseThemeFile, UseLanguageString;
 
-    protected string $component = 'input-select';
+    protected string $component = 'table-filter';
 
     public string $name;
     public string $id;
     public $value;
+    public string $label;
+    public int $priority;
     public array $options;
     public int $activeIndex = 0;
-    private bool $native = false;
 
     public ?string $checkIcon;
     public ?string $checkIconSize;
@@ -34,7 +37,6 @@ class Select extends Component
     public ?string $textName;
     public ?string $subtextName;
     public ?string $imageName;
-    public ?string $optionValue;
 
     public array $checkStyles;
     public array $imageStyles;
@@ -42,21 +44,22 @@ class Select extends Component
     public array $optionStyles;
     public array $subtextStyles;
     public array $textStyles;
+    public array $wrapperStyles;
 
     public function __construct(
 
         string $name,
+        string $label,
         $options = [],
         $value = null,
-        bool $native = false,
 
         string $id = null,
+        bool $hideFirst = null,
+        bool $hideLast = null,
+        string $hideOrder = null,
         string $image = null,
-        $pleaseSelect = null,
-        bool $required = false,
         string $subtext = null,
         string $text = null,
-        string $optionValue = null,
 
         string $buttonBackground = null,
         string $buttonBorder = null,
@@ -67,6 +70,18 @@ class Select extends Component
         string $buttonRounded = null,
         string $buttonShadow = null,
         string $buttonWidth = null,
+
+        string $checkBackground = null,
+        string $checkBorder = null,
+        string $checkColor = null,
+        string $checkIcon = null,
+        string $checkIconSize = null,
+        string $checkOther = null,
+        string $checkPadding = null,
+        string $checkRounded = null,
+        string $checkShadow = null,
+        string $checkActive = null,
+        string $checkInactive = null,
 
         string $icon = null,
         string $iconBackground = null,
@@ -129,47 +144,28 @@ class Select extends Component
         string $subtextActive = null,
         string $subtextInactive = null,
 
-        string $checkBackground = null,
-        string $checkBorder = null,
-        string $checkColor = null,
-        string $checkFont = null,
-        string $checkIcon = null,
-        string $checkIconSize = null,
-        string $checkOther = null,
-        string $checkPadding = null,
-        string $checkRounded = null,
-        string $checkShadow = null,
-        string $checkActive = null,
-        string $checkInactive = null
+        string $wrapperBackground = null,
+        string $wrapperBorder = null,
+        string $wrapperColor = null,
+        string $wrapperFont = null,
+        string $wrapperOther = null,
+        string $wrapperPadding = null,
+        string $wrapperRounded = null,
+        string $wrapperShadow = null,
+        string $wrapperWidth = null
     ) {
         $this->name = $name;
+        $this->label = $label;
         $this->id = $id ?? $name;
         $this->value = old($name, $value);
-        $this->native = $native;
 
-        if (! is_array($options)) {
-            $options = $this->buildOptionsArray($options);
-        }
-
-        if (! $required) {
-            $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
-            $this->options = $pleaseSelectOption + $this->options($options);
-        } else {
-            $this->options = $this->options($options);
-        }
-
-        if ($this->value === null) {
-            $this->setFirstValue();
-        }
-
-        $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
-        $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
+        $this->priority = $this->setHideOrder($hideFirst, $hideLast, $hideOrder);
+        $this->options = $this->options($options);
         $this->icon = $this->style($this->component, 'icon', $icon);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
         $this->imageName = $this->style($this->component, 'image-name', $image);
-        $this->optionValue = $optionValue;
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -183,12 +179,10 @@ class Select extends Component
             'button-width' => $buttonWidth,
         ]);
 
-
         $this->setConfigStyles([
             'check-background' => $checkBackground,
             'check-border' => $checkBorder,
             'check-color' => $checkColor,
-            'check-font' => $checkFont,
             'check-other' => $checkOther,
             'check-padding' => $checkPadding,
             'check-rounded' => $checkRounded,
@@ -253,6 +247,7 @@ class Select extends Component
             'text-shadow' => $textShadow,
             'text-active' => $textActive,
             'text-inactive' => $textInactive,
+
         ], [], null, 'textStyles');
 
         $this->setConfigStyles([
@@ -267,20 +262,31 @@ class Select extends Component
             'subtext-active' => $subtextActive,
             'subtext-inactive' => $subtextInactive,
         ], [], null, 'subtextStyles');
+
+        $this->setConfigStyles([
+            'wrapper-background' => $wrapperBackground,
+            'wrapper-border' => $wrapperBorder,
+            'wrapper-color' => $wrapperColor,
+            'wrapper-font' => $wrapperFont,
+            'wrapper-other' => $wrapperOther,
+            'wrapper-padding' => $wrapperPadding,
+            'wrapper-rounded' => $wrapperRounded,
+            'wrapper-shadow' => $wrapperShadow,
+            'wrapper-width' => $wrapperWidth,
+        ], [], null, 'wrapperStyles');
+
+        $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
+        $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
     }
 
     public function render()
     {
-        if ($this->native) {
-            return view('control-ui-kit::control-ui-kit.forms.inputs.select-native');
-        }
-
-        return view('control-ui-kit::control-ui-kit.forms.inputs.select');
+        return view('control-ui-kit::control-ui-kit.tables.filter');
     }
 
-    public function buttonWidth(): string
+    public function wrapperClasses(string $append = ''): string
     {
-        return $this->props['button-width'];
+        return collect([$this->classList($this->wrapperStyles), $append])->filter()->implode(' ');
     }
 
     public function listClasses(): string
@@ -360,66 +366,22 @@ class Select extends Component
 
     public function text($option): string
     {
-        return is_string($option) || is_int($option) ? (string) $option : (string) $option[$this->textName];
+        return is_string($option) ? $option : $option[$this->textName];
     }
 
     public function subtext($option): ?string
     {
-        return is_array($option) && array_key_exists($this->subtextName, $option) ? (string) $option[$this->subtextName] : null;
-    }
-
-    public function optionValue($key, $option)
-    {
-        if ($this->optionValue && is_array($option) && array_key_exists($this->optionValue, $option)) {
-            return $option[$this->optionValue];
-        }
-
-        return $key;
+        return is_array($option) && array_key_exists($this->subtextName, $option) ? $option[$this->subtextName] : null;
     }
 
     public function image($option): ?string
     {
-        return is_array($option) && array_key_exists($this->imageName, $option) ? (string) $option[$this->imageName] : null;
+        return is_array($option) && array_key_exists($this->imageName, $option) ? $option[$this->imageName] : null;
     }
 
     public function imageClasses(): string
     {
         return $this->classList($this->imageStyles);
-    }
-
-    private function transPleaseSelectText(array $pleaseSelect, ?string $text): string
-    {
-        if (array_key_exists('trans', $pleaseSelect)) {
-            return trans($pleaseSelect['trans']);
-        }
-
-        return $this->style($this->component, 'please-select-trans', $text);
-    }
-
-    private function pleaseSelect($pleaseSelect): array
-    {
-        if (! is_array($pleaseSelect)) {
-            $value = $this->style($this->component, 'please-select-value', null);
-            $text = $this->style($this->component, 'please-select-text', $pleaseSelect);
-            $trans = $this->style($this->component, 'please-select-trans', null);
-
-            if (is_null($pleaseSelect) && $trans) {
-                $text = trans($trans);
-            }
-
-            return [$value => $text];
-        }
-
-        $text = (array_key_exists('text', $pleaseSelect))
-            ? $pleaseSelect['text']
-            : $this->style($this->component, 'please-select-text', null);
-        $value = $pleaseSelect['value'] ?? null;
-
-        if (is_null($this->value)) {
-            $this->value = $value;
-        }
-
-        return [$value => $this->transPleaseSelectText($pleaseSelect, $text)];
     }
 
     public function jsonValue()
@@ -431,11 +393,6 @@ class Select extends Component
         return is_numeric($this->value) ? $this->value : "'{$this->value}'";
     }
 
-    private function setFirstValue(): void
-    {
-        $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options) ;
-    }
-
     private function options($options): array
     {
         if ($options instanceof Collection) {
@@ -445,9 +402,28 @@ class Select extends Component
         return (array) $options;
     }
 
-    private function buildOptionsArray(string $options): array
+    public function buttonRef(): string
     {
-        $values = array_filter(array_map('trim', str_getcsv($options)));
-        return array_combine($values, $values);
+        return Str::camel(Str::slug($this->name) . '-button');
+    }
+
+    public function href($value): string
+    {
+        $query = $this->name . '=' . $value;
+
+        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
+    }
+
+    private function setHideOrder(?bool $hideFirst, ?bool $hideLast, ?string $hideOrder): int
+    {
+        if ($hideFirst === true) {
+            return 0;
+        }
+
+        if ($hideLast === true) {
+            return 99;
+        }
+
+        return is_null($hideOrder) ? 5 : (int) $hideOrder;
     }
 }
