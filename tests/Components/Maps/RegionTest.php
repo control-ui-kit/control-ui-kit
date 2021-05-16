@@ -4659,6 +4659,705 @@ class RegionTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_region_map_component_for_ecuador_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="ec" :values="[
+                ['EC-A', 100000],
+                ['EC-B', 100000],
+                ['EC-F', 100000],
+                ['EC-C', 100000],
+                ['EC-H', 100000],
+                ['EC-X', 100000],
+                ['EC-O', 100000],
+                ['EC-E', 100000],
+                ['EC-W', 100000],
+                ['EC-G', 100000],
+                ['EC-I', 100000],
+                ['EC-L', 100000],
+                ['EC-R', 100000],
+                ['EC-M', 100000],
+                ['EC-S', 100000],
+                ['EC-N', 100000],
+                ['EC-D', 100000],
+                ['EC-Y', 100000],
+                ['EC-P', 100000],
+                ['EC-SE', 100000],
+                ['EC-SD', 100000],
+                ['EC-U', 100000],
+                ['EC-T', 100000],
+                ['EC-Z', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_ec" class="w-screen h-screen"></div>
+            <script>
+                let data_ec = [["EC-A",100000],["EC-B",100000],["EC-F",100000],["EC-C",100000],["EC-H",100000],["EC-X",100000],["EC-O",100000],["EC-E",100000],["EC-W",100000],["EC-G",100000],["EC-I",100000],["EC-L",100000],["EC-R",100000],["EC-M",100000],["EC-S",100000],["EC-N",100000],["EC-D",100000],["EC-Y",100000],["EC-P",100000],["EC-SE",100000],["EC-SD",100000],["EC-U",100000],["EC-T",100000],["EC-Z",100000]];
+                let map_ec = Highcharts;
+
+                map_ec.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/ec.json', function(geojson) {
+                    map_ec.mapChart('container_ec', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_ec,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_el_salvador_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="sv" :values="[
+                ['SV-AH', 100000],
+                ['SV-CA', 100000],
+                ['SV-CH', 100000],
+                ['SV-CU', 100000],
+                ['SV-LI', 100000],
+                ['SV-PA', 100000],
+                ['SV-UN', 100000],
+                ['SV-MO', 100000],
+                ['SV-SM', 100000],
+                ['SV-SS', 100000],
+                ['SV-SV', 100000],
+                ['SV-SA', 100000],
+                ['SV-SO', 100000],
+                ['SV-US', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_sv" class="w-screen h-screen"></div>
+            <script>
+                let data_sv = [["SV-AH",100000],["SV-CA",100000],["SV-CH",100000],["SV-CU",100000],["SV-LI",100000],["SV-PA",100000],["SV-UN",100000],["SV-MO",100000],["SV-SM",100000],["SV-SS",100000],["SV-SV",100000],["SV-SA",100000],["SV-SO",100000],["SV-US",100000]];
+                let map_sv = Highcharts;
+
+                map_sv.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/sv.json', function(geojson) {
+                    map_sv.mapChart('container_sv', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_sv,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_bolivia_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="bo" :values="[
+                ['BO-B', 100000],
+                ['BO-H', 100000],
+                ['BO-C', 100000],
+                ['BO-L', 100000],
+                ['BO-O', 100000],
+                ['BO-N', 100000],
+                ['BO-P', 100000],
+                ['BO-S', 100000],
+                ['BO-T', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_bo" class="w-screen h-screen"></div>
+            <script>
+                let data_bo = [["BO-B",100000],["BO-H",100000],["BO-C",100000],["BO-L",100000],["BO-O",100000],["BO-N",100000],["BO-P",100000],["BO-S",100000],["BO-T",100000]];
+                let map_bo = Highcharts;
+
+                map_bo.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/bo.json', function(geojson) {
+                    map_bo.mapChart('container_bo', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_bo,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_croatia_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="hr" :values="[
+                ['HR-07', 100000],
+                ['HR-12', 100000],
+                ['HR-21', 100000],
+                ['HR-19', 100000],
+                ['HR-18', 100000],
+                ['HR-04', 100000],
+                ['HR-06', 100000],
+                ['HR-02', 100000],
+                ['HR-09', 100000],
+                ['HR-20', 100000],
+                ['HR-14', 100000],
+                ['HR-11', 100000],
+                ['HR-08', 100000],
+                ['HR-15', 100000],
+                ['HR-03', 100000],
+                ['HR-17', 100000],
+                ['HR-05', 100000],
+                ['HR-10', 100000],
+                ['HR-16', 100000],
+                ['HR-13', 100000],
+                ['HR-01', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_hr" class="w-screen h-screen"></div>
+            <script>
+                let data_hr = [["HR-07",100000],["HR-12",100000],["HR-21",100000],["HR-19",100000],["HR-18",100000],["HR-04",100000],["HR-06",100000],["HR-02",100000],["HR-09",100000],["HR-20",100000],["HR-14",100000],["HR-11",100000],["HR-08",100000],["HR-15",100000],["HR-03",100000],["HR-17",100000],["HR-05",100000],["HR-10",100000],["HR-16",100000],["HR-13",100000],["HR-01",100000]];
+                let map_hr = Highcharts;
+
+                map_hr.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/hr.json', function(geojson) {
+                    map_hr.mapChart('container_hr', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_hr,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_serbia_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="rs" :values="[
+                ['RS-BG', 100000],
+                ['RS-VO', 100000],
+                ['RS-SW', 100000],
+                ['RS-SE', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_rs" class="w-screen h-screen"></div>
+            <script>
+                let data_rs = [["RS-BG",100000],["RS-VO",100000],["RS-SW",100000],["RS-SE",100000]];
+                let map_rs = Highcharts;
+
+                map_rs.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/rs.json', function(geojson) {
+                    map_rs.mapChart('container_rs', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_rs,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_tunisia_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="tn" :values="[
+                ['TN-12', 100000],
+                ['TN-31', 100000],
+                ['TN-13', 100000],
+                ['TN-23', 100000],
+                ['TN-81', 100000],
+                ['TN-71', 100000],
+                ['TN-32', 100000],
+                ['TN-41', 100000],
+                ['TN-42', 100000],
+                ['TN-73', 100000],
+                ['TN-33', 100000],
+                ['TN-53', 100000],
+                ['TN-82', 100000],
+                ['TN-52', 100000],
+                ['TN-21', 100000],
+                ['TN-61', 100000],
+                ['TN-43', 100000],
+                ['TN-34', 100000],
+                ['TN-51', 100000],
+                ['TN-83', 100000],
+                ['TN-72', 100000],
+                ['TN-11', 100000],
+                ['TN-22', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_tn" class="w-screen h-screen"></div>
+            <script>
+                let data_tn = [["TN-12",100000],["TN-31",100000],["TN-13",100000],["TN-23",100000],["TN-81",100000],["TN-71",100000],["TN-32",100000],["TN-41",100000],["TN-42",100000],["TN-73",100000],["TN-33",100000],["TN-53",100000],["TN-82",100000],["TN-52",100000],["TN-21",100000],["TN-61",100000],["TN-43",100000],["TN-34",100000],["TN-51",100000],["TN-83",100000],["TN-72",100000],["TN-11",100000],["TN-22",100000]];
+                let map_tn = Highcharts;
+
+                map_tn.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/tn.json', function(geojson) {
+                    map_tn.mapChart('container_tn', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_tn,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_kazakhstan_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="kz" :values="[
+                ['KZ-AKM', 100000],
+                ['KZ-AKT', 100000],
+                ['KZ-ALA', 100000],
+                ['KZ-ALM', 100000],
+                ['KZ-AST', 100000],
+                ['KZ-ATY', 100000],
+                ['KZ-VOS', 100000], 
+                ['KZ-ZHA', 100000],
+                ['KZ-KAR', 100000],
+                ['KZ-KUS', 100000],
+                ['KZ-KZY', 100000],
+                ['KZ-MAN', 100000],
+                ['KZ-SEV', 100000],
+                ['KZ-PAV', 100000],
+                ['KZ-SHY', 100000],
+                ['KZ-YUZ', 100000],
+                ['KZ-ZAP', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_kz" class="w-screen h-screen"></div>
+            <script>
+                let data_kz = [["KZ-AKM",100000],["KZ-AKT",100000],["KZ-ALA",100000],["KZ-ALM",100000],["KZ-AST",100000],["KZ-ATY",100000],["KZ-VOS",100000],["KZ-ZHA",100000],["KZ-KAR",100000],["KZ-KUS",100000],["KZ-KZY",100000],["KZ-MAN",100000],["KZ-SEV",100000],["KZ-PAV",100000],["KZ-SHY",100000],["KZ-YUZ",100000],["KZ-ZAP",100000]];
+                let map_kz = Highcharts;
+
+                map_kz.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/kz.json', function(geojson) {
+                    map_kz.mapChart('container_kz', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_kz,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_slovenia_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="si" :values="[
+                ['SI-GO', 100000],
+                ['SI-CK', 100000],
+                ['SI-LI', 100000],
+                ['SI-UC', 100000],
+                ['SI-LS', 100000],
+                ['SI-SS', 100000],
+                ['SI-CS', 100000],
+                ['SI-CE', 100000],
+                ['SI-SA', 100000],
+                ['SI-CA', 100000],
+                ['SI-DR', 100000],
+                ['SI-MU', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_si" class="w-screen h-screen"></div>
+            <script>
+                let data_si = [["SI-GO",100000],["SI-CK",100000],["SI-LI",100000],["SI-UC",100000],["SI-LS",100000],["SI-SS",100000],["SI-CS",100000],["SI-CE",100000],["SI-SA",100000],["SI-CA",100000],["SI-DR",100000],["SI-MU",100000]];
+                let map_si = Highcharts;
+
+                map_si.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/si.json', function(geojson) {
+                    map_si.mapChart('container_si', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_si,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_honduras_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="hn" :values="[
+                ['HN-AT', 100000],
+                ['HN-CH', 100000],
+                ['HN-CL', 100000],
+                ['HN-CM', 100000],
+                ['HN-CP', 100000],
+                ['HN-CR', 100000],
+                ['HN-EP', 100000],
+                ['HN-FM', 100000],
+                ['HN-GD', 100000],
+                ['HN-IB', 100000],
+                ['HN-IN', 100000],
+                ['HN-LE', 100000],
+                ['HN-LP', 100000],
+                ['HN-OC', 100000],
+                ['HN-OL', 100000],
+                ['HN-SB', 100000],
+                ['HN-VA', 100000],
+                ['HN-YO', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_hn" class="w-screen h-screen"></div>
+            <script>
+                let data_hn = [["HN-AT",100000],["HN-CH",100000],["HN-CL",100000],["HN-CM",100000],["HN-CP",100000],["HN-CR",100000],["HN-EP",100000],["HN-FM",100000],["HN-GD",100000],["HN-IB",100000],["HN-IN",100000],["HN-LE",100000],["HN-LP",100000],["HN-OC",100000],["HN-OL",100000],["HN-SB",100000],["HN-VA",100000],["HN-YO",100000]];
+                let map_hn = Highcharts;
+
+                map_hn.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/hn.json', function(geojson) {
+                    map_hn.mapChart('container_hn', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_hn,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_region_map_component_for_south_korea_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-map.region iso="kr" :values="[
+                ['KR-26', 100000],
+                ['KR-27', 100000],
+                ['KR-30', 100000],
+                ['KR-42', 100000],
+                ['KR-29', 100000],
+                ['KR-41', 100000],
+                ['KR-28', 100000],
+                ['KR-49', 100000],
+                ['KR-43', 100000],
+                ['KR-47', 100000],
+                ['KR-45', 100000],
+                ['KR-11', 100000],
+                ['KR-44', 100000],
+                ['KR-48', 100000],
+                ['KR-46', 100000],
+                ['KR-31', 100000],
+                ['KR-50', 100000],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="container_kr" class="w-screen h-screen"></div>
+            <script>
+                let data_kr = [["KR-26",100000],["KR-27",100000],["KR-30",100000],["KR-42",100000],["KR-29",100000],["KR-41",100000],["KR-28",100000],["KR-49",100000],["KR-43",100000],["KR-47",100000],["KR-45",100000],["KR-11",100000],["KR-44",100000],["KR-48",100000],["KR-46",100000],["KR-31",100000],["KR-50",100000]];
+                let map_kr = Highcharts;
+
+                map_kr.getJSON('http://ui-kit-docs.test/control-ui-kit/map-data/kr.json', function(geojson) {
+                    map_kr.mapChart('container_kr', {
+                        chart: {
+                            map: geojson
+                        },
+                        title: {
+                            text: ''
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                        colorAxis: {
+                            tickPixelInterval: 100
+                        },
+                        series: [{
+                            data: data_kr,
+                            keys: ['iso_3166_2', 'value'],
+                            joinBy: 'iso_3166_2',
+                            name: 'Count',
+                            states: {
+                                hover: {
+                                    color: '#a4edba'
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.properties.name}'
+                            }
+                        }]
+                    });
+                });
+            </script>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_region_map_component_with_an_invalid_iso_can_not_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4666,7 +5365,7 @@ class RegionTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-        Invalid ISO. {Expected: au, br, ca, de, es, fr, gb, mx, nl, us, it, tr, ru, cl, ar, pl, se, ph, id, be, ch, in, no, jp, sg, co, nz, at, fi, my, tw, dk, pt, ie, cz, hu, pe, za, ua, ro, gr, il, th, cr, vn, sk, lt, ec, gt, ee, lv, bg, ae, uy, py, do, by, pa, sa, ma, lu, is, eg}
+        Invalid ISO. {Expected: au, br, ca, de, es, fr, gb, mx, nl, us, it, tr, ru, cl, ar, pl, se, ph, id, be, ch, in, no, jp, sg, co, nz, at, fi, my, tw, dk, pt, ie, cz, hu, pe, za, ua, ro, gr, il, th, cr, vn, sk, lt, ec, gt, ee, lv, bg, ae, uy, py, do, by, pa, sa, ma, lu, is, eg, sv, bo, hr, rs, tn, kz, si, mt, hn, kr}
         HTML;
 
         $this->assertComponentRenders($expected, $template);

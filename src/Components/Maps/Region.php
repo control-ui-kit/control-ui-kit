@@ -76,7 +76,17 @@ class Region extends Component
         'ma',
         'lu',
         'is',
-        'eg'
+        'eg',
+        'sv',
+        'bo',
+        'hr',
+        'rs',
+        'tn',
+        'kz',
+        'si',
+        'mt',
+        'hn',
+        'kr'
     ];
 
     public string $iso;
