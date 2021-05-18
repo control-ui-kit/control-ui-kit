@@ -59,7 +59,7 @@ class ErrorBagTest extends ComponentTestCase
         $errors = app(MessageBag::class)->add('test', 'This is a test message');
 
         $template = <<<'HTML'
-            <x-error-bag :errors="$errors"/>
+            <x-error-bag :bag="$bag"/>
             HTML;
 
         $expected = <<<'HTML'
@@ -84,7 +84,7 @@ class ErrorBagTest extends ComponentTestCase
                 </div>
             HTML;
 
-        $this->assertComponentRenders($expected, $template, ['errors' => $errors]);
+        $this->assertComponentRenders($expected, $template, ['bag' => $errors]);
     }
 
     /** @test */
@@ -93,7 +93,7 @@ class ErrorBagTest extends ComponentTestCase
         $errors = app(MessageBag::class)->add('test', 'This is a test message');
 
         $template = <<<'HTML'
-            <x-error-bag :errors="$errors" type="default" icon="icon.options" icon-color="custom-color" background="custom-background" />
+            <x-error-bag :bag="$bag" type="default" icon="icon.options" icon-color="custom-color" background="custom-background" />
             HTML;
 
         $expected = <<<'HTML'
@@ -118,6 +118,6 @@ class ErrorBagTest extends ComponentTestCase
                 </div>
             HTML;
 
-        $this->assertComponentRenders($expected, $template, ['errors' => $errors]);
+        $this->assertComponentRenders($expected, $template, ['bag' => $errors]);
     }
 }
