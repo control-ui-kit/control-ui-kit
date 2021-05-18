@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms;
 
 use ControlUIKit\Traits\UseLanguageString;
-use Illuminate\Support\MessageBag;
 use Illuminate\View\Component;
 
 class ErrorBag extends Component
 {
     use UseLanguageString;
 
-    public ?MessageBag $errors;
+    public $bag;
     public string $type;
 
     public function __construct(
-        MessageBag $errors = null,
+        $bag = null,
         string $type = 'danger'
     ) {
-        $this->errors = $errors;
+        $this->bag = $bag;
         $this->type = $type;
     }
 
