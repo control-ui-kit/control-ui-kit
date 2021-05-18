@@ -2,6 +2,96 @@
 
 return [
 
+    'alert' => [
+
+        'default-alert' => 'default',
+
+        'background' => '',
+        'border' => 'border',
+        'other' => '',
+        'padding' => 'p-4',
+        'rounded' => 'rounded-md',
+        'shadow' => '',
+        'width' => 'w-full',
+
+        'text-color' => '',
+        'text-font' => '',
+        'text-size' => 'text-sm',
+        'text-other' => 'mt-2',
+
+        'title-color' => '',
+        'title-font' => 'font-medium',
+        'title-size' => 'text-sm',
+        'title-other' => '',
+
+        'icon' => '',
+        'icon-color' => '',
+        'icon-size' => 'w-5 h-5',
+
+        'default' => [
+            'background' => 'bg-alert-default',
+            'border' => 'border-alert-default',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-default-icon',
+            'title-color' => 'text-alert-default-title',
+            'text-color' => 'text-alert-default-text',
+        ],
+
+        'brand' => [
+            'background' => 'bg-alert-brand',
+            'border' => 'border-alert-brand',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-brand-icon',
+            'title-color' => 'text-alert-brand-title',
+            'text-color' => 'text-alert-brand-text',
+        ],
+
+        'danger' => [
+            'background' => 'bg-alert-danger',
+            'border' => 'border-alert-danger',
+            'icon' => 'icon.shield-cross',
+            'icon-color' => 'text-alert-danger-icon',
+            'title-color' => 'text-alert-danger-title',
+            'text-color' => 'text-alert-danger-text',
+        ],
+
+        'info' => [
+            'background' => 'bg-alert-info',
+            'border' => 'border-alert-info',
+            'icon' => 'icon.info-circle',
+            'icon-color' => 'text-alert-info-icon',
+            'title-color' => 'text-alert-info-title',
+            'text-color' => 'text-alert-info-text',
+        ],
+
+        'success' => [
+            'background' => 'bg-alert-success',
+            'border' => 'border-alert-success',
+            'icon' => 'icon.status-success',
+            'icon-color' => 'text-alert-success-icon',
+            'title-color' => 'text-alert-success-title',
+            'text-color' => 'text-alert-success-text',
+        ],
+
+        'muted' => [
+            'background' => 'bg-alert-muted',
+            'border' => 'border-alert-muted',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-muted-icon',
+            'title-color' => 'text-alert-muted-title',
+            'text-color' => 'text-alert-muted-text',
+        ],
+
+        'warning' => [
+            'background' => 'bg-alert-warning',
+            'border' => 'border-alert-warning',
+            'icon' => 'icon.warning',
+            'icon-color' => 'text-alert-warning-icon',
+            'title-color' => 'text-alert-warning-title',
+            'text-color' => 'text-alert-warning-text',
+        ],
+    ],
+
     'button' => [
 
         'primary-button' => 'default',

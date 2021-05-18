@@ -15,6 +15,8 @@ return [
 
     'components' => [
 
+        'alert' => \ControlUIKit\Components\Alerts\Alert::class,
+
         'button' => \ControlUIKit\Components\Buttons\Button::class,
         'logout' => \ControlUIKit\Components\Buttons\Logout::class,
 
