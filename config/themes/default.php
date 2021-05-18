@@ -727,7 +727,7 @@ return [
         'border' => '',
         'color' => '',
         'font' => '',
-        'other' => 'flex flex-col space-x-2 sm:space-x-4',
+        'other' => 'flex flex-col space-y-2 sm:space-y-4',
         'padding' => 'p-2 sm:p-4',
         'rounded' => '',
         'shadow' => '',
