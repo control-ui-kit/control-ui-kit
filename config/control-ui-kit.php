@@ -34,11 +34,11 @@ return [
         'dropdown.option' => \ControlUIKit\Components\Dropdowns\Option::class,
 
         'error' => \ControlUIKit\Components\Forms\Error::class,
+        'error-bag' => \ControlUIKit\Components\Forms\ErrorBag::class,
         'form' => \ControlUIKit\Components\Forms\Form::class,
         'label' => \ControlUIKit\Components\Forms\Label::class,
-
         'title' => \ControlUIKit\Components\Forms\Title::class,
-        'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
+
         'form.field' => \ControlUIKit\Components\Forms\Field::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
