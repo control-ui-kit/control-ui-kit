@@ -31,7 +31,7 @@ class LabelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <label for="test" class="background border color font other padding rounded shadow">The Label</label>
+            <label for="test" class="background border color font other padding rounded shadow"> The Label </label>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -55,7 +55,7 @@ class LabelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <label for="test">The Label</label>
+            <label for="test"> The Label </label>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -79,7 +79,21 @@ class LabelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <label for="test" class="1 2 3 4 5 6 7 8">The Label</label>
+            <label for="test" class="1 2 3 4 5 6 7 8"> The Label </label>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_label_component_can_be_rendered_with_no_slot_using_fallback(): void
+    {
+        $template = <<<'HTML'
+            <x-label for="test_fallback" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <label for="test_fallback" class="background border color font other padding rounded shadow"> Test fallback </label>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
