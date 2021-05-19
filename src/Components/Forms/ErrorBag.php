@@ -11,14 +11,9 @@ class ErrorBag extends Component
 {
     use UseLanguageString;
 
-    public $bag;
     public string $type;
 
-    public function __construct(
-        $bag = null,
-        string $type = 'danger'
-    ) {
-        $this->bag = $bag;
+    public function __construct(string $type = 'danger') {
         $this->type = $type;
     }
 

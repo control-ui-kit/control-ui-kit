@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\MessageBag;
 use Tests\Components\ComponentTestCase;
 
 class ErrorBagTest extends ComponentTestCase
@@ -56,10 +55,10 @@ class ErrorBagTest extends ComponentTestCase
     /** @test */
     public function an_error_bag_component_can_be_rendered(): void
     {
-        $errors = app(MessageBag::class)->add('test', 'This is a test message');
+        $this->withViewErrors(['test' => 'This is a test message']);
 
         $template = <<<'HTML'
-            <x-error-bag :bag="$bag"/>
+            <x-error-bag />
             HTML;
 
         $expected = <<<'HTML'
@@ -84,16 +83,16 @@ class ErrorBagTest extends ComponentTestCase
                 </div>
             HTML;
 
-        $this->assertComponentRenders($expected, $template, ['bag' => $errors]);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
     public function an_error_bag_component_can_be_rendered_with_warning_type_and_custom_icon(): void
     {
-        $errors = app(MessageBag::class)->add('test', 'This is a test message');
+        $this->withViewErrors(['test' => 'This is a test message']);
 
         $template = <<<'HTML'
-            <x-error-bag :bag="$bag" type="default" icon="icon.options" icon-color="custom-color" background="custom-background" />
+            <x-error-bag type="default" icon="icon.options" icon-color="custom-color" background="custom-background" />
             HTML;
 
         $expected = <<<'HTML'
@@ -118,6 +117,6 @@ class ErrorBagTest extends ComponentTestCase
                 </div>
             HTML;
 
-        $this->assertComponentRenders($expected, $template, ['bag' => $errors]);
+        $this->assertComponentRenders($expected, $template);
     }
 }

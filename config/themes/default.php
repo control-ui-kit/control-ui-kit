@@ -323,6 +323,13 @@ return [
         'width' => '',
     ],
 
+    'error' => [
+        'color' => 'text-error',
+        'font' => '',
+        'other' => '',
+        'padding' => 'pt-1.5',
+    ],
+
     'input' => [
 
         // Style
