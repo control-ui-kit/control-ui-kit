@@ -784,6 +784,17 @@ return [
         'size' => 'w-5 h-5',
     ],
 
+    'label' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
     'panel' => [
         'background' => 'bg-panel',
         'border' => 'border border-panel',
@@ -1324,7 +1335,6 @@ return [
         'show-always' => true,
         'each-side' => 1,
     ],
-
 
     'tabs' => [
         'background' => '',
