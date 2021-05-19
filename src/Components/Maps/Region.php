@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Maps;
 
 use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Region extends Component
@@ -86,14 +87,30 @@ class Region extends Component
         'si',
         'mt',
         'hn',
-        'kr'
+        'kr',
+        'ng',
+        'md',
+        'tz',
+        'kh',
+        'dz',
+        'cy',
+        'ni',
+        'pk',
+        'mk',
+        'ke',
+        'qa',
+        'kw',
+        'jo',
+        'bd',
+        'az',
+        'lb'
     ];
 
     public string $iso;
     public string $values;
     public ?string $title;
     public ?string $name;
-
+    public ?string $id;
 
     public function __construct(
         string $iso,
@@ -102,12 +119,14 @@ class Region extends Component
         string $width = null,
         string $height = null,
         string $other = null,
-        string $name = null
+        string $name = null,
+        string $id = null
     ) {
-        $this->iso    = $iso;
+        $this->iso    = strtolower($iso);
         $this->values = json_encode($values);
         $this->title  = $title;
         $this->name   = $this->style($this->component, 'name', $name);
+        $this->id     = !is_null($id) ? (string)Str::of($id)->slug('_') : '';
 
         $this->setConfigStyles([
             'width'  => $width,
