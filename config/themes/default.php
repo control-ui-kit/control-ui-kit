@@ -785,7 +785,7 @@ return [
         'default' => [
             'color' => 'text-default hover:text-default-hover',
             'font' => '',
-            'other' => '',
+            'other' => 'underline',
             'size' => '',
         ],
 
