@@ -139,7 +139,6 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     /** @test */
     public function a_panel_component_can_be_rendered_with_additional_attributes(): void
     {

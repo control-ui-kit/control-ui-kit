@@ -45,10 +45,7 @@ trait UseThemeFile
 
                 if (config()->has($key)) {
                     $configStyle = config($key) !== '' ? config($key) : $configStyle;
-                    //throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
                 }
-
-
             }
 
             if ($keyMerge) {

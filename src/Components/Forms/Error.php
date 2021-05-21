@@ -12,7 +12,7 @@ class Error extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'error';
+    public string $component = 'error';
 
     public string $field;
     public string $bag;
@@ -40,7 +40,6 @@ class Error extends Component
     {
         return view('control-ui-kit::control-ui-kit.forms.error');
     }
-
 
     public function messages(ViewErrorBag $errors): array
     {
