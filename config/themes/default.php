@@ -14,6 +14,10 @@ return [
         'shadow' => '',
         'width' => 'w-full',
 
+        'icon' => '',
+        'icon-color' => '',
+        'icon-size' => 'w-5 h-5',
+
         'text-color' => '',
         'text-font' => '',
         'text-size' => 'text-sm',
@@ -23,10 +27,6 @@ return [
         'title-font' => 'font-medium',
         'title-size' => 'text-sm',
         'title-other' => '',
-
-        'icon' => '',
-        'icon-color' => '',
-        'icon-size' => 'w-5 h-5',
 
         'default' => [
             'background' => 'bg-alert-default',
@@ -64,15 +64,6 @@ return [
             'text-color' => 'text-alert-info-text',
         ],
 
-        'success' => [
-            'background' => 'bg-alert-success',
-            'border' => 'border-alert-success',
-            'icon' => 'icon.status-success',
-            'icon-color' => 'text-alert-success-icon',
-            'title-color' => 'text-alert-success-title',
-            'text-color' => 'text-alert-success-text',
-        ],
-
         'muted' => [
             'background' => 'bg-alert-muted',
             'border' => 'border-alert-muted',
@@ -80,6 +71,15 @@ return [
             'icon-color' => 'text-alert-muted-icon',
             'title-color' => 'text-alert-muted-title',
             'text-color' => 'text-alert-muted-text',
+        ],
+
+        'success' => [
+            'background' => 'bg-alert-success',
+            'border' => 'border-alert-success',
+            'icon' => 'icon.status-success',
+            'icon-color' => 'text-alert-success-icon',
+            'title-color' => 'text-alert-success-title',
+            'text-color' => 'text-alert-success-text',
         ],
 
         'warning' => [
@@ -143,18 +143,18 @@ return [
             'icon' => 'text-button-link-icon group-hover:text-button-link-icon-hover',
         ],
 
-        'success' => [
-            'background' => 'bg-button-success hover:bg-button-success-hover',
-            'border' => 'border border-button-success hover:border-button-success-hover',
-            'color' => 'text-button-success hover:text-button-success-hover',
-            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
-        ],
-
         'muted' => [
             'background' => 'bg-button-muted hover:bg-button-muted-hover',
             'border' => 'border border-button-muted hover:border-button-muted-hover',
             'color' => 'text-button-muted hover:text-button-muted-hover',
             'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
+        ],
+
+        'success' => [
+            'background' => 'bg-button-success hover:bg-button-success-hover',
+            'border' => 'border border-button-success hover:border-button-success-hover',
+            'color' => 'text-button-success hover:text-button-success-hover',
+            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
         ],
 
         'warning' => [
@@ -324,7 +324,7 @@ return [
     ],
 
     'error' => [
-        'color' => 'text-error',
+        'color' => 'text-danger',
         'font' => '',
         'other' => '',
         'padding' => 'pt-1.5',
@@ -361,6 +361,15 @@ return [
         'icon-right-rounded' => '',
         'icon-right-shadow' => '',
 
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => '',
+        'input-other' => 'block w-full appearance-none',
+        'input-padding' => 'py-1.5 px-3',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
+
         'prefix-background' => '',
         'prefix-border' => 'border-r border-input',
         'prefix-color' => 'text-muted',
@@ -380,15 +389,6 @@ return [
         'suffix-padding' => 'px-3',
         'suffix-rounded' => '',
         'suffix-shadow' => '',
-
-        'input-background' => 'bg-input',
-        'input-border' => 'border-0 focus:outline-none focus:ring-0',
-        'input-color' => 'text-input placeholder-input',
-        'input-font' => '',
-        'input-other' => 'block w-full appearance-none',
-        'input-padding' => 'py-1.5 px-3',
-        'input-rounded' => 'rounded',
-        'input-shadow' => '',
 
         'wrapper-background' => 'bg-input',
         'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
@@ -771,6 +771,65 @@ return [
         'padding' => 'py-6',
         'rounded' => '',
         'shadow' => '',
+    ],
+
+    'link' => [
+
+        'link-default' => 'brand',
+
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'size' => 'w-max',
+
+        'default' => [
+            'color' => 'text-default hover:text-default-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'brand' => [
+            'color' => 'text-brand hover:text-brand-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'danger' => [
+            'color' => 'text-danger hover:text-danger-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'info' => [
+            'color' => 'text-info hover:text-info-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'muted' => [
+            'color' => 'text-muted hover:text-muted-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'success' => [
+            'color' => 'text-success hover:text-success-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'warning' => [
+            'color' => 'text-warning hover:text-warning-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
     ],
 
     'icon' => [
@@ -1371,6 +1430,65 @@ return [
         'padding' => 'py-6',
         'rounded' => '',
         'shadow' => '',
+    ],
+
+    'text' => [
+
+        'text-default' => 'default',
+
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'size' => 'w-max',
+
+        'default' => [
+            'color' => 'text-default',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'brand' => [
+            'color' => 'text-brand',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'danger' => [
+            'color' => 'text-danger',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'info' => [
+            'color' => 'text-info',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'muted' => [
+            'color' => 'text-muted',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'success' => [
+            'color' => 'text-success',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'warning' => [
+            'color' => 'text-warning',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
     ],
 
     'title' => [

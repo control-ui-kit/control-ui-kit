@@ -99,6 +99,8 @@ return [
         'tabs.heading' => \ControlUIKit\Components\Tabs\Heading::class,
         'tabs.panel' => \ControlUIKit\Components\Tabs\Panel::class,
 
+        'text' => \ControlUIKit\Components\Text\Text::class,
+        'link' => \ControlUIKit\Components\Text\Link::class,
     ],
 
 
