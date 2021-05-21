@@ -835,38 +835,38 @@ return [
         'shadow' => '',
 
         'default' => [
-            'background' => 'bg-gray-200',
-            'color' => 'text-gray-800',
+            'background' => 'bg-pill-default',
+            'color' => 'text-pill-default',
         ],
 
         'brand' => [
-            'background' => 'bg-alert-brand',
-            'color' => 'text-alert-brand',
+            'background' => 'bg-pill-brand',
+            'color' => 'text-pill-brand',
         ],
 
         'danger' => [
-            'background' => 'bg-alert-danger',
-            'color' => 'text-alert-danger',
+            'background' => 'bg-pill-danger',
+            'color' => 'text-pill-danger',
         ],
 
         'info' => [
-            'background' => 'bg-alert-info',
-            'color' => 'text-alert-info',
+            'background' => 'bg-pill-info',
+            'color' => 'text-pill-info',
         ],
 
         'muted' => [
-            'background' => 'bg-alert-muted',
-            'color' => 'text-alert-muted',
+            'background' => 'bg-pill-muted',
+            'color' => 'text-pill-muted',
         ],
 
         'success' => [
-            'background' => 'bg-alert-success',
-            'color' => 'text-alert-success',
+            'background' => 'bg-pill-success',
+            'color' => 'text-pill-success',
         ],
 
         'warning' => [
-            'background' => 'bg-alert-warning',
-            'color' => 'text-alert-warning',
+            'background' => 'bg-pill-warning',
+            'color' => 'text-pill-warning',
         ],
     ],
 
