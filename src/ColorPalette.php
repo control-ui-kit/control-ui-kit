@@ -72,7 +72,7 @@ class ColorPalette
             $dec -= abs($diff);
         }
 
-        $dec = max(0, min(255, $dec));
+        $dec = (int) max(0, min(255, $dec));
 
         return str_pad(dechex($dec), 2, '0', STR_PAD_LEFT);
     }
