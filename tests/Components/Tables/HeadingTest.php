@@ -24,6 +24,7 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.rounded', 'rounded');
         Config::set('themes.default.table-heading.shadow', 'shadow');
         Config::set('themes.default.table-heading.sort-link', 'sort-link');
+        Config::set('themes.default.table-heading.width', 'width');
 
         Config::set('themes.default.table-heading.field-order', 'order');
         Config::set('themes.default.table-heading.field-sort', 'sort');
@@ -39,7 +40,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="align background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -49,17 +50,18 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_basic_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.heading align="none"
-                             background="none"
-                             border="none"
-                             color="none"
-                             font="none"
-                             other="none"
-                             padding="none"
-                             rounded="none"
-                             shadow="none">
-                ::Some Heading
-            </x-table.heading>
+            <x-table.heading
+                align="none"
+                background="none"
+                border="none"
+                color="none"
+                font="none"
+                other="none"
+                padding="none"
+                rounded="none"
+                shadow="none"
+                width="none"
+            >::Some Heading</x-table.heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -73,19 +75,21 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_basic_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.heading background="1"
-                             border="2"
-                             color="3"
-                             font="4"
-                             other="5"
-                             padding="6"
-                             rounded="7"
-                             shadow="8"
+            <x-table.heading
+                background="1"
+                border="2"
+                color="3"
+                font="4"
+                other="5"
+                padding="6"
+                rounded="7"
+                shadow="8"
+                width="9"
             >::Table Heading</x-table.heading>
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align 1 2 3 4 5 6 7 8">::Table Heading</th>
+            <th class="align 1 2 3 4 5 6 7 8 9">::Table Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -99,7 +103,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-left background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-left background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -113,7 +117,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-left background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-left background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -127,7 +131,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-right background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-right background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -141,7 +145,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-right background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-right background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -155,7 +159,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-center background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-center background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -169,7 +173,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-center background border color font other padding rounded shadow">::Some Heading</th>
+            <th class="text-center background border color font other padding rounded shadow width">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -183,8 +187,8 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
-                <a href="http://example.com">::Some Heading</a>
+            <th class="align background border color font other padding rounded shadow width">
+                <a href="http://example.com" class="sort-link">::Some Heading</a>
             </th>
             HTML;
 
@@ -199,7 +203,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow" @onclick="someClick">::Some Heading</th>
+            <th class="align background border color font other padding rounded shadow width" @onclick="someClick">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -213,7 +217,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow" x-on:onclick="someClick">::Some Heading</th>
+            <th class="align background border color font other padding rounded shadow width" x-on:onclick="someClick">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -228,7 +232,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow" onclick="someClick()">::Some Heading</th>
+            <th class="align background border color font other padding rounded shadow width" onclick="someClick()">::Some Heading</th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -242,11 +246,11 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -265,14 +269,14 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=desc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
                             </span>
@@ -291,14 +295,14 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M7 9l5 5 5-5H7z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M17 14l-5-5-5 5h10z"/>
                                 </svg>
                             </span>
@@ -317,11 +321,11 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -340,14 +344,14 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=desc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
                             </span>
@@ -366,14 +370,14 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M7 9l5 5 5-5H7z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M17 14l-5-5-5 5h10z"/>
                                 </svg>
                             </span>
@@ -392,11 +396,11 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="::some-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="::some-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -415,11 +419,11 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -438,11 +442,11 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sort-link">
                     <span>::Some Heading</span>
-                    <span class="relative flex items-center">
-                        <svg class="icon-size fill-current opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <span class="flex items-center">
+                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
                         </span>
@@ -464,7 +468,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="align background border color font other padding rounded shadow">
+            <th class="align background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link"> ::Some Heading </a>
             </th>
             HTML;
@@ -483,7 +487,7 @@ class HeadingTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <th class="text-right background border color font other padding rounded shadow">
+            <th class="text-right background border color font other padding rounded shadow width">
                 <a href="http://localhost?order=example&amp;sort=asc" class="sort-link"> ::Some Heading </a>
             </th>
             HTML;

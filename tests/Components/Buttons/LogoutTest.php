@@ -85,8 +85,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="">
-                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Log Out
-            </button>
+                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Log Out </button>
             </form>
             HTML;
 
@@ -103,8 +102,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="">
-                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit"> Sign Out
-            </button>
+                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit"> Sign Out </button>
             </form>
             HTML;
 

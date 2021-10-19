@@ -21,6 +21,9 @@ class TextareaTest extends ComponentTestCase
         Config::set('themes.default.input-textarea.padding', 'padding');
         Config::set('themes.default.input-textarea.rounded', 'rounded');
         Config::set('themes.default.input-textarea.shadow', 'shadow');
+        Config::set('themes.default.input-textarea.width', 'width');
+
+        Config::set('themes.default.input-textarea.rows', 'rows');
     }
 
     /** @test */
@@ -31,7 +34,7 @@ class TextareaTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <textarea name="name" id="name" class="background border color font other padding rounded shadow"></textarea>
+            <textarea name="name" id="name" rows="rows" class="background border color font other padding rounded shadow width"></textarea>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -41,11 +44,11 @@ class TextareaTest extends ComponentTestCase
     public function an_input_textarea_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.textarea name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.textarea name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
-            <textarea name="name" id="name"></textarea>
+            <textarea name="name" id="name" rows="rows"></textarea>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -55,11 +58,11 @@ class TextareaTest extends ComponentTestCase
     public function an_input_textarea_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.textarea name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.textarea name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
-            <textarea name="name" id="name" class="1 2 3 4 5 6 7 8"></textarea>
+            <textarea name="name" id="name" rows="rows" class="1 2 3 4 5 6 7 8 9"></textarea>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -73,7 +76,7 @@ class TextareaTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <textarea name="name" id="name" placeholder="placeholder text" class="background border color font other padding rounded shadow"></textarea>
+            <textarea name="name" id="name" rows="rows" placeholder="placeholder text" class="background border color font other padding rounded shadow width"></textarea>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -87,7 +90,21 @@ class TextareaTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <textarea name="name" id="name" class="background border color font other padding rounded shadow">test_value</textarea>
+            <textarea name="name" id="name" rows="rows" class="background border color font other padding rounded shadow width">test_value</textarea>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_textarea_component_with_custom_rows_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-input.textarea name="name" rows="::rows" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <textarea name="name" id="name" rows="::rows" class="background border color font other padding rounded shadow width"></textarea>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

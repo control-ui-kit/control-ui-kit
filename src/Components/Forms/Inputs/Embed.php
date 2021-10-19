@@ -21,6 +21,7 @@ class Embed extends Component
     public function __construct(
         bool $prefix = false,
         bool $suffix = false,
+
         bool $iconLeft = false,
         bool $iconRight = false,
         string $background = null,
@@ -39,16 +40,24 @@ class Embed extends Component
 
         $this->setType($prefix, $suffix, $iconLeft, $iconRight);
 
-        $this->setConfigStyles([
+        $embedStyles = [
             $this->type . '-background' => $styles['background'] ?? $background,
             $this->type . '-border' => $styles['border'] ?? $border,
             $this->type . '-color' => $styles['color'] ?? $color,
-            $this->type . '-font' => $styles['font'] ?? $font,
+        ];
+
+        if (! $iconLeft && ! $iconRight) {
+            $embedStyles[$this->type . '-font'] = $styles['font'] ?? $font;
+        }
+
+        $embedStyles += [
             $this->type . '-other' => $styles['other'] ?? $other,
             $this->type . '-padding' => $styles['padding'] ?? $padding,
             $this->type . '-rounded' => $styles['rounded'] ?? $rounded,
             $this->type . '-shadow' => $styles['shadow'] ?? $shadow,
-        ]);
+        ];
+
+        $this->setConfigStyles($embedStyles);
 
         if ($this->type === 'icon-left' || $this->type === 'icon-right') {
             $this->size = $this->style($this->component, $this->type . '-size', $styles['size'] ?? $iconSize);

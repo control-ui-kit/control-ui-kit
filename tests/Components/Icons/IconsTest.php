@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 
 class IconsTest extends ComponentTestCase
 {
-    const ICON_PATH = __DIR__ . '/../../../resources/views/control-ui-kit/icons/';
+    public const ICON_PATH = __DIR__ . '/../../../resources/views/control-ui-kit/icons/';
 
     public function getIconHtml($icon): string
     {
@@ -41,11 +41,11 @@ class IconsTest extends ComponentTestCase
     public function an_icon_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-icon.add background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" size="9" />
+            <x-icon.add background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" size="8" />
             HTML;
 
         $expected = <<<'HTML'
-            <svg class="1 2 3 4 5 6 7 8 9 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="1 2 3 4 5 6 7 8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5h-2v6H5v2h6v6h2v-6h6v-2h-6V5z"/>
             </svg>
             HTML;
@@ -77,7 +77,6 @@ class IconsTest extends ComponentTestCase
                 'background' => 'custom-background',
                 'border' => 'custom-border',
                 'color' => 'custom-color',
-                'font' => 'custom-font',
                 'other' => 'custom-other',
                 'padding' => 'custom-padding',
                 'rounded' => 'custom-rounded',
@@ -88,7 +87,7 @@ class IconsTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <svg class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="custom-background custom-border custom-color custom-other custom-padding custom-rounded custom-shadow custom-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5h-2v6H5v2h6v6h2v-6h6v-2h-6V5z"/>
             </svg>
             HTML;

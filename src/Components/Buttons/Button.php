@@ -23,6 +23,7 @@ class Button extends Component
     public string $type;
     public string $role_type;
     public string $disabled;
+    public ?string $text;
 
     public function __construct(
         string $background = null,
@@ -40,6 +41,8 @@ class Button extends Component
         string $icon = null,
         string $bstyle = null,
         string $type = null,
+        string $text = null,
+        string $trans = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,
@@ -82,6 +85,10 @@ class Button extends Component
         $this->role_type = $this->element === 'a' ? 'role' : 'type';
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->iconStyles = $this->style('button.' . $this->bstyle, 'icon', $iconStyle);
+        if ($trans) {
+            $text = trans($trans);
+        }
+        $this->text = $text;
     }
 
     public function render()

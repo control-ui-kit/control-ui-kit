@@ -68,15 +68,17 @@ class ControlUIKitLanguageFileMiddleware
             return config('language-files')[$files->first()];
         }
 
-        if (! count($files)) {
-            throw new LanguageFileException('Language file not set for route [' . Route::currentRouteName() . ']');
-        }
-
-        if (count($files) !== 1) {
+        if (count($files) > 1) {
             throw new LanguageFileException('Too many language file options for route');
         }
 
-        throw new LanguageFileException('Set language file exception');
+        return $this->guessLanguageFileFromRoute();
+//        throw new LanguageFileException('Language file not set for route [' . Route::currentRouteName() . ']');
+    }
+
+    private function guessLanguageFileFromRoute(): string
+    {
+        return Str::of(Route::currentRouteName())->explode('.')->first();
     }
 
     private function ignoreRoutes(): bool

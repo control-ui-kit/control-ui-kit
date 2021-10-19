@@ -15,6 +15,8 @@ return [
 
     'components' => [
 
+        'alert' => \ControlUIKit\Components\Alerts\Alert::class,
+
         'button' => \ControlUIKit\Components\Buttons\Button::class,
         'logout' => \ControlUIKit\Components\Buttons\Logout::class,
 
@@ -33,11 +35,11 @@ return [
         'dropdown.option' => \ControlUIKit\Components\Dropdowns\Option::class,
 
         'error' => \ControlUIKit\Components\Forms\Error::class,
+        'error-bag' => \ControlUIKit\Components\Forms\ErrorBag::class,
         'form' => \ControlUIKit\Components\Forms\Form::class,
         'label' => \ControlUIKit\Components\Forms\Label::class,
-
         'title' => \ControlUIKit\Components\Forms\Title::class,
-        'form.errors' => \ControlUIKit\Components\Forms\Alerts\ErrorBag::class,
+
         'form.field' => \ControlUIKit\Components\Forms\Field::class,
 
         'field.number' => \ControlUIKit\Components\Forms\Fields\Number::class,
@@ -45,28 +47,24 @@ return [
 
         'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
         'input.checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,
-        'input.hidden' => \ControlUIKit\Components\Forms\Inputs\Hidden::class,
-        'input.number' => \ControlUIKit\Components\Forms\Inputs\Number::class,
-        'input.percent' => \ControlUIKit\Components\Forms\Inputs\Percent::class,
-        'input.radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
-        'input.search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
-        'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
-        'input.select.image' => \ControlUIKit\Components\Forms\Inputs\SelectImage::class,
-        'input.select.checked-icon' => \ControlUIKit\Components\Forms\Inputs\SelectCheckedIcon::class,
-        'input.select.text' => \ControlUIKit\Components\Forms\Inputs\SelectText::class,
-
-        'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
-        'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
-        'input.password' => \ControlUIKit\Components\Forms\Inputs\Password::class,
-        'input.email' => \ControlUIKit\Components\Forms\Inputs\Email::class,
-        'input.decimal' => \ControlUIKit\Components\Forms\Inputs\Decimal::class,
+        'input.color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
         'input.currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
-        'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
         'input.date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
         'input.date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
+        'input.email' => \ControlUIKit\Components\Forms\Inputs\Email::class,
         'input.embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,
+        'input.decimal' => \ControlUIKit\Components\Forms\Inputs\Decimal::class,
+        'input.hidden' => \ControlUIKit\Components\Forms\Inputs\Hidden::class,
+        'input.number' => \ControlUIKit\Components\Forms\Inputs\Number::class,
+        'input.password' => \ControlUIKit\Components\Forms\Inputs\Password::class,
+        'input.percent' => \ControlUIKit\Components\Forms\Inputs\Percent::class,
+        'input.radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
         'input.range' => \ControlUIKit\Components\Forms\Inputs\Range::class,
-        'input.color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
+        'input.search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
+        'input.select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
+        'input.text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
+        'input.toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
+        'input.textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
 
         'layout.body' => \ControlUIKit\Components\Layouts\Body::class,
         'layout.content' => \ControlUIKit\Components\Layouts\Content::class,
@@ -93,15 +91,20 @@ return [
         'pill' => \ControlUIKit\Components\Pills\Pill::class,
 
         'table' => \ControlUIKit\Components\Tables\Table::class,
+        'table.active-filter' => \ControlUIKit\Components\Tables\ActiveFilter::class,
         'table.cell' => \ControlUIKit\Components\Tables\Cell::class,
+        'table.filter' => \ControlUIKit\Components\Tables\Filter::class,
         'table.row' => \ControlUIKit\Components\Tables\Row::class,
         'table.heading' => \ControlUIKit\Components\Tables\Heading::class,
         'table.empty' => \ControlUIKit\Components\Tables\EmptyRow::class,
+        'table.pagination' => \ControlUIKit\Components\Tables\Pagination::class,
 
         'tabs' => \ControlUIKit\Components\Tabs\Tabs::class,
         'tabs.heading' => \ControlUIKit\Components\Tabs\Heading::class,
         'tabs.panel' => \ControlUIKit\Components\Tabs\Panel::class,
 
+        'text' => \ControlUIKit\Components\Text\Text::class,
+        'link' => \ControlUIKit\Components\Text\Link::class,
     ],
 
 
@@ -235,6 +238,7 @@ return [
         'icon.remove' => \ControlUIKit\Components\Icons\Remove::class,
         'icon.save' => \ControlUIKit\Components\Icons\Save::class,
         'icon.search' => \ControlUIKit\Components\Icons\Search::class,
+        'icon.search-cog' => \ControlUIKit\Components\Icons\SearchCog::class,
         'icon.shield-cross' => \ControlUIKit\Components\Icons\ShieldCross::class,
         'icon.star-filled' => \ControlUIKit\Components\Icons\StarFilled::class,
         'icon.star' => \ControlUIKit\Components\Icons\Star::class,

@@ -2,11 +2,94 @@
 
 return [
 
-    'map-region' => [
-        'width'  => 'w-full',
-        'height' => 'h-full',
-        'other'  => '',
-        'name'   => 'Count',
+    'alert' => [
+
+        'default-alert' => 'default',
+
+        'background' => '',
+        'border' => 'border',
+        'other' => '',
+        'padding' => 'p-4',
+        'rounded' => 'rounded-md',
+        'shadow' => '',
+        'width' => 'w-full',
+
+        'icon' => '',
+        'icon-color' => '',
+        'icon-size' => 'w-5 h-5',
+
+        'text-color' => '',
+        'text-font' => '',
+        'text-size' => 'text-sm',
+        'text-other' => 'mt-2',
+
+        'title-color' => '',
+        'title-font' => 'font-medium',
+        'title-size' => 'text-sm',
+        'title-other' => '',
+
+        'default' => [
+            'background' => 'bg-alert-default',
+            'border' => 'border-alert-default',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-default-icon',
+            'title-color' => 'text-alert-default-title',
+            'text-color' => 'text-alert-default-text',
+        ],
+
+        'brand' => [
+            'background' => 'bg-alert-brand',
+            'border' => 'border-alert-brand',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-brand-icon',
+            'title-color' => 'text-alert-brand-title',
+            'text-color' => 'text-alert-brand-text',
+        ],
+
+        'danger' => [
+            'background' => 'bg-alert-danger',
+            'border' => 'border-alert-danger',
+            'icon' => 'icon.shield-cross',
+            'icon-color' => 'text-alert-danger-icon',
+            'title-color' => 'text-alert-danger-title',
+            'text-color' => 'text-alert-danger-text',
+        ],
+
+        'info' => [
+            'background' => 'bg-alert-info',
+            'border' => 'border-alert-info',
+            'icon' => 'icon.info-circle',
+            'icon-color' => 'text-alert-info-icon',
+            'title-color' => 'text-alert-info-title',
+            'text-color' => 'text-alert-info-text',
+        ],
+
+        'muted' => [
+            'background' => 'bg-alert-muted',
+            'border' => 'border-alert-muted',
+            'icon' => 'icon.question',
+            'icon-color' => 'text-alert-muted-icon',
+            'title-color' => 'text-alert-muted-title',
+            'text-color' => 'text-alert-muted-text',
+        ],
+
+        'success' => [
+            'background' => 'bg-alert-success',
+            'border' => 'border-alert-success',
+            'icon' => 'icon.status-success',
+            'icon-color' => 'text-alert-success-icon',
+            'title-color' => 'text-alert-success-title',
+            'text-color' => 'text-alert-success-text',
+        ],
+
+        'warning' => [
+            'background' => 'bg-alert-warning',
+            'border' => 'border-alert-warning',
+            'icon' => 'icon.warning',
+            'icon-color' => 'text-alert-warning-icon',
+            'title-color' => 'text-alert-warning-title',
+            'text-color' => 'text-alert-warning-text',
+        ],
     ],
 
     'button' => [
@@ -60,18 +143,18 @@ return [
             'icon' => 'text-button-link-icon group-hover:text-button-link-icon-hover',
         ],
 
-        'success' => [
-            'background' => 'bg-button-success hover:bg-button-success-hover',
-            'border' => 'border border-button-success hover:border-button-success-hover',
-            'color' => 'text-button-success hover:text-button-success-hover',
-            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
-        ],
-
         'muted' => [
             'background' => 'bg-button-muted hover:bg-button-muted-hover',
             'border' => 'border border-button-muted hover:border-button-muted-hover',
             'color' => 'text-button-muted hover:text-button-muted-hover',
             'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
+        ],
+
+        'success' => [
+            'background' => 'bg-button-success hover:bg-button-success-hover',
+            'border' => 'border border-button-success hover:border-button-success-hover',
+            'color' => 'text-button-success hover:text-button-success-hover',
+            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
         ],
 
         'warning' => [
@@ -201,28 +284,6 @@ return [
         'difference-icon-shadow' => '',
     ],
 
-    'matrix' => [
-        'color' => 'green',
-        'format' => 'LL',
-        'axes' => [
-            'x' => [
-                'label' => [
-                    'visible' => "true",
-                    'position' => 'bottom'
-                ],
-                'margin' => "1"
-            ],
-            'y' => [
-                'label' => [
-                    'visible' => "true",
-                    'position' => 'left'
-                ],
-                'margin' => "1",
-                'reverse' => 'true'
-            ]
-        ]
-    ],
-
     'charts' => [
         'defaults' => [
             'axes' => [
@@ -347,6 +408,25 @@ return [
         ]
     ],
 
+    'dropdown-menu' => [
+        'background' => 'bg-nav-option',
+        'border' => 'border border-nav',
+        'color' => '',
+        'font' => '',
+        'other' => 'absolute flex flex-col z-50',
+        'padding' => '',
+        'rounded' => 'rounded',
+        'shadow' => 'shadow-md',
+        'width' => '',
+    ],
+
+    'error' => [
+        'color' => 'text-danger',
+        'font' => '',
+        'other' => '',
+        'padding' => 'pt-1.5',
+    ],
+
     'input' => [
 
         // Style
@@ -354,15 +434,15 @@ return [
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => '',
-        'other' => 'w-full',
+        'other' => '',
         'padding' => 'py-1.5 px-3',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-full',
 
         'icon-left-background' => '',
         'icon-left-border' => 'border-r border-input',
         'icon-left-color' => 'text-muted',
-        'icon-left-font' => '',
         'icon-left-size' => 'w-4 h-4',
         'icon-left-other' => 'flex items-center justify-center self-stretch',
         'icon-left-padding' => 'px-3',
@@ -372,12 +452,20 @@ return [
         'icon-right-background' => '',
         'icon-right-border' => 'border-l border-input',
         'icon-right-color' => 'text-muted',
-        'icon-right-font' => '',
         'icon-right-size' => 'w-4 h-4',
         'icon-right-other' => 'flex items-center justify-center self-stretch',
         'icon-right-padding' => 'px-3',
         'icon-right-rounded' => '',
         'icon-right-shadow' => '',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => '',
+        'input-other' => 'block w-full appearance-none',
+        'input-padding' => 'py-1.5 px-3',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
 
         'prefix-background' => '',
         'prefix-border' => 'border-r border-input',
@@ -399,15 +487,6 @@ return [
         'suffix-rounded' => '',
         'suffix-shadow' => '',
 
-        'input-background' => 'bg-transparent',
-        'input-border' => 'border-0 focus:outline-none focus:ring-0',
-        'input-color' => 'text-input placeholder-input',
-        'input-font' => '',
-        'input-other' => 'block w-full appearance-none',
-        'input-padding' => 'py-1.5 px-3',
-        'input-rounded' => 'rounded',
-        'input-shadow' => '',
-
         'wrapper-background' => 'bg-input',
         'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
         'wrapper-color' => '',
@@ -416,6 +495,7 @@ return [
         'wrapper-padding' => '',
         'wrapper-rounded' => 'rounded',
         'wrapper-shadow' => '',
+        'wrapper-width' => 'w-full',
 
         // Config
         'decimals' => '',
@@ -436,8 +516,8 @@ return [
     'input-checkbox' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input',
-        'color' => '',
-        'font' => 'text-brand',
+        'color' => 'text-brand',
+        'font' => '',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => '',
@@ -512,6 +592,7 @@ return [
     ],
 
     'input-email' => [
+        'prefix-text' => '@',
         'type' => 'email',
     ],
 
@@ -525,6 +606,7 @@ return [
     ],
 
     'input-password' => [
+        'icon-left' => 'icon.eye',
         'type' => 'password',
     ],
 
@@ -545,6 +627,8 @@ return [
     ],
 
     'input-textarea' => [
+
+        // Style
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
@@ -553,13 +637,16 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-full',
+
+        //Config
+        'rows' => 4,
     ],
 
     'input-radio' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input',
-        'color' => '',
-        'font' => 'text-brand',
+        'color' => 'text-brand',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => '',
@@ -590,48 +677,130 @@ return [
     'input-select' => [
 
         // Style
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => '',
-        'font' => 'text-input',
-        'other' => 'inline-block',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
+        'button-background' => 'bg-input',
+        'button-border' => 'border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand',
+        'button-color' => '',
+        'button-font' => 'text-input',
+        'button-other' => 'flex items-center cursor-pointer',
+        'button-padding' => 'space-x-2 py-1.5 px-3',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+        'button-width' => 'w-full',
+
+        'check-background' => '',
+        'check-border' => '',
+        'check-color' => 'text-brand',
+        'check-font' => '',
+        'check-other' => 'absolute inset-y-0 right-0 flex items-center',
+        'check-padding' => 'pr-4',
+        'check-rounded' => '',
+        'check-shadow' => '',
+        'check-active' => '',
+        'check-inactive' => '',
+        'check-icon' => 'icon.check',
+        'check-icon-size' =>'w-6 h-6',
+
+        'icon' => 'icon.chevron-down',
+        'icon-background' => '',
+        'icon-border' => 'border-l border-input',
+        'icon-color' => '',
+        'icon-size' => 'w-4 h-4',
+        'icon-other' => 'absolute flex items-center pointer-events-none',
+        'icon-padding' => 'ml-3 px-3 inset-y-0 right-0',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
+
+        'image-border' => '',
+        'image-size' => 'h-6 w-auto',
+        'image-other' => 'flex-shrink-0',
+        'image-padding' => 'pr-2',
+        'image-rounded' => '',
+        'image-shadow' => '',
+
+        'list-background' => 'bg-input',
+        'list-border' => 'border border-input focus:outline-none',
+        'list-color' => '',
+        'list-font' => '',
+        'list-other' => 'absolute mt-1 max-h-60 overflow-auto z-50',
+        'list-padding' => 'py-1',
+        'list-rounded' => 'rounded',
+        'list-shadow' => 'shadow-md',
+        'list-width' => 'w-auto',
+
+        'option-background' => '',
+        'option-border' => '',
+        'option-color' => '',
+        'option-font' => '',
+        'option-other' => 'cursor-pointer select-none relative group',
+        'option-padding' => 'py-2 pl-3 pr-9',
+        'option-rounded' => '',
+        'option-shadow' => '',
+        'option-spacing' => '',
+        'option-active' => 'bg-input-option-hover',
+        'option-inactive' => 'bg-input-option text-input-option',
+
+        'text-background' => '',
+        'text-border' => '',
+        'text-color' => '',
+        'text-font' => 'text-input-option group-hover:text-input-option-hover',
+        'text-other' => 'block truncate',
+        'text-padding' => '',
+        'text-rounded' => '',
+        'text-shadow' => '',
+        'text-active' => 'font-semibold',
+        'text-inactive' => 'font-normal',
+
+        'subtext-background' => '',
+        'subtext-border' => '',
+        'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
+        'subtext-font' => '',
+        'subtext-other' => 'block truncate',
+        'subtext-padding' => 'pl-2',
+        'subtext-rounded' => '',
+        'subtext-shadow' => '',
+        'subtext-active' => '',
+        'subtext-inactive' => '',
 
         // Config
-        'type' => 'select',
         'please-select-text' => 'Please Select ...',
-        'selected-icon' => 'icon.check',
-        'selected-icon-size' => 'w-5 h-5',
+        'please-select-value' => null,
+        'please-select-trans' => '',
 
+        'image-name' => 'image',
+        'subtext-name' => 'subtext',
         'text-name' => 'text',
-        'subtext' => false,
-        'image' => false,
-        'image-default' => 'https://i.pinimg.com/564x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg',
-
-        'icon-right-icon' => 'icon.chevron-down',
-        'icon-right-background' => '',
-        'icon-right-border' => 'border-l border-input',
-        'icon-right-color' => 'text-muted',
-        'icon-right-font' => '',
-        'icon-right-size' => 'w-4 h-4',
-        'icon-right-other' => 'absolute',
-        'icon-right-padding' => 'ml-3 px-3 inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
-        'icon-right-rounded' => '',
-        'icon-right-shadow' => '',
-
     ],
 
     'input-toggle' => [
         'background' => '',
         'border' => '',
-        'color' => '',
-        'font' => '',
-        'other' => 'w-20',
+        'other' => '',
         'padding' => '',
-        'rounded' => '',
         'shadow' => '',
+
+        'base-animation' => 'ease-in-out duration-200 transition-colors',
+        'base-background' => '',
+        'base-border' => 'border-2 border-transparent',
+        'base-color' => '',
+        'base-focus' => 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand focus:ring-offset-input',
+        'base-other' => 'inline-flex flex-shrink-0 cursor-pointer ',
+        'base-rounded' => 'rounded-full',
+        'base-shadow' => '',
+        'base-size' => 'h-6 w-11',
+        'base-state-off' => 'bg-input-muted',
+        'base-state-on' => 'bg-input-brand',
+
+        'switch-animation' => 'translate-x-0 transform transition ease-in-out duration-200',
+        'switch-background' => 'bg-input',
+        'switch-border' => '',
+        'switch-color' => '',
+        'switch-focus' => 'ring-0',
+        'switch-other' => 'pointer-events-none inline-block',
+        'switch-rounded' => 'rounded-full',
+        'switch-shadow' => 'shadow',
+        'switch-size' => 'h-5 w-5',
+        'switch-state-off' => 'translate-x-0',
+        'switch-state-on' => 'translate-x-5',
     ],
 
     'input-color-picker' => [
@@ -662,8 +831,8 @@ return [
         'border' => '',
         'color' => '',
         'font' => '',
-        'other' => '',
-        'padding' => 'sm:p-6',
+        'other' => 'flex flex-col space-y-2 sm:space-y-4',
+        'padding' => 'p-2 sm:p-4',
         'rounded' => '',
         'shadow' => '',
     ],
@@ -701,16 +870,114 @@ return [
         'shadow' => '',
     ],
 
+    'link' => [
+
+        'link-default' => 'brand',
+
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'size' => 'w-max',
+
+        'default' => [
+            'color' => 'text-default hover:text-default-hover',
+            'font' => '',
+            'other' => 'underline',
+            'size' => '',
+        ],
+
+        'brand' => [
+            'color' => 'text-brand hover:text-brand-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'danger' => [
+            'color' => 'text-danger hover:text-danger-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'info' => [
+            'color' => 'text-info hover:text-info-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'muted' => [
+            'color' => 'text-muted hover:text-muted-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'success' => [
+            'color' => 'text-success hover:text-success-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'warning' => [
+            'color' => 'text-warning hover:text-warning-hover',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+    ],
+
     'icon' => [
         'background' => '',
         'border' => '',
         'color' => '',
-        'font' => '',
         'other' => 'inline-block',
         'padding' => '',
         'rounded' => '',
         'shadow' => '',
         'size' => 'w-5 h-5',
+    ],
+
+    'label' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'map-region' => [
+        'width'  => 'w-full',
+        'height' => 'h-full',
+        'other'  => '',
+        'name'   => 'Count',
+    ],
+
+    'matrix' => [
+        'color' => 'green',
+        'format' => 'LL',
+        'axes' => [
+            'x' => [
+                'label' => [
+                    'visible' => "true",
+                    'position' => 'bottom'
+                ],
+                'margin' => "1"
+            ],
+            'y' => [
+                'label' => [
+                    'visible' => "true",
+                    'position' => 'left'
+                ],
+                'margin' => "1",
+                'reverse' => 'true'
+            ]
+        ]
     ],
 
     'panel' => [
@@ -753,52 +1020,220 @@ return [
         'shadow' => '',
 
         'default' => [
-            'background' => 'bg-gray-200',
-            'color' => 'text-gray-800',
+            'background' => 'bg-pill-default',
+            'color' => 'text-pill-default',
         ],
 
         'brand' => [
-            'background' => 'bg-alert-brand',
-            'color' => 'text-alert-brand',
+            'background' => 'bg-pill-brand',
+            'color' => 'text-pill-brand',
         ],
 
         'danger' => [
-            'background' => 'bg-alert-danger',
-            'color' => 'text-alert-danger',
+            'background' => 'bg-pill-danger',
+            'color' => 'text-pill-danger',
         ],
 
         'info' => [
-            'background' => 'bg-alert-info',
-            'color' => 'text-alert-info',
+            'background' => 'bg-pill-info',
+            'color' => 'text-pill-info',
         ],
 
         'muted' => [
-            'background' => 'bg-alert-muted',
-            'color' => 'text-alert-muted',
+            'background' => 'bg-pill-muted',
+            'color' => 'text-pill-muted',
         ],
 
         'success' => [
-            'background' => 'bg-alert-success',
-            'color' => 'text-alert-success',
+            'background' => 'bg-pill-success',
+            'color' => 'text-pill-success',
         ],
 
         'warning' => [
-            'background' => 'bg-alert-warning',
-            'color' => 'text-alert-warning',
+            'background' => 'bg-pill-warning',
+            'color' => 'text-pill-warning',
         ],
     ],
 
     'table' => [
-        'background' => '',
-        'body-styles' => 'divide-y table-divider bg-table',
-        'border' => 'border-0 border-table',
-        'color' => '',
-        'font' => 'text-left',
-        'heading-styles' => 'items-center uppercase bg-table-header border-b border-table-divider',
-        'other' => 'align-middle min-w-full overflow-x-auto overflow-hidden table-fixed data-table',
-        'padding' => '',
-        'rounded' => 'sm:rounded',
-        'shadow' => 'shadow',
+
+        # TODO - test
+        'active-filters-list-background' => '',
+        'active-filters-list-border' => '',
+        'active-filters-list-color' => '',
+        'active-filters-list-font' => '',
+        'active-filters-list-other' => 'flex flex-row flex-wrap items-center',
+        'active-filters-list-padding' => '',
+        'active-filters-list-rounded' => '',
+        'active-filters-list-shadow' => '',
+        'active-filters-list-width' => '',
+
+        # TODO - test
+        'active-filters-wrapper-background' => '',
+        'active-filters-wrapper-border' => '',
+        'active-filters-wrapper-color' => '',
+        'active-filters-wrapper-font' => 'text-sm',
+        'active-filters-wrapper-other' => 'flex flex-row justify-between',
+        'active-filters-wrapper-padding' => '',
+        'active-filters-wrapper-rounded' => '',
+        'active-filters-wrapper-shadow' => '',
+        'active-filters-wrapper-width' => 'min-w-full',
+
+        # TODO - test
+        'clear-filters-event' => '',
+        'clear-filters-href' => '',
+        'clear-filters-text' => 'Clear Filters',
+        'clear-filters-background' => '',
+        'clear-filters-border' => 'focus:outline-none focus:ring-0',
+        'clear-filters-color' => 'text-brand hover:text-brand-lighter focus:text-brand-lightest',
+        'clear-filters-font' => '',
+        'clear-filters-other' => 'flex-shrink-0 ml-2',
+        'clear-filters-padding' => 'pt-0.5',
+        'clear-filters-rounded' => '',
+        'clear-filters-shadow' => '',
+
+        'more-button-background' => 'bg-table-filters',
+        'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
+        'more-button-color' => 'text-input',
+        'more-button-font' => '',
+        'more-button-icon' => 'icon.filter',
+        'more-button-icon-size' => 'w-5 h-5',
+        'more-button-other' => 'flex items-center flex-shrink-0 cursor-pointer mb-0 sm:mb-4',
+        'more-button-padding' => 'h-10 px-2.5',
+        'more-button-rounded' => 'rounded',
+        'more-button-shadow' => '',
+        'more-button-width' => 'w-max',
+
+        'more-filters-background' => '',
+        'more-filters-border' => '',
+        'more-filters-color' => '',
+        'more-filters-font' => '',
+        'more-filters-other' => 'grid grid-cols-2 gap-2 sm:gap-0 sm:inline-flex items-center sm:justify-end sm:flex-wrap sm:space-x-0.5',
+        'more-filters-padding' => 'mb-2 sm:mb-0',
+        'more-filters-rounded' => '',
+        'more-filters-shadow' => '',
+        'more-filters-width' => 'w-full sm:w-auto',
+        'more-filters-wrapper' => 'flex justify-end',
+
+        # TODO - test
+        'search-icon-background' => '',
+        'search-icon-border' => 'border-0 ',
+        'search-icon-color' => 'text-muted',
+        'search-icon' => 'icon.search',
+        'search-icon-size' => 'w-4 h-4',
+        'search-icon-other' => 'flex items-center justify-center self-stretch',
+        'search-icon-padding' => 'pl-3 pr-0',
+        'search-icon-rounded' => '',
+        'search-icon-shadow' => '',
+
+        # TODO - test
+        'search-input-background' => 'bg-table-filters',
+        'search-input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'search-input-color' => 'text-input placeholder-input',
+        'search-input-font' => '',
+        'search-input-other' => 'block appearance-none',
+        'search-input-padding' => 'py-1.5 px-3',
+        'search-input-rounded' => '',
+        'search-input-shadow' => '',
+        'search-input-width' => 'w-full',
+
+        # TODO - test
+        'search-wrapper-background' => 'bg-table-filters',
+        'search-wrapper-border' => 'border border-input focus-within:border-brand',
+        'search-wrapper-color' => '',
+        'search-wrapper-font' => '',
+        'search-wrapper-other' => 'h-10 flex items-center overflow-hidden',
+        'search-wrapper-padding' => '',
+        'search-wrapper-rounded' => 'rounded',
+        'search-wrapper-shadow' => '',
+        'search-wrapper-width' => 'w-full',
+
+        # TODO - test
+        'search-enable' => true,
+        'search-bar' => 'flex mb-2 sm:mb-0',
+        'search-bar-spacing' => 'sm:grid table-grid-filters space-x-2 sm:space-x-4',
+        'search-container' => 'w-full sm:flex-shrink-0',
+        'search-event' => '',
+        'search-id' => 'search',
+        'search-type' => 'search',
+        'search-form-name' => 'search_form',
+        'search-name' => 'search',
+        'search-placeholder' => 'Search...',
+
+        'table-background' => '',
+        'table-border' => '',
+        'table-color' => '',
+        'table-font' => 'text-left',
+        'table-other' => 'align-middle min-w-full overflow-x-auto data-table',
+        'table-padding' => '',
+        'table-rounded' => 'sm:rounded',
+        'table-shadow' => 'shadow',
+
+        'table-body-background' => 'bg-table',
+        'table-body-border' => 'divide-y table-divider',
+        'table-body-color' => '',
+        'table-body-font' => '',
+        'table-body-other' => 'overflow-hidden',
+        'table-body-padding' => '',
+        'table-body-rounded' => '',
+        'table-body-shadow' => '',
+
+        'table-filters-background' => '',
+        'table-filters-border' => '',
+        'table-filters-color' => '',
+        'table-filters-container' => 'flex-grow w-auto flex flex-col sm:items-end',
+        'table-filters-empty' => 'hidden sm:block mb-0 sm:mb-4 h-10',
+        'table-filters-font' => '',
+        'table-filters-other' => 'inline-flex space-x-0.5',
+        'table-filters-padding' => '',
+        'table-filters-rounded' => 'rounded sm:rounded-r',
+        'table-filters-shadow' => '',
+        'table-filters-width' => 'w-max',
+
+        'table-headings-background' => 'bg-table-header',
+        'table-headings-border' => 'border-table-divider',
+        'table-headings-color' => '',
+        'table-headings-font' => 'uppercase',
+        'table-headings-other' => 'items-center',
+        'table-headings-padding' => '',
+        'table-headings-rounded' => '',
+        'table-headings-shadow' => '',
+
+        'table-wrapper-background' => '',
+        'table-wrapper-border' => 'border border-table',
+        'table-wrapper-color' => '',
+        'table-wrapper-font' => '',
+        'table-wrapper-other' => 'overflow-x-auto',
+        'table-wrapper-padding' => '',
+        'table-wrapper-rounded' => 'rounded',
+        'table-wrapper-shadow' => '',
+        'table-wrapper-with-filters' => 'mt-0 sm:mt-2',
+        'table-wrapper-without-filters' => '',
+    ],
+
+    'table-active-filter' => [
+
+        // Style
+        'background' => 'bg-active-filter',
+        'border' => 'border border-active-filter focus-within:border-brand',
+        'color' => 'text-active-filter',
+        'font' => 'text-sm',
+        'other' => 'flex items-center space-x-1 mr-2 w-max mb-2',
+        'padding' => 'px-1.5 py-0.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+
+        'icon-background' => '',
+        'icon-border' => '',
+        'icon-color' => 'text-active-filter-icon hover:text-active-filter-icon-hover',
+        'icon-other' => 'cursor-pointer',
+        'icon-padding' => '',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
+        'icon-size' => 'w-4 h-4',
+
+        // Config
+        'icon' => 'icon.close',
     ],
 
     'table-cell' => [
@@ -806,11 +1241,28 @@ return [
         'background' => '',
         'border' => '',
         'color' => '',
+        'href-color' => 'text-brand hover:text-brand-darkest',
         'font' => '',
-        'other' => 'whitespace-no-wrap leading-5',
-        'padding' => 'px-2 py-2',
+        'other' => 'whitespace-no-wrap leading-5 h-9 align-middle',
+        'padding' => 'px-2',
         'rounded' => '',
         'shadow' => '',
+
+        'icon-background' => '',
+        'icon-border' => '',
+        'icon-color' => '',
+        'icon-other' => '',
+        'icon-padding' => '',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
+        'icon-size' => 'w-5 h-5',
+
+        'image-border' => '',
+        'image-other' => 'flex-shrink-0',
+        'image-padding' => 'pr-2',
+        'image-rounded' => 'rounded',
+        'image-shadow' => '',
+        'image-size' => 'h-8 w-auto',
     ],
 
     'table-empty' => [
@@ -820,7 +1272,7 @@ return [
         'border' => '',
         'color' => '',
         'colspan' => '100%',
-        'font' => 'font-medium',
+        'font' => 'text-sm uppercase tracking-wider',
         'icon-size' => 'w-5 h-5',
         'icon-style' => '',
         'other' => 'flex justify-center items-center',
@@ -833,15 +1285,107 @@ return [
         'default-text' => 'No records found',
     ],
 
-//    'table-filter' => [
-//        'background' => '',
-//        'border' => '',
-//        'color' => '',
-//        'font' => '',
-//        'other' => '',
-//        'padding' => '',
-//        'rounded' => '',
-//    ],
+    'table-filter' => [
+
+        // Style
+        'button-background' => 'bg-table-filters',
+        'button-border' => 'focus:outline-none focus:ring-0 w-full border border-table-filters focus:border-brand',
+        'button-color' => '',
+        'button-font' => 'text-input',
+        'button-other' => 'h-10 flex items-center flex-shrink-0 cursor-pointer',
+        'button-padding' => 'space-x-2 py-1.5 px-3 sm:mb-4',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+        'button-width' => '',
+
+        'check-background' => '',
+        'check-border' => '',
+        'check-color' => 'text-brand',
+        'check-other' => 'absolute inset-y-0 right-0 flex items-center',
+        'check-padding' => 'pr-4',
+        'check-rounded' => '',
+        'check-shadow' => '',
+        'check-active' => '',
+        'check-inactive' => '',
+        'check-icon' => 'icon.check',
+        'check-icon-size' =>'w-6 h-6',
+
+        'icon' => 'icon.chevron-down',
+        'icon-background' => '',
+        'icon-border' => '',
+        'icon-color' => '',
+        'icon-other' => '',
+        'icon-padding' => '',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
+        'icon-size' => 'w-4 h-4',
+
+        'image-border' => '',
+        'image-other' => 'flex-shrink-0',
+        'image-padding' => 'pr-2',
+        'image-rounded' => '',
+        'image-shadow' => '',
+        'image-size' => 'h-6 w-auto',
+
+        'list-background' => 'bg-input',
+        'list-border' => 'border border-input focus:outline-none',
+        'list-color' => '',
+        'list-font' => '',
+        'list-other' => 'absolute inset-x-2 sm:inset-auto sm:right-0 -mt-2 max-h-60 overflow-auto z-50',
+        'list-padding' => 'py-1',
+        'list-rounded' => 'rounded',
+        'list-shadow' => 'shadow-md',
+        'list-width' => 'sm:w-max',
+
+        'option-background' => '',
+        'option-border' => '',
+        'option-color' => '',
+        'option-font' => '',
+        'option-other' => 'cursor-pointer select-none relative group',
+        'option-padding' => 'py-2 pl-3 pr-12',
+        'option-rounded' => '',
+        'option-shadow' => '',
+        'option-spacing' => 'space-x-2',
+        'option-active' => 'bg-input-option-hover',
+        'option-inactive' => 'bg-input-option text-input-option',
+
+        'text-background' => '',
+        'text-border' => '',
+        'text-color' => '',
+        'text-font' => 'text-input-option group-hover:text-input-option-hover',
+        'text-other' => 'block truncate',
+        'text-padding' => '',
+        'text-rounded' => '',
+        'text-shadow' => '',
+        'text-active' => 'font-semibold',
+        'text-inactive' => 'font-normal',
+
+        'subtext-background' => '',
+        'subtext-border' => '',
+        'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
+        'subtext-font' => '',
+        'subtext-other' => 'block truncate',
+        'subtext-padding' => 'pl-2',
+        'subtext-rounded' => '',
+        'subtext-shadow' => '',
+        'subtext-active' => '',
+        'subtext-inactive' => '',
+
+        'wrapper-background' => '',
+        'wrapper-border' => '',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+        'wrapper-other' => 'sm:relative',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => '',
+        'wrapper-shadow' => '',
+        'wrapper-width' => 'w-full sm:w-auto',
+
+        // Config
+        'image-name' => 'image',
+        'subtext-name' => 'subtext',
+        'text-name' => 'text',
+    ],
 
     'table-heading' => [
 
@@ -850,13 +1394,14 @@ return [
         'background' => '',
         'border' => '',
         'color' => 'text-table-header',
-        'font' => 'leading-4 font-medium uppercase tracking-wider',
+        'font' => 'leading-4 font-medium uppercase tracking-wider whitespace-nowrap',
         'icon-size' => 'w-5 h-5',
         'other' => '',
         'padding' => 'px-2 py-2',
         'rounded' => '',
         'shadow' => '',
-        'sort-link' => 'flex items-center space-x-1 group focus:outline-none focus:underline',
+        'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
+        'width' => 'w-auto',
 
         // Config
         'field-order' => 'order',
@@ -912,6 +1457,70 @@ return [
         ],
     ],
 
+    'table-pagination' => [
+        'icon-next' => 'icon.chevron-right',
+        'icon-previous' => 'icon.chevron-left',
+        'icon-size' => 'w-5 h-5',
+
+        'button-container' => 'relative z-0 flex',
+
+//        'full-pagination' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+//        'mobile-pagination' => 'relative z-0 inline-flex space-x-2',
+
+        'button-background' => 'bg-button-default hover:bg-button-default-hover',
+        'button-border' => 'border border-button-default hover:border-button-default-hover focus:outline-none',
+        'button-color' => 'text-button-default hover:text-button-default-hover',
+        'button-font' => 'font-medium',
+        'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150',
+        'button-padding' => 'ml-0.5',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+        'button-width' => 'h-9 w-9',
+
+        'button-active-background' => 'bg-button-default',
+        'button-active-border' => 'border border-button-default-hover',
+        'button-active-color' => 'text-button-default-hover',
+        'button-active-font' => 'font-medium',
+        'button-active-other' => 'relative inline-flex items-center justify-center',
+        'button-active-padding' => 'ml-0.5',
+        'button-active-rounded' => 'rounded',
+        'button-active-shadow' => '',
+        'button-active-width' => 'h-9 w-9',
+
+        'button-disabled-background' => 'bg-button-muted',
+        'button-disabled-border' => 'border border-button-default',
+        'button-disabled-color' => 'text-button-muted',
+        'button-disabled-font' => 'font-medium',
+        'button-disabled-other' => 'relative inline-flex items-center justify-center',
+        'button-disabled-padding' => 'ml-0.5',
+        'button-disabled-rounded' => 'rounded',
+        'button-disabled-shadow' => '',
+        'button-disabled-width' => 'h-9 w-9',
+
+        'results-background' => '',
+        'results-border' => '',
+        'results-color' => '',
+        'results-font' => '',
+        'results-other' => 'flex items-center space-x-1 whitespace-nowrap',
+        'results-padding' => '',
+        'results-rounded' => '',
+        'results-shadow' => '',
+
+        'wrapper-background' => '',
+        'wrapper-border' => '',
+        'wrapper-color' => '',
+        'wrapper-font' => '',
+//        'wrapper-other' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
+        'wrapper-other' => 'flex-1 flex items-center justify-between',
+        'wrapper-padding' => '',
+        'wrapper-rounded' => '',
+        'wrapper-shadow' => '',
+
+        // Config
+        'show-always' => true,
+        'each-side' => 1,
+    ],
+
     'tabs' => [
         'background' => '',
         'border' => '',
@@ -947,6 +1556,65 @@ return [
         'padding' => 'py-6',
         'rounded' => '',
         'shadow' => '',
+    ],
+
+    'text' => [
+
+        'text-default' => 'default',
+
+        'color' => '',
+        'font' => '',
+        'other' => '',
+        'size' => 'w-max',
+
+        'default' => [
+            'color' => 'text-default',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'brand' => [
+            'color' => 'text-brand',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'danger' => [
+            'color' => 'text-danger',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'info' => [
+            'color' => 'text-info',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'muted' => [
+            'color' => 'text-muted',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'success' => [
+            'color' => 'text-success',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
+
+        'warning' => [
+            'color' => 'text-warning',
+            'font' => '',
+            'other' => '',
+            'size' => '',
+        ],
     ],
 
     'title' => [

@@ -18,13 +18,16 @@ class ColorPalette
 
     public function createPalette(): array
     {
-        $colorPalette['brand-lightest'] = $this->colorMod($this->color, 120);
-        $colorPalette['brand-lighter'] = $this->colorMod($this->color, 80);
-        $colorPalette['brand-light'] = $this->colorMod($this->color, 40);
-        $colorPalette['brand-default'] = '#' . $this->color;
-        $colorPalette['brand-dark'] = $this->colorMod($this->color, -40);
-        $colorPalette['brand-darker']= $this->colorMod($this->color, -80);
-        $colorPalette['brand-darkest'] = $this->colorMod($this->color, -120);
+        $colorPalette['brand-50'] = $this->colorMod($this->color, 200);
+        $colorPalette['brand-100'] = $this->colorMod($this->color, 160);
+        $colorPalette['brand-200'] = $this->colorMod($this->color, 120);
+        $colorPalette['brand-300'] = $this->colorMod($this->color, 80);
+        $colorPalette['brand-400'] = $this->colorMod($this->color, 40);
+        $colorPalette['brand-500'] = '#' . $this->color;
+        $colorPalette['brand-600'] = $this->colorMod($this->color, -40);
+        $colorPalette['brand-700']= $this->colorMod($this->color, -80);
+        $colorPalette['brand-800'] = $this->colorMod($this->color, -120);
+        $colorPalette['brand-900'] = $this->colorMod($this->color, -140);
 
         return $colorPalette;
     }
@@ -69,7 +72,7 @@ class ColorPalette
             $dec -= abs($diff);
         }
 
-        $dec = max(0, min(255, $dec));
+        $dec = (int) max(0, min(255, $dec));
 
         return str_pad(dechex($dec), 2, '0', STR_PAD_LEFT);
     }

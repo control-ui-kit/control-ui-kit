@@ -73,8 +73,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Blade::directive('controlUiKitAssets', function () {
             return <<<'blade'
                 <?php
-                echo <<<'scripts'
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+                $control_script_path = url('/control-ui-kit/javascript/control-ui-kit.js');
+
+                echo <<<scripts
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
 
                 <script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.11/dist/bundle.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -132,7 +134,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/control-ui-kit'),
             ], 'control-ui-kit-views');
-
         }
     }
 

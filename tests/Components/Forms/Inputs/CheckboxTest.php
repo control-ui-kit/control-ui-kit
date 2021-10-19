@@ -16,7 +16,6 @@ class CheckboxTest extends ComponentTestCase
         Config::set('themes.default.input-checkbox.background', 'background');
         Config::set('themes.default.input-checkbox.border', 'border');
         Config::set('themes.default.input-checkbox.color', 'color');
-        Config::set('themes.default.input-checkbox.font', 'font');
         Config::set('themes.default.input-checkbox.other', 'other');
         Config::set('themes.default.input-checkbox.padding', 'padding');
         Config::set('themes.default.input-checkbox.rounded', 'rounded');
@@ -31,7 +30,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -41,7 +40,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.checkbox name="name" background="none" border="none" color="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -55,11 +54,11 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.checkbox name="name" background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="1 2 3 4 5 6 7 8" />
+            <input name="name" type="checkbox" id="name" value="1" class="1 2 3 4 5 6 7" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -73,7 +72,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_new_test_value" value="new_test_value" class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name_new_test_value" value="new_test_value" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -87,7 +86,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -101,7 +100,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -115,7 +114,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -130,7 +129,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -145,7 +144,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -160,7 +159,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_yes" value="yes" checked class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name_yes" value="yes" checked class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -175,7 +174,7 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_yes" value="yes" class="background border color font other padding rounded shadow" />
+            <input name="name" type="checkbox" id="name_yes" value="yes" class="background border color other padding rounded shadow" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

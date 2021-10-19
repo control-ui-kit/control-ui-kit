@@ -8,24 +8,17 @@ class ControlUIKitScriptController extends Controller
 {
     public function __invoke(): string
     {
-        return <<<blade
-            function _controlNumber(input, decimals, min, max, fixed) {
-                let number = input.value.replace(/[^\d\.-]/g, "") * 1;
+        $this->disablePackageConflicts();
 
-                if (min !== '' && number < min) {
-                    number = min;
-                }
+        header('Content-Type: text/javascript; charset=UTF8', true);
+        print file_get_contents(__DIR__ . '/../../resources/js/control-ui-kit.js');
+        exit;
+    }
 
-                if (max !== '' && number > max) {
-                    number = max;
-                }
-
-                input.value = +(Math.round(number + ("e+" + decimals))  + ("e-" + decimals));
-
-                if (fixed) {
-                    input.value = (input.value * 1).toFixed(decimals);
-                }
-            }
-            blade;
+    private function disablePackageConflicts(): void
+    {
+        if (config('debugbar.enabled')) {
+            app('debugbar')->disable();
+        }
     }
 }

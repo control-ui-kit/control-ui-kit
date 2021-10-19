@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ControlUIKit\Components\Forms\Alerts;
+namespace ControlUIKit\Components\Forms;
 
 use ControlUIKit\Traits\UseLanguageString;
 use Illuminate\View\Component;
@@ -10,6 +10,12 @@ use Illuminate\View\Component;
 class ErrorBag extends Component
 {
     use UseLanguageString;
+
+    public string $type;
+
+    public function __construct(string $type = 'danger') {
+        $this->type = $type;
+    }
 
     public function render()
     {

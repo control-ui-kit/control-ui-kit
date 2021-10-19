@@ -35,6 +35,7 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.padding', 'padding');
         Config::set('themes.default.input.rounded', 'rounded');
         Config::set('themes.default.input.shadow', 'shadow');
+        Config::set('themes.default.input.width', 'width');
 
         Config::set('themes.default.input.input-background', 'input-background');
         Config::set('themes.default.input.input-border', 'input-border');
@@ -48,7 +49,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.icon-left-background', 'icon-left-background');
         Config::set('themes.default.input.icon-left-border', 'icon-left-border');
         Config::set('themes.default.input.icon-left-color', 'icon-left-color');
-        Config::set('themes.default.input.icon-left-font', 'icon-left-font');
         Config::set('themes.default.input.icon-left-other', 'icon-left-other');
         Config::set('themes.default.input.icon-left-padding', 'icon-left-padding');
         Config::set('themes.default.input.icon-left-rounded', 'icon-left-rounded');
@@ -58,7 +58,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.icon-right-background', 'icon-right-background');
         Config::set('themes.default.input.icon-right-border', 'icon-right-border');
         Config::set('themes.default.input.icon-right-color', 'icon-right-color');
-        Config::set('themes.default.input.icon-right-font', 'icon-right-font');
         Config::set('themes.default.input.icon-right-other', 'icon-right-other');
         Config::set('themes.default.input.icon-right-padding', 'icon-right-padding');
         Config::set('themes.default.input.icon-right-rounded', 'icon-right-rounded');
@@ -91,6 +90,7 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-padding', 'wrapper-padding');
         Config::set('themes.default.input.wrapper-rounded', 'wrapper-rounded');
         Config::set('themes.default.input.wrapper-shadow', 'wrapper-shadow');
+        Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
     /** @test */
@@ -101,7 +101,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -111,7 +111,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input name="name" type="text" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -125,11 +125,11 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input name="name" type="text" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8" />
+            <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8 9" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -143,7 +143,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="background 1 border 2 color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" class="background 1 border 2 color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -157,7 +157,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" placeholder="placeholder text" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" placeholder="placeholder text" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -171,7 +171,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" value="test_value" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" value="test_value" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -188,13 +188,14 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input-text.padding', 'config-padding');
         Config::set('themes.default.input-text.rounded', 'config-rounded');
         Config::set('themes.default.input-text.shadow', 'config-shadow');
+        Config::set('themes.default.input-text.width', 'config-width');
 
         $template = <<<'HTML'
             <x-input.text name="name" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="config-background config-border config-color config-font config-other config-padding config-rounded config-shadow" />
+            <input name="name" type="text" id="name" class="config-background config-border config-color config-font config-other config-padding config-rounded config-shadow config-width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -208,8 +209,8 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -229,9 +230,9 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -250,7 +251,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -267,7 +268,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
@@ -284,8 +285,8 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -305,9 +306,9 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -322,11 +323,11 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-font="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
+            <x-input name="name" type="text" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div>
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
@@ -343,12 +344,12 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-font="4" icon-other="5" icon-padding="6" icon-rounded="7" icon-shadow="8" />
+            <x-input name="name" type="text" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="1 2 3 4 5 6 7 8">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <div class="1 2 3 4 5 6 7">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -368,7 +369,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -385,7 +386,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div class="1 2 3 4 5 6 7 8"> ::prefix </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -402,7 +403,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div> ::suffix </div>
             </div>
@@ -419,7 +420,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="1 2 3 4 5 6 7 8"> ::suffix </div>
             </div>
@@ -436,7 +437,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
@@ -453,7 +454,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="1 2 3 4 5 6 7 8" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
@@ -472,7 +473,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::SOME SLOT CONTENT </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -491,7 +492,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::SOME SLOT CONTENT </div>
             </div>
@@ -508,7 +509,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow" @click="something" />
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" @click="something" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -522,7 +523,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" @click="something" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> $ </div>
             </div>
@@ -539,7 +540,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -556,7 +557,7 @@ class InputTest extends ComponentTestCase
         $this->expectExceptionMessage('Specified HTML input type invalid');
 
         $expected = <<<'HTML'
-            <input name="name" type="number" id="name" class="background border color font other padding rounded shadow" />
+            <input name="name" type="number" id="name" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -572,7 +573,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="range" id="name" class="background border color font other padding rounded shadow" />
+            <input name="name" type="range" id="name" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -588,8 +589,8 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
-                <div class="icon-left-background icon-left-border icon-left-color icon-left-font icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -611,9 +612,9 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                <div class="icon-right-background icon-right-border icon-right-color icon-right-font icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
+                <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -635,7 +636,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix-text </div>
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -654,7 +655,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix-text </div>
             </div>
@@ -673,7 +674,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" onblur="::onblur" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" onblur="::onblur" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -689,7 +690,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" onblur="::onchange" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" onblur="::onchange" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -707,7 +708,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" min="5" max="100" step="5" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" min="5" max="100" step="5" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -724,7 +725,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" step="0.01" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" step="0.01" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -738,7 +739,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" value="0" min="0" max="0" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" value="0" min="0" max="0" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -752,7 +753,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
                 <div class="prefix-background prefix-border prefix-color prefix-font prefix-other prefix-padding prefix-rounded prefix-shadow"> ::prefix </div>
                 <input name="number" type="number" id="number" value="0" min="0" max="0" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
@@ -769,7 +770,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="searching" type="search" id="searching" class="background border color font other padding rounded shadow" />
+            <input name="searching" type="search" id="searching" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -785,7 +786,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" value="::default" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" value="::default" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -801,7 +802,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" value="::inline" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" value="::inline" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -817,7 +818,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" value="::value" class="background border color font other padding rounded shadow" />
+            <input name="name" type="text" id="name" value="::value" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -834,7 +835,7 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow" />
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

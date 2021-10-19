@@ -27,6 +27,7 @@ class NumberTest extends ComponentTestCase
         Config::set('themes.default.input-number.padding', 'padding');
         Config::set('themes.default.input-number.rounded', 'rounded');
         Config::set('themes.default.input-number.shadow', 'shadow');
+        Config::set('themes.default.input-number.width', 'width');
     }
 
     /** @test */
@@ -37,7 +38,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -47,7 +48,7 @@ class NumberTest extends ComponentTestCase
     public function an_input_number_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.number name="age" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input.number name="age" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -61,11 +62,11 @@ class NumberTest extends ComponentTestCase
     public function an_input_number_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.number name="age" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input.number name="age" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" class="1 2 3 4 5 6 7 8" />
+            <input name="age" type="number" id="age" class="1 2 3 4 5 6 7 8 9" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -79,7 +80,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" placeholder="placeholder text" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" placeholder="placeholder text" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -93,7 +94,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" value="4" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" value="4" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -107,7 +108,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" value="9" min="0" max="9" step="1" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" value="9" min="0" max="9" step="1" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -123,7 +124,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" value="9" onblur="_controlNumber(this, 0, 0, 9, false)" min="0" max="9" step="1" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" value="9" onblur="_controlNumber(this, 0, 0, 9, false)" min="0" max="9" step="1" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -139,7 +140,7 @@ class NumberTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="age" type="number" id="age" value="25" onblur="_controlNumber(this, 0, 10, 90, false)" min="10" max="90" step="1" class="background border color font other padding rounded shadow" />
+            <input name="age" type="number" id="age" value="25" onblur="_controlNumber(this, 0, 10, 90, false)" min="10" max="90" step="1" class="background border color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
