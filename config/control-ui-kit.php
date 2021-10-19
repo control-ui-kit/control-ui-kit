@@ -28,6 +28,7 @@ return [
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
         'matrix-chart' => \ControlUIKit\Components\Charts\Matrix::class,
+        'change-chart' => \ControlUIKit\Components\Charts\Change::class,
 
         'dropdown.divider' => \ControlUIKit\Components\Dropdowns\Divider::class,
         'dropdown.menu' => \ControlUIKit\Components\Dropdowns\Menu::class,
@@ -72,6 +73,9 @@ return [
         'layout.toolbar' => \ControlUIKit\Components\Layouts\Toolbar::class,
 
         'form.layouts.inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
+
+        'map.world' => \ControlUIKit\Components\Maps\World::class,
+        'map.region' => \ControlUIKit\Components\Maps\Region::class,
 
         'markdown' => \ControlUIKit\Components\Markdown\Markdown::class,
         'toc' => \ControlUIKit\Components\Markdown\ToC::class,
