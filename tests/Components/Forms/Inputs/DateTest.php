@@ -41,8 +41,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -55,7 +55,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -76,8 +76,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -90,7 +90,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -111,8 +111,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -125,7 +125,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -146,8 +146,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -160,7 +160,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -181,8 +181,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -195,7 +195,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -216,8 +216,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -230,7 +230,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -265,7 +265,7 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -286,8 +286,8 @@ class DateTest extends ComponentTestCase
                     singleMode: true,
                     allowRepick: true,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -300,6 +300,6 @@ class DateTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 }

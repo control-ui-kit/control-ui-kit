@@ -117,8 +117,6 @@ class Date extends Component
     {
         if ($this->format === 'YYYY-MM-DD') {
             return substr($date, 0, 4);
-        } else if ($this->format === 'MM/DD/YYYY') {
-            return substr($date, 6, 4);
         }
 
         return substr($date, 6, 4);

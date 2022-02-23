@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components;
 
+use Carbon\Carbon;
 use ControlUIKit\ControlUIKitServiceProvider;
 use Gajus\Dindent\Indenter;
 use Illuminate\Support\Facades\Config;
@@ -56,5 +57,13 @@ abstract class ComponentTestCase extends TestCase
 
         $indented = $indenter->indent($html);
         return str_replace([" >", " \n"], [">", "\n"], $indented);
+    }
+
+    public function expectedWithYearRange(string $expected): string
+    {
+        $minYear = now()->subYears(10)->format('Y');
+        $maxYear = now()->addYears(10)->format('Y');
+
+        return str_replace(["'minYear'", "'maxYear'"], [$minYear, $maxYear], $expected);
     }
 }

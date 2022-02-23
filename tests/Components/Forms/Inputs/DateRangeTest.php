@@ -53,8 +53,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -69,7 +69,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -102,8 +102,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -118,7 +118,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -151,8 +151,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -167,7 +167,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -200,8 +200,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -216,7 +216,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -249,8 +249,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -265,7 +265,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -298,8 +298,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -314,7 +314,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -347,8 +347,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -363,7 +363,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -415,7 +415,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -448,8 +448,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -464,7 +464,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -497,8 +497,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -513,7 +513,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -546,8 +546,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 2,
                     numberOfMonths: 2,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -562,7 +562,7 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 
     /** @test */
@@ -595,8 +595,8 @@ class DateRangeTest extends ComponentTestCase
                     numberOfColumns: 3,
                     numberOfMonths: 6,
                     dropdowns: {
-                        minYear: 2011,
-                        maxYear: 2031,
+                        minYear: 'minYear',
+                        maxYear: 'maxYear',
                         months: true,
                         years: "asc"
                     },
@@ -611,6 +611,6 @@ class DateRangeTest extends ComponentTestCase
             </script>
             HTML;
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
     }
 }
