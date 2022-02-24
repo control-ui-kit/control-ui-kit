@@ -36,7 +36,7 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="50" />
+            <x-input-percent name="name" value="50" />
             HTML;
 
         $expected = <<<'HTML'
@@ -50,7 +50,7 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="50" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
+            <x-input-percent name="name" value="50" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -64,7 +64,7 @@ class PercentTest extends ComponentTestCase
     public function an_input_percent_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.percent name="name" value="50" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
+            <x-input-percent name="name" value="50" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
@@ -82,7 +82,7 @@ class PercentTest extends ComponentTestCase
         Config::set('themes.default.input-percent.max', 2);
 
         $template = <<<'HTML'
-            <x-input.percent name="test" step="none" min="none" max="none" />
+            <x-input-percent name="test" step="none" min="none" max="none" />
             HTML;
 
         $expected = <<<'HTML'

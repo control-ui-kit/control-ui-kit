@@ -20,7 +20,7 @@ class DividerTest extends ComponentTestCase
     public function a_panel_divider_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-panel.divider />
+            <x-panel-divider />
             HTML;
 
         $expected = <<<'HTML'
@@ -34,7 +34,7 @@ class DividerTest extends ComponentTestCase
     public function a_panel_divider_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel.divider border="none" />
+            <x-panel-divider border="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -49,7 +49,7 @@ class DividerTest extends ComponentTestCase
     public function a_panel_divider_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel.divider border="border-2 border-brand" />
+            <x-panel-divider border="border-2 border-brand" />
             HTML;
 
         $expected = <<<'HTML'

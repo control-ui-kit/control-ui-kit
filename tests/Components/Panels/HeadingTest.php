@@ -27,7 +27,7 @@ class HeadingTest extends ComponentTestCase
     public function a_panel_heading_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-panel.heading>Some Heading</x-panel.heading>
+            <x-panel-heading>Some Heading</x-panel-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -43,9 +43,9 @@ class HeadingTest extends ComponentTestCase
     public function a_panel_heading_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel.heading background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
+            <x-panel-heading background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Some Heading
-            </x-panel.heading>
+            </x-panel-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -61,9 +61,9 @@ class HeadingTest extends ComponentTestCase
     public function a_panel_heading_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel.heading background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
+            <x-panel-heading background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
                 Some Heading
-            </x-panel.heading>
+            </x-panel-heading>
             HTML;
 
         $expected = <<<'HTML'

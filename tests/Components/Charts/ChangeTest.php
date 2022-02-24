@@ -44,7 +44,7 @@ class ChangeTest extends ComponentTestCase
             <x-change-chart
                     title="Chart Title"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
             />
             HTML;
@@ -78,7 +78,7 @@ class ChangeTest extends ComponentTestCase
             <x-change-chart
                     title="Chart Title"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     link-text="Link"
@@ -149,7 +149,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="50000"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
             />
             HTML;
@@ -190,7 +190,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="50000"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     link-text="Link"
@@ -268,7 +268,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="50000"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     percent-difference="true"
             />
@@ -310,7 +310,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="50000"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     link-text="Link"
@@ -388,7 +388,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="100000"
                     current="50000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
             />
             HTML;
@@ -429,7 +429,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="100000"
                     current="50000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     link-text="Link"
@@ -507,7 +507,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="100000"
                     current="50000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     percent-difference="true"
             />
@@ -549,7 +549,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     previous="100000"
                     current="50000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-8 w-8"
                     link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     link-text="Link"
@@ -636,7 +636,7 @@ class ChangeTest extends ComponentTestCase
             <x-change-chart
                     title="Chart Title"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-size="h-32 w-32"
             />
             HTML;
@@ -705,7 +705,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     current="100000"
                     previous="50000"
-                    increase-icon="icon.users"
+                    increase-icon="icon-users"
             />
             HTML;
 
@@ -740,7 +740,7 @@ class ChangeTest extends ComponentTestCase
                     title="Chart Title"
                     current="100000"
                     previous="150000"
-                    decrease-icon="icon.cog"
+                    decrease-icon="icon-cog"
             />
             HTML;
 
@@ -907,7 +907,7 @@ class ChangeTest extends ComponentTestCase
             <x-change-chart
                     title="Chart Title"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-container-background="1"
                     icon-container-border="2"
                     icon-container-color="3"
@@ -948,7 +948,7 @@ class ChangeTest extends ComponentTestCase
             <x-change-chart
                     title="Chart Title"
                     current="100000"
-                    icon="icon.users"
+                    icon="icon-users"
                     icon-background="1"
                     icon-border="2"
                     icon-color="3"

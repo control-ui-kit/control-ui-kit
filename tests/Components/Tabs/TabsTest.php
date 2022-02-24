@@ -51,17 +51,17 @@ class TabsTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-tabs>
                 <x-slot name="headings">
-                    <x-tabs.heading id="profile">Profile</x-tabs.heading>
-                    <x-tabs.heading id="settings">Settings</x-tabs.heading>
+                    <x-tabs-heading id="profile">Profile</x-tabs-heading>
+                    <x-tabs-heading id="settings">Settings</x-tabs-heading>
                 </x-slot>
                 <x-slot name="panels">
-                    <x-tabs.panel id="profile">
+                    <x-tabs-panel id="profile">
                         Profile content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
 
-                    <x-tabs.panel id="settings">
+                    <x-tabs-panel id="settings">
                         Settings content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
                 </x-slot>
             </x-tabs>
             HTML;
@@ -114,17 +114,17 @@ class TabsTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-tabs background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" spacing="none">
                 <x-slot name="headings">
-                    <x-tabs.heading id="profile">Profile</x-tabs.heading>
-                    <x-tabs.heading id="settings">Settings</x-tabs.heading>
+                    <x-tabs-heading id="profile">Profile</x-tabs-heading>
+                    <x-tabs-heading id="settings">Settings</x-tabs-heading>
                 </x-slot>
                 <x-slot name="panels">
-                    <x-tabs.panel id="profile">
+                    <x-tabs-panel id="profile">
                         Profile content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
 
-                    <x-tabs.panel id="settings">
+                    <x-tabs-panel id="settings">
                         Settings content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
                 </x-slot>
             </x-tabs>
             HTML;
@@ -177,17 +177,17 @@ class TabsTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-tabs background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" spacing="9">
                 <x-slot name="headings">
-                    <x-tabs.heading id="profile">Profile</x-tabs.heading>
-                    <x-tabs.heading id="settings">Settings</x-tabs.heading>
+                    <x-tabs-heading id="profile">Profile</x-tabs-heading>
+                    <x-tabs-heading id="settings">Settings</x-tabs-heading>
                 </x-slot>
                 <x-slot name="panels">
-                    <x-tabs.panel id="profile">
+                    <x-tabs-panel id="profile">
                         Profile content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
 
-                    <x-tabs.panel id="settings">
+                    <x-tabs-panel id="settings">
                         Settings content
-                    </x-tabs.panel>
+                    </x-tabs-panel>
                 </x-slot>
             </x-tabs>
             HTML;

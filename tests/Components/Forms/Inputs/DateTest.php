@@ -27,7 +27,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="date" />
+            <x-input-date name="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -62,7 +62,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-date name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -97,7 +97,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input-date name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -132,7 +132,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" value="21/08/2039" />
+            <x-input-date name="name" value="21/08/2039" />
             HTML;
 
         $expected = <<<'HTML'
@@ -167,7 +167,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_will_render_with_plugins_disabled(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" value="01/01/2020" keyboard-navigation="false" mobile-friendly="false" />
+            <x-input-date name="name" value="01/01/2020" keyboard-navigation="false" mobile-friendly="false" />
             HTML;
 
         $expected = <<<'HTML'
@@ -202,7 +202,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_will_render_with_first_day_changed(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" value="01/01/2020" first-day="4" />
+            <x-input-date name="name" value="01/01/2020" first-day="4" />
             HTML;
 
         $expected = <<<'HTML'
@@ -237,7 +237,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_will_render_with_min_and_max_dates_added(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" value="01/01/2020" start="01/01/2019" end="01/01/2021" />
+            <x-input-date name="name" value="01/01/2020" start="01/01/2019" end="01/01/2021" />
             HTML;
 
         $expected = <<<'HTML'
@@ -272,7 +272,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_will_render_with_language_changed(): void
     {
         $template = <<<'HTML'
-            <x-input.date name="name" value="01/01/2020" lang="ru" />
+            <x-input-date name="name" value="01/01/2020" lang="ru" />
             HTML;
 
         $expected = <<<'HTML'

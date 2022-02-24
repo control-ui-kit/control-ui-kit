@@ -456,7 +456,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
-            <x-button icon="icon.dot">Click Me</x-button>
+            <x-button icon="icon-dot">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -475,7 +475,7 @@ class ButtonTest extends ComponentTestCase
     public function a_danger_button_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
-            <x-button danger icon="icon.dot">Click Me</x-button>
+            <x-button danger icon="icon-dot">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -494,7 +494,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_can_be_rendered_with_an_icon_updated_size(): void
     {
         $template = <<<'HTML'
-            <x-button icon="icon.dot" icon-size="::new-size">Click Me</x-button>
+            <x-button icon="icon-dot" icon-size="::new-size">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -514,7 +514,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_can_be_rendered_with_an_icon_updated_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-button icon="icon.dot" icon-style="::some-class">Click Me</x-button>
+            <x-button icon="icon-dot" icon-style="::some-class">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -547,7 +547,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_with_icon_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-button icon="icon.dot" background="none" border="none" color="none" cursor="none" font="none" icon-style="none" other="none" padding="none" rounded="none" shadow="none">Click Me</x-button>
+            <x-button icon="icon-dot" background="none" border="none" color="none" cursor="none" font="none" icon-style="none" other="none" padding="none" rounded="none" shadow="none">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -636,7 +636,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_can_be_rendered_updated_styles(): void
     {
         $template = <<<'HTML'
-            <x-button danger icon="icon.dot" rounded="none" shadow="my-shadow" @click="doDelete">
+            <x-button danger icon="icon-dot" rounded="none" shadow="my-shadow" @click="doDelete">
                 Delete
             </x-button>
             HTML;

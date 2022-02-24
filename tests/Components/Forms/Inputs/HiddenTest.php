@@ -12,7 +12,7 @@ class HiddenTest extends ComponentTestCase
     public function an_input_hidden_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.hidden name="name" />
+            <x-input-hidden name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -26,7 +26,7 @@ class HiddenTest extends ComponentTestCase
     public function an_input_hidden_component_with_id_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.hidden name="name" id="something_else" />
+            <x-input-hidden name="name" id="something_else" />
             HTML;
 
         $expected = <<<'HTML'
@@ -40,7 +40,7 @@ class HiddenTest extends ComponentTestCase
     public function an_input_hidden_component_with_value_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.hidden name="name" value="test_value" />
+            <x-input-hidden name="name" value="test_value" />
             HTML;
 
         $expected = <<<'HTML'

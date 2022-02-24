@@ -46,7 +46,7 @@ class ErrorBagTest extends ComponentTestCase
 
         Config::set('themes.default.alert.danger.background', 'danger-background');
         Config::set('themes.default.alert.danger.border', 'danger-border');
-        Config::set('themes.default.alert.danger.icon', 'icon.dot');
+        Config::set('themes.default.alert.danger.icon', 'icon-dot');
         Config::set('themes.default.alert.danger.icon-color', 'danger-icon-color');
         Config::set('themes.default.alert.danger.title-color', 'danger-title-color');
         Config::set('themes.default.alert.danger.text-other', 'danger-text-other');
@@ -92,7 +92,7 @@ class ErrorBagTest extends ComponentTestCase
         $this->withViewErrors(['test' => 'This is a test message']);
 
         $template = <<<'HTML'
-            <x-error-bag type="default" icon="icon.options" icon-color="custom-color" background="custom-background" />
+            <x-error-bag type="default" icon="icon-options" icon-color="custom-color" background="custom-background" />
             HTML;
 
         $expected = <<<'HTML'

@@ -26,7 +26,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" />
+            <x-input-checkbox name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -40,7 +40,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" background="none" border="none" color="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-checkbox name="name" background="none" border="none" color="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -54,7 +54,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" />
+            <x-input-checkbox name="name" background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
@@ -68,7 +68,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_amended_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" value="new_test_value" />
+            <x-input-checkbox name="name" value="new_test_value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -82,7 +82,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_checked_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" checked />
+            <x-input-checkbox name="name" checked />
             HTML;
 
         $expected = <<<'HTML'
@@ -96,7 +96,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_checked_true(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" checked="true" />
+            <x-input-checkbox name="name" checked="true" />
             HTML;
 
         $expected = <<<'HTML'
@@ -110,7 +110,7 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_checked_checked(): void
     {
         $template = <<<'HTML'
-            <x-input.checkbox name="name" checked="checked" />
+            <x-input-checkbox name="name" checked="checked" />
             HTML;
 
         $expected = <<<'HTML'
@@ -125,7 +125,7 @@ class CheckboxTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $value = "1"; @endphp
-            <x-input.checkbox name="name" :checked="$value" />
+            <x-input-checkbox name="name" :checked="$value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -140,7 +140,7 @@ class CheckboxTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $value = "0"; @endphp
-            <x-input.checkbox name="name" :checked="$value" />
+            <x-input-checkbox name="name" :checked="$value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -155,7 +155,7 @@ class CheckboxTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $value = "yes"; @endphp
-            <x-input.checkbox name="name" value="yes" :checked="$value" />
+            <x-input-checkbox name="name" value="yes" :checked="$value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -170,7 +170,7 @@ class CheckboxTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $value = "no"; @endphp
-            <x-input.checkbox name="name" value="yes" :checked="$value" />
+            <x-input-checkbox name="name" value="yes" :checked="$value" />
             HTML;
 
         $expected = <<<'HTML'

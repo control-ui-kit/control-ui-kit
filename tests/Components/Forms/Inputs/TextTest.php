@@ -83,7 +83,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" />
+            <x-input-text name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -97,7 +97,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
+            <x-input-text name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -111,7 +111,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
+            <x-input-text name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
@@ -125,7 +125,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_appended_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" background="...1" border="...2"/>
+            <x-input-text name="name" background="...1" border="...2"/>
             HTML;
 
         $expected = <<<'HTML'
@@ -139,7 +139,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" placeholder="placeholder text" />
+            <x-input-text name="name" placeholder="placeholder text" />
             HTML;
 
         $expected = <<<'HTML'
@@ -153,7 +153,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" value="test_value" />
+            <x-input-text name="name" value="test_value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -177,7 +177,7 @@ class TextTest extends ComponentTestCase
         Config::set('themes.default.input-text.width', 'config-width');
 
         $template = <<<'HTML'
-            <x-input.text name="name" />
+            <x-input-text name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -191,7 +191,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_left_icon(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-left="icon.dot" />
+            <x-input-text name="name" icon-left="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -212,7 +212,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_right_icon(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-right="icon.dot" />
+            <x-input-text name="name" icon-right="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -233,7 +233,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix-text="::prefix" />
+            <x-input-text name="name" prefix-text="::prefix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -250,7 +250,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="::suffix" />
+            <x-input-text name="name" suffix-text="::suffix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -267,7 +267,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_left_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-left="icon.dot" icon-size="custom-size" />
+            <x-input-text name="name" icon-left="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -288,7 +288,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_right_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-right="icon.dot" icon-size="custom-size" />
+            <x-input-text name="name" icon-right="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -309,7 +309,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
+            <x-input-text name="name" icon-left="icon-dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -330,7 +330,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
+            <x-input-text name="name" icon-left="icon-dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
@@ -351,7 +351,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix-text="::prefix" prefix-background="none" prefix-border="none" prefix-color="none" prefix-font="none" prefix-other="none" prefix-padding="none" prefix-rounded="none" prefix-shadow="none" />
+            <x-input-text name="name" prefix-text="::prefix" prefix-background="none" prefix-border="none" prefix-color="none" prefix-font="none" prefix-other="none" prefix-padding="none" prefix-rounded="none" prefix-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -368,7 +368,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" prefix-text="::prefix" prefix-background="1" prefix-border="2" prefix-color="3" prefix-font="4" prefix-other="5" prefix-padding="6" prefix-rounded="7" prefix-shadow="8" />
+            <x-input-text name="name" prefix-text="::prefix" prefix-background="1" prefix-border="2" prefix-color="3" prefix-font="4" prefix-other="5" prefix-padding="6" prefix-rounded="7" prefix-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -385,7 +385,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="::suffix" suffix-background="none" suffix-border="none" suffix-color="none" suffix-font="none" suffix-other="none" suffix-padding="none" suffix-rounded="none" suffix-shadow="none" />
+            <x-input-text name="name" suffix-text="::suffix" suffix-background="none" suffix-border="none" suffix-color="none" suffix-font="none" suffix-other="none" suffix-padding="none" suffix-rounded="none" suffix-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -402,7 +402,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="::suffix" suffix-background="1" suffix-border="2" suffix-color="3" suffix-font="4" suffix-other="5" suffix-padding="6" suffix-rounded="7" suffix-shadow="8" />
+            <x-input-text name="name" suffix-text="::suffix" suffix-background="1" suffix-border="2" suffix-color="3" suffix-font="4" suffix-other="5" suffix-padding="6" suffix-rounded="7" suffix-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -419,7 +419,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_input_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="::suffix" input-background="none" input-border="none" input-color="none" input-font="none" input-other="none" input-padding="none" input-rounded="none" input-shadow="none" />
+            <x-input-text name="name" suffix-text="::suffix" input-background="none" input-border="none" input-color="none" input-font="none" input-other="none" input-padding="none" input-rounded="none" input-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -436,7 +436,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_input_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="::suffix" input-background="1" input-border="2" input-color="3" input-font="4" input-other="5" input-padding="6" input-rounded="7" input-shadow="8" />
+            <x-input-text name="name" suffix-text="::suffix" input-background="1" input-border="2" input-color="3" input-font="4" input-other="5" input-padding="6" input-rounded="7" input-shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -453,9 +453,9 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_prefix_slot(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name">
+            <x-input-text name="name">
                 <x-slot name="prefix">::SOME SLOT CONTENT</x-slot>
-            </x-input.text>
+            </x-input-text>
             HTML;
 
         $expected = <<<'HTML'
@@ -472,9 +472,9 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_suffix_slot(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name">
+            <x-input-text name="name">
                 <x-slot name="suffix">::SOME SLOT CONTENT</x-slot>
-            </x-input.text>
+            </x-input-text>
             HTML;
 
         $expected = <<<'HTML'
@@ -491,7 +491,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_event(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" @click="something" />
+            <x-input-text name="name" @click="something" />
             HTML;
 
         $expected = <<<'HTML'
@@ -505,7 +505,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_embed_and_event(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" suffix-text="$" @click="something" />
+            <x-input-text name="name" suffix-text="$" @click="something" />
             HTML;
 
         $expected = <<<'HTML'
@@ -522,7 +522,7 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_maxlength(): void
     {
         $template = <<<'HTML'
-            <x-input.text name="name" maxlength="3" />
+            <x-input-text name="name" maxlength="3" />
             HTML;
 
         $expected = <<<'HTML'

@@ -32,10 +32,10 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.check-shadow', 'check-shadow');
         Config::set('themes.default.table-filter.check-active', 'check-active');
         Config::set('themes.default.table-filter.check-inactive', 'check-inactive');
-        Config::set('themes.default.table-filter.check-icon', 'icon.check');
+        Config::set('themes.default.table-filter.check-icon', 'icon-check');
         Config::set('themes.default.table-filter.check-icon-size', 'check-size');
 
-        Config::set('themes.default.table-filter.icon', 'icon.chevron-down');
+        Config::set('themes.default.table-filter.icon', 'icon-chevron-down');
         Config::set('themes.default.table-filter.icon-background', 'icon-background');
         Config::set('themes.default.table-filter.icon-border', 'icon-border');
         Config::set('themes.default.table-filter.icon-color', 'icon-color');
@@ -115,7 +115,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" />
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -143,7 +143,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_text_array(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => ['text' => 'A'] ]" />
+            <x-table-filter name="name" label="label" :options="[ 1 => ['text' => 'A'] ]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -171,7 +171,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_text_name(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" text="text2" :options="[ 1 => ['text2' => 'A'] ]" />
+            <x-table-filter name="name" label="label" text="text2" :options="[ 1 => ['text2' => 'A'] ]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -201,7 +201,7 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.text-name', 'text2');
 
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => ['text2' => 'A'] ]" />
+            <x-table-filter name="name" label="label" :options="[ 1 => ['text2' => 'A'] ]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -229,7 +229,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_no_button_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 button-background="none"
                 button-border="none"
                 button-color="none"
@@ -267,7 +267,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_override_button_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 button-background="custom-background"
                 button-border="custom-border"
                 button-color="custom-color"
@@ -305,7 +305,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_no_list_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 list-background="none"
                 list-border="none"
                 list-color="none"
@@ -343,7 +343,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_override_list_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 list-background="custom-background"
                 list-border="custom-border"
                 list-color="custom-color"
@@ -381,7 +381,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_no_option_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 option-background="none"
                 option-border="none"
                 option-color="none"
@@ -421,7 +421,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_override_option_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 option-background="custom-background"
                 option-border="custom-border"
                 option-color="custom-color"
@@ -461,7 +461,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_no_wrapper_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 wrapper-background="none"
                 wrapper-border="none"
                 wrapper-color="none"
@@ -499,7 +499,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_override_wrapper_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 wrapper-background="custom-background"
                 wrapper-border="custom-border"
                 wrapper-color="custom-color"
@@ -537,7 +537,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_no_text_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 text-background="none"
                 text-border="none"
                 text-color="none"
@@ -576,7 +576,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_override_text_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 text-background="custom-background"
                 text-border="custom-border"
                 text-color="custom-color"
@@ -615,7 +615,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label"
+            <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
             />
             HTML;
@@ -645,7 +645,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext_and_subtext_name(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" subtext="subtext2"
+            <x-table-filter name="name" label="label" subtext="subtext2"
                 :options="[ 1 => ['text' => '::text', 'subtext2' => '::subtext'] ]"
             />
             HTML;
@@ -677,7 +677,7 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.subtext-name', 'subtext2');
 
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label"
+            <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext2' => '::subtext'] ]"
             />
             HTML;
@@ -707,7 +707,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext_and_no_subtext_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label"
+            <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
                 subtext-background="none"
                 subtext-border="none"
@@ -747,7 +747,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_subtext_and_override_subtext_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label"
+            <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
                 subtext-background="custom-background"
                 subtext-border="custom-border"
@@ -787,7 +787,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_check_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1" />
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1" />
             HTML;
 
         $expected = <<<'HTML'
@@ -820,8 +820,8 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_check_can_be_rendered_with_inline_icon(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
-                check-icon="icon.dot"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+                check-icon="icon-dot"
                 check-icon-size="::custom-size"
             />
             HTML;
@@ -856,7 +856,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_check_can_be_rendered_with_no_check_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
                 check-background="none"
                 check-border="none"
                 check-color="none"
@@ -899,7 +899,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_check_can_be_rendered_with_override_check_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
                 check-background="custom-background"
                 check-border="custom-border"
                 check-color="custom-color"
@@ -942,8 +942,8 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_custom_icon_can_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
-                icon="icon.dot"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
+                icon="icon-dot"
                 icon-size="custom-size"
             />
             HTML;
@@ -973,7 +973,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 icon-background="none"
                 icon-border="none"
                 icon-color="none"
@@ -1009,7 +1009,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_with_can_be_rendered_with_override_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[ 1 => 'A' ]"
+            <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 icon-background="custom-background"
                 icon-border="custom-border"
                 icon-color="custom-color"
@@ -1045,7 +1045,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_an_image(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]" />
+            <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -1076,7 +1076,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_name(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" image="image2" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
+            <x-table-filter name="name" label="label" image="image2" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -1109,7 +1109,7 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.image-name', 'image2');
 
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
+            <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -1140,7 +1140,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_an_image_and_no_image_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
+            <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
                 image-border="none"
                 image-other="none"
                 image-padding="none"
@@ -1178,7 +1178,7 @@ class FilterTest extends ComponentTestCase
     public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
+            <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
                 image-border="custom-border"
                 image-other="custom-other"
                 image-padding="custom-padding"

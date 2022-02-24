@@ -30,9 +30,9 @@ class HeadingTest extends ComponentTestCase
     public function a_tabs_heading_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-tabs.heading id="profile">
+            <x-tabs-heading id="profile">
                 Heading content
-            </x-tabs.heading>
+            </x-tabs-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -46,9 +46,9 @@ class HeadingTest extends ComponentTestCase
     public function a_tabs_heading_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-tabs.heading id="profile" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" active="none" inactive="none">
+            <x-tabs-heading id="profile" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" active="none" inactive="none">
                 Heading content
-            </x-tabs.heading>
+            </x-tabs-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -62,9 +62,9 @@ class HeadingTest extends ComponentTestCase
     public function a_tabs_heading_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-tabs.heading id="profile" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" active="9" inactive="10">
+            <x-tabs-heading id="profile" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" active="9" inactive="10">
                 Heading content
-            </x-tabs.heading>
+            </x-tabs-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -78,9 +78,9 @@ class HeadingTest extends ComponentTestCase
     public function a_tabs_heading_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
-            <x-tabs.heading id="profile" icon="icon.dot">
+            <x-tabs-heading id="profile" icon="icon-dot">
                 Heading content
-            </x-tabs.heading>
+            </x-tabs-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -99,9 +99,9 @@ class HeadingTest extends ComponentTestCase
     public function a_tabs_heading_component_can_be_rendered_with_an_icon_and_custom_icon_size(): void
     {
         $template = <<<'HTML'
-            <x-tabs.heading id="profile" icon="icon.dot" icon-size="::new-size">
+            <x-tabs-heading id="profile" icon="icon-dot" icon-size="::new-size">
                 Heading content
-            </x-tabs.heading>
+            </x-tabs-heading>
             HTML;
 
         $expected = <<<'HTML'

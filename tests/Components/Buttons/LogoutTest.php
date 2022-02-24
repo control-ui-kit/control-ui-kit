@@ -113,7 +113,7 @@ class LogoutTest extends ComponentTestCase
     public function a_brand_button_logout_component_with_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-logout brand icon="icon.dot" />
+            <x-logout brand icon="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -136,7 +136,7 @@ class LogoutTest extends ComponentTestCase
     public function an_icon_only_button_logout_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-logout brand icon-only icon="icon.dot" />
+            <x-logout brand icon-only icon="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'

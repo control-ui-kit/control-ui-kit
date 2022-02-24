@@ -191,7 +191,7 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input-text.width', 'config-width');
 
         $template = <<<'HTML'
-            <x-input.text name="name" />
+            <x-input-text name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -205,7 +205,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" />
+            <x-input name="name" type="text" icon-left="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -226,7 +226,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_right_icon(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-right="icon.dot" />
+            <x-input name="name" type="text" icon-right="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -281,7 +281,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-size="custom-size" />
+            <x-input name="name" type="text" icon-left="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -302,7 +302,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_right_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-right="icon.dot" icon-size="custom-size" />
+            <x-input name="name" type="text" icon-right="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -323,7 +323,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
+            <x-input name="name" type="text" icon-left="icon-dot" icon-background="none" icon-border="none" icon-color="none" icon-other="none" icon-padding="none" icon-rounded="none" icon-shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -344,7 +344,7 @@ class InputTest extends ComponentTestCase
     public function an_input_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input name="name" type="text" icon-left="icon.dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
+            <x-input name="name" type="text" icon-left="icon-dot" icon-background="1" icon-border="2" icon-color="3" icon-other="4" icon-padding="5" icon-rounded="6" icon-shadow="7" />
             HTML;
 
         $expected = <<<'HTML'
@@ -582,7 +582,7 @@ class InputTest extends ComponentTestCase
     /** @test */
     public function an_input_component_uses_config_icon_left_when_none_is_passed(): void
     {
-        Config::set('themes.default.input.icon-left', 'icon.dot');
+        Config::set('themes.default.input.icon-left', 'icon-dot');
 
         $template = <<<'HTML'
             <x-input name="name" />
@@ -605,7 +605,7 @@ class InputTest extends ComponentTestCase
     /** @test */
     public function an_input_component_uses_config_icon_right_when_none_is_passed(): void
     {
-        Config::set('themes.default.input.icon-right', 'icon.dot');
+        Config::set('themes.default.input.icon-right', 'icon-dot');
 
         $template = <<<'HTML'
             <x-input name="name" />

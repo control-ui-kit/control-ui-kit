@@ -17,8 +17,8 @@ class Field extends Component
         string $input,
         string $layout
     ) {
-        $this->input = 'input.' . $input;
-        $this->layout = 'form.layouts.' . $layout;
+        $this->input = 'input-' . $input;
+        $this->layout = 'form-layouts-' . $layout;
     }
 
     public function render()

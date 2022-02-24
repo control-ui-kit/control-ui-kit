@@ -31,7 +31,7 @@ return [
         'default' => [
             'background' => 'bg-alert-default',
             'border' => 'border-alert-default',
-            'icon' => 'icon.question',
+            'icon' => 'icon-question',
             'icon-color' => 'text-alert-default-icon',
             'title-color' => 'text-alert-default-title',
             'text-color' => 'text-alert-default-text',
@@ -40,7 +40,7 @@ return [
         'brand' => [
             'background' => 'bg-alert-brand',
             'border' => 'border-alert-brand',
-            'icon' => 'icon.question',
+            'icon' => 'icon-question',
             'icon-color' => 'text-alert-brand-icon',
             'title-color' => 'text-alert-brand-title',
             'text-color' => 'text-alert-brand-text',
@@ -49,7 +49,7 @@ return [
         'danger' => [
             'background' => 'bg-alert-danger',
             'border' => 'border-alert-danger',
-            'icon' => 'icon.shield-cross',
+            'icon' => 'icon-shield-cross',
             'icon-color' => 'text-alert-danger-icon',
             'title-color' => 'text-alert-danger-title',
             'text-color' => 'text-alert-danger-text',
@@ -58,7 +58,7 @@ return [
         'info' => [
             'background' => 'bg-alert-info',
             'border' => 'border-alert-info',
-            'icon' => 'icon.info-circle',
+            'icon' => 'icon-info-circle',
             'icon-color' => 'text-alert-info-icon',
             'title-color' => 'text-alert-info-title',
             'text-color' => 'text-alert-info-text',
@@ -67,7 +67,7 @@ return [
         'muted' => [
             'background' => 'bg-alert-muted',
             'border' => 'border-alert-muted',
-            'icon' => 'icon.question',
+            'icon' => 'icon-question',
             'icon-color' => 'text-alert-muted-icon',
             'title-color' => 'text-alert-muted-title',
             'text-color' => 'text-alert-muted-text',
@@ -76,7 +76,7 @@ return [
         'success' => [
             'background' => 'bg-alert-success',
             'border' => 'border-alert-success',
-            'icon' => 'icon.status-success',
+            'icon' => 'icon-status-success',
             'icon-color' => 'text-alert-success-icon',
             'title-color' => 'text-alert-success-title',
             'text-color' => 'text-alert-success-text',
@@ -85,7 +85,7 @@ return [
         'warning' => [
             'background' => 'bg-alert-warning',
             'border' => 'border-alert-warning',
-            'icon' => 'icon.warning',
+            'icon' => 'icon-warning',
             'icon-color' => 'text-alert-warning-icon',
             'title-color' => 'text-alert-warning-title',
             'text-color' => 'text-alert-warning-text',
@@ -170,8 +170,8 @@ return [
         'icon-size' => 'h-6 w-6',
         'percent-difference' => "false",
         'decimals' => 0,
-        'difference-increase-icon' => 'icon.arrow-up',
-        'difference-decrease-icon' => 'icon.arrow-down',
+        'difference-increase-icon' => 'icon-arrow-up',
+        'difference-decrease-icon' => 'icon-arrow-down',
 
         'wrapper-background' => 'bg-white',
         'wrapper-border' => '',
@@ -550,7 +550,7 @@ return [
         // Config
         'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar',
+        'icon' => 'icon-calendar',
         'keyboard-navigation' => 'true',
         'lang' => 'en-GB',
         'mobile-friendly' => 'true',
@@ -572,7 +572,7 @@ return [
         // Config
         'first-day' => "1",
         'format' => 'DD/MM/YYYY',
-        'icon' => 'icon.calendar',
+        'icon' => 'icon-calendar',
         'keyboard-navigation' => 'true',
         'lang' => 'en-GB',
         'mobile-friendly' => 'true',
@@ -606,7 +606,7 @@ return [
     ],
 
     'input-password' => [
-        'icon-left' => 'icon.eye',
+        'icon-left' => 'icon-eye',
         'type' => 'password',
     ],
 
@@ -614,7 +614,7 @@ return [
         'default' => 0,
         'font' => 'text-right',
         'input-font' => 'text-right',
-        'icon-right' => 'icon.percent',
+        'icon-right' => 'icon-percent',
         'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'max' => 100,
         'min' => 0,
@@ -668,7 +668,7 @@ return [
     ],
 
     'input-search' => [
-        'icon-left' => 'icon.search',
+        'icon-left' => 'icon-search',
         'icon-left-border' => 'border-0',
         'icon-left-padding' => 'pl-3 pr-0',
         'type' => 'search',
@@ -697,10 +697,10 @@ return [
         'check-shadow' => '',
         'check-active' => '',
         'check-inactive' => '',
-        'check-icon' => 'icon.check',
+        'check-icon' => 'icon-check',
         'check-icon-size' =>'w-6 h-6',
 
-        'icon' => 'icon.chevron-down',
+        'icon' => 'icon-chevron-down',
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
         'icon-color' => '',
@@ -1096,7 +1096,7 @@ return [
         'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
         'more-button-color' => 'text-input',
         'more-button-font' => '',
-        'more-button-icon' => 'icon.filter',
+        'more-button-icon' => 'icon-filter',
         'more-button-icon-size' => 'w-5 h-5',
         'more-button-other' => 'flex items-center flex-shrink-0 cursor-pointer mb-0 sm:mb-4',
         'more-button-padding' => 'h-10 px-2.5',
@@ -1119,7 +1119,7 @@ return [
         'search-icon-background' => '',
         'search-icon-border' => 'border-0 ',
         'search-icon-color' => 'text-muted',
-        'search-icon' => 'icon.search',
+        'search-icon' => 'icon-search',
         'search-icon-size' => 'w-4 h-4',
         'search-icon-other' => 'flex items-center justify-center self-stretch',
         'search-icon-padding' => 'pl-3 pr-0',
@@ -1233,7 +1233,7 @@ return [
         'icon-size' => 'w-4 h-4',
 
         // Config
-        'icon' => 'icon.close',
+        'icon' => 'icon-close',
     ],
 
     'table-cell' => [
@@ -1307,10 +1307,10 @@ return [
         'check-shadow' => '',
         'check-active' => '',
         'check-inactive' => '',
-        'check-icon' => 'icon.check',
+        'check-icon' => 'icon-check',
         'check-icon-size' =>'w-6 h-6',
 
-        'icon' => 'icon.chevron-down',
+        'icon' => 'icon-chevron-down',
         'icon-background' => '',
         'icon-border' => '',
         'icon-color' => '',
@@ -1406,8 +1406,8 @@ return [
         // Config
         'field-order' => 'order',
         'field-sort' => 'sort',
-        'icon-asc' => 'icon.caret-up',
-        'icon-desc' => 'icon.caret-down',
+        'icon-asc' => 'icon-caret-up',
+        'icon-desc' => 'icon-caret-down',
     ],
 
     'table-row' => [
@@ -1458,8 +1458,8 @@ return [
     ],
 
     'table-pagination' => [
-        'icon-next' => 'icon.chevron-right',
-        'icon-previous' => 'icon.chevron-left',
+        'icon-next' => 'icon-chevron-right',
+        'icon-previous' => 'icon-chevron-left',
         'icon-size' => 'w-5 h-5',
 
         'button-container' => 'relative z-0 flex',

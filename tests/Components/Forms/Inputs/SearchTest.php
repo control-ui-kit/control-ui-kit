@@ -60,7 +60,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" />
+            <x-input-search name="search" />
             HTML;
 
         $expected = <<<'HTML'
@@ -74,7 +74,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_with_no_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" icon-right="none" />
+            <x-input-search name="search" icon-right="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -88,7 +88,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
+            <x-input-search name="search" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -102,7 +102,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
+            <x-input-search name="search" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
@@ -116,7 +116,7 @@ class SearchTest extends ComponentTestCase
     public function an_input_search_component_can_be_rendered_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.search name="search" value="new_test_value" />
+            <x-input-search name="search" value="new_test_value" />
             HTML;
 
         $expected = <<<'HTML'
@@ -128,10 +128,10 @@ class SearchTest extends ComponentTestCase
     /** @test */
     public function an_input_search_component_with_icon_can_be_rendered(): void
     {
-        Config::set('themes.default.input-search.icon-right', 'icon.dot');
+        Config::set('themes.default.input-search.icon-right', 'icon-dot');
 
         $template = <<<'HTML'
-            <x-input.search name="search" />
+            <x-input-search name="search" />
             HTML;
 
         $expected = <<<'HTML'
@@ -162,7 +162,7 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.width', 'config-width');
 
         $template = <<<'HTML'
-            <x-input.search name="search" icon-right="none" />
+            <x-input-search name="search" icon-right="none" />
             HTML;
 
         $expected = <<<'HTML'

@@ -10,8 +10,8 @@
     class="{{ $optionClasses() }}"
 >
     <div class="flex items-center space-x-2">
-        @if ($image) <x-input.select.image src="{{ $image }}" /> @endif
-        <x-input.select.text :styles="$textStyles" :value="$value" :text="$text" :subtext="$subtext" />
+        @if ($image) <x-input-select.image src="{{ $image }}" /> @endif
+        <x-input-select.text :styles="$textStyles" :value="$value" :text="$text" :subtext="$subtext" />
     </div>
 
     <div x-show="value === '{{ $value }}'"

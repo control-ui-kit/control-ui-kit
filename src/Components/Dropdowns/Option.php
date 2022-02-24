@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class Option extends Component
 {
-    protected string $component = 'dropdown.option';
+    protected string $component = 'dropdown-option';
 
     public ?string $url;
 

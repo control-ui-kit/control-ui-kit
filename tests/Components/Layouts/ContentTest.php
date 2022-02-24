@@ -27,9 +27,9 @@ class ContentTest extends ComponentTestCase
     public function a_layout_content_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-layout.content>
+            <x-layout-content>
                 Content html
-            </x-layout.content>
+            </x-layout-content>
             HTML;
 
         $expected = <<<'HTML'
@@ -44,9 +44,9 @@ class ContentTest extends ComponentTestCase
     public function a_layout_content_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.content background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
+            <x-layout-content background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Content html
-            </x-layout.content>
+            </x-layout-content>
             HTML;
 
         $expected = <<<'HTML'
@@ -61,9 +61,9 @@ class ContentTest extends ComponentTestCase
     public function a_layout_content_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.content background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
+            <x-layout-content background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
                 Content html
-            </x-layout.content>
+            </x-layout-content>
             HTML;
 
         $expected = <<<'HTML'

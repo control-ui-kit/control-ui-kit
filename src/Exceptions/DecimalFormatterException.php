@@ -20,10 +20,10 @@ class DecimalFormatterException extends Exception implements ProvidesSolution
         $title = 'Missing Decimal Precision';
 
         $markdown = <<<MARKDOWN
-        If you wish to format a decimal in an `<x-table.cell>` component you must also provide the number of the
+        If you wish to format a decimal in an `<x-table-cell>` component you must also provide the number of the
         decimal places you wish the value to be rounded to like so:
 
-        > `<x-table.cell :value="\$number" format="decimal:2" />`
+        > `<x-table-cell :value="\$number" format="decimal:2" />`
         MARKDOWN;
 
         return $this->solution($title, $markdown);

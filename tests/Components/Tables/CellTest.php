@@ -80,7 +80,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell />
+            <x-table-cell />
             HTML;
 
         $expected = <<<'HTML'
@@ -94,7 +94,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.cell align="none"
+            <x-table-cell align="none"
                           background="none"
                           border="none"
                           color="none"
@@ -116,7 +116,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.cell align="0"
+            <x-table-cell align="0"
                           background="1"
                           border="2"
                           color="3"
@@ -138,7 +138,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_shorthand_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell left>::Some Data</x-table.cell>
+            <x-table-cell left>::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -152,7 +152,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_attribute_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell align="left">::Some Data</x-table.cell>
+            <x-table-cell align="left">::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -166,7 +166,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_shorthand_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell right>::Some Data</x-table.cell>
+            <x-table-cell right>::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -180,7 +180,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_attribute_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell align="right">::Some Data</x-table.cell>
+            <x-table-cell align="right">::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -194,7 +194,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_shorthand_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell center>::Some Data</x-table.cell>
+            <x-table-cell center>::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -208,7 +208,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_align_attribute_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.cell align="center">::Some Data</x-table.cell>
+            <x-table-cell align="center">::Some Data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -222,7 +222,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_data_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="::some data" />
+            <x-table-cell data="::some data" />
             HTML;
 
         $expected = <<<'HTML'
@@ -236,7 +236,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_2(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="2.0312" format="decimal:2" />
+            <x-table-cell data="2.0312" format="decimal:2" />
             HTML;
 
         $expected = <<<'HTML'
@@ -250,7 +250,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_8(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="2323.0312324323423" format="decimal:8" />
+            <x-table-cell data="2323.0312324323423" format="decimal:8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -264,7 +264,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="12.0912" format="currency" />
+            <x-table-cell data="12.0912" format="currency" />
             HTML;
 
         $expected = <<<'HTML'
@@ -278,7 +278,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="12.0912" prefix="::prefix" />
+            <x-table-cell data="12.0912" prefix="::prefix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -292,7 +292,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="12.0912" suffix="::suffix" />
+            <x-table-cell data="12.0912" suffix="::suffix" />
             HTML;
 
         $expected = <<<'HTML'
@@ -306,7 +306,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_currency_formatting_and_symbol(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="12.0912" format="currency" prefix="£" />
+            <x-table-cell data="12.0912" format="currency" prefix="£" />
             HTML;
 
         $expected = <<<'HTML'
@@ -321,7 +321,7 @@ class CellTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $date = null; @endphp
-            <x-table.cell :data="$date" format="date" />
+            <x-table-cell :data="$date" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -335,7 +335,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="2021-03-09 15:16:17" format="date:d/m/Y" />
+            <x-table-cell data="2021-03-09 15:16:17" format="date:d/m/Y" />
             HTML;
 
         $expected = <<<'HTML'
@@ -349,7 +349,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="2021-03-09 15:16:17" format="date:mdY" />
+            <x-table-cell data="2021-03-09 15:16:17" format="date:mdY" />
             HTML;
 
         $expected = <<<'HTML'
@@ -363,7 +363,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_can_be_rendered_with_default_date_formatting(): void
     {
         $template = <<<'HTML'
-            <x-table.cell data="2021-03-09 15:16:17" format="date" />
+            <x-table-cell data="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -379,7 +379,7 @@ class CellTest extends ComponentTestCase
         Config::set('app.locale', 'en_US');
 
         $template = <<<'HTML'
-            <x-table.cell data="2021-03-09 15:16:17" format="date" />
+            <x-table-cell data="2021-03-09 15:16:17" format="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -394,7 +394,7 @@ class CellTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             @php $date = now()->subHours(2); @endphp
-            <x-table.cell :data="$date" format="date:diff" />
+            <x-table-cell :data="$date" format="date:diff" />
             HTML;
 
         $expected = <<<'HTML'
@@ -408,7 +408,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_has_hyperlink_around_data(): void
     {
         $template = <<<'HTML'
-            <x-table.cell href="http://example.com">::data</x-table.cell>
+            <x-table-cell href="http://example.com">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -424,7 +424,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_target_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell href="http://example.com" target="_blank">::data</x-table.cell>
+            <x-table-cell href="http://example.com" target="_blank">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -440,7 +440,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_text_align_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell href="http://example.com" right>::data</x-table.cell>
+            <x-table-cell href="http://example.com" right>::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -456,7 +456,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_custom_href_color_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell href="http://example.com" href-color="custom-color">::data</x-table.cell>
+            <x-table-cell href="http://example.com" href-color="custom-color">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -472,7 +472,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_icon_and_custom_icon_styles_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell icon="icon.dot" icon-size="custom-size" />
+            <x-table-cell icon="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -490,8 +490,8 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_icon_and_icon_styles_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell
-                icon="icon.dot"
+            <x-table-cell
+                icon="icon-dot"
                 icon-background="custom-background"
                 icon-border="custom-border"
                 icon-color="custom-color"
@@ -518,7 +518,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_icon_and_href_and_alignment_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell icon="icon.dot" href="http://example.com/testing" right icon-size="::size" />
+            <x-table-cell icon="icon-dot" href="http://example.com/testing" right icon-size="::size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -538,7 +538,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_image_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell image="http://example.com/testing.jpg" image-alt="::alt" />
+            <x-table-cell image="http://example.com/testing.jpg" image-alt="::alt" />
             HTML;
 
         $expected = <<<'HTML'
@@ -554,7 +554,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_image_and_custom_image_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell
+            <x-table-cell
                 image="http://example.com/testing.jpg"
                 image-border="custom-border"
                 image-other="custom-other"
@@ -578,7 +578,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_image_and_no_image_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell
+            <x-table-cell
                 image="http://example.com/testing.jpg"
                 image-border="none"
                 image-other="none"
@@ -602,7 +602,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_pill_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill> :: pill </x-table.cell>
+            <x-table-cell pill> :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -616,7 +616,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_pill_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill data=":: pill" />
+            <x-table-cell pill data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -630,7 +630,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_default_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="default" > :: pill </x-table.cell>
+            <x-table-cell pill="default" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -644,7 +644,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_default_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="default" data=":: pill" />
+            <x-table-cell pill="default" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -658,7 +658,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_brand_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="brand" > :: pill </x-table.cell>
+            <x-table-cell pill="brand" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -672,7 +672,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_brand_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="brand" data=":: pill" />
+            <x-table-cell pill="brand" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -686,7 +686,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_danger_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="danger" > :: pill </x-table.cell>
+            <x-table-cell pill="danger" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -700,7 +700,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_danger_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="danger" data=":: pill" />
+            <x-table-cell pill="danger" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -714,7 +714,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_info_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="info" > :: pill </x-table.cell>
+            <x-table-cell pill="info" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -728,7 +728,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_info_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="info" data=":: pill" />
+            <x-table-cell pill="info" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -742,7 +742,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_muted_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="muted" > :: pill </x-table.cell>
+            <x-table-cell pill="muted" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -756,7 +756,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_muted_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="muted" data=":: pill" />
+            <x-table-cell pill="muted" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -770,7 +770,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_success_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="success" > :: pill </x-table.cell>
+            <x-table-cell pill="success" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -784,7 +784,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_success_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="success" data=":: pill" />
+            <x-table-cell pill="success" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -798,7 +798,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_warning_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="warning" > :: pill </x-table.cell>
+            <x-table-cell pill="warning" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -812,7 +812,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_warning_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="warning" data=":: pill" />
+            <x-table-cell pill="warning" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -829,7 +829,7 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.pill.custom.color', 'pill-color-custom');
 
         $template = <<<'HTML'
-            <x-table.cell pill="custom" > :: pill </x-table.cell>
+            <x-table-cell pill="custom" > :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -846,7 +846,7 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.pill.custom.color', 'pill-color-custom');
 
         $template = <<<'HTML'
-            <x-table.cell pill="custom" data=":: pill" />
+            <x-table-cell pill="custom" data=":: pill" />
             HTML;
 
         $expected = <<<'HTML'
@@ -863,7 +863,7 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.pill.new-release.color', 'pill-color-new-release');
 
         $template = <<<'HTML'
-            <x-table.cell pill="New Release" />
+            <x-table-cell pill="New Release" />
             HTML;
 
         $expected = <<<'HTML'
@@ -877,7 +877,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_pill_and_href_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="warning" href="https://example.com">:: warning</x-table.cell>
+            <x-table-cell pill="warning" href="https://example.com">:: warning</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -893,7 +893,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_pill_and_custom_inline_pill_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="warning"
+            <x-table-cell pill="warning"
                           pill-background="1"
                           pill-border="2"
                           pill-color="3"
@@ -901,7 +901,7 @@ class CellTest extends ComponentTestCase
                           pill-other="5"
                           pill-padding="6"
                           pill-rounded="7"
-                          pill-shadow="8"> :: pill </x-table.cell>
+                          pill-shadow="8"> :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
@@ -915,7 +915,7 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_pill_and_inline_pill_styles_set_to_none_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table.cell pill="warning"
+            <x-table-cell pill="warning"
                           pill-background="none"
                           pill-border="none"
                           pill-color="none"
@@ -923,7 +923,7 @@ class CellTest extends ComponentTestCase
                           pill-other="none"
                           pill-padding="none"
                           pill-rounded="none"
-                          pill-shadow="none"> :: pill </x-table.cell>
+                          pill-shadow="none"> :: pill </x-table-cell>
             HTML;
 
         $expected = <<<'HTML'

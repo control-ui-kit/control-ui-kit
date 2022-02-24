@@ -27,7 +27,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" />
+            <x-input-date-range name="date" />
             HTML;
 
         $expected = <<<'HTML'
@@ -76,7 +76,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-date-range name="date" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -125,7 +125,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input-date-range name="date" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -174,7 +174,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="21/08/2039" />
+            <x-input-date-range name="date" value="21/08/2039" />
             HTML;
 
         $expected = <<<'HTML'
@@ -223,7 +223,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_plugins_disabled(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" keyboard-navigation="false" mobile-friendly="false" />
+            <x-input-date-range name="date" value="01/01/2020" keyboard-navigation="false" mobile-friendly="false" />
             HTML;
 
         $expected = <<<'HTML'
@@ -272,7 +272,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_plugins_enabled(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" predefined-ranges />
+            <x-input-date-range name="date" value="01/01/2020" predefined-ranges />
             HTML;
 
         $expected = <<<'HTML'
@@ -321,7 +321,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_first_day_changed(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" first-day="4" />
+            <x-input-date-range name="date" value="01/01/2020" first-day="4" />
             HTML;
 
         $expected = <<<'HTML'
@@ -370,7 +370,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_min_and_max_dates_added(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" start="01/01/2019" end="01/01/2021" />
+            <x-input-date-range name="date" value="01/01/2020" start="01/01/2019" end="01/01/2021" />
             HTML;
 
         $expected = <<<'HTML'
@@ -422,7 +422,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_language_changed(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" lang="ru" />
+            <x-input-date-range name="date" value="01/01/2020" lang="ru" />
             HTML;
 
         $expected = <<<'HTML'
@@ -471,7 +471,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_reset_button_enabled(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" reset />
+            <x-input-date-range name="date" value="01/01/2020" reset />
             HTML;
 
         $expected = <<<'HTML'
@@ -520,7 +520,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_tooltip_enabled(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" tooltip />
+            <x-input-date-range name="date" value="01/01/2020" tooltip />
             HTML;
 
         $expected = <<<'HTML'
@@ -569,7 +569,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_will_render_with_modified_columns_and_months(): void
     {
         $template = <<<'HTML'
-            <x-input.date-range name="date" value="01/01/2020" columns="3" months="6" />
+            <x-input-date-range name="date" value="01/01/2020" columns="3" months="6" />
             HTML;
 
         $expected = <<<'HTML'

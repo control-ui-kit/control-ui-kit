@@ -55,7 +55,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_prefix_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed prefix>::slot data</x-input.embed>
+            <x-input-embed prefix>::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -69,7 +69,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_prefix_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed prefix background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">::slot data</x-input.embed>
+            <x-input-embed prefix background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -83,7 +83,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_prefix_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed prefix background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">::slot data</x-input.embed>
+            <x-input-embed prefix background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -97,7 +97,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_suffix_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed suffix>::slot data</x-input.embed>
+            <x-input-embed suffix>::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -111,7 +111,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_suffix_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed suffix background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">::slot data</x-input.embed>
+            <x-input-embed suffix background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -125,7 +125,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_suffix_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed suffix background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">::slot data</x-input.embed>
+            <x-input-embed suffix background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">::slot data</x-input-embed>
             HTML;
 
         $expected = <<<'HTML'
@@ -139,7 +139,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-left icon="icon.dot" />
+            <x-input-embed icon-left icon="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -157,7 +157,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_left_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-left icon="icon.dot" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-embed icon-left icon="icon-dot" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -175,7 +175,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_left_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-left icon="icon.dot" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input-embed icon-left icon="icon-dot" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -194,7 +194,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_left_with_custom_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-left icon="icon.dot" icon-size="custom-size" />
+            <x-input-embed icon-left icon="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -212,7 +212,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-right icon="icon.dot" />
+            <x-input-embed icon-right icon="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
@@ -230,7 +230,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_right_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-right icon="icon.dot" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-embed icon-right icon="icon-dot" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -248,7 +248,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_right_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-right icon="icon.dot" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
+            <x-input-embed icon-right icon="icon-dot" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -266,7 +266,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_right_with_custom_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-right icon="icon.dot" icon-size="custom-size" />
+            <x-input-embed icon-right icon="icon-dot" icon-size="custom-size" />
             HTML;
 
         $expected = <<<'HTML'
@@ -284,7 +284,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_icon_right_can_be_rendered_with_bulk_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon-left icon="icon.dot" :styles="[
+            <x-input-embed icon-left icon="icon-dot" :styles="[
                 'background' => '1',
                 'border' => '2',
                 'color' => '3',
@@ -312,7 +312,7 @@ class EmbedTest extends ComponentTestCase
     public function an_input_embed_component_throws_an_exception_if_embed_type_not_set(): void
     {
         $template = <<<'HTML'
-            <x-input.embed icon="icon.dot" />
+            <x-input-embed icon="icon-dot" />
             HTML;
 
         $this->expectException(ViewException::class);

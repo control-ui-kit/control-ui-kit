@@ -41,7 +41,7 @@ class IconsTest extends ComponentTestCase
     public function an_icon_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-icon.add background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" size="8" />
+            <x-icon-add background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" size="8" />
             HTML;
 
         $expected = <<<'HTML'
@@ -57,7 +57,7 @@ class IconsTest extends ComponentTestCase
     public function an_icon_component_can_be_rendered_with_custom_size(): void
     {
         $template = <<<'HTML'
-            <x-icon.add size="w-2 h-2" />
+            <x-icon-add size="w-2 h-2" />
             HTML;
 
         $expected = <<<'HTML'
@@ -83,7 +83,7 @@ class IconsTest extends ComponentTestCase
                 'shadow' => 'custom-shadow',
                 'size' => 'custom-size',
             ]; @endphp
-            <x-icon.add :styles="$styles" />
+            <x-icon-add :styles="$styles" />
             HTML;
 
         $expected = <<<'HTML'

@@ -22,7 +22,7 @@ class ActiveFilterTest extends ComponentTestCase
         Config::set('themes.default.table-active-filter.rounded', 'rounded');
         Config::set('themes.default.table-active-filter.shadow', 'shadow');
 
-        Config::set('themes.default.table-active-filter.icon', 'icon.close');
+        Config::set('themes.default.table-active-filter.icon', 'icon-close');
         Config::set('themes.default.table-active-filter.icon-background', 'icon-background');
         Config::set('themes.default.table-active-filter.icon-border', 'icon-border');
         Config::set('themes.default.table-active-filter.icon-color', 'icon-color');
@@ -37,7 +37,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label" />
+            <x-table-active-filter name="::name" label="::label" />
             HTML;
 
         $expected = <<<'HTML'
@@ -58,7 +58,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label"
+            <x-table-active-filter name="::name" label="::label"
                  background="none"
                  border="none"
                  color="none"
@@ -88,7 +88,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label"
+            <x-table-active-filter name="::name" label="::label"
                 background="custom-background"
                 border="custom-border"
                 color="custom-color"
@@ -118,7 +118,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label"
+            <x-table-active-filter name="::name" label="::label"
                  icon-background="none"
                  icon-border="none"
                  icon-color="none"
@@ -148,7 +148,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered_with_inline_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label"
+            <x-table-active-filter name="::name" label="::label"
                 icon-background="custom-background"
                 icon-border="custom-border"
                 icon-color="custom-color"
@@ -178,7 +178,7 @@ class ActiveFilterTest extends ComponentTestCase
     public function a_table_active_filter_component_can_be_rendered_with_custom_icon(): void
     {
         $template = <<<'HTML'
-            <x-table.active-filter name="::name" label="::label" icon="icon.dot" />
+            <x-table-active-filter name="::name" label="::label" icon="icon-dot" />
             HTML;
 
         $expected = <<<'HTML'
