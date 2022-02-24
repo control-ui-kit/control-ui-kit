@@ -5,10 +5,13 @@
             "fromConfig": [
                 {
                     "file": "config/control-ui-kit.php",
-                    "fallbackFile": "config/control-ui-kit.php",
                     "key": "components",
-                    "prefixKey": "prefix",
-                    "namespaceKey": "namespace"
+                    "prefixKey": "prefix"
+                },
+                {
+                    "file": "config/control-ui-kit.php",
+                    "key": "icons",
+                    "prefixKey": "prefix"
                 }
             ]
         }
