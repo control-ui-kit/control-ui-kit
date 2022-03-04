@@ -6,16 +6,24 @@ const theme = {
         'header': 'var(--header-bg)',
         'header-hover': 'var(--header-bg-hover)',
         'footer': 'var(--footer-bg)',
+
         'nav-bar': 'var(--nav-bar-bg)',
         'nav-bar-hover': 'var(--nav-bar-bg-hover)',
-        'nav-option': 'var(--nav-option-bg)',
-        'nav-option-hover': 'var(--nav-option-bg-hover)',
-        'nav-profile-header': 'var(--nav-profile-header-bg)',
-        'toolbar': 'var(--toolbar-bg)',
+        'nav-bar-option': 'var(--nav-bar-option-bg)',
+        'nav-bar-option-hover': 'var(--nav-bar-option-bg-hover)',
+        'nav-bar-selected': 'var(--nav-bar-selected-bg)',
+        'nav-bar-selected-hover': 'var(--nav-bar-selected-bg-hover)',
 
         'nav-side': 'var(--nav-side-bg)',
+        'nav-side-hover': 'var(--nav-side-bg-hover)',
         'nav-side-option': 'var(--nav-side-option-bg)',
-        'nav-side-option-hover': 'var(--nav-side-option-hover-bg)',
+        'nav-side-option-hover': 'var(--nav-side-option-bg-hover)',
+        'nav-side-selected': 'var(--nav-side-selected-bg)',
+        'nav-side-selected-hover': 'var(--nav-side-selected-bg-hover)',
+
+        'nav-profile-header': 'var(--nav-profile-header-bg)',
+
+        'toolbar': 'var(--toolbar-bg)',
 
         'alert-brand': 'var(--alert-brand-bg)',
         'alert-default': 'var(--alert-default-bg)',
@@ -80,9 +88,13 @@ const theme = {
         'header': 'var(--header-border)',
         'footer': 'var(--footer-border)',
 
-        'nav': 'var(--nav-border)',
-        'nav-divider': 'var(--nav-divider)',
-        'nav-avatar': 'var(--nav-avatar-border)',
+        'nav-bar': 'var(--nav-bar-border)',
+        'nav-bar-divider': 'var(--nav-bar-divider)',
+
+        'nav-side': 'var(--nav-side-border)',
+        'nav-side-divider': 'var(--nav-side-divider)',
+
+        'nav-profile-avatar': 'var(--nav-avatar-border)',
 
         'toolbar': 'var(--toolbar-border)',
 
@@ -247,12 +259,22 @@ const theme = {
 
         'nav-bar': 'var(--nav-bar)',
         'nav-bar-hover': 'var(--nav-bar-hover)',
-        'nav-option': 'var(--nav-option)',
-        'nav-option-hover': 'var(--nav-option-hover)',
-        'nav-icon': 'var(--nav-icon)',
-        'nav-icon-hover': 'var(--nav-icon-hover)',
+        'nav-bar-muted': 'var(--nav-bar-muted)',
+        'nav-bar-option': 'var(--nav-bar-option)',
+        'nav-bar-option-hover': 'var(--nav-bar-option-hover)',
+        'nav-bar-icon': 'var(--nav-bar-icon)',
+        'nav-bar-icon-hover': 'var(--nav-bar-icon-hover)',
+
+        'nav-side': 'var(--nav-side)',
+        'nav-side-hover': 'var(--nav-side-hover)',
+        'nav-side-muted': 'var(--nav-side-muted)',
+        'nav-side-option': 'var(--nav-side-option)',
+        'nav-side-option-hover': 'var(--nav-side-option-hover)',
+        'nav-side-icon': 'var(--nav-side-icon)',
+        'nav-side-icon-hover': 'var(--nav-side-icon-hover)',
+
         'nav-profile': 'var(--nav-profile)',
-        'nav-muted': 'var(--nav-muted)',
+
         'toolbar': 'var(--toolbar)',
 
         'alert-brand-icon': 'var(--alert-brand-icon)',

@@ -1,1 +1,1 @@
-<div class="border-b border-nav-divider"></div>
+<div class="border-b border-nav-bar-divider"></div>

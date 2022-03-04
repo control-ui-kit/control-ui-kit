@@ -409,7 +409,7 @@ return [
     ],
 
     'dropdown-menu' => [
-        'background' => 'bg-nav-option',
+        'background' => 'bg-nav-bar-option',
         'border' => 'border border-nav',
         'color' => '',
         'font' => '',
