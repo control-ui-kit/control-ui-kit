@@ -410,7 +410,7 @@ return [
 
     'dropdown-menu' => [
         'background' => 'bg-nav-bar-option',
-        'border' => 'border border-nav',
+        'border' => 'border border-nav-bar',
         'color' => '',
         'font' => '',
         'other' => 'absolute flex flex-col z-50',

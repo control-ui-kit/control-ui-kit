@@ -1,5 +1,6 @@
 const theme = {
     backgroundColor: {
+
         'login': 'var(--login-bg)',
         'login-input': 'var(--login-bg)',
         'app': 'var(--app-bg)',
@@ -79,6 +80,7 @@ const theme = {
         'modal-blur': 'var(--modal-blur-bg)',
         'modal-header': 'var(--modal-header-bg)',
         'modal-footer': 'var(--modal-footer-bg)',
+
     },
     borderColor: {
 
@@ -90,9 +92,13 @@ const theme = {
 
         'nav-bar': 'var(--nav-bar-border)',
         'nav-bar-divider': 'var(--nav-bar-divider)',
+        'nav-bar-option': 'var(--nav-bar-option-border)',
+        'nav-bar-option-hover': 'var(--nav-bar-option-border-hover)',
 
         'nav-side': 'var(--nav-side-border)',
         'nav-side-divider': 'var(--nav-side-divider)',
+        'nav-side-option': 'var(--nav-side-option-border)',
+        'nav-side-option-hover': 'var(--nav-side-option-border-hover)',
 
         'nav-profile-avatar': 'var(--nav-avatar-border)',
 
@@ -132,6 +138,7 @@ const theme = {
         'input-focus': 'var(--input-focus-border)',
 
         'modal': 'var(--modal-border)',
+
     },
     colors: {
 
@@ -221,12 +228,16 @@ const theme = {
         'chart-700': 'var(--chart-700)',
         'chart-800': 'var(--chart-800)',
         'chart-900': 'var(--chart-900)',
+
     },
     ringColor: {
+
         'brand': 'var(--brand)',
         'input': 'var(--input)',
+
     },
     textColor: {
+
         'login': 'var(--login)',
         'login-input': 'var(--login-input)',
         'login-link': 'var(--login-link)',
@@ -359,6 +370,7 @@ const theme = {
 
         'modal': 'var(--modal)',
         'modal-muted': 'var(--modal-muted)',
+
     }
 }
 
