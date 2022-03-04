@@ -64,7 +64,7 @@ class ErrorBagTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background danger-background border danger-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="danger-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -98,7 +98,7 @@ class ErrorBagTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="custom-background border default-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="custom-color icon-size fill-current" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.5 10.5C4.32843 10.5 5 9.82843 5 9s-.67157-1.5-1.5-1.5S2 8.17157 2 9s.67157 1.5 1.5 1.5zM9 10.5c.82843 0 1.5-.67157 1.5-1.5S9.82843 7.5 9 7.5 7.5 8.17157 7.5 9s.67157 1.5 1.5 1.5zM14.5 10.5c.8284 0 1.5-.67157 1.5-1.5s-.6716-1.5-1.5-1.5S13 8.17157 13 9s.6716 1.5 1.5 1.5z"/>
                             </svg>

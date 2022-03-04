@@ -196,7 +196,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background brand-background border brand-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="brand-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -226,7 +226,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background danger-background border danger-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="danger-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -256,7 +256,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background info-background border info-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="info-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -286,7 +286,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background success-background border success-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="success-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -316,7 +316,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background muted-background border muted-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="muted-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -346,7 +346,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background warning-background border warning-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="warning-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -490,7 +490,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="custom-color custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -517,7 +517,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>

@@ -183,7 +183,6 @@ class Select extends Component
             'button-width' => $buttonWidth,
         ]);
 
-
         $this->setConfigStyles([
             'check-background' => $checkBackground,
             'check-border' => $checkBorder,

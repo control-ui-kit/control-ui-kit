@@ -1,7 +1,7 @@
 <div {{ $attributes->merge($classes()) }}>
     <div class="flex">
         @if ($icon)
-        <div class="flex-shrink-0 mr-3">
+        <div class="shrink-0 mr-3">
             <x-dynamic-component :component="$icon" :size="$iconSize" :color="$iconColor" />
         </div>
         @endif

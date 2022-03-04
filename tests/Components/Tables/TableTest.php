@@ -1485,7 +1485,7 @@ class TableTest extends ComponentTestCase
 //            >
 //                <div @click.away="onClickAway()" @click.stop="onClickAway()">
 //                    <div class="search-bar-spacing search-bar">
-//                        <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
+//                        <div class="w-full sm:shrink-0" x-ref="search" @click="open = false">
 //                            <form method="GET" action="http://localhost" name="search-form-name" id="search-form-name">
 //                                <div class="search-wrapper-background search-wrapper-border search-wrapper-color search-wrapper-font search-wrapper-other search-wrapper-padding search-wrapper-rounded search-wrapper-shadow search-wrapper-width">
 //                                    <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
