@@ -94,11 +94,15 @@ const theme = {
         'nav-bar-divider': 'var(--nav-bar-divider)',
         'nav-bar-option': 'var(--nav-bar-option-border)',
         'nav-bar-option-hover': 'var(--nav-bar-option-border-hover)',
+        'nav-bar-selected': 'var(--nav-bar-selected-border)',
+        'nav-bar-selected-hover': 'var(--nav-bar-selected-border-hover)',
 
         'nav-side': 'var(--nav-side-border)',
         'nav-side-divider': 'var(--nav-side-divider)',
         'nav-side-option': 'var(--nav-side-option-border)',
         'nav-side-option-hover': 'var(--nav-side-option-border-hover)',
+        'nav-side-selected': 'var(--nav-side-selected-border)',
+        'nav-side-selected-hover': 'var(--nav-side-selected-border-hover)',
 
         'nav-profile-avatar': 'var(--nav-avatar-border)',
 
