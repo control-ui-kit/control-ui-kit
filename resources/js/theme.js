@@ -104,7 +104,7 @@ const theme = {
         'nav-side-selected': 'var(--nav-side-selected-border)',
         'nav-side-selected-hover': 'var(--nav-side-selected-border-hover)',
 
-        'nav-profile-avatar': 'var(--nav-avatar-border)',
+        'nav-profile-avatar': 'var(--nav-profile-avatar-border)',
 
         'toolbar': 'var(--toolbar-border)',
 
