@@ -15,9 +15,9 @@ class Change extends Component
     protected string $component = 'change-chart';
 
     public string $title;
-    public ?string $current;
-    public ?string $previous;
-    public ?string $decimals;
+    public ?float $current;
+    public ?float $previous;
+    public ?int $decimals;
     public ?string $link;
     public ?string $linkText;
     public ?string $icon;
@@ -47,9 +47,9 @@ class Change extends Component
 
     public function __construct(
         string $title,
-        string $current = null,
-        string $previous = null,
-        string $decimals = null,
+        float $current = null,
+        float $previous = null,
+        int $decimals = null,
         string $link = null,
         string $linkText = null,
         string $icon = null,
@@ -174,7 +174,7 @@ class Change extends Component
         $this->title = $title;
         $this->current = $current;
         $this->previous = $previous;
-        $this->decimals = $this->style($this->component, 'decimals', $decimals);
+        $this->decimals = (int) $this->style($this->component, 'decimals', (string) $decimals);
         $this->link = $link;
         $this->linkText = $linkText;
         $this->icon = $icon;
@@ -375,7 +375,7 @@ class Change extends Component
         }
 
         if ($this->displayPercent === "true") {
-            return abs($this->percentage($this->current, $this->previous, $this->decimals)) . '%';
+            return abs((float) $this->percentage($this->current, $this->previous, $this->decimals)) . '%';
         }
 
         return number_format($this->previous - $this->current, (int)$this->decimals);

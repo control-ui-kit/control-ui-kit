@@ -4,6 +4,8 @@
         hasSearch: {{ $showSearch() ? 'true' : 'false' }},
         withFilters: '{{ $tableWrapperWithFilters() }}',
         withoutFilters: '{{ $tableWrapperWithoutFilters() }}',
+        orderby: '{{ $orderby }}',
+        sort: '{{ $sort }}',
       })"
      x-on:resize.window="resizeFilters()"
      x-on:resize.window="resizeFilters()"
@@ -31,9 +33,14 @@
                                    id="{{ $searchId }}"
                                    value="{{ $search }}"
                                    placeholder="{{ $searchPlaceholder }}"
+                                   @if ($wireSearch)
+                                   wire:model.debounce.500ms="search"
+                                   wire:keydown.prevent.enter=""
+                                   @else
                                    onchange="document.search.submit();"
+                                   @endif
                                    class="{{ $searchInputClasses() }}"
-                                   {{ $attributes->whereStartsWith('wire:model') }}
+                                   {{ $attributes->whereStartsWith('wire:') }}
                             />
                         </div>
                     </x-form>
@@ -69,7 +76,6 @@
 
         @if(isset($active) && $active->isNotEmpty())
             <div class="{{ $activeFilterWrapperClasses() }}">
-
                 <div class="{{ $activeFilterListClasses() }}" x-ref="active">
                     {{ $active }}
                 </div>

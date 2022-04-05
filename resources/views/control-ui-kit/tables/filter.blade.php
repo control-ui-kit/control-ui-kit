@@ -1,4 +1,4 @@
-<div class="{{ $wrapperClasses('table-filter') }}" data-ref="{{ $buttonRef() }}" data-priority="{{ $priority }}"  data-label="{{ $label }}">
+<div class="{{ $wrapperClasses('table-filter') }}" data-ref="{{ $buttonRef() }}" data-priority="{{ $priority }}" data-label="{{ $label }}">
 
     <button type="button"
             {{ $attributes->merge($classes()) }}

@@ -92,7 +92,7 @@ $chart-900: #E09FE1;
     --nav-profile                  : #{$gray-800};       // text *
     --nav-bar-muted                : #{$gray-600};       // text *
     --nav-profile-header-bg        : #{$gray-50};        // bg *
-    --nav-avatar-border            : #{$gray-200};       // border *
+    --nav-profile-avatar-border            : #{$gray-200};       // border *
 
     /* Tool Bar */
     --toolbar                      : #{$gray-800};       // text
@@ -204,7 +204,7 @@ $chart-900: #E09FE1;
     --nav-profile                  : #{$gray-800};       // text
     --nav-bar-muted                : #{$gray-500};       // text
     --nav-profile-header-bg        : #{$gray-950};       // bg
-    --nav-avatar-border            : #{$gray-200};       // border
+    --nav-profile-avatar-border            : #{$gray-200};       // border
 
     /* Tool Bar */
     --toolbar                      : #{$white};          // text

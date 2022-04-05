@@ -23,6 +23,10 @@ class Table extends Component
     public ?string $search;
     private ?bool $showSearch;
     private ?bool $hideSearch;
+    public ?bool $wireSearch;
+
+    public ?string $orderby;
+    public ?string $sort = 'asc';
 
     public string $searchBar;
     public string $searchBarSpacing;
@@ -191,6 +195,10 @@ class Table extends Component
         string $search = null,
         bool $hideSearch = null,
         bool $showSearch = null,
+        bool $wireSearch = null,
+
+        string $orderby = null,
+        string $sort = null,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
@@ -356,7 +364,11 @@ class Table extends Component
 
         $this->showSearch = $showSearch;
         $this->hideSearch = $hideSearch;
-        $this->search = is_null($search) ? request('search') : null;
+        $this->wireSearch = $wireSearch;
+
+        if ($wireSearch) {
+            $this->showSearch = true;
+        }
 
         $this->searchBar = $this->style($this->component, 'search-bar', $searchBar);
         $this->searchBarSpacing = $this->style($this->component, 'search-bar-spacing', $searchBarSpacing);
@@ -370,6 +382,11 @@ class Table extends Component
         $this->clearFiltersEvent = $this->style($this->component, 'clear-filters-event', $clearFiltersEvent);
         $this->clearFiltersHref = $this->style($this->component, 'clear-filters-href', $clearFiltersHref);
         $this->clearFiltersText = $this->style($this->component, 'clear-filters-text', $clearFiltersText);
+
+        $this->sort = $sort ?: request($this->style('table-heading', 'field-sort', $sort));
+        $this->orderby = $orderby ?: request($this->style('table-heading', 'field-order', $orderby));
+
+        $this->search = is_null($search) ? request('search') : null;
     }
 
     public function render()

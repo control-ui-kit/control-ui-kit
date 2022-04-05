@@ -107,6 +107,8 @@ window.Components = {
             value: null,
             search: null,
             filters: [],
+            orderby: null,
+            sort: null,
             activeIndex: 0,
             highlightIndex: 0,
             activeDescendant: null,
@@ -263,6 +265,15 @@ window.Components = {
             onArrowDown() {
                 this.activeIndex = this.activeIndex + 1 > this.optionCount - 1 ? 0 : this.activeIndex + 1
                 this.$refs['listbox-' + this.open].children[this.activeIndex].scrollIntoView({ block: 'nearest' })
+            },
+            sortBy(field) {
+                if (field === this.orderby) {
+                    this.sort = this.sort === 'asc' ? 'desc' : 'asc'
+                } else {
+                    this.sort = 'asc'
+                }
+
+                this.orderby = field
             },
             sortByPriority(a, b) {
                 if (a.priority > b.priority){
