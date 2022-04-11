@@ -13,23 +13,27 @@ class Pagination extends Component
     use UseThemeFile;
 
     protected string $component = 'table-pagination';
-    public LengthAwarePaginator $paginator;
+    public LengthAwarePaginator $rowData;
 
     public string $iconNext;
     public string $iconPrevious;
     public string $iconSize;
-    public int $pageLimit;
+    public int $limit;
     public bool $showAlways;
     public int $eachSide;
+    public bool $wire = false;
 
     public array $buttonStyles;
     public array $buttonActiveStyles;
     public array $buttonDisabledStyles;
+    public array $pageNumberStyles;
+
+    private array $limitStyles;
     private array $resultsStyles;
     private array $wrapperStyles;
 
     public function __construct(
-        LengthAwarePaginator $data,
+        LengthAwarePaginator $rows,
 
         string $iconNext = null,
         string $iconPrevious = null,
@@ -38,11 +42,15 @@ class Pagination extends Component
 
         bool $showAlways = null,
         int $eachSide = null,
+        bool $wire = false,
+
+        string $buttonContainer = null,
+        string $buttonNumbers = null,
+        string $buttonSpacing = null,
 
         string $buttonBackground = null,
         string $buttonBorder = null,
         string $buttonColor = null,
-        string $buttonContainer = null,
         string $buttonFont = null,
         string $buttonOther = null,
         string $buttonPadding = null,
@@ -70,6 +78,16 @@ class Pagination extends Component
         string $buttonDisabledShadow = null,
         string $buttonDisabledWidth = null,
 
+        string $limitBackground = null,
+        string $limitBorder = null,
+        string $limitColor = null,
+        string $limitFont = null,
+        string $limitOther = null,
+        string $limitPadding = null,
+        string $limitRounded = null,
+        string $limitShadow = null,
+        string $limitWidth = null,
+
         string $resultsBackground = null,
         string $resultsBorder = null,
         string $resultsColor = null,
@@ -88,13 +106,14 @@ class Pagination extends Component
         string $wrapperRounded = null,
         string $wrapperShadow = null
     ) {
-        $this->paginator = $data;
+        $this->rowData = $rows;
         $this->iconNext = $this->style($this->component, 'icon-next', $iconNext);
         $this->iconPrevious = $this->style($this->component, 'icon-previous', $iconPrevious);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
-        $this->pageLimit = (int) $limit;
-        $this->showAlways = (bool) $this->style($this->component, 'show-always', $showAlways);
-        $this->eachSide = (int) $this->style($this->component, 'each-side', $eachSide);
+        $this->limit = (int)$this->style($this->component, 'limit', $limit);
+        $this->showAlways = (bool)$this->style($this->component, 'show-always', $showAlways);
+        $this->eachSide = (int)$this->style($this->component, 'each-side', $eachSide);
+        $this->wire = $wire;
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -106,8 +125,14 @@ class Pagination extends Component
             'button-padding' => $buttonPadding,
             'button-rounded' => $buttonRounded,
             'button-shadow' => $buttonShadow,
+            'button-spacing' => $buttonSpacing,
             'button-width' => $buttonWidth,
         ], [], null, 'buttonStyles');
+
+        $this->setConfigStyles([
+            'button-numbers' => $buttonNumbers,
+            'button-spacing' => $buttonSpacing,
+        ], [], null, 'pageNumberStyles');
 
         $this->setConfigStyles([
             'button-active-background' => $buttonActiveBackground,
@@ -132,6 +157,18 @@ class Pagination extends Component
             'button-disabled-shadow' => $buttonDisabledShadow,
             'button-disabled-width' => $buttonDisabledWidth,
         ], [], null, 'buttonDisabledStyles');
+
+        $this->setConfigStyles([
+            'limit-background' => $limitBackground,
+            'limit-border' => $limitBorder,
+            'limit-color' => $limitColor,
+            'limit-font' => $limitFont,
+            'limit-other' => $limitOther,
+            'limit-padding' => $limitPadding,
+            'limit-rounded' => $limitRounded,
+            'limit-shadow' => $limitShadow,
+            'limit-width' => $limitWidth,
+        ], [], null, 'limitStyles');
 
         $this->setConfigStyles([
             'results-background' => $resultsBackground,
@@ -159,19 +196,22 @@ class Pagination extends Component
     public function render(): string
     {
         return <<<'blade'
-            {{ $paginator->onEachSide($eachSide)
+            {{ $rowData->onEachSide($eachSide)
                 ->links('control-ui-kit::control-ui-kit.tables.pagination', [
                     'iconNext' => $iconNext,
                     'iconPrevious' => $iconPrevious,
                     'iconSize' => $iconSize,
-                    'pageLimit' => $pageLimit,
+                    'limit' => $limit,
                     'showAlways' => $showAlways,
                     'buttonClasses' => $buttonClasses(),
                     'buttonActive' => $buttonActiveClasses(),
                     'buttonContainer' => $buttonStyles['button-container'],
                     'buttonDisabled' => $buttonDisabledClasses(),
+                    'limitClasses' => $limitClasses(),
+                    'pageNumberClasses' => $pageNumberClasses(),
                     'resultsClasses' => $resultsClasses(),
                     'wrapperClasses' => $wrapperClasses(),
+                    'wire' => $wire,
                 ])
             }}
         blade;
@@ -192,6 +232,16 @@ class Pagination extends Component
         return $this->classList($this->buttonDisabledStyles);
     }
 
+    public function limitClasses(): string
+    {
+        return $this->classList($this->limitStyles);
+    }
+
+    public function pageNumberClasses(): string
+    {
+        return $this->classList($this->pageNumberStyles);
+    }
+
     public function resultsClasses(): string
     {
         return $this->classList($this->resultsStyles);
@@ -201,5 +251,4 @@ class Pagination extends Component
     {
         return $this->classList($this->wrapperStyles);
     }
-
 }

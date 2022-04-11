@@ -40,8 +40,14 @@
                                    onchange="document.search.submit();"
                                    @endif
                                    class="{{ $searchInputClasses() }}"
-                                   {{ $attributes->whereStartsWith('wire:') }}
+                                   autocomplete="off"
+                                {{ $attributes->whereStartsWith('wire:') }}
                             />
+                            @if ($wireSearch)
+                            <div wire:loading>
+                               loading
+                            </div>
+                            @endif
                         </div>
                     </x-form>
                 </div>

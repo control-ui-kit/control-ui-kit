@@ -69,6 +69,15 @@ const theme = {
         'table-filter': 'var(--table-filter-bg)',
         'active-filter': 'var(--active-filter-bg)',
 
+        'paginate-button': 'var(--paginate-button-bg)',
+        'paginate-button-hover': 'var(--paginate-button-bg-hover)',
+        'paginate-active': 'var(--paginate-active-bg)',
+        'paginate-active-hover': 'var(--paginate-active-bg-hover)',
+        'paginate-disabled': 'var(--paginate-disabled-bg)',
+        'paginate-disabled-hover': 'var(--paginate-disabled-bg-hover)',
+        'paginate-limit': 'var(--paginate-limit-bg)',
+        'paginate-limit-hover': 'var(--paginate-limit-bg-hover)',
+
         'panel': 'var(--panel-bg)',
         'input': 'var(--input-bg)',
         'input-brand': 'var(--brand)',
@@ -117,6 +126,8 @@ const theme = {
 
         'button-brand': 'var(--button-brand-border)',
         'button-brand-hover': 'var(--button-brand-border-hover)',
+        'button-default': 'var(--button-brand-border)',
+        'button-default-hover': 'var(--button-brand-border-hover)',
         'button-danger': 'var(--button-danger-border)',
         'button-danger-hover': 'var(--button-danger-border-hover)',
         'button-info': 'var(--button-info-border)',
@@ -131,9 +142,17 @@ const theme = {
         'button-warning-hover': 'var(--button-warning-border-hover)',
 
         'table': 'var(--table-border)',
-        'table-divider': 'var(--table-divider)',
         'table-filters': 'var(--table-filters-border)',
         'active-filter': 'var(--active-filter-border)',
+
+        'paginate-button': 'var(--paginate-button-border)',
+        'paginate-button-hover': 'var(--paginate-button-border-hover)',
+        'paginate-active': 'var(--paginate-active-border)',
+        'paginate-active-hover': 'var(--paginate-active-border-hover)',
+        'paginate-disabled': 'var(--paginate-disabled-border)',
+        'paginate-disabled-hover': 'var(--paginate-disabled-border-hover)',
+        'paginate-limit': 'var(--paginate-limit-border)',
+        'paginate-limit-hover': 'var(--paginate-limit-border-hover)',
 
         'panel': 'var(--panel-border)',
         'panel-divider': 'var(--panel-divider)',
@@ -142,6 +161,11 @@ const theme = {
         'input-focus': 'var(--input-focus-border)',
 
         'modal': 'var(--modal-border)',
+
+    },
+    divideColor: {
+
+        'table': 'var(--table-divider)',
 
     },
     colors: {
@@ -315,6 +339,10 @@ const theme = {
         'button-brand-hover': 'var(--button-brand-hover)',
         'button-brand-icon': 'var(--button-brand-icon)',
         'button-brand-icon-hover': 'var(--button-brand-icon-hover)',
+        'button-default': 'var(--button-default)',
+        'button-default-hover': 'var(--button-default-hover)',
+        'button-default-icon': 'var(--button-default-icon)',
+        'button-default-icon-hover': 'var(--button-default-icon-hover)',
         'button-danger': 'var(--button-danger)',
         'button-danger-hover': 'var(--button-danger-hover)',
         'button-danger-icon': 'var(--button-danger-icon)',
@@ -360,6 +388,15 @@ const theme = {
         'active-filter-icon': 'var(--active-filter-icon)',
         'active-filter-icon-hover': 'var(--active-filter-icon-hover)',
 
+        'paginate-button': 'var(--paginate-button)',
+        'paginate-button-hover': 'var(--paginate-button-hover)',
+        'paginate-active': 'var(--paginate-active)',
+        'paginate-active-hover': 'var(--paginate-active-hover)',
+        'paginate-disabled': 'var(--paginate-disabled)',
+        'paginate-disabled-hover': 'var(--paginate-disabled-hover)',
+        'paginate-limit': 'var(--paginate-limit)',
+        'paginate-limit-hover': 'var(--paginate-limit-hover)',
+
         'panel': 'var(--panel)',
         'panel-header': 'var(--panel-header)',
 
@@ -390,6 +427,10 @@ function colors(customColors) {
     return { ...theme.colors, ...customColors};
 }
 
+function divideColor(customColors) {
+    return { ...theme.divideColor, ...customColors};
+}
+
 function ringColor(customRingColor) {
     return { ...theme.ringColor, ...customRingColor};
 }
@@ -401,5 +442,6 @@ function textColor(customTextColor) {
 module.exports.backgroundColor = backgroundColor;
 module.exports.borderColor = borderColor;
 module.exports.colors = colors;
+module.exports.divideColor = divideColor;
 module.exports.ringColor = ringColor;
 module.exports.textColor = textColor;
