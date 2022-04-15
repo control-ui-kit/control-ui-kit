@@ -21,6 +21,7 @@ class Cell extends Component
     public string $align;
     public ?string $href;
     public ?string $hrefColor;
+    public string $cellPadding;
     public ?string $icon;
     public ?string $iconSize;
     private ?array $iconStyles = null;
@@ -33,6 +34,8 @@ class Cell extends Component
     public ?string $pillName = null;
     public ?string $suffix;
     public ?string $cellData;
+    public bool $actions;
+    public ?string $actionStyles;
 
     public function __construct(
         string $align = null,
@@ -84,7 +87,10 @@ class Cell extends Component
         string $suffix = null,
         bool $left = false,
         bool $center = false,
-        bool $right = false
+        bool $right = false,
+
+        bool $actions = false,
+        string $actionStyles = null
     ) {
         $this->setConfigStyles([
             'align' => $this->align($this->style($this->component, 'align', $align), $left, $center, $right),
@@ -93,11 +99,11 @@ class Cell extends Component
             'color' => $color,
             'font' => $font,
             'other' => $other,
-            'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
         ]);
 
+        $this->cellPadding = $this->style($this->component, 'padding', $padding);
         $this->align = $this->style($this->component, 'align', $align);
         $this->hrefColor = $this->style($this->component, 'href-color', $hrefColor);
         $this->href = $href;
@@ -105,7 +111,6 @@ class Cell extends Component
         $this->iconSize = $iconSize;
 
         if ($icon) {
-
             $this->setConfigStyles([
                 'icon-background' => $iconBackground,
                 'icon-border' => $iconBorder,
@@ -146,6 +151,8 @@ class Cell extends Component
         $this->prefix = $prefix;
         $this->suffix = $suffix;
         $this->cellData = $data;
+        $this->actions = $actions;
+        $this->actionStyles = $this->style($this->component, 'actions', $actionStyles);
 
         $this->setPillStyle($pill);
         $this->format($format);

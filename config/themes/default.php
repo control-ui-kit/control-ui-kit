@@ -409,6 +409,7 @@ return [
     ],
 
     'dropdown-menu' => [
+
         'background' => 'bg-nav-bar-option',
         'border' => 'border border-nav-bar',
         'color' => '',
@@ -418,6 +419,7 @@ return [
         'rounded' => 'rounded',
         'shadow' => 'shadow-md',
         'width' => '',
+
     ],
 
     'error' => [
@@ -1063,7 +1065,7 @@ return [
         'active-filters-list-border' => '',
         'active-filters-list-color' => '',
         'active-filters-list-font' => '',
-        'active-filters-list-other' => 'flex flex-row flex-wrap items-center',
+        'active-filters-list-other' => 'flex flex-row flex-wrap items-center justify-end',
         'active-filters-list-padding' => '',
         'active-filters-list-rounded' => '',
         'active-filters-list-shadow' => '',
@@ -1078,7 +1080,7 @@ return [
         'active-filters-wrapper-padding' => '',
         'active-filters-wrapper-rounded' => '',
         'active-filters-wrapper-shadow' => '',
-        'active-filters-wrapper-width' => 'min-w-full',
+        'active-filters-wrapper-width' => 'w-full',
 
         # TODO - test
         'clear-filters-event' => '',
@@ -1088,33 +1090,10 @@ return [
         'clear-filters-border' => 'focus:outline-none focus:ring-0',
         'clear-filters-color' => 'text-brand hover:text-brand-lighter focus:text-brand-lightest',
         'clear-filters-font' => '',
-        'clear-filters-other' => 'shrink-0 ml-2',
-        'clear-filters-padding' => 'pt-0.5',
+        'clear-filters-other' => 'shrink-0 ml-2 pt-1',
+        'clear-filters-padding' => '',
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
-
-        'more-button-background' => 'bg-table-filters',
-        'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
-        'more-button-color' => 'text-input',
-        'more-button-font' => '',
-        'more-button-icon' => 'icon-filter',
-        'more-button-icon-size' => 'w-5 h-5',
-        'more-button-other' => 'flex items-center shrink-0 cursor-pointer mb-0 sm:mb-4',
-        'more-button-padding' => 'h-10 px-2.5',
-        'more-button-rounded' => 'rounded',
-        'more-button-shadow' => '',
-        'more-button-width' => 'w-max',
-
-        'more-filters-background' => '',
-        'more-filters-border' => '',
-        'more-filters-color' => '',
-        'more-filters-font' => '',
-        'more-filters-other' => 'grid grid-cols-2 gap-2 sm:gap-0 sm:inline-flex items-center sm:justify-end sm:flex-wrap sm:space-x-0.5',
-        'more-filters-padding' => 'mb-2 sm:mb-0',
-        'more-filters-rounded' => '',
-        'more-filters-shadow' => '',
-        'more-filters-width' => 'w-full sm:w-auto',
-        'more-filters-wrapper' => 'flex justify-end',
 
         # TODO - test
         'search-icon-background' => '',
@@ -1147,13 +1126,14 @@ return [
         'search-wrapper-padding' => '',
         'search-wrapper-rounded' => 'rounded',
         'search-wrapper-shadow' => '',
-        'search-wrapper-width' => 'w-1/2',
+        'search-wrapper-width' => '',
 
         # TODO - test
         'search-enable' => false,
-        'search-bar' => 'flex mb-2 sm:mb-0',
-        'search-bar-spacing' => 'sm:grid sm:grid-cols-2 table-grid-filters space-x-2 sm:space-x-4',
-        'search-container' => 'w-full sm:shrink-0',
+        'search-bar' => 'mb-4',
+//        'search-bar-spacing' => 'sm:grid sm:grid-cols-2 table-grid-filters space-x-2 sm:space-x-4',
+        'search-bar-spacing' => 'flex space-x-2 sm:space-x-2',
+        'search-container' => 'flex-1 sm:shrink-0',
         'search-event' => '',
         'search-id' => 'search',
         'search-type' => 'search',
@@ -1185,7 +1165,7 @@ return [
         'table-filters-container' => 'flex-grow flex flex-col sm:items-end',
         'table-filters-empty' => 'hidden sm:block mb-0 sm:mb-4 h-10',
         'table-filters-font' => '',
-        'table-filters-other' => 'inline-flex space-x-0.5',
+        'table-filters-other' => 'inline-flex space-x-1',
         'table-filters-padding' => '',
         'table-filters-rounded' => 'rounded sm:rounded-r',
         'table-filters-shadow' => '',
@@ -1212,6 +1192,19 @@ return [
         'table-wrapper-without-filters' => '',
     ],
 
+    'table-action' => [
+
+        'background' => '',
+        'border' => '',
+        'color' => 'text-table-action-icon hover:text-table-action-icon-hover',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+
+    ],
+
     'table-active-filter' => [
 
         // Style
@@ -1219,8 +1212,8 @@ return [
         'border' => 'border border-active-filter focus-within:border-brand',
         'color' => 'text-active-filter',
         'font' => 'text-sm',
-        'other' => 'flex items-center space-x-1 mr-2 w-max mb-2',
-        'padding' => 'px-1.5 py-0.5',
+        'other' => 'flex items-center space-x-1 w-max',
+        'padding' => 'px-1.5 py-0.5 mr-2 mb-4',
         'rounded' => 'rounded',
         'shadow' => '',
 
@@ -1238,15 +1231,15 @@ return [
     ],
 
     'table-cell' => [
+        'actions' => 'flex items-center space-x-1 flex-nowrap justify-center px-2',
         'align' => 'text-left',
         'background' => '',
         'border' => '',
         'color' => '',
         'href-color' => '',
-        //'href-color' => 'text-brand hover:text-brand-darkest',
-        'font' => 'text-sm',
-        'other' => 'whitespace-no-wrap align-middle',
-        'padding' => 'py-2 px-3',
+        'font' => 'text-[13px]',
+        'other' => 'whitespace-no-wrap align-middle h-11',
+        'padding' => 'py-1 px-3',
         'rounded' => '',
         'shadow' => '',
 
@@ -1285,6 +1278,23 @@ return [
 
         // Config
         'default-text' => 'No records found',
+    ],
+
+    'table-filters' => [
+
+        // Style
+        'button-background' => 'bg-table-filters',
+        'button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
+        'button-color' => 'text-input',
+        'button-font' => '',
+        'button-icon' => 'icon-filter',
+        'button-icon-size' => 'w-5 h-5',
+        'button-other' => 'flex items-center shrink-0 cursor-pointer',
+        'button-padding' => 'h-10 px-2.5',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+        'button-width' => 'w-max',
+
     ],
 
     'table-filter' => [
@@ -1394,7 +1404,7 @@ return [
         // Style
         'align' => 'text-left',
         'background' => '',
-        'border' => '',
+        'border' => 'border-b border-table',
         'color' => 'text-table-header',
         'font' => 'uppercase text-xs font-medium tracking-wider whitespace-nowrap',
         'icon-size' => 'w-4 h-4',

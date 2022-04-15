@@ -92,6 +92,7 @@ class ActiveFilter extends Component
 
     private function buildHref($name, $resetValue): string
     {
-        return (new UrlManipulation)->url(Request::fullUrl())->append($name . '=' . $resetValue);
+//        return (new UrlManipulation)->url(Request::fullUrl())->append($name . '=' . $resetValue);
+        return '';
     }
 }

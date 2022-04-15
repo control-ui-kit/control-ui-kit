@@ -33,6 +33,10 @@ trait UseThemeFile
             $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
 
+            if ($component === 'dropdown') {
+                ray($key);
+            }
+
             if (! config()->has($key)) {
                 throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
             }

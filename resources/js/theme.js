@@ -126,8 +126,8 @@ const theme = {
 
         'button-brand': 'var(--button-brand-border)',
         'button-brand-hover': 'var(--button-brand-border-hover)',
-        'button-default': 'var(--button-brand-border)',
-        'button-default-hover': 'var(--button-brand-border-hover)',
+        'button-default': 'var(--button-default-border)',
+        'button-default-hover': 'var(--button-default-border-hover)',
         'button-danger': 'var(--button-danger-border)',
         'button-danger-hover': 'var(--button-danger-border-hover)',
         'button-info': 'var(--button-info-border)',
@@ -383,6 +383,8 @@ const theme = {
         'table-filters-hover': 'var(--table-filters-hover)',
         'table-filters-icon': 'var(--table-filters-icon)',
         'table-filters-icon-hover': 'var(--table-filters-icon-hover)',
+        'table-action-icon': 'var(--table-action-icon)',
+        'table-action-icon-hover': 'var(--table-action-icon-hover)',
 
         'active-filter': 'var(--active-filter)',
         'active-filter-icon': 'var(--active-filter-icon)',
