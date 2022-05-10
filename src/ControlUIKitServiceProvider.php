@@ -5,18 +5,18 @@ namespace ControlUIKit;
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
-//use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapBrazilDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapCanadaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
+use ControlUIKit\Controllers\ControlUIKitMapBrazilDataController;
+use ControlUIKit\Controllers\ControlUIKitMapCanadaDataController;
 use ControlUIKit\Controllers\ControlUIKitMapController;
 use ControlUIKit\Controllers\ControlUIKitMapDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapFranceDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapGermanyDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapGreatBritainDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapMexicoDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
-//use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
+use ControlUIKit\Controllers\ControlUIKitMapFranceDataController;
+use ControlUIKit\Controllers\ControlUIKitMapGermanyDataController;
+use ControlUIKit\Controllers\ControlUIKitMapGreatBritainDataController;
+use ControlUIKit\Controllers\ControlUIKitMapMexicoDataController;
+use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
+use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
@@ -85,9 +85,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/ranges.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/plugins/mobilefriendly.js"></script>
 
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.js"></script>-->
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-chart-matrix.js"></script>-->
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@2.1.0/build/Chart.Geo.min.js"></script>-->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-chart-matrix.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@2.1.0/build/Chart.Geo.min.js"></script>
 
                 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
                 <script src="https://code.highcharts.com/maps/modules/data.js"></script>
