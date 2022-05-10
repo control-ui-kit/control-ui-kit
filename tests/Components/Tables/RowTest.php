@@ -47,7 +47,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.row />
+            <x-table-row />
             HTML;
 
         $expected = <<<'HTML'
@@ -61,7 +61,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.row background="none"
+            <x-table-row background="none"
                          border="none"
                          color="none"
                          font="none"
@@ -82,7 +82,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.row background="1"
+            <x-table-row background="1"
                          border="2"
                          color="3"
                          font="4"
@@ -103,7 +103,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_default_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row default />
+            <x-table-row default />
             HTML;
 
         $expected = <<<'HTML'
@@ -117,7 +117,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_default_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="default" />
+            <x-table-row rowStyle="default" />
             HTML;
 
         $expected = <<<'HTML'
@@ -131,7 +131,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_brand_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row brand />
+            <x-table-row brand />
             HTML;
 
         $expected = <<<'HTML'
@@ -145,7 +145,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_brand_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="brand" />
+            <x-table-row rowStyle="brand" />
             HTML;
 
         $expected = <<<'HTML'
@@ -158,7 +158,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row danger />
+            <x-table-row danger />
             HTML;
 
         $expected = <<<'HTML'
@@ -172,7 +172,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_danger_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="danger" />
+            <x-table-row rowStyle="danger" />
             HTML;
 
         $expected = <<<'HTML'
@@ -186,7 +186,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_info_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row info />
+            <x-table-row info />
             HTML;
 
         $expected = <<<'HTML'
@@ -200,7 +200,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_info_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="info" />
+            <x-table-row rowStyle="info" />
             HTML;
 
         $expected = <<<'HTML'
@@ -214,7 +214,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_muted_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row muted />
+            <x-table-row muted />
             HTML;
 
         $expected = <<<'HTML'
@@ -228,7 +228,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_muted_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="muted" />
+            <x-table-row rowStyle="muted" />
             HTML;
 
         $expected = <<<'HTML'
@@ -242,7 +242,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_success_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row success />
+            <x-table-row success />
             HTML;
 
         $expected = <<<'HTML'
@@ -256,7 +256,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_success_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="success" />
+            <x-table-row rowStyle="success" />
             HTML;
 
         $expected = <<<'HTML'
@@ -270,7 +270,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
         $template = <<<'HTML'
-            <x-table.row warning />
+            <x-table-row warning />
             HTML;
 
         $expected = <<<'HTML'
@@ -284,7 +284,7 @@ class RowTest extends ComponentTestCase
     public function a_table_row_component_can_be_rendered_with_warning_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
-            <x-table.row rowStyle="warning" />
+            <x-table-row rowStyle="warning" />
             HTML;
 
         $expected = <<<'HTML'

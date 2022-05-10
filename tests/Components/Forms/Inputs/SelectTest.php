@@ -37,10 +37,10 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.check-shadow', 'check-shadow');
         Config::set('themes.default.input-select.check-active', 'check-active');
         Config::set('themes.default.input-select.check-inactive', 'check-inactive');
-        Config::set('themes.default.input-select.check-icon', 'icon.check');
+        Config::set('themes.default.input-select.check-icon', 'icon-check');
         Config::set('themes.default.input-select.check-icon-size', 'check-icon-size');
 
-        Config::set('themes.default.input-select.icon', 'icon.chevron-down');
+        Config::set('themes.default.input-select.icon', 'icon-chevron-down');
         Config::set('themes.default.input-select.icon-background', 'icon-background');
         Config::set('themes.default.input-select.icon-border', 'icon-border');
         Config::set('themes.default.input-select.icon-color', 'icon-color');
@@ -107,7 +107,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_in_key_value_format(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
@@ -163,7 +163,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_in_array_key_value_format(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => ['text' => 'English'], 2 => ['text' => 'Spanish'] ]"
             />
@@ -219,7 +219,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_in_text_key_value_format(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 'en' => 'English', 'es' => 'Spanish' ]"
             />
@@ -275,7 +275,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_button_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 button-background="custom-background"
                 button-border="custom-border"
@@ -340,7 +340,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_button_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 button-background="none"
                 button-border="none"
@@ -405,7 +405,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_list_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 list-background="custom-background"
                 list-border="custom-border"
@@ -470,7 +470,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_list_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 list-background="none"
                 list-border="none"
@@ -535,7 +535,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_option_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 option-background="custom-background"
                 option-border="custom-border"
@@ -602,7 +602,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_option_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 option-background="none"
                 option-border="none"
@@ -669,7 +669,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_text_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 text-background="custom-background"
                 text-border="custom-border"
@@ -735,7 +735,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_text_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 text-background="none"
                 text-border="none"
@@ -801,7 +801,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_subtext_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 subtext-background="custom-background"
                 subtext-border="custom-border"
@@ -870,7 +870,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_subtext_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 subtext-background="none"
                 subtext-border="none"
@@ -939,13 +939,13 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_check_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 check-background="custom-background"
                 check-border="custom-border"
                 check-color="custom-color"
                 check-font="custom-font"
-                check-icon="icon.dot"
+                check-icon="icon-dot"
                 check-icon-size="custom-icon-size"
                 check-other="custom-other"
                 check-padding="custom-padding"
@@ -1007,7 +1007,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_check_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 check-background="none"
                 check-border="none"
@@ -1073,12 +1073,12 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_custom_icon_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 icon-background="custom-background"
                 icon-border="custom-border"
                 icon-color="custom-color"
-                icon="icon.dot"
+                icon="icon-dot"
                 icon-other="custom-other"
                 icon-padding="custom-padding"
                 icon-rounded="custom-rounded"
@@ -1138,7 +1138,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 icon-background="none"
                 icon-border="none"
@@ -1202,7 +1202,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_subtext(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[
                     1 => ['text' => 'English', 'subtext' => '::subtext1'],
@@ -1261,7 +1261,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_bespoke_subtext_name(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 subtext="some-name"
                 :options="[
@@ -1321,7 +1321,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_bespoke_text_name(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 text="some-name"
                 :options="[
@@ -1381,7 +1381,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_image(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[
                     1 => ['text' => 'English', 'image' => 'english.jpg'],
@@ -1446,7 +1446,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_image_name(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 image="image-url"
                 :options="[
@@ -1512,7 +1512,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_image_and_custom_image_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 image-border="custom-border"
                 image-other="custom-other"
@@ -1583,7 +1583,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_image_and_no_image_styles(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 image-border="none"
                 image-other="none"
@@ -1654,7 +1654,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_as_required(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 required
@@ -1703,7 +1703,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_please_select_text(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 please-select="Select Language ..."
@@ -1760,7 +1760,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_array_please_select_value_and_text(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 :please-select="['text' => 'Select Language ...', 'value' => 0]"
@@ -1817,7 +1817,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_please_select_value_text_and_trans_via_array(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 :please-select="['text' => 'Select Language ...', 'value' => 0, 'trans' => 'ui.please-select']"
@@ -1877,7 +1877,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
 
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
@@ -1937,7 +1937,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-trans', 'ui.please-select');
 
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
@@ -1997,7 +1997,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-trans', 'ui.please-select');
 
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 please-select="::please-select"
@@ -2054,7 +2054,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_in_key_value_format_with_a_selected_value_and_required(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
                 value="2"
@@ -2104,7 +2104,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_basic_int_array(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 1, 2 ]"
                 value="2"
@@ -2154,7 +2154,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_basic_string_array(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[ 'a', 'b' ]"
                 value="b"
@@ -2204,7 +2204,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_inline_int_values(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 options="1, 2"
                 value="2"
@@ -2254,7 +2254,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_inline_string_values(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 options="a, b"
                 value="b"
@@ -2304,7 +2304,7 @@ class SelectTest extends ComponentTestCase
     public function an_input_select_component_can_be_rendered_with_multi_dimensional_array(): void
     {
         $template = <<<HTML
-            <x-input.select
+            <x-input-select
                 name="language"
                 :options="[
                     ['text' => 'b', 'value' => 2],

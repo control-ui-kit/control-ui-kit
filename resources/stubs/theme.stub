@@ -81,16 +81,16 @@ $chart-900: #E09FE1;
     --nav-bar-bg-hover             : #{$gray-950};       // bg *
     --nav-bar                      : #{$white};          // text *
     --nav-bar-hover                : #{$brand-default};  // text *
-    --nav-option-bg                : #{$white};          // bg *
-    --nav-option-bg-hover          : #{$gray-100};       // bg *
-    --nav-option                   : #{$gray-700};       // text *
-    --nav-option-hover             : #{$gray-800};       // text *
-    --nav-divider                  : #{$gray-200};       // border *
-    --nav-border                   : #{$gray-200};       // border
-    --nav-icon                     : #{$gray-350};       // text *
-    --nav-icon-hover               : #{$gray-450};       // text *
+    --nav-bar-option-bg            : #{$white};          // bg *
+    --nav-bar-option-bg-hover      : #{$gray-100};       // bg *
+    --nav-bar-option               : #{$gray-700};       // text *
+    --nav-bar-option-hover         : #{$gray-800};       // text *
+    --nav-bar-divider              : #{$gray-200};       // border *
+    --nav-bar-border               : #{$gray-200};       // border
+    --nav-bar-icon                 : #{$gray-350};       // text *
+    --nav-bar-icon-hover           : #{$gray-450};       // text *
     --nav-profile                  : #{$gray-800};       // text *
-    --nav-muted                    : #{$gray-600};       // text *
+    --nav-bar-muted                : #{$gray-600};       // text *
     --nav-profile-header-bg        : #{$gray-50};        // bg *
     --nav-avatar-border            : #{$gray-200};       // border *
 
@@ -193,16 +193,16 @@ $chart-900: #E09FE1;
     --nav-bar-bg-hover             : #{$gray-900};       // bg
     --nav-bar                      : #{$white};          // text
     --nav-bar-hover                : #{$brand-default};  // text
-    --nav-option-bg                : #{$gray-950};       // bg
-    --nav-option-bg-hover          : #{$gray-900};       // bg
-    --nav-option                   : #{$white};          // text
-    --nav-option-hover             : #{$gray-200};       // text
-    --nav-divider                  : #{$gray-900};       // border
-    --nav-border                   : #{$gray-900};       // border
-    --nav-icon                     : #{$gray-400};       // text
-    --nav-icon-hover               : #{$gray-600};       // text
+    --nav-bar-option-bg            : #{$gray-950};       // bg
+    --nav-bar-option-bg-hover      : #{$gray-900};       // bg
+    --nav-bar-option               : #{$white};          // text
+    --nav-bar-option-hover         : #{$gray-200};       // text
+    --nav-bar-divider              : #{$gray-900};       // border
+    --nav-bar-border               : #{$gray-900};       // border
+    --nav-bar-icon                 : #{$gray-400};       // text
+    --nav-bar-icon-hover           : #{$gray-600};       // text
     --nav-profile                  : #{$gray-800};       // text
-    --nav-muted                    : #{$gray-500};       // text
+    --nav-bar-muted                : #{$gray-500};       // text
     --nav-profile-header-bg        : #{$gray-950};       // bg
     --nav-avatar-border            : #{$gray-200};       // border
 

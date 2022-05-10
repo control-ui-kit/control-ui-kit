@@ -30,7 +30,7 @@ class PasswordTest extends ComponentTestCase
     public function an_input_password_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.password name="name" />
+            <x-input-password name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -44,7 +44,7 @@ class PasswordTest extends ComponentTestCase
     public function an_input_password_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.password name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
+            <x-input-password name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -58,7 +58,7 @@ class PasswordTest extends ComponentTestCase
     public function an_input_password_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.password name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
+            <x-input-password name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
@@ -72,7 +72,7 @@ class PasswordTest extends ComponentTestCase
     public function an_input_password_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.password name="name" placeholder="placeholder text" />
+            <x-input-password name="name" placeholder="placeholder text" />
             HTML;
 
         $expected = <<<'HTML'
@@ -86,7 +86,7 @@ class PasswordTest extends ComponentTestCase
     public function an_input_password_component_with_value_amended(): void
     {
         $template = <<<'HTML'
-            <x-input.password name="name" value="test_value" />
+            <x-input-password name="name" value="test_value" />
             HTML;
 
         $expected = <<<'HTML'

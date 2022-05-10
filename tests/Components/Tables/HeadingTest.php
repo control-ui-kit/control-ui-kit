@@ -28,15 +28,15 @@ class HeadingTest extends ComponentTestCase
 
         Config::set('themes.default.table-heading.field-order', 'order');
         Config::set('themes.default.table-heading.field-sort', 'sort');
-        Config::set('themes.default.table-heading.icon-asc', 'icon.caret-up');
-        Config::set('themes.default.table-heading.icon-desc', 'icon.caret-down');
+        Config::set('themes.default.table-heading.icon-asc', 'icon-caret-up');
+        Config::set('themes.default.table-heading.icon-desc', 'icon-caret-down');
     }
 
     /** @test */
     public function a_table_heading_component_basic_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading>::Some Heading</x-table.heading>
+            <x-table-heading>::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -50,7 +50,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_basic_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.heading
+            <x-table-heading
                 align="none"
                 background="none"
                 border="none"
@@ -61,7 +61,7 @@ class HeadingTest extends ComponentTestCase
                 rounded="none"
                 shadow="none"
                 width="none"
-            >::Some Heading</x-table.heading>
+            >::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -75,7 +75,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_basic_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.heading
+            <x-table-heading
                 background="1"
                 border="2"
                 color="3"
@@ -85,7 +85,7 @@ class HeadingTest extends ComponentTestCase
                 rounded="7"
                 shadow="8"
                 width="9"
-            >::Table Heading</x-table.heading>
+            >::Table Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -99,7 +99,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_shorthand_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading left>::Some Heading</x-table.heading>
+            <x-table-heading left>::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -113,7 +113,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_attribute_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading align="left">::Some Heading</x-table.heading>
+            <x-table-heading align="left">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -127,7 +127,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_shorthand_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading right>::Some Heading</x-table.heading>
+            <x-table-heading right>::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -141,7 +141,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_attribute_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading align="right">::Some Heading</x-table.heading>
+            <x-table-heading align="right">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -155,7 +155,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_shorthand_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading center>::Some Heading</x-table.heading>
+            <x-table-heading center>::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -169,7 +169,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_align_attribute_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading align="center">::Some Heading</x-table.heading>
+            <x-table-heading align="center">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -183,7 +183,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_href_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading href="http://example.com">::Some Heading</x-table.heading>
+            <x-table-heading href="http://example.com">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -199,7 +199,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_alpine_onclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading @onclick="someClick">::Some Heading</x-table.heading>
+            <x-table-heading @onclick="someClick">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -213,7 +213,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_alpine_xonclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading x-on:onclick="someClick">::Some Heading</x-table.heading>
+            <x-table-heading x-on:onclick="someClick">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -228,7 +228,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_onclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading onclick="someClick()">::Some Heading</x-table.heading>
+            <x-table-heading onclick="someClick()">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -242,7 +242,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_href_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" href="http://example.com">::Some Heading</x-table.heading>
+            <x-table-heading field="example" href="http://example.com">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -265,7 +265,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_href_and_current_sort_asc_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" href="http://example.com" currentOrder="example" currentSort="asc">::Some Heading</x-table.heading>
+            <x-table-heading field="example" href="http://example.com" currentOrder="example" currentSort="asc">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -291,7 +291,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_href_and_current_sort_desc_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" href="http://example.com" currentOrder="example" currentSort="desc">::Some Heading</x-table.heading>
+            <x-table-heading field="example" href="http://example.com" currentOrder="example" currentSort="desc">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -317,7 +317,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example">::Some Heading</x-table.heading>
+            <x-table-heading field="example">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -340,7 +340,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_current_sort_asc_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" currentOrder="example" currentSort="asc">::Some Heading</x-table.heading>
+            <x-table-heading field="example" currentOrder="example" currentSort="asc">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -366,7 +366,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_current_sort_desc_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" currentOrder="example" currentSort="desc">::Some Heading</x-table.heading>
+            <x-table-heading field="example" currentOrder="example" currentSort="desc">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -392,7 +392,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_icon_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" icon-size="::some-size">::Some Heading</x-table.heading>
+            <x-table-heading field="example" icon-size="::some-size">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -415,7 +415,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_and_anchor_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading field="example" anchor="cheese">::Some Heading</x-table.heading>
+            <x-table-heading field="example" anchor="cheese">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -438,7 +438,7 @@ class HeadingTest extends ComponentTestCase
     public function a_table_heading_component_with_sorting_href_and_anchor_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.heading href="http://example.com" field="example" anchor="cheese">::Some Heading</x-table.heading>
+            <x-table-heading href="http://example.com" field="example" anchor="cheese">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -464,7 +464,7 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.icon-desc', '');
 
         $template = <<<'HTML'
-            <x-table.heading field="example">::Some Heading</x-table.heading>
+            <x-table-heading field="example">::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'
@@ -483,7 +483,7 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.icon-desc', '');
 
         $template = <<<'HTML'
-            <x-table.heading field="example" right>::Some Heading</x-table.heading>
+            <x-table-heading field="example" right>::Some Heading</x-table-heading>
             HTML;
 
         $expected = <<<'HTML'

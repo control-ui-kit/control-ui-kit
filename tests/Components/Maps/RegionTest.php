@@ -21,7 +21,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="us" :values="[]" />
+            <x-map-region iso="us" :values="[]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -74,7 +74,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_with_uppercase_iso_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="US" :values="[]" />
+            <x-map-region iso="US" :values="[]" />
             HTML;
 
         $expected = <<<'HTML'
@@ -128,13 +128,13 @@ class RegionTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <div class="grid grid-cols-2 gap-5">
-                <x-map.region iso="GB" :values="[
+                <x-map-region iso="GB" :values="[
                     ['GB-XX', 100],
                     ['GB-YY', 1000],
                     ['GB-ZZ', 10000],
                 ]" height="h-screen" />
 
-                <x-map.region iso="US" :values="[
+                <x-map-region iso="US" :values="[
                     ['US-01', 9999],
                     ['US-02', 7777],
                     ['US-03', 8888],
@@ -235,13 +235,13 @@ class RegionTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <div class="grid grid-cols-2 gap-5">
-                <x-map.region iso="GB" :values="[
+                <x-map-region iso="GB" :values="[
                     ['GB-XX', 100],
                     ['GB-YY', 1000],
                     ['GB-ZZ', 10000],
                 ]" height="h-screen" />
 
-                <x-map.region iso="GB" :values="[
+                <x-map-region iso="GB" :values="[
                     ['GB-01', 9999],
                     ['GB-02', 7777],
                     ['GB-03', 8888],
@@ -341,7 +341,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="us" :values="[]" title="Murika" />
+            <x-map-region iso="us" :values="[]" title="Murika" />
             HTML;
 
         $expected = <<<'HTML'
@@ -394,7 +394,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_with_data_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="us" :values="[
+            <x-map-region iso="us" :values="[
                 ['US.WA' => 10000]
             ]" />
             HTML;
@@ -449,7 +449,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_with_name_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="us" :values="[]" name="Field Name" />
+            <x-map-region iso="us" :values="[]" name="Field Name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -502,7 +502,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_australia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="au" :values="[
+            <x-map-region iso="au" :values="[
                 ['AU-ACT', 1],
                 ['AU-NSW', 2],
                 ['AU-NT', 2],
@@ -564,7 +564,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_brazil_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="br" :values="[
+            <x-map-region iso="br" :values="[
                 ['BR-AC', 1],
                 ['BR-AL', 2],
                 ['BR-AP', 3],
@@ -645,7 +645,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_canada_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ca" :values="[
+            <x-map-region iso="ca" :values="[
                 ['CA-AB', 1],
                 ['CA-BC', 2],
                 ['CA-MB', 3],
@@ -712,7 +712,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_germany_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="de" :values="[
+            <x-map-region iso="de" :values="[
                 ['DE-BW', 1],
                 ['DE-BY', 2],
                 ['DE-BE', 3],
@@ -782,7 +782,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_spain_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="es" :values="[
+            <x-map-region iso="es" :values="[
                 ['ES-AN', 1],
                 ['ES-AR', 2],
                 ['ES-AS', 3],
@@ -855,7 +855,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_france_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="fr" :values="[
+            <x-map-region iso="fr" :values="[
                 ['FR-ARA', 1],
                 ['FR-BFC', 2],
                 ['FR-BRE', 3],
@@ -922,7 +922,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_britain_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="gb" :values="[
+            <x-map-region iso="gb" :values="[
                 ['GB-ABD', 1],
                 ['GB-ANS', 2],
                 ['GB-ANN', 3],
@@ -1084,7 +1084,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_mexico_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="mx" :values="[
+            <x-map-region iso="mx" :values="[
                 ['MX-AGU', 1],
                 ['MX-BCN', 2],
                 ['MX-BCS', 3],
@@ -1170,7 +1170,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_netherlands_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="nl" :values="[
+            <x-map-region iso="nl" :values="[
                 ['NL-DR', 1],
                 ['NL-FL', 2],
                 ['NL-FR', 3],
@@ -1236,7 +1236,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_america_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="us" :values="[
+            <x-map-region iso="us" :values="[
                 ['US-AL', 1],
                 ['US-AK', 2],
                 ['US-AZ', 3],
@@ -1340,7 +1340,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_italy_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="it" :values="[
+            <x-map-region iso="it" :values="[
                 ['IT-65', 100000],
                 ['IT-23', 100000],
                 ['IT-75', 100000],
@@ -1414,7 +1414,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_argentina_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ar" :values="[
+            <x-map-region iso="ar" :values="[
                 ['AR-B', 100000],
                 ['AR-K', 100000],
                 ['AR-H', 100000],
@@ -1492,7 +1492,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_turkey_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="tr" :values="[
+            <x-map-region iso="tr" :values="[
                 ['TR-01', 100000],
                 ['TR-02', 100000],
                 ['TR-03', 100000],
@@ -1628,7 +1628,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_russia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ru" :values="[
+            <x-map-region iso="ru" :values="[
                 ['RU-AD', 100000],
                 ['RU-AL', 100000],
                 ['RU-BA', 100000],
@@ -1765,7 +1765,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_poland_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="pl" :values="[
+            <x-map-region iso="pl" :values="[
                 ['PL-30', 100000],
                 ['PL-04', 100000],
                 ['PL-12', 100000],
@@ -1835,7 +1835,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_sweden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="se" :values="[
+            <x-map-region iso="se" :values="[
                 ['SE-K', 100000],
                 ['SE-W', 100000],
                 ['SE-I', 100000],
@@ -1910,7 +1910,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_belgium_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="be" :values="[
+            <x-map-region iso="be" :values="[
                 ['BE-VAN', 100000],
                 ['BE-BRU', 100000],
                 ['BE-VOV', 100000],
@@ -1975,7 +1975,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_the_philippines_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ph" :values="[
+            <x-map-region iso="ph" :values="[
                 ['PH-05', 100000],
                 ['PH-02', 100000],
                 ['PH-40', 100000],
@@ -2046,7 +2046,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_indonesia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="id" :values="[
+            <x-map-region iso="id" :values="[
                 ['ID-AC', 100000],
                 ['ID-BA', 100000],
                 ['ID-BB', 100000],
@@ -2134,7 +2134,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_switzerland_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ch" :values="[
+            <x-map-region iso="ch" :values="[
                 ['CH-AR', 100000],
                 ['CH-AI', 100000],
                 ['CH-AG', 100000],
@@ -2215,7 +2215,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_india_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="in" :values="[
+            <x-map-region iso="in" :values="[
                 ['IN-AP', 100000],
                 ['IN-AR', 100000],
                 ['IN-AS', 100000],
@@ -2304,7 +2304,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_japan_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="jp" :values="[
+            <x-map-region iso="jp" :values="[
                 ['JP-AI', 100000],
                 ['JP-AK', 100000],
                 ['JP-AO', 100000],
@@ -2405,7 +2405,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_singapore_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="sg" :values="[
+            <x-map-region iso="sg" :values="[
                 ['SG-01', 100000],
                 ['SG-02', 100000],
                 ['SG-03', 100000],
@@ -2464,7 +2464,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_colombia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="co" :values="[
+            <x-map-region iso="co" :values="[
                 ['CO-AMA', 100000],
                 ['CO-ANT', 100000],
                 ['CO-ARA', 100000],
@@ -2551,7 +2551,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_new_zealand_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="nz" :values="[
+            <x-map-region iso="nz" :values="[
                 ['NZ-AUK', 100000],
                 ['NZ-BOP', 100000],
                 ['NZ-CAN', 100000],
@@ -2622,7 +2622,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_austria_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="at" :values="[
+            <x-map-region iso="at" :values="[
                 ['AT-1', 100000],
                 ['AT-2', 100000],
                 ['AT-3', 100000],
@@ -2685,7 +2685,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_finland_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="fi" :values="[
+            <x-map-region iso="fi" :values="[
                 ['FI-01', 100000],
                 ['FI-02', 100000],
                 ['FI-03', 100000],
@@ -2758,7 +2758,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_malaysia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="my" :values="[
+            <x-map-region iso="my" :values="[
                 ['MY-01', 100000],
                 ['MY-02', 100000],
                 ['MY-03', 100000],
@@ -2828,7 +2828,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_taiwan_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="tw" :values="[
+            <x-map-region iso="tw" :values="[
                 ['TW-CHA', 100000],
                 ['TW-CYI', 100000],
                 ['TW-CYQ', 100000],
@@ -2904,7 +2904,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_denmark_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="dk" :values="[
+            <x-map-region iso="dk" :values="[
                 ['DK-84', 100000],
                 ['DK-82', 100000],
                 ['DK-81', 100000],
@@ -2963,7 +2963,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_portugal_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="pt" :values="[
+            <x-map-region iso="pt" :values="[
                 ['PT-01', 100000],
                 ['PT-02', 100000],
                 ['PT-03', 100000],
@@ -3037,7 +3037,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_ireland_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ie" :values="[
+            <x-map-region iso="ie" :values="[
                 ['IE-CW', 100000],
                 ['IE-CN', 100000],
                 ['IE-CE', 100000],
@@ -3117,7 +3117,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_czech_republic_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="cz" :values="[
+            <x-map-region iso="cz" :values="[
                 ['CZ-20', 100000],
                 ['CZ-52', 100000],
                 ['CZ-41', 100000],
@@ -3186,7 +3186,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_hungary_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="hu" :values="[
+            <x-map-region iso="hu" :values="[
                 ['HU-BK', 100000],
                 ['HU-BA', 100000],
                 ['HU-BE', 100000],
@@ -3260,7 +3260,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_peru_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="pe" :values="[
+            <x-map-region iso="pe" :values="[
                 ['PE-AMA', 100000],
                 ['PE-ANC', 100000],
                 ['PE-APU', 100000],
@@ -3340,7 +3340,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_south_africa_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="za" :values="[
+            <x-map-region iso="za" :values="[
                 ['ZA-EC',  100000],
                 ['ZA-FS',  100000],
                 ['ZA-GP',  100000],
@@ -3403,7 +3403,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_ukraine_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ua" :values="[
+            <x-map-region iso="ua" :values="[
                 ['UA-71',  100000],
                 ['UA-74',  100000],
                 ['UA-77',  100000],
@@ -3484,7 +3484,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_romania_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ro" :values="[
+            <x-map-region iso="ro" :values="[
                 ['RO-AB', 100000],
                 ['RO-AR', 100000],
                 ['RO-AG', 100000],
@@ -3580,7 +3580,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_greece_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="gr" :values="[
+            <x-map-region iso="gr" :values="[
                 ['GR-A', 100000],
                 ['GR-B', 100000],
                 ['GR-C', 100000],
@@ -3648,7 +3648,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_israel_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="il" :values="[
+            <x-map-region iso="il" :values="[
                 ['IL-M',  100000],
                 ['IL-HA', 100000],
                 ['IL-JM', 100000],
@@ -3708,7 +3708,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_costa_rica_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="cr" :values="[
+            <x-map-region iso="cr" :values="[
                 ['CR-A', 100000],
                 ['CR-C', 100000],
                 ['CR-G', 100000],
@@ -3769,7 +3769,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_vietnam_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="vn" :values="[
+            <x-map-region iso="vn" :values="[
                 ['VN-44', 100000],
                 ['VN-43', 100000],
                 ['VN-54', 100000],
@@ -3886,7 +3886,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_slovakia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="sk" :values="[
+            <x-map-region iso="sk" :values="[
                 ['SK-BC', 100000],
                 ['SK-BL', 100000],
                 ['SK-KI', 100000],
@@ -3948,7 +3948,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_lithuania_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="lt" :values="[
+            <x-map-region iso="lt" :values="[
                 ['LT-AL', 100000],
                 ['LT-KU', 100000],
                 ['LT-KL', 100000],
@@ -4012,7 +4012,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_guatemala_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="gt" :values="[
+            <x-map-region iso="gt" :values="[
                 ['GT-AV', 100000],
                 ['GT-BV', 100000],
                 ['GT-CM', 100000],
@@ -4088,7 +4088,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_estonia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ee" :values="[
+            <x-map-region iso="ee" :values="[
                 ['EE-37', 100000],
                 ['EE-39', 100000],
                 ['EE-45', 100000],
@@ -4157,7 +4157,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_latvia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="lv" :values="[
+            <x-map-region iso="lv" :values="[
                 ['LV-KR', 100000],
                 ['LV-RI', 100000],
                 ['LV-ZE', 100000],
@@ -4217,7 +4217,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_bulgaria_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="bg" :values="[
+            <x-map-region iso="bg" :values="[
                 ['BG-01', 100000],
                 ['BG-02', 100000],
                 ['BG-03', 100000],
@@ -4299,7 +4299,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_united_arab_emirates_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ae" :values="[
+            <x-map-region iso="ae" :values="[
                 ['AE-AZ', 100000],
                 ['AE-AJ', 100000],
                 ['AE-DU', 100000],
@@ -4360,7 +4360,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_uruguay_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="uy" :values="[
+            <x-map-region iso="uy" :values="[
                 ['UY-AR', 100000],
                 ['UY-CA', 100000],
                 ['UY-CL', 100000],
@@ -4433,7 +4433,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_paraguay_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="py" :values="[
+            <x-map-region iso="py" :values="[
                 ['PY-16',  100000],
                 ['PY-10',  100000],
                 ['PY-13',  100000],
@@ -4505,7 +4505,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_dominican_republic_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="do" :values="[
+            <x-map-region iso="do" :values="[
                 ['DO-01',  100000],
                 ['DO-02',  100000],
                 ['DO-03',  100000],
@@ -4591,7 +4591,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_belarus_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="by" :values="[
+            <x-map-region iso="by" :values="[
                 ['BY-BR',  100000],
                 ['BY-HO',  100000],
                 ['BY-HR',  100000],
@@ -4652,7 +4652,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_panama_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="pa" :values="[
+            <x-map-region iso="pa" :values="[
                 ['PA-01',  100000],
                 ['PA-04',  100000],
                 ['PA-02',  100000],
@@ -4719,7 +4719,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_saudi_arabia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="sa" :values="[
+            <x-map-region iso="sa" :values="[
                 ['SA-14',  100000],
                 ['SA-11',  100000],
                 ['SA-04',  100000],
@@ -4786,7 +4786,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_iceland_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="is" :values="[
+            <x-map-region iso="is" :values="[
                 ['IS-01',  100000],
                 ['IS-02',  100000],
                 ['IS-03',  100000],
@@ -4848,7 +4848,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_egypt_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="eg" :values="[
+            <x-map-region iso="eg" :values="[
                 ['EG-ALX', 100000],
                 ['EG-ASN', 100000],
                 ['EG-AST', 100000],
@@ -4929,7 +4929,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_ecuador_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ec" :values="[
+            <x-map-region iso="ec" :values="[
                 ['EC-A', 100000],
                 ['EC-B', 100000],
                 ['EC-F', 100000],
@@ -5007,7 +5007,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_el_salvador_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="sv" :values="[
+            <x-map-region iso="sv" :values="[
                 ['SV-AH', 100000],
                 ['SV-CA', 100000],
                 ['SV-CH', 100000],
@@ -5075,7 +5075,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_bolivia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="bo" :values="[
+            <x-map-region iso="bo" :values="[
                 ['BO-B', 100000],
                 ['BO-H', 100000],
                 ['BO-C', 100000],
@@ -5138,7 +5138,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_croatia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="hr" :values="[
+            <x-map-region iso="hr" :values="[
                 ['HR-07', 100000],
                 ['HR-12', 100000],
                 ['HR-21', 100000],
@@ -5213,7 +5213,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_serbia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="rs" :values="[
+            <x-map-region iso="rs" :values="[
                 ['RS-BG', 100000],
                 ['RS-VO', 100000],
                 ['RS-SW', 100000],
@@ -5271,7 +5271,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_tunisia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="tn" :values="[
+            <x-map-region iso="tn" :values="[
                 ['TN-12', 100000],
                 ['TN-31', 100000],
                 ['TN-13', 100000],
@@ -5348,14 +5348,14 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_kazakhstan_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="kz" :values="[
+            <x-map-region iso="kz" :values="[
                 ['KZ-AKM', 100000],
                 ['KZ-AKT', 100000],
                 ['KZ-ALA', 100000],
                 ['KZ-ALM', 100000],
                 ['KZ-AST', 100000],
                 ['KZ-ATY', 100000],
-                ['KZ-VOS', 100000], 
+                ['KZ-VOS', 100000],
                 ['KZ-ZHA', 100000],
                 ['KZ-KAR', 100000],
                 ['KZ-KUS', 100000],
@@ -5419,7 +5419,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_slovenia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="si" :values="[
+            <x-map-region iso="si" :values="[
                 ['SI-GO', 100000],
                 ['SI-CK', 100000],
                 ['SI-LI', 100000],
@@ -5485,7 +5485,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_honduras_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="hn" :values="[
+            <x-map-region iso="hn" :values="[
                 ['HN-AT', 100000],
                 ['HN-CH', 100000],
                 ['HN-CL', 100000],
@@ -5557,7 +5557,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_south_korea_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="kr" :values="[
+            <x-map-region iso="kr" :values="[
                 ['KR-26', 100000],
                 ['KR-27', 100000],
                 ['KR-30', 100000],
@@ -5628,7 +5628,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_algeria_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="dz" :values="[
+            <x-map-region iso="dz" :values="[
                 ['DZ-01', 100000],
                 ['DZ-02', 100000],
                 ['DZ-03', 100000],
@@ -5730,7 +5730,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_nigeria_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ng" :values="[
+            <x-map-region iso="ng" :values="[
                 ['NG-FC', 100000],
                 ['NG-AB', 100000],
                 ['NG-AD', 100000],
@@ -5821,7 +5821,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_moldova_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="md" :values="[
+            <x-map-region iso="md" :values="[
                 ['MD-AN', 100000],
                 ['MD-BA', 100000],
                 ['MD-BS', 100000],
@@ -5912,7 +5912,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_cambodia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="kh" :values="[
+            <x-map-region iso="kh" :values="[
                 ['KH-01', 100000],
                 ['KH-02', 100000],
                 ['KH-03', 100000],
@@ -5991,7 +5991,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_cyprus_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="cy" :values="[
+            <x-map-region iso="cy" :values="[
                 ['CY-01', 100000],
                 ['CY-02', 100000],
                 ['CY-03', 100000],
@@ -6051,7 +6051,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_nicaragua_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ni" :values="[
+            <x-map-region iso="ni" :values="[
                 ['NI-BO', 100000],
                 ['NI-CA', 100000],
                 ['NI-CI', 100000],
@@ -6122,7 +6122,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_pakistan_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="pk" :values="[
+            <x-map-region iso="pk" :values="[
                 ['PK-JK', 100000],
                 ['PK-BA', 100000],
                 ['PK-TA', 100000],
@@ -6184,7 +6184,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_macedonia_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="mk" :values="[
+            <x-map-region iso="mk" :values="[
                 ['MK-PO', 100000],
                 ['MK-SW', 100000],
                 ['MK-PE', 100000],
@@ -6246,7 +6246,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_kenya_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="ke" :values="[
+            <x-map-region iso="ke" :values="[
                 ['KE-110', 100000],
                 ['KE-200', 100000],
                 ['KE-300', 100000],
@@ -6308,7 +6308,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_qatar_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="qa" :values="[
+            <x-map-region iso="qa" :values="[
                 ['QA-ZA', 100000],
                 ['QA-KH', 100000],
                 ['QA-SH', 100000],
@@ -6370,7 +6370,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_kuwait_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="kw" :values="[
+            <x-map-region iso="kw" :values="[
                 ['KW-AH', 100000],
                 ['KW-KU', 100000],
                 ['KW-JA', 100000],
@@ -6430,7 +6430,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_jordan_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="jo" :values="[
+            <x-map-region iso="jo" :values="[
                 ['JO-AJ', 100000],
                 ['JO-AM', 100000],
                 ['JO-AQ', 100000],
@@ -6496,7 +6496,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_bangladesh_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="bd" :values="[
+            <x-map-region iso="bd" :values="[
                 ['BD-A', 100000],
                 ['BD-B', 100000],
                 ['BD-C', 100000],
@@ -6558,7 +6558,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_for_lebanon_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="lb" :values="[
+            <x-map-region iso="lb" :values="[
                 ['LB-AK', 100000],
                 ['LB-BH', 100000],
                 ['LB-BA', 100000],
@@ -6620,7 +6620,7 @@ class RegionTest extends ComponentTestCase
     public function a_region_map_component_with_an_invalid_iso_can_not_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-map.region iso="jq" :values="[]" name="Field Name" />
+            <x-map-region iso="jq" :values="[]" name="Field Name" />
             HTML;
 
         $expected = <<<'HTML'

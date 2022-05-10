@@ -15,9 +15,9 @@
 @else
     <div {{ $attributes->merge($wrapperClasses())->only('class') }}>
         @if ($iconLeft)
-            <x-input.embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
+            <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
         @elseif (isset($prefix) || $prefixText)
-            <x-input.embed prefix :styles="$prefixStyles" >{{ $prefix ?? $prefixText }}</x-input.embed>
+            <x-input-embed prefix :styles="$prefixStyles" >{{ $prefix ?? $prefixText }}</x-input-embed>
         @endif
         <input name="{{ $name }}"
                type="{{ $type }}"
@@ -33,9 +33,9 @@
                {{ $attributes->except('class') }}
         />
         @if ($iconRight)
-                <x-input.embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
+                <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
         @elseif (isset($suffix) || $suffixText)
-                <x-input.embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input.embed>
+                <x-input-embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input-embed>
         @endif
     </div>
 @endif

@@ -34,7 +34,7 @@ class DecimalTest extends ComponentTestCase
     public function an_input_decimal_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.decimal name="name" />
+            <x-input-decimal name="name" />
             HTML;
 
         $expected = <<<'HTML'
@@ -48,7 +48,7 @@ class DecimalTest extends ComponentTestCase
     public function an_input_decimal_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.decimal name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
+            <x-input-decimal name="name" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" width="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -62,7 +62,7 @@ class DecimalTest extends ComponentTestCase
     public function an_input_decimal_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.decimal name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
+            <x-input-decimal name="name" background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" width="9" />
             HTML;
 
         $expected = <<<'HTML'
@@ -80,7 +80,7 @@ class DecimalTest extends ComponentTestCase
         Config::set('themes.default.input-decimal.onblur', 'formatDecimal(this, {{ $decimals }})');
 
         $template = <<<'HTML'
-            <x-input.decimal name="name" />
+            <x-input-decimal name="name" />
             HTML;
 
         $expected = <<<'HTML'

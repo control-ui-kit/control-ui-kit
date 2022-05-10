@@ -1,0 +1,19 @@
+{
+    "$schema": "http://laravel-ide.com/schema/laravel-ide-v2.json",
+    "blade": {
+        "components": {
+            "fromConfig": [
+                {
+                    "file": "config/control-ui-kit.php",
+                    "key": "components",
+                    "prefixKey": "prefix"
+                },
+                {
+                    "file": "config/control-ui-kit.php",
+                    "key": "icons",
+                    "prefixKey": "prefix"
+                }
+            ]
+        }
+    }
+}

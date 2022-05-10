@@ -46,42 +46,42 @@ class AlertTest extends ComponentTestCase
 
         Config::set('themes.default.alert.brand.background', 'brand-background');
         Config::set('themes.default.alert.brand.border', 'brand-border');
-        Config::set('themes.default.alert.brand.icon', 'icon.dot');
+        Config::set('themes.default.alert.brand.icon', 'icon-dot');
         Config::set('themes.default.alert.brand.icon-color', 'brand-icon-color');
         Config::set('themes.default.alert.brand.title-color', 'brand-title-color');
         Config::set('themes.default.alert.brand.text-other', 'brand-text-other');
 
         Config::set('themes.default.alert.danger.background', 'danger-background');
         Config::set('themes.default.alert.danger.border', 'danger-border');
-        Config::set('themes.default.alert.danger.icon', 'icon.dot');
+        Config::set('themes.default.alert.danger.icon', 'icon-dot');
         Config::set('themes.default.alert.danger.icon-color', 'danger-icon-color');
         Config::set('themes.default.alert.danger.title-color', 'danger-title-color');
         Config::set('themes.default.alert.danger.text-other', 'danger-text-other');
 
         Config::set('themes.default.alert.info.background', 'info-background');
         Config::set('themes.default.alert.info.border', 'info-border');
-        Config::set('themes.default.alert.info.icon', 'icon.dot');
+        Config::set('themes.default.alert.info.icon', 'icon-dot');
         Config::set('themes.default.alert.info.icon-color', 'info-icon-color');
         Config::set('themes.default.alert.info.title-color', 'info-title-color');
         Config::set('themes.default.alert.info.text-other', 'info-text-other');
 
         Config::set('themes.default.alert.success.background', 'success-background');
         Config::set('themes.default.alert.success.border', 'success-border');
-        Config::set('themes.default.alert.success.icon', 'icon.dot');
+        Config::set('themes.default.alert.success.icon', 'icon-dot');
         Config::set('themes.default.alert.success.icon-color', 'success-icon-color');
         Config::set('themes.default.alert.success.title-color', 'success-title-color');
         Config::set('themes.default.alert.success.text-other', 'success-text-other');
 
         Config::set('themes.default.alert.muted.background', 'muted-background');
         Config::set('themes.default.alert.muted.border', 'muted-border');
-        Config::set('themes.default.alert.muted.icon', 'icon.dot');
+        Config::set('themes.default.alert.muted.icon', 'icon-dot');
         Config::set('themes.default.alert.muted.icon-color', 'muted-icon-color');
         Config::set('themes.default.alert.muted.title-color', 'muted-title-color');
         Config::set('themes.default.alert.muted.text-other', 'muted-text-other');
 
         Config::set('themes.default.alert.warning.background', 'warning-background');
         Config::set('themes.default.alert.warning.border', 'warning-border');
-        Config::set('themes.default.alert.warning.icon', 'icon.dot');
+        Config::set('themes.default.alert.warning.icon', 'icon-dot');
         Config::set('themes.default.alert.warning.icon-color', 'warning-icon-color');
         Config::set('themes.default.alert.warning.title-color', 'warning-title-color');
         Config::set('themes.default.alert.warning.text-other', 'warning-text-other');
@@ -196,7 +196,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background brand-background border brand-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="brand-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -226,7 +226,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background danger-background border danger-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="danger-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -256,7 +256,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background info-background border info-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="info-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -286,7 +286,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background success-background border success-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="success-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -316,7 +316,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background muted-background border muted-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="muted-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -346,7 +346,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background warning-background border warning-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="warning-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -482,7 +482,7 @@ class AlertTest extends ComponentTestCase
     public function an_alert_component_can_be_rendered_with_inline_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-alert icon="icon.dot" icon-size="custom-size" icon-color="custom-color">
+            <x-alert icon="icon-dot" icon-size="custom-size" icon-color="custom-color">
                 Alert content
             </x-alert>
             HTML;
@@ -490,7 +490,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="custom-color custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>
@@ -509,7 +509,7 @@ class AlertTest extends ComponentTestCase
     public function an_alert_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
-            <x-alert icon="icon.dot" icon-size="none" icon-color="none">
+            <x-alert icon="icon-dot" icon-size="none" icon-color="none">
                 Alert content
             </x-alert>
             HTML;
@@ -517,7 +517,7 @@ class AlertTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
                 <div class="flex">
-                    <div class="flex-shrink-0 mr-3">
+                    <div class="shrink-0 mr-3">
                         <svg class="fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
                             </svg>

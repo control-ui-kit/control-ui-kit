@@ -27,9 +27,9 @@ class FooterTest extends ComponentTestCase
     public function a_layout_footer_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-layout.footer>
+            <x-layout-footer>
                 Footer html
-            </x-layout.footer>
+            </x-layout-footer>
             HTML;
 
         $expected = <<<'HTML'
@@ -44,9 +44,9 @@ class FooterTest extends ComponentTestCase
     public function a_layout_footer_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.footer background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
+            <x-layout-footer background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Footer html
-            </x-layout.footer>
+            </x-layout-footer>
             HTML;
 
         $expected = <<<'HTML'
@@ -61,9 +61,9 @@ class FooterTest extends ComponentTestCase
     public function a_layout_footer_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.footer background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
+            <x-layout-footer background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
                 Footer html
-            </x-layout.footer>
+            </x-layout-footer>
             HTML;
 
         $expected = <<<'HTML'

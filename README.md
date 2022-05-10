@@ -8,7 +8,7 @@ Require the package using composer:
 composer require control-ui-kit/control-ui-kit
 ```
 
-See control-ui-kit docs for more......
+This package is still in development.  It is not recommended for production usage as of yet.  Documentation to follow.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

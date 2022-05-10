@@ -30,7 +30,7 @@
 
         <div class="{{ $resultsClasses }}">
             <span>{!! __('Display') !!}</span>
-            <x-input.select native name="limit" options="5, 10, 25, 50, 100, 200" required value="{{ $pageLimit }}" />
+            <x-input-select native name="limit" options="5, 10, 25, 50, 100, 200" required value="{{ $pageLimit }}" />
             <span>{!! __('Results') !!}</span>
             <span class="font-medium">{{ $paginator->firstItem() }}-{{ $paginator->lastItem() }}</span>
             <span>{!! __('of') !!}</span>

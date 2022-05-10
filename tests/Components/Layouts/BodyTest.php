@@ -28,9 +28,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-layout.body>
+            <x-layout-body>
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
@@ -46,9 +46,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.body background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" theme="none">
+            <x-layout-body background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" theme="none">
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
@@ -64,9 +64,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.body background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" theme="9">
+            <x-layout-body background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" theme="9">
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
@@ -82,9 +82,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_have_a_dark_theme(): void
     {
         $template = <<<'HTML'
-            <x-layout.body theme="dark">
+            <x-layout-body theme="dark">
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
@@ -100,9 +100,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_have_a_light_theme(): void
     {
         $template = <<<'HTML'
-            <x-layout.body theme="light">
+            <x-layout-body theme="light">
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
@@ -118,9 +118,9 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_cannot_have_an_invalid_theme(): void
     {
         $template = <<<'HTML'
-            <x-layout.body theme="invalid">
+            <x-layout-body theme="invalid">
                 Document html
-            </x-layout.body>
+            </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'

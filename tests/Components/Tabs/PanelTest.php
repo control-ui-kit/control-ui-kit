@@ -27,9 +27,9 @@ class PanelTest extends ComponentTestCase
     public function a_tabs_panel_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-tabs.panel id="profile">
+            <x-tabs-panel id="profile">
                 Profile content
-            </x-tabs.panel>
+            </x-tabs-panel>
             HTML;
 
         $expected = <<<'HTML'
@@ -43,9 +43,9 @@ class PanelTest extends ComponentTestCase
     public function a_tabs_panel_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-tabs.panel id="profile" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
+            <x-tabs-panel id="profile" background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Profile content
-            </x-tabs.panel>
+            </x-tabs-panel>
             HTML;
 
         $expected = <<<'HTML'
@@ -59,9 +59,9 @@ class PanelTest extends ComponentTestCase
     public function a_tabs_panel_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-tabs.panel id="profile" background="a" border="b" color="c" font="d" other="e" padding="f" rounded="g" shadow="h">
+            <x-tabs-panel id="profile" background="a" border="b" color="c" font="d" other="e" padding="f" rounded="g" shadow="h">
                 Profile content
-            </x-tabs.panel>
+            </x-tabs-panel>
             HTML;
 
         $expected = <<<'HTML'
@@ -75,9 +75,9 @@ class PanelTest extends ComponentTestCase
     public function a_tabs_panel_component_can_be_rendered_with_additional_attributes(): void
     {
         $template = <<<'HTML'
-            <x-tabs.panel id="profile" padding="none" wire:model="something">
+            <x-tabs-panel id="profile" padding="none" wire:model="something">
                 Profile content
-            </x-tabs.panel>
+            </x-tabs-panel>
             HTML;
 
         $expected = <<<'HTML'

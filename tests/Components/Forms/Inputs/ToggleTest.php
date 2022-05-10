@@ -46,7 +46,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" />
+            <x-input-toggle name="enable" />
             HTML;
 
         $expected = <<<'HTML'
@@ -63,7 +63,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_no_wrapper_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" background="none" border="none" other="none" padding="none" shadow="none" />
+            <x-input-toggle name="enable" background="none" border="none" other="none" padding="none" shadow="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -80,7 +80,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_inline_wrapper_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" background="1" border="2" other="3" padding="4" shadow="5" />
+            <x-input-toggle name="enable" background="1" border="2" other="3" padding="4" shadow="5" />
             HTML;
 
         $expected = <<<'HTML'
@@ -97,7 +97,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_no_base_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" base-animation="none" base-background="none" base-border="none" base-focus="none" base-other="none" base-rounded="none" base-shadow="none" base-size="none" base-state-off="none" base-state-on="none" />
+            <x-input-toggle name="enable" base-animation="none" base-background="none" base-border="none" base-focus="none" base-other="none" base-rounded="none" base-shadow="none" base-size="none" base-state-off="none" base-state-on="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -114,7 +114,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_inline_base_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" base-animation="1" base-background="2" base-border="3" base-focus="4" base-other="5" base-rounded="6" base-shadow="7" base-size="8" base-state-off="9" base-state-on="10" />
+            <x-input-toggle name="enable" base-animation="1" base-background="2" base-border="3" base-focus="4" base-other="5" base-rounded="6" base-shadow="7" base-size="8" base-state-off="9" base-state-on="10" />
             HTML;
 
         $expected = <<<'HTML'
@@ -131,7 +131,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_no_switch_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" switch-animation="none" switch-background="none" switch-border="none" switch-focus="none" switch-other="none" switch-rounded="none" switch-shadow="none" switch-size="none" switch-state-off="none" switch-state-on="none" />
+            <x-input-toggle name="enable" switch-animation="none" switch-background="none" switch-border="none" switch-focus="none" switch-other="none" switch-rounded="none" switch-shadow="none" switch-size="none" switch-state-off="none" switch-state-on="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -148,7 +148,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_can_be_rendered_with_inline_switch_styles(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" switch-animation="1" switch-background="2" switch-border="3" switch-focus="4" switch-other="5" switch-rounded="6" switch-shadow="7" switch-size="8" switch-state-off="9" switch-state-on="10" />
+            <x-input-toggle name="enable" switch-animation="1" switch-background="2" switch-border="3" switch-focus="4" switch-other="5" switch-rounded="6" switch-shadow="7" switch-size="8" switch-state-off="9" switch-state-on="10" />
             HTML;
 
         $expected = <<<'HTML'
@@ -165,7 +165,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_with_on_and_off_states_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" off="::off" on="::on" />
+            <x-input-toggle name="enable" off="::off" on="::on" />
             HTML;
 
         $expected = <<<'HTML'
@@ -182,7 +182,7 @@ class ToggleTest extends ComponentTestCase
     public function an_input_toggle_component_with_on_and_off_states_and_value_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-input.toggle name="enable" off="::off" on="::on" value="::on" />
+            <x-input-toggle name="enable" off="::off" on="::on" value="::on" />
             HTML;
 
         $expected = <<<'HTML'

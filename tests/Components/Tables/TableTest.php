@@ -50,7 +50,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table.more-button-border', 'more-button-border');
         Config::set('themes.default.table.more-button-color', 'more-button-color');
         Config::set('themes.default.table.more-button-font', 'more-button-font');
-        Config::set('themes.default.table.more-button-icon', 'icon.dot');
+        Config::set('themes.default.table.more-button-icon', 'icon-dot');
         Config::set('themes.default.table.more-button-icon-size', 'more-button-icon-size');
         Config::set('themes.default.table.more-button-other', 'more-button-other');
         Config::set('themes.default.table.more-button-padding', 'more-button-padding');
@@ -72,7 +72,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table.search-icon-background', 'search-icon-background');
         Config::set('themes.default.table.search-icon-border', 'search-icon-border');
         Config::set('themes.default.table.search-icon-color', 'search-icon-color');
-        Config::set('themes.default.table.search-icon-icon', 'icon.search');
+        Config::set('themes.default.table.search-icon-icon', 'icon-search');
         Config::set('themes.default.table.search-icon-icon-size', 'search-icon-size');
         Config::set('themes.default.table.search-icon-other', 'search-icon-other');
         Config::set('themes.default.table.search-icon-padding', 'search-icon-padding');
@@ -171,8 +171,8 @@ class TableTest extends ComponentTestCase
 
         Config::set('themes.default.table-heading.field-order', 'order');
         Config::set('themes.default.table-heading.field-sort', 'sort');
-        Config::set('themes.default.table-heading.icon-asc', 'icon.caret-up');
-        Config::set('themes.default.table-heading.icon-desc', 'icon.caret-down');
+        Config::set('themes.default.table-heading.icon-asc', 'icon-caret-up');
+        Config::set('themes.default.table-heading.icon-desc', 'icon-caret-down');
 
         Config::set('themes.default.table-filter.button-background', 'button-background');
         Config::set('themes.default.table-filter.button-border', 'button-border');
@@ -193,10 +193,10 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table-filter.check-shadow', 'check-shadow');
         Config::set('themes.default.table-filter.check-active', 'check-active');
         Config::set('themes.default.table-filter.check-inactive', 'check-inactive');
-        Config::set('themes.default.table-filter.check-icon', 'icon.check');
+        Config::set('themes.default.table-filter.check-icon', 'icon-check');
         Config::set('themes.default.table-filter.check-icon-size', 'check-size');
 
-        Config::set('themes.default.table-filter.icon', 'icon.chevron-down');
+        Config::set('themes.default.table-filter.icon', 'icon-chevron-down');
         Config::set('themes.default.table-filter.icon-background', 'icon-background');
         Config::set('themes.default.table-filter.icon-border', 'icon-border');
         Config::set('themes.default.table-filter.icon-color', 'icon-color');
@@ -465,9 +465,9 @@ class TableTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-table>
                 <x-slot name="headings">
-                    <x-table.heading>A</x-table.heading>
-                    <x-table.heading>B</x-table.heading>
-                    <x-table.heading>C</x-table.heading>
+                    <x-table-heading>A</x-table-heading>
+                    <x-table-heading>B</x-table-heading>
+                    <x-table-heading>C</x-table-heading>
                 </x-slot>
             </x-table>
             HTML;
@@ -508,9 +508,9 @@ class TableTest extends ComponentTestCase
                 table-headings-shadow="none"
             >
                 <x-slot name="headings">
-                    <x-table.heading>A</x-table.heading>
-                    <x-table.heading>B</x-table.heading>
-                    <x-table.heading>C</x-table.heading>
+                    <x-table-heading>A</x-table-heading>
+                    <x-table-heading>B</x-table-heading>
+                    <x-table-heading>C</x-table-heading>
                 </x-slot>
             </x-table>
             HTML;
@@ -551,9 +551,9 @@ class TableTest extends ComponentTestCase
                 table-headings-shadow="custom-shadow"
             >
                 <x-slot name="headings">
-                    <x-table.heading>A</x-table.heading>
-                    <x-table.heading>B</x-table.heading>
-                    <x-table.heading>C</x-table.heading>
+                    <x-table-heading>A</x-table-heading>
+                    <x-table-heading>B</x-table-heading>
+                    <x-table-heading>C</x-table-heading>
                 </x-slot>
             </x-table>
             HTML;
@@ -585,7 +585,7 @@ class TableTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-table>
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -665,11 +665,11 @@ class TableTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <x-table
-                more-button-icon="icon.check"
+                more-button-icon="icon-check"
                 more-button-icon-size="custom-size"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -760,7 +760,7 @@ class TableTest extends ComponentTestCase
                 more-button-width="none"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -851,7 +851,7 @@ class TableTest extends ComponentTestCase
                 more-button-width="custom-width"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -943,7 +943,7 @@ class TableTest extends ComponentTestCase
                 more-filters-wrapper="none"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1035,7 +1035,7 @@ class TableTest extends ComponentTestCase
                 more-filters-wrapper="custom-wrapper"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1127,7 +1127,7 @@ class TableTest extends ComponentTestCase
                 table-filters-width="none"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1219,7 +1219,7 @@ class TableTest extends ComponentTestCase
                 table-filters-width="custom-width"
             >
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1300,10 +1300,10 @@ class TableTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-table>
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
                 <x-slot name="active">
-                    <x-table.active-filter name="test" label="::label" />
+                    <x-table-active-filter name="test" label="::label" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1397,7 +1397,7 @@ class TableTest extends ComponentTestCase
         $template = <<<'HTML'
             <x-table>
                 <x-slot name="filters">
-                    <x-table.filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
+                    <x-table-filter name="test" label="test" :options="[ 1 => 'A', 2 => 'B' ]" />
                 </x-slot>
             </x-table>
             HTML;
@@ -1485,7 +1485,7 @@ class TableTest extends ComponentTestCase
 //            >
 //                <div @click.away="onClickAway()" @click.stop="onClickAway()">
 //                    <div class="search-bar-spacing search-bar">
-//                        <div class="w-full sm:flex-shrink-0" x-ref="search" @click="open = false">
+//                        <div class="w-full sm:shrink-0" x-ref="search" @click="open = false">
 //                            <form method="GET" action="http://localhost" name="search-form-name" id="search-form-name">
 //                                <div class="search-wrapper-background search-wrapper-border search-wrapper-color search-wrapper-font search-wrapper-other search-wrapper-padding search-wrapper-rounded search-wrapper-shadow search-wrapper-width">
 //                                    <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">

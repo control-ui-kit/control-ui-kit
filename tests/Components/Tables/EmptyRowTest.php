@@ -51,7 +51,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-table.empty />
+            <x-table-empty />
             HTML;
 
         $expected = <<<'HTML'
@@ -69,7 +69,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.empty background="none"
+            <x-table-empty background="none"
                            border="none"
                            color="none"
                            font="none"
@@ -95,7 +95,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.empty background="1"
+            <x-table-empty background="1"
                            border="2"
                            color="3"
                            font="4"
@@ -121,7 +121,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_custom_text(): void
     {
         $template = <<<'HTML'
-            <x-table.empty>::CUSTOM TEXT</x-table.empty>
+            <x-table-empty>::CUSTOM TEXT</x-table-empty>
             HTML;
 
         $expected = <<<'HTML'
@@ -139,10 +139,10 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_custom_html(): void
     {
         $template = <<<'HTML'
-            <x-table.empty>
+            <x-table-empty>
                 <strong>::CUSTOM TEXT</strong>
                 <a href="#">Some hyperlink</a>
-            </x-table.empty>
+            </x-table-empty>
             HTML;
 
         $expected = <<<'HTML'
@@ -163,7 +163,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_stacked(): void
     {
         $template = <<<'HTML'
-            <x-table.empty stacked> ::Stacked </x-table.empty>
+            <x-table-empty stacked> ::Stacked </x-table-empty>
             HTML;
 
         $expected = <<<'HTML'
@@ -181,7 +181,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_icon(): void
     {
         $template = <<<'HTML'
-            <x-table.empty icon="icon.dot"> ::Icon </x-table.empty>
+            <x-table-empty icon="icon-dot"> ::Icon </x-table-empty>
             HTML;
 
         $expected = <<<'HTML'
@@ -204,7 +204,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_icon_size_and_styles(): void
     {
         $template = <<<'HTML'
-            <x-table.empty icon="icon.dot" icon-size="custom-size" icon-style="custom-style"> ::Icon </x-table.empty>
+            <x-table-empty icon="icon-dot" icon-size="custom-size" icon-style="custom-style"> ::Icon </x-table-empty>
             HTML;
 
         $expected = <<<'HTML'
@@ -227,7 +227,7 @@ class EmptyRowTest extends ComponentTestCase
     public function a_table_empty_row_component_can_be_rendered_with_custom_colspan(): void
     {
         $template = <<<'HTML'
-            <x-table.empty colspan="4" />
+            <x-table-empty colspan="4" />
             HTML;
 
         $expected = <<<'HTML'

@@ -27,9 +27,9 @@ class HeaderTest extends ComponentTestCase
     public function a_layout_header_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-layout.header>
+            <x-layout-header>
                 Header html
-            </x-layout.header>
+            </x-layout-header>
             HTML;
 
         $expected = <<<'HTML'
@@ -44,9 +44,9 @@ class HeaderTest extends ComponentTestCase
     public function a_layout_header_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.header background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
+            <x-layout-header background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Header html
-            </x-layout.header>
+            </x-layout-header>
             HTML;
 
         $expected = <<<'HTML'
@@ -61,9 +61,9 @@ class HeaderTest extends ComponentTestCase
     public function a_layout_header_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout.header background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
+            <x-layout-header background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
                 Header html
-            </x-layout.header>
+            </x-layout-header>
             HTML;
 
         $expected = <<<'HTML'
