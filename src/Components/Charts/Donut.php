@@ -149,33 +149,35 @@ class Donut extends Component
     private function options(): array
     {
         return [
-            'legend' => [
-                'display' => $this->booleanFromString($this->legendDisplay),
-                'position' => $this->legendPosition,
-                'align' => $this->legendAlign,
-                'fullWidth' => $this->booleanFromString($this->legendWidth),
-                'reverse' => $this->booleanFromString($this->legendReverse),
-                'labels' => [
-                    'boxWidth' => (int)$this->labelWidth,
-                    'fontSize' => (int)$this->labelSize,
-                    'fontStyle' => $this->labelStyle,
-                    'fontColor' => $this->labelColor,
-                    'fontFamily' => $this->labelFamily,
-                    'padding' => (int)$this->labelPadding
-                ]
+            'plugins' => [
+                'legend' => [
+                    'display' => $this->booleanFromString($this->legendDisplay),
+                    'position' => $this->legendPosition,
+                    'align' => $this->legendAlign,
+                    'fullWidth' => $this->booleanFromString($this->legendWidth),
+                    'reverse' => $this->booleanFromString($this->legendReverse),
+                    'labels' => [
+                        'boxWidth' => (int)$this->labelWidth,
+                        'fontSize' => (int)$this->labelSize,
+                        'fontStyle' => $this->labelStyle,
+                        'fontColor' => $this->labelColor,
+                        'fontFamily' => $this->labelFamily,
+                        'padding' => (int)$this->labelPadding
+                    ]
+                ],
+                'title' => [
+                    'display' => $this->booleanFromString($this->titleDisplay),
+                    'text' => (!is_null($this->title) ? $this->title : ''),
+                    'position' => $this->titlePosition,
+                    'fontSize' => (int)$this->titleSize,
+                    'fontFamily' => $this->titleFamily,
+                    'fontColor' => $this->titleColor,
+                    'fontStyle' => $this->titleStyle,
+                    'padding' => (int)$this->titlePadding,
+                    'lineHeight' => (float)$this->titleHeight,
+                ],
             ],
-            'title' => [
-                'display' => $this->booleanFromString($this->titleDisplay),
-                'text' => (!is_null($this->title) ? $this->title : ''),
-                'position' => $this->titlePosition,
-                'fontSize' => (int)$this->titleSize,
-                'fontFamily' => $this->titleFamily,
-                'fontColor' => $this->titleColor,
-                'fontStyle' => $this->titleStyle,
-                'padding' => (int)$this->titlePadding,
-                'lineHeight' => (float)$this->titleHeight,
-            ],
-            'cutoutPercentage' => $this->cutoutPercentage,
+            'cutout' => $this->cutoutPercentage . '%',
         ];
     }
 
