@@ -77,6 +77,9 @@ return [
         'map-world' => \ControlUIKit\Components\Maps\World::class,
         'map-region' => \ControlUIKit\Components\Maps\Region::class,
 
+        'map.world' => \ControlUIKit\Components\Maps\World::class,
+        'map.region' => \ControlUIKit\Components\Maps\Region::class,
+
         'markdown' => \ControlUIKit\Components\Markdown\Markdown::class,
         'toc' => \ControlUIKit\Components\Markdown\ToC::class,
 
