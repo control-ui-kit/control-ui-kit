@@ -27,6 +27,7 @@ class Pagination extends Component
     public array $buttonActiveStyles;
     public array $buttonDisabledStyles;
     public array $pageNumberStyles;
+    public array $linkOptions;
 
     private array $limitStyles;
     private array $resultsStyles;
@@ -191,30 +192,44 @@ class Pagination extends Component
             'wrapper-rounded' => $wrapperRounded,
             'wrapper-shadow' => $wrapperShadow,
         ], [], null, 'wrapperStyles');
+
+        $this->setLinkOptions();
     }
 
     public function render(): string
     {
         return <<<'blade'
-            {{ $rowData->onEachSide($eachSide)
-                ->links('control-ui-kit::control-ui-kit.tables.pagination', [
-                    'iconNext' => $iconNext,
-                    'iconPrevious' => $iconPrevious,
-                    'iconSize' => $iconSize,
-                    'limit' => $limit,
-                    'showAlways' => $showAlways,
-                    'buttonClasses' => $buttonClasses(),
-                    'buttonActive' => $buttonActiveClasses(),
-                    'buttonContainer' => $buttonStyles['button-container'],
-                    'buttonDisabled' => $buttonDisabledClasses(),
-                    'limitClasses' => $limitClasses(),
-                    'pageNumberClasses' => $pageNumberClasses(),
-                    'resultsClasses' => $resultsClasses(),
-                    'wrapperClasses' => $wrapperClasses(),
-                    'wire' => $wire,
-                ])
-            }}
+            @if ($rowData->hasPages())
+                {{ $rowData
+                    ->onEachSide($eachSide)
+                    ->links('control-ui-kit::control-ui-kit.tables.pagination', $linkOptions)
+                }}
+            @else
+                {{ $rowData
+                    ->links('control-ui-kit::control-ui-kit.tables.pagination', $linkOptions)
+                }}
+            @endif
         blade;
+    }
+
+    private function setLinkOptions(): void
+    {
+        $this->linkOptions = [
+            'iconNext' => $this->iconNext,
+            'iconPrevious' => $this->iconPrevious,
+            'iconSize' => $this->iconSize,
+            'limit' => $this->limit,
+            'showAlways' => $this->showAlways,
+            'buttonClasses' => $this->buttonClasses(),
+            'buttonActive' => $this->buttonActiveClasses(),
+            'buttonContainer' => $this->buttonStyles['button-container'],
+            'buttonDisabled' => $this->buttonDisabledClasses(),
+            'limitClasses' => $this->limitClasses(),
+            'pageNumberClasses' => $this->pageNumberClasses(),
+            'resultsClasses' => $this->resultsClasses(),
+            'wrapperClasses' => $this->wrapperClasses(),
+            'wire' => $this->wire,
+        ];
     }
 
     public function buttonClasses(): string
