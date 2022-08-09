@@ -12,6 +12,12 @@ trait UseThemeFile
 
     private function theme()
     {
+        if (! app()->has('control-ui-kit.theme')) {
+            app()->singleton('control-ui-kit.theme', function() {
+                return 'themes.default';
+            });
+        }
+
         return app('control-ui-kit.theme');
     }
 
@@ -32,6 +38,10 @@ trait UseThemeFile
         if ($append_input || is_null($input)) {
             $theme = $this->theme();
             $key = "{$theme}.{$component}.{$attribute}";
+
+            if ($component === 'dropdown') {
+                ray($key);
+            }
 
             if (! config()->has($key)) {
                 throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");

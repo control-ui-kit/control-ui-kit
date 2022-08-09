@@ -16,6 +16,8 @@ class Table extends Component
 
     protected string $component = 'table';
 
+    public ?array $filters;
+
     public ?string $clearFiltersEvent;
     public ?string $clearFiltersHref;
     public ?string $clearFiltersText;
@@ -23,6 +25,10 @@ class Table extends Component
     public ?string $search;
     private ?bool $showSearch;
     private ?bool $hideSearch;
+    public ?bool $wireSearch;
+
+    public ?string $orderby;
+    public ?string $sort = 'asc';
 
     public string $searchBar;
     public string $searchBarSpacing;
@@ -35,9 +41,7 @@ class Table extends Component
 
     public array $activeFilterListStyles;
     public array $activeFilterWrapperStyles;
-    public array $clearFilterStyles;
-    public array $moreButtonStyles;
-    public array $moreFiltersStyles;
+//    public array $clearFilterStyles;
     public array $tableBodyStyles;
     public array $tableFiltersStyles;
     public array $tableHeadingsStyles;
@@ -82,29 +86,6 @@ class Table extends Component
         string $clearFiltersPadding = null,
         string $clearFiltersRounded = null,
         string $clearFiltersShadow = null,
-
-        string $moreButtonBackground = null,
-        string $moreButtonBorder = null,
-        string $moreButtonColor = null,
-        string $moreButtonFont = null,
-        string $moreButtonIcon = null,
-        string $moreButtonIconSize = null,
-        string $moreButtonOther = null,
-        string $moreButtonPadding = null,
-        string $moreButtonRounded = null,
-        string $moreButtonShadow = null,
-        string $moreButtonWidth = null,
-
-        string $moreFiltersBackground = null,
-        string $moreFiltersBorder = null,
-        string $moreFiltersColor = null,
-        string $moreFiltersFont = null,
-        string $moreFiltersOther = null,
-        string $moreFiltersPadding = null,
-        string $moreFiltersRounded = null,
-        string $moreFiltersShadow = null,
-        string $moreFiltersWidth = null,
-        string $moreFiltersWrapper = null,
 
         string $searchId = null,
         string $searchName = null,
@@ -191,11 +172,21 @@ class Table extends Component
         string $search = null,
         bool $hideSearch = null,
         bool $showSearch = null,
+        bool $wireSearch = null,
+
+        string $orderby = null,
+        string $sort = null,
 
         string $clearFiltersEvent = null,
         string $clearFiltersHref = null,
-        string $clearFiltersText = null
+        string $clearFiltersText = null,
+
+        array $filters = []
     ) {
+
+        /* ACTIVE FILTERS */
+        # TODO - combine all these
+
         $this->setConfigStyles([
             'active-filters-list-background' => $activeFiltersListBackground,
             'active-filters-list-border' => $activeFiltersListBorder,
@@ -228,33 +219,7 @@ class Table extends Component
             'clear-filters-rounded' => $clearFiltersRounded,
             'clear-filters-shadow' => $clearFiltersShadow,
         ], [], null, 'clearFilterStyles');
-
-        $this->setConfigStyles([
-            'more-button-background' => $moreButtonBackground,
-            'more-button-border' => $moreButtonBorder,
-            'more-button-color' => $moreButtonColor,
-            'more-button-font' => $moreButtonFont,
-            'more-button-icon' => $moreButtonIcon,
-            'more-button-icon-size' => $moreButtonIconSize,
-            'more-button-other' => $moreButtonOther,
-            'more-button-padding' => $moreButtonPadding,
-            'more-button-rounded' => $moreButtonRounded,
-            'more-button-shadow' => $moreButtonShadow,
-            'more-button-width' => $moreButtonWidth,
-        ], [], null, 'moreButtonStyles');
-
-        $this->setConfigStyles([
-            'more-filters-background' => $moreFiltersBackground,
-            'more-filters-border' => $moreFiltersBorder,
-            'more-filters-color' => $moreFiltersColor,
-            'more-filters-font' => $moreFiltersFont,
-            'more-filters-other' => $moreFiltersOther,
-            'more-filters-padding' => $moreFiltersPadding,
-            'more-filters-rounded' => $moreFiltersRounded,
-            'more-filters-shadow' => $moreFiltersShadow,
-            'more-filters-width' => $moreFiltersWidth,
-            'more-filters-wrapper' => $moreFiltersWrapper,
-        ], [], null, 'moreFiltersStyles');
+        /* ACTIVE FILTERS */
 
         $this->setConfigStyles([
             'table-background' => $tableBackground,
@@ -356,7 +321,11 @@ class Table extends Component
 
         $this->showSearch = $showSearch;
         $this->hideSearch = $hideSearch;
-        $this->search = is_null($search) ? request('search') : null;
+        $this->wireSearch = $wireSearch;
+
+        if ($wireSearch) {
+            $this->showSearch = true;
+        }
 
         $this->searchBar = $this->style($this->component, 'search-bar', $searchBar);
         $this->searchBarSpacing = $this->style($this->component, 'search-bar-spacing', $searchBarSpacing);
@@ -370,6 +339,12 @@ class Table extends Component
         $this->clearFiltersEvent = $this->style($this->component, 'clear-filters-event', $clearFiltersEvent);
         $this->clearFiltersHref = $this->style($this->component, 'clear-filters-href', $clearFiltersHref);
         $this->clearFiltersText = $this->style($this->component, 'clear-filters-text', $clearFiltersText);
+
+        $this->sort = $sort ?: request($this->style('table-heading', 'field-sort', $sort));
+        $this->orderby = $orderby ?: request($this->style('table-heading', 'field-order', $orderby));
+
+        $this->search = is_null($search) ? request('search') : null;
+        $this->filters = $filters;
     }
 
     public function render()
@@ -390,31 +365,6 @@ class Table extends Component
     public function clearFilterClasses(): string
     {
         return $this->classList($this->clearFilterStyles);
-    }
-
-    public function moreButtonClasses(): string
-    {
-        return $this->classList($this->moreButtonStyles, '', [], ['more-button-icon', 'more-button-icon-size']);
-    }
-
-    public function moreButtonIcon(): string
-    {
-        return $this->moreButtonStyles['more-button-icon'];
-    }
-
-    public function moreButtonIconSize(): string
-    {
-        return $this->moreButtonStyles['more-button-icon-size'];
-    }
-
-    public function moreFiltersClasses(): string
-    {
-        return $this->classList($this->moreFiltersStyles, '', [], ['more-filters-wrapper']);
-    }
-
-    public function moreFiltersWrapper(): string
-    {
-        return $this->moreFiltersStyles['more-filters-wrapper'];
     }
 
     public function tableBodyClasses(): string
@@ -494,15 +444,15 @@ class Table extends Component
     {
         return Request::fullUrl();
     }
-
-    private function activeFilterHref($type): string
-    {
-        $resetValue = null;
-
-        $query = $type . '=' . $resetValue;
-
-        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
-    }
+//
+//    private function activeFilterHref($type): string
+//    {
+//        $resetValue = null;
+//
+//        $query = $type . '=' . $resetValue;
+//
+//        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
+//    }
 
     public function showSearch()
     {
@@ -517,5 +467,36 @@ class Table extends Component
         }
 
         return $configSearch;
+    }
+
+    public function hasActiveFilters(): bool
+    {
+        return (bool) count($this->activeFilters());
+    }
+
+    public function activeFilters(): array
+    {
+        $active = [];
+
+        foreach ($this->filters as $prop => $filter) {
+
+            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['empty']) {
+                continue;
+            }
+            
+            $text = $filter['type'] === 'search' ? $filter['selected'] : $filter['options'][$filter['selected']];
+
+            $activeFilter = [
+                'name' => $filter['name'],
+                'type' => $filter['type'],
+                'index' => $filter['type'] === 'search' ? $filter['index'] : '',
+                'label' => $filter['label'],
+                'text' => $text,
+            ];
+
+            $active[] = $activeFilter;
+        }
+
+        return $active;
     }
 }

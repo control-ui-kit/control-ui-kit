@@ -1,24 +1,28 @@
 @if (! $field && ! $href)
-<th {{ $attributes->merge($classes()) }}>{{ $slot }}</th>
+<th {{ $attributes->merge($classes()) }}>
+    {{ $slot->isNotEmpty() ? $slot : $text }}
+</th>
 @elseif (! $field && $href)
 <th {{ $attributes->merge($classes())->only('class') }}>
-    <a href="{{ $href }}" {{ $attributes->except('class') }} class="{{ $sortLink }}">{{ $slot }}</a>
+    <a href="{{ $href }}" {{ $attributes->except('class') }} class="{{ $sortable }}">
+        {{ $slot->isNotEmpty() ? $slot : $text }}
+    </a>
 </th>
 @else
 <th {{ $attributes->merge($classes())->only('class') }}>
-    <a href="{{ $href }}" {{ $attributes->except('class') }} class="{{ $sortLink }}">
+    <a @if($href) href="{{ $href }}" @endif {{ $attributes->except('class') }} class="{{ $sortable }}"
+       @if ($wire) wire:click="sortBy('{{ $field }}')" @endif
+        x-on:click="sortBy('{{ $field }}')"
+    >
         @if (($isCurrentSort() && ($icon || $iconAlt)) || (! $isCurrentSort() && $iconAsc))
-            <span>{{ $slot }}</span>
+            <span>{{ $slot->isNotEmpty() ? $slot : $text }}</span>
             <span class="flex items-center">
-            @if ($isCurrentSort())
-                @if($icon)<x-dynamic-component :component="$icon" :size="$iconSize" class="group-hover:opacity-10" />@endif
-                @if($iconAlt)<x-dynamic-component :component="$iconAlt" :size="$iconSize" class="opacity-10 group-hover:opacity-100 transition-opacity absolute" />@endif
-            @else
-                <x-dynamic-component :component="$iconAsc" :size="$iconSize" class="opacity-30 group-hover:opacity-100 transition-opacity duration-200" />
-            @endif
+                <x-dynamic-component x-show="orderby == '{{ $field }}' && sort == 'asc'" :component="$iconAsc" :size="$iconSize" alt="asc" />
+                <x-dynamic-component x-show="orderby == '{{ $field }}' && sort == 'desc'"  :component="$iconDesc" :size="$iconSize" alt="desc" />
+                <x-dynamic-component x-show="orderby != '{{ $field }}'"  :component="$iconAsc" :size="$iconSize" alt="hover" class="opacity-30 group-hover:opacity-100 transition-opacity duration-200" />
             </span>
         @else
-            {{ $slot }}
+            {{ $slot->isNotEmpty() ? $slot : $text }}
         @endif
     </a>
 </th>

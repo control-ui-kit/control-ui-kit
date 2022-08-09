@@ -24,7 +24,9 @@ class Heading extends Component
     public string $iconDesc;
     public string $iconSize;
     public ?string $field;
-    public string $sortLink;
+    public ?string $text;
+    public string $sortable;
+    public bool $wire;
     public ?string $currentOrder;
     public ?string $currentSort;
 
@@ -49,8 +51,10 @@ class Heading extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
-        string $sortLink = null,
+        string $sortable = null,
+        string $text = null,
         string $width = null,
+        bool $wire = false,
         bool $left = false,
         bool $center = false,
         bool $right = false
@@ -75,12 +79,14 @@ class Heading extends Component
         $this->iconAsc = $this->style($this->component, 'icon-asc', $iconAsc);
         $this->iconDesc = $this->style($this->component, 'icon-desc', $iconDesc);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
-        $this->sortLink = $this->style($this->component, 'sort-link', $sortLink);
+        $this->sortable = $this->style($this->component, 'sortable', $sortable);
+        $this->wire = $wire;
         $this->field = $field;
         $this->anchor = $anchor;
+        $this->text = $text;
         $this->currentOrder = $currentOrder ?? $this->currentOrder();
         $this->currentSort = $currentOrder ? $this->cleanDirection($currentSort) : $this->currentSort();
-        $this->href = $this->buildHref($href, $field, $this->currentSort);
+        $this->href = $wire ? null : $this->buildHref($href, $field, $this->currentSort);
 
         $this->setIcons();
     }

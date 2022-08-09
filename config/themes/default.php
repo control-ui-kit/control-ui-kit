@@ -409,6 +409,7 @@ return [
     ],
 
     'dropdown-menu' => [
+
         'background' => 'bg-nav-bar-option',
         'border' => 'border border-nav-bar',
         'color' => '',
@@ -418,6 +419,7 @@ return [
         'rounded' => 'rounded',
         'shadow' => 'shadow-md',
         'width' => '',
+
     ],
 
     'error' => [
@@ -743,7 +745,7 @@ return [
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
-        'text-font' => 'text-input-option group-hover:text-input-option-hover ',
+        'text-font' => 'text-input-option group-hover:text-input-option-hover',
         'text-other' => 'block truncate',
         'text-padding' => '',
         'text-rounded' => '',
@@ -1014,7 +1016,7 @@ return [
         'background' => '',
         'border' => '',
         'color' => '',
-        'font' => 'text-sm font-medium leading-4 capitalize',
+        'font' => 'text-xs font-medium leading-4 capitalize',
         'other' => 'inline-flex items-center w-max',
         'padding' => 'px-2.5 py-0.5 ',
         'rounded' => 'rounded-full',
@@ -1063,7 +1065,7 @@ return [
         'active-filters-list-border' => '',
         'active-filters-list-color' => '',
         'active-filters-list-font' => '',
-        'active-filters-list-other' => 'flex flex-row flex-wrap items-center',
+        'active-filters-list-other' => 'flex flex-row flex-wrap items-center justify-end',
         'active-filters-list-padding' => '',
         'active-filters-list-rounded' => '',
         'active-filters-list-shadow' => '',
@@ -1078,7 +1080,7 @@ return [
         'active-filters-wrapper-padding' => '',
         'active-filters-wrapper-rounded' => '',
         'active-filters-wrapper-shadow' => '',
-        'active-filters-wrapper-width' => 'min-w-full',
+        'active-filters-wrapper-width' => 'w-full',
 
         # TODO - test
         'clear-filters-event' => '',
@@ -1088,33 +1090,10 @@ return [
         'clear-filters-border' => 'focus:outline-none focus:ring-0',
         'clear-filters-color' => 'text-brand hover:text-brand-lighter focus:text-brand-lightest',
         'clear-filters-font' => '',
-        'clear-filters-other' => 'shrink-0 ml-2',
-        'clear-filters-padding' => 'pt-0.5',
+        'clear-filters-other' => 'shrink-0 ml-2 pt-1',
+        'clear-filters-padding' => '',
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
-
-        'more-button-background' => 'bg-table-filters',
-        'more-button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
-        'more-button-color' => 'text-input',
-        'more-button-font' => '',
-        'more-button-icon' => 'icon-filter',
-        'more-button-icon-size' => 'w-5 h-5',
-        'more-button-other' => 'flex items-center shrink-0 cursor-pointer mb-0 sm:mb-4',
-        'more-button-padding' => 'h-10 px-2.5',
-        'more-button-rounded' => 'rounded',
-        'more-button-shadow' => '',
-        'more-button-width' => 'w-max',
-
-        'more-filters-background' => '',
-        'more-filters-border' => '',
-        'more-filters-color' => '',
-        'more-filters-font' => '',
-        'more-filters-other' => 'grid grid-cols-2 gap-2 sm:gap-0 sm:inline-flex items-center sm:justify-end sm:flex-wrap sm:space-x-0.5',
-        'more-filters-padding' => 'mb-2 sm:mb-0',
-        'more-filters-rounded' => '',
-        'more-filters-shadow' => '',
-        'more-filters-width' => 'w-full sm:w-auto',
-        'more-filters-wrapper' => 'flex justify-end',
 
         # TODO - test
         'search-icon-background' => '',
@@ -1147,13 +1126,14 @@ return [
         'search-wrapper-padding' => '',
         'search-wrapper-rounded' => 'rounded',
         'search-wrapper-shadow' => '',
-        'search-wrapper-width' => 'w-full',
+        'search-wrapper-width' => '',
 
         # TODO - test
         'search-enable' => false,
-        'search-bar' => 'flex mb-2 sm:mb-0',
-        'search-bar-spacing' => 'sm:grid table-grid-filters space-x-2 sm:space-x-4',
-        'search-container' => 'w-full sm:shrink-0',
+        'search-bar' => 'mb-4',
+//        'search-bar-spacing' => 'sm:grid sm:grid-cols-2 table-grid-filters space-x-2 sm:space-x-4',
+        'search-bar-spacing' => 'flex space-x-2 sm:space-x-2',
+        'search-container' => 'flex-1 sm:shrink-0',
         'search-event' => '',
         'search-id' => 'search',
         'search-type' => 'search',
@@ -1171,7 +1151,7 @@ return [
         'table-shadow' => 'shadow',
 
         'table-body-background' => 'bg-table',
-        'table-body-border' => 'divide-y table-divider',
+        'table-body-border' => 'divide-y divide-table',
         'table-body-color' => '',
         'table-body-font' => '',
         'table-body-other' => 'overflow-hidden',
@@ -1182,10 +1162,10 @@ return [
         'table-filters-background' => '',
         'table-filters-border' => '',
         'table-filters-color' => '',
-        'table-filters-container' => 'flex-grow w-auto flex flex-col sm:items-end',
+        'table-filters-container' => 'flex-grow flex flex-col sm:items-end',
         'table-filters-empty' => 'hidden sm:block mb-0 sm:mb-4 h-10',
         'table-filters-font' => '',
-        'table-filters-other' => 'inline-flex space-x-0.5',
+        'table-filters-other' => 'inline-flex space-x-1',
         'table-filters-padding' => '',
         'table-filters-rounded' => 'rounded sm:rounded-r',
         'table-filters-shadow' => '',
@@ -1212,6 +1192,19 @@ return [
         'table-wrapper-without-filters' => '',
     ],
 
+    'table-action' => [
+
+        'background' => '',
+        'border' => '',
+        'color' => 'text-table-action-icon hover:text-table-action-icon-hover',
+        'font' => '',
+        'other' => '',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+
+    ],
+
     'table-active-filter' => [
 
         // Style
@@ -1219,8 +1212,8 @@ return [
         'border' => 'border border-active-filter focus-within:border-brand',
         'color' => 'text-active-filter',
         'font' => 'text-sm',
-        'other' => 'flex items-center space-x-1 mr-2 w-max mb-2',
-        'padding' => 'px-1.5 py-0.5',
+        'other' => 'flex items-center space-x-1 w-max',
+        'padding' => 'px-1.5 py-0.5 mr-2 mb-4',
         'rounded' => 'rounded',
         'shadow' => '',
 
@@ -1238,21 +1231,21 @@ return [
     ],
 
     'table-cell' => [
+        'actions' => 'flex items-center space-x-1 flex-nowrap justify-center px-2',
         'align' => 'text-left',
         'background' => '',
         'border' => '',
         'color' => '',
         'href-color' => '',
-        //'href-color' => 'text-brand hover:text-brand-darkest',
-        'font' => 'text-sm',
-        'other' => 'whitespace-no-wrap align-middle',
-        'padding' => 'px-3 py-2',
+        'font' => 'text-[13px]',
+        'other' => 'whitespace-no-wrap align-middle h-11',
+        'padding' => 'py-1 px-3',
         'rounded' => '',
         'shadow' => '',
 
         'icon-background' => '',
         'icon-border' => '',
-        'icon-color' => 'opacity-90',
+        'icon-color' => '',
         'icon-other' => '',
         'icon-padding' => '',
         'icon-rounded' => '',
@@ -1261,8 +1254,8 @@ return [
 
         'image-border' => '',
         'image-other' => 'shrink-0',
-        'image-padding' => 'pr-2',
-        'image-rounded' => 'rounded',
+        'image-padding' => '',
+        'image-rounded' => 'rounded-sm',
         'image-shadow' => '',
         'image-size' => 'h-8 w-auto',
     ],
@@ -1287,13 +1280,30 @@ return [
         'default-text' => 'No records found',
     ],
 
+    'table-filters' => [
+
+        // Style
+        'button-background' => 'bg-table-filters',
+        'button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
+        'button-color' => 'text-input',
+        'button-font' => '',
+        'button-icon' => 'icon-filter',
+        'button-icon-size' => 'w-5 h-5',
+        'button-other' => 'flex items-center shrink-0 cursor-pointer',
+        'button-padding' => 'h-10 px-2.5',
+        'button-rounded' => 'rounded',
+        'button-shadow' => '',
+        'button-width' => 'w-max',
+
+    ],
+
     'table-filter' => [
 
         // Style
         'button-background' => 'bg-table-filters',
         'button-border' => 'focus:outline-none focus:ring-0 w-full border border-table-filters focus:border-brand',
         'button-color' => '',
-        'button-font' => 'text-input',
+        'button-font' => 'text-input text-sm',
         'button-other' => 'h-10 flex items-center shrink-0 cursor-pointer',
         'button-padding' => 'space-x-2 py-1.5 px-3 sm:mb-4',
         'button-rounded' => 'rounded',
@@ -1354,7 +1364,7 @@ return [
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
-        'text-font' => 'text-input-option group-hover:text-input-option-hover',
+        'text-font' => 'text-input-option group-hover:text-input-option-hover text-sm',
         'text-other' => 'block truncate',
         'text-padding' => '',
         'text-rounded' => '',
@@ -1394,22 +1404,22 @@ return [
         // Style
         'align' => 'text-left',
         'background' => '',
-        'border' => '',
+        'border' => 'border-b border-table',
         'color' => 'text-table-header',
         'font' => 'uppercase text-xs font-medium tracking-wider whitespace-nowrap',
-        'icon-size' => 'w-5 h-5',
-        'other' => '',
+        'icon-size' => 'w-4 h-4',
+        'other' => 'cursor-default',
         'padding' => 'px-4 py-2',
         'rounded' => '',
         'shadow' => '',
-        'sort-link' => 'inline-flex items-center space-x-1 group focus:outline-none focus:text-brand',
+        'sortable' => 'inline-flex items-center space-x-0.5 group focus:outline-none focus:text-brand cursor-pointer',
         'width' => 'w-auto',
 
         // Config
-        'field-order' => 'order',
+        'field-order' => 'orderby',
         'field-sort' => 'sort',
-        'icon-asc' => 'icon-caret-up',
-        'icon-desc' => 'icon-caret-down',
+        'icon-asc' => 'icon-chevron-down',
+        'icon-desc' => 'icon-chevron-up',
     ],
 
     'table-row' => [
@@ -1464,44 +1474,53 @@ return [
         'icon-previous' => 'icon-chevron-left',
         'icon-size' => 'w-5 h-5',
 
-        'button-container' => 'relative z-0 flex',
+        'button-container' => 'relative z-0 flex space-x-1',
+        'button-spacing' => 'space-x-1',
+        'button-numbers' => 'hidden md:flex',
 
-//        'full-pagination' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
-//        'mobile-pagination' => 'relative z-0 inline-flex space-x-2',
-
-        'button-background' => 'bg-button-default hover:bg-button-default-hover',
-        'button-border' => 'border border-button-default hover:border-button-default-hover focus:outline-none',
-        'button-color' => 'text-button-default hover:text-button-default-hover',
+        'button-background' => 'bg-paginate-button hover:bg-paginate-button-hover',
+        'button-border' => 'border border-paginate-button hover:border-paginate-button-hover focus:outline-none',
+        'button-color' => 'text-paginate-button hover:text-paginate-button-hover',
         'button-font' => 'font-medium text-sm',
-        'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150',
-        'button-padding' => 'ml-0.5',
+        'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150 cursor-pointer',
+        'button-padding' => '',
         'button-rounded' => 'rounded',
         'button-shadow' => '',
         'button-width' => 'h-9 w-9',
 
-        'button-active-background' => 'bg-button-default',
-        'button-active-border' => 'border border-button-default-hover',
-        'button-active-color' => 'text-button-default-hover',
+        'button-active-background' => 'bg-paginate-active hover:bg-paginate-active-hover',
+        'button-active-border' => 'border border-paginate-active hover:border-paginate-active-hover',
+        'button-active-color' => 'text-paginate-active hover:text-paginate-active-hover',
         'button-active-font' => 'font-medium text-sm',
-        'button-active-other' => 'relative inline-flex items-center justify-center',
-        'button-active-padding' => 'ml-0.5',
+        'button-active-other' => 'relative inline-flex items-center justify-center cursor-default',
+        'button-active-padding' => '',
         'button-active-rounded' => 'rounded',
         'button-active-shadow' => '',
         'button-active-width' => 'h-9 w-9',
 
-        'button-disabled-background' => 'bg-button-muted',
-        'button-disabled-border' => 'border border-button-default',
-        'button-disabled-color' => 'text-button-muted',
+        'button-disabled-background' => 'bg-paginate-disabled hover:bg-paginate-disabled-hover',
+        'button-disabled-border' => 'border border-paginate-disabled hover:border-paginate-disabled-hover',
+        'button-disabled-color' => 'text-paginate-disabled hover:text-paginate-disabled-hover',
         'button-disabled-font' => 'font-medium text-sm',
-        'button-disabled-other' => 'relative inline-flex items-center justify-center',
-        'button-disabled-padding' => 'ml-0.5',
+        'button-disabled-other' => 'relative inline-flex items-center justify-center cursor-default',
+        'button-disabled-padding' => '',
         'button-disabled-rounded' => 'rounded',
         'button-disabled-shadow' => '',
         'button-disabled-width' => 'h-9 w-9',
 
+        'limit-background' => 'bg-paginate-limit hover:bg-paginate-limit-hover bg-none',
+        'limit-border' => 'border border-paginate-limit hover:border-paginate-limit-hover focus:border-paginate-limit focus:outline-none focus:ring-1 focus:ring-brand',
+        'limit-color' => 'text-paginate-limit hover:text-paginate-limit-hover',
+        'limit-font' => 'text-sm text-center',
+        'limit-other' => 'flex items-center cursor-pointer',
+        'limit-padding' => 'py-1 px-1.5',
+        'limit-rounded' => 'rounded',
+        'limit-shadow' => '',
+        'limit-width' => '',
+
         'results-background' => '',
         'results-border' => '',
-        'results-color' => '',
+        'results-color' => 'text-paginate-limit',
         'results-font' => ' text-sm',
         'results-other' => 'flex items-center space-x-1 whitespace-nowrap',
         'results-padding' => '',
@@ -1512,7 +1531,6 @@ return [
         'wrapper-border' => '',
         'wrapper-color' => '',
         'wrapper-font' => '',
-//        'wrapper-other' => 'hidden sm:flex-1 sm:flex sm:items-center sm:justify-between',
         'wrapper-other' => 'flex-1 flex items-center justify-between',
         'wrapper-padding' => '',
         'wrapper-rounded' => '',
@@ -1521,6 +1539,7 @@ return [
         // Config
         'show-always' => true,
         'each-side' => 1,
+        'limit' => 10,
     ],
 
     'tabs' => [

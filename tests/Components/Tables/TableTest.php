@@ -593,7 +593,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -677,7 +677,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -768,7 +768,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -859,7 +859,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -951,7 +951,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -1043,7 +1043,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -1135,7 +1135,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="">
                             <div class="" x-ref="filters">
@@ -1227,7 +1227,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="custom-container">
                             <div class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="filters">
@@ -1311,7 +1311,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -1405,7 +1405,7 @@ class TableTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-cloak x-data="Components.table({ hasFilters: true, hasSearch: false, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
             >
-                <div @click.away="onClickAway()" @click.stop="onClickAway()">
+                <div>
                     <div class=" search-bar">
                         <div x-ref="container" class="table-filters-container">
                             <div class="table-filters-background table-filters-border table-filters-color table-filters-font table-filters-other table-filters-padding table-filters-rounded table-filters-shadow table-filters-width" x-ref="filters">
@@ -1471,44 +1471,5 @@ class TableTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
-
-//    /** @test */
-//    public function a_table_component_can_be_rendered_with_search_override(): void
-//    {
-//        $template = <<<'HTML'
-//            <x-table show-search />
-//            HTML;
-//
-//        $expected = <<<'HTML'
-//            <div x-cloak x-data="Components.table({ hasFilters: false, hasSearch: true, withFilters: 'table-wrapper-with-filters', withoutFilters: 'table-wrapper-without-filters', })" x-on:resize.window="resizeFilters()" x-on:resize.window="resizeFilters()" @ready="initFilters()" x-init="init()" @keydown.escape="onEscape()"
-//            >
-//                <div @click.away="onClickAway()" @click.stop="onClickAway()">
-//                    <div class="search-bar-spacing search-bar">
-//                        <div class="w-full sm:shrink-0" x-ref="search" @click="open = false">
-//                            <form method="GET" action="http://localhost" name="search-form-name" id="search-form-name">
-//                                <div class="search-wrapper-background search-wrapper-border search-wrapper-color search-wrapper-font search-wrapper-other search-wrapper-padding search-wrapper-rounded search-wrapper-shadow search-wrapper-width">
-//                                    <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
-//                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-//                                            <path clip-rule="evenodd" d="M12.2348 11.1857C13.0277 10.1687 13.5 8.88949 13.5 7.5c0-3.31371-2.6863-6-6-6-3.31371 0-6 2.68629-6 6 0 3.3137 2.68629 6 6 6 1.38949 0 2.6687-.4723 3.6857-1.2652L15.4509 16.5 16.5 15.4509l-4.2652-4.2652zM12 7.5C12 9.98528 9.98528 12 7.5 12S3 9.98528 3 7.5 5.01472 3 7.5 3 12 5.01472 12 7.5z"/>
-//                                            </svg>
-//                                        </div>
-//                                        <input name="search-name" type="search-type" id="search-id" value="" placeholder="search-placeholder" onchange="document.search.submit();" class="search-input-background search-input-border search-input-color search-input-font search-input-other search-input-padding search-input-rounded search-input-shadow search-input-width" />
-//                                    </div>
-//                                </form>
-//                            </div>
-//                        </div>
-//                    </div>
-//                    <div x-ref="active"></div>
-//                    <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow" :class="tableWrapperClasses()" x-ref="table">
-//                        <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
-//                            <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
-//                        </table>
-//                    </div>
-//                </div>
-//            HTML;
-//
-//        $this->assertComponentRenders($expected, $template);
-//    }
 
 }

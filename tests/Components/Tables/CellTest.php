@@ -84,7 +84,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"></td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -106,7 +106,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td></td>
+            <td> <span class="block "> </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -128,7 +128,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align 1 2 3 4 5 6 7 8"></td>
+            <td class="align 1 2 3 4 5 7 8"> <span class="block 6"> </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -142,7 +142,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-left background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-left background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -156,7 +156,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-left background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-left background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -170,7 +170,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-right background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -184,7 +184,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-right background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -198,7 +198,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-center background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-center background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -212,7 +212,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-center background border color font other padding rounded shadow"> ::Some Data </td>
+            <td class="text-center background border color font other rounded shadow"> <span class="block padding"> ::Some Data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -226,7 +226,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> ::some data </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> ::some data </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -240,7 +240,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 2.03 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 2.03 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -254,7 +254,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 2323.03123243 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 2323.03123243 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -268,7 +268,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 12.09 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 12.09 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -282,7 +282,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> ::prefix 12.0912 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> ::prefix 12.0912 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -296,7 +296,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 12.0912 ::suffix </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 12.0912 ::suffix </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -310,7 +310,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> £ 12.09 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> £ 12.09 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -325,7 +325,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> - </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> - </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -339,7 +339,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 09/03/2021 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 09/03/2021 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -353,7 +353,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 03092021 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 03092021 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -367,7 +367,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 09/03/2021 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 09/03/2021 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -383,7 +383,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 03/09/2021 </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 03/09/2021 </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -398,7 +398,7 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> 2 hours ago </td>
+            <td class="align background border color font other rounded shadow"> <span class="block padding"> 2 hours ago </span> </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -412,8 +412,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block href-color"> ::data </a>
+            <td class="align background border color font other rounded shadow">
+                <a href="http://example.com" class="block href-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -428,8 +428,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block href-color" target="_blank"> ::data </a>
+            <td class="align background border color font other rounded shadow">
+                <a href="http://example.com" class="block href-color padding" target="_blank"> ::data </a>
             </td>
             HTML;
 
@@ -444,8 +444,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block href-color"> ::data </a>
+            <td class="text-right background border color font other rounded shadow">
+                <a href="http://example.com" class="block href-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -460,8 +460,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <a href="http://example.com" class="inline-block custom-color"> ::data </a>
+            <td class="align background border color font other rounded shadow">
+                <a href="http://example.com" class="block custom-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -476,10 +476,12 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="3" cy="3" r="3"/>
-                    </svg>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </span>
                 </td>
             HTML;
 
@@ -504,10 +506,12 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="3" cy="3" r="3"/>
-                    </svg>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding">
+                    <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </span>
                 </td>
             HTML;
 
@@ -522,8 +526,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="text-right background border color font other padding rounded shadow">
-                <a href="http://example.com/testing" class="inline-block href-color">
+            <td class="text-right background border color font other rounded shadow">
+                <a href="http://example.com/testing" class="block href-color padding">
                     <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -542,8 +546,10 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <img src="http://example.com/testing.jpg" class="inline-block image-border image-other image-padding image-rounded image-shadow image-size" alt="::alt" />
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding">
+                    <img src="http://example.com/testing.jpg" class="inline-block image-border image-other image-padding image-rounded image-shadow image-size" loading="lazy" alt="::alt" />
+                </span>
             </td>
             HTML;
 
@@ -566,8 +572,10 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <img src="http://example.com/testing.jpg" class="inline-block custom-border custom-other custom-padding custom-rounded custom-shadow custom-size" />
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding">
+                    <img src="http://example.com/testing.jpg" class="inline-block custom-border custom-other custom-padding custom-rounded custom-shadow custom-size" loading="lazy" />
+                </span>
             </td>
             HTML;
 
@@ -590,8 +598,10 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <img src="http://example.com/testing.jpg" class="inline-block " />
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding">
+                    <img src="http://example.com/testing.jpg" class="inline-block " loading="lazy" />
+                </span>
             </td>
             HTML;
 
@@ -606,7 +616,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -620,7 +632,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -634,7 +648,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -648,7 +664,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-default pill-border pill-color pill-color-default pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -662,7 +680,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -676,7 +696,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-brand pill-border pill-color pill-color-brand pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -690,7 +712,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -704,7 +728,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-danger pill-border pill-color pill-color-danger pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -718,7 +744,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -732,7 +760,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-info pill-border pill-color pill-color-info pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -746,7 +776,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -760,7 +792,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-muted pill-border pill-color pill-color-muted pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -774,7 +808,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -788,7 +824,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-success pill-border pill-color pill-color-success pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -802,7 +840,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -816,7 +856,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -833,7 +875,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -850,7 +894,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-custom pill-border pill-color pill-color-custom pill-font pill-other pill-padding pill-rounded pill-shadow"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -867,7 +913,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="pill-background pill-background-new-release pill-border pill-color pill-color-new-release pill-font pill-other pill-padding pill-rounded pill-shadow"> New Release </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="pill-background pill-background-new-release pill-border pill-color pill-color-new-release pill-font pill-other pill-padding pill-rounded pill-shadow"> New Release </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -881,8 +929,8 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow">
-                <a href="https://example.com" class="inline-block href-color"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
+            <td class="align background border color font other rounded shadow">
+                <a href="https://example.com" class="block href-color padding"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
             </td>
             HTML;
 
@@ -905,7 +953,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span class="1 2 3 4 5 6 7 8"> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span class="1 2 3 4 5 6 7 8"> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -927,7 +977,9 @@ class CellTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <td class="align background border color font other padding rounded shadow"> <span> :: pill </span> </td>
+            <td class="align background border color font other rounded shadow">
+                <span class="block padding"> <span> :: pill </span> </span>
+            </td>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
