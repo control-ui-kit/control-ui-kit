@@ -12,6 +12,12 @@ trait UseThemeFile
 
     private function theme()
     {
+        if (! app()->has('control-ui-kit.theme')) {
+            app()->singleton('control-ui-kit.theme', function() {
+                return 'themes.default';
+            });
+        }
+
         return app('control-ui-kit.theme');
     }
 

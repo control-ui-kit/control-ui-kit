@@ -19,9 +19,11 @@ class ActiveFilter extends Component
     public string $label;
     public string $icon;
     private array $iconStyles;
+    public string $text;
 
     public function __construct(
         string $label,
+        string $text,
         string $name = null,
         string $resetValue = null,
         string $href = null,
@@ -72,6 +74,7 @@ class ActiveFilter extends Component
         }
 
         $this->label = $label;
+        $this->text = $text;
 
         $this->icon = $this->style($this->component, 'icon', $icon);
     }

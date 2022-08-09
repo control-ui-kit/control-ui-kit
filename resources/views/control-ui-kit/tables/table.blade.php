@@ -39,6 +39,7 @@
                                        @endif
                                        class="{{ $searchInputClasses() }}"
                                        autocomplete="off"
+                                       autofocus
                                     {{ $attributes->whereStartsWith('wire:') }}
                                 />
                                 @if ($wireSearch)
@@ -70,8 +71,11 @@
             <div class="{{ $activeFilterWrapperClasses() }}">
                 <div class="{{ $activeFilterListClasses() }}">
                     @foreach ($activeFilters() as $filter)
-{{--                        wire:click="clearFilter('{{ $filter['name'] }}')"--}}
-                        <x-table-active-filter :name="$filter['name']" :label="$filter['label']"  x-on:click="$dispatch('clear-single-filter', '{{ $filter['name'] }}' )" />
+                        @if ($filter['type'] === 'search')
+                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" x-on:click="$dispatch('clear-search-filter', {{ $filter['index'] }})" />
+                        @else
+                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" x-on:click="$dispatch('clear-single-filter', '{{ $filter['name'] }}' )" />
+                        @endif
                     @endforeach
                 </div>
 

@@ -46,9 +46,11 @@
             <div class="{{ $pageNumberClasses }}">
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
-                @if (is_string($element))
+                @if ($element === '...')
                     <div aria-disabled="true">
-                        <span class="{{ $buttonDisabled }}">{{ $element }}</span>
+                        <span class="bg-paginate-disabled hover:bg-paginate-disabled-hover border border-paginate-disabled hover:border-paginate-disabled-hover text-paginate-disabled hover:text-paginate-disabled-hover font-medium text-sm relative inline-flex items-center justify-center cursor-default rounded h-9 w-9">
+                            ...
+                        </span>
                     </div>
                 @endif
 

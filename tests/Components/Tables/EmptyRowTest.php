@@ -56,8 +56,10 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
-                    <div class="background border color font other padding rounded shadow"> No records found </div>
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-rounded cell-shadow" colspan="colspan">
+                    <span class="block cell-padding">
+                        <div class="background border color font other padding rounded shadow"> No records found </div>
+                    </span>
                 </td>
             </tr>
             HTML;
@@ -82,8 +84,10 @@ class EmptyRowTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <tr class="row-background row-border row-color row-font row-other row-padding row-rounded row-shadow">
-                <td class="cell-background cell-border cell-color cell-font cell-other cell-padding cell-rounded cell-shadow" colspan="colspan">
-                    <div> No records found </div>
+                <td class="cell-background cell-border cell-color cell-font cell-other cell-rounded cell-shadow" colspan="colspan">
+                    <span class="block cell-padding">
+                        <div> No records found </div>
+                    </span>
                 </td>
             </tr>
             HTML;

@@ -1,39 +1,43 @@
 <div class="relative"
      @clear-filters.window="clearFilters()"
      @clear-single-filter.window="clearSingleFilter($event.detail)"
+     @clear-search-filter.window="clearSearchFilter($event.detail)"
      x-data="{
-        showFilters: false,
-        fields: {
-            @foreach ($filters as $name => $filter)
-            {{ $name }}: {
-                selected: '{{ $filter['selected'] }}',
-                reset: '{{ $filter['empty'] }}',
-                toggle: {{ $filter['selected'] === $filter['empty'] ? 'false' : 'true' }},
-            },
-            @endforeach
-        },
-        clearFilters() {
-            $wire.emit('clearFilters')
+         showFilters: false,
+         fields: {
+             @foreach ($filters as $name => $filter)
+             {{ $name }}: {
+                 selected: '{{ $filter['selected'] }}',
+                 reset: '{{ $filter['empty'] }}',
+                 toggle: {{ $filter['selected'] === $filter['empty'] ? 'false' : 'true' }},
+             },
+             @endforeach
+         },
+         clearFilters() {
+             $wire.emit('clearFilters')
 
-            for (const [key, value] of Object.entries(this.fields)) {
-                this.fields[key].selected = this.fields[key].reset
-                this.fields[key].toggle = false
-            }
+             for (const [key, value] of Object.entries(this.fields)) {
+                 this.fields[key].selected = this.fields[key].reset
+                 this.fields[key].toggle = false
+             }
 
-            this.showFilters = false
-        },
-        clearSingleFilter(filter) {
-            $wire.emit('clearSingleFilter', filter)
-            this.fields[filter].selected = this.fields[filter].reset
-            this.fields[filter].toggle = false
+             this.showFilters = false
+         },
+         clearSingleFilter(filter) {
+             $wire.emit('clearSingleFilter', filter)
+             this.fields[filter].selected = this.fields[filter].reset
+             this.fields[filter].toggle = false
+         },
+         clearSearchFilter(index) {
+             $wire.emit('clearSearchFilter', index)
          },
          updateFilters() {
-            $wire.emit('updateFilters', this.fields)
-            this.showFilters = false
+             $wire.emit('updateFilters', this.fields)
+             this.showFilters = false
 
-            for (const [key, value] of Object.entries(this.fields)) {
-                this.fields[key].toggle = this.fields[key].selected !== this.fields[key].reset
-            }
+             for (const [key, value] of Object.entries(this.fields)) {
+                 this.fields[key].toggle = this.fields[key].selected !== this.fields[key].reset
+             }
          },
      }"
      @click.away="showFilters = false"
@@ -60,7 +64,11 @@
 
             @foreach ($filters as $name => $filter)
 
-                <x-table-filter :filter="$filter" />
+                @if($filter['type'] !== 'search')
+
+                    <x-table-filter :filter="$filter" />
+
+                @endif
 
             @endforeach
 

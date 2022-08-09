@@ -479,12 +479,22 @@ class Table extends Component
         $active = [];
 
         foreach ($this->filters as $prop => $filter) {
-            if ($filter['selected'] !== $filter['empty']) {
-                $active[] = [
-                    'name' => $prop,
-                    'label' => $filter['label'] . ': ' . $filter['options'][$filter['selected']],
-                ];
+
+            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['empty']) {
+                continue;
             }
+            
+            $text = $filter['type'] === 'search' ? $filter['selected'] : $filter['options'][$filter['selected']];
+
+            $activeFilter = [
+                'name' => $filter['name'],
+                'type' => $filter['type'],
+                'index' => $filter['type'] === 'search' ? $filter['index'] : '',
+                'label' => $filter['label'],
+                'text' => $text,
+            ];
+
+            $active[] = $activeFilter;
         }
 
         return $active;

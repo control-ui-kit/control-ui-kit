@@ -25,10 +25,10 @@ class Filter extends Component
         $this->name = $filter['name'];
         $this->label = $filter['label'];
         $this->type = $filter['type'];
-        $this->options = $filter['options'];
+        $this->options = array_key_exists('options', $filter) ? $filter['options'] : [];
         $this->enabled = $filter['selected'] !== $filter['empty'];
         $this->selected = $filter['selected'];
-        $this->wire = $filter['wire'];
+        $this->wire = array_key_exists('wire', $filter) ? $filter['wire'] : false;
         $this->empty = $filter['empty'];
     }
 
@@ -50,6 +50,7 @@ class Filter extends Component
     {
         return [
             'select',
+            'search',
         ];
     }
 }
