@@ -14,6 +14,8 @@ class Alert extends Component
     protected string $component = 'alert';
 
     public ?string $title;
+    public ?string $text;
+    public array $urls;
     public ?string $icon;
     public string $iconSize;
     public ?string $iconColor;
@@ -21,9 +23,14 @@ class Alert extends Component
 
     private array $titleStyles;
     private array $textStyles;
+    private array $urlStyles;
 
     public function __construct(
         string $title = null,
+        string $text = null,
+        array $urls = [],
+        string $url = null,
+        string $urlText = null,
 
         string $background = null,
         string $border = null,
@@ -43,6 +50,11 @@ class Alert extends Component
         string $titleSize = null,
         string $titleOther = null,
 
+        string $urlColor = null,
+        string $urlFont = null,
+        string $urlSize = null,
+        string $urlOther = null,
+
         string $icon = null,
         string $iconColor = null,
         string $iconSize = null,
@@ -58,6 +70,12 @@ class Alert extends Component
         bool $warning = false
     ) {
         $this->title = $title;
+        $this->text = $text;
+        $this->urls = $urls;
+
+        if ($url) {
+            $this->urls[] = ['url' => $url, 'text' => $urlText ?: $url ];
+        }
 
         $this->type = $this->type($type, [
             'default' => $default,
@@ -99,6 +117,17 @@ class Alert extends Component
             ['text-color'],
             'alert.' . $this->type,
             'textStyles'
+        );
+
+        $this->setConfigStyles([
+            'url-color' => $urlColor,
+            'url-font' => $urlFont,
+            'url-size' => $urlSize,
+            'url-other' => $urlOther,
+        ],
+            ['url-color'],
+            'alert.' . $this->type,
+            'urlStyles'
         );
 
         $this->icon = ($icon === 'none') ? null : $this->style('alert.' . $this->type, 'icon', $icon);
@@ -160,5 +189,10 @@ class Alert extends Component
     public function titleClasses(): string
     {
         return $this->classList($this->titleStyles);
+    }
+
+    public function urlClasses(): string
+    {
+        return $this->classList($this->urlStyles);
     }
 }

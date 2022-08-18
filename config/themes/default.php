@@ -20,13 +20,18 @@ return [
 
         'text-color' => '',
         'text-font' => '',
-        'text-size' => 'text-sm',
-        'text-other' => 'mt-2',
+        'text-size' => 'text-sm leading-[unset]',
+        'text-other' => '',
 
         'title-color' => '',
         'title-font' => 'font-medium',
-        'title-size' => 'text-sm',
+        'title-size' => 'text-sm leading-[unset]',
         'title-other' => '',
+
+        'url-color' => '',
+        'url-font' => 'font-medium',
+        'url-size' => 'text-sm',
+        'url-other' => 'hover:opacity-70',
 
         'default' => [
             'background' => 'bg-alert-default',
@@ -35,6 +40,7 @@ return [
             'icon-color' => 'text-alert-default-icon',
             'title-color' => 'text-alert-default-title',
             'text-color' => 'text-alert-default-text',
+            'url-color' => 'text-alert-default-url',
         ],
 
         'brand' => [
@@ -44,6 +50,7 @@ return [
             'icon-color' => 'text-alert-brand-icon',
             'title-color' => 'text-alert-brand-title',
             'text-color' => 'text-alert-brand-text',
+            'url-color' => 'text-alert-brand-url',
         ],
 
         'danger' => [
@@ -53,6 +60,7 @@ return [
             'icon-color' => 'text-alert-danger-icon',
             'title-color' => 'text-alert-danger-title',
             'text-color' => 'text-alert-danger-text',
+            'url-color' => 'text-alert-danger-url',
         ],
 
         'info' => [
@@ -62,6 +70,7 @@ return [
             'icon-color' => 'text-alert-info-icon',
             'title-color' => 'text-alert-info-title',
             'text-color' => 'text-alert-info-text',
+            'url-color' => 'text-alert-info-url',
         ],
 
         'muted' => [
@@ -71,6 +80,7 @@ return [
             'icon-color' => 'text-alert-muted-icon',
             'title-color' => 'text-alert-muted-title',
             'text-color' => 'text-alert-muted-text',
+            'url-color' => 'text-alert-muted-url',
         ],
 
         'success' => [
@@ -80,6 +90,7 @@ return [
             'icon-color' => 'text-alert-success-icon',
             'title-color' => 'text-alert-success-title',
             'text-color' => 'text-alert-success-text',
+            'url-color' => 'text-alert-success-url',
         ],
 
         'warning' => [
@@ -89,6 +100,7 @@ return [
             'icon-color' => 'text-alert-warning-icon',
             'title-color' => 'text-alert-warning-title',
             'text-color' => 'text-alert-warning-text',
+            'url-color' => 'text-alert-warning-url',
         ],
     ],
 

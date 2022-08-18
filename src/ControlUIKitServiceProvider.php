@@ -70,10 +70,11 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
     protected function registerBladeDirectives(): void
     {
-        Blade::directive('controlUiKitAssets', function () {
+        Blade::directive('controlUiKitAssets', static function () {
             return <<<'blade'
                 <?php
-                $control_script_path = url('/control-ui-kit/javascript/control-ui-kit.js');
+
+                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
 
                 echo <<<scripts
                 <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->
@@ -94,7 +95,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <!--                <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>-->
                 <!--                <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>-->
 
-                <script src="control-ui-kit/javascript/control-ui-kit.js"></script>
+                <script src="$controlUiScriptUrl"></script>
 
                 <!-- todo: we need to fix the styling on the litepicker !-->
                 <style>
