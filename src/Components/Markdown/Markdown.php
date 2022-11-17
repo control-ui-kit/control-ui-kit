@@ -8,10 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 use League\CommonMark\MarkdownConverterInterface;
-use League\CommonMark\Extension\Table\TableExtension;
 
 class Markdown extends Component
 {
@@ -41,15 +39,6 @@ class Markdown extends Component
         return view('control-ui-kit::control-ui-kit.markdown.markdown');
     }
 
-    public function toHtml(string $markdown): string
-    {
-        if ($this->anchors) {
-            $markdown = $this->generateAnchors($markdown);
-        }
-
-        return $this->converter()->convertToHtml($markdown);
-    }
-
     protected function converter(): MarkdownConverterInterface
     {
         $options = array_merge($this->options, [
@@ -61,13 +50,7 @@ class Markdown extends Component
             return new GithubFlavoredMarkdownConverter($options);
         }
 
-        // Obtain a pre-configured Environment with all the CommonMark parsers/renderers ready-to-go
-        $environment = Environment::createCommonMarkEnvironment();
-
-        // Add this extension
-        $environment->addExtension(new TableExtension());
-
-        return new CommonMarkConverter($options, $environment);
+        return new CommonMarkConverter($options);
     }
 
     protected function generateAnchors(string $markdown): string
