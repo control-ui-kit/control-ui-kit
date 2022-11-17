@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "gajus/dindent": "^2.0",
-        "league/commonmark": "^2.0",
+        "league/commonmark": "^2.3",
         "orchestra/testbench": "^5.0|^6.0|^7.1",
         "phpunit/phpunit": "^9.0"
     },

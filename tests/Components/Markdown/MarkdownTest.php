@@ -59,7 +59,7 @@ class MarkdownTest extends ComponentTestCase
     public function a_markdown_component_can_received_options(): void
     {
         $template = <<<'HTML'
-            <x-markdown :options="['use_asterisk' => false]">
+            <x-markdown :options="['commonmark' => ['use_asterisk' => false]]">
             # Hello World
 
             Blade UI components are *awesome*.

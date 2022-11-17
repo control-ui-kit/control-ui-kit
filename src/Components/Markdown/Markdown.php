@@ -39,6 +39,15 @@ class Markdown extends Component
         return view('control-ui-kit::control-ui-kit.markdown.markdown');
     }
 
+    public function toHtml(string $markdown): string
+    {
+        if ($this->anchors) {
+            $markdown = $this->generateAnchors($markdown);
+        }
+
+        return (string) $this->converter()->convertToHtml($markdown);
+    }
+
     protected function converter(): MarkdownConverterInterface
     {
         $options = array_merge($this->options, [
