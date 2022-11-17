@@ -6,28 +6,27 @@ namespace ControlUIKit\Components\Forms\Fields;
 
 use Illuminate\View\Component;
 
-class Text extends Component
+class Field extends Component
 {
     public string $name;
     public string $label;
-    public string $placeholder;
     public string $help;
+    public bool $required;
 
     public function __construct(
-        string $name,
+        string $name = null,
         string $label = null,
-        string $placeholder = null,
-        string $help = null
+        string $help = null,
+        bool $required = false
     ) {
-        $this->name = $name;
-
+        $this->name = $name ?? '';
         $this->label = $label ?? '';
-        $this->placeholder = $placeholder ?? '';
+        $this->required = $required;
         $this->help = $help ?? '';
     }
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.fields.text');
+        return view('control-ui-kit::control-ui-kit.forms.fields.field');
     }
 }

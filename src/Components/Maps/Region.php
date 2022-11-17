@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Maps;
 
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Region extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $component  = 'map-region';
     protected array  $valid_iso = [

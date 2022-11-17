@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Helpers\UrlManipulation;
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request;
@@ -14,7 +13,7 @@ use Illuminate\View\Component;
 
 class FilterOld extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $component = 'table-filter';
 

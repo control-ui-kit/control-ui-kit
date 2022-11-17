@@ -19,7 +19,6 @@ use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
 use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
-use ControlUIKit\Middleware\ControlUIKitLanguageFileMiddleware;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
@@ -35,13 +34,13 @@ class ControlUIKitServiceProvider extends ServiceProvider
         $this->registerMiddleware();
         $this->registerPublishes();
         $this->registerRoutes();
+        $this->registerTranslations();
         $this->registerViews();
     }
 
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/control-ui-kit.php', 'control-ui-kit');
-        $this->mergeConfigFrom(__DIR__ . '/../config/language-files.php', 'language-files');
         $this->mergeConfigFrom(__DIR__ . '/../config/themes/default.php', 'themes.default');
 
         if ($this->app->runningInConsole()) {
@@ -116,7 +115,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         $router = $this->app['router'];
         $router->pushMiddlewareToGroup('web', ControlUIKitThemeMiddleware::class);
-        $router->pushMiddlewareToGroup('web', ControlUIKitLanguageFileMiddleware::class);
     }
 
     private function registerPublishes(): void
@@ -125,7 +123,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__ . '/../config/control-ui-kit.php' => $this->app->configPath('control-ui-kit.php'),
-                __DIR__ . '/../config/language-files.php' => $this->app->configPath('language-files.php'),
             ], 'control-ui-kit-config');
 
             $this->publishes([
@@ -144,6 +141,11 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
         Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);
+    }
+
+    protected function registerTranslations(): void
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'control-ui-kit');
     }
 
     protected function registerViews(): void

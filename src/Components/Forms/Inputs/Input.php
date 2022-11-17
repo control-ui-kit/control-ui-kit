@@ -8,12 +8,11 @@ use ControlUIKit\Exceptions\InputException;
 use ControlUIKit\Exceptions\InputNumberException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseInputTheme;
-use ControlUIKit\Traits\UseLanguageString;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
-    use UseInputTheme, UseLanguageString;
+    use UseInputTheme;
 
     protected string $component = 'input';
 
@@ -148,7 +147,7 @@ class Input extends Component
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
 
-        $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
+        $this->placeholder = $placeholder ?? '';
 
         $this->setInputStyles([
             'background' => $background,

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Textarea extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $component = 'input-textarea';
 
@@ -39,7 +38,7 @@ class Textarea extends Component
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = old($name, $value ?? '');
-        $this->placeholder = $placeholder ?? $this->getLanguageString('placeholder');
+        $this->placeholder = $placeholder ?? '';
         $this->rows = $this->style('input-textarea', 'rows', $rows, '', $this->component);
 
         $this->setConfigStyles([

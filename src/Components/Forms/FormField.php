@@ -6,7 +6,7 @@ namespace ControlUIKit\Components\Forms;
 
 use Illuminate\View\Component;
 
-class Field extends Component
+class FormField extends Component
 {
     protected string $component = 'field';
 
@@ -23,6 +23,6 @@ class Field extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.field');
+        return view('control-ui-kit::control-ui-kit.forms.form-field');
     }
 }

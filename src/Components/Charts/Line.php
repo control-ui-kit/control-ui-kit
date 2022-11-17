@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Charts;
 
 use ControlUIKit\Helpers\Chart;
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Line extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $legend;
     protected string $legendLabel;

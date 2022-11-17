@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Charts;
 
 use ControlUIKit\Helpers\MatrixChart;
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Matrix extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $component = 'matrix';
 

@@ -6,7 +6,7 @@ namespace ControlUIKit\Components\Forms\Fields;
 
 use Illuminate\View\Component;
 
-class Text extends Component
+class Textarea extends Component
 {
     public string $name;
     public string $label;
@@ -20,7 +20,6 @@ class Text extends Component
         string $help = null
     ) {
         $this->name = $name;
-
         $this->label = $label ?? '';
         $this->placeholder = $placeholder ?? '';
         $this->help = $help ?? '';
@@ -28,6 +27,6 @@ class Text extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.forms.fields.text');
+        return view('control-ui-kit::control-ui-kit.forms.fields.textarea');
     }
 }

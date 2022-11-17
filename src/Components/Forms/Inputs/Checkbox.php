@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
-use ControlUIKit\Traits\UseLanguageString;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
 class Checkbox extends Component
 {
-    use UseThemeFile, UseLanguageString;
+    use UseThemeFile;
 
     protected string $component = 'input-checkbox';
 

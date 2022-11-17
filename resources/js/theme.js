@@ -80,6 +80,7 @@ const theme = {
 
         'panel': 'rgb(var(--panel-bg), <alpha-value>)',
         'input': 'rgb(var(--input-bg), <alpha-value>)',
+        'input-item': 'rgb(var(--input-item-bg), <alpha-value>)',
         'input-brand': 'rgb(var(--brand), <alpha-value>)',
         'input-muted': 'rgb(var(--input-muted-bg), <alpha-value>)',
         'input-option': 'rgb(var(--input-option-bg), <alpha-value>)',
@@ -120,6 +121,7 @@ const theme = {
         'toolbar': 'rgb(var(--toolbar-border), <alpha-value>)',
 
         'alert-brand': 'rgb(var(--alert-brand-border), <alpha-value>)',
+        'alert-default': 'rgb(var(--alert-default-border), <alpha-value>)',
         'alert-danger': 'rgb(var(--alert-danger-border), <alpha-value>)',
         'alert-info': 'rgb(var(--alert-info-border), <alpha-value>)',
         'alert-muted': 'rgb(var(--alert-muted-border), <alpha-value>)',
@@ -329,6 +331,10 @@ const theme = {
         'alert-danger-text': 'rgb(var(--alert-danger-text), <alpha-value>)',
         'alert-danger-title': 'rgb(var(--alert-danger-title), <alpha-value>)',
         'alert-danger-url': 'rgb(var(--alert-danger-url), <alpha-value>)',
+        'alert-default-icon': 'rgb(var(--alert-default-icon), <alpha-value>)',
+        'alert-default-text': 'rgb(var(--alert-default-text), <alpha-value>)',
+        'alert-default-title': 'rgb(var(--alert-default-title), <alpha-value>)',
+        'alert-default-url': 'rgb(var(--alert-default-url), <alpha-value>)',
         'alert-info-icon': 'rgb(var(--alert-info-icon), <alpha-value>)',
         'alert-info-text': 'rgb(var(--alert-info-text), <alpha-value>)',
         'alert-info-title': 'rgb(var(--alert-info-title), <alpha-value>)',

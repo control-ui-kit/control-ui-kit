@@ -1,5 +1,10 @@
 @if ($errors->any())
-    <x-dynamic-component component="alert" :type="$type" title="There were {{ $errors->count() }} errors with your submission" {{ $attributes }}>
+    <x-dynamic-component
+        component="alert"
+        :type="$type"
+        :title="$title"
+        {{ $attributes }}
+    >
         <ul class="list-disc pl-5">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

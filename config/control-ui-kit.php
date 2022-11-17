@@ -40,10 +40,13 @@ return [
         'label' => \ControlUIKit\Components\Forms\Label::class,
         'title' => \ControlUIKit\Components\Forms\Title::class,
 
-        'form-field' => \ControlUIKit\Components\Forms\Field::class,
+        'form-field' => \ControlUIKit\Components\Forms\FormField::class,
 
+        'field' => \ControlUIKit\Components\Forms\Fields\Field::class,
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
+        'field-select' => \ControlUIKit\Components\Forms\Fields\Select::class,
         'field-text' => \ControlUIKit\Components\Forms\Fields\Text::class,
+        'field-textarea' => \ControlUIKit\Components\Forms\Fields\Textarea::class,
 
         'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
         'input-checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,

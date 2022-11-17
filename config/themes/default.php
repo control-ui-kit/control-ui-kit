@@ -436,9 +436,15 @@ return [
 
     'error' => [
         'color' => 'text-danger',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'pt-1.5',
+    ],
+
+    'error-bag' => [
+        'alert' => 'danger',
+        'locale-title-lang-string' => 'validation.custom.notifications.errors',
+        'use-translation' => true,
     ],
 
     'input' => [
@@ -542,7 +548,7 @@ return [
         'decimals' => 2,
         'decimals-fixed' => true,
         'default' => '0.00',
-        'font' => 'text-right',
+        'font' => 'text-right text-sm',
         'input-font' => 'text-right',
         'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'prefix-text' => '£',
@@ -555,7 +561,7 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
@@ -599,7 +605,7 @@ return [
     'input-decimal' => [
         'decimals' => 2,
         'default' => 0,
-        'font' => 'text-right',
+        'font' => 'text-right text-sm',
         'input-font' => 'text-right',
         'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'type' => 'number',
@@ -612,7 +618,7 @@ return [
 
     'input-number' => [
         'default' => 0,
-        'font' => 'text-right',
+        'font' => 'text-right text-sm',
         'input-font' => 'text-right',
         'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'step' => 1,
@@ -626,7 +632,7 @@ return [
 
     'input-percent' => [
         'default' => 0,
-        'font' => 'text-right',
+        'font' => 'text-right text-sm',
         'input-font' => 'text-right',
         'icon-right' => 'icon-percent',
         'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
@@ -647,7 +653,7 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
@@ -672,7 +678,7 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
@@ -795,27 +801,27 @@ return [
 
         'base-animation' => 'ease-in-out duration-200 transition-colors',
         'base-background' => '',
-        'base-border' => 'border-2 border-transparent',
+        'base-border' => 'border border-input',
         'base-color' => '',
         'base-focus' => 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand focus:ring-offset-input',
         'base-other' => 'inline-flex shrink-0 cursor-pointer ',
         'base-rounded' => 'rounded-full',
         'base-shadow' => '',
-        'base-size' => 'h-6 w-11',
-        'base-state-off' => 'bg-input-muted',
+        'base-size' => 'h-[24px] w-[46px]',
+        'base-state-off' => 'bg-input',
         'base-state-on' => 'bg-input-brand',
 
         'switch-animation' => 'translate-x-0 transform transition ease-in-out duration-200',
-        'switch-background' => 'bg-input',
-        'switch-border' => '',
+        'switch-background' => 'bg-input-item',
+        'switch-border' => 'border border-input',
         'switch-color' => '',
         'switch-focus' => 'ring-0',
-        'switch-other' => 'pointer-events-none inline-block',
+        'switch-other' => 'pointer-events-none inline-block ml-[1px] mt-[1px]',
         'switch-rounded' => 'rounded-full',
         'switch-shadow' => 'shadow',
         'switch-size' => 'h-5 w-5',
         'switch-state-off' => 'translate-x-0',
-        'switch-state-on' => 'translate-x-5',
+        'switch-state-on' => 'translate-x-[22px]',
     ],
 
     'input-color-picker' => [
