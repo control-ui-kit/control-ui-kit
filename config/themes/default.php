@@ -1009,7 +1009,7 @@ return [
         'other' => '',
         'padding' => 'p-6',
         'rounded' => 'rounded',
-        'shadow' => 'shadow',
+        'shadow' => '',
         'stacked' => 'flex flex-col space-y-2'
     ],
 
