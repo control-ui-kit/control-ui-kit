@@ -12,11 +12,13 @@ class ComponentStyles
 
         if ($component === 'panel') {
             $except[] = 'stacked';
-            return collect(config('themes.default.panel'))->except($except)->implode(" ");
+            return collect(config('themes.default.panel'))->except($except)->filter()->implode(' ');
         }
 
         if ($component === 'panel-stacked') {
-            return collect(config('themes.default.panel'))->except($except)->implode(" ");
+            return collect(config('themes.default.panel'))->except($except)->filter()->implode(' ');
         }
+
+        return '';
     }
 }
