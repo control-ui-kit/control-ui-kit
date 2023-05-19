@@ -265,6 +265,12 @@ const theme = {
         'chart-900': 'rgb(var(--chart-900), <alpha-value>)',
 
     },
+    fillColor: {
+
+        'progress-bar': 'rgb(var(--progress-bar), <alpha-value>)',
+        'progress-bg': 'rgb(var(--progress-bg), <alpha-value>)',
+
+    },
     ringColor: {
 
         'brand': 'rgb(var(--brand), <alpha-value>)',
@@ -456,6 +462,10 @@ function ringColor(customRingColor) {
     return { ...theme.ringColor, ...customRingColor};
 }
 
+function fillColor(customFillColor) {
+    return { ...theme.fillColor, ...customFillColor};
+}
+
 function textColor(customTextColor) {
     return { ...theme.textColor, ...customTextColor};
 }
@@ -464,5 +474,6 @@ module.exports.backgroundColor = backgroundColor;
 module.exports.borderColor = borderColor;
 module.exports.colors = colors;
 module.exports.divideColor = divideColor;
+module.exports.fillColor = fillColor;
 module.exports.ringColor = ringColor;
 module.exports.textColor = textColor;

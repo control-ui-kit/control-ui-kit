@@ -14,8 +14,8 @@ class IconsTest extends ComponentTestCase
     public function getIconHtml($icon): string
     {
         return str_replace(
-            ' {{ $attributes->merge($classes(\'fill-current\')) }}',
-            ' class="w-5 h-5 fill-current"',
+            [' {{ $attributes->merge($classes(\'fill-current\')) }}', ' {{ $attributes->merge($classes(\'animate-spin\')) }}' ],
+            [' class="w-5 h-5 fill-current"', ' class="w-5 h-5 animate-spin"'],
             file_get_contents(self::ICON_PATH . $icon . '.blade.php')
         );
     }
@@ -25,16 +25,33 @@ class IconsTest extends ComponentTestCase
     {
         $icons = collect(config('control-ui-kit.icons'))->keys();
 
-        $template = '';
-        $iconHtml = '';
         foreach ($icons as $icon) {
-            $template .= '<x-dynamic-component component="'.$icon.'" />';
-            $iconHtml .= $this->getIconHtml(substr($icon, 5));
+            if ($icon === 'file') {
+                continue;
+            }
+
+            $template = '<x-dynamic-component component="' . $icon . '" />';
+            $iconHtml = $this->getIconHtml(substr($icon, 5));
+
+            $expected = $this->indent($iconHtml);
+
+            $this->assertComponentRenders($expected, $template);
         }
+    }
 
-        $expected = $this->indent($iconHtml);
+    /** @test */
+    public function all_file_icons_components_can_be_rendered(): void
+    {
+        $icons = collect(config('control-ui-kit.icons.file'))->keys();
 
-        $this->assertComponentRenders($expected, $template);
+        foreach ($icons as $icon) {
+            $template = '<x-dynamic-component component="' . $icon . '" />';
+            $iconHtml = $this->getIconHtml('file/' . substr($icon, 5));
+
+            $expected = $this->indent($iconHtml);
+
+            $this->assertComponentRenders($expected, $template);
+        }
     }
 
     /** @test */
