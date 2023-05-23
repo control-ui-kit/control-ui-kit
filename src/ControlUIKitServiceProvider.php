@@ -61,13 +61,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 $blade->component($component, $alias, $prefix);
             }
 
-            foreach (config('control-ui-kit.icons.icon', []) as $alias => $component) {
-                if (! is_array($component)) {
-                    $blade->component($component, $alias, $prefix);
-                }
-            }
-
-            foreach (config('control-ui-kit.icons.file', []) as $alias => $component) {
+            foreach (config('control-ui-kit.icons', []) as $alias => $component) {
                 if (! is_array($component)) {
                     $blade->component($component, $alias, $prefix);
                 }

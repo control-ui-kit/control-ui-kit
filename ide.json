@@ -4,14 +4,16 @@
         "components": {
             "fromConfig": [
                 {
-                    "file": "config/control-ui-kit.php",
-                    "key": "components",
-                    "prefixKey": "prefix"
+                    "configFileName": "control-ui-kit",
+                    "componentsKey": "components",
+                    "prefixKey": "prefix",
+                    "namespaceKey": "namespace"
                 },
                 {
-                    "file": "config/control-ui-kit.php",
-                    "key": "icons",
-                    "prefixKey": "prefix"
+                    "configFileName": "control-ui-kit",
+                    "componentsKey": "icons",
+                    "prefixKey": "prefix",
+                    "namespaceKey": "namespace"
                 }
             ]
         }
