@@ -92,7 +92,9 @@ return [
 
         'panel' => \ControlUIKit\Components\Panels\Panel::class,
         'panel-divider' => \ControlUIKit\Components\Panels\Divider::class,
-        'panel-heading' => \ControlUIKit\Components\Panels\Heading::class,
+        'panel-footer' => \ControlUIKit\Components\Panels\Footer::class,
+        'panel-header' => \ControlUIKit\Components\Panels\Header::class,
+        'panel-section' => \ControlUIKit\Components\Panels\Section::class,
 
         'pill' => \ControlUIKit\Components\Pills\Pill::class,
 

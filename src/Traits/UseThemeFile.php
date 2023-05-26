@@ -43,11 +43,11 @@ trait UseThemeFile
                 ray($key);
             }
 
-            if (! config()->has($key)) {
-                throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
-            }
+//            if (! config()->has($key)) {
+//                throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
+//            }
 
-            $configStyle = config($key);
+            $configStyle = $this->componentStyle($component, $attribute);
 
             if ($keyOverride) {
 
@@ -139,5 +139,17 @@ trait UseThemeFile
         }
 
         return 'asc';
+    }
+
+    private function componentStyle($component, $attribute)
+    {
+        $theme = $this->theme();
+        $key = "{$theme}.{$component}.{$attribute}";
+
+        if (! config()->has($key)) {
+            throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
+        }
+
+        return config($key);
     }
 }

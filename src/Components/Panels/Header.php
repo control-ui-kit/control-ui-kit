@@ -7,11 +7,11 @@ namespace ControlUIKit\Components\Panels;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Heading extends Component
+class Header extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'panel-heading';
+    protected string $component = 'panel-header';
 
     public function __construct(
         string $background = null,
@@ -37,6 +37,6 @@ class Heading extends Component
 
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.panels.heading');
+        return view('control-ui-kit::control-ui-kit.panels.header');
     }
 }

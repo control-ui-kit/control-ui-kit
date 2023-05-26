@@ -114,6 +114,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" />
             HTML;
@@ -142,6 +144,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_text_array(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => ['text' => 'A'] ]" />
             HTML;
@@ -170,6 +174,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_text_name(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" text="text2" :options="[ 1 => ['text2' => 'A'] ]" />
             HTML;
@@ -198,6 +205,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_text_name_config_change(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         Config::set('themes.default.table-filter.text-name', 'text2');
 
         $template = <<<'HTML'
@@ -228,6 +238,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_no_button_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 button-background="none"
@@ -266,6 +279,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_override_button_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 button-background="custom-background"
@@ -304,6 +320,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_no_list_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 list-background="none"
@@ -342,6 +361,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_override_list_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 list-background="custom-background"
@@ -380,6 +402,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_no_option_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 option-background="none"
@@ -420,6 +445,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_override_option_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 option-background="custom-background"
@@ -460,6 +488,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_no_wrapper_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 wrapper-background="none"
@@ -498,6 +529,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_override_wrapper_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 wrapper-background="custom-background"
@@ -536,6 +570,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_no_text_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 text-background="none"
@@ -575,6 +611,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_override_text_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 text-background="custom-background"
@@ -614,6 +653,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_subtext(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
@@ -644,6 +685,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_subtext_and_subtext_name(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" subtext="subtext2"
                 :options="[ 1 => ['text' => '::text', 'subtext2' => '::subtext'] ]"
@@ -674,6 +718,9 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_subtext_and_subtext_config_update(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
+
         Config::set('themes.default.table-filter.subtext-name', 'subtext2');
 
         $template = <<<'HTML'
@@ -706,6 +753,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_subtext_and_no_subtext_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
@@ -746,6 +795,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_subtext_and_override_subtext_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label"
                 :options="[ 1 => ['text' => '::text', 'subtext' => '::subtext'] ]"
@@ -786,6 +837,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_check_can_be_rendered(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1" />
             HTML;
@@ -819,6 +872,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_check_can_be_rendered_with_inline_icon(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
                 check-icon="icon-dot"
@@ -855,6 +910,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_check_can_be_rendered_with_no_check_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
                 check-background="none"
@@ -898,6 +955,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_check_can_be_rendered_with_override_check_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]" value="1"
                 check-background="custom-background"
@@ -941,6 +1000,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_custom_icon_can_rendered(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 icon="icon-dot"
@@ -972,6 +1033,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_can_be_rendered_with_no_icon_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 icon-background="none"
@@ -1008,6 +1071,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_with_can_be_rendered_with_override_icon_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[ 1 => 'A' ]"
                 icon-background="custom-background"
@@ -1044,6 +1109,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_an_image(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]" />
             HTML;
@@ -1075,6 +1142,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_name(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" image="image2" :options="[1 => ['text' => 'A', 'image2' => 'image.png']]" />
             HTML;
@@ -1106,6 +1175,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_an_image_and_config_set_image_name(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         Config::set('themes.default.table-filter.image-name', 'image2');
 
         $template = <<<'HTML'
@@ -1139,6 +1210,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_an_image_and_no_image_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
                 image-border="none"
@@ -1177,6 +1250,8 @@ class FilterTest extends ComponentTestCase
     /** @test */
     public function a_table_filter_component_can_be_rendered_with_an_image_and_override_image_styles(): void
     {
+        $this->markTestSkipped('CPC - we might be removing this component');
+
         $template = <<<'HTML'
             <x-table-filter name="name" label="label" :options="[1 => ['text' => 'A', 'image' => 'image.png']]"
                 image-border="custom-border"

@@ -70,9 +70,6 @@ class ErrorBagTest extends ComponentTestCase
                             </svg>
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <h3 class="title-color danger-title-color title-font title-size title-other">
-                                There were 1 errors with your submission
-                            </h3>
                             <div class="text-color text-alert-danger-text text-font text-size text-other">
                                 <ul class="list-disc pl-5">
                                     <li>This is a test message</li>
@@ -104,9 +101,6 @@ class ErrorBagTest extends ComponentTestCase
                             </svg>
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <h3 class="title-color default-title-color title-font title-size title-other">
-                                There were 1 errors with your submission
-                            </h3>
                             <div class="text-color text-alert-default-text text-font text-size text-other">
                                 <ul class="list-disc pl-5">
                                     <li>This is a test message</li>

@@ -23,13 +23,11 @@ class IconsTest extends ComponentTestCase
     /** @test */
     public function all_icons_components_can_be_rendered(): void
     {
-        $icons = collect(config('control-ui-kit.icons'))->keys();
+        $icons = collect(config('control-ui-kit.icons'))
+            ->keys()
+            ->filter(fn($key) => str($key)->startsWith('icon-'));
 
         foreach ($icons as $icon) {
-            if ($icon === 'file') {
-                continue;
-            }
-
             $template = '<x-dynamic-component component="' . $icon . '" />';
             $iconHtml = $this->getIconHtml(substr($icon, 5));
 
@@ -42,7 +40,9 @@ class IconsTest extends ComponentTestCase
     /** @test */
     public function all_file_icons_components_can_be_rendered(): void
     {
-        $icons = collect(config('control-ui-kit.icons.file'))->keys();
+        $icons = collect(config('control-ui-kit.icons'))
+            ->keys()
+            ->filter(fn($key) => str($key)->startsWith('file-'));
 
         foreach ($icons as $icon) {
             $template = '<x-dynamic-component component="' . $icon . '" />';

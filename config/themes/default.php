@@ -852,7 +852,7 @@ return [
         'border' => '',
         'color' => '',
         'font' => '',
-        'other' => 'flex flex-col space-y-2 sm:space-y-4',
+        'other' => 'flex flex-col space-y-2 sm:space-y-4 md:min-h-[300px]',
         'padding' => 'p-2 sm:p-4',
         'rounded' => '',
         'shadow' => '',
@@ -1003,29 +1003,59 @@ return [
 
     'panel' => [
         'background' => 'bg-panel',
-        'border' => 'border border-panel',
+        'border' => 'border border-panel divide-y divide-panel',
         'color' => 'text-panel',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-6',
         'rounded' => 'rounded',
         'shadow' => '',
-        'stacked' => 'flex flex-col space-y-2'
+        'spacing' => 'flex flex-col space-y-2',
+        'width' => 'w-full',
+        'tiny' => 'w-full max-w-3xl m-auto',
+        'small' => 'w-full max-w-4xl m-auto',
+        'medium' => 'w-full max-w-5xl m-auto',
+        'large' => 'w-full max-w-6xl m-auto',
+        'huge' => 'w-full max-w-7xl m-auto',
+        'jumbo' => 'w-full max-w-8xl m-auto',
     ],
 
     'panel-divider' => [
         'border' => 'border-b border-panel-divider',
     ],
 
-    'panel-heading' => [
+    'panel-footer' => [
+        'background' => 'bg-panel-footer',
+        'border' => '',
+        'color' => 'text-panel-footer ',
+        'font' => 'uppercase text-xs font-medium tracking-wider whitespace-nowrap items-center text-left',
+        'other' => 'w-auto cursor-default',
+        'padding' => 'px-4 py-2',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'panel-header' => [
+        'background' => 'bg-panel-header',
+        'border' => 'border-b border-panel',
+        'color' => 'text-panel-header ',
+        'font' => 'uppercase text-xs font-medium tracking-wider whitespace-nowrap items-center text-left',
+        'other' => 'w-auto cursor-default',
+        'padding' => 'px-4 py-2',
+        'rounded' => '',
+        'shadow' => '',
+    ],
+
+    'panel-section' => [
         'background' => '',
         'border' => '',
         'color' => '',
-        'font' => 'font-semibold text-lg',
-        'other' => 'w-full',
-        'padding' => '',
+        'font' => '',
+        'other' => '',
+        'padding' => 'p-6',
         'rounded' => '',
         'shadow' => '',
+        'spacing' => 'space-y-2',
     ],
 
     'pill' => [
@@ -1660,7 +1690,7 @@ return [
         'background' => '',
         'border' => '',
         'color' => 'text-panel-header',
-        'font' => 'font-medium text-xl',
+        'font' => 'font-medium text-base',
         'other' => '',
         'padding' => 'py-3',
         'rounded' => '',

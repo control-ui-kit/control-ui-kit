@@ -90,6 +90,9 @@ const theme = {
         'paginate-limit-hover': 'rgb(var(--paginate-limit-bg-hover), <alpha-value>)',
 
         'panel': 'rgb(var(--panel-bg), <alpha-value>)',
+        'panel-header': 'rgb(var(--panel-header-bg), <alpha-value>)',
+        'panel-footer': 'rgb(var(--panel-footer-bg), <alpha-value>)',
+
         'input': 'rgb(var(--input-bg), <alpha-value>)',
         'input-item': 'rgb(var(--input-item-bg), <alpha-value>)',
         'input-brand': 'rgb(var(--brand), <alpha-value>)',
@@ -184,6 +187,7 @@ const theme = {
     divideColor: {
 
         'table': 'rgb(var(--table-divider), <alpha-value>)',
+        'panel': 'rgb(var(--panel-divider), <alpha-value>)',
 
     },
     colors: {
@@ -440,6 +444,7 @@ const theme = {
 
         'panel': 'rgb(var(--panel), <alpha-value>)',
         'panel-header': 'rgb(var(--panel-header), <alpha-value>)',
+        'panel-footer': 'rgb(var(--panel-footer), <alpha-value>)',
 
         'input': 'rgb(var(--input), <alpha-value>)',
         'input-muted': 'rgb(var(--input-muted), <alpha-value>)',

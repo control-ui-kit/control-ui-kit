@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ControlUIKit\Components\Layouts;
+namespace ControlUIKit\Components\Panels;
 
 use ControlUIKit\Traits\UseThemeFile;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Content extends Component
+class Footer extends Component
 {
     use UseThemeFile;
 
-    protected string $component = 'layout-content';
+    protected string $component = 'panel-footer';
 
     public function __construct(
         string $background = null,
@@ -32,12 +31,12 @@ class Content extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow,
+            'shadow' => $shadow
         ]);
     }
 
-    public function render(): View
+    public function render()
     {
-        return view('control-ui-kit::control-ui-kit.layouts.content');
+        return view('control-ui-kit::control-ui-kit.panels.footer');
     }
 }
