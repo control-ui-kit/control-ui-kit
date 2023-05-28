@@ -33,6 +33,13 @@ return [
         'url-size' => 'text-sm',
         'url-other' => 'hover:opacity-70',
 
+        'tiny' => 'w-full max-w-3xl m-auto',
+        'small' => 'w-full max-w-4xl m-auto',
+        'medium' => 'w-full max-w-5xl m-auto',
+        'large' => 'w-full max-w-6xl m-auto',
+        'xl' => 'w-full max-w-7xl m-auto',
+        'jumbo' => 'w-full max-w-8xl m-auto',
+
         'default' => [
             'background' => 'bg-alert-default',
             'border' => 'border-alert-default',
@@ -535,7 +542,7 @@ return [
 
     'input-checkbox' => [
         'background' => 'bg-input',
-        'border' => 'focus:ring-brand border-input',
+        'border' => 'focus:ring-brand border-input focus:ring-offset-input',
         'color' => 'text-brand',
         'font' => '',
         'other' => 'h-4 w-4 cursor-pointer',
@@ -666,7 +673,7 @@ return [
 
     'input-radio' => [
         'background' => 'bg-input',
-        'border' => 'focus:ring-brand border-input',
+        'border' => 'focus:ring-brand border-input focus:ring-offset-input',
         'color' => 'text-brand',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
@@ -1003,8 +1010,9 @@ return [
 
     'panel' => [
         'background' => 'bg-panel',
-        'border' => 'border border-panel divide-y divide-panel',
+        'border' => 'border border-panel',
         'color' => 'text-panel',
+        'divider' => 'divide-y divide-panel',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-6',
@@ -1016,7 +1024,7 @@ return [
         'small' => 'w-full max-w-4xl m-auto',
         'medium' => 'w-full max-w-5xl m-auto',
         'large' => 'w-full max-w-6xl m-auto',
-        'huge' => 'w-full max-w-7xl m-auto',
+        'xl' => 'w-full max-w-7xl m-auto',
         'jumbo' => 'w-full max-w-8xl m-auto',
     ],
 

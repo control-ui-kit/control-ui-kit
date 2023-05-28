@@ -25,6 +25,7 @@ class PanelTest extends ComponentTestCase
         Config::set('themes.default.panel.background', 'background');
         Config::set('themes.default.panel.border', 'border');
         Config::set('themes.default.panel.color', 'color');
+        Config::set('themes.default.panel.divider', 'divider');
         Config::set('themes.default.panel.font', 'font');
         Config::set('themes.default.panel.other', 'other');
         Config::set('themes.default.panel.padding', 'padding');
@@ -36,7 +37,7 @@ class PanelTest extends ComponentTestCase
         Config::set('themes.default.panel.small', 'small');
         Config::set('themes.default.panel.medium', 'medium');
         Config::set('themes.default.panel.large', 'large');
-        Config::set('themes.default.panel.huge', 'huge');
+        Config::set('themes.default.panel.xl', 'xl');
         Config::set('themes.default.panel.jumbo', 'jumbo');
 
         Config::set('themes.default.panel-header.background', 'background');
@@ -78,7 +79,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width"> content
+            <div class="background border color divider font other rounded shadow width"> content
             </div>
             HTML;
 
@@ -99,7 +100,7 @@ class PanelTest extends ComponentTestCase
                 <h3 class="background border color font other padding rounded shadow">
                     title
                 </h3>
-                <div class="background border color font other rounded shadow width"> content
+                <div class="background border color divider font other rounded shadow width"> content
             </div>
             </div>
             HTML;
@@ -117,7 +118,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font custom other rounded shadow width"> content
+            <div class="background border color divider font custom other rounded shadow width"> content
             </div>
             HTML;
 
@@ -134,7 +135,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font padding other rounded shadow width"> content
+            <div class="background border color divider font padding other rounded shadow width"> content
             </div>
             HTML;
 
@@ -151,7 +152,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow tiny"> content
+            <div class="background border color divider font other rounded shadow tiny"> content
             </div>
             HTML;
 
@@ -168,7 +169,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow small"> content
+            <div class="background border color divider font other rounded shadow small"> content
             </div>
             HTML;
 
@@ -185,7 +186,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow medium"> content
+            <div class="background border color divider font other rounded shadow medium"> content
             </div>
             HTML;
 
@@ -202,7 +203,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow large"> content
+            <div class="background border color divider font other rounded shadow large"> content
             </div>
             HTML;
 
@@ -210,16 +211,16 @@ class PanelTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_panel_component_with_huge_width_can_be_rendered(): void
+    public function a_panel_component_with_xl_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-panel huge>
+            <x-panel xl>
                 content
             </x-panel>
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow huge"> content
+            <div class="background border color divider font other rounded shadow xl"> content
             </div>
             HTML;
 
@@ -236,7 +237,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow jumbo"> content
+            <div class="background border color divider font other rounded shadow jumbo"> content
             </div>
             HTML;
 
@@ -247,7 +248,7 @@ class PanelTest extends ComponentTestCase
     public function a_panel_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel background="none" border="none" color="none" font="none" other="none" rounded="none" shadow="none" width="none">
+            <x-panel background="none" border="none" color="none" divider="none" font="none" other="none" rounded="none" shadow="none" width="none">
                 content
             </x-panel>
             HTML;
@@ -264,13 +265,13 @@ class PanelTest extends ComponentTestCase
     public function a_panel_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-panel background="1" border="2" color="3" font="4" other="5" rounded="6" shadow="7" width="8">
+            <x-panel background="1" border="2" color="3" divider="4" font="5" other="6" rounded="7" shadow="8" width="9">
                 content
             </x-panel>
             HTML;
 
         $expected = <<<'HTML'
-            <div class="1 2 3 4 5 6 7 8"> content
+            <div class="1 2 3 4 5 6 7 8 9"> content
             </div>
             HTML;
 
@@ -285,7 +286,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width">
+            <div class="background border color divider font other rounded shadow width">
                 <h3 class="background border color font other padding rounded shadow"></h3>
             </div>
             HTML;
@@ -301,8 +302,8 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width">
-                <h3 class="background border color font other padding rounded shadow">
+            <div class="background border color divider font other rounded shadow width">
+                <h3 class="background color font other padding rounded shadow">
                     header
                 </h3>
                 <div class="padding spacing"></div>
@@ -320,7 +321,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width">
+            <div class="background border color divider font other rounded shadow width">
                 content
                 <div class="background border color font other padding rounded shadow">footer</div>
             </div>
@@ -341,7 +342,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width">
+            <div class="background border color divider font other rounded shadow width">
                 <div>
                     <h3 class="background border color font other padding rounded shadow">
                         header
@@ -355,23 +356,39 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-//
-//    /** @test */
-//    public function a_panel_component_can_be_rendered_stacked(): void
-//    {
-//        $template = <<<'HTML'
-//            <x-panel stacked>
-//                Panel content
-//            </x-panel>
-//            HTML;
-//
-//        $expected = <<<'HTML'
-//            <div class="background border color font other padding rounded shadow stacked"> Panel content
-//            </div>
-//            HTML;
-//
-//        $this->assertComponentRenders($expected, $template);
-//    }
+    /** @test */
+    public function a_panel_component_can_be_rendered_stacked(): void
+    {
+        $template = <<<'HTML'
+            <x-panel stacked>
+                content
+            </x-panel>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color divider font other rounded shadow spacing width"> content
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_panel_component_can_be_rendered_simple(): void
+    {
+        $template = <<<'HTML'
+            <x-panel simple>
+                content
+            </x-panel>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color font padding other rounded shadow spacing width"> content
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 
     /** @test */
     public function a_panel_component_can_be_rendered_with_additional_attributes(): void
@@ -383,7 +400,7 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="background border color font other rounded shadow width" id="profile" wire:model="something"> content
+            <div class="background border color divider font other rounded shadow width" id="profile" wire:model="something"> content
             </div>
             HTML;
 

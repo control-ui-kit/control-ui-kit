@@ -7,7 +7,7 @@
         @endif
         </p>
         @if ($help)
-            <p class="hidden sm:block text-xs text-muted leading-relaxed">{{ $help }}</p>
+            <p class="hidden sm:block text-xs text-muted leading-relaxed pr-2">{{ $help }}</p>
         @endif
     </x-label>
     <div class="mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4">
@@ -20,7 +20,7 @@
         </div>
         <x-error field="{{ $name }}"/>
         @if ($help)
-            <p class="sm:hidden text-xs text-muted">{{ $help }}</p>
+            <p class="sm:hidden text-xs text-muted mt-2">{{ $help }}</p>
         @endif
     </div>
 </div>

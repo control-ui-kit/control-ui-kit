@@ -247,15 +247,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc" class="sortable">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                        </span>
-                    </a>
-                </th>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -270,18 +276,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=desc" class="sortable">
+                <a href="http://example.com?order=example&amp;sort=desc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
-                            </span>
-                        </a>
-                    </th>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -296,18 +305,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc" class="sortable">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7 9l5 5 5-5H7z"/>
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M17 14l-5-5-5 5h10z"/>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
-                            </span>
-                        </a>
-                    </th>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -322,15 +334,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                        </span>
-                    </a>
-                </th>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -345,18 +363,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=desc" class="sortable">
+                <a href="http://localhost?order=example&amp;sort=desc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
-                            </span>
-                        </a>
-                    </th>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -371,18 +392,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current group-hover:opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7 9l5 5 5-5H7z"/>
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                            <svg class="icon-size fill-current opacity-10 group-hover:opacity-100 transition-opacity absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M17 14l-5-5-5 5h10z"/>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
                                 </svg>
-                            </span>
-                        </a>
-                    </th>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -397,15 +421,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable">
+                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="::some-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="::some-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                        </span>
-                    </a>
-                </th>
+                            <svg class="::some-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                                <svg class="::some-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -420,15 +450,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sortable">
+                <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                        </span>
-                    </a>
-                </th>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -443,15 +479,21 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sortable">
+                <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sortable" x-on:click="sortBy('example')">
                     <span>::Some Heading</span>
                     <span class="flex items-center">
-                        <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M17 14l-5-5-5 5h10z"/>
                             </svg>
-                        </span>
-                    </a>
-                </th>
+                            <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'desc'" alt="desc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M7 9l5 5 5-5H7z"/>
+                                </svg>
+                                <svg class="icon-size fill-current opacity-30 group-hover:opacity-100 transition-opacity duration-200" x-show="orderby != 'example'" alt="hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M17 14l-5-5-5 5h10z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        </th>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -469,7 +511,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable"> ::Some Heading </a>
+                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')"> ::Some Heading </a>
             </th>
             HTML;
 
@@ -488,7 +530,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="text-right background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable"> ::Some Heading </a>
+                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')"> ::Some Heading </a>
             </th>
             HTML;
 

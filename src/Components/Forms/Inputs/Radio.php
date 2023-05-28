@@ -33,7 +33,7 @@ class Radio extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name . '_' . str_replace(' ', '_', $value);
-        $this->value = old($name, $value ?? '');
+        $this->value = $value;
         $this->checked = $checked ?? '';
 
         $this->setConfigStyles([
@@ -54,8 +54,11 @@ class Radio extends Component
         ]);
     }
 
-    private function checked()
+    private function checked(): string
     {
-        return $this->checked === '1' || $this->checked === $this->value ? 'checked' : '';
+        return old($this->name) === $this->value ||
+            $this->checked === '1' ||
+            $this->checked === $this->value
+            ? 'checked' : '';
     }
 }

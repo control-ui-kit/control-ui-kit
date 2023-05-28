@@ -24,6 +24,12 @@ class Alert extends Component
     private array $titleStyles;
     private array $textStyles;
     private array $urlStyles;
+    private bool $tiny;
+    private bool $small;
+    private bool $medium;
+    private bool $large;
+    private bool $xl;
+    private bool $jumbo;
 
     public function __construct(
         string $title = null,
@@ -67,11 +73,24 @@ class Alert extends Component
         bool $info = false,
         bool $success = false,
         bool $muted = false,
-        bool $warning = false
+        bool $warning = false,
+
+        bool $tiny = false,
+        bool $small = false,
+        bool $medium = false,
+        bool $large = false,
+        bool $xl = false,
+        bool $jumbo = false
     ) {
         $this->title = $title;
         $this->text = $text;
         $this->urls = $urls;
+        $this->tiny = $tiny;
+        $this->small = $small;
+        $this->medium = $medium;
+        $this->large = $large;
+        $this->xl = $xl;
+        $this->jumbo = $jumbo;
 
         if ($url) {
             $this->urls[] = ['url' => $url, 'text' => $urlText ?: $url ];
@@ -94,7 +113,7 @@ class Alert extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-            'width' => $width
+            'width' => $this->getWidth($width)
         ], ['background', 'border'], 'alert.' . $this->type);
 
         $this->setConfigStyles([
@@ -194,5 +213,25 @@ class Alert extends Component
     public function urlClasses(): string
     {
         return $this->classList($this->urlStyles);
+    }
+
+    private function getWidth(?string $override): string
+    {
+        if ($override) {
+            return $override;
+        }
+
+        $widthMap = [
+            'tiny' => $this->tiny,
+            'small' => $this->small,
+            'medium' => $this->medium,
+            'large' => $this->large,
+            'xl' => $this->xl,
+            'jumbo' => $this->jumbo,
+        ];
+
+        $width = array_search(true, $widthMap, true);
+
+        return $this->componentStyle('alert', $width ?: 'width');
     }
 }

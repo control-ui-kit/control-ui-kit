@@ -2,7 +2,7 @@
 @isset($title)<x-title>{{ $title }}</x-title>@endisset
 <div {{ $attributes->merge($noPaddingClasses()) }}>
 @if ($header)
-    <x-panel-header>{{ $header }}</x-panel-header>
+    <x-panel-header border="none">{{ $header }}</x-panel-header>
     <div class="{{ $panelClasses() }}">
 @endif
 @if ($dynamicComponent)

@@ -44,6 +44,7 @@ return [
 
         'field' => \ControlUIKit\Components\Forms\Fields\Field::class,
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
+        'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroup::class,
         'field-select' => \ControlUIKit\Components\Forms\Fields\Select::class,
         'field-text' => \ControlUIKit\Components\Forms\Fields\Text::class,
         'field-textarea' => \ControlUIKit\Components\Forms\Fields\Textarea::class,

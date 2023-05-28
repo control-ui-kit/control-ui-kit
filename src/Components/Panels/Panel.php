@@ -25,8 +25,9 @@ class Panel extends Component
     private bool $small;
     private bool $medium;
     private bool $large;
-    private bool $huge;
+    private bool $xl;
     private bool $jumbo;
+    private bool $simple;
 
     public function __construct(
         string $title = null,
@@ -36,6 +37,7 @@ class Panel extends Component
         string $background = null,
         string $border = null,
         string $color = null,
+        string $divider = null,
         string $font = null,
         string $other = null,
         string $padding = null,
@@ -43,25 +45,43 @@ class Panel extends Component
         string $shadow = null,
         string $width = null,
         string $spacing = null,
+        bool $simple = false,
+        bool $stacked = false,
         bool $padded = false,
         bool $tiny = false,
         bool $small = false,
         bool $medium = false,
         bool $large = false,
-        bool $huge = false,
+        bool $xl = false,
         bool $jumbo = false
     ) {
         $this->title = $title;
         $this->header = $header;
         $this->footer = $footer;
         $this->padded = $padding ? true : $padded;
+        $this->simple = $simple;
+        $stacked = $simple ? true : $stacked;
         $this->dynamicComponent = $component;
         $this->tiny = $tiny;
         $this->small = $small;
         $this->medium = $medium;
         $this->large = $large;
-        $this->huge = $huge;
+        $this->xl = $xl;
         $this->jumbo = $jumbo;
+
+        $this->setConfigStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'divider' => $divider,
+            'font' => $font,
+            'padding' => $padding,
+            'other' => $other,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+            'spacing' => $stacked ? $spacing : 'none',
+            'width' => $this->getWidth($width),
+        ]);
 
         $this->setConfigStyles([
             'background' => $background,
@@ -72,8 +92,9 @@ class Panel extends Component
             'other' => $other,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'spacing' => $stacked ? $spacing : 'none',
             'width' => $this->getWidth($width),
-        ]);
+        ], [], null, 'simpleStyles');
 
         $this->setConfigStyles([
             'padding' => $padding,
@@ -106,6 +127,10 @@ class Panel extends Component
 
     public function noPaddingClasses(): array
     {
+        if ($this->simple) {
+            return $this->simpleStyles();
+        }
+
         if ($this->padded) {
             return $this->classes();
         }
@@ -116,6 +141,13 @@ class Panel extends Component
     private function excludePadding(): array
     {
         $classList = $this->classList($this->props, '', [], ['padding']);
+
+        return $classList ? ['class' => $classList] : [];
+    }
+
+    private function simpleStyles(): array
+    {
+        $classList = $this->classList($this->props, '', [], ['divider']);
 
         return $classList ? ['class' => $classList] : [];
     }
@@ -131,7 +163,7 @@ class Panel extends Component
             'small' => $this->small,
             'medium' => $this->medium,
             'large' => $this->large,
-            'huge' => $this->huge,
+            'xl' => $this->xl,
             'jumbo' => $this->jumbo,
         ];
 

@@ -26,7 +26,7 @@ class ComponentStylesTest extends TestCase
     /** @test */
     public function a_style_class_string_can_be_returned(): void
     {
-        $expected = 'background border color font other padding rounded shadow';
+        $expected = 'background border color font other padding rounded shadow stacked';
 
         self::assertSame($expected, (new ComponentStyles())->get('panel'));
     }

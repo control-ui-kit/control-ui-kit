@@ -11,11 +11,12 @@ class ComponentStyles
         }
 
         if ($component === 'panel') {
-            $except[] = 'stacked';
+            $except = array_merge($except, ['spacing', 'tiny', 'small', 'medium', 'large', 'xl', 'jumbo', 'width', 'divider']);
             return collect(config('themes.default.panel'))->except($except)->filter()->implode(' ');
         }
 
         if ($component === 'panel-stacked') {
+            $except = array_merge($except, ['tiny', 'small', 'medium', 'large', 'xl', 'jumbo', 'width', 'divider']);
             return collect(config('themes.default.panel'))->except($except)->filter()->implode(' ');
         }
 
