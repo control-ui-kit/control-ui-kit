@@ -443,7 +443,7 @@ return [
 
     'error' => [
         'color' => 'text-danger',
-        'font' => 'text-sm',
+        'font' => 'text-xs',
         'other' => '',
         'padding' => 'pt-1.5',
     ],
