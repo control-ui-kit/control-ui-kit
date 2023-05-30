@@ -11,6 +11,7 @@ class RadioGroup extends Component
     public string $name;
     public string $label;
     public string $help;
+    public string $selected;
     public array $options;
     public ?string $value;
 
@@ -23,6 +24,7 @@ class RadioGroup extends Component
     ) {
         $this->name = $name;
         $this->value = $value;
+        $this->selected = $this->getSelected();
         $this->label = $label ?? '';
         $this->help = $help ?? '';
 
@@ -41,7 +43,7 @@ class RadioGroup extends Component
                 'id' => $option['id'] ?? $option['name'] . '-' . $option['value'],
                 'name' => $this->name,
                 'label' => $option['label'],
-                'value' => $option['value'],
+                'value' => (string) $option['value'],
                 'checked' => $this->checked($option),
                 'help' => $option['help'] ?? '',
             ];
@@ -50,6 +52,13 @@ class RadioGroup extends Component
 
     private function checked($option): int
     {
-        return old($this->name) === $option['value'] || $this->value === $option['value'] ? 1 : 0;
+        return (string) old($this->name) === (string) $option['value'] || $this->value === $option['value'] ? 1 : 0;
+    }
+
+    private function getSelected(): string
+    {
+        $selected = old($this->name, $this->value);
+
+        return is_null($selected) ? "" : $selected;
     }
 }

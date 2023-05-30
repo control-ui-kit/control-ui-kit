@@ -1,7 +1,7 @@
 <x-field :name="$name" :help="$help" :label="$label" {{ $attributes }}>
 
     <div class="rounded border border-input bg-input divide-y divide-input"
-         x-data="{ selected: '{{ $value }}' }"
+         x-data="{ selected: '{{ $selected }}' }"
     >
 
         @foreach($options as $option)
@@ -9,7 +9,7 @@
             :class="{ 'bg-input-item': selected === '{{ $option['value'] }}' }"
         >
             <div class="flex items-center h-5">
-                <x-input-radio :name="$option['name']" :id="$option['id']" :value="$option['value']" :checked="$option['checked']" x-model="selected" />
+                <x-input-radio :name="$option['name']" :id="$option['id']" value="{{ $option['value'] }}" :checked="$option['checked']" x-model="selected" />
             </div>
             <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'text-brand': selected === '{{ $option['value'] }}' }">
                 <span class="block text-sm font-medium">{{ $option['label'] }}</span>
