@@ -662,7 +662,7 @@ return [
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
-        'padding' => 'p-1.5',
+        'padding' => 'py-1.5 px-3',
         'rounded' => 'rounded',
         'shadow' => '',
         'width' => 'w-full',

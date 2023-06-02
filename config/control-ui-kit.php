@@ -43,6 +43,8 @@ return [
         'form-field' => \ControlUIKit\Components\Forms\FormField::class,
 
         'field' => \ControlUIKit\Components\Forms\Fields\Field::class,
+        'field-checkbox' => \ControlUIKit\Components\Forms\Fields\Checkbox::class,
+        'field-info' => \ControlUIKit\Components\Forms\Fields\Info::class,
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroup::class,
         'field-select' => \ControlUIKit\Components\Forms\Fields\Select::class,

@@ -1,6 +1,6 @@
 <x-field :name="$name" :help="$help" :label="$label" {{ $attributes }}>
 
-    <div class="rounded border border-input bg-input divide-y divide-input"
+    <div class="rounded border border-input bg-input divide-y divide-input w-full"
          x-data="{ selected: '{{ $selected }}' }"
     >
 

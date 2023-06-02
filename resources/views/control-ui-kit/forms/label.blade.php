@@ -1,4 +1,4 @@
-<label for="{{ $for }}" {{ $attributes->merge($classes()) }}>
+<label @if ($for) for="{{ $for }}" @endif {{ $attributes->merge($classes()) }}>
     @if ($slot->isNotEmpty())
         {{ $slot }}
     @else

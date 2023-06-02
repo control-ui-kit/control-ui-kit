@@ -295,6 +295,11 @@ const theme = {
         'progress-bg': withOpacity('--progress-bg'),
 
     },
+    placeholderColor: {
+
+        'input': withOpacity('--input-placeholder'),
+
+    },
     ringColor: {
 
         'brand': withOpacity('--brand'),
@@ -462,7 +467,6 @@ const theme = {
 
         'input': withOpacity('--input'),
         'input-muted': withOpacity('--input-muted'),
-        'input-placeholder': withOpacity('--input-placeholder'),
 
         'input-option': withOpacity('--input-option'),
         'input-option-hover': withOpacity('--input-option-hover'),
@@ -497,6 +501,10 @@ function ringColor(customRingColor) {
     return { ...theme.ringColor, ...customRingColor};
 }
 
+function placeholderColor(customPlaceholderColor) {
+    return { ...theme.placeholderColor, ...customPlaceholderColor};
+}
+
 function ringOffsetColor(customRingOffsetColor) {
     return { ...theme.ringOffsetColor, ...customRingOffsetColor};
 }
@@ -514,6 +522,7 @@ module.exports.borderColor = borderColor;
 module.exports.colors = colors;
 module.exports.divideColor = divideColor;
 module.exports.fillColor = fillColor;
+module.exports.placeholderColor = placeholderColor;
 module.exports.ringColor = ringColor;
 module.exports.ringOffsetColor = ringOffsetColor;
 module.exports.textColor = textColor;

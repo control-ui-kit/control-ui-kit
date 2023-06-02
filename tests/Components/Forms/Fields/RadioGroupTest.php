@@ -48,14 +48,14 @@ class RadioGroupTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="md:flex md:items-start md:space-x-2">
-                <label for="format" class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 md:mt-2 space-y-2">
-                    <p class="font-medium flex items-center space-x-1.5"> <span>The Label</span> </p>
+            <div class="md:flex md:items-start md:space-x-2 min-h-[2rem]">
+                <label for="format" class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2">
+                    <p class="font-medium flex items-center space-x-1.5 min-h-[2rem]"> <span>The Label</span> </p>
                     <p class="hidden sm:block text-xs text-muted leading-relaxed pr-2">Some help text</p>
                 </label>
                 <div class="mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4">
-                    <div class="w-full">
-                        <div class="rounded border border-input bg-input divide-y divide-input" x-data="{ selected: '' }">
+                    <div class="min-h-[2rem] flex items-center">
+                        <div class="rounded border border-input bg-input divide-y divide-input w-full" x-data="{ selected: '' }">
                             <label class="relative p-4 flex cursor-pointer space-x-4 items-start" :class="{ 'bg-input-item': selected === '1' }">
                                 <div class="flex items-center h-5">
                                     <input name="format" type="radio" id="yes" value="1" class="bg-input focus:ring-brand border-input focus:ring-offset-input text-brand h-4 w-4 cursor-pointer" x-model="selected" />
@@ -88,15 +88,15 @@ class RadioGroupTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="md:flex md:items-start md:space-x-2">
-                <label for="track" class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 md:mt-2 space-y-2">
-                    <p class="font-medium flex items-center space-x-1.5"> <span>Track</span> </p>
+            <div class="md:flex md:items-start md:space-x-2 min-h-[2rem]">
+                <label for="track" class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2">
+                    <p class="font-medium flex items-center space-x-1.5 min-h-[2rem]"> <span>Track</span> </p>
                 </label>
                 <div class="mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4">
-                    <div class="w-full">
+                    <div class="min-h-[2rem] flex items-center">
                         <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
                     </div>
-                    <div class="text-danger text-sm pt-1.5"> This is a test message </div>
+                    <div class="text-danger text-xs pt-1.5"> This is a test message </div>
                 </div>
             </div>
             HTML;

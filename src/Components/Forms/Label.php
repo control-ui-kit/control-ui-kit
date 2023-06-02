@@ -15,10 +15,10 @@ class Label extends Component
 
     protected string $component = 'label';
 
-    public string $for;
+    public ?string $for;
 
     public function __construct(
-        string $for,
+        string $for = null,
         string $background = null,
         string $border = null,
         string $color = null,

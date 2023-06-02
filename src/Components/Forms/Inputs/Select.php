@@ -19,7 +19,7 @@ class Select extends Component
     public $value;
     public array $options;
     public int $activeIndex = 0;
-    private bool $native = false;
+    private bool $native;
 
     public ?string $checkIcon;
     public ?string $checkIconSize;

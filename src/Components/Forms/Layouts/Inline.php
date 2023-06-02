@@ -8,15 +8,15 @@ use Illuminate\View\Component;
 
 class Inline extends Component
 {
-    public string $name;
+    public ?string $name;
     public ?string $input;
-    public string $label;
+    public ?string $label;
     public ?string $help;
     public bool $required = false;
 
     public function __construct(
-        string $name,
-        string $label,
+        string $name = null,
+        string $label = null,
         string $input = null,
         string $help = null,
         bool $required = false
