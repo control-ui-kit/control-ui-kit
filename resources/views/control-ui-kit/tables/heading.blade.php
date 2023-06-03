@@ -12,7 +12,7 @@
     >
         @if (($isCurrentSort() && ($icon || $iconAlt)) || (! $isCurrentSort() && $iconAsc))
         <span>{{ $slot->isNotEmpty() ? $slot : $text }}</span>
-        <span class="flex items-center">
+        <span class="flex items-center" x-cloak>
             <x-dynamic-component x-show="orderby == '{{ $field }}' && sort == 'asc'" :component="$iconAsc" :size="$iconSize" alt="asc" />
             <x-dynamic-component x-show="orderby == '{{ $field }}' && sort == 'desc'"  :component="$iconDesc" :size="$iconSize" alt="desc" />
             <x-dynamic-component x-show="orderby != '{{ $field }}'"  :component="$iconAsc" :size="$iconSize" alt="hover" class="opacity-30 group-hover:opacity-100 transition-opacity duration-200" />

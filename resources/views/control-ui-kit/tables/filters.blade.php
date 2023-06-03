@@ -50,6 +50,7 @@
     <div  x-show="showFilters"
           class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
           tabindex="-1"
+          x-cloak
     >
 
         {{--FILTER MENU HEADER--}}

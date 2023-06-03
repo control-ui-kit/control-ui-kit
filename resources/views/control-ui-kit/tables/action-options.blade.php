@@ -1,4 +1,4 @@
-<div class="relative " x-data="{ open: false }">
+<div class="relative " x-data="{ open: false }" x-cloak>
     <x-dynamic-component :component="$icon" @click.prevent="open = !open" class="cursor-pointer hover:text-brand-500" />
 
     <x-dropdown-menu x-show="open"

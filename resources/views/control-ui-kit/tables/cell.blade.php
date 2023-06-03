@@ -13,9 +13,9 @@
 
     @else
 
-        @if ($href) <a href="{{ $href }}" class="block {{ $hrefColor }} {{ $cellPadding }}" {{ $attributes->merge()->only('target') }}>
+        @if ($href) <a href="{{ $href }}" class="{{ $hrefColor }} {{ $cellPadding }}" {{ $attributes->merge()->only('target') }}>
 
-        @else <span class="block {{ $cellPadding }}">
+        @else <div class="{{ $cellPadding }}">
         @endif
         @if ($pillStyle || $pillName)
             <x-pill :name="$pillName" :pillStyle="$pillStyle" :styles="$pillStyles" >@if (! is_null($cellData)) {{ $cellData }} @else {{ $slot }} @endif</x-pill>
@@ -34,7 +34,7 @@
         @endif
 
         @if ($href) </a>
-        @else </span>
+        @else </div>
         @endif
 
     @endif
