@@ -178,7 +178,7 @@ class Cell extends Component
     public function imageClasses(): string
     {
         // inline-block required or else alignment does not work.
-        return 'inline-block ' . $this->classList($this->imageStyles);
+        return $this->classList($this->imageStyles, 'inline-block');
     }
 
     private function format(?string $format, ?string $options = null): void
