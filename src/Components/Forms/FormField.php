@@ -10,14 +10,14 @@ class FormField extends Component
 {
     protected string $component = 'field';
 
-    public string $input;
+    public ?string $input;
     public string $layout;
 
     public function __construct(
-        string $input,
-        string $layout
+        string $layout,
+        string $input = null
     ) {
-        $this->input = 'input-' . $input;
+        $this->input = $input ? 'input-' . $input : null;
         $this->layout = 'form-layouts-' . $layout;
     }
 

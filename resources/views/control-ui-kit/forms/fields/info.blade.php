@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="text" name="" :help="$help" :label="$label" placeholder="" {{ $attributes }} :value="$info" />
+<x-form-field layout="inline" input="blank" name="" :help="$help" :label="$label" {{ $attributes }} :value="$slot->isNotEmpty() ? $slot : $value" />

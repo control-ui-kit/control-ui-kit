@@ -12,7 +12,7 @@
     </x-label>
     <div class="mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4">
         <div class="min-h-[2rem] flex items-center">
-            @if ($slot->isEmpty())
+            @if ($input && $slot->isEmpty())
                 <x-dynamic-component :component="$input" :name="$name" {{ $attributes }} :required="$required" />
             @else
                 {{ $slot }}

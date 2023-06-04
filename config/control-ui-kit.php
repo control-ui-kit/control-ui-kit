@@ -52,6 +52,7 @@ return [
         'field-textarea' => \ControlUIKit\Components\Forms\Fields\Textarea::class,
 
         'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
+        'input-blank' => \ControlUIKit\Components\Forms\Inputs\Blank::class,
         'input-checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,
         'input-color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
         'input-currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
