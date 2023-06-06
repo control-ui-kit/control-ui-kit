@@ -14,8 +14,8 @@ class IconsTest extends ComponentTestCase
     public function getIconHtml($icon): string
     {
         return str_replace(
-            [' {{ $attributes->merge($classes(\'fill-current\')) }}', ' {{ $attributes->merge($classes(\'animate-spin\')) }}' ],
-            [' class="w-5 h-5 fill-current"', ' class="w-5 h-5 animate-spin"'],
+            [' {{ $attributes->merge($classes(\'fill-current\')) }}', ' {{ $attributes->merge($classes()) }}', ' {{ $attributes->merge($classes(\'animate-spin\')) }}' ],
+            [' class="w-5 h-5 fill-current"', ' class="w-5 h-5"', ' class="w-5 h-5 animate-spin"'],
             file_get_contents(self::ICON_PATH . $icon . '.blade.php')
         );
     }
