@@ -72,7 +72,7 @@ class TextTest extends ComponentTestCase
                     </label>
                     <div class="mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4">
                         <div class="min-h-[2rem] flex items-center">
-                            <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" required="required" />
+                            <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
                         </div>
                         <div class="text-danger text-xs pt-1.5"> This is a test message </div>
                     </div>

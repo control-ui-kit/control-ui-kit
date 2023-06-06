@@ -880,7 +880,7 @@ return [
         'background' => 'bg-footer',
         'border' => 'border border-footer',
         'color' => 'text-footer',
-        'font' => '',
+        'font' => 'text-xs',
         'other' => '',
         'padding' => 'py-6',
         'rounded' => '',

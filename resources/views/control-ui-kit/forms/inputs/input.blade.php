@@ -10,7 +10,7 @@
         @isset($min) min="{{ $min }}" @endisset
         @isset($max) max="{{ $max }}" @endisset
         @isset($step) step="{{ $step }}" @endisset
-        {{ $attributes->merge($basicClasses()) }}
+        {{ $attributes->except('required')->merge($basicClasses()) }}
     />
 @else
     <div {{ $attributes->merge($wrapperClasses())->only('class') }}>
@@ -30,7 +30,7 @@
                @isset($max) max="{{ $max }}" @endisset
                @isset($step) step="{{ $step }}" @endisset
                class="{{ $inputClasses() }}"
-               {{ $attributes->except('class') }}
+               {{ $attributes->except(['class', 'required']) }}
         />
         @if ($iconRight)
                 <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
