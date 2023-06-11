@@ -816,7 +816,7 @@ return [
         'base-shadow' => '',
         'base-size' => 'h-[24px] w-[46px]',
         'base-state-off' => 'bg-input',
-        'base-state-on' => 'bg-input-brand',
+        'base-state-on' => 'bg-input-brand bg-gradient-to-r from-brand-400',
 
         'switch-animation' => 'translate-x-0 transform transition ease-in-out duration-200',
         'switch-background' => 'bg-input-item',
