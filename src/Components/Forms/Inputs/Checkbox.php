@@ -17,6 +17,7 @@ class Checkbox extends Component
     public string $id;
     public ?string $value;
     private ?string $checked;
+    public bool $disabled;
 
     public function __construct(
         string $name,
@@ -29,17 +30,20 @@ class Checkbox extends Component
         string $shadow = null,
         string $id = null,
         string $value = '1',
-        string $checked = null
+        string $checked = null,
+        bool $disabled = false
     ) {
         $this->name = $name;
         $this->id = $id ?? ($value === '1' ? $name : $name . '_' . str_replace(' ', '_', $value));
         $this->value = old($name, $value ?? '');
         $this->checked = $checked ?? '';
+        $this->disabled = $disabled;
 
         $this->setConfigStyles([
             'background' => $background,
             'border' => $border,
             'color' => $color,
+            'disable' => $disabled ? null : 'none',
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
