@@ -1061,7 +1061,7 @@ return [
         'color' => '',
         'font' => '',
         'other' => '',
-        'padding' => 'p-6',
+        'padding' => 'p-2 sm:p-6',
         'rounded' => '',
         'shadow' => '',
         'spacing' => 'space-y-2',

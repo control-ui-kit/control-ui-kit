@@ -121,7 +121,6 @@ const theme = {
 
         'login-input': withOpacity('--login-input-border'),
 
-        'default': withOpacity('--border'),
         'header': withOpacity('--header-border'),
         'footer': withOpacity('--footer-border'),
 
@@ -142,6 +141,21 @@ const theme = {
         'nav-profile-avatar': withOpacity('--nav-profile-avatar-border'),
 
         'toolbar': withOpacity('--toolbar-border'),
+
+        'brand': withOpacity('--border-brand'),
+        'brand-hover': withOpacity('--border-brand-hover'),
+        'default': withOpacity('--border-default'),
+        'default-hover': withOpacity('--border-default-hover'),
+        'danger': withOpacity('--border-danger'),
+        'danger-hover': withOpacity('--border-danger-hover'),
+        'info': withOpacity('--border-info'),
+        'info-hover': withOpacity('--border-info-hover'),
+        'muted': withOpacity('--border-muted'),
+        'muted-hover': withOpacity('--border-muted-hover'),
+        'success': withOpacity('--border-success'),
+        'success-hover': withOpacity('--border-success-hover'),
+        'warning': withOpacity('--border-warning'),
+        'warning-hover': withOpacity('--border-warning-hover'),
 
         'alert-brand': withOpacity('--alert-brand-border'),
         'alert-default': withOpacity('--alert-default-border'),
