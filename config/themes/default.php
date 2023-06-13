@@ -122,9 +122,9 @@ return [
         'disabled' => 'opacity-60 cursor-default',
         'font' => 'text-sm',
         'icon-size' => 'w-5 h-5',
-        'other' => 'w-max h-9 flex items-center justify-center group outline-none focus:outline-none',
+        'other' => 'w-max flex items-center justify-center group outline-none focus:outline-none',
         'padding' => 'space-x-1 px-2 py-1.5',
-        'rounded' => 'rounded-md',
+        'rounded' => 'rounded',
         'shadow' => '',
 
         'default' => [
@@ -488,7 +488,7 @@ return [
         'input-background' => 'bg-input',
         'input-border' => 'border-0 focus:outline-none focus:ring-0',
         'input-color' => 'text-input placeholder-input',
-        'input-font' => '',
+        'input-font' => 'text-sm',
         'input-other' => 'block w-full appearance-none',
         'input-padding' => 'py-1.5 px-3',
         'input-rounded' => 'rounded',
