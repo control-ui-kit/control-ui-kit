@@ -1293,7 +1293,7 @@ return [
         'background' => '',
         'border' => '',
         'color' => '',
-        'href-color' => '',
+        'href-color' => 'hover:text-brand',
         'font' => 'text-[13px]',
         'other' => 'whitespace-no-wrap align-middle h-10',
         'padding' => 'px-2 py-2',
@@ -1324,17 +1324,19 @@ return [
         'border' => '',
         'color' => '',
         'colspan' => '100%',
-        'font' => 'text-sm uppercase tracking-wider',
-        'icon-size' => 'w-5 h-5',
-        'icon-style' => '',
-        'other' => 'flex justify-center items-center',
-        'padding' => 'space-x-2 py-8',
+        'font' => 'text-sm',
+        'icon-size' => 'w-8 h-8',
+        'icon-style' => 'text-warning',
+        'other' => 'flex flex-col justify-center items-center h-40',
+        'padding' => 'space-y-2 py-8',
         'rounded' => '',
         'shadow' => '',
         'stacked' => 'flex flex-col space-y-2 items-center',
 
         // Config
         'default-text' => 'No records found',
+        'default-trans' => 'fields.no-records-found',
+        'default-icon' => 'icon-warning',
     ],
 
     'table-filters' => [
@@ -1459,6 +1461,7 @@ return [
     'table-heading' => [
 
         // Style
+        'actions' => 'w-18',
         'align' => 'text-left',
         'background' => '',
         'border' => 'border-b border-table',
@@ -1469,7 +1472,7 @@ return [
         'padding' => 'px-2.5 py-2',
         'rounded' => '',
         'shadow' => '',
-        'sortable' => 'inline-flex items-center space-x-0.5 group focus:outline-none focus:text-brand cursor-pointer',
+        'sortable' => 'inline-flex items-center space-x-0.5 group focus:outline-none focus:text-brand hover:text-brand cursor-pointer',
         'width' => 'w-auto',
 
         // Config
@@ -1483,45 +1486,53 @@ return [
 
         'background' => '',
         'border' => '',
-        'color' => 'text-default hover:text-default',
+        'color' => 'text-default',
         'font' => '',
+        'hover' => ' hover:text-default',
         'other' => '',
         'padding' => '',
         'rounded' => '',
         'shadow' => '',
 
         'default' => [
-            'background' => 'bg-table-row-1 even:bg-table-row-2 hover:bg-table-row-hover even:bg-table-hover',
+            'background' => 'bg-table-row-1 even:bg-table-row-2',
+            'hover' => 'hover:bg-table-row-hover even:bg-table-hover',
             'color' => '',
         ],
 
         'brand' => [
-            'background' => 'bg-alert-brand hover:bg-alert-brand-hover',
+            'background' => 'bg-alert-brand',
+            'hover' => 'hover:bg-alert-brand-hover',
             'color' => '',
         ],
 
         'danger' => [
-            'background' => 'bg-alert-danger hover:bg-alert-danger-hover',
+            'background' => 'bg-alert-danger',
+            'hover' => 'hover:bg-alert-danger-hover',
             'color' => '',
         ],
 
         'info' => [
-            'background' => 'bg-alert-info hover:bg-alert-info-hover',
+            'background' => 'bg-alert-info',
+            'hover' => 'hover:bg-alert-info-hover',
             'color' => '',
         ],
 
         'muted' => [
-            'background' => 'bg-alert-muted hover:bg-alert-muted-hover',
+            'background' => 'bg-alert-muted',
+            'hover' => 'hover:bg-alert-muted-hover',
             'color' => 'text-alert-muted hover:text-alert-muted',
         ],
 
         'success' => [
-            'background' => 'bg-alert-success hover:bg-alert-success-hover',
+            'background' => 'bg-alert-success',
+            'hover' => 'hover:bg-alert-success-hover',
             'color' => '',
         ],
 
         'warning' => [
-            'background' => 'bg-alert-warning hover:bg-alert-warning-hover',
+            'background' => 'bg-alert-warning',
+            'hover' => 'hover:bg-alert-warning-hover',
             'color' => '',
         ],
     ],

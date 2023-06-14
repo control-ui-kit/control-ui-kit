@@ -24,7 +24,9 @@ class Heading extends Component
     public string $iconDesc;
     public string $iconSize;
     public ?string $field;
+
     public ?string $text;
+
     public string $sortable;
     public bool $wire;
     public ?string $currentOrder;
@@ -57,11 +59,13 @@ class Heading extends Component
         bool $wire = false,
         bool $left = false,
         bool $center = false,
-        bool $right = false
+        bool $right = false,
+        bool|string $actions = null
     ) {
         $this->align = $this->align($this->style($this->component, 'align', $align), $left, $center, $right);
 
         $this->setConfigStyles([
+            'actions' => $actions === true ? null : 'none',
             'align' => $this->align,
             'background' => $background,
             'border' => $border,
@@ -71,7 +75,7 @@ class Heading extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-            'width' => $width,
+            'width' => $actions === true ? 'none' : $width,
         ]);
 
         $this->fieldOrder = $this->style($this->component, 'field-order', $iconDesc);

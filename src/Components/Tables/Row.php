@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Row extends Component
@@ -30,6 +31,7 @@ class Row extends Component
         string $border = null,
         string $color = null,
         string $font = null,
+        string $hover = null,
         string $other = null,
         string $padding = null,
         string $rounded = null,
@@ -58,14 +60,15 @@ class Row extends Component
             'border' => $border,
             'color' => $color,
             'font' => $font,
+            'hover' => $hover,
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-        ], ['background', 'color'], $this->component. '.' . $this->rowStyle);
+        ], ['background', 'hover', 'color'], $this->component. '.' . $this->rowStyle);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.row');
     }

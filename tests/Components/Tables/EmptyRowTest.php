@@ -35,10 +35,15 @@ class EmptyRowTest extends ComponentTestCase
         Config::set('themes.default.table-empty.shadow', 'shadow');
         Config::set('themes.default.table-empty.stacked', 'stacked');
 
+        Config::set('themes.default.table-empty.default-icon', '');
+        Config::set('themes.default.table-empty.default-trans', '');
+        Config::set('themes.default.table-empty.default-text', 'No records found');
+
         Config::set('themes.default.table-row.background', 'row-background');
         Config::set('themes.default.table-row.border', 'row-border');
         Config::set('themes.default.table-row.color', 'row-color');
         Config::set('themes.default.table-row.font', 'row-font');
+        Config::set('themes.default.table-row.hover', 'row-hover');
         Config::set('themes.default.table-row.other', 'row-other');
         Config::set('themes.default.table-row.padding', 'row-padding');
         Config::set('themes.default.table-row.rounded', 'row-rounded');

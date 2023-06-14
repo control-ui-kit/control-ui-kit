@@ -16,30 +16,38 @@ class RowTest extends ComponentTestCase
         Config::set('themes.default.table-row.border', 'border');
         Config::set('themes.default.table-row.color', 'color');
         Config::set('themes.default.table-row.font', 'font');
+        Config::set('themes.default.table-row.hover', 'hover');
         Config::set('themes.default.table-row.other', 'other');
         Config::set('themes.default.table-row.padding', 'padding');
         Config::set('themes.default.table-row.rounded', 'rounded');
         Config::set('themes.default.table-row.shadow', 'shadow');
 
         Config::set('themes.default.table-row.default.background', 'background-default');
+        Config::set('themes.default.table-row.default.hover', 'hover-default');
         Config::set('themes.default.table-row.default.color', 'color-default');
 
         Config::set('themes.default.table-row.brand.background', 'background-brand');
+        Config::set('themes.default.table-row.brand.hover', 'hover-brand');
         Config::set('themes.default.table-row.brand.color', 'color-brand');
 
         Config::set('themes.default.table-row.danger.background', 'background-danger');
+        Config::set('themes.default.table-row.danger.hover', 'hover-danger');
         Config::set('themes.default.table-row.danger.color', 'color-danger');
 
         Config::set('themes.default.table-row.info.background', 'background-info');
+        Config::set('themes.default.table-row.info.hover', 'hover-info');
         Config::set('themes.default.table-row.info.color', 'color-info');
 
         Config::set('themes.default.table-row.muted.background', 'background-muted');
+        Config::set('themes.default.table-row.muted.hover', 'hover-muted');
         Config::set('themes.default.table-row.muted.color', 'color-muted');
 
         Config::set('themes.default.table-row.success.background', 'background-success');
+        Config::set('themes.default.table-row.success.hover', 'hover-success');
         Config::set('themes.default.table-row.success.color', 'color-success');
 
         Config::set('themes.default.table-row.warning.background', 'background-warning');
+        Config::set('themes.default.table-row.warning.hover', 'hover-warning');
         Config::set('themes.default.table-row.warning.color', 'color-warning');
     }
 
@@ -51,7 +59,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-default border color color-default font other padding rounded shadow"></tr>
+            <tr class="background background-default border color color-default font hover hover-default other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -65,6 +73,7 @@ class RowTest extends ComponentTestCase
                          border="none"
                          color="none"
                          font="none"
+                         hover="none"
                          other="none"
                          padding="none"
                          rounded="none"
@@ -86,14 +95,15 @@ class RowTest extends ComponentTestCase
                          border="2"
                          color="3"
                          font="4"
-                         other="5"
-                         padding="6"
-                         rounded="7"
-                         shadow="8" />
+                         hover="5"
+                         other="6"
+                         padding="7"
+                         rounded="8"
+                         shadow="9" />
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="1 2 3 4 5 6 7 8"></tr>
+            <tr class="1 2 3 4 5 6 7 8 9"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -107,7 +117,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-default border color color-default font other padding rounded shadow"></tr>
+            <tr class="background background-default border color color-default font hover hover-default other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -121,7 +131,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-default border color color-default font other padding rounded shadow"></tr>
+            <tr class="background background-default border color color-default font hover hover-default other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -135,7 +145,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-brand border color color-brand font other padding rounded shadow"></tr>
+            <tr class="background background-brand border color color-brand font hover hover-brand other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -149,7 +159,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-brand border color color-brand font other padding rounded shadow"></tr>
+            <tr class="background background-brand border color color-brand font hover hover-brand other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -162,7 +172,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-danger border color color-danger font other padding rounded shadow"></tr>
+            <tr class="background background-danger border color color-danger font hover hover-danger other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -176,7 +186,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-danger border color color-danger font other padding rounded shadow"></tr>
+            <tr class="background background-danger border color color-danger font hover hover-danger other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -190,7 +200,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-info border color color-info font other padding rounded shadow"></tr>
+            <tr class="background background-info border color color-info font hover hover-info other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -204,7 +214,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-info border color color-info font other padding rounded shadow"></tr>
+            <tr class="background background-info border color color-info font hover hover-info other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -218,7 +228,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-muted border color color-muted font other padding rounded shadow"></tr>
+            <tr class="background background-muted border color color-muted font hover hover-muted other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -232,7 +242,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-muted border color color-muted font other padding rounded shadow"></tr>
+            <tr class="background background-muted border color color-muted font hover hover-muted other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -246,7 +256,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-success border color color-success font other padding rounded shadow"></tr>
+            <tr class="background background-success border color color-success font hover hover-success other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -260,7 +270,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-success border color color-success font other padding rounded shadow"></tr>
+            <tr class="background background-success border color color-success font hover hover-success other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -274,7 +284,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-warning border color color-warning font other padding rounded shadow"></tr>
+            <tr class="background background-warning border color color-warning font hover hover-warning other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -288,7 +298,7 @@ class RowTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <tr class="background background-warning border color color-warning font other padding rounded shadow"></tr>
+            <tr class="background background-warning border color color-warning font hover hover-warning other padding rounded shadow"></tr>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
