@@ -18,10 +18,15 @@
                     </option>
                 @endforeach
             </select>
+            <span></span>
+            @if ($paginator->total() === 0)
+            <span>{!! __('No Results') !!}</span>
+            @else
             <span>{!! __('Results') !!}</span>
             <span class="font-medium">{{ $paginator->firstItem() }}-{{ $paginator->lastItem() }}</span>
             <span>{!! __('of') !!}</span>
             <span class="font-medium">{{ $paginator->total() }}</span>
+            @endif
         </div>
 
         <div class="{{ $buttonContainer }}">

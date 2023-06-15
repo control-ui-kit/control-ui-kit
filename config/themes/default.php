@@ -1589,7 +1589,7 @@ return [
         'results-background' => '',
         'results-border' => '',
         'results-color' => 'text-paginate-limit',
-        'results-font' => ' text-sm',
+        'results-font' => ' text-[13px]',
         'results-other' => 'flex items-center space-x-1 whitespace-nowrap',
         'results-padding' => '',
         'results-rounded' => '',
