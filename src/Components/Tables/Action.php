@@ -15,7 +15,7 @@ class Action extends Component
     protected string $component = 'table-action';
 
     public string $icon;
-    public ?string $href;
+    public string $href;
 
     public function __construct(
         string $icon = null,
@@ -42,7 +42,7 @@ class Action extends Component
         ]);
 
         $this->icon = $icon ?: 'icon-question';
-        $this->href = $href;
+        $this->href = $href ?: '';
     }
 
     public function render(): View

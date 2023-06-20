@@ -521,7 +521,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -551,7 +551,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
+                    <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -571,7 +571,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="text-right background border color font other rounded shadow">
                 <a href="https://example.com/testing" class="href-color padding">
-                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </a>
