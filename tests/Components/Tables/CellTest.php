@@ -451,12 +451,12 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_has_hyperlink_around_data(): void
     {
         $template = <<<'HTML'
-            <x-table-cell href="http://example.com">::data</x-table-cell>
+            <x-table-cell href="https://example.com">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="http://example.com" class="href-color padding"> ::data </a>
+                <a href="https://example.com" class="href-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -467,12 +467,12 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_target_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table-cell href="http://example.com" target="_blank">::data</x-table-cell>
+            <x-table-cell href="https://example.com" target="_blank">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="http://example.com" class="href-color padding" target="_blank"> ::data </a>
+                <a href="https://example.com" class="href-color padding" target="_blank"> ::data </a>
             </td>
             HTML;
 
@@ -483,12 +483,12 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_text_align_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table-cell href="http://example.com" right>::data</x-table-cell>
+            <x-table-cell href="https://example.com" right>::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other rounded shadow">
-                <a href="http://example.com" class="href-color padding"> ::data </a>
+                <a href="https://example.com" class="href-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -499,12 +499,12 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_href_and_custom_href_color_works_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table-cell href="http://example.com" href-color="custom-color">::data</x-table-cell>
+            <x-table-cell href="https://example.com" href-color="custom-color">::data</x-table-cell>
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="http://example.com" class="custom-color padding"> ::data </a>
+                <a href="https://example.com" class="custom-color padding"> ::data </a>
             </td>
             HTML;
 
@@ -521,7 +521,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -551,7 +551,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="custom-background custom-border custom-color custom-other inline-block custom-padding custom-rounded custom-shadow custom-size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
@@ -565,13 +565,13 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_icon_and_href_and_alignment_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table-cell icon="icon-dot" href="http://example.com/testing" right icon-size="::size" />
+            <x-table-cell icon="icon-dot" href="https://example.com/testing" right icon-size="::size" />
             HTML;
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other rounded shadow">
-                <a href="http://example.com/testing" class="href-color padding">
-                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <a href="https://example.com/testing" class="href-color padding">
+                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="https://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </a>
@@ -585,13 +585,13 @@ class CellTest extends ComponentTestCase
     public function a_table_cell_component_with_image_renders_correctly(): void
     {
         $template = <<<'HTML'
-            <x-table-cell image="http://example.com/testing.jpg" image-alt="::alt" />
+            <x-table-cell image="https://example.com/testing.jpg" image-alt="::alt" />
             HTML;
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <img src="http://example.com/testing.jpg" class="image-border image-other image-padding image-rounded image-shadow image-size inline-block" loading="lazy" alt="::alt" />
+                    <img src="https://example.com/testing.jpg" class="image-border image-other image-padding image-rounded image-shadow image-size inline-block" loading="lazy" alt="::alt" />
                 </div>
             </td>
             HTML;
@@ -604,7 +604,7 @@ class CellTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <x-table-cell
-                image="http://example.com/testing.jpg"
+                image="https://example.com/testing.jpg"
                 image-border="custom-border"
                 image-other="custom-other"
                 image-padding="custom-padding"
@@ -617,7 +617,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <img src="http://example.com/testing.jpg" class="custom-border custom-other custom-padding custom-rounded custom-shadow custom-size inline-block" loading="lazy" />
+                    <img src="https://example.com/testing.jpg" class="custom-border custom-other custom-padding custom-rounded custom-shadow custom-size inline-block" loading="lazy" />
                 </div>
             </td>
             HTML;
@@ -630,7 +630,7 @@ class CellTest extends ComponentTestCase
     {
         $template = <<<'HTML'
             <x-table-cell
-                image="http://example.com/testing.jpg"
+                image="https://example.com/testing.jpg"
                 image-border="none"
                 image-other="none"
                 image-padding="none"
@@ -643,7 +643,7 @@ class CellTest extends ComponentTestCase
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
                 <div class="padding">
-                    <img src="http://example.com/testing.jpg" class="inline-block" loading="lazy" />
+                    <img src="https://example.com/testing.jpg" class="inline-block" loading="lazy" />
                 </div>
             </td>
             HTML;
