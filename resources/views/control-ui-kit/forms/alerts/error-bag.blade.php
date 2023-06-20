@@ -1,4 +1,4 @@
-@if ($errors->any())
+@if (isset($errors) && $errors->any())
     <x-dynamic-component
         component="alert"
         :type="$type"
@@ -11,5 +11,8 @@
             @endforeach
         </ul>
     </x-dynamic-component>
+@else
+    <div>{{--No errors--}}</div>
 @endif
+
 

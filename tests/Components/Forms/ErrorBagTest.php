@@ -53,7 +53,7 @@ class ErrorBagTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_error_bag_component_can_be_rendered(): void
+    public function an_error_bag_component_can_be_rendered_when_errors_are_present(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
 
@@ -78,6 +78,20 @@ class ErrorBagTest extends ComponentTestCase
                         </div>
                     </div>
                 </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_error_bag_component_can_be_rendered_when_no_errors_are_present(): void
+    {
+        $template = <<<'HTML'
+            <x-error-bag />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div></div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
