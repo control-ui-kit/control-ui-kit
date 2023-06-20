@@ -2,7 +2,6 @@
 
 namespace Tests\Components\Tables;
 
-use ControlUIKit\Components\Tables\EmptyRow;
 use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
