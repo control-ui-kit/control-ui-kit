@@ -1501,39 +1501,39 @@ return [
         ],
 
         'brand' => [
-            'background' => 'bg-alert-brand',
-            'hover' => 'hover:bg-alert-brand-hover',
-            'color' => '',
+            'background' => 'bg-table-row-brand',
+            'hover' => 'hover:bg-table-row-brand-hover',
+            'color' => 'text-table-row-brand hover:text-table-row-brand-hover',
         ],
 
         'danger' => [
-            'background' => 'bg-alert-danger',
-            'hover' => 'hover:bg-alert-danger-hover',
-            'color' => '',
+            'background' => 'bg-table-row-danger',
+            'hover' => 'hover:bg-table-row-danger-hover',
+            'color' => 'text-table-row-danger hover:text-table-row-danger-hover',
         ],
 
         'info' => [
-            'background' => 'bg-alert-info',
-            'hover' => 'hover:bg-alert-info-hover',
-            'color' => '',
+            'background' => 'bg-table-row-info',
+            'hover' => 'hover:bg-table-row-info-hover',
+            'color' => 'text-table-row-info hover:text-table-row-info-hover',
         ],
 
         'muted' => [
-            'background' => 'bg-alert-muted',
-            'hover' => 'hover:bg-alert-muted-hover',
-            'color' => 'text-alert-muted hover:text-alert-muted',
+            'background' => 'bg-table-row-muted',
+            'hover' => 'hover:bg-table-row-muted-hover',
+            'color' => 'text-table-row-muted hover:text-table-row-muted-hover',
         ],
 
         'success' => [
-            'background' => 'bg-alert-success',
-            'hover' => 'hover:bg-alert-success-hover',
-            'color' => '',
+            'background' => 'bg-table-row-success',
+            'hover' => 'hover:bg-table-row-success-hover',
+            'color' => 'text-table-row-success hover:text-table-row-success-hover',
         ],
 
         'warning' => [
-            'background' => 'bg-alert-warning',
-            'hover' => 'hover:bg-alert-warning-hover',
-            'color' => '',
+            'background' => 'bg-table-row-warning',
+            'hover' => 'hover:bg-table-row-warning-hover',
+            'color' => 'text-table-row-warning hover:text-table-row-warning-hover',
         ],
     ],
 

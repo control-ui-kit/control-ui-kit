@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Action extends Component
@@ -14,9 +15,11 @@ class Action extends Component
     protected string $component = 'table-action';
 
     public string $icon;
+    public ?string $href;
 
     public function __construct(
         string $icon = null,
+        string $href = null,
 
         string $background = null,
         string $border = null,
@@ -39,9 +42,10 @@ class Action extends Component
         ]);
 
         $this->icon = $icon ?: 'icon-question';
+        $this->href = $href;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.action');
     }
