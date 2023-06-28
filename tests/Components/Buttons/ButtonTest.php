@@ -633,7 +633,7 @@ class ButtonTest extends ComponentTestCase
     }
 
     /** @test */
-    public function a_button_component_can_be_rendered_updated_styles(): void
+    public function a_button_component_can_be_rendered_with_updated_styles(): void
     {
         $template = <<<'HTML'
             <x-button danger icon="icon-dot" rounded="none" shadow="my-shadow" @click="doDelete">
@@ -648,6 +648,38 @@ class ButtonTest extends ComponentTestCase
                     </svg>
                     <span>Delete</span>
                 </button>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_button_component_can_be_rendered_with_an_alpine_action(): void
+    {
+        $template = <<<'HTML'
+            <x-button action='@click="doDelete"'>
+                Delete
+            </x-button>
+            HTML;
+
+        $expected = <<<'HTML'
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" @click="doDelete" type="button"> Delete </button>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_button_component_can_be_rendered_with_a_livewire_action(): void
+    {
+        $template = <<<'HTML'
+            <x-button action='wire:click="doSomething()"'>
+                Delete
+            </x-button>
+            HTML;
+
+        $expected = <<<'HTML'
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" wire:click="doSomething()" type="button"> Delete </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

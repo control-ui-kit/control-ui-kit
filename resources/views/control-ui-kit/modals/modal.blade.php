@@ -1,31 +1,10 @@
-{{--@props(['id', 'maxWidth'])--}}
-
-{{--@php--}}
-{{--$id = $id ?? md5($attributes->wire('model'));--}}
-
-{{--switch ($maxWidth ?? '2xl') {--}}
-{{--    case 'sm':--}}
-{{--        $maxWidth = 'sm:max-w-sm';--}}
-{{--        break;--}}
-{{--    case 'md':--}}
-{{--        $maxWidth = 'sm:max-w-md';--}}
-{{--        break;--}}
-{{--    case 'lg':--}}
-{{--        $maxWidth = 'sm:max-w-lg';--}}
-{{--        break;--}}
-{{--    case 'xl':--}}
-{{--        $maxWidth = 'sm:max-w-xl';--}}
-{{--        break;--}}
-{{--    case '2xl':--}}
-{{--    default:--}}
-{{--        $maxWidth = 'sm:max-w-2xl';--}}
-{{--        break;--}}
-{{--}--}}
-{{--@endphp--}}
-
 <div
     x-data="{
+        @if ($attributes->has('wire:model'))
         show: @entangle($attributes->wire('model')),
+        @else
+        show: false,
+        @endif
         focusables() {
             // All focusable element types...
             let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
@@ -41,6 +20,33 @@
         nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
         prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
         autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() },
+        detail: {
+            type: 'default',
+            button: 'Close',
+        },
+        maxWidth: '{{ $maxWidth }}',
+        openModal() {
+            this.show = true
+            this.detail.button = this.detail.button ?? 'Close'
+            this.detail.yes_button = this.detail.yes_button ?? 'Yes'
+            this.detail.no_button = this.detail.no_button ?? 'No'
+            this.maxWidth = this.width(this.maxWidth)
+        },
+        width(maxWidth) {
+            switch (maxWidth) {
+                case 'sm':
+                    return 'sm:max-w-sm';
+                case 'md':
+                    return 'sm:max-w-md';
+                case 'lg':
+                    return 'sm:max-w-lg';
+                case '2xl':
+                    return 'sm:max-w-2xl';
+                case 'xl':
+                default:
+                    return 'sm:max-w-xl';
+            }
+        }
     }"
     x-init="$watch('show', value => value && setTimeout(autofocus, 50))"
     x-on:close.stop="show = false"
@@ -51,6 +57,7 @@
     id="{{ $id }}"
     class="fixed top-0 inset-x-0 z-100 sm:px-0 sm:flex sm:items-top sm:justify-center h-72"
     style="display: none;"
+    {{ $attributes->except('model') }}
 >
     <div x-show="show"
          class="fixed inset-0 transform transition-all"
@@ -65,7 +72,8 @@
     </div>
 
     <div x-show="show"
-         class="text-modal absolute top-1/2 bg-modal border border-modal rounded overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }}"
+         class="text-modal absolute top-1/2 bg-modal border border-modal rounded overflow-hidden shadow-xl transform transition-all sm:w-full"
+                    :class="{ [maxWidth]: true }"
                     x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

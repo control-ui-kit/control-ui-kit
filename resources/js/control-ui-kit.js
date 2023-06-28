@@ -201,6 +201,19 @@ window.Components = {
             ...options,
         }
     },
+    openDialog(options) {
+        return {
+            dispatch() {
+                $dispatch('dialog-modal', {
+                    type: 'success',
+                    title: 'success title',
+                    content: 'success content',
+                    button: 'Yes Close',
+                    width: 'sm:max-w-xl',
+                })
+            }
+        }
+    }
 }
 
 function _controlNumber(input, decimals, min, max, fixed) {
@@ -218,5 +231,106 @@ function _controlNumber(input, decimals, min, max, fixed) {
 
     if (fixed) {
         input.value = (input.value * 1).toFixed(decimals);
+    }
+}
+
+function openDialog(type, title, content, width, button) {
+
+    const eventParams = {
+        type: type,
+        title: title,
+        content: content,
+        button: button,
+        width: maxWidth(width),
+    };
+
+    const event = new CustomEvent('dialog-modal', { detail: eventParams });
+
+    window.dispatchEvent(event);
+
+}
+
+function openSuccessDialog(title, content, width, button) {
+    openDialog('success', title, content, width, button)
+}
+
+function openWarningDialog(title, content, width, button) {
+    openDialog('warning', title, content, width, button)
+}
+
+function openDefaultDialog(title, content, width, button) {
+    openDialog('default', title, content, width, button)
+}
+
+function openInfoDialog(title, content, width, button) {
+    openDialog('info', title, content, width, button)
+}
+
+function openBrandDialog(title, content, width, button) {
+    openDialog('brand', title, content, width, button)
+}
+
+function openDangerDialog(title, content, width, button) {
+    openDialog('danger', title, content, width, button)
+}
+
+
+function openConfirm(type, title, content, width, yes_button, no_button, yes_action, no_action) {
+
+    const eventParams = {
+        type: type,
+        title: title,
+        content: content,
+        yes_button: yes_button,
+        yes_action: yes_action,
+        no_button: no_button,
+        no_action: no_action,
+        width: maxWidth(width),
+    };
+
+    const event = new CustomEvent('confirm-modal', { detail: eventParams });
+
+    window.dispatchEvent(event);
+
+}
+
+function openSuccessConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('success', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+function openWarningConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('warning', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+function openDefaultConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('default', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+function openInfoConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('info', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+function openBrandConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('brand', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+function openDangerConfirm(title, content, width, yes_button, no_button, yes_action, no_action) {
+    openConfirm('danger', title, content, width, yes_button, no_button, yes_action, no_action)
+}
+
+
+function maxWidth(maxWidth) {
+    switch (maxWidth) {
+        case 'sm':
+            return 'sm:max-w-sm';
+        case 'md':
+            return 'sm:max-w-md';
+        case 'lg':
+            return 'sm:max-w-lg';
+        case '2xl':
+            return 'sm:max-w-2xl';
+        case 'xl':
+        default:
+            return 'sm:max-w-xl';
     }
 }

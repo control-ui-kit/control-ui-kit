@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Buttons;
 
 use ControlUIKit\Traits\UseButtons;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Button extends Component
@@ -23,6 +24,7 @@ class Button extends Component
     public string $type;
     public string $role_type;
     public string $disabled;
+    public string $action;
     public ?string $text;
 
     public function __construct(
@@ -43,6 +45,7 @@ class Button extends Component
         string $type = null,
         string $text = null,
         string $trans = null,
+        string $action = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,
@@ -82,6 +85,7 @@ class Button extends Component
         $this->icon = $icon === 'none' ? null : $icon;
         $this->element = $this->href ? 'a' : 'button';
         $this->disabled = $disabled ? 'disabled' : '';
+        $this->action = $action ?? '';
         $this->role_type = $this->element === 'a' ? 'role' : 'type';
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->iconStyles = $this->style('button.' . $this->bstyle, 'icon', $iconStyle);
@@ -91,7 +95,7 @@ class Button extends Component
         $this->text = $text;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.buttons.button');
     }

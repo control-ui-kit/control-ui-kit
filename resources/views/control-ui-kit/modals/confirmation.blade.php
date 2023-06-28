@@ -1,27 +1,41 @@
 @props(['id' => null, 'maxWidth' => null])
 
 <x-modal :id="$id" :maxWidth="$maxWidth" {{ $attributes }}>
-    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
-            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                </svg>
-            </div>
 
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg">
-                    {{ $title }}
-                </h3>
+    <div class="p-4">
 
-                <div class="mt-2">
-                    {{ $content }}
-                </div>
-            </div>
+        <x-alert type="default" x-show="detail.type == 'default'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <x-alert type="brand" x-show="detail.type == 'brand'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <x-alert type="danger" x-show="detail.type == 'danger'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <x-alert type="info" x-show="detail.type == 'info'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <x-alert type="success" x-show="detail.type == 'success'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <x-alert type="warning" x-show="detail.type == 'warning'">
+            @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
+        </x-alert>
+
+        <div class="pt-4 text-sm">
+            @isset($content) {{ $content }} @else <div x-html="detail.content"></div> @endif
         </div>
+
     </div>
 
-    <div class="px-6 py-4 text-right">
+    <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
         {{ $footer }}
     </div>
+
 </x-modal>
