@@ -29,7 +29,7 @@
         </x-alert>
 
         <div class="pt-4 text-sm">
-            @isset($content) {{ $content }} @else <div x-html="detail.content"></div> @endif
+            @isset($content) {{ $content }} @else <div x-html="detail.content" class="flex-y-2"></div> @endif
         </div>
 
     </div>

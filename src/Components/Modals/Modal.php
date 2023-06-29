@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Modals;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Modal extends Component
@@ -19,25 +20,19 @@ class Modal extends Component
         $this->maxWidth = $this->maxWidth($maxWidth);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.modals.modal');
     }
 
-    private function maxWidth($maxWidth)
+    private function maxWidth($maxWidth): string
     {
-        switch ($maxWidth) {
-            case 'sm':
-                return 'sm:max-w-sm';
-            case 'md':
-                return 'sm:max-w-md';
-            case 'lg':
-                return 'sm:max-w-lg';
-            case 'xl':
-                return 'sm:max-w-xl';
-            case '2xl':
-            default:
-                return 'sm:max-w-2xl';
-        }
+        return match ($maxWidth) {
+            'sm' => 'sm:max-w-sm',
+            'md' => 'sm:max-w-md',
+            'lg' => 'sm:max-w-lg',
+            'xl' => 'sm:max-w-xl',
+            default => 'sm:max-w-2xl',
+        };
     }
 }
