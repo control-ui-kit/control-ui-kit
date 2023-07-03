@@ -16,10 +16,12 @@ class Action extends Component
 
     public string $icon;
     public string $href;
+    public bool $can;
 
     public function __construct(
         string $icon = null,
         string $href = null,
+        bool $can = true,
 
         string $background = null,
         string $border = null,
@@ -43,6 +45,7 @@ class Action extends Component
 
         $this->icon = $icon ?: 'icon-question';
         $this->href = $href ?: '';
+        $this->can = $can;
     }
 
     public function render(): View

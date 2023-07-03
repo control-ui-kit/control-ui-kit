@@ -1,4 +1,4 @@
-@if($href !== '')
+@if($can && $href)
 <a href="{{ $href }}" {{ $attributes->merge($classes()) }}>
     <x-dynamic-component :component="$icon" />
 </a>

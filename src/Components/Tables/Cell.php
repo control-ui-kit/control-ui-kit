@@ -10,6 +10,7 @@ use ControlUIKit\Helpers\Formatters\DateFormatter;
 use ControlUIKit\Helpers\Formatters\DateTimeFormatter;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Cell extends Component
@@ -21,6 +22,7 @@ class Cell extends Component
     public string $align;
     public ?string $href;
     public ?string $hrefColor;
+    public bool $can;
     public string $cellPadding;
     public ?string $icon;
     public ?string $iconSize;
@@ -47,6 +49,7 @@ class Cell extends Component
         string $format = null,
         string $href = null,
         string $hrefColor = null,
+        bool $can = true,
 
         string $icon = null,
         string $iconBackground = null,
@@ -107,6 +110,7 @@ class Cell extends Component
         $this->align = $this->style($this->component, 'align', $align);
         $this->hrefColor = $this->style($this->component, 'href-color', $hrefColor);
         $this->href = $href;
+        $this->can = $can;
         $this->icon = $icon;
         $this->iconSize = $iconSize;
 
@@ -158,7 +162,7 @@ class Cell extends Component
         $this->format($format);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.cell');
     }

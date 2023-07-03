@@ -13,7 +13,7 @@
 
     @else
 
-        @if ($href) <a href="{{ $href }}" class="{{ $hrefColor }} {{ $cellPadding }}" {{ $attributes->merge()->only('target') }}>
+        @if ($href && $can) <a href="{{ $href }}" class="{{ $hrefColor }} {{ $cellPadding }}" {{ $attributes->merge()->only('target') }}>
 
         @else <div class="{{ $cellPadding }}">
         @endif
@@ -33,7 +33,7 @@
             @if ($suffix) {{ $suffix }} @endif
         @endif
 
-        @if ($href) </a>
+        @if ($href && $can) </a>
         @else </div>
         @endif
 

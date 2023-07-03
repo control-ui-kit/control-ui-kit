@@ -464,6 +464,22 @@ class CellTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_table_cell_component_with_href_but_no_permission(): void
+    {
+        $template = <<<'HTML'
+            <x-table-cell href="https://example.com" :can="false">::data</x-table-cell>
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other rounded shadow">
+                <div class="padding"> ::data </div>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_table_cell_component_with_href_and_target_renders_correctly(): void
     {
         $template = <<<'HTML'
