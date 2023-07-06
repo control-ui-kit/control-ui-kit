@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Filters extends Component
@@ -48,7 +49,7 @@ class Filters extends Component
         ], [], null, 'filtersButtonStyles');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.filters');
     }

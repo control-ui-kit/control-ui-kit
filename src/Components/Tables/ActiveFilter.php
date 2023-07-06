@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
@@ -79,7 +80,7 @@ class ActiveFilter extends Component
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.active-filter');
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Code;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Block extends Component
@@ -18,7 +19,7 @@ class Block extends Component
         $this->language = $language;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.code.block');
     }

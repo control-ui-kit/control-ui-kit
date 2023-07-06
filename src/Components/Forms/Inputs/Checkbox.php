@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Checkbox extends Component
@@ -51,7 +52,7 @@ class Checkbox extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.checkbox', [
             'checked' => $this->checked(),

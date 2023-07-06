@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Maps;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
@@ -134,7 +135,7 @@ class Region extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View|string
     {
         if (!in_array($this->iso, $this->valid_iso, true)) {
             return 'Invalid ISO. {Expected: ' . implode(', ', $this->valid_iso) . '}';

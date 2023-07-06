@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Text;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Text extends Component
@@ -48,7 +49,7 @@ class Text extends Component
         ], ['color', 'font', 'size', 'other'], 'text.' . $this->type);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.text.text');
     }

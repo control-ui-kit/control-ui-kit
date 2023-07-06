@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ColorPicker extends Component
@@ -49,7 +50,7 @@ class ColorPicker extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.color-picker');
     }

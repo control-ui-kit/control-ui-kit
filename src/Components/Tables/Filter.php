@@ -3,6 +3,7 @@
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Filter extends Component
@@ -32,7 +33,7 @@ class Filter extends Component
         $this->empty = $filter['empty'];
     }
 
-    public function render()
+    public function render(): View
     {
         $this->validateType();
 

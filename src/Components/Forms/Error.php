@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
 
@@ -36,7 +37,7 @@ class Error extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.error');
     }

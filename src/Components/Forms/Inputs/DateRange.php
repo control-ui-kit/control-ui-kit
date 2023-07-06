@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class DateRange extends Component
@@ -90,7 +91,7 @@ class DateRange extends Component
         $this->lang = $this->style($this->component, 'lang', $lang);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.date-range');
     }
@@ -128,7 +129,7 @@ class DateRange extends Component
             return (int)$this->getYearFromFormat($this->end);
         }
 
-        return date('Y') + 10;
+        return (int) date('Y') + 10;
     }
 
     public function getYearFromFormat($date): string

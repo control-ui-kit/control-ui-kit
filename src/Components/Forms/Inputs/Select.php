@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
@@ -266,7 +267,7 @@ class Select extends Component
         ], [], null, 'subtextStyles');
     }
 
-    public function render()
+    public function render(): View
     {
         if ($this->native) {
             return view('control-ui-kit::control-ui-kit.forms.inputs.select-native');

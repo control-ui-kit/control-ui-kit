@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tabs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Panel extends Component
@@ -43,7 +44,7 @@ class Panel extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tabs.panel');
     }

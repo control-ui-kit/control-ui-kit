@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Layouts;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Body extends Component
@@ -49,7 +50,7 @@ class Body extends Component
         return in_array($theme, ['light', 'dark']) ? $theme : 'light';
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.layouts.body');
     }

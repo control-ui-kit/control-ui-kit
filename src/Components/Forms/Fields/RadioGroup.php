@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Fields;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class RadioGroup extends Component
@@ -31,7 +32,7 @@ class RadioGroup extends Component
         $this->cleanOptions($options);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.fields.radio-group');
     }

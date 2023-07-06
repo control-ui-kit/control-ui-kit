@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Modals;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Dialog extends Component
@@ -19,7 +20,7 @@ class Dialog extends Component
         $this->maxWidth = $maxWidth;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.modals.dialog');
     }

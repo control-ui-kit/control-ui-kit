@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Charts;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Change extends Component
@@ -333,12 +334,12 @@ class Change extends Component
         ], [], null, 'differenceIconStyles');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.charts.change');
     }
 
-    private function increase()
+    private function increase(): bool|string
     {
         if (!$this->previous) {
             return false;
@@ -359,7 +360,7 @@ class Change extends Component
         return number_format($this->current - $this->previous, (int)$this->decimals);
     }
 
-    private function decrease()
+    private function decrease(): bool|string
     {
         if (!$this->previous) {
             return false;

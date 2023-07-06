@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Pills;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
@@ -82,7 +83,7 @@ class Pill extends Component
         ], ['background', 'color'], $this->component. '.' . $this->pillStyle);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.pills.pill');
     }

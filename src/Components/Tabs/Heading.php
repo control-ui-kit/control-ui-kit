@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tabs;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Heading extends Component
@@ -60,7 +61,7 @@ class Heading extends Component
         $this->size = $this->style($this->component, 'icon-size', $iconSize);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tabs.heading');
     }

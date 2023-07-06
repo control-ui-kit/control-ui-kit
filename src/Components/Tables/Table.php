@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
@@ -347,7 +348,7 @@ class Table extends Component
         $this->filters = $filters;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.table');
     }
@@ -483,7 +484,7 @@ class Table extends Component
             if ($filter['type'] !== 'search' && $filter['selected'] === $filter['empty']) {
                 continue;
             }
-            
+
             $text = $filter['type'] === 'search' ? $filter['selected'] : $filter['options'][$filter['selected']];
 
             $activeFilter = [

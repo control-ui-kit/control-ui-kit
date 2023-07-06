@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
@@ -105,7 +106,7 @@ class Heading extends Component
         return request($this->fieldSort);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tables.heading');
     }

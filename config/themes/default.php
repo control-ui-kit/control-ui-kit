@@ -1009,6 +1009,14 @@ return [
         ]
     ],
 
+    'modal' => [
+        'lang-keys' => [
+            'close' => 'buttons.close',
+            'no' => 'buttons.no',
+            'yes' => 'buttons.yes',
+        ],
+    ],
+
     'panel' => [
         'background' => 'bg-panel',
         'border' => 'border border-panel',

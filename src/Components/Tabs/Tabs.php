@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Tabs;
 
 use ControlUIKit\Traits\UseThemeFile;
 use DOMDocument;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Tabs extends Component
@@ -48,7 +49,7 @@ class Tabs extends Component
         $this->spacing = $this->style($this->component, 'spacing', $spacing);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.tabs.tabs');
     }

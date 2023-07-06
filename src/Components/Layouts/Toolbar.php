@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Layouts;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Toolbar extends Component
@@ -35,7 +36,7 @@ class Toolbar extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.layouts.toolbar');
     }

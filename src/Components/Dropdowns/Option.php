@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Dropdowns;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Option extends Component
@@ -18,7 +19,7 @@ class Option extends Component
         $this->url = $url;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.dropdowns.option', [
             'href' => $this->href()

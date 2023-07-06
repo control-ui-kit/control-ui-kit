@@ -8,6 +8,7 @@ use ControlUIKit\Exceptions\InputException;
 use ControlUIKit\Exceptions\InputNumberException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseInputTheme;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Input extends Component
@@ -239,7 +240,7 @@ class Input extends Component
 
     protected function componentConfig(): void {}
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.input');
     }

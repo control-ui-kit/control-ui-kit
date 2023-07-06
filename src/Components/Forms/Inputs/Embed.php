@@ -6,6 +6,7 @@ namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Embed extends Component
@@ -64,7 +65,7 @@ class Embed extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.embed');
     }

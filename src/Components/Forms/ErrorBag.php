@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
@@ -23,7 +24,7 @@ class ErrorBag extends Component
         $this->use_translation = config($this->theme() . '.error-bag.use-translation', false);
     }
 
-    public function render()
+    public function render(): View
     {
         $this->setTranslationString();
         $this->setTitleFromErrorBag();

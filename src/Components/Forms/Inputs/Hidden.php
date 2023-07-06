@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Hidden extends Component
@@ -24,7 +25,7 @@ class Hidden extends Component
         $this->value = old($name, $value ?? $name);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.hidden');
     }

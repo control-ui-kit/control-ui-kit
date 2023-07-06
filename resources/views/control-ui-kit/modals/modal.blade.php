@@ -22,18 +22,18 @@
         autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() },
         detail: {
             type: 'default',
-            button: 'Close',
-            yes_button: 'Yes',
-            no_button: 'No',
+            button: '{{ $close }}',
+            yes_button: '{{ $yes }}',
+            no_button: '{{ $no }}',
             yes_action: 'show = false',
             no_action: 'show = false',
         },
         maxWidth: '{{ $maxWidth }}',
         openModal() {
             this.show = true
-            this.detail.button = this.detail.button ?? 'Close'
-            this.detail.yes_button = this.detail.yes_button ?? 'Yes'
-            this.detail.no_button = this.detail.no_button ?? 'No'
+            this.detail.button = this.detail.button ?? '{{ $close }}'
+            this.detail.yes_button = this.detail.yes_button ?? '{{ $yes }}'
+            this.detail.no_button = this.detail.no_button ?? '{{ $no }}'
             this.detail.yes_action = this.detail.yes_action ?? 'show = false'
             this.detail.no_action = this.detail.no_action ?? 'show = false'
             this.maxWidth = this.width(this.maxWidth)

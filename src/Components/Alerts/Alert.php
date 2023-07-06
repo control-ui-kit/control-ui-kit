@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Alerts;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Alert extends Component
@@ -154,7 +155,7 @@ class Alert extends Component
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.alerts.alert');
     }
