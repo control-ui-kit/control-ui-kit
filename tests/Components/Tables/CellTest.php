@@ -456,7 +456,9 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="https://example.com" class="href-color padding"> ::data </a>
+                <div class="padding">
+                    <a href="https://example.com" class="href-color"> ::data </a>
+                </div>
             </td>
             HTML;
 
@@ -488,7 +490,9 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="https://example.com" class="href-color padding" target="_blank"> ::data </a>
+                <div class="padding">
+                    <a href="https://example.com" class="href-color" target="_blank"> ::data </a>
+                </div>
             </td>
             HTML;
 
@@ -504,7 +508,9 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other rounded shadow">
-                <a href="https://example.com" class="href-color padding"> ::data </a>
+                <div class="padding">
+                    <a href="https://example.com" class="href-color"> ::data </a>
+                </div>
             </td>
             HTML;
 
@@ -520,7 +526,9 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="https://example.com" class="custom-color padding"> ::data </a>
+                <div class="padding">
+                    <a href="https://example.com" class="custom-color"> ::data </a>
+                </div>
             </td>
             HTML;
 
@@ -586,11 +594,13 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="text-right background border color font other rounded shadow">
-                <a href="https://example.com/testing" class="href-color padding">
-                    <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="3" cy="3" r="3"/>
-                        </svg>
-                    </a>
+                <div class="padding">
+                    <a href="https://example.com/testing" class="href-color">
+                        <svg class="icon-background icon-border icon-color icon-other inline-block icon-padding icon-rounded icon-shadow ::size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </a>
+                    </div>
                 </td>
             HTML;
 
@@ -989,7 +999,9 @@ class CellTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <td class="align background border color font other rounded shadow">
-                <a href="https://example.com" class="href-color padding"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
+                <div class="padding">
+                    <a href="https://example.com" class="href-color"> <span class="pill-background pill-background-warning pill-border pill-color pill-color-warning pill-font pill-other pill-padding pill-rounded pill-shadow"> :: warning </span> </a>
+                </div>
             </td>
             HTML;
 
