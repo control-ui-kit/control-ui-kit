@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
-use League\CommonMark\MarkdownConverterInterface;
 
 class Markdown extends Component
 {
@@ -45,10 +44,10 @@ class Markdown extends Component
             $markdown = $this->generateAnchors($markdown);
         }
 
-        return (string) $this->converter()->convertToHtml($markdown);
+        return (string) $this->converter()->convert($markdown);
     }
 
-    protected function converter(): MarkdownConverterInterface
+    protected function converter(): CommonMarkConverter|GithubFlavoredMarkdownConverter
     {
         $options = array_merge($this->options, [
             'html_input' => $this->htmlInput,
