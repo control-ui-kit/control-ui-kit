@@ -1,5 +1,10 @@
 <?php
 
+use ControlUIKit\Helpers\Formatters\CurrencyFormatter;
+use ControlUIKit\Helpers\Formatters\DateFormatter;
+use ControlUIKit\Helpers\Formatters\DateTimeFormatter;
+use ControlUIKit\Helpers\Formatters\DecimalFormatter;
+
 return [
 
     /*
@@ -121,6 +126,22 @@ return [
         'text' => \ControlUIKit\Components\Text\Text::class,
         'link' => \ControlUIKit\Components\Text\Link::class,
 
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Formatters
+    |--------------------------------------------------------------------------
+    |
+    | The UI kit can be configured to use different formatter classes.
+    |
+    */
+
+    'formatters' => [
+        'currency' => CurrencyFormatter::class,
+        'decimal' => DecimalFormatter::class,
+        'date' => DateFormatter::class,
+        'datetime' => DateTimeFormatter::class,
     ],
 
     /*

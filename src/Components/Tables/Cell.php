@@ -191,7 +191,7 @@ class Cell extends Component
             return;
         }
 
-        if (strpos($format, ':') === false) {
+        if (! str_contains($format, ':')) {
             $formatter = $format;
         } else {
             [$formatter, $options] = explode(":", $format);
@@ -204,12 +204,7 @@ class Cell extends Component
 
     private function getFormatter($formatter): string
     {
-        $formatters = [
-            'currency' => CurrencyFormatter::class,
-            'decimal' => DecimalFormatter::class,
-            'date' => DateFormatter::class,
-            'datetime' => DateTimeFormatter::class,
-        ];
+        $formatters = config('control-ui-kit.formatters');
 
         if (array_key_exists($formatter, $formatters)) {
             return $formatters[$formatter];

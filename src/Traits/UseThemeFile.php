@@ -27,7 +27,7 @@ trait UseThemeFile
             return null;
         }
 
-        $append = strpos($input, '...') === 0;
+        $append = str_starts_with($input, '...');
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
@@ -42,10 +42,6 @@ trait UseThemeFile
             if ($component === 'dropdown') {
                 ray($key);
             }
-
-//            if (! config()->has($key)) {
-//                throw new ControlUIKitException("Config key not found [{$key}] in [{$theme}]");
-//            }
 
             $configStyle = $this->componentStyle($component, $attribute);
 
