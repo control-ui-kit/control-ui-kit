@@ -3,19 +3,23 @@
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
+use ControlUIKit\Traits\ArrayHelper;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class Filter extends Component
 {
+    use ArrayHelper;
+
     protected string $component = 'table-filter';
 
     public string $id;
     public string $name;
     public string $label;
     public string $type;
-    public string $empty;
-    public array $options;
+    public ?string $empty;
+    public mixed $options;
     public bool $enabled;
     public ?string $selected;
     public ?string $wire;
@@ -26,11 +30,11 @@ class Filter extends Component
         $this->name = $filter['name'];
         $this->label = $filter['label'];
         $this->type = $filter['type'];
-        $this->options = array_key_exists('options', $filter) ? $filter['options'] : [];
+        $this->options = $this->setOptions($filter);
         $this->enabled = $filter['selected'] !== $filter['empty'];
         $this->selected = $filter['selected'];
         $this->wire = array_key_exists('wire', $filter) ? $filter['wire'] : false;
-        $this->empty = $filter['empty'];
+        $this->empty = $filter['empty'] ?? '';
     }
 
     public function render(): View
@@ -53,5 +57,22 @@ class Filter extends Component
             'select',
             'search',
         ];
+    }
+
+    private function setOptions(array $filter)
+    {
+        if (! array_key_exists('options', $filter)) {
+            return [];
+        }
+
+        if (is_a($filter['options'], Collection::class)) {
+            return $filter['options']->pluck('label', 'value')->toArray();
+        }
+
+        if ($this->is_multidimensional($filter['options'])) {
+            return $this->flatten($filter['options']);
+        }
+
+        return $filter['options'];
     }
 }

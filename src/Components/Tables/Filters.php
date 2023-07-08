@@ -32,7 +32,7 @@ class Filters extends Component
         string $buttonWidth = null
 
     ) {
-        $this->filters = $filters;
+        $this->setupFilters($filters);
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -67,5 +67,24 @@ class Filters extends Component
     public function filtersButtonIconSize(): string
     {
         return $this->filtersButtonStyles['button-icon-size'];
+    }
+
+    private function setupFilters(array $filters): void
+    {
+        foreach ($filters as $name => $filter) {
+            if (! array_key_exists('id', $filter)) {
+                $filters[$name]['id'] = $name;
+            }
+
+            if (! array_key_exists('name', $filter)) {
+                $filters[$name]['name'] = $name;
+            }
+
+            if (! array_key_exists('empty', $filter)) {
+                $filters[$name]['empty'] = '';
+            }
+        }
+
+        $this->filters = $filters;
     }
 }

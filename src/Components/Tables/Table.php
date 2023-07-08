@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Helpers\UrlManipulation;
+use ControlUIKit\Traits\ArrayHelper;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Table extends Component
 {
-    use UseThemeFile;
+    use UseThemeFile, ArrayHelper;
 
     protected string $component = 'table';
 
@@ -445,17 +447,8 @@ class Table extends Component
     {
         return Request::fullUrl();
     }
-//
-//    private function activeFilterHref($type): string
-//    {
-//        $resetValue = null;
-//
-//        $query = $type . '=' . $resetValue;
-//
-//        return (new UrlManipulation)->url(Request::fullUrl())->append($query);
-//    }
 
-    public function showSearch()
+    public function showSearch(): bool|string
     {
         $configSearch = $this->style($this->component, 'search-enable', null);
 
@@ -479,16 +472,16 @@ class Table extends Component
     {
         $active = [];
 
-        foreach ($this->filters as $prop => $filter) {
+        foreach ($this->filters as $name => $filter) {
 
-            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['empty']) {
+            if ($filter['type'] !== 'search' && $filter['selected'] === ($filter['empty'] ?? '')) {
                 continue;
             }
 
-            $text = $filter['type'] === 'search' ? $filter['selected'] : $filter['options'][$filter['selected']];
+            $text = $filter['type'] === 'search' ? $filter['selected'] : $this->selectedOptionText($filter['options'], $filter['selected']);
 
             $activeFilter = [
-                'name' => $filter['name'],
+                'name' => $filter['name'] ?? $name,
                 'type' => $filter['type'],
                 'index' => $filter['type'] === 'search' ? $filter['index'] : '',
                 'label' => $filter['label'],
@@ -499,5 +492,22 @@ class Table extends Component
         }
 
         return $active;
+    }
+
+    private function selectedOptionText(mixed $options, mixed $selected): string
+    {
+        if (is_a($options, Collection::class)) {
+            return $options->where('value', $selected)->first()->label;
+        }
+
+        if ($this->is_multidimensional($options)) {
+            $options = $this->flatten($options);
+        }
+
+        if (is_array($options)) {
+            return $options[$selected];
+        }
+
+        return $selected;
     }
 }
