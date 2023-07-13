@@ -13,11 +13,11 @@ class Select extends Component
     public string $label;
     public string $placeholder;
     public string $help;
-    public array $options;
+    public mixed $options;
 
     public function __construct(
         string $name,
-        array $options,
+        mixed $options,
         string $label = null,
         string $placeholder = null,
         string $help = null

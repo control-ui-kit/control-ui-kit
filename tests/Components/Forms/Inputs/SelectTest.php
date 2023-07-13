@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\View\ViewException;
 use Tests\Components\ComponentTestCase;
 
 class SelectTest extends ComponentTestCase
@@ -100,7 +101,6 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.subtext-shadow', 'subtext-shadow');
         Config::set('themes.default.input-select.subtext-active', 'subtext-active');
         Config::set('themes.default.input-select.subtext-inactive', 'subtext-inactive');
-
     }
 
     /** @test */
@@ -158,6 +158,29 @@ class SelectTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered__in_native_format(): void
+    {
+        $template = <<<HTML
+            <x-input-select
+                native
+                name="language"
+                :options="[ 1 => 'English', 2 => 'Spanish' ]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
+                <option value="" selected> Please Select ... </option>
+                <option value="1"> English </option>
+                <option value="2"> Spanish </option>
+            </select>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
 
     /** @test */
     public function an_input_select_component_can_be_rendered_in_array_key_value_format(): void
@@ -1990,6 +2013,31 @@ class SelectTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_select_component_can_be_rendered_with_array_please_select_value_without_text_element(): void
+    {
+        Config::set('themes.default.input-select.please-select-text', '::please-select-text');
+
+        $template = <<<HTML
+            <x-input-select
+                native
+                name="language"
+                :options="[ 1 => 'English', 2 => 'Spanish' ]"
+                :please-select="['label' => 'Select Language ...', 'value' => 0]"
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
+                <option value="0" selected> ::please-select-text </option>
+                <option value="1"> English </option>
+                <option value="2"> Spanish </option>
+            </select>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_select_component_can_be_rendered_with_please_select_value_and_lang_string_set_in_config_with_overriding_inline_please_select(): void
     {
         Config::set('themes.default.input-select.please-select-value', '::please-select-value');
@@ -2352,5 +2400,131 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_builder_collection_data(): void
+    {
+        $template = <<<HTML
+            <x-input-select
+                name="language"
+                :options="collect([
+                    ['text' => 'b', 'value' => 2],
+                    ['text' => 'd', 'value' => 4],
+                ])"
+                optionValue="value"
+                value="4"
+                required
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: 4 })" x-init="init()" class="button-width relative">
+                <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <div class="flex items-center">
+                        <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                        <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                    </div>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="b" data-value="2" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">b</span> </div>
+                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="d" data-value="4" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">d</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_with_eloquent_collection_data(): void
+    {
+        $template = <<<HTML
+            <x-input-select
+                name="language"
+                :options="(new Illuminate\Database\Eloquent\Collection())
+                    ->push(['label' => 'b', 'value' => 2])
+                    ->push(['label' => 'd', 'value' => 4])"
+                optionValue="value"
+                value="4"
+                required
+            />
+            HTML;
+
+        $expected = <<<HTML
+            <div x-cloak x-data="Components.listbox({ id: 'language', value: 4 })" x-init="init()" class="button-width relative">
+                <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
+                <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                    <div class="flex items-center">
+                        <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                        <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                    </div>
+                    <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-language" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="b" data-value="2" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">b</span> </div>
+                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="d" data-value="4" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">d</span> </div>
+                                <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                    <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                        </svg>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_exception_is_thrown_if_the_options_data_type_is_not_expected(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Select does not support this data type');
+
+        $template = <<<HTML
+            <x-input-select
+                name="language"
+                :options="null"
+                optionValue="value"
+                value="4"
+                required
+            />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
     }
 }

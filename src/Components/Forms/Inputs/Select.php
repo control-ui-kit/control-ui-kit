@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Exceptions\InvalidDataTypeException;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\View\Component;
+use Illuminate\View\ViewException;
 
 class Select extends Component
 {
@@ -17,7 +20,7 @@ class Select extends Component
 
     public string $name;
     public string $id;
-    public $value;
+    public mixed $value;
     public array $options;
     public int $activeIndex = 0;
     private bool $native;
@@ -152,9 +155,9 @@ class Select extends Component
 
         if (! $required) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
-            $this->options = $pleaseSelectOption + $this->options($options);
+            $this->options = $pleaseSelectOption + $options;
         } else {
-            $this->options = $this->options($options);
+            $this->options = $options;
         }
 
         if ($this->value === null) {
@@ -408,9 +411,13 @@ class Select extends Component
             return [$value => $text];
         }
 
-        $text = (array_key_exists('text', $pleaseSelect))
-            ? $pleaseSelect['text']
-            : $this->style($this->component, 'please-select-text', null);
+
+        if (array_key_exists('text', $pleaseSelect)) {
+            $text = $pleaseSelect['text'];
+        } else {
+            $text = $this->style($this->component, 'please-select-text', null);
+        }
+
         $value = $pleaseSelect['value'] ?? null;
 
         if (is_null($this->value)) {
@@ -434,18 +441,31 @@ class Select extends Component
         $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options) ;
     }
 
-    private function options($options): array
+    private function buildOptionsArray(mixed $options): array
     {
+        if (is_string($options)) {
+            return $this->stringOptionsToArray($options);
+        }
+
+        if ($options instanceof EloquentCollection) {
+            return $this->collectionOptionsToArray($options);
+        }
+
         if ($options instanceof Collection) {
             return collect($options)->toArray();
         }
 
-        return (array) $options;
+        throw new ViewException('Select does not support this data type');
     }
 
-    private function buildOptionsArray(string $options): array
+    private function stringOptionsToArray(string $options): array
     {
         $values = array_filter(array_map('trim', str_getcsv($options)));
         return array_combine($values, $values);
+    }
+
+    private function collectionOptionsToArray(EloquentCollection $options): array
+    {
+        return $options->pluck('label', 'value')->toArray();
     }
 }
