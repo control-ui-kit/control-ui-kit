@@ -754,7 +754,7 @@ return [
         'list-padding' => 'py-1',
         'list-rounded' => 'rounded',
         'list-shadow' => 'shadow-md',
-        'list-width' => 'w-auto',
+        'list-width' => 'w-full',
 
         'option-background' => '',
         'option-border' => '',
