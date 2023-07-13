@@ -40,6 +40,44 @@ class HeaderTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_panel_header_component_can_be_rendered_with_sub_text(): void
+    {
+        $template = <<<'HTML'
+            <x-panel-header sub-text="::sub">Some Heading</x-panel-header>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color font other padding rounded shadow flex justify-between">
+                <h3>
+                    Some Heading
+                </h3>
+                <span>::sub</span>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_panel_header_component_can_be_rendered_with_sub_text_and_url(): void
+    {
+        $template = <<<'HTML'
+            <x-panel-header sub-text="::sub" sub-url="::url">Some Heading</x-panel-header>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background border color font other padding rounded shadow flex justify-between">
+                <h3>
+                    Some Heading
+                </h3>
+                <a href="::url" class="text-brand hover:text-brand-hover">::sub</a>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_panel_header_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'

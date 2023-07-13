@@ -13,8 +13,14 @@ class Header extends Component
     use UseThemeFile;
 
     protected string $component = 'panel-header';
+    public ?string $sub_text = null;
+    public ?string $sub_url = null;
+    public ?string $sub_title = null;
 
     public function __construct(
+        string $subText = null,
+        string $subUrl = null,
+        string $subTitle = null,
         string $background = null,
         string $border = null,
         string $color = null,
@@ -24,6 +30,10 @@ class Header extends Component
         string $rounded = null,
         string $shadow = null
     ) {
+        $this->sub_text = $subText;
+        $this->sub_url = $subUrl;
+        $this->sub_title = $subTitle;
+
         $this->setConfigStyles([
             'background' => $background,
             'border' => $border,

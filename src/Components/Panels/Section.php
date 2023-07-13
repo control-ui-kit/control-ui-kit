@@ -14,9 +14,13 @@ class Section extends Component
 
     protected string $component = 'panel-section';
     public ?string $header;
+    public ?string $sub_text;
+    public ?string $sub_url;
 
     public function __construct(
         string $header = null,
+        string $subText = null,
+        string $subUrl = null,
         string $background = null,
         string $border = null,
         string $color = null,
@@ -28,6 +32,8 @@ class Section extends Component
         string $spacing = null
     ) {
         $this->header = $header;
+        $this->sub_text = $subText;
+        $this->sub_url = $subUrl;
 
         $this->setConfigStyles([
             'background' => $background,
