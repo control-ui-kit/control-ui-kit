@@ -13,15 +13,30 @@ class Select extends Component
     public string $label;
     public string $placeholder;
     public string $help;
+    public bool $required;
     public mixed $options;
+    public ?bool $showPleaseSelect;
 
     public function __construct(
         string $name,
         mixed $options,
+        bool $required = false,
+        mixed $requiredAction = null,
         string $label = null,
         string $placeholder = null,
         string $help = null
     ) {
+        if ($requiredAction === 'new') {
+            $this->required = true;
+            $this->showPleaseSelect = true;
+        } elseif ($requiredAction === 'edit') {
+            $this->required = true;
+            $this->showPleaseSelect = false;
+        } else {
+            $this->required = $required;
+            $this->showPleaseSelect = null;
+        }
+
         $this->name = $name;
         $this->options = $options;
         $this->label = $label ?? '';

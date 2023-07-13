@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
-use ControlUIKit\Exceptions\InvalidDataTypeException;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -56,6 +55,7 @@ class Select extends Component
         string $image = null,
         $pleaseSelect = null,
         bool $required = false,
+        mixed $showPleaseSelect = null,
         string $subtext = null,
         string $text = null,
         string $optionValue = null,
@@ -153,7 +153,7 @@ class Select extends Component
             $options = $this->buildOptionsArray($options);
         }
 
-        if (! $required) {
+        if ($showPleaseSelect || (is_null($showPleaseSelect) && !$required)) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
             $this->options = $pleaseSelectOption + $options;
         } else {
