@@ -518,7 +518,7 @@ return [
         'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
         'wrapper-color' => '',
         'wrapper-font' => '',
-        'wrapper-other' => 'flex items-center w-full',
+        'wrapper-other' => 'flex items-center',
         'wrapper-padding' => '',
         'wrapper-rounded' => 'rounded',
         'wrapper-shadow' => '',
@@ -567,13 +567,22 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-0',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+
+        'icon-background' => '',
+        'icon-border' => 'border-r border-input',
+        'icon-color' => 'text-muted',
+        'icon-size' => 'w-4 h-4',
+        'icon-other' => 'flex items-center justify-center self-stretch',
+        'icon-padding' => 'px-3',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
 
         // Config
         'first-day' => "1",

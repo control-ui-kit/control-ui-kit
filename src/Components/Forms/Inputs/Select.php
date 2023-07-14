@@ -58,6 +58,7 @@ class Select extends Component
         mixed $showPleaseSelect = null,
         string $subtext = null,
         string $text = null,
+        string $width = null,
         string $optionValue = null,
 
         string $buttonBackground = null,
@@ -182,7 +183,7 @@ class Select extends Component
             'button-padding' => $buttonPadding,
             'button-rounded' => $buttonRounded,
             'button-shadow' => $buttonShadow,
-            'button-width' => $buttonWidth,
+            'button-width' => $width ?? $buttonWidth,
         ]);
 
         $this->setConfigStyles([

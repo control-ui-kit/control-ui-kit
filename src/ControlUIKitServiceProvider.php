@@ -78,6 +78,8 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
 
                 echo <<<scripts
+                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
+
                 <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->
 
                 <!--                <script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.11/dist/bundle.js"></script>-->
@@ -98,7 +100,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
                 <script src="$controlUiScriptUrl"></script>
 
-                <!-- todo: we need to fix the styling on the litepicker !-->
+                <!-- todo: we need to fix the styling on the litepicker!!!-->
                 <style>
                     select.month-item-name, select.month-item-year {
                         background-image: none;

@@ -840,4 +840,42 @@ class InputTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_wrapper_and_width_override(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="name" type="text" suffix-text="::suffix" width="::width" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow ::width">
+                <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_left_icon_and_width_override(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="name" type="text" icon-left="icon-dot" width="::width"  />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow ::width">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </div>
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
