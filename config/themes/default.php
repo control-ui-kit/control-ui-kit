@@ -552,6 +552,17 @@ return [
         'shadow' => '',
     ],
 
+    'input-color-picker' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => '',
+        'font' => 'text-sm text-input',
+        'other' => 'w-40 relative',
+        'padding' => 'p-1.5',
+        'rounded' => 'rounded',
+        'shadow' => '',
+    ],
+
     'input-currency' => [
         'decimals' => 2,
         'decimals-fixed' => true,
@@ -679,6 +690,11 @@ return [
 
         //Config
         'rows' => 4,
+    ],
+
+    'input-time' => [
+        'output' => 'H:i:s',
+        'spacing' => 'flex items-center space-x-1',
     ],
 
     'input-radio' => [
@@ -839,17 +855,6 @@ return [
         'switch-size' => 'h-5 w-5',
         'switch-state-off' => 'translate-x-0',
         'switch-state-on' => 'translate-x-[22px]',
-    ],
-
-    'input-color-picker' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => '',
-        'font' => 'text-sm text-input',
-        'other' => 'w-40 relative',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
     ],
 
     'layout-body' => [
