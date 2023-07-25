@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use Carbon\Carbon;
+use ControlUIKit\Traits\LiteDateFunctions;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Date extends Component
 {
-    use UseInputTheme;
+    use UseInputTheme, LiteDateFunctions;
 
     protected string $component = 'input-date';
 
@@ -18,9 +20,11 @@ class Date extends Component
     public string $id;
     public ?string $value;
     public ?string $format;
+    public string $dataFormat;
+    public ?string $liteFormat;
     public ?string $start;
     public ?string $end;
-    public ?string $reset;
+    public ?string $resetButton;
     public ?string $firstDay;
     private ?string $mobileFriendly;
     private ?string $keyboardNavigation;
@@ -52,7 +56,8 @@ class Date extends Component
         string $iconSize = null,
 
         string $format = null,
-        string $reset = null,
+        string $data = null,
+        string $resetButton = null,
         string $start = null,
         string $end = null,
         string $firstDay = null,
@@ -65,11 +70,13 @@ class Date extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->value = old($name, $value ?? '');
-        $this->format = is_null($format) ? 'DD/MM/YYYY' : $format;
+        $this->dataFormat = $this->style($this->component, 'data', $data);
+        $this->format = $this->style($this->component, 'format', $format);
+        $this->value = old($name, $this->convertDate($value) ?? '');
+        $this->liteFormat = $this->litePickerFormat($this->format);
         $this->start = $start;
         $this->end = $end;
-        $this->reset = is_null($reset) ? 'false' : 'true';
+        $this->resetButton = $this->style($this->component, 'reset-button', $resetButton);
         $this->iconSize = $iconSize;
 
         $this->setConfigStyles([
@@ -109,7 +116,7 @@ class Date extends Component
 
         $this->mobileFriendly = $this->style($this->component, 'mobile-friendly', $mobileFriendly);
         $this->keyboardNavigation = $this->style($this->component, 'keyboard-navigation', $keyboardNavigation);
-        $this->firstDay = $this->style($this->component, 'first-day', (string) (int) $firstDay);
+        $this->firstDay = $this->style($this->component, 'first-day', $firstDay);
         $this->lang = $this->style($this->component, 'lang', $lang);
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
@@ -119,63 +126,12 @@ class Date extends Component
         return view('control-ui-kit::control-ui-kit.forms.inputs.date');
     }
 
-    public function minDate(): string
+    public function convertDate(string $date = null): ?string
     {
-        if ($this->start) {
-            return "moment(\"$this->start\", \"$this->format\")";
+        if (is_null($date)) {
+            return null;
         }
 
-        return "null";
-    }
-
-    public function maxDate(): string
-    {
-        if ($this->end) {
-            return "moment(\"$this->end\", \"$this->format\")";
-        }
-
-        return "null";
-    }
-
-    public function minYear(): int
-    {
-        if ($this->start) {
-            return (int)$this->getYearFromFormat($this->start);
-        }
-
-        return (int) date('Y') - 10;
-    }
-
-    public function maxYear(): int
-    {
-        if ($this->end) {
-            return (int)$this->getYearFromFormat($this->end);
-        }
-
-        return (int) date('Y') + 10;
-    }
-
-    public function getYearFromFormat($date): string
-    {
-        if ($this->format === 'YYYY-MM-DD') {
-            return substr($date, 0, 4);
-        }
-
-        return substr($date, 6, 4);
-    }
-
-    public function getPluginsList(): string
-    {
-        $plugins = [];
-
-        if (!is_null($this->mobileFriendly) && $this->mobileFriendly !== "false") {
-            $plugins[] = 'mobilefriendly';
-        }
-
-        if (!is_null($this->keyboardNavigation) && $this->keyboardNavigation !== "false") {
-            $plugins[] = 'keyboardnav';
-        }
-
-        return count($plugins) ? ("'" . implode("', '", $plugins) . "'") : "";
+        return Carbon::createFromFormat($this->dataFormat, $date)->format($this->format);
     }
 }

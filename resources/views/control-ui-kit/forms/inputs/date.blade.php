@@ -5,7 +5,7 @@
     <input name="{{ $name }}"
            type="text"
            id="{{ $id }}"
-           placeholder="{{ $format }}"
+           placeholder="{{ $liteFormat }}"
            @if ($value)
                value="{{ $value }}"
            @endif
@@ -15,7 +15,7 @@
 <script>
     new Litepicker({
         element: document.getElementById('{{ $id }}'),
-        format: "{{ $format }}",
+        format: '{{ $liteFormat }}',
         minDate: {!! $minDate() !!},
         maxDate: {!! $maxDate() !!},
         singleMode: true,
@@ -24,12 +24,12 @@
             minYear: {!! $minYear() !!},
             maxYear: {!! $maxYear() !!},
             months: true,
-            years: "asc"
+            years: 'asc'
         },
         plugins: [{!! $getPluginsList() !!}],
-        resetButton: {{ $reset }},
+        resetButton: {{ $resetButton ? 'true' : 'false' }},
         scrollToDate: true,
         firstDay: {{ $firstDay }},
-        lang: "{{ $lang }}",
+        lang: '{{ $lang }}',
     })
 </script>

@@ -49,6 +49,8 @@ return [
 
         'field' => \ControlUIKit\Components\Forms\Fields\Field::class,
         'field-checkbox' => \ControlUIKit\Components\Forms\Fields\Checkbox::class,
+        'field-date' => \ControlUIKit\Components\Forms\Fields\Date::class,
+        'field-datetime' => \ControlUIKit\Components\Forms\Fields\DateTime::class,
         'field-info' => \ControlUIKit\Components\Forms\Fields\Info::class,
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroup::class,
@@ -62,6 +64,7 @@ return [
         'input-color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,
         'input-currency' => \ControlUIKit\Components\Forms\Inputs\Currency::class,
         'input-date' => \ControlUIKit\Components\Forms\Inputs\Date::class,
+        'input-datetime' => \ControlUIKit\Components\Forms\Inputs\DateTime::class,
         'input-date-range' => \ControlUIKit\Components\Forms\Inputs\DateRange::class,
         'input-email' => \ControlUIKit\Components\Forms\Inputs\Email::class,
         'input-embed' => \ControlUIKit\Components\Forms\Inputs\Embed::class,

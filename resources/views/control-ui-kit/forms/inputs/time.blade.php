@@ -15,6 +15,7 @@
             let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour
 
             this.time = this.output.replace('H', padZero(hour))
+                            .replace('G', hour)
                             .replace('h', padZero(hour % 12 || 12))
                             .replace('g', hour % 12 || 12)
                             .replace('i', padZero(this.minute))

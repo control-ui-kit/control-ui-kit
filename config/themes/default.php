@@ -596,13 +596,19 @@ return [
         'icon-shadow' => '',
 
         // Config
-        'first-day' => "1",
-        'format' => 'DD/MM/YYYY',
+        'first-day' => 1,
+        'format' => 'd/m/Y',
+        'data' => 'Y-m-d',
         'icon' => 'icon-calendar',
-        'keyboard-navigation' => 'true',
+        'keyboard-navigation' => true,
         'lang' => 'en-GB',
-        'mobile-friendly' => 'true',
-        'reset' => 'false',
+        'mobile-friendly' => true,
+        'reset-button' => false,
+    ],
+
+    'input-datetime' => [
+        'format' => 'd/m/Y H:i',
+        'data' => 'Y-m-d H:i:s',
     ],
 
     'input-date-range' => [

@@ -34,7 +34,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -89,7 +89,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '9', minute: '46', second: '0', show_am_pm: true, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -130,9 +130,9 @@ class TimeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '9', minute: '46', second: '0', show_am_pm: true, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
+            <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '9', minute: '46', second: '0', show_am_pm: true, show_seconds: false, am_pm: 'pm', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -175,7 +175,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -209,7 +209,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -243,7 +243,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: true, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -286,7 +286,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -341,7 +341,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: false, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -396,7 +396,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: true, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -513,7 +513,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: true, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
@@ -576,7 +576,7 @@ class TimeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-init="init()" x-data="{ time: '', output: 'H:i:s', hour: '0', minute: '0', second: '0', show_am_pm: false, show_seconds: true, am_pm: 'am', updateTime() { const padZero = (value) =>
                 (value
-                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
+                < 10 ? `0${value}` : value); let hour = (this.show_am_pm && this.hour < 12 && this.am_pm == 'pm') ? parseInt(this.hour) + 12 : this.hour this.time = this.output.replace('H', padZero(hour)) .replace('G', hour) .replace('h', padZero(hour % 12 || 12)) .replace('g', hour % 12 || 12) .replace('i', padZero(this.minute)) .replace('s', padZero(this.second)) .replace('a', hour>
                     = 12 ? 'pm' : 'am') .replace('A', hour>= 12 ? 'PM' : 'AM'); }, init() { this.updateTime() }, }" class="flex items-center space-x-1">
                     <select id="time_hour" name="time_hour" class="bg-input border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded w-16" x-model="hour" x-on:change="updateTime()">
                         <option value="0" selected> 00 </option>
