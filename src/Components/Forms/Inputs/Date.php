@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
-use Carbon\Carbon;
-use ControlUIKit\Traits\LiteDateFunctions;
+use ControlUIKit\Traits\DateInputFunctions;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Date extends Component
 {
-    use UseInputTheme, LiteDateFunctions;
+    use UseInputTheme, DateInputFunctions;
 
     protected string $component = 'input-date';
 
@@ -21,13 +20,10 @@ class Date extends Component
     public ?string $value;
     public ?string $format;
     public string $dataFormat;
-    public ?string $liteFormat;
+    public ?string $displayFormat;
     public ?string $start;
     public ?string $end;
-    public ?string $resetButton;
-    public ?string $firstDay;
-    private ?string $mobileFriendly;
-    private ?string $keyboardNavigation;
+    public ?string $weekNumbers;
     public ?string $lang;
     public ?string $icon;
 
@@ -57,13 +53,10 @@ class Date extends Component
 
         string $format = null,
         string $data = null,
-        string $resetButton = null,
         string $start = null,
         string $end = null,
-        string $firstDay = null,
+        string $weekNumbers = null,
         string $icon = null,
-        string $mobileFriendly = null,
-        string $keyboardNavigation = null,
         string $lang = null,
         string $id = null,
         string $value = null,
@@ -72,11 +65,11 @@ class Date extends Component
         $this->id = $id ?? $name;
         $this->dataFormat = $this->style($this->component, 'data', $data);
         $this->format = $this->style($this->component, 'format', $format);
-        $this->value = old($name, $this->convertDate($value) ?? '');
-        $this->liteFormat = $this->litePickerFormat($this->format);
+        $this->value = old($name, $value);
+
+        $this->displayFormat = $this->displayDateFormat($this->format);
         $this->start = $start;
         $this->end = $end;
-        $this->resetButton = $this->style($this->component, 'reset-button', $resetButton);
         $this->iconSize = $iconSize;
 
         $this->setConfigStyles([
@@ -100,7 +93,7 @@ class Date extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-            'width' => $width,
+            'width' => $this->style($this->component, 'width', $width),
         ], $this->component, 'wrapperStyles', 'input', 'wrapper-');
 
         $this->setInputStyles([
@@ -114,9 +107,7 @@ class Date extends Component
             'size' => $iconSize,
         ], $this->component, 'iconStyles', 'input-date', 'icon-');
 
-        $this->mobileFriendly = $this->style($this->component, 'mobile-friendly', $mobileFriendly);
-        $this->keyboardNavigation = $this->style($this->component, 'keyboard-navigation', $keyboardNavigation);
-        $this->firstDay = $this->style($this->component, 'first-day', $firstDay);
+        $this->weekNumbers = $this->style($this->component, 'week-numbers', $weekNumbers);
         $this->lang = $this->style($this->component, 'lang', $lang);
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
@@ -126,12 +117,11 @@ class Date extends Component
         return view('control-ui-kit::control-ui-kit.forms.inputs.date');
     }
 
-    public function convertDate(string $date = null): ?string
+    public function locale(): string
     {
-        if (is_null($date)) {
-            return null;
-        }
-
-        return Carbon::createFromFormat($this->dataFormat, $date)->format($this->format);
+        return match ($this->lang) {
+            'en_GB', 'en_US' => 'default',
+            default => $this->lang,
+        };
     }
 }

@@ -1,35 +1,89 @@
-<div {{ $attributes->merge($wrapperClasses())->only('class') }}>
-    @if ($icon)
-    <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
+@php
+    $wireModel = null;
+    $wireKey = null;
+    $defer = null;
+    $live = null;
+    foreach ($attributes as $k => $v) {
+        if (str_starts_with($k, 'wire:model')) {
+            $wireModel = $v;
+            $wireKey = $k;
+            $defer = str_contains($k, '.defer') ? '.defer' : '';
+            $live = str_contains($k, '.live') ? '.live' : '';
+            break;
+        }
+    }
+@endphp
+<div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
+    x-data="{
+    @if($wireModel)
+        data: @entangle($wireModel){{ $defer.$live }},
+    @else
+        data: '{{ $value }}',
     @endif
-    <input name="{{ $name }}"
-           type="text"
-           id="{{ $id }}"
-           placeholder="{{ $liteFormat }}"
-           @if ($value)
-               value="{{ $value }}"
-           @endif
-           {{ $attributes->merge($classes()) }}
-           autocomplete="off" />
-</div>
-<script>
-    new Litepicker({
-        element: document.getElementById('{{ $id }}'),
-        format: '{{ $liteFormat }}',
-        minDate: {!! $minDate() !!},
-        maxDate: {!! $maxDate() !!},
-        singleMode: true,
-        allowRepick: true,
-        dropdowns: {
-            minYear: {!! $minYear() !!},
-            maxYear: {!! $maxYear() !!},
-            months: true,
-            years: 'asc'
+        display: '',
+        picker: null,
+        init() {
+            this.picker = flatpickr(this.$refs.display, {
+                mode: 'single',
+                dateFormat: '{{ $format }}',
+                minDate: {!! $minDate() !!},
+                maxDate: {!! $maxDate() !!},
+                weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
+                allowInput: true,
+                onReady: (selectedDates, dateString, picker) => {
+                    if (this.data) {
+                        picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}'))
+                    }
+                },
+                locale: '{{ $locale() }}',
+            })
+            this.$watch('display', () => {
+                if (flatpickr.formatDate(this.picker.selectedDates[0], '{{ $format }}') !== this.display) {
+                    this.picker.setDate(this.display)
+                    this.data = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
+                }
+            })
+            this.$watch('data', () => {
+                if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') != this.data) {
+                    let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}')
+                    this.picker.setDate(display_date)
+                    this.display = display_date
+                }
+            })
         },
-        plugins: [{!! $getPluginsList() !!}],
-        resetButton: {{ $resetButton ? 'true' : 'false' }},
-        scrollToDate: true,
-        firstDay: {{ $firstDay }},
-        lang: '{{ $lang }}',
-    })
-</script>
+        open() {
+            this.picker.open()
+        },
+        updateData() {
+            if (this.$refs.display.value) {
+                this.data = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
+            } else {
+                this.data = ''
+            }
+        }
+    }"
+    x-modelable="data"
+    wire:ignore
+>
+    @if ($icon)
+        <a x-on:click="open()">
+            <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
+        </a>
+    @endif
+    <input name="{{ $name }}_display"
+           x-ref="display"
+           type="text"
+           id="{{ $id }}_display"
+           placeholder="{{ $displayFormat }}"
+           {{ $attributes->except(['x-model' , $wireKey])->merge($classes()) }}
+           autocomplete="off"
+           x-on:blur="updateData()"
+    />
+    <input name="{{ $name }}"
+           x-ref="data"
+           x-model="data"
+           type="hidden"
+           id="{{ $id }}"
+           {{ $attributes->only('disabled') }}
+    />
+</div>

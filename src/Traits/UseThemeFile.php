@@ -31,7 +31,7 @@ trait UseThemeFile
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): string
+    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): bool|string
     {
         $append_input = $this->appendStyles($input);
 

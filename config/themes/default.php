@@ -585,6 +585,7 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-40',
 
         'icon-background' => '',
         'icon-border' => 'border-r border-input',
@@ -596,14 +597,11 @@ return [
         'icon-shadow' => '',
 
         // Config
-        'first-day' => 1,
+        'week-numbers' => false,
         'format' => 'd/m/Y',
         'data' => 'Y-m-d',
         'icon' => 'icon-calendar',
-        'keyboard-navigation' => true,
-        'lang' => 'en-GB',
-        'mobile-friendly' => true,
-        'reset-button' => false,
+        'lang' => 'en_GB',
     ],
 
     'input-datetime' => [

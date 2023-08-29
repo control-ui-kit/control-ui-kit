@@ -60,33 +60,15 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
@@ -97,33 +79,15 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div>
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" class="w-full" autocomplete="off" />
+            <div x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
@@ -134,144 +98,53 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="1 2 3 4 5 6 7 8 9">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" class="1 2 3 4 5 6 7 8 w-full" autocomplete="off" />
+            <div class="1 2 3 4 5 6 7 8 9" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="1 2 3 4 5 6 7 8 w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
-    public function an_input_date_component_with_value_amended(): void
+    public function an_input_date_component_can_be_rendered_with_passed_in_date(): void
     {
         $template = <<<'HTML'
             <x-input-date name="date" icon="none" value="2039-08-21" />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" value="21/08/2039" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '2039-08-21', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
-    public function an_input_date_component_will_render_with_plugins_disabled(): void
+    public function an_input_date_component_will_rendered_with_week_numbers(): void
     {
         $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="2020-01-01" keyboard-navigation="false" mobile-friendly="false" />
+            <x-input-date name="date" icon="none" week-numbers />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" value="01/01/2020" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: true, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: [],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
-    }
-
-    /** @test */
-    public function an_input_date_component_will_render_with_first_day_changed(): void
-    {
-        $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="2020-01-01" first-day="4" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" value="01/01/2020" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
-            </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 4,
-                    lang: 'en-GB',
-                })
-            </script>
-            HTML;
-
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
@@ -282,107 +155,53 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" value="01/01/2020" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '2020-01-01', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: '01/01/2019', maxDate: '01/01/2021', weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: moment('01/01/2019', 'DD/MM/YYYY'),
-                    maxDate: moment('01/01/2021', 'DD/MM/YYYY'),
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 2019,
-                        maxYear: 2021,
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
     public function an_input_date_component_will_render_with_language_changed(): void
     {
         $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="2020-01-01" lang="ru" />
+            <x-input-date name="date" icon="none" value="2020-01-01" lang="fr" />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="DD/MM/YYYY" value="01/01/2020" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '2020-01-01', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'fr', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'DD/MM/YYYY',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'ru',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
-    public function an_input_date_component_will_render_with_different_format(): void
+    public function an_input_date_component_will_render_with_a_different_display_format(): void
     {
         $template = <<<'HTML'
             <x-input-date name="date" icon="none" value="2020-12-23" format="Y-m-d" />
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="YYYY-MM-DD" value="2020-12-23" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '2020-12-23', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'Y-m-d', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'Y-m-d')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'Y-m-d') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="YYYY-MM-DD" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'YYYY-MM-DD',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 
     /** @test */
@@ -393,107 +212,14 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="YYYY-MM-DD" value="2020-12-23" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '23/12/2020', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'Y-m-d', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'd/m/Y'), 'Y-m-d')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'd/m/Y'), 'Y-m-d') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="YYYY-MM-DD" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
             </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'YYYY-MM-DD',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
             HTML;
 
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
-    }
-
-    /** @test */
-    public function an_input_date_component_will_render_with_different_format_and_start_and_end_dates(): void
-    {
-        $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="2020-12-23" format="Y-m-d" start="2019-01-01" end="2021-01-01" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="YYYY-MM-DD" value="2020-12-23" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
-            </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'YYYY-MM-DD',
-                    minDate: moment('2019-01-01', 'YYYY-MM-DD'),
-                    maxDate: moment('2021-01-01', 'YYYY-MM-DD'),
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 2019,
-                        maxYear: 2021,
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: false,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
-            HTML;
-
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
-    }
-
-
-    /** @test */
-    public function an_input_date_component_will_render_with_reset_button_enabled(): void
-    {
-        $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="23/12/2020" format="Y-m-d" data="d/m/Y" reset-button="true" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="date" type="text" id="date" placeholder="YYYY-MM-DD" value="2020-12-23" class="background border color font other padding rounded shadow w-full" autocomplete="off" />
-            </div>
-            <script>
-                new Litepicker({
-                    element: document.getElementById('date'),
-                    format: 'YYYY-MM-DD',
-                    minDate: null,
-                    maxDate: null,
-                    singleMode: true,
-                    allowRepick: true,
-                    dropdowns: {
-                        minYear: 'minYear',
-                        maxYear: 'maxYear',
-                        months: true,
-                        years: 'asc'
-                    },
-                    plugins: ['mobilefriendly', 'keyboardnav'],
-                    resetButton: true,
-                    scrollToDate: true,
-                    firstDay: 0,
-                    lang: 'en-GB',
-                })
-            </script>
-            HTML;
-
-        $this->assertComponentRenders($this->expectedWithYearRange($expected), $template);
+        $this->assertComponentRenders($expected, $template);
     }
 }

@@ -4,9 +4,9 @@ namespace ControlUIKit\Traits;
 
 use Carbon\Carbon;
 
-trait LiteDateFunctions
+trait DateInputFunctions
 {
-    public function litePickerFormat(string $format): string
+    public function displayDateFormat(string $format): string
     {
         return str_replace(['d', 'm', 'y', 'Y'], ['DD', 'MM', 'YY', 'YYYY'], $format);
     }
@@ -14,7 +14,7 @@ trait LiteDateFunctions
     public function minDate(): string
     {
         if ($this->start) {
-            return "moment('" . $this->convertFromDataFormat($this->start) . "', '$this->liteFormat')";
+            return "'" . $this->convertFromDataFormat($this->start) . "'";
         }
 
         return 'null';
@@ -23,7 +23,7 @@ trait LiteDateFunctions
     public function maxDate(): string
     {
         if ($this->end) {
-            return "moment('" . $this->convertFromDataFormat($this->end) . "', '$this->liteFormat')";
+            return "'" . $this->convertFromDataFormat($this->end) . "'";
         }
 
         return 'null';

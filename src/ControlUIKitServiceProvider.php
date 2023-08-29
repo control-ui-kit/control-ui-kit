@@ -76,11 +76,18 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <?php
 
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
-                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
 
                 echo <<<scripts
-                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+                <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+                <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+                <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>
+
+                <!--                <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>-->
+                <!--                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>-->
 
                 <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->
 
