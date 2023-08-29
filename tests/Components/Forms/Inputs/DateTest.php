@@ -72,6 +72,25 @@ class DateTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_date_component_can_be_rendered_with_specific_id(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date name="foo" id="bar" icon="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="foo_display" x-ref="display" type="text" id="bar_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="foo" x-ref="data" x-model="data" type="hidden" id="bar" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_date_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
