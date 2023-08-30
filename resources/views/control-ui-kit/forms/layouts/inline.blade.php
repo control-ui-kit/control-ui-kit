@@ -1,7 +1,7 @@
 <div class="md:flex md:items-start md:space-x-2 min-h-[2rem]">
     <x-label :for="$name" class="w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2">
         <p class="font-medium flex items-center space-x-1.5 min-h-[2rem]">
-            <span>{{ $label }}</span>
+            <span>{!! $label !!}</span>
             @if ($required)
                 <x-icon-star size="w-2 h-2 text-danger" />
             @endif

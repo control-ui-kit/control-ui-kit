@@ -8,7 +8,12 @@ trait DateInputFunctions
 {
     public function displayDateFormat(string $format): string
     {
-        return str_replace(['d', 'm', 'y', 'Y'], ['DD', 'MM', 'YY', 'YYYY'], $format);
+        return str_replace(['d', 'm', 'y', 'Y', 'H', 'i', 's'], ['DD', 'MM', 'YY', 'YYYY', 'HH', 'MM', 'SS'], $format);
+    }
+
+    public function flatConvert(string $format): string
+    {
+        return str_replace(['h', 'g', 's', 'A'], ['G', 'h', 'S', 'K'], $format);
     }
 
     public function minDate(): string

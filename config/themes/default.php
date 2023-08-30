@@ -585,7 +585,7 @@ return [
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
-        'width' => 'w-40',
+        'width' => 'w-full',
 
         'icon-background' => '',
         'icon-border' => 'border-r border-input',
@@ -598,6 +598,9 @@ return [
 
         // Config
         'week-numbers' => false,
+        'show-time' => false,
+        'show-seconds' => false,
+        'clock-type' => 24, // 12 or 24
         'format' => 'd/m/Y',
         'data' => 'Y-m-d',
         'icon' => 'icon-calendar',
@@ -605,8 +608,12 @@ return [
     ],
 
     'input-datetime' => [
+
+        // Config
         'format' => 'd/m/Y H:i',
         'data' => 'Y-m-d H:i:s',
+        'show-seconds' => false,
+        'clock-type' => 24, // 12 or 24
     ],
 
     'input-date-range' => [

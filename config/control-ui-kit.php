@@ -55,6 +55,7 @@ return [
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroup::class,
         'field-select' => \ControlUIKit\Components\Forms\Fields\Select::class,
+        'field-time' => \ControlUIKit\Components\Forms\Fields\Time::class,
         'field-text' => \ControlUIKit\Components\Forms\Fields\Text::class,
         'field-textarea' => \ControlUIKit\Components\Forms\Fields\Textarea::class,
 
@@ -79,6 +80,7 @@ return [
         'input-select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
         'input-text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input-time' => \ControlUIKit\Components\Forms\Inputs\Time::class,
+        'input-time-manual' => \ControlUIKit\Components\Forms\Inputs\TimeManual::class,
         'input-toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
         'input-textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
 

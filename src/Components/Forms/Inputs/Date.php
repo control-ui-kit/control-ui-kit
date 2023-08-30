@@ -24,6 +24,9 @@ class Date extends Component
     public ?string $start;
     public ?string $end;
     public ?string $weekNumbers;
+    public ?string $showTime;
+    public ?string $showSeconds;
+    public ?string $clockType;
     public ?string $lang;
     public ?string $icon;
 
@@ -56,6 +59,9 @@ class Date extends Component
         string $start = null,
         string $end = null,
         string $weekNumbers = null,
+        string $showTime = null,
+        string $showSeconds = null,
+        string $clockType = null,
         string $icon = null,
         string $lang = null,
         string $id = null,
@@ -63,11 +69,11 @@ class Date extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->dataFormat = $this->style($this->component, 'data', $data);
-        $this->format = $this->style($this->component, 'format', $format);
+        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
         $this->value = old($name, $value);
 
-        $this->displayFormat = $this->displayDateFormat($this->format);
+        $this->displayFormat = $this->flatConvert($this->displayDateFormat($this->format));
         $this->start = $start;
         $this->end = $end;
         $this->iconSize = $iconSize;
@@ -108,6 +114,9 @@ class Date extends Component
         ], $this->component, 'iconStyles', 'input-date', 'icon-');
 
         $this->weekNumbers = $this->style($this->component, 'week-numbers', $weekNumbers);
+        $this->showTime = $this->style($this->component, 'show-time', $showTime);
+        $this->showSeconds = $this->style($this->component, 'show-seconds', $showSeconds);
+        $this->clockType = $this->style($this->component, 'clock-type', $clockType);
         $this->lang = $this->style($this->component, 'lang', $lang);
         $this->icon = $this->style($this->component, 'icon', $icon);
     }

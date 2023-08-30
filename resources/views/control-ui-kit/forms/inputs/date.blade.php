@@ -25,6 +25,13 @@
         init() {
             this.picker = flatpickr(this.$refs.display, {
                 mode: 'single',
+                @if ($showTime)
+                enableTime: true,
+                time_24hr:@if($clockType === '24') true,@else false,@endif
+                defaultHour: 0,
+                defaultMinute: 0, @endif
+                @if ($showTime && $showSeconds)
+                enableSeconds: true, @endif
                 dateFormat: '{{ $format }}',
                 minDate: {!! $minDate() !!},
                 maxDate: {!! $maxDate() !!},
@@ -34,6 +41,9 @@
                     if (this.data) {
                         picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}'))
                     }
+                },
+                onClose: (selectedDates, dateString, picker) => {
+                    this.updateData()
                 },
                 locale: '{{ $locale() }}',
             })
@@ -82,7 +92,7 @@
     <input name="{{ $name }}"
            x-ref="data"
            x-model="data"
-           type="hidden"
+           type="text"
            id="{{ $id }}"
            {{ $attributes->only('disabled') }}
     />
