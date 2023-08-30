@@ -1,1 +1,1 @@
-<div>{{ $value }}</div>
+<div {{ $attributes }}>{{ $value }}</div>

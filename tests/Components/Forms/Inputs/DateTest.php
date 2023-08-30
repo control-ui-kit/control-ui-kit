@@ -42,14 +42,17 @@ class DateTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-shadow', 'wrapper-shadow');
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
 
-        Config::set('themes.default.input-date.first-day', 0);
+        Config::set('themes.default.input-date.week-numbers', false);
+        Config::set('themes.default.input-date.show-time', false);
+        Config::set('themes.default.input-date.show-seconds', false);
+        Config::set('themes.default.input-date.time-only', false);
+        Config::set('themes.default.input-date.clock-type', 24);
+        Config::set('themes.default.input-date.hour-step', 1);
+        Config::set('themes.default.input-date.minute-step', 1);
         Config::set('themes.default.input-date.format', 'd/m/Y');
         Config::set('themes.default.input-date.data', 'Y-m-d');
         Config::set('themes.default.input-date.icon', 'icon-calendar');
-        Config::set('themes.default.input-date.keyboard-navigation', true);
         Config::set('themes.default.input-date.lang', 'en-GB');
-        Config::set('themes.default.input-date.mobile-friendly', true);
-        Config::set('themes.default.input-date.reset-button', false);
     }
 
     /** @test */
@@ -250,7 +253,26 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, time_24hr: true, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, time_24hr: true, defaultHour: 0, defaultMinute: 0, hourIncrement: 1, minuteIncrement: 1, enableSeconds: false, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, onClose: (selectedDates, dateString, picker) => { this.updateData() }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_date_component_can_be_rendered_with_only_time(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date name="date" icon="none" time-only />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', noCalendar: true, enableTime: true, time_24hr: true, defaultHour: 0, defaultMinute: 0, hourIncrement: 1, minuteIncrement: 1, enableSeconds: false, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
                 { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, onClose: (selectedDates, dateString, picker) => { this.updateData() }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
             >
                 <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
@@ -269,7 +291,45 @@ class DateTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, enableSeconds: true, time_24hr: true, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, time_24hr: true, defaultHour: 0, defaultMinute: 0, hourIncrement: 1, minuteIncrement: 1, enableSeconds: true, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, onClose: (selectedDates, dateString, picker) => { this.updateData() }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_date_component_can_be_rendered_with_time_and_12_hour_clock(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date name="date" icon="none" show-time clock-type="12" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, time_24hr: false, defaultHour: 0, defaultMinute: 0, hourIncrement: 1, minuteIncrement: 1, enableSeconds: false, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
+                { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, onClose: (selectedDates, dateString, picker) => { this.updateData() }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
+            >
+                <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="date" x-ref="data" x-model="data" type="hidden" id="date" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_date_component_can_be_rendered_with_time_and_step_increments(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date name="date" icon="none" show-time hour-step="6" minute-step="15" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="{ data: '', display: '', picker: null, init() { this.picker = flatpickr(this.$refs.display, { mode: 'single', enableTime: true, time_24hr: true, defaultHour: 0, defaultMinute: 0, hourIncrement: 6, minuteIncrement: 15, enableSeconds: false, dateFormat: 'd/m/Y', minDate: null, maxDate: null, weekNumbers: false, allowInput: true, onReady: (selectedDates, dateString, picker) =>
                 { if (this.data) { picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y')) } }, onClose: (selectedDates, dateString, picker) => { this.updateData() }, locale: 'en-GB', }) this.$watch('display', () => { if (flatpickr.formatDate(this.picker.selectedDates[0], 'd/m/Y') !== this.display) { this.picker.setDate(this.display) this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } }) this.$watch('data', () => { if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') != this.data) { let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, 'Y-m-d'), 'd/m/Y') this.picker.setDate(display_date) this.display = display_date } }) }, open() { this.picker.open() }, updateData() { if (this.$refs.display.value) { this.data = flatpickr.formatDate(this.picker.selectedDates[0], 'Y-m-d') } else { this.data = '' } } }" x-modelable="data" wire:ignore
             >
                 <input name="date_display" x-ref="display" type="text" id="date_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />

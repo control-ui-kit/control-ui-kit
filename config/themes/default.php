@@ -600,7 +600,10 @@ return [
         'week-numbers' => false,
         'show-time' => false,
         'show-seconds' => false,
+        'time-only' => false,
         'clock-type' => 24, // 12 or 24
+        'hour-step' => 1,
+        'minute-step' => 1,
         'format' => 'd/m/Y',
         'data' => 'Y-m-d',
         'icon' => 'icon-calendar',
@@ -614,6 +617,9 @@ return [
         'data' => 'Y-m-d H:i:s',
         'show-seconds' => false,
         'clock-type' => 24, // 12 or 24
+        'hour-step' => 1,
+        'minute-step' => 1,
+        'icon' => 'icon-calendar',
     ],
 
     'input-date-range' => [
@@ -704,8 +710,16 @@ return [
     ],
 
     'input-time' => [
-        'output' => 'H:i:s',
-        'spacing' => 'flex items-center space-x-1',
+        'show-time' => true,
+        'show-seconds' => false,
+        'time-only' => true,
+        'clock-type' => 24, // 12 or 24
+        'hour-step' => 1,
+        'minute-step' => 1,
+        'format' => 'H:i',
+        'data' => 'H:i:s',
+        'icon' => 'icon-clock',
+        'lang' => 'en_GB',
     ],
 
     'input-radio' => [

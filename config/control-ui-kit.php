@@ -80,7 +80,6 @@ return [
         'input-select' => \ControlUIKit\Components\Forms\Inputs\Select::class,
         'input-text' => \ControlUIKit\Components\Forms\Inputs\Text::class,
         'input-time' => \ControlUIKit\Components\Forms\Inputs\Time::class,
-        'input-time-manual' => \ControlUIKit\Components\Forms\Inputs\TimeManual::class,
         'input-toggle' => \ControlUIKit\Components\Forms\Inputs\Toggle::class,
         'input-textarea' => \ControlUIKit\Components\Forms\Inputs\Textarea::class,
 

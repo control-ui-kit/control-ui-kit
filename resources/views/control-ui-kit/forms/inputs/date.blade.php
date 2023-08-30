@@ -25,13 +25,17 @@
         init() {
             this.picker = flatpickr(this.$refs.display, {
                 mode: 'single',
-                @if ($showTime)
+                @if ($timeOnly)
+                noCalendar: true, @endif
+                @if ($timeOnly || $showTime)
                 enableTime: true,
                 time_24hr:@if($clockType === '24') true,@else false,@endif
                 defaultHour: 0,
-                defaultMinute: 0, @endif
-                @if ($showTime && $showSeconds)
-                enableSeconds: true, @endif
+                defaultMinute: 0,
+                hourIncrement: {{ $hourStep }},
+                minuteIncrement: {{ $minuteStep }},
+                enableSeconds:@if ($showSeconds) true,@else false,@endif
+                @endif
                 dateFormat: '{{ $format }}',
                 minDate: {!! $minDate() !!},
                 maxDate: {!! $maxDate() !!},
@@ -92,7 +96,7 @@
     <input name="{{ $name }}"
            x-ref="data"
            x-model="data"
-           type="text"
+           type="hidden"
            id="{{ $id }}"
            {{ $attributes->only('disabled') }}
     />

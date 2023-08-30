@@ -21,22 +21,30 @@ class DateTime extends Component
     public string $dataFormat;
     public ?string $showSeconds;
     public ?string $clockType;
+    public ?string $hourStep;
+    public ?string $minuteStep;
+    public ?string $icon;
 
     public function __construct(
         string $name,
-
+        string $id = null,
         string $format = null,
         string $data = null,
-        string $id = null,
         string $showSeconds = null,
-        string $clockType = null
+        string $clockType = null,
+        string $hourStep = null,
+        string $minuteStep = null,
+        string $icon = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->dataFormat = $this->style($this->component, 'data', $data);
-        $this->format = $this->style($this->component, 'format', $format);
+        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
         $this->showSeconds = $this->style($this->component, 'show-seconds', $showSeconds);
         $this->clockType = $this->style($this->component, 'clock-type', $clockType);
+        $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
+        $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
+        $this->icon = $this->style($this->component, 'icon', $icon);
     }
 
     public function render(): View

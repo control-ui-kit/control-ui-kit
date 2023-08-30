@@ -27,6 +27,9 @@ class Date extends Component
     public ?string $showTime;
     public ?string $showSeconds;
     public ?string $clockType;
+    public ?string $timeOnly;
+    public ?string $hourStep;
+    public ?string $minuteStep;
     public ?string $lang;
     public ?string $icon;
 
@@ -62,6 +65,9 @@ class Date extends Component
         string $showTime = null,
         string $showSeconds = null,
         string $clockType = null,
+        string $timeOnly = null,
+        string $hourStep = null,
+        string $minuteStep = null,
         string $icon = null,
         string $lang = null,
         string $id = null,
@@ -117,6 +123,9 @@ class Date extends Component
         $this->showTime = $this->style($this->component, 'show-time', $showTime);
         $this->showSeconds = $this->style($this->component, 'show-seconds', $showSeconds);
         $this->clockType = $this->style($this->component, 'clock-type', $clockType);
+        $this->timeOnly = $this->style($this->component, 'time-only', $timeOnly);
+        $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
+        $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
         $this->lang = $this->style($this->component, 'lang', $lang);
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
