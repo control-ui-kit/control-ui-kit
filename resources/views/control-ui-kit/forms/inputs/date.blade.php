@@ -49,9 +49,8 @@
                 onClose: (selectedDates, dateString, picker) => {
                     this.updateData()
                 },
-                locale: '{!! $locale() !!}',
+                locale: '{{ $locale() }}',
             })
-
             this.$watch('display', () => {
                 if (flatpickr.formatDate(this.picker.selectedDates[0], '{{ $format }}') !== this.display) {
                     this.picker.setDate(this.display)
@@ -59,7 +58,7 @@
                 }
             })
             this.$watch('data', () => {
-                if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') != this.data) {
+                if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') != this.data)) {
                     let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}')
                     this.picker.setDate(display_date)
                     this.display = display_date
@@ -99,6 +98,6 @@
            x-model="data"
            type="hidden"
            id="{{ $id }}"
-           {{ $attributes->only('disabled') }}
+        {{ $attributes->only('disabled') }}
     />
 </div>

@@ -54,7 +54,7 @@
                 }
             })
             this.$watch('data', () => {
-                if (this.data && flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') + '{{ $separator }}' + flatpickr.formatDate(this.picker.selectedDates[1], '{{ $dataFormat }}') != this.data) {
+                if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') + '{{ $separator }}' + flatpickr.formatDate(this.picker.selectedDates[1], '{{ $dataFormat }}') != this.data)) {
                     let dates = this.data.split(this.separator)
                     let display_date = flatpickr.formatDate(flatpickr.parseDate(dates[0], '{{ $dataFormat }}'), '{{ $format }}') + this.picker.l10n.rangeSeparator + flatpickr.formatDate(flatpickr.parseDate(dates[1], '{{ $dataFormat }}'), '{{ $format }}')
                     this.picker.setDate(display_date)

@@ -77,15 +77,18 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <?php
 
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
+                $locale = config('app.locale');
+
+                $flatpickr_locale = '';
+                if ($locale != 'en_GB' && $locale != 'en_US') {
+                    $flatpickr_locale = '<script src="https://npmcdn.com/flatpickr/dist/l10n/' . $locale . '.js"></script>';
+                }
 
                 echo <<<scripts
 
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
                 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                <script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
-                <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
-                <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
-                <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>
+                $flatpickr_locale
 
                 <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->
 

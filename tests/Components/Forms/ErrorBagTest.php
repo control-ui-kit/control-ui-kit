@@ -90,9 +90,7 @@ class ErrorBagTest extends ComponentTestCase
             <x-error-bag />
             HTML;
 
-        $expected = <<<'HTML'
-            <div></div>
-            HTML;
+        $expected = '';
 
         $this->assertComponentRenders($expected, $template);
     }

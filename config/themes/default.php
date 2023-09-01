@@ -601,7 +601,6 @@ return [
         'data' => 'Y-m-d',
         'format' => 'd/m/Y',
         'icon' => 'icon-calendar',
-        'lang' => 'en_GB',
         'separator' => '#',
         'week-numbers' => false,
 
@@ -652,7 +651,6 @@ return [
         'data' => 'Y-m-d',
         'format' => 'd/m/Y',
         'icon' => 'icon-calendar',
-        'lang' => 'en_GB',
         'separator' => '#',
         'week-numbers' => false,
     ],
@@ -729,7 +727,6 @@ return [
         'format' => 'H:i',
         'data' => 'H:i:s',
         'icon' => 'icon-clock',
-        'lang' => 'en_GB',
     ],
 
     'input-radio' => [

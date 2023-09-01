@@ -128,7 +128,7 @@ class Date extends Component
         $this->timeOnly = $this->style($this->component, 'time-only', $timeOnly);
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
-        $this->lang = $this->style($this->component, 'lang', $lang);
+        $this->lang = $lang ?: config('app.locale');
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
 
@@ -144,14 +144,4 @@ class Date extends Component
             default => $this->lang,
         };
     }
-
-//    public function locale(): string
-//    {
-//        return json_encode(trans('date-calendar'));
-//
-//        return match ($this->lang) {
-//            'en_GB', 'en_US' => 'default',
-//            default => $this->lang,
-//        };
-//    }
 }
