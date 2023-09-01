@@ -11,8 +11,6 @@
             @endforeach
         </ul>
     </x-dynamic-component>
-@else
-    <div>{{--No errors--}}</div>
 @endif
 
 
