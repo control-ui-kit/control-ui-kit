@@ -2,7 +2,6 @@
 
 namespace Tests\Components\Forms\Inputs;
 
-use ControlUIKit\Components\Forms\Inputs\Time;
 use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 

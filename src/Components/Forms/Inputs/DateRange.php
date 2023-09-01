@@ -4,32 +4,35 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
-use ControlUIKit\Traits\UseThemeFile;
+use ControlUIKit\Traits\DateInputFunctions;
+use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class DateRange extends Component
 {
-    use UseThemeFile;
+    use UseInputTheme, DateInputFunctions;
 
     protected string $component = 'input-date-range';
 
     public string $name;
     public string $id;
-    public ?string $value;
+    public null|string|array $value;
+    public ?string $valueFrom;
+    public ?string $valueTo;
     public ?string $format;
+    public string $dataFormat;
+    public ?string $displayFormat;
     public ?string $start;
     public ?string $end;
-    public ?string $reset;
-    public ?string $split;
-    public ?string $tooltip;
-    public ?string $firstDay;
-    private ?string $mobileFriendly;
-    private ?string $predefinedRanges;
-    private ?string $keyboardNavigation;
-    public ?string $columns;
-    public ?string $months;
+    public ?string $weekNumbers;
+    public ?string $separator;
+
     public ?string $lang;
+    public ?string $icon;
+
+    public array $iconStyles = [];
+    public ?string $iconSize;
 
     public function __construct(
         string $name,
@@ -41,34 +44,42 @@ class DateRange extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
-        string $reset = null,
-        string $split = null,
-        string $tooltip = null,
-        string $firstDay = null,
-        string $mobileFriendly = null,
-        string $predefinedRanges = null,
-        string $keyboardNavigation = null,
+        string $width = null,
+
+        string $iconBackground = null,
+        string $iconBorder = null,
+        string $iconColor = null,
+        string $iconOther = null,
+        string $iconPadding = null,
+        string $iconRounded = null,
+        string $iconShadow = null,
+        string $iconSize = null,
+
         string $format = null,
+        string $data = null,
         string $start = null,
         string $end = null,
-        string $columns = null,
-        string $months = null,
+        string $weekNumbers = null,
+        string $separator = null,
+        string $icon = null,
         string $lang = null,
         string $id = null,
-        string $value = null
+        array|string $value = null,
+        string $valueFrom = null,
+        string $valueTo = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->value = old($name, $value ?? '');
-        $this->format = is_null($format) ? 'DD/MM/YYYY' : $format;
+        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
+        $this->value = old($name, $value);
+        $this->valueFrom = old($name . '_from', $valueFrom);
+        $this->valueTo = old($name . '_to', $valueTo);
+
+        $this->displayFormat = $this->flatConvert($this->displayDateFormat($this->format));
         $this->start = $start;
         $this->end = $end;
-        $this->reset = is_null($reset) ? 'false' : 'true';
-        $this->split = is_null($split) ? 'false' : 'true';
-        $this->tooltip = is_null($tooltip) ? 'false' : 'true';
-
-        $this->columns = is_null($columns) ? "2" : (string)intval($columns);
-        $this->months = is_null($months) ? "2" : (string)intval($months);
+        $this->iconSize = $iconSize;
 
         $this->setConfigStyles([
             'background' => $background,
@@ -79,16 +90,36 @@ class DateRange extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => 'w-full',
         ]);
 
-        $this->mobileFriendly = $this->style($this->component, 'mobile-friendly', $mobileFriendly);
-        $this->predefinedRanges = $this->style($this->component, 'predefined-ranges', $predefinedRanges);
-        $this->keyboardNavigation = $this->style($this->component, 'keyboard-navigation', $keyboardNavigation);
-        $this->reset = $this->style($this->component, 'reset', $reset);
-        $this->split = $this->style($this->component, 'split', $split);
-        $this->tooltip = $this->style($this->component, 'tooltip', $tooltip);
-        $this->firstDay = $this->style($this->component, 'first-day', (string)intval($firstDay));
+        $this->setInputStyles([
+            'background' => $background,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
+            'width' => $this->style($this->component, 'width', $width),
+        ], $this->component, 'wrapperStyles', 'input', 'wrapper-');
+
+        $this->setInputStyles([
+            'background' => $iconBackground,
+            'border' => $iconBorder,
+            'color' => $iconColor,
+            'other' => $iconOther,
+            'padding' => $iconPadding,
+            'rounded' => $iconRounded,
+            'shadow' => $iconShadow,
+            'size' => $iconSize,
+        ], $this->component, 'iconStyles', 'input-date-range', 'icon-');
+
+        $this->weekNumbers = $this->style($this->component, 'week-numbers', $weekNumbers);
+        $this->separator = $this->style($this->component, 'separator', $separator);
         $this->lang = $this->style($this->component, 'lang', $lang);
+        $this->icon = $this->style($this->component, 'icon', $icon);
     }
 
     public function render(): View
@@ -96,68 +127,28 @@ class DateRange extends Component
         return view('control-ui-kit::control-ui-kit.forms.inputs.date-range');
     }
 
-    public function minDate($date_only = false): string
+    public function locale(): string
     {
-        if ($this->start) {
-            return $date_only ? $this->start : "moment(\"{$this->start}\", \"{$this->format}\")";
-        }
-
-        return "null";
+        return match ($this->lang) {
+            'en_GB', 'en_US' => 'default',
+            default => $this->lang,
+        };
     }
 
-    public function maxDate(): string
+    public function setValue(): string
     {
-        if ($this->end) {
-            return "moment(\"{$this->end}\", \"{$this->format}\")";
+        if (is_array($this->value)) {
+            return $this->value[0] . $this->separator . $this->value[1];
         }
 
-        return "null";
-    }
-
-    public function minYear(): int
-    {
-        if ($this->start) {
-            return (int)$this->getYearFromFormat($this->start);
+        if ($this->value) {
+            return $this->value;
         }
 
-        return date('Y') - 10;
-    }
-
-    public function maxYear(): int
-    {
-        if ($this->end) {
-            return (int)$this->getYearFromFormat($this->end);
+        if ($this->valueFrom && $this->valueTo) {
+            return $this->valueFrom . $this->separator . $this->valueTo;
         }
 
-        return (int) date('Y') + 10;
-    }
-
-    public function getYearFromFormat($date): string
-    {
-        if ($this->format === 'YYYY-MM-DD') {
-            return substr($date, 0, 4);
-        }
-
-        return substr($date, 6, 4);
-    }
-
-    public function getPluginsList(): string
-    {
-        $plugins = [];
-
-
-        if (!is_null($this->mobileFriendly) && $this->mobileFriendly !== "false") {
-            $plugins[] = 'mobilefriendly';
-        }
-
-        if (!is_null($this->predefinedRanges) && $this->predefinedRanges !== "false") {
-            $plugins[] = 'ranges';
-        }
-
-        if (!is_null($this->keyboardNavigation) && $this->keyboardNavigation !== "false") {
-            $plugins[] = 'keyboardnav';
-        }
-
-        return count($plugins) ? ("'" . implode("', '", $plugins) . "'") : "";
+        return '';
     }
 }

@@ -49,8 +49,9 @@
                 onClose: (selectedDates, dateString, picker) => {
                     this.updateData()
                 },
-                locale: '{{ $locale() }}',
+                locale: '{!! $locale() !!}',
             })
+
             this.$watch('display', () => {
                 if (flatpickr.formatDate(this.picker.selectedDates[0], '{{ $format }}') !== this.display) {
                     this.picker.setDate(this.display)

@@ -597,28 +597,32 @@ return [
         'icon-shadow' => '',
 
         // Config
+        'mode' => 'single',
+        'data' => 'Y-m-d',
+        'format' => 'd/m/Y',
+        'icon' => 'icon-calendar',
+        'lang' => 'en_GB',
+        'separator' => '#',
         'week-numbers' => false,
-        'show-time' => false,
-        'show-seconds' => false,
-        'time-only' => false,
+
+        // Time
         'clock-type' => 24, // 12 or 24
         'hour-step' => 1,
         'minute-step' => 1,
-        'format' => 'd/m/Y',
-        'data' => 'Y-m-d',
-        'icon' => 'icon-calendar',
-        'lang' => 'en_GB',
+        'show-time' => false,
+        'show-seconds' => false,
+        'time-only' => false,
     ],
 
     'input-datetime' => [
 
         // Config
-        'format' => 'd/m/Y H:i',
-        'data' => 'Y-m-d H:i:s',
-        'show-seconds' => false,
         'clock-type' => 24, // 12 or 24
+        'data' => 'Y-m-d H:i:s',
+        'format' => 'd/m/Y H:i',
         'hour-step' => 1,
         'minute-step' => 1,
+        'show-seconds' => false,
         'icon' => 'icon-calendar',
     ],
 
@@ -626,25 +630,31 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-0',
         'color' => 'text-input placeholder-input',
-        'font' => '',
-        'other' => 'w-64',
+        'font' => 'text-sm',
+        'other' => '',
         'padding' => 'p-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-full',
+
+        'icon-background' => '',
+        'icon-border' => 'border-r border-input',
+        'icon-color' => 'text-muted',
+        'icon-size' => 'w-4 h-4',
+        'icon-other' => 'flex items-center justify-center self-stretch',
+        'icon-padding' => 'px-3',
+        'icon-rounded' => '',
+        'icon-shadow' => '',
 
         // Config
-        'first-day' => "1",
-        'format' => 'DD/MM/YYYY',
+        'data' => 'Y-m-d',
+        'format' => 'd/m/Y',
         'icon' => 'icon-calendar',
-        'keyboard-navigation' => 'true',
-        'lang' => 'en-GB',
-        'mobile-friendly' => 'true',
-        'predefined-ranges' => 'false',
-        'reset' => 'false',
-        'split' => 'true',
-        'tooltip' => 'false',
+        'lang' => 'en_GB',
+        'separator' => '#',
+        'week-numbers' => false,
     ],
 
     'input-decimal' => [

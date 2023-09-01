@@ -27,9 +27,11 @@ class Date extends Component
     public ?string $showTime;
     public ?string $showSeconds;
     public ?string $clockType;
+
     public ?string $timeOnly;
     public ?string $hourStep;
     public ?string $minuteStep;
+
     public ?string $lang;
     public ?string $icon;
 
@@ -142,4 +144,14 @@ class Date extends Component
             default => $this->lang,
         };
     }
+
+//    public function locale(): string
+//    {
+//        return json_encode(trans('date-calendar'));
+//
+//        return match ($this->lang) {
+//            'en_GB', 'en_US' => 'default',
+//            default => $this->lang,
+//        };
+//    }
 }

@@ -51,6 +51,7 @@ return [
         'field-checkbox' => \ControlUIKit\Components\Forms\Fields\Checkbox::class,
         'field-date' => \ControlUIKit\Components\Forms\Fields\Date::class,
         'field-datetime' => \ControlUIKit\Components\Forms\Fields\DateTime::class,
+        'field-date-range' => \ControlUIKit\Components\Forms\Fields\DateRange::class,
         'field-info' => \ControlUIKit\Components\Forms\Fields\Info::class,
         'field-number' => \ControlUIKit\Components\Forms\Fields\Number::class,
         'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroup::class,
