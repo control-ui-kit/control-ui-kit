@@ -29,6 +29,7 @@ class DateRange extends Component
     public ?string $separator;
 
     public ?string $lang;
+    public bool $langOverride = false;
     public ?string $icon;
 
     public array $iconStyles = [];
@@ -119,6 +120,7 @@ class DateRange extends Component
         $this->weekNumbers = $this->style($this->component, 'week-numbers', $weekNumbers);
         $this->separator = $this->style($this->component, 'separator', $separator);
         $this->lang = $lang ?: config('app.locale', 'en_GB');
+        $this->langOverride = $lang !== null;
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
 

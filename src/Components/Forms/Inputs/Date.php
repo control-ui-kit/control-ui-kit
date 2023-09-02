@@ -33,6 +33,7 @@ class Date extends Component
     public ?string $minuteStep;
 
     public ?string $lang;
+    public bool $langOverride = false;
     public ?string $icon;
 
     public array $iconStyles = [];
@@ -129,6 +130,7 @@ class Date extends Component
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
         $this->lang = $lang ?: config('app.locale');
+        $this->langOverride = $lang !== null;
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
 

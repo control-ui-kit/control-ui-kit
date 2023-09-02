@@ -79,6 +79,9 @@
     x-modelable="data"
     wire:ignore
 >
+    @if ($langOverride)
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
+    @endif
     @if ($icon)
         <a x-on:click="open()">
             <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
