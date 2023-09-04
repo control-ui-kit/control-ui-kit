@@ -169,7 +169,7 @@ class DateRangeTest extends ComponentTestCase
     public function an_input_date_range_component_can_be_rendered_with_passed_in_individual_dates_for_range(): void
     {
         $template = <<<'HTML'
-            <x-input-date-range name="range" icon="none" value-from="2021-01-05" value-to="2021-01-10" />
+            <x-input-date-range name="range" icon="none" from="2021-01-05" to="2021-01-10" />
             HTML;
 
         $expected = <<<'HTML'

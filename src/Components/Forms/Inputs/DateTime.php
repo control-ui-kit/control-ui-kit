@@ -38,8 +38,8 @@ class DateTime extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
-        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
+        $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
         $this->showSeconds = $this->style($this->component, 'show-seconds', $showSeconds);
         $this->clockType = $this->style($this->component, 'clock-type', $clockType);
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);

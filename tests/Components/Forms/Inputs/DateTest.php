@@ -174,7 +174,7 @@ class DateTest extends ComponentTestCase
     public function an_input_date_component_will_render_with_min_and_max_dates_added(): void
     {
         $template = <<<'HTML'
-            <x-input-date name="date" icon="none" value="2020-01-01" start="2019-01-01" end="2021-01-01" />
+            <x-input-date name="date" icon="none" value="2020-01-01" min="2019-01-01" max="2021-01-01" />
             HTML;
 
         $expected = <<<'HTML'

@@ -21,8 +21,8 @@ class Date extends Component
     public ?string $format;
     public string $dataFormat;
     public ?string $displayFormat;
-    public ?string $start;
-    public ?string $end;
+    public ?string $min;
+    public ?string $max;
     public ?string $weekNumbers;
     public ?string $showTime;
     public ?string $showSeconds;
@@ -62,8 +62,8 @@ class Date extends Component
 
         string $format = null,
         string $data = null,
-        string $start = null,
-        string $end = null,
+        string $min = null,
+        string $max = null,
         string $weekNumbers = null,
         string $showTime = null,
         string $showSeconds = null,
@@ -78,13 +78,13 @@ class Date extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
-        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
+        $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
         $this->value = old($name, $value);
 
-        $this->displayFormat = $this->flatConvert($this->displayDateFormat($this->format));
-        $this->start = $start;
-        $this->end = $end;
+        $this->displayFormat = $this->pickerConvert($this->displayDateFormat($this->format));
+        $this->min = $min;
+        $this->max = $max;
         $this->iconSize = $iconSize;
 
         $this->setConfigStyles([

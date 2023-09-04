@@ -11,15 +11,15 @@ trait DateInputFunctions
         return str_replace(['d', 'm', 'y', 'Y', 'H', 'i', 's', 'S'], ['DD', 'MM', 'YY', 'YYYY', 'HH', 'MM', 'SS', 'SS'], $format);
     }
 
-    public function flatConvert(string $format): string
+    public function pickerConvert(string $format): string
     {
         return str_replace(['h', 'g', 's', 'A'], ['G', 'h', 'S', 'K'], $format);
     }
 
     public function minDate(): string
     {
-        if ($this->start) {
-            return "'" . $this->convertFromDataFormat($this->start) . "'";
+        if ($this->min) {
+            return "'" . $this->convertFromDataFormat($this->min) . "'";
         }
 
         return 'null';
@@ -27,8 +27,8 @@ trait DateInputFunctions
 
     public function maxDate(): string
     {
-        if ($this->end) {
-            return "'" . $this->convertFromDataFormat($this->end) . "'";
+        if ($this->max) {
+            return "'" . $this->convertFromDataFormat($this->max) . "'";
         }
 
         return 'null';
@@ -36,8 +36,8 @@ trait DateInputFunctions
 
     public function minYear(): int
     {
-        if ($this->start) {
-            return (int)$this->getYearFromFormat($this->start);
+        if ($this->min) {
+            return (int)$this->getYearFromFormat($this->min);
         }
 
         return (int) date('Y') - 10;
@@ -45,8 +45,8 @@ trait DateInputFunctions
 
     public function maxYear(): int
     {
-        if ($this->end) {
-            return (int)$this->getYearFromFormat($this->end);
+        if ($this->max) {
+            return (int)$this->getYearFromFormat($this->max);
         }
 
         return (int) date('Y') + 10;
@@ -60,20 +60,5 @@ trait DateInputFunctions
     public function convertFromDataFormat($date): string
     {
         return Carbon::createFromFormat($this->dataFormat, $date)->format($this->format);
-    }
-
-    public function getPluginsList(): string
-    {
-        $plugins = [];
-
-        if (!is_null($this->mobileFriendly) && $this->mobileFriendly !== "false") {
-            $plugins[] = 'mobilefriendly';
-        }
-
-        if (!is_null($this->keyboardNavigation) && $this->keyboardNavigation !== "false") {
-            $plugins[] = 'keyboardnav';
-        }
-
-        return count($plugins) ? ("'" . implode("', '", $plugins) . "'") : "";
     }
 }

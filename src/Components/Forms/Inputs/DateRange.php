@@ -18,13 +18,13 @@ class DateRange extends Component
     public string $name;
     public string $id;
     public null|string|array $value;
-    public ?string $valueFrom;
-    public ?string $valueTo;
+    public ?string $from;
+    public ?string $to;
     public ?string $format;
     public string $dataFormat;
     public ?string $displayFormat;
-    public ?string $start;
-    public ?string $end;
+    public ?string $min;
+    public ?string $max;
     public ?string $weekNumbers;
     public ?string $separator;
 
@@ -58,28 +58,29 @@ class DateRange extends Component
 
         string $format = null,
         string $data = null,
-        string $start = null,
-        string $end = null,
+        string $min = null,
+        string $max = null,
         string $weekNumbers = null,
         string $separator = null,
         string $icon = null,
         string $lang = null,
         string $id = null,
         array|string $value = null,
-        string $valueFrom = null,
-        string $valueTo = null,
+        string $from = null,
+        string $to = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->dataFormat = $this->flatConvert($this->style($this->component, 'data', $data));
-        $this->format = $this->flatConvert($this->style($this->component, 'format', $format));
-        $this->value = old($name, $value);
-        $this->valueFrom = old($name . '_from', $valueFrom);
-        $this->valueTo = old($name . '_to', $valueTo);
 
-        $this->displayFormat = $this->flatConvert($this->displayDateFormat($this->format));
-        $this->start = $start;
-        $this->end = $end;
+        $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
+        $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
+        $this->value = old($name, $value);
+        $this->from = old($name . '_from', $from);
+        $this->to = old($name . '_to', $to);
+
+        $this->displayFormat = $this->pickerConvert($this->displayDateFormat($this->format));
+        $this->min = $min;
+        $this->max = $max;
         $this->iconSize = $iconSize;
 
         $this->setConfigStyles([
@@ -147,8 +148,8 @@ class DateRange extends Component
             return $this->value;
         }
 
-        if ($this->valueFrom && $this->valueTo) {
-            return $this->valueFrom . $this->separator . $this->valueTo;
+        if ($this->from && $this->to) {
+            return $this->from . $this->separator . $this->to;
         }
 
         return '';
