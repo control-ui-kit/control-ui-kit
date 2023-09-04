@@ -695,40 +695,6 @@ return [
         'type' => 'number',
     ],
 
-    'input-text' => [
-        'type' => 'text',
-        'font' => 'text-sm',
-    ],
-
-    'input-textarea' => [
-
-        // Style
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => 'text-sm',
-        'other' => '',
-        'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
-        'shadow' => '',
-        'width' => 'w-full',
-
-        //Config
-        'rows' => 4,
-    ],
-
-    'input-time' => [
-        'show-time' => true,
-        'show-seconds' => false,
-        'time-only' => true,
-        'clock-type' => 24, // 12 or 24
-        'hour-step' => 1,
-        'minute-step' => 1,
-        'format' => 'H:i',
-        'data' => 'H:i:s',
-        'icon' => 'icon-clock',
-    ],
-
     'input-radio' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input focus:ring-offset-input',
@@ -855,6 +821,40 @@ return [
         'image-name' => 'image',
         'subtext-name' => 'subtext',
         'text-name' => 'text',
+    ],
+
+    'input-text' => [
+        'type' => 'text',
+        'font' => 'text-sm',
+    ],
+
+    'input-textarea' => [
+
+        // Style
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => 'text-sm',
+        'other' => '',
+        'padding' => 'py-1.5 px-3',
+        'rounded' => 'rounded',
+        'shadow' => '',
+        'width' => 'w-full',
+
+        //Config
+        'rows' => 4,
+    ],
+
+    'input-time' => [
+        'show-time' => true,
+        'show-seconds' => false,
+        'time-only' => true,
+        'clock-type' => 24, // 12 or 24
+        'hour-step' => 1,
+        'minute-step' => 1,
+        'format' => 'H:i',
+        'data' => 'H:i:s',
+        'icon' => 'icon-clock',
     ],
 
     'input-toggle' => [

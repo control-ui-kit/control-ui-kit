@@ -81,7 +81,6 @@ class Date extends Component
         $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
         $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
         $this->value = old($name, $value);
-
         $this->displayFormat = $this->pickerConvert($this->displayDateFormat($this->format));
         $this->min = $min;
         $this->max = $max;
@@ -132,6 +131,8 @@ class Date extends Component
         $this->lang = $lang ?: config('app.locale');
         $this->langOverride = $lang !== null;
         $this->icon = $this->style($this->component, 'icon', $icon);
+
+        $this->setTimeFromFormat();
     }
 
     public function render(): View
@@ -145,5 +146,33 @@ class Date extends Component
             'en_GB', 'en_US' => 'default',
             default => $this->lang,
         };
+    }
+
+    private function setTimeFromFormat(): void
+    {
+        if (! $this->showTime && $this->timeFormatExists($this->format)) {
+            $this->showTime = 'true';
+        }
+
+        if (! $this->showSeconds && str_contains($this->format, ':S')) {
+            $this->showSeconds = 'true';
+        }
+
+        if ($this->clockType === '24' && str_contains($this->format, 'K')) {
+            $this->clockType = '12';
+        }
+    }
+
+    private function timeFormatExists(string $format): bool
+    {
+        $chars = ['H', 'h', 'i', 's', 'S', 'g', 'G', 'a', 'K'];
+
+        foreach ($chars as $char) {
+            if (str_contains($format, $char)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
