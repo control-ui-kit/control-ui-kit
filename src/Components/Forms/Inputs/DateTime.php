@@ -24,6 +24,8 @@ class DateTime extends Component
     public ?string $hourStep;
     public ?string $minuteStep;
     public ?string $icon;
+    public ?string $linkedTo;
+    public ?string $linkedFrom;
 
     public function __construct(
         string $name,
@@ -35,6 +37,8 @@ class DateTime extends Component
         string $hourStep = null,
         string $minuteStep = null,
         string $icon = null,
+        string $linkedFrom = null,
+        string $linkedTo = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -45,6 +49,8 @@ class DateTime extends Component
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
         $this->icon = $this->style($this->component, 'icon', $icon);
+        $this->linkedTo = $linkedTo;
+        $this->linkedFrom = $linkedFrom;
     }
 
     public function render(): View

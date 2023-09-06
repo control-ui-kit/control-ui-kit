@@ -213,6 +213,128 @@ window.Components = {
                 })
             }
         }
+    },
+    flatpickr(options) {
+        return {
+            ...options,
+            display: '',
+            picker: null,
+            init() {
+                if (this.data === null) {
+                    this.data = '';
+                }
+                this.picker = flatpickr(this.$refs.display, {
+                    mode: 'single',
+                    noCalendar: this.noCalendar,
+                    enableTime: this.enableTime,
+                    time_24hr: this.time_24hr,
+                    defaultHour: 0,
+                    defaultMinute: 0,
+                    enableSeconds: this.enableSeconds,
+                    dateFormat: this.format,
+                    minDate: this.minDate,
+                    maxDate: this.maxDate,
+                    weekNumbers: this.weekNumbers,
+                    allowInput: true,
+                    onReady: (selectedDates, dateString, picker) => {
+                        if (this.data) {
+                            picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                        }
+                    },
+                    onClose: (selectedDates, dateString, picker) => {
+                        this.updateData()
+                    },
+                    // onChange(selectedDates, dateString, picker) {
+                    //     console.log('on change', picker.config.noCalendar, picker.config.enableTime)
+                    //     if (! picker.config.noCalendar && picker.config.enableTime) {
+                    //         this.close();
+                    //     }
+                    // },
+                    locale: this.locale,
+                    plugins: [
+                        ShortcutButtonsPlugin({
+                            button: [
+                                {
+                                    label: this.noCalendar ? 'Now' : this.today
+                                },
+                                {
+                                    label: this.close
+                                }
+                            ],
+                            onClick: (index, fp) => {
+                                let date;
+                                switch (index) {
+                                    case 0:
+                                        let today = new Date()
+                                        if (! this.noCalendar) {
+                                            today.setHours(0,0,0,0)
+                                        }
+                                        fp.setDate(today)
+                                        fp.close()
+                                        break;
+                                    case 1:
+                                        fp.close()
+                                        break;
+                                }
+
+                            }
+                        })
+                    ],
+                })
+                this.$watch('display', () => {
+                    if (this.display && flatpickr.formatDate(this.picker.selectedDates[0], this.format) !== this.display) {
+                        this.picker.setDate(this.display)
+                        this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                    }
+                })
+                this.$watch('data', () => {
+                    if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) != this.data)) {
+                        let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
+                        this.picker.setDate(display_date)
+                        this.display = display_date
+                        if (this.picker.selectedDates[0] === undefined) {
+                            this.data = ''
+                            this.display = ''
+                        }
+                    } else if (! this.data) {
+                        this.picker.setDate(null)
+                    }
+                    this.updateLinkedDates()
+                })
+                if (this.linkedTo || this.linkedFrom) {
+                    this.$nextTick(() => {
+                        if (this.data) {
+                            let date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
+                            if (this.linkedTo) {
+                                document.querySelector('#' + this.linkedTo + '_display')._flatpickr.set('minDate', date)
+                            }
+                            if (this.linkedFrom) {
+                                document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', date)
+                            }
+                        }
+                    })
+                }
+            },
+            open() {
+                this.picker.open()
+            },
+            updateData() {
+                if (this.$refs.display.value) {
+                    this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                } else {
+                    this.data = ''
+                }
+                this.updateLinkedDates()
+            },
+            updateLinkedDates() {
+                if (this.linkedTo) {
+                    document.querySelector('#' + this.linkedTo + '_display')._flatpickr.set('minDate', this.picker.selectedDates[0])
+                }
+                if (this.linkedFrom) {
+                    document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', this.picker.selectedDates[0])
+                }
+            }
+        }
     }
 }
 

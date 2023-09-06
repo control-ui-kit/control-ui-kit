@@ -9,5 +9,7 @@
     :format="$format"
     :data="$dataFormat"
     :icon="$icon"
+    :linked-to="$linkedTo"
+    :linked-from="$linkedFrom"
     {{ $attributes }}
 />

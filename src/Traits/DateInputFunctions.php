@@ -8,7 +8,11 @@ trait DateInputFunctions
 {
     public function displayDateFormat(string $format): string
     {
-        return str_replace(['d', 'm', 'y', 'Y', 'H', 'G', 'i', 's', 'S', 'K'], ['DD', 'MM', 'YY', 'YYYY', 'HH', 'HH', 'MM', 'SS', 'SS', ''], $format);
+        return str_replace(
+            ['d', 'm', 'Y', 'y', 'H', 'h', 'G', 'g', 'i', 's', 'S', 'K'],
+            ['DD', 'MM', 'YYYY', 'YY', 'HH', 'HH', 'HH', 'HH', 'MM', 'SS', 'SS', 'AM/PM'],
+            $format
+        );
     }
 
     public function pickerConvert(string $format): string

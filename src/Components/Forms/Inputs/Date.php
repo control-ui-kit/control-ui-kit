@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use Carbon\Carbon;
 use ControlUIKit\Traits\DateInputFunctions;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
@@ -38,6 +39,10 @@ class Date extends Component
 
     public array $iconStyles = [];
     public ?string $iconSize;
+    public ?string $linkedTo;
+    public ?string $linkedFrom;
+    public string $today;
+    public string $close;
 
     public function __construct(
         string $name,
@@ -74,17 +79,21 @@ class Date extends Component
         string $icon = null,
         string $lang = null,
         string $id = null,
-        string $value = null,
+        mixed $value = null,
+        string $linkedFrom = null,
+        string $linkedTo = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
         $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
         $this->value = old($name, $value);
-        $this->displayFormat = $this->pickerConvert($this->displayDateFormat($this->format));
+        $this->displayFormat = $this->displayDateFormat($this->format);
         $this->min = $min;
         $this->max = $max;
         $this->iconSize = $iconSize;
+        $this->today = 'Today';
+        $this->close = 'Close';
 
         $this->setConfigStyles([
             'background' => $background,
@@ -128,6 +137,8 @@ class Date extends Component
         $this->timeOnly = $this->style($this->component, 'time-only', $timeOnly);
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
+        $this->linkedTo = $linkedTo;
+        $this->linkedFrom = $linkedFrom;
         $this->lang = $lang ?: config('app.locale');
         $this->langOverride = $lang !== null;
         $this->icon = $this->style($this->component, 'icon', $icon);

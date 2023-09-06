@@ -14,72 +14,29 @@
     }
 @endphp
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
-    x-data="{
-    @if($wireModel)
-        data: @entangle($wireModel){{ $defer.$live }},
-    @else
-        data: '{{ $value }}',
-    @endif
-        display: '',
-        picker: null,
-        init() {
-            this.picker = flatpickr(this.$refs.display, {
-                mode: 'single',
-                @if ($timeOnly)
-                noCalendar: true, @endif
-                @if ($timeOnly || $showTime)
-                enableTime: true,
-                time_24hr:@if($clockType === '24') true,@else false,@endif
-                defaultHour: 0,
-                defaultMinute: 0,
-                hourIncrement: {{ $hourStep }},
-                minuteIncrement: {{ $minuteStep }},
-                enableSeconds:@if ($showSeconds) true,@else false,@endif
-                @endif
-                dateFormat: '{{ $format }}',
-                minDate: {!! $minDate() !!},
-                maxDate: {!! $maxDate() !!},
-                weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
-                allowInput: true,
-                onReady: (selectedDates, dateString, picker) => {
-                    if (this.data) {
-                        picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}'))
-                    }
-                },
-                onClose: (selectedDates, dateString, picker) => {
-                    this.updateData()
-                },
-                locale: '{{ $locale() }}',
-            })
-            this.$watch('display', () => {
-                if (flatpickr.formatDate(this.picker.selectedDates[0], '{{ $format }}') !== this.display) {
-                    this.picker.setDate(this.display)
-                    this.data = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
-                }
-            })
-            this.$watch('data', () => {
-                if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') != this.data)) {
-                    let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, '{{ $dataFormat }}'), '{{ $format }}')
-                    this.picker.setDate(display_date)
-                    this.display = display_date
-                }
-            })
-        },
-        open() {
-            this.picker.open()
-        },
-        updateData() {
-            if (this.$refs.display.value) {
-                this.data = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
-            } else {
-                this.data = ''
-            }
-        }
-    }"
+    x-data="Components.flatpickr({
+        data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}' @endif,
+        dataFormat: '{{ $dataFormat }}',
+        format: '{{ $format }}',
+        today: '{{ $today }}',
+        close: '{{ $close }}',
+        locale: '{{ $locale() }}',
+        weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
+        noCalendar: {{ $timeOnly ? 'true' : 'false' }},
+        enableTime: {{ $timeOnly || $showTime ? 'true' : 'false' }},
+        enableSeconds: {{ $showSeconds ? 'true' : 'false' }},
+        time_24hr: {{ $clockType === '24' ? 'true' : 'false' }},
+        hourIncrement: {{ $hourStep }},
+        minuteIncrement: {{ $minuteStep }},
+        minDate: {!! $minDate() !!},
+        maxDate: {!! $maxDate() !!},
+        linkedTo: '{{ $linkedTo }}',
+        linkedFrom: '{{ $linkedFrom }}'
+    })"
     x-modelable="data"
     wire:ignore
 >
-    @if ($langOverride)
+    @if ($langOverride && $lang !== 'en_GB')
         <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
     @endif
     @if ($icon)
