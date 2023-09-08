@@ -15,6 +15,7 @@
 @endphp
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
     x-data="Components.flatpickr({
+        mode: 'single',
         data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}' @endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
@@ -31,7 +32,8 @@
         minDate: {!! $minDate() !!},
         maxDate: {!! $maxDate() !!},
         linkedTo: '{{ $linkedTo }}',
-        linkedFrom: '{{ $linkedFrom }}'
+        linkedFrom: '{{ $linkedFrom }}',
+        separator: '#',
     })"
     x-modelable="data"
     wire:ignore

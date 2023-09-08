@@ -20,6 +20,7 @@ use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
 use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
+use ControlUIKit\Controllers\FlatPickrYearPluginController;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <?php
 
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
+                $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js');
                 $locale = config('app.locale');
 
                 $flatpickr_locale = '';
@@ -87,6 +89,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 echo <<<scripts
 
                 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script src="$flatpickrPluginUrl"></script>
                 <script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.3.0/dist/shortcut-buttons-flatpickr.min.js"></script>
                 $flatpickr_locale
 
@@ -137,6 +140,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
     private function registerRoutes(): void
     {
         Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
+        Route::get('control-ui-kit/javascript/flatpickr.year-plugin.js', FlatPickrYearPluginController::class);
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
         Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);

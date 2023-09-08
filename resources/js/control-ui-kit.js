@@ -224,7 +224,7 @@ window.Components = {
                     this.data = '';
                 }
                 this.picker = flatpickr(this.$refs.display, {
-                    mode: 'single',
+                    mode: this.mode,
                     noCalendar: this.noCalendar,
                     enableTime: this.enableTime,
                     time_24hr: this.time_24hr,
@@ -238,18 +238,20 @@ window.Components = {
                     allowInput: true,
                     onReady: (selectedDates, dateString, picker) => {
                         if (this.data) {
-                            picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                            if (this.mode === 'single') {
+                                picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                            } else {
+                                let dates = this.data.split(this.separator)
+                                picker.setDate([
+                                    flatpickr.formatDate(flatpickr.parseDate(dates[0], this.dataFormat), this.format),
+                                    flatpickr.formatDate(flatpickr.parseDate(dates[1], this.dataFormat), this.format),
+                                ])
+                            }
                         }
                     },
                     onClose: (selectedDates, dateString, picker) => {
                         this.updateData()
                     },
-                    // onChange(selectedDates, dateString, picker) {
-                    //     console.log('on change', picker.config.noCalendar, picker.config.enableTime)
-                    //     if (! picker.config.noCalendar && picker.config.enableTime) {
-                    //         this.close();
-                    //     }
-                    // },
                     locale: this.locale,
                     plugins: [
                         ShortcutButtonsPlugin({
@@ -258,11 +260,13 @@ window.Components = {
                                     label: this.noCalendar ? 'Now' : this.today
                                 },
                                 {
+                                    label: 'Clear'
+                                },
+                                {
                                     label: this.close
                                 }
                             ],
                             onClick: (index, fp) => {
-                                let date;
                                 switch (index) {
                                     case 0:
                                         let today = new Date()
@@ -273,58 +277,101 @@ window.Components = {
                                         fp.close()
                                         break;
                                     case 1:
+                                        fp.setDate(null)
+                                        fp.close()
+                                        break;
+                                    case 2:
+                                        if (fp.config.noCalendar && ! this.display) {
+                                            let today = new Date()
+                                            today.setHours(0,0,0,0)
+                                            fp.setDate(today)
+                                        }
                                         fp.close()
                                         break;
                                 }
-
                             }
+                        }),
+                        YearDropdownPlugin({
+                            date: this.value,
+                            yearStart: this.yearStart,
+                            yearEnd: this.yearEnd
                         })
                     ],
                 })
                 this.$watch('display', () => {
-                    if (this.display && flatpickr.formatDate(this.picker.selectedDates[0], this.format) !== this.display) {
-                        this.picker.setDate(this.display)
-                        this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                    if (this.mode === 'single') {
+                        if (this.display && flatpickr.formatDate(this.picker.selectedDates[0], this.format) !== this.display) {
+                            this.picker.setDate(this.display)
+                            this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                        }
+                    } else {
+                        if (flatpickr.formatDate(this.picker.selectedDates[0], this.format) + this.separator + flatpickr.formatDate(this.picker.selectedDates[1], this.format) !== this.display) {
+                            this.picker.setDate(this.display)
+                            let data_from = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                            let data_to = flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat)
+                            this.data = data_from + this.separator + data_to
+                        }
                     }
                 })
                 this.$watch('data', () => {
-                    if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) != this.data)) {
-                        let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
-                        this.picker.setDate(display_date)
-                        this.display = display_date
-                        if (this.picker.selectedDates[0] === undefined) {
-                            this.data = ''
-                            this.display = ''
+                    if (this.mode === 'single') {
+                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) != this.data)) {
+                            let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
+                            this.picker.setDate(display_date)
+                            this.display = display_date
+                            if (this.picker.selectedDates[0] === undefined) {
+                                this.data = ''
+                                this.display = ''
+                            }
+                        } else if (!this.data) {
+                            this.picker.setDate(null)
                         }
-                    } else if (! this.data) {
-                        this.picker.setDate(null)
+                        this.updateLinkedDates()
+                    } else {
+                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) + '{{ $separator }}' + flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat) != this.data)) {
+                            let dates = this.data.split(this.separator)
+                            let display_date = flatpickr.formatDate(flatpickr.parseDate(dates[0], this.dataFormat), this.format) + this.picker.l10n.rangeSeparator + flatpickr.formatDate(flatpickr.parseDate(dates[1], this.dataFormat), this.format)
+                            this.picker.setDate(display_date)
+                            this.display = display_date
+                        }
                     }
-                    this.updateLinkedDates()
                 })
-                if (this.linkedTo || this.linkedFrom) {
-                    this.$nextTick(() => {
-                        if (this.data) {
-                            let date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
-                            if (this.linkedTo) {
-                                document.querySelector('#' + this.linkedTo + '_display')._flatpickr.set('minDate', date)
+                if (this.mode === 'single') {
+                    if (this.linkedTo || this.linkedFrom) {
+                        this.$nextTick(() => {
+                            if (this.data) {
+                                let date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
+                                if (this.linkedTo) {
+                                    document.querySelector('#' + this.linkedTo + '_display')._flatpickr.set('minDate', date)
+                                }
+                                if (this.linkedFrom) {
+                                    document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', date)
+                                }
                             }
-                            if (this.linkedFrom) {
-                                document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', date)
-                            }
-                        }
-                    })
+                        })
+                    }
                 }
             },
             open() {
                 this.picker.open()
             },
             updateData() {
-                if (this.$refs.display.value) {
-                    this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                if (this.mode === 'single') {
+                    if (this.$refs.display.value) {
+                        this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                    } else {
+                        this.data = ''
+                    }
+                    this.updateLinkedDates()
                 } else {
-                    this.data = ''
+                    if (this.$refs.display.value && this.picker.selectedDates.length === 2) {
+                        data_from = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                        data_to = flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat)
+                        this.data = data_from + this.separator + data_to
+                    } else {
+                        this.data = ''
+                    }
                 }
-                this.updateLinkedDates()
             },
             updateLinkedDates() {
                 if (this.linkedTo) {

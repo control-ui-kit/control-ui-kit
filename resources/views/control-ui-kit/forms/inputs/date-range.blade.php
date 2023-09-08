@@ -14,69 +14,29 @@
     }
 @endphp
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
-     x-data="{
-    @if($wireModel)
-        data: @entangle($wireModel){{ $defer.$live }},
-    @else
-        data: '{{ $setValue() }}',
-    @endif
-        display: '',
-        picker: null,
-        separator: '{{ $separator }}',
-        init() {
-            this.picker = flatpickr(this.$refs.display, {
-                mode: 'range',
-                dateFormat: '{{ $format }}',
-                minDate: {!! $minDate() !!},
-                maxDate: {!! $maxDate() !!},
-                weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
-                allowInput: true,
-                onReady: (selectedDates, dateString, picker) => {
-                    if (this.data) {
-                        let dates = this.data.split(this.separator)
-                        picker.setDate([
-                            flatpickr.formatDate(flatpickr.parseDate(dates[0], '{{ $dataFormat }}'), '{{ $format }}'),
-                            flatpickr.formatDate(flatpickr.parseDate(dates[1], '{{ $dataFormat }}'), '{{ $format }}'),
-                        ])
-                    }
-                },
-                onClose: (selectedDates, dateString, picker) => {
-                    this.updateData()
-                },
-                locale: '{{ $locale() }}',
-            })
-            this.$watch('display', () => {
-                if (flatpickr.formatDate(this.picker.selectedDates[0], '{{ $format }}') + this.separator + flatpickr.formatDate(this.picker.selectedDates[1], '{{ $format }}') !== this.display) {
-                    this.picker.setDate(this.display)
-                    this.data_from = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
-                    this.data_to = flatpickr.formatDate(this.picker.selectedDates[1], '{{ $dataFormat }}')
-                    this.data = this.data_from + '{{ $separator }}' + this.data_to
-                }
-            })
-            this.$watch('data', () => {
-                if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}') + '{{ $separator }}' + flatpickr.formatDate(this.picker.selectedDates[1], '{{ $dataFormat }}') != this.data)) {
-                    let dates = this.data.split(this.separator)
-                    let display_date = flatpickr.formatDate(flatpickr.parseDate(dates[0], '{{ $dataFormat }}'), '{{ $format }}') + this.picker.l10n.rangeSeparator + flatpickr.formatDate(flatpickr.parseDate(dates[1], '{{ $dataFormat }}'), '{{ $format }}')
-                    this.picker.setDate(display_date)
-                    this.display = display_date
-                }
-            })
-        },
-        open() {
-            this.picker.open()
-        },
-        updateData() {
-            if (this.$refs.display.value && this.picker.selectedDates.length == 2) {
-                this.data_from = flatpickr.formatDate(this.picker.selectedDates[0], '{{ $dataFormat }}')
-                this.data_to = flatpickr.formatDate(this.picker.selectedDates[1], '{{ $dataFormat }}')
-                this.data = this.data_from + '{{ $separator }}' + this.data_to
-            } else {
-                this.data = ''
-            }
-        }
-    }"
-     x-modelable="data"
-     wire:ignore
+    x-data="Components.flatpickr({
+        mode: 'range',
+        data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $setValue() }}' @endif,
+        dataFormat: '{{ $dataFormat }}',
+        format: '{{ $format }}',
+        today: '{{ $today }}',
+        close: '{{ $close }}',
+        locale: '{{ $locale() }}',
+        weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
+        noCalendar: false,
+        enableTime: false,
+        enableSeconds: false,
+        time_24hr: 24,
+        hourIncrement: 1,
+        minuteIncrement: 1,
+        minDate: {!! $minDate() !!},
+        maxDate: {!! $maxDate() !!},
+        linkedTo: null,
+        linkedFrom: null,
+        separator: '#',
+    })"
+    x-modelable="data"
+    wire:ignore
 >
     @if ($langOverride)
         <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
