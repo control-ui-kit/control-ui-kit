@@ -16,11 +16,14 @@
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
     x-data="Components.flatpickr({
         mode: 'single',
+        id: '{{ $id }}',
         data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}' @endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',
         close: '{{ $close }}',
+        now: '{{ $now }}',
+        clear: '{{ $clear }}',
         locale: '{{ $locale() }}',
         weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
         noCalendar: {{ $timeOnly ? 'true' : 'false' }},
@@ -34,6 +37,9 @@
         linkedTo: '{{ $linkedTo }}',
         linkedFrom: '{{ $linkedFrom }}',
         separator: '#',
+        offset: '{{ $offset }}',
+        yearsBefore: 100,
+        yearsAfter: 5,
     })"
     x-modelable="data"
     wire:ignore
@@ -58,8 +64,16 @@
     <input name="{{ $name }}"
            x-ref="data"
            x-model="data"
-           type="hidden"
+           type="text"
            id="{{ $id }}"
+           class="text-sm"
         {{ $attributes->only('disabled') }}
     />
+    @if ($timeOnly || $showTime)
+    <select x-ref="offset" x-model="offset" class="w-60 text-sm">
+        @foreach($timezones as $key => $timezone)
+        <option value="{{ $key }}" data-offset="{{ $timezone['offset'] }}">{{ $timezone['name'] }} (UTC {{ $timezone['formatted'] }})</option>
+        @endforeach
+    </select>
+    @endif
 </div>

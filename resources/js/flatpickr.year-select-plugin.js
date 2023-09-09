@@ -1,34 +1,37 @@
 const YearDropdownPlugin = function (pluginConfig) {
-    var defaultConfig = {
+    let defaultConfig = {
         text: '',
-        theme: "light",
+        id: 'date',
         date: new Date(),
-        yearStart: 100,
-        yearEnd: 2,
+        yearsBefore: 100,
+        yearsAfter: 2,
     };
 
-    var config = {};
-    for (var key in defaultConfig) {
+    let yearInput = document.getElementById('inputField');
+
+    let config = {};
+    for (let key in defaultConfig) {
         config[key] = pluginConfig && pluginConfig[key] !== undefined ? pluginConfig[key] : defaultConfig[key];
     }
 
-    var getYear = function (value) {
+    let getYear = function (value) {
         if (value) {
             return value.getFullYear();
         }
     }
 
-    var currYear = new Date().getFullYear();
-    var selectedYear = getYear(config.date);
+    let currYear = new Date().getFullYear();
+    let selectedYear = getYear(config.date);
+    let yearDropdown = document.createElement("select");
+    yearDropdown.setAttribute("id", config.id + '_year');
+    yearDropdown.setAttribute("class", "numInput cur-year");
 
-    var yearDropdown = document.createElement("select");
+    let createSelectElement = function () {
+        let start = new Date().getFullYear() - config.yearsBefore;
+        let end = currYear + config.yearsAfter;
 
-    var createSelectElement = function () {
-        var start = new Date().getFullYear() - config.yearStart;
-        var end = currYear + config.yearEnd;
-
-        for (var i = end; i >= start; i--) {
-            var option = document.createElement("option");
+        for (let i = end; i >= start; i--) {
+            let option = document.createElement("option");
             option.value = i;
             option.text = i;
             yearDropdown.appendChild(option);
@@ -37,16 +40,20 @@ const YearDropdownPlugin = function (pluginConfig) {
     };
 
     return function (fp) {
+
+        console.log(fp)
+
         fp.yearSelectContainer = fp._createElement(
             "div",
-            "flatpickr-year-select " + config.theme + "Theme",
+            "flatpickr-year-select",
             config.text
         );
 
         fp.yearSelectContainer.tabIndex = -1;
+
         createSelectElement();
         yearDropdown.addEventListener('change', function (evt) {
-            var year = evt.target.options[evt.target.selectedIndex].value;
+            let year = evt.target.options[evt.target.selectedIndex].value;
             fp.changeYear(year);
         });
 
@@ -57,7 +64,7 @@ const YearDropdownPlugin = function (pluginConfig) {
                 if (fp.config.noCalendar) {
                     return;
                 }
-                var name = fp.monthNav.className;
+                let name = fp.monthNav.className;
                 const yearInputCollection = fp.calendarContainer.getElementsByClassName(name);
                 const el = yearInputCollection[0];
                 el.parentNode.insertBefore(fp.yearSelectContainer, el.parentNode.firstChild);

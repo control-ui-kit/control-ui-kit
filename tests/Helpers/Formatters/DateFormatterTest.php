@@ -15,7 +15,7 @@ class DateFormatterTest extends TestCase
 
         Config::set('app.timezone', 'UTC');
         Config::set('app.locale', 'en');
-        Config::set('control-ui-kit.user_timezone_field', 'timezone');
+        Config::set('control-ui-kit.user_timezone', 'UTC');
     }
 
     /** @test */
@@ -99,7 +99,8 @@ class DateFormatterTest extends TestCase
         $value = Carbon::now();
         $expected = '9 hours ago';
 
-        Config::set('app.timezone', 'Asia/Tokyo');
+        Config::set('control-ui-kit.user_timezone', 'Asia/Tokyo');
+        Config::set('app.timezone', 'UTC');
 
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }

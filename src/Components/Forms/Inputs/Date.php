@@ -7,6 +7,7 @@ namespace ControlUIKit\Components\Forms\Inputs;
 use Carbon\Carbon;
 use ControlUIKit\Traits\DateInputFunctions;
 use ControlUIKit\Traits\UseInputTheme;
+use DateTimeZone;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -43,6 +44,10 @@ class Date extends Component
     public ?string $linkedFrom;
     public string $today;
     public string $close;
+    public string $now;
+    public string $clear;
+    public array $timezones;
+    public int $offset;
 
     public function __construct(
         string $name,
@@ -94,6 +99,8 @@ class Date extends Component
         $this->iconSize = $iconSize;
         $this->today = 'Today';
         $this->close = 'Close';
+        $this->now = 'Now';
+        $this->clear = 'Clear';
 
         $this->setConfigStyles([
             'background' => $background,
@@ -144,6 +151,7 @@ class Date extends Component
         $this->icon = $this->style($this->component, 'icon', $icon);
 
         $this->setTimeFromFormat();
+        $this->setTimeZones();
     }
 
     public function render(): View
@@ -185,5 +193,25 @@ class Date extends Component
         }
 
         return false;
+    }
+
+    private function setTimeZones(): void
+    {
+        $i = 0;
+
+        foreach (DateTimeZone::listIdentifiers() as $timezone) {
+            $carbon = Carbon::now($timezone);
+            $offset = $carbon->offset / 3600;  // Convert seconds to hours
+            $formattedOffset = ($offset < 0 ? '-' : '+') . abs($offset);
+            $this->timezones[$i]['name'] = str($timezone)->replace('_', ' ');
+            $this->timezones[$i]['offset'] = $offset;
+            $this->timezones[$i]['formatted'] = $formattedOffset;
+
+            if ($timezone === config('control-ui-kit.user_timezone')) {
+                $this->offset = $i;
+            }
+
+            $i++;
+        }
     }
 }

@@ -855,14 +855,8 @@ span.flatpickr-weekday {
     border-color: rgb(var(--button-default-border-hover));
 }
 
-//.light .shortcut-buttons-flatpickr-wrapper {
-//    background-color: rgb(var(--input-bg));
-//    color: rgb(var(--default));
-//}
-
-
 .flatpickr-current-month .numInputWrapper {
-    display: none;
+    //display: none;
 }
 .flatpickr-current-month span.cur-month {
     margin-right: 10px;

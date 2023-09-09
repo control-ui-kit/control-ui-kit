@@ -36,6 +36,8 @@ class DateRange extends Component
     public ?string $iconSize;
     public string $today;
     public string $close;
+    public string $now;
+    public string $clear;
 
     public function __construct(
         string $name,
@@ -86,6 +88,8 @@ class DateRange extends Component
         $this->iconSize = $iconSize;
         $this->today = 'Today';
         $this->close = 'Close';
+        $this->now = 'Now';
+        $this->clear = 'Clear';
 
         $this->setConfigStyles([
             'background' => $background,

@@ -16,11 +16,14 @@
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
     x-data="Components.flatpickr({
         mode: 'range',
+        id: '{{ $id }}',
         data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $setValue() }}' @endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',
         close: '{{ $close }}',
+        now: '{{ $now }}',
+        clear: '{{ $clear }}',
         locale: '{{ $locale() }}',
         weekNumbers: {{ $weekNumbers ? 'true' : 'false' }},
         noCalendar: false,
@@ -34,6 +37,9 @@
         linkedTo: null,
         linkedFrom: null,
         separator: '#',
+        offset: '',
+        yearsBefore: 100,
+        yearsAfter: 5,
     })"
     x-modelable="data"
     wire:ignore

@@ -39,7 +39,6 @@ class DateFormatter extends BaseFormatter
 
     private function getTimeZone(): string
     {
-        $field = config('control-ui-kit.user_timezone_field');
-        return auth()->user()->$field ?? config('app.timezone');
+        return config('control-ui-kit.user_timezone');
     }
 }

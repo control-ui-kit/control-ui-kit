@@ -228,6 +228,8 @@ window.Components = {
                     noCalendar: this.noCalendar,
                     enableTime: this.enableTime,
                     time_24hr: this.time_24hr,
+                    minuteIncrement: this.minuteIncrement,
+                    hourIncrement: this.hourIncrement,
                     defaultHour: 0,
                     defaultMinute: 0,
                     enableSeconds: this.enableSeconds,
@@ -239,7 +241,8 @@ window.Components = {
                     onReady: (selectedDates, dateString, picker) => {
                         if (this.data) {
                             if (this.mode === 'single') {
-                                picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                                // picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                                this.setOffsetDisplayTime(picker)
                             } else {
                                 let dates = this.data.split(this.separator)
                                 picker.setDate([
@@ -257,10 +260,10 @@ window.Components = {
                         ShortcutButtonsPlugin({
                             button: [
                                 {
-                                    label: this.noCalendar ? 'Now' : this.today
+                                    label: this.noCalendar ? this.now : this.today
                                 },
                                 {
-                                    label: 'Clear'
+                                    label: this.clear
                                 },
                                 {
                                     label: this.close
@@ -278,23 +281,20 @@ window.Components = {
                                         break;
                                     case 1:
                                         fp.setDate(null)
+                                        this.updateYear(fp, new Date().getFullYear())
                                         fp.close()
                                         break;
                                     case 2:
-                                        if (fp.config.noCalendar && ! this.display) {
-                                            let today = new Date()
-                                            today.setHours(0,0,0,0)
-                                            fp.setDate(today)
-                                        }
                                         fp.close()
                                         break;
                                 }
                             }
                         }),
                         YearDropdownPlugin({
+                            id: this.id,
                             date: this.value,
-                            yearStart: this.yearStart,
-                            yearEnd: this.yearEnd
+                            yearsBefore: this.yearsBefore,
+                            yearsAfter: this.yearsAfter
                         })
                     ],
                 })
@@ -316,9 +316,9 @@ window.Components = {
                 this.$watch('data', () => {
                     if (this.mode === 'single') {
                         if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) != this.data)) {
-                            let display_date = flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format)
-                            this.picker.setDate(display_date)
-                            this.display = display_date
+
+                            this.setOffsetDisplayTime(this.picker)
+
                             if (this.picker.selectedDates[0] === undefined) {
                                 this.data = ''
                                 this.display = ''
@@ -335,6 +335,9 @@ window.Components = {
                             this.display = display_date
                         }
                     }
+                })
+                this.$watch('offset', () => {
+                    this.setOffsetDisplayTime(this.picker)
                 })
                 if (this.mode === 'single') {
                     if (this.linkedTo || this.linkedFrom) {
@@ -355,10 +358,29 @@ window.Components = {
             open() {
                 this.picker.open()
             },
+            setOffsetDisplayTime(picker) {
+                if (this.noCalendar || this.enableTime) {
+                    const offset = this.getSelectedOffset()
+                    let new_date = new Date(flatpickr.parseDate(this.data, this.dataFormat).getTime() + offset);
+                    picker.setDate(new_date)
+                } else {
+                    picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
+                }
+
+                this.updateYear(picker)
+            },
+            setOffsetDataTime() {
+                if (this.noCalendar || this.enableTime) {
+                    const offset = this.getSelectedOffset() * -1
+                    this.data = flatpickr.formatDate(new Date(this.picker.selectedDates[0].getTime() + offset), this.dataFormat)
+                } else {
+                    this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                }
+            },
             updateData() {
                 if (this.mode === 'single') {
                     if (this.$refs.display.value) {
-                        this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
+                        this.setOffsetDataTime()
                     } else {
                         this.data = ''
                     }
@@ -372,6 +394,11 @@ window.Components = {
                         this.data = ''
                     }
                 }
+
+                this.updateYear(this.picker)
+            },
+            getSelectedOffset() {
+                return this.$refs.offset.options[this.offset].dataset.offset * 60 * 60 * 1000
             },
             updateLinkedDates() {
                 if (this.linkedTo) {
@@ -379,6 +406,21 @@ window.Components = {
                 }
                 if (this.linkedFrom) {
                     document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', this.picker.selectedDates[0])
+                }
+            },
+            updateYear(picker, year) {
+                if (this.noCalendar) {
+                    return
+                }
+
+                let yearSelect = document.getElementById(this.id + '_year')
+
+                if (year) {
+                    yearSelect.value = year
+                } else if (picker.selectedDates.length === 0) {
+                    yearSelect.value = new Date().getFullYear()
+                } else {
+                    yearSelect.value = picker.selectedDates[0].getFullYear()
                 }
             }
         }
