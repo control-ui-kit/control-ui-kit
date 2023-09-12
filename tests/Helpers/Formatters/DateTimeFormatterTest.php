@@ -16,7 +16,7 @@ class DateTimeFormatterTest extends TestCase
 
         Config::set('app.timezone', 'UTC');
         Config::set('app.locale', 'en');
-        Config::set('control-ui-kit.user_timezone_field', 'timezone');
+        Config::set('control-ui-kit.user_timezone', 'UTC');
     }
 
     /** @test */

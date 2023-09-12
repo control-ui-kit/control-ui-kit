@@ -596,6 +596,16 @@ return [
         'icon-rounded' => '',
         'icon-shadow' => '',
 
+        'timezone-background' => 'bg-transparent',
+        'timezone-border' => 'border-0 focus:outline-none focus:ring-0',
+        'timezone-color' => 'text-input placeholder-input',
+        'timezone-font' => 'text-xs',
+        'timezone-other' => 'text-right',
+        'timezone-padding' => '',
+        'timezone-rounded' => '',
+        'timezone-shadow' => '',
+        'timezone-width' => 'w-max',
+
         // Config
         'mode' => 'single',
         'data' => 'Y-m-d',
@@ -603,6 +613,8 @@ return [
         'icon' => 'icon-calendar',
         'separator' => '#',
         'week-numbers' => false,
+        'years-before' => 100,
+        'years-after' => 5,
 
         // Time
         'clock-type' => 24, // 12 or 24
@@ -616,13 +628,17 @@ return [
     'input-datetime' => [
 
         // Config
-        'clock-type' => 24, // 12 or 24
         'data' => 'Y-m-d H:i:s',
         'format' => 'd/m/Y H:i',
+        'icon' => 'icon-calendar',
+        'years-before' => 100,
+        'years-after' => 5,
+
+        // Time
+        'clock-type' => 24, // 12 or 24
         'hour-step' => 1,
         'minute-step' => 1,
         'show-seconds' => false,
-        'icon' => 'icon-calendar',
     ],
 
     'input-date-range' => [
@@ -653,6 +669,8 @@ return [
         'icon' => 'icon-calendar',
         'separator' => '#',
         'week-numbers' => false,
+        'years-before' => 100,
+        'years-after' => 5,
     ],
 
     'input-decimal' => [

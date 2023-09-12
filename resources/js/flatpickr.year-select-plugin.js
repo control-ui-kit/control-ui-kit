@@ -24,7 +24,7 @@ const YearDropdownPlugin = function (pluginConfig) {
     let selectedYear = getYear(config.date);
     let yearDropdown = document.createElement("select");
     yearDropdown.setAttribute("id", config.id + '_year');
-    yearDropdown.setAttribute("class", "numInput cur-year");
+    // yearDropdown.setAttribute("class", "numInput cur-year");
 
     let createSelectElement = function () {
         let start = new Date().getFullYear() - config.yearsBefore;
@@ -40,8 +40,6 @@ const YearDropdownPlugin = function (pluginConfig) {
     };
 
     return function (fp) {
-
-        console.log(fp)
 
         fp.yearSelectContainer = fp._createElement(
             "div",

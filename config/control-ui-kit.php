@@ -384,32 +384,7 @@ return [
     |
     */
 
-    'user_timezone' => 'Europe/London',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Date Formats
-    |--------------------------------------------------------------------------
-    |
-    | The timezone of the logged-in user. If this differs from
-    | app.timezone then dates will be adjusted accordingly.
-    |
-    */
-
-    'formats' => [
-        'date' => [
-            'data' => 'Y-m-d',
-            'format' => 'd/m/Y',
-        ],
-        'datetime' => [
-            'data' => 'Y-m-d H:i:s',
-            'format' => 'd/m/Y H:i',
-        ],
-        'time' => [
-            'data' => 'H:i:s',
-            'format' => 'H:i',
-        ],
-    ],
+    'user_timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------

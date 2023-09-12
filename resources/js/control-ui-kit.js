@@ -220,6 +220,9 @@ window.Components = {
             display: '',
             picker: null,
             init() {
+
+                let self = this
+
                 if (this.data === null) {
                     this.data = '';
                 }
@@ -241,7 +244,6 @@ window.Components = {
                     onReady: (selectedDates, dateString, picker) => {
                         if (this.data) {
                             if (this.mode === 'single') {
-                                // picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
                                 this.setOffsetDisplayTime(picker)
                             } else {
                                 let dates = this.data.split(this.separator)
@@ -250,6 +252,19 @@ window.Components = {
                                     flatpickr.formatDate(flatpickr.parseDate(dates[1], this.dataFormat), this.format),
                                 ])
                             }
+                        }
+
+                        if (! this.noCalendar) {
+                            let nextMonth = picker.calendarContainer.querySelector('.flatpickr-next-month');
+                            let prevMonth = picker.calendarContainer.querySelector('.flatpickr-prev-month');
+
+                            nextMonth.addEventListener('click', function () {
+                                self.updateYear(picker)
+                            })
+
+                            prevMonth.addEventListener('click', function () {
+                                self.updateYear(picker)
+                            })
                         }
                     },
                     onClose: (selectedDates, dateString, picker) => {
@@ -275,13 +290,19 @@ window.Components = {
                                         let today = new Date()
                                         if (! this.noCalendar) {
                                             today.setHours(0,0,0,0)
+                                        } else if (! this.enableSeconds) {
+                                            today.setSeconds(0,0)
                                         }
-                                        fp.setDate(today)
+                                        if (this.mode === 'single') {
+                                            fp.setDate(today)
+                                        } else {
+                                            fp.setDate(flatpickr.formatDate(today, this.format) + this.picker.l10n.rangeSeparator + flatpickr.formatDate(today, this.format))
+                                        }
                                         fp.close()
                                         break;
                                     case 1:
                                         fp.setDate(null)
-                                        this.updateYear(fp, new Date().getFullYear())
+                                        this.updateYear(fp)
                                         fp.close()
                                         break;
                                     case 2:
@@ -315,10 +336,8 @@ window.Components = {
                 })
                 this.$watch('data', () => {
                     if (this.mode === 'single') {
-                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) != this.data)) {
-
+                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.offsetDisplayTime(), this.dataFormat) !== this.data)) {
                             this.setOffsetDisplayTime(this.picker)
-
                             if (this.picker.selectedDates[0] === undefined) {
                                 this.data = ''
                                 this.display = ''
@@ -326,9 +345,10 @@ window.Components = {
                         } else if (!this.data) {
                             this.picker.setDate(null)
                         }
+
                         this.updateLinkedDates()
                     } else {
-                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) + '{{ $separator }}' + flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat) != this.data)) {
+                        if (this.data && (this.picker.selectedDates.length === 0 || flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat) + this.separator + flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat) !== this.data)) {
                             let dates = this.data.split(this.separator)
                             let display_date = flatpickr.formatDate(flatpickr.parseDate(dates[0], this.dataFormat), this.format) + this.picker.l10n.rangeSeparator + flatpickr.formatDate(flatpickr.parseDate(dates[1], this.dataFormat), this.format)
                             this.picker.setDate(display_date)
@@ -337,7 +357,9 @@ window.Components = {
                     }
                 })
                 this.$watch('offset', () => {
-                    this.setOffsetDisplayTime(this.picker)
+                    if (this.data) {
+                        this.setOffsetDisplayTime(this.picker)
+                    }
                 })
                 if (this.mode === 'single') {
                     if (this.linkedTo || this.linkedFrom) {
@@ -359,23 +381,42 @@ window.Components = {
                 this.picker.open()
             },
             setOffsetDisplayTime(picker) {
-                if (this.noCalendar || this.enableTime) {
-                    const offset = this.getSelectedOffset()
-                    let new_date = new Date(flatpickr.parseDate(this.data, this.dataFormat).getTime() + offset);
-                    picker.setDate(new_date)
-                } else {
-                    picker.setDate(flatpickr.formatDate(flatpickr.parseDate(this.data, this.dataFormat), this.format))
-                }
-
+                picker.setDate(flatpickr.formatDate(this.offsetDataTime(), this.format))
                 this.updateYear(picker)
             },
             setOffsetDataTime() {
-                if (this.noCalendar || this.enableTime) {
+                if (this.picker.selectedDates.length === 0) {
+                    this.data = null
+                } else if (this.showTimeZones && (this.noCalendar || this.enableTime)) {
                     const offset = this.getSelectedOffset() * -1
                     this.data = flatpickr.formatDate(new Date(this.picker.selectedDates[0].getTime() + offset), this.dataFormat)
                 } else {
                     this.data = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
                 }
+            },
+            offsetDataTime() {
+                if (this.data === null || this.data === '') {
+                    return this.data
+                }
+
+                if (this.showTimeZones && (this.noCalendar || this.enableTime)) {
+                    const offset = this.getSelectedOffset()
+                    return new Date(flatpickr.parseDate(this.data, this.dataFormat).getTime() + offset)
+                }
+
+                return flatpickr.parseDate(this.data, this.dataFormat)
+            },
+            offsetDisplayTime() {
+                if (this.picker.selectedDates.length === 0) {
+                    return null
+                }
+
+                if (this.showTimeZones && (this.noCalendar || this.enableTime)) {
+                    const offset = this.getSelectedOffset() * -1
+                    return new Date(flatpickr.parseDate(this.picker.selectedDates[0], this.dataFormat).getTime() + offset)
+                }
+
+                return flatpickr.parseDate(this.picker.selectedDates[0], this.dataFormat)
             },
             updateData() {
                 if (this.mode === 'single') {
@@ -408,40 +449,34 @@ window.Components = {
                     document.querySelector('#' + this.linkedFrom + '_display')._flatpickr.set('maxDate', this.picker.selectedDates[0])
                 }
             },
-            updateYear(picker, year) {
+            updateYear(picker) {
                 if (this.noCalendar) {
                     return
                 }
 
-                let yearSelect = document.getElementById(this.id + '_year')
-
-                if (year) {
-                    yearSelect.value = year
-                } else if (picker.selectedDates.length === 0) {
-                    yearSelect.value = new Date().getFullYear()
-                } else {
-                    yearSelect.value = picker.selectedDates[0].getFullYear()
-                }
+                setTimeout(() => {
+                    document.getElementById(this.id + '_year').value = picker.currentYear
+                }, 150)
             }
         }
     }
 }
 
 function _controlNumber(input, decimals, min, max, fixed) {
-    let number = input.value.replace(/[^\d\.-]/g, "") * 1;
+    let number = input.value.replace(/[^\d\.-]/g, "") * 1
 
     if (min !== '' && number < min) {
-        number = min;
+        number = min
     }
 
     if (max !== '' && number > max) {
-        number = max;
+        number = max
     }
 
-    input.value = +(Math.round(number + ("e+" + decimals))  + ("e-" + decimals));
+    input.value = +(Math.round(number + ("e+" + decimals))  + ("e-" + decimals))
 
     if (fixed) {
-        input.value = (input.value * 1).toFixed(decimals);
+        input.value = (input.value * 1).toFixed(decimals)
     }
 }
 
@@ -453,7 +488,7 @@ function openDialog(type, title, content, width, button) {
         content: content,
         button: button,
         width: maxWidth(width),
-    };
+    }
 
     const event = new CustomEvent('dialog-modal', { detail: eventParams });
 

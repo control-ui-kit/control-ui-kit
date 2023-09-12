@@ -20,8 +20,8 @@ class ErrorBag extends Component
     private bool $use_translation;
 
     public function __construct(string $type = null) {
-        $this->type = $type ?: config($this->theme() . '.error-bag.alert', 'danger');
-        $this->use_translation = config($this->theme() . '.error-bag.use-translation', false);
+        $this->type = $type ?: config($this->theme() . '::control-ui-kit.error-bag.alert', 'danger');
+        $this->use_translation = config($this->theme() . '::control-ui-kit.error-bag.use-translation', false);
     }
 
     public function render(): View

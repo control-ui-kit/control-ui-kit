@@ -12,6 +12,8 @@ class DateTimeTest extends ComponentTestCase
         parent::setUp();
 
         Config::set('app.locale', 'en_GB');
+        Config::set('app.timezone', 'UTC');
+        Config::set('control-ui-kit.user_timezone', 'UTC');
 
         Config::set('themes.default.input-date.background', 'background');
         Config::set('themes.default.input-date.border', 'border');
@@ -31,6 +33,16 @@ class DateTimeTest extends ComponentTestCase
         Config::set('themes.default.input-date.icon-padding', 'icon-padding');
         Config::set('themes.default.input-date.icon-rounded', 'icon-rounded');
         Config::set('themes.default.input-date.icon-shadow', 'icon-shadow');
+
+        Config::set('themes.default.input-date.timezone-background', 'timezone-background');
+        Config::set('themes.default.input-date.timezone-border', 'timezone-border');
+        Config::set('themes.default.input-date.timezone-color', 'timezone-color');
+        Config::set('themes.default.input-date.timezone-font', 'timezone-font');
+        Config::set('themes.default.input-date.timezone-other', 'timezone-other');
+        Config::set('themes.default.input-date.timezone-padding', 'timezone-padding');
+        Config::set('themes.default.input-date.timezone-rounded', 'timezone-rounded');
+        Config::set('themes.default.input-date.timezone-shadow', 'timezone-shadow');
+        Config::set('themes.default.input-date.timezone-width', 'timezone-width');
 
         Config::set('themes.default.input.wrapper-background', 'wrapper-background');
         Config::set('themes.default.input.wrapper-border', 'wrapper-border');
@@ -53,13 +65,16 @@ class DateTimeTest extends ComponentTestCase
         Config::set('themes.default.input-date.data', 'Y-m-d H:i:S');
         Config::set('themes.default.input-date.icon', 'icon-calendar');
 
-        Config::set('themes.default.input-datetime.show-seconds', false);
-        Config::set('themes.default.input-datetime.clock-type', 24);
-        Config::set('themes.default.input-datetime.hour-step', 1);
-        Config::set('themes.default.input-datetime.minute-step', 1);
         Config::set('themes.default.input-datetime.format', 'd/m/Y H:i');
         Config::set('themes.default.input-datetime.data', 'Y-m-d H:i:s');
         Config::set('themes.default.input-datetime.icon', 'icon-calendar');
+        Config::set('themes.default.input-datetime.years-before', 100);
+        Config::set('themes.default.input-datetime.years-after', 5);
+
+        Config::set('themes.default.input-datetime.clock-type', 24);
+        Config::set('themes.default.input-datetime.hour-step', 1);
+        Config::set('themes.default.input-datetime.minute-step', 1);
+        Config::set('themes.default.input-datetime.show-seconds', false);
     }
 
     /** @test */
@@ -70,7 +85,7 @@ class DateTimeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', data: '' , dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', })" x-modelable="data" wire:ignore
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore
             >
                 <input name="datetime_display" x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                 <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />
@@ -88,7 +103,7 @@ class DateTimeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', data: '' , dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: true, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', })" x-modelable="data" wire:ignore
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: true, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore
             >
                 <input name="datetime_display" x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                 <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />
@@ -106,7 +121,7 @@ class DateTimeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', data: '' , dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: false, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', })" x-modelable="data" wire:ignore
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: false, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore
             >
                 <input name="datetime_display" x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                 <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />
@@ -124,7 +139,7 @@ class DateTimeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', data: '' , dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 6, minuteIncrement: 15, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', })" x-modelable="data" wire:ignore
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 6, minuteIncrement: 15, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore
             >
                 <input name="datetime_display" x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                 <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />

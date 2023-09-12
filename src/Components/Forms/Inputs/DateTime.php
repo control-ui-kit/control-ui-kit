@@ -26,6 +26,8 @@ class DateTime extends Component
     public ?string $icon;
     public ?string $linkedTo;
     public ?string $linkedFrom;
+    public string $yearsBefore;
+    public string $yearsAfter;
 
     public function __construct(
         string $name,
@@ -39,6 +41,8 @@ class DateTime extends Component
         string $icon = null,
         string $linkedFrom = null,
         string $linkedTo = null,
+        string $yearsBefore = null,
+        string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -48,6 +52,8 @@ class DateTime extends Component
         $this->clockType = $this->style($this->component, 'clock-type', $clockType);
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
+        $this->yearsBefore = $this->style($this->component, 'years-before', $yearsBefore);
+        $this->yearsAfter = $this->style($this->component, 'years-after', $yearsAfter);
         $this->icon = $this->style($this->component, 'icon', $icon);
         $this->linkedTo = $linkedTo;
         $this->linkedFrom = $linkedFrom;

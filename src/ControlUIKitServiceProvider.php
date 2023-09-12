@@ -77,8 +77,8 @@ class ControlUIKitServiceProvider extends ServiceProvider
             return <<<'blade'
                 <?php
 
-                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js');
-                $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js');
+                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=1.1');
+                $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=1.0');
                 $locale = config('app.locale');
 
                 $flatpickr_locale = '';
@@ -148,7 +148,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
     protected function registerTranslations(): void
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'control-ui-kit');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'control-ui-kit');
     }
 
     protected function registerViews(): void

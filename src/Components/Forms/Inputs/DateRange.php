@@ -38,6 +38,8 @@ class DateRange extends Component
     public string $close;
     public string $now;
     public string $clear;
+    public string $yearsBefore;
+    public string $yearsAfter;
 
     public function __construct(
         string $name,
@@ -72,24 +74,24 @@ class DateRange extends Component
         array|string $value = null,
         string $from = null,
         string $to = null,
+        string $yearsBefore = null,
+        string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-
         $this->dataFormat = $this->pickerConvert($this->style($this->component, 'data', $data));
         $this->format = $this->pickerConvert($this->style($this->component, 'format', $format));
         $this->value = old($name, $value);
         $this->from = old($name . '_from', $from);
         $this->to = old($name . '_to', $to);
-
         $this->displayFormat = $this->pickerConvert($this->displayDateFormat($this->format));
         $this->min = $min;
         $this->max = $max;
         $this->iconSize = $iconSize;
-        $this->today = 'Today';
-        $this->close = 'Close';
-        $this->now = 'Now';
-        $this->clear = 'Clear';
+        $this->today = trans('control-ui-kit::control-ui-kit.date-picker.today');
+        $this->close = trans('control-ui-kit::control-ui-kit.date-picker.close');
+        $this->now = trans('control-ui-kit::control-ui-kit.date-picker.now');
+        $this->clear = trans('control-ui-kit::control-ui-kit.date-picker.clear');
 
         $this->setConfigStyles([
             'background' => $background,
@@ -128,6 +130,8 @@ class DateRange extends Component
 
         $this->weekNumbers = $this->style($this->component, 'week-numbers', $weekNumbers);
         $this->separator = $this->style($this->component, 'separator', $separator);
+        $this->yearsBefore = $this->style($this->component, 'years-before', $yearsBefore);
+        $this->yearsAfter = $this->style($this->component, 'years-after', $yearsAfter);
         $this->lang = $lang ?: config('app.locale', 'en_GB');
         $this->langOverride = $lang !== null;
         $this->icon = $this->style($this->component, 'icon', $icon);

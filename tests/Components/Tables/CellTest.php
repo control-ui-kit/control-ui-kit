@@ -42,6 +42,7 @@ class CellTest extends ComponentTestCase
 
         Config::set('app.timezone', 'UTC');
         Config::set('app.locale', 'en');
+        Config::set('control-ui-kit.user_timezone', 'UTC');
 
         Config::set('themes.default.pill.background', 'pill-background');
         Config::set('themes.default.pill.border', 'pill-border');

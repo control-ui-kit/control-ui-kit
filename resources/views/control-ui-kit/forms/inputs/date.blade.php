@@ -17,7 +17,7 @@
     x-data="Components.flatpickr({
         mode: 'single',
         id: '{{ $id }}',
-        data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}' @endif,
+        data:@if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}'@endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',
@@ -37,20 +37,21 @@
         linkedTo: '{{ $linkedTo }}',
         linkedFrom: '{{ $linkedFrom }}',
         separator: '#',
-        offset: '{{ $offset }}',
-        yearsBefore: 100,
-        yearsAfter: 5,
+        offset:@if ($timeOnly || $showTime) '{{ $offset }}' @else '0'@endif,
+        yearsBefore: {{ $yearsBefore }},
+        yearsAfter: {{ $yearsAfter }},
+        showTimeZones: {{ $showTimeZones ? 'true' : 'false' }},
     })"
     x-modelable="data"
     wire:ignore
 >
     @if ($langOverride && $lang !== 'en_GB')
-        <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
     @endif
     @if ($icon)
-        <a x-on:click="open()">
-            <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
-        </a>
+    <a x-on:click="open()">
+        <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize" />
+    </a>
     @endif
     <input name="{{ $name }}_display"
            x-ref="display"
@@ -64,13 +65,12 @@
     <input name="{{ $name }}"
            x-ref="data"
            x-model="data"
-           type="text"
+           type="hidden"
            id="{{ $id }}"
-           class="text-sm"
         {{ $attributes->only('disabled') }}
     />
-    @if ($timeOnly || $showTime)
-    <select x-ref="offset" x-model="offset" class="w-60 text-sm">
+    @if (($timeOnly || $showTime) && $showTimeZones)
+    <select x-ref="offset" x-model="offset" x-show="showTimeZones" class="{{ $timezoneClasses() }}">
         @foreach($timezones as $key => $timezone)
         <option value="{{ $key }}" data-offset="{{ $timezone['offset'] }}">{{ $timezone['name'] }} (UTC {{ $timezone['formatted'] }})</option>
         @endforeach

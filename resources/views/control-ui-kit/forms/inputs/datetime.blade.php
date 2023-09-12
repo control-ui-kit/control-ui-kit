@@ -11,5 +11,7 @@
     :icon="$icon"
     :linked-to="$linkedTo"
     :linked-from="$linkedFrom"
+    :years-before="$yearsBefore"
+    :years-after="$yearsAfter"
     {{ $attributes }}
 />

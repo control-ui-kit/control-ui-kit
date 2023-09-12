@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use Carbon\Carbon;
+use ControlUIKit\Helpers\TimeZoneService;
 use ControlUIKit\Traits\DateInputFunctions;
 use ControlUIKit\Traits\UseInputTheme;
-use DateTimeZone;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -38,6 +38,7 @@ class Date extends Component
     public bool $langOverride = false;
     public ?string $icon;
 
+    public array $timezoneStyles = [];
     public array $iconStyles = [];
     public ?string $iconSize;
     public ?string $linkedTo;
@@ -46,8 +47,11 @@ class Date extends Component
     public string $close;
     public string $now;
     public string $clear;
-    public array $timezones;
-    public int $offset;
+    public bool $showTimeZones;
+    public array $timezones = [];
+    public int $offset = 0;
+    public string $yearsBefore;
+    public string $yearsAfter;
 
     public function __construct(
         string $name,
@@ -70,6 +74,16 @@ class Date extends Component
         string $iconShadow = null,
         string $iconSize = null,
 
+        string $timezoneBackground = null,
+        string $timezoneBorder = null,
+        string $timezoneColor = null,
+        string $timezoneFont = null,
+        string $timezoneOther = null,
+        string $timezonePadding = null,
+        string $timezoneRounded = null,
+        string $timezoneShadow = null,
+        string $timezoneWidth = null,
+
         string $format = null,
         string $data = null,
         string $min = null,
@@ -87,6 +101,8 @@ class Date extends Component
         mixed $value = null,
         string $linkedFrom = null,
         string $linkedTo = null,
+        string $yearsBefore = null,
+        string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -97,10 +113,10 @@ class Date extends Component
         $this->min = $min;
         $this->max = $max;
         $this->iconSize = $iconSize;
-        $this->today = 'Today';
-        $this->close = 'Close';
-        $this->now = 'Now';
-        $this->clear = 'Clear';
+        $this->today = trans('control-ui-kit::control-ui-kit.date-picker.today');
+        $this->close = trans('control-ui-kit::control-ui-kit.date-picker.close');
+        $this->now = trans('control-ui-kit::control-ui-kit.date-picker.now');
+        $this->clear = trans('control-ui-kit::control-ui-kit.date-picker.clear');
 
         $this->setConfigStyles([
             'background' => $background,
@@ -113,6 +129,18 @@ class Date extends Component
             'shadow' => $shadow,
             'width' => 'w-full',
         ]);
+
+        $this->setInputStyles([
+            'background' => $timezoneBackground,
+            'border' => $timezoneBorder,
+            'color' => $timezoneColor,
+            'font' => $timezoneFont,
+            'other' => $timezoneOther,
+            'padding' => $timezonePadding,
+            'rounded' => $timezoneRounded,
+            'shadow' => $timezoneShadow,
+            'width' => $timezoneWidth,
+        ], $this->component, 'timezoneStyles', 'input-date', 'timezone-');
 
         $this->setInputStyles([
             'background' => $background,
@@ -144,6 +172,8 @@ class Date extends Component
         $this->timeOnly = $this->style($this->component, 'time-only', $timeOnly);
         $this->hourStep = $this->style($this->component, 'hour-step', $hourStep);
         $this->minuteStep = $this->style($this->component, 'minute-step', $minuteStep);
+        $this->yearsBefore = $this->style($this->component, 'years-before', $yearsBefore);
+        $this->yearsAfter = $this->style($this->component, 'years-after', $yearsAfter);
         $this->linkedTo = $linkedTo;
         $this->linkedFrom = $linkedFrom;
         $this->lang = $lang ?: config('app.locale');
@@ -152,6 +182,7 @@ class Date extends Component
 
         $this->setTimeFromFormat();
         $this->setTimeZones();
+        $this->setShowTimeZones();
     }
 
     public function render(): View
@@ -199,7 +230,7 @@ class Date extends Component
     {
         $i = 0;
 
-        foreach (DateTimeZone::listIdentifiers() as $timezone) {
+        foreach ((new TimeZoneService())->listIdentifiers() as $timezone) {
             $carbon = Carbon::now($timezone);
             $offset = $carbon->offset / 3600;  // Convert seconds to hours
             $formattedOffset = ($offset < 0 ? '-' : '+') . abs($offset);
@@ -213,5 +244,15 @@ class Date extends Component
 
             $i++;
         }
+    }
+
+    public function setShowTimeZones(): void
+    {
+        $this->showTimeZones = config('control-ui-kit.user_timezone') !== config('app.timezone');
+    }
+
+    public function timezoneClasses(): string
+    {
+        return $this->classList($this->timezoneStyles);
     }
 }

@@ -17,7 +17,7 @@
     x-data="Components.flatpickr({
         mode: 'range',
         id: '{{ $id }}',
-        data: @if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $setValue() }}' @endif,
+        data:@if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $setValue() }}'@endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',
@@ -38,8 +38,9 @@
         linkedFrom: null,
         separator: '#',
         offset: '',
-        yearsBefore: 100,
-        yearsAfter: 5,
+        yearsBefore: {{ $yearsBefore }},
+        yearsAfter: {{ $yearsAfter }},
+        showTimeZones: false,
     })"
     x-modelable="data"
     wire:ignore
