@@ -48,6 +48,6 @@ class ErrorBag extends Component
             return;
         }
 
-        $this->lang_string = 'control-ui-kit::error-bag.title';
+        $this->lang_string = 'control-ui-kit::control-ui-kit.error-bag.title';
     }
 }

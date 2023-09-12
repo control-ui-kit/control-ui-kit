@@ -53,8 +53,7 @@
             <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
         </a>
     @endif
-    <input name="{{ $name }}_display"
-           x-ref="display"
+    <input x-ref="display"
            type="text"
            id="{{ $id }}_display"
            placeholder="{{ $displayFormat }}"
