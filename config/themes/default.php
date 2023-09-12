@@ -864,15 +864,19 @@ return [
     ],
 
     'input-time' => [
-        'show-time' => true,
-        'show-seconds' => false,
-        'time-only' => true,
-        'clock-type' => 24, // 12 or 24
-        'hour-step' => 1,
-        'minute-step' => 1,
+
+        // Config
         'format' => 'H:i',
         'data' => 'H:i:s',
         'icon' => 'icon-clock',
+
+        // Time
+        'clock-type' => 24, // 12 or 24
+        'hour-step' => 1,
+        'minute-step' => 1,
+        'show-seconds' => false,
+        'show-time' => true,
+        'time-only' => true,
     ],
 
     'input-toggle' => [
