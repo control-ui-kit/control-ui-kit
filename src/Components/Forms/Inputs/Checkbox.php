@@ -37,7 +37,7 @@ class Checkbox extends Component
         $this->name = $name;
         $this->id = $id ?? ($value === '1' ? $name : $name . '_' . str_replace(' ', '_', $value));
         $this->value = old($name, $value ?? '');
-        $this->checked = $checked ?? '';
+        $this->checked = old($name, $checked ?? '');
         $this->disabled = $disabled;
 
         $this->setConfigStyles([
