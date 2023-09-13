@@ -6,7 +6,7 @@ namespace ControlUIKit;
 
 class GrayColors
 {
-    protected array $grays = ['blue', 'cool', 'classic', 'true', 'warm'];
+    protected array $grays = ['slate', 'gray', 'classic', 'neutral', 'stone'];
 
     public function getScale($gray = 'classic'): string
     {
@@ -14,28 +14,30 @@ class GrayColors
             return '';
         }
 
-        if ($gray === 'blue') {
-            return $this->blueGray();
+        if ($gray === 'slate') {
+            return $this->slate();
         }
 
-        if ($gray === 'cool') {
-            return $this->coolGray();
+        if ($gray === 'gray') {
+            return $this->gray();
         }
 
         if ($gray === 'classic') {
-            return $this->classicGray();
+            return $this->classic();
         }
 
-        if ($gray === 'true') {
-            return $this->trueGray();
+        if ($gray === 'neutral') {
+            return $this->neutral();
         }
 
-        if ($gray === 'warm') {
-            return $this->warmGray();
+        if ($gray === 'stone') {
+            return $this->stone();
         }
+
+        return '';
     }
 
-    public function blueGray(): string
+    public function slate(): string
     {
         return <<< SASS
 \$gray-50: #F8FAFC;
@@ -61,7 +63,7 @@ class GrayColors
 SASS;
     }
 
-    public function classicGray(): string
+    public function classic(): string
     {
         return <<< SASS
 \$gray-50: #FAFAFA;
@@ -87,7 +89,7 @@ SASS;
 SASS;
     }
 
-    public function coolGray(): string
+    public function gray(): string
     {
         return <<< SASS
 \$gray-50: #F9FAFB;
@@ -113,7 +115,7 @@ SASS;
 SASS;
     }
 
-    public function trueGray(): string
+    public function neutral(): string
     {
         return <<< SASS
 \$gray-50: #FAFAFA;
@@ -139,7 +141,7 @@ SASS;
 SASS;
     }
 
-    public function warmGray(): string
+    public function stone(): string
     {
         return <<< SASS
 \$gray-50: #FAFAF9;

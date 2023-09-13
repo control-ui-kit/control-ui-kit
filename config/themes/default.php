@@ -591,7 +591,7 @@ return [
         'icon-border' => 'border-r border-input',
         'icon-color' => 'text-muted',
         'icon-size' => 'w-4 h-4',
-        'icon-other' => 'flex items-center justify-center self-stretch',
+        'icon-other' => 'flex items-center justify-center self-stretch cursor-pointer',
         'icon-padding' => 'px-3',
         'icon-rounded' => '',
         'icon-shadow' => '',
