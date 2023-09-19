@@ -1,4 +1,4 @@
-<x-field :name="$name" :help="$help" :label="$label" {{ $attributes->except(['wire:model', 'wire:model.defer']) }}>
+<x-field :name="$name" :help="$help" for="" :label="$label" {{ $attributes->whereDoesntStartWith('wire:model') }}>
 
     <div class="rounded border border-input bg-input divide-y divide-input w-full"
          x-data="{ selected: '{{ $selected }}' }"
@@ -14,7 +14,7 @@
                     value="{{ $option['value'] }}"
                     :checked="$option['checked']"
                     x-model="selected"
-                    {{ $attributes->only(['wire:model', 'wire:model.defer']) }}
+                    {{ $attributes->whereStartsWith('wire:model') }}
                 />
             </div>
             <div class="flex flex-col space-y-1 cursor-pointer"

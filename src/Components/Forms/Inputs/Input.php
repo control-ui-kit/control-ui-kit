@@ -7,34 +7,33 @@ namespace ControlUIKit\Components\Forms\Inputs;
 use ControlUIKit\Exceptions\InputException;
 use ControlUIKit\Exceptions\InputNumberException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
-    use UseInputTheme;
+    use UseInputTheme, LivewireAttributes;
 
     protected string $component = 'input';
 
     public string $name;
     public string $id;
     public ?string $decimals;
-    public ?string $decimalsFixed;
     public ?string $iconLeft;
     public ?string $iconLeftSize;
     public ?string $iconRight;
     public ?string $iconRightSize;
-    public ?string $max;
-    public ?string $min;
-    public ?string $onblur;
-    public ?string $onchange;
+    public ?float $max;
+    public ?float $min;
     public ?string $placeholder;
     public ?string $prefixText;
-    public ?string $step;
+    public ?float $step;
     public ?string $suffixText;
     public ?string $type;
     public ?string $value;
+    public ?string $action = null;
 
     public array $iconLeftStyles = [];
     public array $iconRightStyles = [];
@@ -46,14 +45,11 @@ class Input extends Component
         string $id = null,
 
         string $decimals = null,
-        string $decimalsFixed = null,
         string $default = null,
-        string $max = null,
-        string $min = null,
-        string $onblur = null,
-        string $onchange = null,
+        float|string $max = null,
+        float|string $min = null,
         string $placeholder = null,
-        string $step = null,
+        float|string $step = null,
         string $type = null,
         string $value = null,
 
@@ -121,27 +117,23 @@ class Input extends Component
         string $suffixRounded = null,
         string $suffixShadow = null,
 
+        string $iconLeft = null,
+        string $iconRight = null,
+
         string $prefixText = null,
         string $suffixText = null,
-
-        string $iconLeft = null,
-        string $iconRight = null
 
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-
         $this->decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
-        $this->decimalsFixed = $this->style('input', 'decimals-fixed', $decimalsFixed, '', $this->component);
         $default = $this->style('input', 'default', $default, '', $this->component);
         $this->iconLeft = $this->style('input', 'icon-left', $iconLeft, '', $this->component);
         $this->iconRight = $this->style('input', 'icon-right', $iconRight, '', $this->component);
-        $this->max = $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
-        $this->min = $this->validateNumber($this->style('input', 'min', $min, '', $this->component), 'Min');
-        $this->onblur = $this->style('input', 'onblur', $onblur, '', $this->component);
-        $this->onchange = $this->style('input', 'onchange', $onchange, '', $this->component);
         $this->prefixText = $this->style('input', 'prefix-text', $prefixText, '', $this->component);
-        $this->step = $this->validateNumber($this->decimals($decimals, $step), 'Step');
+        $this->step = $this->setStep($decimals, $step);
+        $this->min = $this->setMin($min);
+        $this->max = $this->setMax($max);
         $this->suffixText = $this->style('input', 'suffix-text', $suffixText, '', $this->component);
         $this->type = $this->style('input', 'type', $type, '', $this->component);
 
@@ -268,7 +260,7 @@ class Input extends Component
         }
     }
 
-    private function decimals(?string $decimals, ?string $step)
+    private function decimals(mixed $decimals, mixed $step): mixed
     {
         $decimals = $this->style('input', 'decimals', $decimals, '', $this->component);
         $step = $this->style('input', 'step', $step, '', $this->component);
@@ -293,7 +285,7 @@ class Input extends Component
 
     private function validateMinMax(): void
     {
-        if ($this->min > $this->max) {
+        if ($this->min > $this->max && ! is_null($this->max)) {
             throw (new InputNumberException)::make('minMaxSolution', 'Specified min cannot be higher than specified max');
         }
     }
@@ -313,36 +305,17 @@ class Input extends Component
         }
     }
 
-    private function validateNumber($number, $type): ?string
+    private function validateNumber($number, $type): ?float
     {
         if ($number === '' || is_null($number)) {
             return null;
         }
 
         if (is_numeric($number)) {
-            return $number;
+            return (float) $number;
         }
 
         throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric ['.$type.']');
-    }
-
-    public function formatOnBlur(): string
-    {
-        $search = [
-            '{{ $decimals }}',
-            '{{ $fixed }}',
-            '{{ $max }}',
-            '{{ $min }}',
-        ];
-
-        $replace = [
-            $this->decimals === '' ? '0' : $this->decimals,
-            $this->decimalsFixed ? 'true' : 'false',
-            is_null($this->max) ? "''" : $this->max,
-            is_null($this->min) ? "''" : $this->min,
-        ];
-
-        return str_replace($search, $replace, $this->onblur);
     }
 
     private function formatValue($value, $default): void
@@ -351,13 +324,22 @@ class Input extends Component
         $this->value = old($this->name, $value ?? '') === '' ? null : old($this->name, $value ?? '');
 
         if ($this->decimals && ! is_null($this->value)) {
-
-            $options = $this->decimals;
-            if ($this->decimalsFixed) {
-                $options .=  '|fixed';
-            }
-
-            $this->value = app(DecimalFormatter::class)->format($this->value, $options);
+            $this->value = app(DecimalFormatter::class)->format($this->value, $this->decimals);
         }
+    }
+
+    private function setStep(?string $decimals, float|string|null $step): ?float
+    {
+        return $step === 'none' ? null : $this->validateNumber($this->decimals($decimals, $step), 'Step');
+    }
+
+    private function setMin(float|string|null $min): ?float
+    {
+        return $min === 'none' ? null : $this->validateNumber($this->style('input', 'min', $min, '', $this->component), 'Min');
+    }
+
+    private function setMax(float|string|null $max): ?float
+    {
+        return $max === 'none' ? null : $this->validateNumber($this->style('input', 'max', $max, '', $this->component), 'Max');
     }
 }

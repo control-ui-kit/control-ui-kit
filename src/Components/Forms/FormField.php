@@ -18,7 +18,12 @@ class FormField extends Component
         string $layout,
         string $input = null
     ) {
-        $this->input = $input ? 'input-' . $input : null;
+        if ($input === 'input') {
+            $this->input = 'input';
+        } else {
+            $this->input = $input ? 'input-' . $input : null;
+        }
+
         $this->layout = 'form-layouts-' . $layout;
     }
 

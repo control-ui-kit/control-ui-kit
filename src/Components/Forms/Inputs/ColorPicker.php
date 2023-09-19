@@ -31,7 +31,7 @@ class ColorPicker extends Component
         string $rounded = null,
         string $shadow = null,
         string $id = null,
-        string $value = '1'
+        string $value = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

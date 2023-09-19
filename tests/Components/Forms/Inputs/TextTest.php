@@ -209,6 +209,45 @@ class TextTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_text_component_can_be_rendered_with_default_left_icon(): void
+    {
+        Config::set('themes.default.input-text.icon-left', 'icon-dot');
+
+        $template = <<<'HTML'
+            <x-input-text name="name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
+                    <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </div>
+                    <input name="name" type="text" id="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_default_left_icon_disabled(): void
+    {
+        Config::set('themes.default.input-text.icon-left', 'icon-dot');
+
+        $template = <<<'HTML'
+            <x-input-text name="name" icon-left="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_text_component_can_be_rendered_with_right_icon(): void
     {
         $template = <<<'HTML'
@@ -424,7 +463,7 @@ class TextTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="name" type="text" id="name" class="" />
+                <input name="name" type="text" id="name" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;

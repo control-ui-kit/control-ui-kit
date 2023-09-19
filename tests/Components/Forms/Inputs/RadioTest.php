@@ -82,7 +82,7 @@ class RadioTest extends ComponentTestCase
     public function an_input_radio_component_can_be_rendered_when_checked(): void
     {
         $template = <<<'HTML'
-            <x-input-radio name="name" value="value_field" checked="1" class="" />
+            <x-input-radio name="name" value="value_field" checked="1" />
             HTML;
 
         $expected = <<<'HTML'

@@ -39,7 +39,7 @@ class Bar extends Component
     public ?string $labelPadding;
 
     public ?string $title;
-    public ?string $titleDisplay;
+    public ?bool $titleDisplay;
     public ?string $titlePosition;
     public ?string $titleSize;
     public ?string $titleFamily;
@@ -76,9 +76,9 @@ class Bar extends Component
     public ?string $yTickPadding;
     public ?string $yTickZIndex;
 
-    public ?string $tooltipEnabled;
+    public ?bool $tooltipEnabled;
     public ?string $tooltipMode;
-    public ?string $tooltipIntersect;
+    public ?bool $tooltipIntersect;
     public ?string $tooltipPosition;
     public ?string $tooltipBackgroundColor;
 
@@ -111,10 +111,10 @@ class Bar extends Component
     public ?string $tooltipCaretSize;
     public ?string $tooltipCornerRadius;
     public ?string $tooltipMultiKeyBackground;
-    public ?string $tooltipDisplayColors;
+    public ?bool $tooltipDisplayColors;
     public ?string $tooltipBorderColor;
     public ?string $tooltipBorderWidth;
-    public ?string $tooltipRtl;
+    public ?bool $tooltipRtl;
 
     public function __construct(
         string $id,
@@ -135,7 +135,7 @@ class Bar extends Component
         string $labelPadding = null,
 
         string $title = null,
-        string $titleDisplay = null,
+        bool $titleDisplay = null,
         string $titlePosition = null,
         string $titleSize = null,
         string $titleFamily = null,
@@ -171,9 +171,9 @@ class Bar extends Component
         string $yTickPadding = null,
         string $yTickZIndex = null,
 
-        string $tooltipEnabled = null,
+        bool $tooltipEnabled = null,
         string $tooltipMode = null,
-        string $tooltipIntersect = null,
+        bool $tooltipIntersect = null,
         string $tooltipPosition = null,
         string $tooltipBackgroundColor = null,
         string $tooltipXPadding = null,
@@ -182,10 +182,10 @@ class Bar extends Component
         string $tooltipCaretSize = null,
         string $tooltipCornerRadius = null,
         string $tooltipMultiKeyBackground = null,
-        string $tooltipDisplayColors = null,
+        bool $tooltipDisplayColors = null,
         string $tooltipBorderColor = null,
         string $tooltipBorderWidth = null,
-        string $tooltipRtl = null,
+        bool $tooltipRtl = null,
 
         string $tooltipTitleFamily = null,
         string $tooltipTitleSize = null,

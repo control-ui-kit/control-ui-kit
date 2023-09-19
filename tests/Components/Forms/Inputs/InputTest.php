@@ -21,8 +21,6 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.icon-right', '');
         Config::set('themes.default.input.min', null);
         Config::set('themes.default.input.max', null);
-        Config::set('themes.default.input.onblur', '');
-        Config::set('themes.default.input.onchange', '');
         Config::set('themes.default.input.prefix-text', '');
         Config::set('themes.default.input.step', '');
         Config::set('themes.default.input.suffix-text', '');
@@ -438,7 +436,7 @@ class InputTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
-                <input name="name" type="text" id="name" class="" />
+                <input name="name" type="text" id="name" />
                 <div class="suffix-background suffix-border suffix-color suffix-font suffix-other suffix-padding suffix-rounded suffix-shadow"> ::suffix </div>
             </div>
             HTML;
@@ -665,43 +663,11 @@ class InputTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_input_component_uses_config_onblur_when_none_is_passed(): void
-    {
-        Config::set('themes.default.input.onblur', '::onblur');
-
-        $template = <<<'HTML'
-            <x-input name="name" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="text" id="name" onblur="::onblur" class="background border color font other padding rounded shadow width" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
-    public function an_input_component_uses_config_onchange_when_none_is_passed(): void
-    {
-        Config::set('themes.default.input.onblur', '::onchange');
-
-        $template = <<<'HTML'
-            <x-input name="name" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="text" id="name" onblur="::onchange" class="background border color font other padding rounded shadow width" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
     public function an_input_component_uses_config_min_max_step_when_none_is_passed(): void
     {
-        Config::set('themes.default.input.min', '5');
-        Config::set('themes.default.input.max', '100');
-        Config::set('themes.default.input.step', '5');
+        Config::set('themes.default.input.min', 5);
+        Config::set('themes.default.input.max', 100);
+        Config::set('themes.default.input.step', 5);
 
         $template = <<<'HTML'
             <x-input name="name" />
@@ -718,7 +684,7 @@ class InputTest extends ComponentTestCase
     /** @test */
     public function an_input_component_uses_config_decimals_when_none_is_passed(): void
     {
-        Config::set('themes.default.input.decimals', '2');
+        Config::set('themes.default.input.decimals', 2);
 
         $template = <<<'HTML'
             <x-input name="name" />
@@ -825,13 +791,59 @@ class InputTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_input_component_will_render_with_inline_step(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="test" type="number" step=2.0 />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" step="2" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function an_input_component_with_default_step_can_be_disabled_inline(): void
     {
         Config::set('themes.default.input.default', '');
-        Config::set('themes.default.input.step', '1');
+        Config::set('themes.default.input.step', 1);
 
         $template = <<<'HTML'
             <x-input name="test" type="number" step="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_default_min_can_be_disabled_inline(): void
+    {
+        Config::set('themes.default.input.min', 0);
+
+        $template = <<<'HTML'
+            <x-input name="test" type="number" min="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="test" type="number" id="test" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_default_max_can_be_disabled_inline(): void
+    {
+        Config::set('themes.default.input.max', 10);
+
+        $template = <<<'HTML'
+            <x-input name="test" type="number" max="none" />
             HTML;
 
         $expected = <<<'HTML'
@@ -877,5 +889,161 @@ class InputTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_a_default_left_icon_disabled(): void
+    {
+        Config::set('themes.default.input.icon-left', 'icon-dot');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" icon-left="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_a_default_right_icon_disabled(): void
+    {
+        Config::set('themes.default.input.icon-right', 'icon-dot');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" icon-right="none" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_a_default_left_icon_set_to_none(): void
+    {
+        Config::set('themes.default.input.icon-left', 'none');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_a_default_right_icon_set_to_none(): void
+    {
+        Config::set('themes.default.input.icon-right', 'none');
+
+        $template = <<<'HTML'
+            <x-input name="name" type="text" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_can_be_rendered_with_decimal_formatting(): void
+    {
+        $template = <<<'HTML'
+            <x-input name="name" type="text" decimals="2" value="24.99999" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="25" step="0.01" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_min_higher_than_max_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Specified min cannot be higher than specified max');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="9" min="19" max="9" step="1" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_value_lower_than_min_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Value cannot be lower than specified min');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="1" min="10" max="20" step="1" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_value_higher_than_max_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Value cannot be higher than specified max');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="10" min="0" max="9" step="1" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_non_numeric_step_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Number not numeric [Step]');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="9" min="0" max="9" step="s" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_non_numeric_min_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Number not numeric [Min]');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="9" min="s" max="9" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
+
+    /** @test */
+    public function an_input_component_with_non_numeric_max_throws_an_exception(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Number not numeric [Max]');
+
+        $template = <<<'HTML'
+            <x-input name="age" value="9" min="0" max="z" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
     }
 }

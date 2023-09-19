@@ -7,8 +7,6 @@ const YearDropdownPlugin = function (pluginConfig) {
         yearsAfter: 2,
     };
 
-    let yearInput = document.getElementById('inputField');
-
     let config = {};
     for (let key in defaultConfig) {
         config[key] = pluginConfig && pluginConfig[key] !== undefined ? pluginConfig[key] : defaultConfig[key];
@@ -24,7 +22,6 @@ const YearDropdownPlugin = function (pluginConfig) {
     let selectedYear = getYear(config.date);
     let yearDropdown = document.createElement("select");
     yearDropdown.setAttribute("id", config.id + '_year');
-    // yearDropdown.setAttribute("class", "numInput cur-year");
 
     let createSelectElement = function () {
         let start = new Date().getFullYear() - config.yearsBefore;
@@ -38,6 +35,43 @@ const YearDropdownPlugin = function (pluginConfig) {
         }
         yearDropdown.value = selectedYear;
     };
+
+    let addMissingIdsToInputs = function () {
+
+        // Remove year selector
+        document.querySelectorAll('.numInputWrapper > .cur-year').forEach(function (el) {
+            el.remove()
+        })
+
+        // Add id to hour fields
+        document.querySelectorAll('.numInputWrapper > .flatpickr-hour').forEach(function (el, id) {
+            if (!el.id) {
+                el.id = "hour_" + id;
+            }
+        })
+
+        // Add id to minute fields
+        document.querySelectorAll('.numInputWrapper > .flatpickr-minute').forEach(function (el, id) {
+            if (!el.id) {
+                el.id = "minute_" + id;
+            }
+        })
+
+        // Add id to seconds fields
+        document.querySelectorAll('.numInputWrapper > .flatpickr-second').forEach(function (el, id) {
+            if (!el.id) {
+                el.id = "seconds_" + id;
+            }
+        })
+
+        // Add missing IDs to month selector
+        document.querySelectorAll('.flatpickr-monthDropdown-months').forEach(function (el, id) {
+            if (!el.id) {
+                el.id = "month_" + id;
+            }
+        })
+
+    }
 
     return function (fp) {
 
@@ -56,6 +90,8 @@ const YearDropdownPlugin = function (pluginConfig) {
         });
 
         fp.yearSelectContainer.append(yearDropdown);
+
+        addMissingIdsToInputs();
 
         return {
             onReady: function onReady() {

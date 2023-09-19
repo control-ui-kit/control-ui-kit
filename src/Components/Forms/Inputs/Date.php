@@ -7,13 +7,14 @@ namespace ControlUIKit\Components\Forms\Inputs;
 use Carbon\Carbon;
 use ControlUIKit\Helpers\TimeZoneService;
 use ControlUIKit\Traits\DateInputFunctions;
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Date extends Component
 {
-    use UseInputTheme, DateInputFunctions;
+    use UseInputTheme, DateInputFunctions, LivewireAttributes;
 
     protected string $component = 'input-date';
 
@@ -25,12 +26,12 @@ class Date extends Component
     public ?string $displayFormat;
     public ?string $min;
     public ?string $max;
-    public ?string $weekNumbers;
-    public ?string $showTime;
-    public ?string $showSeconds;
+    public ?bool $weekNumbers;
+    public ?bool $showTime;
+    public ?bool $showSeconds;
     public ?string $clockType;
 
-    public ?string $timeOnly;
+    public ?bool $timeOnly;
     public ?string $hourStep;
     public ?string $minuteStep;
 
@@ -88,11 +89,11 @@ class Date extends Component
         string $data = null,
         string $min = null,
         string $max = null,
-        string $weekNumbers = null,
-        string $showTime = null,
-        string $showSeconds = null,
+        bool $weekNumbers = null,
+        bool $showTime = null,
+        bool $showSeconds = null,
         string $clockType = null,
-        string $timeOnly = null,
+        bool $timeOnly = null,
         string $hourStep = null,
         string $minuteStep = null,
         string $icon = null,
@@ -201,11 +202,11 @@ class Date extends Component
     private function setTimeFromFormat(): void
     {
         if (! $this->showTime && $this->timeFormatExists($this->format)) {
-            $this->showTime = 'true';
+            $this->showTime = true;
         }
 
         if (! $this->showSeconds && str_contains($this->format, ':S')) {
-            $this->showSeconds = 'true';
+            $this->showSeconds = true;
         }
 
         if ($this->clockType === '24' && str_contains($this->format, 'K')) {

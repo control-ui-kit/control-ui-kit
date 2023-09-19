@@ -38,7 +38,7 @@ class Donut extends Component
     public ?string $labelFamily;
     public ?string $labelPadding;
 
-    public ?string $titleDisplay;
+    public ?bool $titleDisplay;
     public ?string $titlePosition;
     public ?string $titleSize;
     public ?string $titleFamily;
@@ -67,7 +67,7 @@ class Donut extends Component
         string $labelFamily = null,
         string $labelPadding = null,
 
-        string $titleDisplay = null,
+        bool $titleDisplay = null,
         string $titlePosition = null,
         string $titleSize = null,
         string $titleFamily = null,

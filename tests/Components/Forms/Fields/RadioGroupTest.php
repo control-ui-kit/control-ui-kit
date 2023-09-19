@@ -49,7 +49,7 @@ class RadioGroupTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="md:flex md:items-start md:space-x-2 min-h-[2rem]">
-                <label for="format" class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2">
+                <label class="text-sm w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2">
                     <p class="font-medium flex items-center space-x-1.5 min-h-[2rem]"> <span>The Label</span> </p>
                     <p class="hidden sm:block text-xs text-muted leading-relaxed pr-2">Some help text</p>
                 </label>

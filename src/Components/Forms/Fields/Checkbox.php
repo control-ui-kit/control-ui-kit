@@ -19,7 +19,6 @@ class Checkbox extends Component
         string $help = null
     ) {
         $this->name = $name;
-
         $this->label = $label ?? '';
         $this->help = $help ?? '';
     }

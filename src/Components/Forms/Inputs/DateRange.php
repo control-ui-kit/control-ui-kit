@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Inputs;
 
 use ControlUIKit\Traits\DateInputFunctions;
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class DateRange extends Component
 {
-    use UseInputTheme, DateInputFunctions;
+    use UseInputTheme, DateInputFunctions, LivewireAttributes;
 
     protected string $component = 'input-date-range';
 
@@ -25,9 +26,8 @@ class DateRange extends Component
     public ?string $displayFormat;
     public ?string $min;
     public ?string $max;
-    public ?string $weekNumbers;
+    public ?bool $weekNumbers;
     public ?string $separator;
-
     public ?string $lang;
     public bool $langOverride = false;
     public ?string $icon;
@@ -66,7 +66,7 @@ class DateRange extends Component
         string $data = null,
         string $min = null,
         string $max = null,
-        string $weekNumbers = null,
+        bool $weekNumbers = null,
         string $separator = null,
         string $icon = null,
         string $lang = null,

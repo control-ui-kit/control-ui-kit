@@ -1,23 +1,11 @@
 @php
-    $wireModel = null;
-    $wireKey = null;
-    $defer = null;
-    $live = null;
-    foreach ($attributes as $k => $v) {
-        if (str_starts_with($k, 'wire:model')) {
-            $wireModel = $v;
-            $wireKey = $k;
-            $defer = str_contains($k, '.defer') ? '.defer' : '';
-            $live = str_contains($k, '.live') ? '.live' : '';
-            break;
-        }
-    }
+    [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
     x-data="Components.flatpickr({
         mode: 'single',
         id: '{{ $id }}',
-        data:@if($wireModel) @entangle($wireModel){{ $defer.$live }} @else '{{ $value }}'@endif,
+        data:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else '{{ $value }}'@endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',
@@ -57,7 +45,7 @@
            type="text"
            id="{{ $id }}_display"
            placeholder="{{ $displayFormat }}"
-           {{ $attributes->except(['x-model' , $wireKey])->merge($classes()) }}
+           {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model'])->merge($classes()) }}
            autocomplete="off"
            x-on:blur="updateData()"
     />

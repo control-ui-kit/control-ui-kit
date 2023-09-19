@@ -17,7 +17,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -67,7 +67,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -150,7 +150,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -200,7 +200,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -283,7 +283,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_format_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -333,7 +333,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -416,7 +416,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_label_changes_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -466,7 +466,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -549,7 +549,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_x_margin_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -599,7 +599,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -682,7 +682,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_y_margin_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -815,7 +815,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_x_label_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -865,7 +865,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -949,7 +949,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_y_label_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -999,7 +999,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -1082,7 +1082,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_x_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -1132,7 +1132,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]
@@ -1216,7 +1216,7 @@ class MatrixTest extends ComponentTestCase
     public function a_matrix_chart_component_with_y_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-matrix-chart 
+            <x-matrix-chart
                 id="matrix"
                 :data="[
                     ['x' => '2021-03-17', 'y' => '00:00 - 02:59', 'v' => 4046],
@@ -1266,7 +1266,7 @@ class MatrixTest extends ComponentTestCase
                                     height(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.y.ticks.length;
-            
+
                                         return (a.bottom - a.top) / nt - 1;
                                     }
                                 }]

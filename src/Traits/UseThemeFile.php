@@ -21,27 +21,26 @@ trait UseThemeFile
         return app('control-ui-kit.theme');
     }
 
-    private function appendStyles($input): ?string
+    private function appendStyles($input): mixed
     {
         if (is_null($input)) {
             return null;
+        }
+
+        if (! is_string($input)) {
+            return $input;
         }
 
         $append = str_starts_with($input, '...');
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 
-    private function style(string $component, string $attribute, ?string $input, ?string $keyMerge = null, ?string $keyOverride = null): bool|string
+    private function style(string $component, string $attribute, mixed $input, ?string $keyMerge = null, ?string $keyOverride = null): mixed
     {
         $append_input = $this->appendStyles($input);
 
         if ($append_input || is_null($input)) {
             $theme = $this->theme();
-            $key = "{$theme}.{$component}.{$attribute}";
-
-            if ($component === 'dropdown') {
-                ray($key);
-            }
 
             $configStyle = $this->componentStyle($component, $attribute);
 
@@ -65,7 +64,15 @@ trait UseThemeFile
                 $configStyle .= ($configStyle === config($key)) ? '' : ' ' . config($key);
             }
 
-            return is_null($configStyle) && is_null($append_input) ? '' : trim($configStyle . $append_input);
+            if (is_bool($append_input)) {
+                $value = $append_input;
+            } else if (is_bool($configStyle)) {
+                $value = $configStyle;
+            } else {
+                $value = trim($configStyle . $append_input);
+            }
+
+            return is_null($configStyle) && is_null($append_input) ? '' : $value;
         }
 
         return ($input === 'none' ? '' : $input);

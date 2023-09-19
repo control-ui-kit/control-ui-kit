@@ -15,7 +15,6 @@
         editorFormat: 'hex',
         onDone: function(color) {
             document.getElementById('{{ $id }}').value = color.hex.substr(0, 7);
-
             document.getElementById('custom_{{ $id }}').style.background = color.hex.substr(0, 7);
         },
     });

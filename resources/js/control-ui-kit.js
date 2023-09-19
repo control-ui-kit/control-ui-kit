@@ -214,6 +214,50 @@ window.Components = {
             }
         }
     },
+    inputNumber(options) {
+        return {
+            ...options,
+            display: null,
+            init() {
+                this.setInitialValues()
+                this.$watch('value', (value) => {
+                    value = this.formatLimits(value)
+                    if (this.value !== value) {
+                        this.value = this.formatLimits(this.value)
+                        return;
+                    }
+                    this.formatDisplay(value)
+                })
+                this.$watch('display', () => {
+                    this.formatDisplay(this.display)
+                    if (this.value !== parseFloat(this.display)) {
+                        this.value = parseFloat(this.display)
+                    }
+                })
+            },
+            setInitialValues() {
+                this.formatDisplay(this.value)
+                this.value = parseFloat(this.value)
+            },
+            formatDisplay(value) {
+                let display = this.formatNumber(value)
+                if (this.display !== display) {
+                    this.display = display
+                }
+            },
+            formatNumber(value) {
+                let number = this.formatLimits(value)
+                number = +(Math.round(number + ("e+" + this.decimals)) + ("e-" + this.decimals))
+                return number.toFixed(this.decimals)
+            },
+            formatLimits(value) {
+                let number = String(value).replace(/[^\d\.-]/g, "") * 1
+                number = this.min !== undefined && parseFloat(number) < this.min ? this.min : number
+                number = this.max !== undefined && parseFloat(number) > this.max ? this.max : number
+                return number.toFixed(this.decimals) * 1
+            },
+        }
+    },
     flatpickr(options) {
         return {
             ...options,
@@ -459,24 +503,6 @@ window.Components = {
                 }, 150)
             }
         }
-    }
-}
-
-function _controlNumber(input, decimals, min, max, fixed) {
-    let number = input.value.replace(/[^\d\.-]/g, "") * 1
-
-    if (min !== '' && number < min) {
-        number = min
-    }
-
-    if (max !== '' && number > max) {
-        number = max
-    }
-
-    input.value = +(Math.round(number + ("e+" + decimals))  + ("e-" + decimals))
-
-    if (fixed) {
-        input.value = (input.value * 1).toFixed(decimals)
     }
 }
 

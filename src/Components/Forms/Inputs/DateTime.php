@@ -19,7 +19,7 @@ class DateTime extends Component
     public string $id;
     public ?string $format;
     public string $dataFormat;
-    public ?string $showSeconds;
+    public ?bool $showSeconds;
     public ?string $clockType;
     public ?string $hourStep;
     public ?string $minuteStep;
@@ -34,7 +34,7 @@ class DateTime extends Component
         string $id = null,
         string $format = null,
         string $data = null,
-        string $showSeconds = null,
+        bool $showSeconds = null,
         string $clockType = null,
         string $hourStep = null,
         string $minuteStep = null,

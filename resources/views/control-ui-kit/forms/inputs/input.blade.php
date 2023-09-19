@@ -3,10 +3,8 @@
         name="{{ $name }}"
         type="{{ $type }}"
         id="{{ $id }}"
-        @isset($value) value="{{ $value }}" @endisset
+        @if(! is_null($value)) value="{{ $value }}" @endif
         @if($placeholder) placeholder="{{ $placeholder }}" @endif
-        @if($onblur) onblur="{{ $formatOnBlur() }}" @endif
-        @if($onchange) onchange="{{ $onchange }}" @endif
         @isset($min) min="{{ $min }}" @endisset
         @isset($max) max="{{ $max }}" @endisset
         @isset($step) step="{{ $step }}" @endisset
@@ -22,15 +20,12 @@
         <input name="{{ $name }}"
                type="{{ $type }}"
                id="{{ $id }}"
-               @isset($value) value="{{ $value }}" @endisset
+               @if(! is_null($value)) value="{{ $value }}" @endif
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
-               @if($onblur) onblur="{{ $formatOnBlur() }}" @endif
-               @if($onchange) onchange="{{ $onchange }}" @endif
                @isset($min) min="{{ $min }}" @endisset
                @isset($max) max="{{ $max }}" @endisset
                @isset($step) step="{{ $step }}" @endisset
-               class="{{ $inputClasses() }}"
-               {{ $attributes->except(['class', 'required']) }}
+               {{ $attributes->merge($inputClasses())->except(['required']) }}
         />
         @if ($iconRight)
                 <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />

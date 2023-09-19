@@ -460,7 +460,7 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
         'color' => 'text-input placeholder-input',
-        'font' => '',
+        'font' => 'text-sm',
         'other' => '',
         'padding' => 'py-1.5 px-3',
         'rounded' => 'rounded',
@@ -526,14 +526,11 @@ return [
 
         // Config
         'decimals' => '',
-        'decimals-fixed' => false,
         'default' => '',
         'icon-left' => '',
         'icon-right' => '',
         'max' => null,
         'min' => null,
-        'onblur' => '',
-        'onchange' => '',
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
@@ -565,11 +562,11 @@ return [
 
     'input-currency' => [
         'decimals' => 2,
-        'decimals-fixed' => true,
-        'default' => '0.00',
+        'default' => 0.00,
         'font' => 'text-right text-sm',
-        'input-font' => 'text-right',
-        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
+        'input-font' => 'text-right text-sm',
+        'min' => 0,
+        'max' => null,
         'prefix-text' => '£',
         'type' => 'number',
     ],
@@ -596,7 +593,7 @@ return [
         'icon-rounded' => '',
         'icon-shadow' => '',
 
-        'timezone-background' => 'bg-transparent',
+        'timezone-background' => 'bg-input',
         'timezone-border' => 'border-0 focus:outline-none focus:ring-0',
         'timezone-color' => 'text-input placeholder-input',
         'timezone-font' => 'text-xs',
@@ -678,7 +675,6 @@ return [
         'default' => 0,
         'font' => 'text-right text-sm',
         'input-font' => 'text-right',
-        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'type' => 'number',
     ],
 
@@ -688,10 +684,10 @@ return [
     ],
 
     'input-number' => [
+        'decimals' => 0,
         'default' => 0,
         'font' => 'text-right text-sm',
         'input-font' => 'text-right',
-        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'step' => 1,
         'type' => 'number',
     ],
@@ -703,13 +699,13 @@ return [
 
     'input-percent' => [
         'default' => 0,
+        'decimals' => 2,
         'font' => 'text-right text-sm',
-        'input-font' => 'text-right',
+        'input-font' => 'text-right text-sm',
         'icon-right' => 'icon-percent',
-        'onblur' => '_controlNumber(this, {{ $decimals }}, {{ $min }}, {{ $max }}, {{ $fixed }})',
         'max' => 100,
         'min' => 0,
-        'step' => 1,
+        'step' => 0.01,
         'type' => 'number',
     ],
 
@@ -735,6 +731,17 @@ return [
 
         'min' => '1',
         'max' => '100',
+    ],
+
+    'input-royalty' => [
+        'decimals' => 2,
+        'default' => 0.00,
+        'font' => 'text-right text-sm',
+        'input-font' => 'text-right text-sm',
+        'min' => 0,
+        'max' => null,
+        'prefix-text' => '$',
+        'type' => 'number',
     ],
 
     'input-search' => [
@@ -843,7 +850,6 @@ return [
 
     'input-text' => [
         'type' => 'text',
-        'font' => 'text-sm',
     ],
 
     'input-textarea' => [
@@ -909,6 +915,11 @@ return [
         'switch-size' => 'h-5 w-5',
         'switch-state-off' => 'translate-x-0',
         'switch-state-on' => 'translate-x-[22px]',
+    ],
+
+    'input-url' => [
+        'prefix-text' => '',
+        'type' => 'url',
     ],
 
     'layout-body' => [

@@ -40,9 +40,11 @@ trait UseInputTheme
         return $classList ? ['class' => $classList] : [];
     }
 
-    public function inputClasses(): string
+    public function inputClasses(): array
     {
-        return $this->classList($this->inputStyles);
+        $classList = $this->classList($this->inputStyles);
+
+        return $classList ? ['class' => $classList] : [];
     }
 
     private function isValidType(string $type): bool

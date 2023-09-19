@@ -90,7 +90,7 @@ class IconsTest extends ComponentTestCase
     public function an_icon_component_can_be_rendered_with_styles_array(): void
     {
         $template = <<<'HTML'
-            @php $styles = [
+            <x-icon-add :styles="[
                 'background' => 'custom-background',
                 'border' => 'custom-border',
                 'color' => 'custom-color',
@@ -99,8 +99,7 @@ class IconsTest extends ComponentTestCase
                 'rounded' => 'custom-rounded',
                 'shadow' => 'custom-shadow',
                 'size' => 'custom-size',
-            ]; @endphp
-            <x-icon-add :styles="$styles" />
+            ]" />
             HTML;
 
         $expected = <<<'HTML'

@@ -106,14 +106,14 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_in_key_value_format(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -162,7 +162,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered__in_native_format(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 native
                 name="language"
@@ -170,7 +170,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
                 <option value="" selected> Please Select ... </option>
                 <option value="1"> English </option>
@@ -185,14 +185,14 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_in_array_key_value_format(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => ['text' => 'English'], 2 => ['text' => 'Spanish'] ]"
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -241,14 +241,14 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_in_text_key_value_format(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 'en' => 'English', 'es' => 'Spanish' ]"
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -297,7 +297,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_button_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 button-background="custom-background"
@@ -313,7 +313,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="custom-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -362,7 +362,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_button_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 button-background="none"
@@ -378,7 +378,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class=" relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -427,7 +427,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_list_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 list-background="custom-background"
@@ -443,7 +443,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -492,7 +492,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_list_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 list-background="none"
@@ -508,7 +508,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -557,7 +557,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_option_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 option-background="custom-background"
@@ -575,7 +575,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -624,7 +624,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_option_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 option-background="none"
@@ -642,7 +642,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -691,7 +691,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_text_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 text-background="custom-background"
@@ -708,7 +708,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -757,7 +757,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_text_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 text-background="none"
@@ -774,7 +774,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -823,7 +823,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_subtext_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 subtext-background="custom-background"
@@ -843,7 +843,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -892,7 +892,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_subtext_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 subtext-background="none"
@@ -912,7 +912,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -961,7 +961,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_check_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 check-background="custom-background"
@@ -980,7 +980,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1029,7 +1029,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_check_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 check-background="none"
@@ -1046,7 +1046,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1095,7 +1095,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_custom_icon_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 icon-background="custom-background"
@@ -1111,7 +1111,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1160,7 +1160,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_no_icon_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 icon-background="none"
@@ -1175,7 +1175,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1224,7 +1224,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_subtext(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[
@@ -1234,7 +1234,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1283,7 +1283,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_bespoke_subtext_name(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 subtext="some-name"
@@ -1294,7 +1294,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1343,7 +1343,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_bespoke_text_name(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 text="some-name"
@@ -1354,7 +1354,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1403,7 +1403,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_image(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[
@@ -1413,7 +1413,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1468,7 +1468,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_image_name(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 image="image-url"
@@ -1479,7 +1479,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1534,7 +1534,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_image_and_custom_image_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 image-border="custom-border"
@@ -1550,7 +1550,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1605,7 +1605,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_image_and_no_image_styles(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 image-border="none"
@@ -1621,7 +1621,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1676,7 +1676,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_as_required(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -1684,7 +1684,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 1 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="1" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1725,7 +1725,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_please_select_text(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -1733,7 +1733,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: null })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1782,7 +1782,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_array_please_select_value_and_text(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -1790,7 +1790,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 0 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="0" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1839,7 +1839,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_please_select_value_text_and_trans_via_array(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -1847,7 +1847,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 0 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="0" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1899,14 +1899,14 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-value', '::please-select-value');
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
 
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '::please-select-value' })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -1959,14 +1959,14 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
         Config::set('themes.default.input-select.please-select-trans', 'ui.please-select');
 
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '::please-select-value' })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2017,7 +2017,7 @@ class SelectTest extends ComponentTestCase
     {
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
 
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 native
                 name="language"
@@ -2026,7 +2026,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
                 <option value="0" selected> ::please-select-text </option>
                 <option value="1"> English </option>
@@ -2044,7 +2044,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
         Config::set('themes.default.input-select.please-select-trans', 'ui.please-select');
 
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -2052,7 +2052,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: '::please-select-value' })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2101,7 +2101,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_in_key_value_format_with_a_selected_value_and_required(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1 => 'English', 2 => 'Spanish' ]"
@@ -2110,7 +2110,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 2 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="2" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2151,7 +2151,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_basic_int_array(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 1, 2 ]"
@@ -2160,7 +2160,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 2 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="2" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2201,7 +2201,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_basic_string_array(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[ 'a', 'b' ]"
@@ -2210,7 +2210,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 'b' })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="b" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2251,7 +2251,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_inline_int_values(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 options="1, 2"
@@ -2260,7 +2260,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 2 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="2" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2301,7 +2301,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_inline_string_values(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 options="a, b"
@@ -2310,7 +2310,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 'b' })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="b" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2351,7 +2351,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_multi_dimensional_array(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="[
@@ -2364,7 +2364,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 4 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2405,7 +2405,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_builder_collection_data(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="collect([
@@ -2418,7 +2418,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 4 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2459,7 +2459,7 @@ class SelectTest extends ComponentTestCase
     /** @test */
     public function an_input_select_component_can_be_rendered_with_eloquent_collection_data(): void
     {
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="(new Illuminate\Database\Eloquent\Collection())
@@ -2471,7 +2471,7 @@ class SelectTest extends ComponentTestCase
             />
             HTML;
 
-        $expected = <<<HTML
+        $expected = <<<'HTML'
             <div x-cloak x-data="Components.listbox({ id: 'language', value: 4 })" x-init="init()" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
@@ -2515,7 +2515,7 @@ class SelectTest extends ComponentTestCase
         $this->expectException(ViewException::class);
         $this->expectExceptionMessage('Select does not support this data type');
 
-        $template = <<<HTML
+        $template = <<<'HTML'
             <x-input-select
                 name="language"
                 :options="null"

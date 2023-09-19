@@ -19,7 +19,7 @@ class Time extends Component
     public string $id;
     public ?string $format;
     public string $dataFormat;
-    public ?string $showSeconds;
+    public ?bool $showSeconds;
     public ?string $clockType;
     public ?string $hourStep;
     public ?string $minuteStep;
@@ -30,7 +30,7 @@ class Time extends Component
         string $format = null,
         string $data = null,
         string $id = null,
-        string $showSeconds = null,
+        bool $showSeconds = null,
         string $clockType = null,
         string $hourStep = null,
         string $minuteStep = null,

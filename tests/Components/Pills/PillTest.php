@@ -374,7 +374,7 @@ class PillTest extends ComponentTestCase
     public function a_pill_component_can_be_rendered_with_styles_array(): void
     {
         $template = <<<'HTML'
-            @php $styles = [
+            <x-pill :styles="[
                 'background' => 'custom-background',
                 'border' => 'custom-border',
                 'color' => 'custom-color',
@@ -384,8 +384,7 @@ class PillTest extends ComponentTestCase
                 'rounded' => 'custom-rounded',
                 'shadow' => 'custom-shadow',
                 'size' => 'custom-size',
-            ]; @endphp
-            <x-pill :styles="$styles"> :: slot data </x-pill>
+            ]"> :: slot data </x-pill>
             HTML;
 
         $expected = <<<'HTML'
