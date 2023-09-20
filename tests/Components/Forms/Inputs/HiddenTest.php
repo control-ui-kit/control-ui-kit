@@ -16,7 +16,7 @@ class HiddenTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" value="name" />
+            <input type="hidden" name="name" id="name" value="name" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -30,7 +30,35 @@ class HiddenTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="something_else" value="name" />
+            <input type="hidden" name="name" id="something_else" value="name" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_hidden_component_with_alpine_model_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-input-hidden name="name" id="something_else" x-model="test" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input type="hidden" name="name" id="something_else" value="name" x-model="test" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_hidden_component_with_livewire_model_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-input-hidden name="name" id="something_else" wire:model="test" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input type="hidden" name="name" id="something_else" value="name" wire:model="test" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -44,7 +72,7 @@ class HiddenTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="hidden" id="name" value="test_value" />
+            <input type="hidden" name="name" id="name" value="test_value" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

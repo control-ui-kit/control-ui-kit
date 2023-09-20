@@ -13,7 +13,7 @@
     <div class="{{ $fieldWrapper }}">
         <div class="{{ $slotWrapper }}">
             @if ($input && $slot->isEmpty())
-                <x-dynamic-component :component="$input" :name="$name" {{ $attributes }} :required="$required" />
+                <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except('required') }} />
             @else
                 {{ $slot }}
             @endif

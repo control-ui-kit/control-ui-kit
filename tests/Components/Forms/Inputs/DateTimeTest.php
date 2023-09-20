@@ -144,4 +144,38 @@ class DateTimeTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_datetime_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-datetime name="datetime" icon="none" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width float-right" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <input x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_datetime_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-datetime name="datetime" icon="none" onblur="console.log(this)" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'datetime', data: '', dataFormat: 'Y-m-d H:i:S', format: 'd/m/Y H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <input x-ref="display" type="text" id="datetime_display" placeholder="DD/MM/YYYY HH:MM" class="background border color font other padding rounded shadow w-full" onblur="console.log(this)" autocomplete="off" x-on:blur="updateData()" />
+                <input name="datetime" x-ref="data" x-model="data" type="hidden" id="datetime" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

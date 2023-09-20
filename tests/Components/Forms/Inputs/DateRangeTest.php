@@ -242,4 +242,37 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
+    /** @test */
+    public function an_input_date_range_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date-range name="range" icon="none" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width float-right" x-data="Components.flatpickr({ mode: 'range', id: 'range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <input x-ref="display" type="text" id="range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                <input name="range" x-ref="data" x-model="data" type="hidden" id="range" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_date_range_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-date-range name="range" icon="none" onblur="console.log(this)" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'range', id: 'range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <input x-ref="display" type="text" id="range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" onblur="console.log(this)" autocomplete="off" x-on:blur="updateData()" />
+                <input name="range" x-ref="data" x-model="data" type="hidden" id="range" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

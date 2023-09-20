@@ -44,7 +44,7 @@
            type="text"
            id="{{ $id }}_display"
            placeholder="{{ $displayFormat }}"
-           {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model'])->merge($classes()) }}
+           {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model', 'class'])->merge($classes()) }}
            autocomplete="off"
            x-on:blur="updateData()"
     />

@@ -109,4 +109,32 @@ class TextareaTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_textarea_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-textarea name="name" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <textarea name="name" id="name" rows="rows" class="background border color font other padding rounded shadow width float-right"></textarea>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_textarea_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-textarea name="name" onblur="console.log(this)" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <textarea name="name" id="name" rows="rows" class="background border color font other padding rounded shadow width" onblur="console.log(this)"></textarea>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

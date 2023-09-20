@@ -391,4 +391,32 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function a_basic_text_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-text class="float-right">Text content</x-text>
+            HTML;
+
+        $expected = <<<'HTML'
+            <span class="color default-color font default-font other default-other size default-size float-right">Text content</span>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function a_basic_text_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-text onblur="console.log(this)">Text content</x-text>
+            HTML;
+
+        $expected = <<<'HTML'
+            <span class="color default-color font default-font other default-other size default-size" onblur="console.log(this)">Text content</span>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

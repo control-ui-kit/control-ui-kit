@@ -179,4 +179,32 @@ class CheckboxTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_checkbox_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-checkbox name="name" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow float-right" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_checkbox_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-checkbox name="name" onblur="console.log(this)" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" onblur="console.log(this)" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
