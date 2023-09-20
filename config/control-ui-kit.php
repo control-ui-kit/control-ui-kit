@@ -103,7 +103,7 @@ return [
         'layout-header' => \ControlUIKit\Components\Layouts\Header::class,
         'layout-toolbar' => \ControlUIKit\Components\Layouts\Toolbar::class,
 
-        'form-layouts-inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
+        'form-layout-inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
 
         'map-world' => \ControlUIKit\Components\Maps\World::class,
         'map-region' => \ControlUIKit\Components\Maps\Region::class,

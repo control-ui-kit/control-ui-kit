@@ -7,7 +7,7 @@ namespace Tests\Components\Forms\Fields;
 use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
-class TextTest extends ComponentTestCase
+class CheckboxTest extends ComponentTestCase
 {
     public function setUp(): void
     {
@@ -21,6 +21,7 @@ class TextTest extends ComponentTestCase
         Config::set('themes.default.error.padding', 'padding');
 
         Config::set('themes.default.form-layout-inline.field-wrapper', 'field-wrapper');
+        Config::set('themes.default.form-layout-inline.error-text', 'error-text');
         Config::set('themes.default.form-layout-inline.help-desktop', 'help-desktop');
         Config::set('themes.default.form-layout-inline.help-mobile', 'help-mobile');
         Config::set('themes.default.form-layout-inline.label-text', 'label-text');
@@ -30,34 +31,32 @@ class TextTest extends ComponentTestCase
         Config::set('themes.default.form-layout-inline.slot-wrapper', 'slot-wrapper');
         Config::set('themes.default.form-layout-inline.wrapper', 'wrapper');
 
-        Config::set('themes.default.input-text.background', 'background');
-        Config::set('themes.default.input-text.border', 'border');
-        Config::set('themes.default.input-text.color', 'color');
-        Config::set('themes.default.input-text.font', 'font');
-        Config::set('themes.default.input-text.other', 'other');
-        Config::set('themes.default.input-text.padding', 'padding');
-        Config::set('themes.default.input-text.rounded', 'rounded');
-        Config::set('themes.default.input-text.shadow', 'shadow');
-        Config::set('themes.default.input-text.width', 'width');
+        Config::set('themes.default.input-checkbox.background', 'background');
+        Config::set('themes.default.input-checkbox.border', 'border');
+        Config::set('themes.default.input-checkbox.color', 'color');
+        Config::set('themes.default.input-checkbox.other', 'other');
+        Config::set('themes.default.input-checkbox.padding', 'padding');
+        Config::set('themes.default.input-checkbox.rounded', 'rounded');
+        Config::set('themes.default.input-checkbox.shadow', 'shadow');
     }
 
     /** @test */
-    public function the_field_text_component_can_be_rendered(): void
+    public function the_field_checkbox_component_can_be_rendered(): void
     {
-        $this->withViewErrors(['track' => 'This is a test message']);
+        $this->withViewErrors(['enable' => 'This is a test message']);
 
         $template = <<<'HTML'
-            <x-field-text name="track" label="Track" placeholder="Track Name" />
+            <x-field-checkbox name="enable" label="Enable" />
             HTML;
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-font label-wrapper">
-                    <p class="label-text"> <span>Track</span> </p>
+                <label for="enable" class="label-font label-wrapper">
+                    <p class="label-text"> <span>Enable</span> </p>
                 </label>
                 <div class="field-wrapper">
                     <div class="slot-wrapper">
-                        <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" />
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>

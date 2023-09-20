@@ -24,7 +24,7 @@ class FormField extends Component
             $this->input = $input ? 'input-' . $input : null;
         }
 
-        $this->layout = 'form-layouts-' . $layout;
+        $this->layout = 'form-layout-' . $layout;
     }
 
     public function render(): View

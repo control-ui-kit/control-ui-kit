@@ -1,3 +1,3 @@
-<x-form-layouts-inline :name="$name" :label="$label" :help="$help" :required="$required" {{ $attributes }}>
+<x-form-layout-inline :name="$name" :label="$label" :help="$help" {{ $attributes }}>
     {{ $slot }}
-</x-form-layouts-inline>
+</x-form-layout-inline>

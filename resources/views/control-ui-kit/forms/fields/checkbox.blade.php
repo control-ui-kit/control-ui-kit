@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="checkbox" :name="$name" :help="$help" :label="$label" placeholder="" {{ $attributes }} />
+<x-form-field layout="inline" input="checkbox" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

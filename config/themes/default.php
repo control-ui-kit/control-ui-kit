@@ -454,6 +454,18 @@ return [
         'use-translation' => true,
     ],
 
+    'form-layout-inline' => [
+        'field-wrapper' => 'mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4',
+        'help-desktop' => 'hidden sm:block text-xs text-muted leading-relaxed pr-2',
+        'help-mobile' => 'sm:hidden text-xs text-muted mt-2',
+        'label-text' => 'font-medium flex items-center space-x-1.5 min-h-[2rem]',
+        'label-wrapper' => 'w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2',
+        'required-icon-color' => 'text-danger',
+        'required-icon-size' => 'w-2 h-2',
+        'slot-wrapper' => 'min-h-[2rem] flex items-center',
+        'wrapper' => 'md:flex md:items-start md:space-x-2 min-h-[2rem]',
+    ],
+
     'input' => [
 
         // Style
