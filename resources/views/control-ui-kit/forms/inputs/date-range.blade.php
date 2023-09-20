@@ -31,8 +31,7 @@
         showTimeZones: false,
     })"
     x-modelable="data"
-    wire:ignore
->
+    wire:ignore>
     @if ($langOverride)
         <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
     @endif

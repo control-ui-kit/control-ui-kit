@@ -31,8 +31,7 @@
         showTimeZones: {{ $showTimeZones ? 'true' : 'false' }},
     })"
     x-modelable="data"
-    wire:ignore
->
+    wire:ignore>
     @if ($langOverride && $lang !== 'en_GB')
     <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
     @endif
