@@ -8,11 +8,11 @@ use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Inline extends Component
+class Stacked extends Component
 {
     use UseInputTheme;
 
-    protected string $component = 'form-layout-inline';
+    protected string $component = 'form-layout-stacked';
 
     public ?string $name;
     public ?string $for;
@@ -100,6 +100,6 @@ class Inline extends Component
 
     public function render(): View
     {
-        return view('control-ui-kit::control-ui-kit.forms.layouts.inline');
+        return view('control-ui-kit::control-ui-kit.forms.layouts.stacked');
     }
 }

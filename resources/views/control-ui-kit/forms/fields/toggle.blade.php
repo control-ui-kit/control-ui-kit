@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="toggle" for="" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="toggle" for="" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

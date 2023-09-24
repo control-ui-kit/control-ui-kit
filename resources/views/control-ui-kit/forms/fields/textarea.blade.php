@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="textarea" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="textarea" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

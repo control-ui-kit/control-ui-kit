@@ -13,22 +13,29 @@ class InfoFieldTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.label.background', 'label-background');
+        Config::set('themes.default.label.border', 'label-border');
+        Config::set('themes.default.label.color', 'label-color');
         Config::set('themes.default.label.font', 'label-font');
+        Config::set('themes.default.label.other', 'label-other');
+        Config::set('themes.default.label.padding', 'label-padding');
+        Config::set('themes.default.label.rounded', 'label-rounded');
+        Config::set('themes.default.label.shadow', 'label-shadow');
 
         Config::set('themes.default.error.color', 'color');
         Config::set('themes.default.error.font', 'font');
         Config::set('themes.default.error.other', 'other');
         Config::set('themes.default.error.padding', 'padding');
 
-        Config::set('themes.default.form-layout-inline.field-wrapper', 'field-wrapper');
-        Config::set('themes.default.form-layout-inline.help-desktop', 'help-desktop');
-        Config::set('themes.default.form-layout-inline.help-mobile', 'help-mobile');
-        Config::set('themes.default.form-layout-inline.label-text', 'label-text');
-        Config::set('themes.default.form-layout-inline.label-wrapper', 'label-wrapper');
-        Config::set('themes.default.form-layout-inline.required-icon-size', 'required-icon-size');
-        Config::set('themes.default.form-layout-inline.required-icon-color', 'required-icon-color');
-        Config::set('themes.default.form-layout-inline.slot-wrapper', 'slot-wrapper');
-        Config::set('themes.default.form-layout-inline.wrapper', 'wrapper');
+        Config::set('themes.default.form-layout-responsive.content', 'content-style');
+        Config::set('themes.default.form-layout-responsive.help', 'help-style');
+        Config::set('themes.default.form-layout-responsive.help-mobile', 'help-mobile');
+        Config::set('themes.default.form-layout-responsive.text', 'text-style');
+        Config::set('themes.default.form-layout-responsive.label', 'label-style');
+        Config::set('themes.default.form-layout-responsive.required-size', 'required-size');
+        Config::set('themes.default.form-layout-responsive.required-color', 'required-color');
+        Config::set('themes.default.form-layout-responsive.slot', 'slot-style');
+        Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
     }
 
     /** @test */
@@ -42,11 +49,11 @@ class InfoFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-font label-wrapper">
-                    <p class="label-text"> <span>Info</span> </p>
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Info</span> </p>
                 </label>
-                <div class="field-wrapper">
-                    <div class="slot-wrapper">
+                <div class="content-style">
+                    <div class="slot-style">
                         <div>Some text goes here</div>
                     </div>
                 </div>

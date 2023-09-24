@@ -24,10 +24,16 @@ class Error extends Component
         string $font = null,
         string $other = null,
         string $padding = null,
+        array $styles = null,
         string $bag = 'default'
     ) {
         $this->field = $field;
         $this->bag = $bag;
+
+        $color = $styles['color'] ?? $color;
+        $font = $styles['font'] ?? $font;
+        $other = $styles['other'] ?? $other;
+        $padding = $styles['padding'] ?? $padding;
 
         $this->setConfigStyles([
             'color' => $color,

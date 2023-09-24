@@ -1,26 +1,25 @@
-<div class="{{ $wrapper }}">
-    <x-label :for="is_null($for) ? $name : $for" class="{{ $labelWrapper }}">
-        <p class="{{ $labelText }}">
-            <span>{!! $label !!}</span>
-            @if ($required)
-                <x-icon-star size="{{ $requiredIconSize }}" color="{{ $requiredIconColor }}" />
-            @endif
-        </p>
-        @if ($help)
-            <p class="{{ $helpDesktop }}">{{ $help }}</p>
-        @endif
-    </x-label>
-    <div class="{{ $fieldWrapper }}">
-        <div class="{{ $slotWrapper }}">
-            @if ($input && $slot->isEmpty())
-                <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except('required') }} />
-            @else
-                {{ $slot }}
-            @endif
+<div>
+    <div class="{{ $wrapper }}">
+        <x-label :for="is_null($for) ? $name : $for" class="{{ $labelStyle }}" :styles="$labelStyles">
+            <p class="{{ $textStyle }}">
+                <span>{!! $label !!}</span>
+                @if ($required)
+                    <x-icon-star size="{{ $requiredSize }}" color="{{ $requiredColor }}" />
+                @endif
+            </p>
+        </x-label>
+        <div class="{{ $contentStyle }}">
+            <div class="{{ $slotStyle }}">
+                @if ($input && $slot->isEmpty())
+                    <x-dynamic-component :component="$input" :name="$name" {{ $attributes->whereDoesntStartWith('error')->except('required') }} />
+                @else
+                    {{ $slot }}
+                @endif
+            </div>
+            <x-error field="{{ $name }}" :styles="$errorStyles" />
         </div>
-        <x-error field="{{ $name }}"/>
-        @if ($help)
-            <p class="{{ $helpMobile }}">{{ $help }}</p>
-        @endif
     </div>
+    @if ($help)
+        <p class="{{ $helpStyle }}">{{ $help }}</p>
+    @endif
 </div>

@@ -103,8 +103,6 @@ return [
         'layout-header' => \ControlUIKit\Components\Layouts\Header::class,
         'layout-toolbar' => \ControlUIKit\Components\Layouts\Toolbar::class,
 
-        'form-layout-inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
-
         'map-world' => \ControlUIKit\Components\Maps\World::class,
         'map-region' => \ControlUIKit\Components\Maps\Region::class,
 
@@ -145,6 +143,29 @@ return [
         'text' => \ControlUIKit\Components\Text\Text::class,
         'link' => \ControlUIKit\Components\Text\Link::class,
 
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Field Layout
+    |--------------------------------------------------------------------------
+    |
+    | The default form field layout component to use when using field
+    | components.
+    |
+    */
+
+    'field-layouts' => [
+
+        'field-default' => 'responsive',
+
+        'layouts' => [
+
+            'inline' => \ControlUIKit\Components\Forms\Layouts\Inline::class,
+            'responsive' => \ControlUIKit\Components\Forms\Layouts\Responsive::class,
+            'stacked' => \ControlUIKit\Components\Forms\Layouts\Stacked::class,
+
+        ],
     ],
 
     /*

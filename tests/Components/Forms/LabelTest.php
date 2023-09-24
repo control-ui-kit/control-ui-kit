@@ -86,6 +86,32 @@ class LabelTest extends ComponentTestCase
     }
 
     /** @test */
+    public function a_label_component_can_be_rendered_with_array_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-label
+                for="test"
+                :styles="[
+                    'background' => '1',
+                    'border' => '2',
+                    'color' => '3',
+                    'font' => '4',
+                    'other' => '5',
+                    'padding' => '6',
+                    'rounded' => '7',
+                    'shadow' => '8',
+                ]"
+            >The Label</x-label>
+            HTML;
+
+        $expected = <<<'HTML'
+            <label for="test" class="1 2 3 4 5 6 7 8"> The Label </label>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
     public function a_label_component_can_be_rendered_with_no_slot_using_fallback(): void
     {
         $template = <<<'HTML'

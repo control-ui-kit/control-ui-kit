@@ -8,11 +8,11 @@ use ControlUIKit\Traits\UseInputTheme;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Inline extends Component
+class Responsive extends Component
 {
     use UseInputTheme;
 
-    protected string $component = 'form-layout-inline';
+    protected string $component = 'form-layout-responsive';
 
     public ?string $name;
     public ?string $for;
@@ -23,6 +23,7 @@ class Inline extends Component
 
     public ?string $contentStyle;
     public ?string $helpStyle;
+    public ?string $helpMobile;
     public ?string $labelStyle;
     public ?string $requiredColor;
     public ?string $requiredSize;
@@ -35,6 +36,7 @@ class Inline extends Component
     public function __construct(
         string $content = null,
         string $helpStyle = null,
+        string $helpMobile = null,
         string $labelStyle = null,
         string $requiredColor = null,
         string $requiredSize = null,
@@ -90,6 +92,7 @@ class Inline extends Component
 
         $this->contentStyle = $this->style($this->component, 'content', $content);
         $this->helpStyle = $this->style($this->component, 'help', $helpStyle);
+        $this->helpMobile = $this->style($this->component, 'help-mobile', $helpMobile);
         $this->labelStyle = $this->style($this->component, 'label', $labelStyle);
         $this->requiredColor = $this->style($this->component, 'required-color', $requiredColor);
         $this->requiredSize = $this->style($this->component, 'required-size', $requiredSize);
@@ -100,6 +103,6 @@ class Inline extends Component
 
     public function render(): View
     {
-        return view('control-ui-kit::control-ui-kit.forms.layouts.inline');
+        return view('control-ui-kit::control-ui-kit.forms.layouts.responsive');
     }
 }

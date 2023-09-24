@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="royalty" :for="$name . '_display'" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="royalty" :for="$name . '_display'" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

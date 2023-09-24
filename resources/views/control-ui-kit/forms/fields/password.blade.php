@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="password" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="password" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

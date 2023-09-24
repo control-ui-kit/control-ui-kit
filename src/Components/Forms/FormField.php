@@ -15,7 +15,7 @@ class FormField extends Component
     public string $layout;
 
     public function __construct(
-        string $layout,
+        string $layout = null,
         string $input = null
     ) {
         if ($input === 'input') {
@@ -24,11 +24,20 @@ class FormField extends Component
             $this->input = $input ? 'input-' . $input : null;
         }
 
-        $this->layout = 'form-layout-' . $layout;
+        $this->layout = $this->getLayout($layout);
     }
 
     public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.form-field');
+    }
+
+    private function getLayout(?string $layout): string
+    {
+        if (! $layout) {
+            $layout = (string) config('control-ui-kit.field-layouts.field-default');
+        }
+
+        return 'form-layout-' . $layout;
     }
 }

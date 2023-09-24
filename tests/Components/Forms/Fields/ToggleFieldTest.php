@@ -13,22 +13,29 @@ class ToggleFieldTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.label.background', 'label-background');
+        Config::set('themes.default.label.border', 'label-border');
+        Config::set('themes.default.label.color', 'label-color');
         Config::set('themes.default.label.font', 'label-font');
+        Config::set('themes.default.label.other', 'label-other');
+        Config::set('themes.default.label.padding', 'label-padding');
+        Config::set('themes.default.label.rounded', 'label-rounded');
+        Config::set('themes.default.label.shadow', 'label-shadow');
 
         Config::set('themes.default.error.color', 'color');
         Config::set('themes.default.error.font', 'font');
         Config::set('themes.default.error.other', 'other');
         Config::set('themes.default.error.padding', 'padding');
 
-        Config::set('themes.default.form-layout-inline.field-wrapper', 'field-wrapper');
-        Config::set('themes.default.form-layout-inline.help-desktop', 'help-desktop');
-        Config::set('themes.default.form-layout-inline.help-mobile', 'help-mobile');
-        Config::set('themes.default.form-layout-inline.label-text', 'label-text');
-        Config::set('themes.default.form-layout-inline.label-wrapper', 'label-wrapper');
-        Config::set('themes.default.form-layout-inline.required-icon-size', 'required-icon-size');
-        Config::set('themes.default.form-layout-inline.required-icon-color', 'required-icon-color');
-        Config::set('themes.default.form-layout-inline.slot-wrapper', 'slot-wrapper');
-        Config::set('themes.default.form-layout-inline.wrapper', 'wrapper');
+        Config::set('themes.default.form-layout-responsive.content', 'content-style');
+        Config::set('themes.default.form-layout-responsive.help', 'help-style');
+        Config::set('themes.default.form-layout-responsive.help-mobile', 'help-mobile');
+        Config::set('themes.default.form-layout-responsive.text', 'text-style');
+        Config::set('themes.default.form-layout-responsive.label', 'label-style');
+        Config::set('themes.default.form-layout-responsive.required-size', 'required-size');
+        Config::set('themes.default.form-layout-responsive.required-color', 'required-color');
+        Config::set('themes.default.form-layout-responsive.slot', 'slot-style');
+        Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
 
         Config::set('themes.default.input-toggle.background', 'background');
         Config::set('themes.default.input-toggle.border', 'border');
@@ -70,11 +77,11 @@ class ToggleFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-font label-wrapper">
-                    <p class="label-text"> <span>Enable</span> </p>
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Enable</span> </p>
                 </label>
-                <div class="field-wrapper">
-                    <div class="slot-wrapper">
+                <div class="content-style">
+                    <div class="slot-style">
                         <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
                             <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                             <input type="hidden" name="enable" id="enable" value="0" x-model="value" />

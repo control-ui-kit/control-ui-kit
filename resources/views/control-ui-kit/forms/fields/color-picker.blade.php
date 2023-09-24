@@ -1,1 +1,1 @@
-<x-form-field layout="inline" input="color-picker" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="color-picker" :name="$name" :help="$help" :label="$label" {{ $attributes }} />

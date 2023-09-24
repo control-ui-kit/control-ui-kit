@@ -63,6 +63,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 $blade->component($component, $alias, $prefix);
             }
 
+            foreach (config('control-ui-kit.field-layouts.layouts', []) as $alias => $component) {
+                $blade->component($component, 'form-layout-' . $alias, $prefix);
+            }
+
             foreach (config('control-ui-kit.icons', []) as $alias => $component) {
                 if (! is_array($component)) {
                     $blade->component($component, $alias, $prefix);

@@ -26,9 +26,19 @@ class Label extends Component
         string $other = null,
         string $padding = null,
         string $rounded = null,
-        string $shadow = null
+        string $shadow = null,
+        array $styles = null,
     ) {
         $this->for = $for;
+
+        $background = $styles['background'] ?? $background;
+        $border = $styles['border'] ?? $border;
+        $color = $styles['color'] ?? $color;
+        $font = $styles['font'] ?? $font;
+        $other = $styles['other'] ?? $other;
+        $padding = $styles['padding'] ?? $padding;
+        $rounded = $styles['rounded'] ?? $rounded;
+        $shadow = $styles['shadow'] ?? $shadow;
 
         $this->setConfigStyles([
             'background' => $background,
