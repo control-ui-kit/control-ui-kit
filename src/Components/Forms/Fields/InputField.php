@@ -37,7 +37,7 @@ class InputField extends Component
     private function getLayout(?string $layout): string
     {
         if (! $layout) {
-            return (string) config('control-ui-kit.field-layouts.field-default');
+            return (string) config('control-ui-kit.field-layouts.default');
         }
 
         return $layout;

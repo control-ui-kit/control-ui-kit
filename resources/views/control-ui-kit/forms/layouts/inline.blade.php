@@ -1,4 +1,4 @@
-<div>
+<div {{ $attributes->only('class') }}>
     <div class="{{ $wrapper }}">
         <x-label :for="is_null($for) ? $name : $for" class="{{ $labelStyle }}" :styles="$labelStyles">
             <p class="{{ $textStyle }}">

@@ -1,4 +1,4 @@
-<div class="{{ $wrapper }}">
+<div {{ $attributes->only('class')->merge(['class' => $wrapper]) }}>
     <x-label :for="is_null($for) ? $name : $for" class="{{ $labelStyle }}" :styles="$labelStyles">
         <p class="{{ $textStyle }}">
             <span>{!! $label !!}</span>

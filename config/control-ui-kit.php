@@ -150,14 +150,14 @@ return [
     | Field Layout
     |--------------------------------------------------------------------------
     |
-    | The default form field layout component to use when using field
-    | components.
+    | All form layout components are listed below along with the default to be
+    | used whenever you specify a field component such as x-field-text.
     |
     */
 
     'field-layouts' => [
 
-        'field-default' => 'responsive',
+        'default' => 'responsive',
 
         'layouts' => [
 

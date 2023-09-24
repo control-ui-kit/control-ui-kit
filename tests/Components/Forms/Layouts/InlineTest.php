@@ -33,6 +33,16 @@ class InlineTest extends ComponentTestCase
         Config::set('themes.default.form-layout-inline.required-color', 'required-color');
         Config::set('themes.default.form-layout-inline.slot', 'slot-style');
         Config::set('themes.default.form-layout-inline.wrapper', 'wrapper');
+
+        Config::set('themes.default.input-text.background', 'background');
+        Config::set('themes.default.input-text.border', 'border');
+        Config::set('themes.default.input-text.color', 'color');
+        Config::set('themes.default.input-text.font', 'font');
+        Config::set('themes.default.input-text.other', 'other');
+        Config::set('themes.default.input-text.padding', 'padding');
+        Config::set('themes.default.input-text.rounded', 'rounded');
+        Config::set('themes.default.input-text.shadow', 'shadow');
+        Config::set('themes.default.input-text.width', 'width');
     }
 
     /** @test */
@@ -176,6 +186,62 @@ class InlineTest extends ComponentTestCase
                     </div>
                     <p class="4">::Help</p>
                 </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_inline_layout_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-inline name="test" label="::Label" help="::Help" class="float-right">::SLOT</x-form-layout-inline>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="float-right">
+                <div class="wrapper">
+                    <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                        <p class="text-style"> <span>::Label</span> </p>
+                    </label>
+                    <div class="content-style">
+                        <div class="slot-style"> ::SLOT </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    </div>
+                </div>
+                <p class="help-style">::Help</p>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_inline_layout_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-inline name="test" label="::Label" help="::Help" input="input-text" onblur="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div>
+                <div class="wrapper">
+                    <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                        <p class="text-style"> <span>::Label</span> </p>
+                    </label>
+                    <div class="content-style">
+                        <div class="slot-style">
+                            <input name="test" type="text" id="test" class="background border color font other padding rounded shadow width" onblur="test()" />
+                        </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    </div>
+                </div>
+                <p class="help-style">::Help</p>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

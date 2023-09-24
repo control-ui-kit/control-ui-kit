@@ -34,6 +34,16 @@ class ResponsiveTest extends ComponentTestCase
         Config::set('themes.default.form-layout-responsive.required-color', 'required-color');
         Config::set('themes.default.form-layout-responsive.slot', 'slot-style');
         Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
+
+        Config::set('themes.default.input-text.background', 'background');
+        Config::set('themes.default.input-text.border', 'border');
+        Config::set('themes.default.input-text.color', 'color');
+        Config::set('themes.default.input-text.font', 'font');
+        Config::set('themes.default.input-text.other', 'other');
+        Config::set('themes.default.input-text.padding', 'padding');
+        Config::set('themes.default.input-text.rounded', 'rounded');
+        Config::set('themes.default.input-text.shadow', 'shadow');
+        Config::set('themes.default.input-text.width', 'width');
     }
 
     /** @test */
@@ -176,6 +186,60 @@ class ResponsiveTest extends ComponentTestCase
                         <p class="5">::Help</p>
                     </div>
                 </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_responsive_layout_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-responsive name="test" label="::Label" help="::Help" class="float-right">::SLOT</x-form-layout-responsive>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>::Label</span> </p>
+                    <p class="help-style">::Help</p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style"> ::SLOT </div>
+                    <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    <p class="help-mobile">::Help</p>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_responsive_layout_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-responsive name="test" label="::Label" help="::Help" input="input-text" onblur="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>::Label</span> </p>
+                    <p class="help-style">::Help</p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="test" type="text" id="test" class="background border color font other padding rounded shadow width" onblur="test()" />
+                    </div>
+                    <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    <p class="help-mobile">::Help</p>
+                </div>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

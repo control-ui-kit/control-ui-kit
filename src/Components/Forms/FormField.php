@@ -35,7 +35,7 @@ class FormField extends Component
     private function getLayout(?string $layout): string
     {
         if (! $layout) {
-            $layout = (string) config('control-ui-kit.field-layouts.field-default');
+            $layout = (string) config('control-ui-kit.field-layouts.default');
         }
 
         return 'form-layout-' . $layout;
