@@ -576,7 +576,6 @@ return [
         'border' => 'focus:ring-brand border-input focus:ring-offset-input',
         'color' => 'text-brand',
         'disable' => 'opacity-60',
-        'font' => '',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
         'rounded' => 'rounded',
