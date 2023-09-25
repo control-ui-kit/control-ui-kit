@@ -139,8 +139,7 @@ class Input extends Component
 
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
-
-        $this->placeholder = $placeholder ?? '';
+        $this->placeholder = $this->style('input', 'placeholder', $placeholder, '', $this->component);
 
         $this->setInputStyles([
             'background' => $background,

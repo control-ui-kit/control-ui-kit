@@ -13,6 +13,7 @@ class EmailTest extends ComponentTestCase
     {
         parent::setUp();
 
+        Config::set('themes.default.input-email.placeholder', '');
         Config::set('themes.default.input-email.prefix-text', '');
 
         Config::set('themes.default.input-email.background', 'background');
@@ -91,6 +92,34 @@ class EmailTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <input name="name" type="email" id="name" value="test_value" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_email_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-email name="name" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="email" id="name" class="background border color font other padding rounded shadow width float-right" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_email_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-email name="name" onblur="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="email" id="name" class="background border color font other padding rounded shadow width" onblur="test()" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

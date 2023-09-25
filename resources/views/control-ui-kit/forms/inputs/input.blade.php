@@ -28,9 +28,9 @@
                {{ $attributes->merge($inputClasses())->except(['required']) }}
         />
         @if ($iconRight)
-                <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
+            <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
         @elseif (isset($suffix) || $suffixText)
-                <x-input-embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input-embed>
+            <x-input-embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input-embed>
         @endif
     </div>
 @endif

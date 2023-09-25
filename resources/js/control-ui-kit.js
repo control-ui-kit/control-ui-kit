@@ -258,6 +258,36 @@ window.Components = {
             },
         }
     },
+    inputUrl(options) {
+        return {
+            ...options,
+            init() {
+                this.$watch('value', () => {
+                    this.formatUrl()
+                })
+            },
+            formatUrl() {
+                const sanitizedPrefix = this.prefix ? this.prefix.replace(/^(http:\/\/|https:\/\/)/, '') : '';
+
+                if (this.value === 'http://' || this.value === 'https://' || this.value === sanitizedPrefix) {
+                    this.value = '';
+                } else if (this.value !== '') {
+                  if (this.value.indexOf(sanitizedPrefix) < 0) {
+                        this.value = sanitizedPrefix + this.value;
+                    } else {
+                        this.value = (this.value.indexOf('http://') > -1 ? 'http' : 'https') + '://' + this.value.replace(/^[htps:]+\/{1,2}/i, '');
+                    }
+                }
+            },
+            formatUrlOld() {
+                if (this.value === 'http://' || this.value === 'https://') {
+                    this.value = '';
+                } else if (this.value !== '') {
+                    this.value = (this.value.indexOf('http://') > -1 ? 'http' : 'https')+'://'+this.value.replace(/^[htps:]+\/{1,2}/i,'');
+                }
+            },
+        }
+    },
     flatpickr(options) {
         return {
             ...options,

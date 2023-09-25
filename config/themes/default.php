@@ -565,6 +565,7 @@ return [
         'icon-right' => '',
         'max' => null,
         'min' => null,
+        'placeholder' => '',
         'prefix-text' => '',
         'step' => null,
         'suffix-text' => '',
@@ -713,6 +714,7 @@ return [
 
     'input-email' => [
         'prefix-text' => '@',
+        'placeholder' => 'name@example.com',
         'type' => 'email',
     ],
 

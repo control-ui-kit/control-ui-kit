@@ -81,7 +81,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
             return <<<'blade'
                 <?php
 
-                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=1.1');
+                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=1.4.7');
                 $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=1.0');
                 $locale = config('app.locale');
 

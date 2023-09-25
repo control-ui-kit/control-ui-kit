@@ -570,4 +570,32 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-text name="name" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width float-right" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_text_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-text name="name" onblur="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" class="background border color font other padding rounded shadow width" onblur="test()" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
