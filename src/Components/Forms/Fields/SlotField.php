@@ -10,6 +10,6 @@ class SlotField extends InputField
 {
     public function render(): View
     {
-        return view('control-ui-kit::control-ui-kit.forms.fields.field');
+        return view('control-ui-kit::control-ui-kit.forms.fields.slot');
     }
 }

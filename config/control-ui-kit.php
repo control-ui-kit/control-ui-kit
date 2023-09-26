@@ -47,7 +47,6 @@ return [
 
         'form-field' => \ControlUIKit\Components\Forms\FormField::class,
 
-        'field' => \ControlUIKit\Components\Forms\Fields\SlotField::class,
         'field-checkbox' => \ControlUIKit\Components\Forms\Fields\CheckboxField::class,
         'field-color-picker' => \ControlUIKit\Components\Forms\Fields\ColorPickerField::class,
         'field-currency' => \ControlUIKit\Components\Forms\Fields\CurrencyField::class,
@@ -65,6 +64,7 @@ return [
         'field-range' => \ControlUIKit\Components\Forms\Fields\RangeField::class,
         'field-royalty' => \ControlUIKit\Components\Forms\Fields\RoyaltyField::class,
         'field-select' => \ControlUIKit\Components\Forms\Fields\SelectField::class,
+        'field-slot' => \ControlUIKit\Components\Forms\Fields\SlotField::class,
         'field-text' => \ControlUIKit\Components\Forms\Fields\TextField::class,
         'field-time' => \ControlUIKit\Components\Forms\Fields\TimeField::class,
         'field-toggle' => \ControlUIKit\Components\Forms\Fields\ToggleField::class,
