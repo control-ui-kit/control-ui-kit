@@ -78,4 +78,55 @@ class PasswordFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_password_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['password' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-password name="password" label="Password" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="password" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Password</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="password" type="password" id="password" class="background border color font other padding rounded shadow width" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_password_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['password' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-password name="password" label="Password" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="password" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Password</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="password" type="password" id="password" class="background border color font other padding rounded shadow width" onclick="alert('here')" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

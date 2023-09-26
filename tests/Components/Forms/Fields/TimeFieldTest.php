@@ -128,4 +128,61 @@ class TimeFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['time' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-time name="time" label="time" icon="none" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="time_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>time</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'time', data: '', dataFormat: 'H:i:S', format: 'H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: true, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                            <input x-ref="display" type="text" id="time_display" placeholder="HH:MM" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                            <input name="time" x-ref="data" x-model="data" type="hidden" id="time" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['time' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-time name="time" label="time" icon="none" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="time_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>time</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'single', id: 'time', data: '', dataFormat: 'H:i:S', format: 'H:i', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: true, enableTime: true, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0' , yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                            <input x-ref="display" type="text" id="time_display" placeholder="HH:MM" class="background border color font other padding rounded shadow w-full" onclick="alert('here')" autocomplete="off" x-on:blur="updateData()" />
+                            <input name="time" x-ref="data" x-model="data" type="hidden" id="time" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

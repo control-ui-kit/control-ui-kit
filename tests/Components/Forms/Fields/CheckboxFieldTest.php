@@ -28,7 +28,6 @@ class CheckboxFieldTest extends ComponentTestCase
         Config::set('themes.default.error.padding', 'padding');
 
         Config::set('themes.default.form-layout-responsive.content', 'content-style');
-//        Config::set('themes.default.form-layout-inline.error-text', 'error-text');
         Config::set('themes.default.form-layout-responsive.help', 'help-style');
         Config::set('themes.default.form-layout-responsive.help-mobile', 'help-mobile');
         Config::set('themes.default.form-layout-responsive.text', 'text-style');
@@ -64,6 +63,58 @@ class CheckboxFieldTest extends ComponentTestCase
                 <div class="content-style">
                     <div class="slot-style">
                         <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_checkbox_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['enable' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-checkbox name="enable" label="Enable" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="enable" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Enable</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_checkbox_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['enable' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-checkbox name="enable" label="Enable" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="enable" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Enable</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" onclick="alert('here')" />
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>

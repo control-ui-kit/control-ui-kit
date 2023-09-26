@@ -144,4 +144,59 @@ class UrlFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['url' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-url name="url" label="url" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="url" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>url</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" x-data="Components.inputUrl({ value: null, prefix: null })" x-modelable="value">
+                            <input name="url" type="url" id="url" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['url' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-url name="url" label="url" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="url" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>url</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" x-data="Components.inputUrl({ value: null, prefix: null })" x-modelable="value">
+                            <input name="url" type="url" id="url" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" onclick="alert('here')" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

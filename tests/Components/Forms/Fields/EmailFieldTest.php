@@ -75,4 +75,56 @@ class EmailFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function the_field_email_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['email' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-email name="email" label="email" placeholder="Email Name" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="email" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>email</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="email" type="email" id="email" placeholder="Email Name" class="background border color font other padding rounded shadow width" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_email_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['email' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-email name="email" label="email" placeholder="Email Name" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="email" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>email</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="email" type="email" id="email" placeholder="Email Name" class="background border color font other padding rounded shadow width" onclick="alert('here')" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

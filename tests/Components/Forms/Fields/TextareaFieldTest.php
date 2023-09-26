@@ -75,4 +75,55 @@ class TextareaFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['biog' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-textarea name="biog" label="Biog" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="biog" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Biog</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <textarea name="biog" id="biog" rows="4" class="background border color font other padding rounded shadow width"></textarea>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['biog' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-textarea name="biog" label="Biog" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="biog" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Biog</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <textarea name="biog" id="biog" rows="4" class="background border color font other padding rounded shadow width" onclick="alert('here')"></textarea>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

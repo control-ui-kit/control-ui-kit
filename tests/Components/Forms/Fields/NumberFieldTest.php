@@ -99,4 +99,61 @@ class NumberFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_number_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['value' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-number name="value" label="Value" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="value_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Value</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div x-data="Components.inputNumber({ id: 'value', value: null, decimals: 0, })" x-modelable="value" class="wrapper-width">
+                            <input type="number" id="value_display" x-model.lazy="display" step="1" class="background border color number-font other padding rounded shadow width" />
+                            <input name="value" type="hidden" id="value" x-model="value" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_number_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['value' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-number name="value" label="Value" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="value_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Value</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div x-data="Components.inputNumber({ id: 'value', value: null, decimals: 0, })" x-modelable="value" class="wrapper-width">
+                            <input type="number" id="value_display" x-model.lazy="display" step="1" class="background border color number-font other padding rounded shadow width" onclick="alert('here')" />
+                            <input name="value" type="hidden" id="value" x-model="value" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

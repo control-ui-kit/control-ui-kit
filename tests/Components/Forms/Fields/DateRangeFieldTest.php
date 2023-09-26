@@ -103,4 +103,61 @@ class DateRangeFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['range' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-date-range name="range" label="range" icon="none" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label for="range_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>range</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'range', id: 'range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                            <input x-ref="display" type="text" id="range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
+                            <input name="range" x-ref="data" x-model="data" type="hidden" id="range" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_url_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['range' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-date-range name="range" label="range" icon="none" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="range_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>range</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-data="Components.flatpickr({ mode: 'range', id: 'range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                            <input x-ref="display" type="text" id="range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" onclick="alert('here')" autocomplete="off" x-on:blur="updateData()" />
+                            <input name="range" x-ref="data" x-model="data" type="hidden" id="range" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
