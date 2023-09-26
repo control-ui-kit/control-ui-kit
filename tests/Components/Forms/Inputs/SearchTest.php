@@ -171,4 +171,41 @@ class SearchTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_search_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-search name="search" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow width float-right" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_search_component_can_be_rendered_with_icon_and_custom_class(): void
+    {
+        Config::set('themes.default.input-search.icon-right', 'icon-dot');
+
+        $template = <<<'HTML'
+            <x-input-search name="search" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width float-right">
+                <input name="search" type="search" id="search" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <div class="search-icon-background search-icon-border search-icon-color search-icon-other search-icon-padding search-icon-rounded search-icon-shadow">
+                    <svg class="search-icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3"/>
+                        </svg>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

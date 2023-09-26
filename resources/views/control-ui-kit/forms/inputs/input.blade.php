@@ -25,7 +25,7 @@
                @isset($min) min="{{ $min }}" @endisset
                @isset($max) max="{{ $max }}" @endisset
                @isset($step) step="{{ $step }}" @endisset
-               {{ $attributes->merge($inputClasses())->except(['required']) }}
+               {{ $attributes->except(['required', 'class'])->merge($inputClasses()) }}
         />
         @if ($iconRight)
             <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />

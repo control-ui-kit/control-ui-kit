@@ -63,6 +63,7 @@ return [
         'field-radio-group' => \ControlUIKit\Components\Forms\Fields\RadioGroupField::class,
         'field-range' => \ControlUIKit\Components\Forms\Fields\RangeField::class,
         'field-royalty' => \ControlUIKit\Components\Forms\Fields\RoyaltyField::class,
+        'field-search' => \ControlUIKit\Components\Forms\Fields\SearchField::class,
         'field-select' => \ControlUIKit\Components\Forms\Fields\SelectField::class,
         'field-slot' => \ControlUIKit\Components\Forms\Fields\SlotField::class,
         'field-text' => \ControlUIKit\Components\Forms\Fields\TextField::class,
