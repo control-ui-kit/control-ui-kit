@@ -50,10 +50,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -67,10 +67,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -84,10 +84,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="1 2 3 4 5">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="1 2 3 4 5">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -101,10 +101,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                <button type="button" :class="{ '': value == on, '': value == off }" class="" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ '': value == on, '': value == off }" class="" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -118,10 +118,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                <button type="button" :class="{ '10': value == on, '9': value == off }" class="1 2 3 4 5 6 7 8" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ '10': value == on, '9': value == off }" class="1 2 3 4 5 6 7 8" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -135,10 +135,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ '': value == on, '': value == off }" class=""></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ '': value == on, '': value == off }" class=""></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -152,10 +152,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ '10': value == on, '9': value == off }" class="1 2 3 4 5 6 7 8"></span> </button>
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ '10': value == on, '9': value == off }" class="1 2 3 4 5 6 7 8"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -169,10 +169,10 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '::on', off: '::off', value: '::off' })" class="background border other padding shadow">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '::off', on: '::on', off: '::off' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="::off" x-model="value" />
-            </span>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -186,10 +186,44 @@ class ToggleTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <span x-data="Components.toggle({ on: '::on', off: '::off', value: '::on' })" class="background border other padding shadow">
-                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+            <div x-data="Components.inputToggle({ value: '::on', on: '::on', off: '::off' })" x-modelable="value" class="background border other padding shadow">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                 <input type="hidden" name="enable" id="enable" value="::on" x-model="value" />
-            </span>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_toggle_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-toggle name="enable" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow float-right">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_input_toggle_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $template = <<<'HTML'
+            <x-input-toggle name="enable" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" onclick="alert('here')">
+                <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

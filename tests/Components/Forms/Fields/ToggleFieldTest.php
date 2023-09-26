@@ -82,10 +82,68 @@ class ToggleFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <span x-data="Components.toggle({ on: '1', off: '0', value: '0' })" class="background border other padding shadow">
-                            <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="toggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                        <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                            <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                             <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
-                        </span>
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_toggle_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors(['enable' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-toggle name="enable" label="Enable" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Enable</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow">
+                            <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                            <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_toggle_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors(['enable' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-toggle name="enable" label="Enable" onclick="alert('here')" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Enable</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" onclick="alert('here')">
+                            <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                            <input type="hidden" name="enable" id="enable" value="0" x-model="value" />
+                        </div>
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>

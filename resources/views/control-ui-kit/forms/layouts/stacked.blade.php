@@ -8,13 +8,15 @@
         </p>
     </x-label>
     <div class="{{ $contentStyle }}">
-        <div class="{{ $slotStyle }}">
-            @if ($input && $slot->isEmpty())
-                <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except('required') }} />
-            @else
+        @if ($input && $slot->isEmpty())
+            <div class="{{ $slotStyle }}">
+                <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except(['class', 'required']) }} />
+            </div>
+        @else
+            <div class="{{ $slotStyle }}" {{ $attributes->except(['class', 'required']) }}>
                 {{ $slot }}
-            @endif
-        </div>
+            </div>
+        @endif
         <x-error field="{{ $name }}" :styles="$errorStyles" />
         @if ($help)
             <p class="{{ $helpStyle }}">{{ $help }}</p>
