@@ -9,13 +9,15 @@
             </p>
         </x-label>
         <div class="{{ $contentStyle }}">
-            <div class="{{ $slotStyle }}">
-                @if ($input && $slot->isEmpty())
-                    <x-dynamic-component :component="$input" :name="$name" {{ $attributes->whereDoesntStartWith('error')->except('required') }} />
-                @else
+            @if ($input && $slot->isEmpty())
+                <div class="{{ $slotStyle }}">
+                    <x-dynamic-component :component="$input" :name="$name" {{ $attributes->whereDoesntStartWith('error')->except(['required', 'class']) }} />
+                </div>
+            @else
+                <div class="{{ $slotStyle }}" {{ $attributes->whereDoesntStartWith('error')->except(['required', 'class']) }}>
                     {{ $slot }}
-                @endif
-            </div>
+                </div>
+            @endif
             <x-error field="{{ $name }}" :styles="$errorStyles" />
         </div>
     </div>

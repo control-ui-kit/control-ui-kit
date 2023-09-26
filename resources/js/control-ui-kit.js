@@ -193,12 +193,12 @@ window.Components = {
             ...options,
         }
     },
-    toggle(options) {
+    inputToggle(options) {
         return {
-            toggle() {
+            ...options,
+            flipToggle() {
                 this.value = (this.value === this.on) ? this.off : this.on
             },
-            ...options,
         }
     },
     openDialog(options) {

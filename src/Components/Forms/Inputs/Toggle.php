@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Toggle extends Component
 {
-    use UseThemeFile;
+    use UseThemeFile, LivewireAttributes;
 
     protected string $component = 'input-toggle';
 

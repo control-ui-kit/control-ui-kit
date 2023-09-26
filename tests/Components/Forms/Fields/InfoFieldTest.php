@@ -39,7 +39,7 @@ class InfoFieldTest extends ComponentTestCase
     }
 
     /** @test */
-    public function the_field_email_component_can_be_rendered(): void
+    public function the_field_info_component_can_be_rendered_with_value(): void
     {
         $this->withViewErrors([]);
 
@@ -55,6 +55,81 @@ class InfoFieldTest extends ComponentTestCase
                 <div class="content-style">
                     <div class="slot-style">
                         <div>Some text goes here</div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_info_component_can_be_rendered_with_slot(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-info name="info" label="Info">Some text goes here</x-field-info>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Info</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div>Some text goes here</div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_info_component_can_be_rendered_with_custom_class(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-info name="info" label="Info" value="Some text goes here" class="float-right" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper float-right">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Info</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div>Some text goes here</div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function the_field_info_component_can_be_rendered_with_custom_attribute(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-info name="info" label="Info" value="Some text goes here" onclick="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Info</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div onclick="test()">Some text goes here</div>
                     </div>
                 </div>
             </div>
