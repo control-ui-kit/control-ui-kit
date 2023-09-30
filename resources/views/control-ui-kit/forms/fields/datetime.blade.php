@@ -1,1 +1,1 @@
-<x-form-field :layout="$layout" input="datetime" :for="$name . '_display'" :name="$name" :help="$help" :label="$label" {{ $attributes }} />
+<x-form-field :layout="$layout" input="datetime" :for="$name . '_display'" :name="$name" :help="$help" :label="$label" :value="$value" {{ $attributes }} />
