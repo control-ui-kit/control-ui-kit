@@ -89,6 +89,7 @@ class Password extends Input
         string $suffixText = null,
         string $iconLeftShow = null,
         string $iconRightShow = null,
+        string $noPeak = null,
     ) {
         parent::__construct(
             $name,
@@ -176,8 +177,10 @@ class Password extends Input
             'width' => 'w-full',
         ], $this->component, 'basicStyles', 'input');
 
-//        ray($this->value);
-//        $this->value = $this->value ? "'" . addslashes($this->value) . "'" : 'null';
+        if ($noPeak) {
+            $this->iconLeft = null;
+            $this->iconRight = null;
+        }
 
         $this->iconLeftShow = $this->style($this->component, 'icon-left-show', $iconLeftShow);
         $this->iconRightShow = $this->style($this->component, 'icon-right-show', $iconRightShow);

@@ -1,10 +1,7 @@
 @php
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
-<div {{ $attributes->merge($wrapperClasses())->only(['class']) }}
-    x-cloak
-    x-data="Components.inputPassword()"
-    >
+<div {{ $attributes->merge($wrapperClasses())->only(['class']) }} x-cloak x-data="Components.inputPassword()">
     @if ($iconLeft)
         <x-input-embed x-show="type == 'password'" icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" x-on:click="showToggle" />
         <x-input-embed x-show="type == 'text'" icon-left :icon="$iconLeftShow" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" x-on:click="showToggle" />

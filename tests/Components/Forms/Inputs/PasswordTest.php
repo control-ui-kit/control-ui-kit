@@ -147,7 +147,6 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     /** @test */
     public function an_input_password_component_can_be_rendered_right_icon_and_show_icon(): void
     {
@@ -265,6 +264,28 @@ class PasswordTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" x-cloak x-data="Components.inputPassword()">
                 <input name="name" id="name" x-bind:type="type" value="" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" wire:model="test" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+
+    /** @test */
+    public function an_input_password_component_can_be_rendered_with_no_peak_disabling_icons(): void
+    {
+        Config::set('themes.default.input-password.icon-left', 'icon-eye');
+        Config::set('themes.default.input-password.icon-left-show', 'icon-invisible');
+        Config::set('themes.default.input-password.icon-right', 'icon-eye');
+        Config::set('themes.default.input-password.icon-right-show', 'icon-invisible');
+
+        $template = <<<'HTML'
+            <x-input-password name="name" no-peak />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" x-cloak x-data="Components.inputPassword()">
+                <input name="name" id="name" x-bind:type="type" value="" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
 
