@@ -1,4 +1,4 @@
-<x-field :name="$name" :help="$help" for="" :label="$label" {{ $attributes->whereDoesntStartWith('wire:model') }}>
+<x-field-slot :name="$name" :help="$help" for="" :label="$label" {{ $attributes->whereDoesntStartWith('wire:model') }}>
 
     <div class="rounded border border-input bg-input divide-y divide-input w-full"
          x-data="{ selected: '{{ $selected }}' }"
@@ -32,4 +32,4 @@
 
     </div>
 
-</x-field>
+</x-field-slot>

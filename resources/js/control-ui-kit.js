@@ -279,13 +279,6 @@ window.Components = {
                     }
                 }
             },
-            formatUrlOld() {
-                if (this.value === 'http://' || this.value === 'https://') {
-                    this.value = '';
-                } else if (this.value !== '') {
-                    this.value = (this.value.indexOf('http://') > -1 ? 'http' : 'https')+'://'+this.value.replace(/^[htps:]+\/{1,2}/i,'');
-                }
-            },
         }
     },
     flatpickr(options) {

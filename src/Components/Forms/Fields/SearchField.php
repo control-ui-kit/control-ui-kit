@@ -6,10 +6,10 @@ namespace ControlUIKit\Components\Forms\Fields;
 
 use Illuminate\Contracts\View\View;
 
-class SlotField extends InputField
+class SearchField extends InputField
 {
     public function render(): View
     {
-        return view('control-ui-kit::control-ui-kit.forms.fields.slot');
+        return view('control-ui-kit::control-ui-kit.forms.fields.search');
     }
 }
