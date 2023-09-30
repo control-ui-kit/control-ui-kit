@@ -729,6 +729,9 @@ return [
 
     'input-password' => [
         'icon-left' => 'icon-eye',
+        'icon-left-show' => 'icon-invisible',
+        'icon-right' => 'none',
+        'icon-right-show' => 'icon-invisible',
         'type' => 'password',
     ],
 

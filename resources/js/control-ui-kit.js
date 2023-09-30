@@ -258,6 +258,15 @@ window.Components = {
             },
         }
     },
+    inputPassword(options) {
+        return {
+            ...options,
+            type: 'password',
+            showToggle() {
+                this.type = this.type === 'password' ? 'text' : 'password'
+            },
+        }
+    },
     inputUrl(options) {
         return {
             ...options,
