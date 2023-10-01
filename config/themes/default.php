@@ -584,14 +584,42 @@ return [
     ],
 
     'input-color-picker' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+
+        'background' => '',
+        'border' => '',
         'color' => '',
-        'font' => 'text-sm text-input',
-        'other' => 'w-40 relative',
-        'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
+        'font' => '',
+        'other' => 'flex space-x-2',
+        'padding' => '',
+        'rounded' => '',
         'shadow' => '',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'input-color' => '',
+        'input-font' => 'text-sm text-input',
+        'input-other' => 'w-36 relative',
+        'input-padding' => 'py-1.5 px-3',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
+
+        'color-background' => 'bg-input',
+        'color-border' => 'border border-input',
+        'color-color' => '',
+        'color-font' => 'text-sm',
+        'color-other' => 'w-8 cursor-pointer inline-block',
+        'color-padding' => 'p-1.5',
+        'color-rounded' => 'rounded',
+        'color-shadow' => '',
+
+        // Config
+        'popup' => 'right', // If the picker is used as a popup, where to place it relative to the parent. false to add the picker as a normal child element of the parent.
+        'template' => 'right', // Custom HTML string from which to build the picker. See /src/picker.pug for required elements and class names.
+        'layout' => 'default', // Suffix of a custom "layout_..." CSS class to handle the overall arrangement of the picker elements.
+        'alpha' => false, // Whether to enable adjusting the alpha channel.
+        'editor' => true, // Whether to show a text field for color value editing.
+        'cancel-button' => false, // Whether to have a "Cancel" button which closes the popup.
+        'onchange' => null, // JS method to call when the color changes.
     ],
 
     'input-currency' => [
