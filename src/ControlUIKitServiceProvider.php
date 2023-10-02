@@ -95,7 +95,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                 <script src="$flatpickrPluginUrl"></script>
                 <script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.3.0/dist/shortcut-buttons-flatpickr.min.js"></script>
-                <script src="https://unpkg.com/vanilla-picker@2.11.2/dist/vanilla-picker.min.js"></script>
+                <script src="https://unpkg.com/vanilla-picker@2.12.2/dist/vanilla-picker.csp.min.js"></script>
                 $flatpickr_locale
 
                 <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->

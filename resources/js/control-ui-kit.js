@@ -214,6 +214,104 @@ window.Components = {
             }
         }
     },
+    inputColorPicker(options) {
+        return {
+            ...options,
+            hex: null,
+            picker: null,
+            chars: null,
+            init() {
+                let self = this
+                this.chars = this.alpha ? 9 : 7
+                if (self.value && self.isValidHexColor(self.value)) {
+                    self.hex = self.value
+                    self.$refs.color.style.background = self.hex
+                } else {
+                    self.value = null
+                }
+                this.picker = new Picker({
+                    parent: this.$refs.wrapper,
+                    color: this.$refs.picker.value,
+                    defaultColor: self.default,
+                    layout: 'control',
+                    popup: self.popup,
+                    alpha: self.alpha,
+                    editor: self.editor,
+                    editorFormat: 'hex',
+                    onDone: function(color) {
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
+                        self.setColor(inputElement.value, 'value')
+                    },
+                    onClose: function(color){
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
+                        self.setColor(inputElement.value, 'value')
+                    },
+                    onOpen: function() {
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
+                        if (inputElement) {
+                            setTimeout(() => {
+                                inputElement.focus()
+                                const length = inputElement.value.length
+                                inputElement.selectionStart = length
+                                inputElement.selectionEnd = length
+                            }, 150)
+                        }
+                        const closeButton = this.domElement.querySelector('.picker_done > button')
+                        if (closeButton && self.close) {
+                            closeButton.textContent = self.close
+                        }
+                    },
+                    onChange: function(color) {
+                        if (color) {
+                            self.$refs.color.style.background = color.hex
+                        }
+                        if (self.onchange) {
+                            eval(self.onchange.replace(/\\/g, ''))
+                        }
+                    },
+                })
+                self.setColor(this.value)
+                this.$watch('value', () => {
+                    self.setColor(this.value, 'value')
+                })
+                this.$watch('hex', () => {
+                    self.setColor(this.hex, 'hex')
+                })
+            },
+            isValidHexColor(hexString) {
+                let chars = this.alpha ? 8 : 6
+                let regex = new RegExp("^#[0-9a-fA-F]{" + chars + "}$")
+                return regex.test(hexString);
+            },
+            setColor(color, change) {
+                if (color === '') {
+                    this.hex = ''
+                    this.value = ''
+                    this.$refs.color.style.background = null
+                } else if (this.isValidHexColor(color)) {
+                    if (! this.picker.color || this.picker.color.hex.substring(0, this.chars) !== color) {
+                        this.picker.setColor(color)
+                    }
+                    if (this.hex !== color) {
+                        this.hex = color
+                    }
+                    if (this.value !== color) {
+                        this.value = color
+                    }
+                    this.setBackgroundColor(color)
+                } else if (change === 'value') {
+                    this.value = this.hex
+                } else {
+                    this.hex = this.value
+                }
+            },
+            setBackgroundColor(color) {
+                if (this.$refs.color.style.background !== color) {
+                    this.$refs.color.style.background = color
+                }
+            }
+        }
+    },
     inputNumber(options) {
         return {
             ...options,
@@ -296,9 +394,7 @@ window.Components = {
             display: '',
             picker: null,
             init() {
-
                 let self = this
-
                 if (this.data === null) {
                     this.data = '';
                 }

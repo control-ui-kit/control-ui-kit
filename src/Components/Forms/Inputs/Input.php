@@ -221,7 +221,6 @@ class Input extends Component
         ], $this->component, 'suffixStyles', 'input', 'suffix-');
 
         $this->componentConfig();
-
         $this->formatValue($value, $default);
         $this->validateIcon();
         $this->validateMinMax();

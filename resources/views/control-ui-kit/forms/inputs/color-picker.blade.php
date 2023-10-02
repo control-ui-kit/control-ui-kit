@@ -1,25 +1,41 @@
-<input name="{{ $name }}"
-       type="text"
-       id="{{ $id }}"
-       @if($placeholder)placeholder="{{ $placeholder }}"@endif
-       @if ($value)value="{{ $value }}"@endif
-       {{ $attributes->merge($classes()) }}
-/>
-<div id="custom_{{ $id }}" class="h-4 w-8 cursor-pointer inline-block border border-gray-300" style="background-color:{{ $value }}"></div>
-
-<script>
-    window["color_picker_{{ $id }}"] = new Picker({
-        parent: document.getElementById('custom_{{ $id }}'),
-        color: document.getElementById('{{ $id }}').value,
-        alpha: false,
-        editorFormat: 'hex',
-        onDone: function(color) {
-            document.getElementById('{{ $id }}').value = color.hex.substr(0, 7);
-            document.getElementById('custom_{{ $id }}').style.background = color.hex.substr(0, 7);
-        },
-    });
-
-    document.getElementById('custom_{{ $id }}').addEventListener('click', function(e) {
-        e.preventDefault();
-    });
-</script>
+@php
+    [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
+@endphp
+<div x-data="Components.inputColorPicker({
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else {!! $setValue() !!}@endif,
+        popup: '{{ $popup }}',
+        alpha: {{ $alpha ? 'true' : 'false' }},
+        editor: {{ $editor ? 'true' : 'false' }},
+        onchange: '{{ addslashes($onchange) }}',
+        default: '{{ $defaultColor }}',
+        close: '{{ $closeButton }}'
+    })"
+    x-ref="wrapper"
+    x-modelable="value"
+    {{ $attributes->merge($wrapperClasses())->whereStartsWith(['class', 'x-model']) }}>
+    @if ($colorPosition === 'left')
+        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+    @elseif ($iconLeft)
+        <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
+    @elseif (isset($prefix) || $prefixText)
+        <x-input-embed prefix :styles="$prefixStyles" >{{ $prefix ?? $prefixText }}</x-input-embed>
+    @endif
+    <input type="text"
+           id="{{ $id }}"
+           name="{{ $name }}"
+           x-ref="picker"
+           x-model.lazy="value"
+           @if($placeholder) placeholder="{{ $placeholder }}" @endif
+           @isset($min) min="{{ $min }}" @endisset
+           @isset($max) max="{{ $max }}" @endisset
+           @isset($step) step="{{ $step }}" @endisset
+        {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model', 'required', 'class'])->merge($inputClasses()) }}
+    />
+    @if ($colorPosition === 'right')
+        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+    @elseif ($iconRight)
+        <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
+    @elseif (isset($suffix) || $suffixText)
+        <x-input-embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input-embed>
+    @endif
+</div>

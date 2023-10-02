@@ -506,7 +506,7 @@ return [
         'icon-left-color' => 'text-muted',
         'icon-left-size' => 'w-4 h-4',
         'icon-left-other' => 'flex items-center justify-center self-stretch w-10',
-        'icon-left-padding' => '',
+        'icon-left-padding' => 'px-2.5',
         'icon-left-rounded' => '',
         'icon-left-shadow' => '',
 
@@ -515,7 +515,7 @@ return [
         'icon-right-color' => 'text-muted',
         'icon-right-size' => 'w-4 h-4',
         'icon-right-other' => 'flex items-center justify-center self-stretch w-10',
-        'icon-right-padding' => '',
+        'icon-right-padding' => 'px-2.5',
         'icon-right-rounded' => '',
         'icon-right-shadow' => '',
 
@@ -534,7 +534,7 @@ return [
         'prefix-font' => '',
         'prefix-icon-size' => 'w-4 h-4',
         'prefix-other' => 'flex items-center justify-center self-stretch w-10',
-        'prefix-padding' => '',
+        'prefix-padding' => 'px-2.5',
         'prefix-rounded' => '',
         'prefix-shadow' => '',
 
@@ -544,7 +544,7 @@ return [
         'suffix-font' => '',
         'suffix-icon-size' => 'w-4 h-4',
         'suffix-other' => 'flex items-center justify-center self-stretch w-10',
-        'suffix-padding' => '',
+        'suffix-padding' => 'px-2.5',
         'suffix-rounded' => '',
         'suffix-shadow' => '',
 
@@ -584,14 +584,29 @@ return [
     ],
 
     'input-color-picker' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => '',
-        'font' => 'text-sm text-input',
-        'other' => 'w-40 relative',
-        'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
-        'shadow' => '',
+
+        'icon-left' => 'icon-easel',
+        'wrapper-width' => 'w-48',
+
+        'color-background' => 'bg-input',
+        'color-border' => 'border border-input',
+        'color-color' => '',
+        'color-font' => 'text-sm',
+        'color-other' => 'h-6 aspect-square cursor-pointer',
+        'color-padding' => 'mx-1',
+        'color-rounded' => 'rounded',
+        'color-shadow' => '',
+
+        // Config
+        'color-position' => 'right',
+        'popup' => 'right', // If the picker is used as a popup, where to place it relative to the parent. false to add the picker as a normal child element of the parent.
+        'template' => 'right', // Custom HTML string from which to build the picker. See /src/picker.pug for required elements and class names.
+        'layout' => 'control', // Suffix of a custom "layout_..." CSS class to handle the overall arrangement of the picker elements.
+        'alpha' => false, // Whether to enable adjusting the alpha channel.
+        'editor' => true, // Whether to show a text field for color value editing.
+        'onchange' => null, // JS method to call when the color changes.
+        'default-color' => '#48c1beff', // Set the default color on init.
+        'close-button' => 'Close', // Set the ok button text.
     ],
 
     'input-currency' => [
@@ -623,7 +638,7 @@ return [
         'icon-color' => 'text-muted',
         'icon-size' => 'w-4 h-4',
         'icon-other' => 'flex items-center justify-center self-stretch cursor-pointer',
-        'icon-padding' => 'px-3',
+        'icon-padding' => 'px-2.5',
         'icon-rounded' => '',
         'icon-shadow' => '',
 
@@ -690,7 +705,7 @@ return [
         'icon-color' => 'text-muted',
         'icon-size' => 'w-4 h-4',
         'icon-other' => 'flex items-center justify-center self-stretch',
-        'icon-padding' => 'px-3',
+        'icon-padding' => 'px-2.5',
         'icon-rounded' => '',
         'icon-shadow' => '',
 
@@ -784,8 +799,7 @@ return [
 
     'input-search' => [
         'icon-left' => 'icon-search',
-        'icon-left-border' => 'border-0',
-        'icon-left-padding' => 'pl-3 pr-0',
+        'icon-left-padding' => 'pl-2.5 pr-0',
         'type' => 'search',
     ],
 

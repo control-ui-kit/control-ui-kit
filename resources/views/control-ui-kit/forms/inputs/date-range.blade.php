@@ -36,9 +36,7 @@
         <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ $lang }}.js"></script>
     @endif
     @if ($icon)
-        <a x-on:click="open()">
-            <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize"  />
-        </a>
+        <x-input-embed icon-left :icon="$icon" :styles="$iconStyles" :icon-size="$iconSize" x-on:click="open()" />
     @endif
     <input x-ref="display"
            type="text"

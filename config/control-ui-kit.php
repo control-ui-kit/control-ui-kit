@@ -264,6 +264,7 @@ return [
         'icon-download' => \ControlUIKit\Components\Icons\Download::class,
         'icon-draft' => \ControlUIKit\Components\Icons\Draft::class,
         'icon-drag' => \ControlUIKit\Components\Icons\Drag::class,
+        'icon-easel' => \ControlUIKit\Components\Icons\Easel::class,
         'icon-edit' => \ControlUIKit\Components\Icons\Edit::class,
         'icon-email' => \ControlUIKit\Components\Icons\Email::class,
         'icon-equalizer-2' => \ControlUIKit\Components\Icons\Equalizer2::class,

@@ -50,7 +50,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button type="submit"> Log Out </button>
             </form>
             HTML;
@@ -67,7 +67,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://example.com">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button type="submit" class="text-gray-500"> Sign Out </button>
             </form>
             HTML;
@@ -84,7 +84,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Log Out </button>
             </form>
             HTML;
@@ -101,7 +101,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit"> Sign Out </button>
             </form>
             HTML;
@@ -118,7 +118,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit">
                     <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
@@ -141,7 +141,7 @@ class LogoutTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
-                <input type="hidden" name="_token" value="">
+                <input type="hidden" name="_token" value="" autocomplete="off">
                 <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="submit">
                     <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
