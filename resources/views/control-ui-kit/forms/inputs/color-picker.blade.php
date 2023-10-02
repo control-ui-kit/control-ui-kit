@@ -1,23 +1,45 @@
+@php
+    [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
+    if ($needsWrapper() || isset($prefix) || isset($suffix)) {
+        $wrapperClassStartsWith = ['class', 'x-model'];
+    } else {
+        $wrapperClassStartsWith = ['class', 'x-model'];
+    }
+@endphp
 <div x-data="Components.inputColorPicker({
-        value:{{ $value ? "'" . $value . "'" : 'null' }},
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else {!! $setValue() !!}@endif,
         popup: '{{ $popup }}',
         alpha: {{ $alpha ? 'true' : 'false' }},
         editor: {{ $editor ? 'true' : 'false' }},
-        button: {{ $cancelButton ? 'true' : 'false' }},
         onchange: '{{ addslashes($onchange) }}',
+        default: '{{ $defaultColor }}'
     })"
     x-ref="wrapper"
     x-modelable="value"
-    {{ $attributes->merge($classes()) }}
->
-    <input
-        name="{{ $name }}"
-        type="text"
-        id="{{ $id }}"
-        @if($placeholder)placeholder="{{ $placeholder }}"@endif
-        x-model.lazy="value"
-        x-ref="picker"
-        class="{{ $inputClasses() }}"
+    {{ $attributes->merge($wrapperClasses())->whereStartsWith($wrapperClassStartsWith) }}>
+    @if ($colorPosition === 'left')
+        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+    @elseif ($iconLeft)
+        <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
+    @elseif (isset($prefix) || $prefixText)
+        <x-input-embed prefix :styles="$prefixStyles" >{{ $prefix ?? $prefixText }}</x-input-embed>
+    @endif
+    <input type="text"
+           id="{{ $id }}"
+           name="{{ $name }}"
+           x-ref="picker"
+           x-model.lazy="value"
+           @if($placeholder) placeholder="{{ $placeholder }}" @endif
+           @isset($min) min="{{ $min }}" @endisset
+           @isset($max) max="{{ $max }}" @endisset
+           @isset($step) step="{{ $step }}" @endisset
+        {{ $attributes->except(['required', 'class'])->whereDoesntStartWith(['x-model', 'wire:model'])->merge($inputClasses()) }}
     />
-    <div x-ref="color" class="{{ $colorClasses() }}"></div>
+    @if ($colorPosition === 'right')
+        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+    @elseif ($iconRight)
+        <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
+    @elseif (isset($suffix) || $suffixText)
+        <x-input-embed suffix :styles="$suffixStyles" >{{ $suffix ?? $suffixText }}</x-input-embed>
+    @endif
 </div>
