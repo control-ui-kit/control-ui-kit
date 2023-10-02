@@ -590,7 +590,6 @@ return [
 
         'color-background' => 'bg-input',
         'color-border' => 'border border-input',
-        'color-color' => '',
         'color-font' => 'text-sm',
         'color-other' => 'h-6 aspect-square cursor-pointer',
         'color-padding' => 'mx-1',
@@ -600,8 +599,6 @@ return [
         // Config
         'color-position' => 'right',
         'popup' => 'right', // If the picker is used as a popup, where to place it relative to the parent. false to add the picker as a normal child element of the parent.
-        'template' => 'right', // Custom HTML string from which to build the picker. See /src/picker.pug for required elements and class names.
-        'layout' => 'control', // Suffix of a custom "layout_..." CSS class to handle the overall arrangement of the picker elements.
         'alpha' => false, // Whether to enable adjusting the alpha channel.
         'editor' => true, // Whether to show a text field for color value editing.
         'onchange' => null, // JS method to call when the color changes.
