@@ -89,7 +89,7 @@ class Password extends Input
         string $suffixText = null,
         string $iconLeftShow = null,
         string $iconRightShow = null,
-        string $noPeak = null,
+        string $noPeek = null,
     ) {
         parent::__construct(
             $name,
@@ -177,7 +177,7 @@ class Password extends Input
             'width' => 'w-full',
         ], $this->component, 'basicStyles', 'input');
 
-        if ($noPeak) {
+        if ($noPeek) {
             $this->iconLeft = null;
             $this->iconRight = null;
         }

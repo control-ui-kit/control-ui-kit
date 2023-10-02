@@ -272,7 +272,7 @@ class PasswordTest extends ComponentTestCase
 
 
     /** @test */
-    public function an_input_password_component_can_be_rendered_with_no_peak_disabling_icons(): void
+    public function an_input_password_component_can_be_rendered_with_no_peek_disabling_icons(): void
     {
         Config::set('themes.default.input-password.icon-left', 'icon-eye');
         Config::set('themes.default.input-password.icon-left-show', 'icon-invisible');
@@ -280,7 +280,7 @@ class PasswordTest extends ComponentTestCase
         Config::set('themes.default.input-password.icon-right-show', 'icon-invisible');
 
         $template = <<<'HTML'
-            <x-input-password name="name" no-peak />
+            <x-input-password name="name" no-peek />
             HTML;
 
         $expected = <<<'HTML'
