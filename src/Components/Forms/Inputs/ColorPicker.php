@@ -18,16 +18,12 @@ class ColorPicker extends Input
     public string $id;
     public ?string $placeholder;
     public ?string $value;
-
     public string $popup;
-    public string $template;
-    public string $layout;
     public bool $alpha;
     public bool $editor;
     public string $onchange;
     public string $defaultColor;
     public string $colorPosition;
-
     public array $colorStyles = [];
 
     public function __construct(
@@ -110,8 +106,6 @@ class ColorPicker extends Input
         string $colorRounded = null,
         string $colorShadow = null,
         string $popup = null,
-        string $template = null,
-        string $layout = null,
         bool $alpha = null,
         bool $editor = null,
         bool $noEditor = null,
@@ -206,8 +200,6 @@ class ColorPicker extends Input
 
         $this->colorPosition = $this->style($this->component, 'color-position', $colorPosition);
         $this->popup = $this->style($this->component, 'popup', $popup);
-        $this->template = $this->style($this->component, 'template', $template); // TODO - styling
-        $this->layout = $this->style($this->component, 'layout', $layout); // TODO - styling
         $this->alpha = $this->style($this->component, 'alpha', $alpha);
         $this->editor = $this->style($this->component, 'editor', $editor);
         $this->onchange = $this->style($this->component, 'onchange', $onchange);

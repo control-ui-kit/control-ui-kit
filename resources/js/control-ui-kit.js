@@ -219,9 +219,10 @@ window.Components = {
             ...options,
             hex: null,
             picker: null,
-            chars: this.alpha ? 9 : 7,
+            chars: null,
             init() {
                 let self = this
+                this.chars = this.alpha ? 9 : 7
                 if (self.value && self.isValidHexColor(self.value)) {
                     self.hex = self.value
                     self.$refs.color.style.background = self.hex
@@ -232,11 +233,11 @@ window.Components = {
                     parent: this.$refs.wrapper,
                     color: this.$refs.picker.value,
                     defaultColor: self.default,
+                    layout: 'control',
                     popup: self.popup,
                     alpha: self.alpha,
                     editor: self.editor,
                     editorFormat: 'hex',
-                    cancelButton: self.button,
                     onDone: function(color) {
                         self.setColor(color.hex.substring(0, self.chars), 'value')
                     },
@@ -387,9 +388,7 @@ window.Components = {
             display: '',
             picker: null,
             init() {
-
                 let self = this
-
                 if (this.data === null) {
                     this.data = '';
                 }

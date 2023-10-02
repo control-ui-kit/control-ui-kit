@@ -1,11 +1,8 @@
 @php
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
-
     if ($needsWrapper() || isset($prefix) || isset($suffix)) {
-        $wrapperClassStartsWith = ['class', 'x-model'];
         $mergeInputClasses = $inputClasses();
     } else {
-        $wrapperClassStartsWith = ['class', 'x-model'];
         $mergeInputClasses = $basicClasses();
     }
 @endphp
@@ -16,7 +13,7 @@
         @if (! is_null($max))max: {{ $max }},@endif
         @if (! is_null($min))min: {{ $min }},@endif
         @if (! is_null($wireModel))wire: {{ $wireModel }} @endif
-    })" x-modelable="value" {{ $attributes->merge($wrapperClasses())->whereStartsWith($wrapperClassStartsWith) }}>
+    })" x-modelable="value" {{ $attributes->merge($wrapperClasses())->whereStartsWith(['class', 'x-model']) }}>
     @if ($iconLeft)
         <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
     @elseif (isset($prefix) || $prefixText)

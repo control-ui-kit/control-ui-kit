@@ -1,10 +1,5 @@
 @php
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
-    if ($needsWrapper() || isset($prefix) || isset($suffix)) {
-        $wrapperClassStartsWith = ['class', 'x-model'];
-    } else {
-        $wrapperClassStartsWith = ['class', 'x-model'];
-    }
 @endphp
 <div x-data="Components.inputColorPicker({
         value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else {!! $setValue() !!}@endif,
@@ -16,7 +11,7 @@
     })"
     x-ref="wrapper"
     x-modelable="value"
-    {{ $attributes->merge($wrapperClasses())->whereStartsWith($wrapperClassStartsWith) }}>
+    {{ $attributes->merge($wrapperClasses())->whereStartsWith(['class', 'x-model']) }}>
     @if ($colorPosition === 'left')
         <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
     @elseif ($iconLeft)
@@ -33,7 +28,7 @@
            @isset($min) min="{{ $min }}" @endisset
            @isset($max) max="{{ $max }}" @endisset
            @isset($step) step="{{ $step }}" @endisset
-        {{ $attributes->except(['required', 'class'])->whereDoesntStartWith(['x-model', 'wire:model'])->merge($inputClasses()) }}
+        {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model', 'required', 'class'])->merge($inputClasses()) }}
     />
     @if ($colorPosition === 'right')
         <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
