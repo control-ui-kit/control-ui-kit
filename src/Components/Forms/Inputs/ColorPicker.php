@@ -24,6 +24,7 @@ class ColorPicker extends Input
     public string $onchange;
     public string $defaultColor;
     public string $colorPosition;
+    public string $closeButton;
     public array $colorStyles = [];
 
     public function __construct(
@@ -113,6 +114,7 @@ class ColorPicker extends Input
         string $onchange = null,
         string $defaultColor = null,
         string $colorPosition = null,
+        string $closeButton = null,
     ) {
         parent::__construct(
             $name,
@@ -204,6 +206,7 @@ class ColorPicker extends Input
         $this->editor = $this->style($this->component, 'editor', $editor);
         $this->onchange = $this->style($this->component, 'onchange', $onchange);
         $this->defaultColor = $this->style($this->component, 'default-color', $defaultColor);
+        $this->closeButton = $this->style($this->component, 'close-button', $closeButton);
 
         if ($noEditor === true) {
             $this->editor = false;

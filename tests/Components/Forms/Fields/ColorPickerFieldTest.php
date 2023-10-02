@@ -22,6 +22,7 @@ class ColorPickerFieldTest extends ComponentTestCase
         Config::set('themes.default.input-color-picker.editor', true);
         Config::set('themes.default.input-color-picker.onchange', null);
         Config::set('themes.default.input-color-picker.default-color', '#000000');
+        Config::set('themes.default.input-color-picker.close-button', 'Close');
 
         Config::set('themes.default.label.background', 'label-background');
         Config::set('themes.default.label.border', 'label-border');
@@ -150,7 +151,7 @@ class ColorPickerFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+                        <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                             <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                         </div>
                     </div>

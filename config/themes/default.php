@@ -606,6 +606,7 @@ return [
         'editor' => true, // Whether to show a text field for color value editing.
         'onchange' => null, // JS method to call when the color changes.
         'default-color' => '#48c1beff', // Set the default color on init.
+        'close-button' => 'Close', // Set the ok button text.
     ],
 
     'input-currency' => [

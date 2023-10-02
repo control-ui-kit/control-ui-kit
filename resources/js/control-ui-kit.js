@@ -239,20 +239,26 @@ window.Components = {
                     editor: self.editor,
                     editorFormat: 'hex',
                     onDone: function(color) {
-                        self.setColor(color.hex.substring(0, self.chars), 'value')
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
+                        self.setColor(inputElement.value, 'value')
                     },
                     onClose: function(color){
-                        self.setColor(color.hex.substring(0, self.chars), 'value')
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
+                        self.setColor(inputElement.value, 'value')
                     },
                     onOpen: function() {
-                        const inputElement = this.domElement.querySelector('.picker_editor > input');
+                        const inputElement = this.domElement.querySelector('.picker_editor > input')
                         if (inputElement) {
                             setTimeout(() => {
-                                inputElement.focus();
-                                const length = inputElement.value.length;
-                                inputElement.selectionStart = length;
-                                inputElement.selectionEnd = length;
+                                inputElement.focus()
+                                const length = inputElement.value.length
+                                inputElement.selectionStart = length
+                                inputElement.selectionEnd = length
                             }, 150)
+                        }
+                        const closeButton = this.domElement.querySelector('.picker_done > button')
+                        if (closeButton && self.close) {
+                            closeButton.textContent = self.close
                         }
                     },
                     onChange: function(color) {
@@ -273,8 +279,8 @@ window.Components = {
                 })
             },
             isValidHexColor(hexString) {
-                let chars = this.alpha ? 8 : 6;
-                let regex = new RegExp("^#[0-9a-fA-F]{" + chars + "}$");
+                let chars = this.alpha ? 8 : 6
+                let regex = new RegExp("^#[0-9a-fA-F]{" + chars + "}$")
                 return regex.test(hexString);
             },
             setColor(color, change) {

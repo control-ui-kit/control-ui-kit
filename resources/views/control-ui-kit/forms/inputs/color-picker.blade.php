@@ -7,7 +7,8 @@
         alpha: {{ $alpha ? 'true' : 'false' }},
         editor: {{ $editor ? 'true' : 'false' }},
         onchange: '{{ addslashes($onchange) }}',
-        default: '{{ $defaultColor }}'
+        default: '{{ $defaultColor }}',
+        close: '{{ $closeButton }}'
     })"
     x-ref="wrapper"
     x-modelable="value"

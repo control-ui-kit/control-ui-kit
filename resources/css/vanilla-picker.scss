@@ -23,7 +23,7 @@
     animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .layout_control.picker_wrapper input,.layout_control.picker_wrapper button{
-    font-size:1rem
+    font-size:0.875rem
 }
 .layout_control.picker_wrapper>*{
     margin:4px
@@ -96,7 +96,6 @@
 }
 .picker_wrapper button{
     color: rgb(var(--button-default));
-    font-size: 0.875rem;
     line-height: 1.25rem;
     padding: 0.375rem;
     background-color: rgb(var(--button-default-bg));
