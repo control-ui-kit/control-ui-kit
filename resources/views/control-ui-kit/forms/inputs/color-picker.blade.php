@@ -24,7 +24,6 @@
     <input type="text"
            id="{{ $id }}"
            name="{{ $name }}"
-           x-ref="picker"
            x-model.lazy="value"
            @if($placeholder) placeholder="{{ $placeholder }}" @endif
            @isset($min) min="{{ $min }}" @endisset

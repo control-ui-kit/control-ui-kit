@@ -152,7 +152,7 @@ class ColorPickerFieldTest extends ComponentTestCase
                 <div class="content-style">
                     <div class="slot-style">
                         <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
-                            <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                            <input type="text" id="color" name="color" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                         </div>
                     </div>
                     <div class="color font other padding"> This is a test message </div>
