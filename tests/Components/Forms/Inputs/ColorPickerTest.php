@@ -118,7 +118,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -153,7 +153,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" />
             </div>
             HTML;
@@ -188,7 +188,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="1 2 3 4 5 6 7 8 9">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="1 2 3 4 5 6 7 8 9">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="10 11 12 13 14 15 16 17" />
             </div>
             HTML;
@@ -204,7 +204,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color-picker' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color-picker" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -223,14 +223,14 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
                     <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div x-ref="color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
+                    <div id="color_color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
                 </div>
             HTML;
 
@@ -248,8 +248,8 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
-                <div x-ref="color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+                <div id="color_color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                 <div class="icon-right-background icon-right-border icon-right-color icon-right-other icon-right-padding icon-right-rounded icon-right-shadow">
                     <svg class="icon-right-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
@@ -270,7 +270,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'left', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'left', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -286,7 +286,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: true, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: true, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -304,7 +304,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: false, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: false, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -322,7 +322,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -338,7 +338,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: 'alert(\&#039;here\&#039;)', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: 'alert(\&#039;here\&#039;)', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -354,7 +354,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#FF0000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#FF0000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -370,7 +370,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width float-right">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width float-right">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;
@@ -389,14 +389,14 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width float-right">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width float-right">
                 <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
                     <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div x-ref="color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
+                    <div id="color_color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
                 </div>
             HTML;
 
@@ -411,7 +411,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" onclick="alert('here')" />
             </div>
             HTML;
@@ -430,14 +430,14 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: 'Close', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <div class="icon-left-background icon-left-border icon-left-color icon-left-other icon-left-padding icon-left-rounded icon-left-shadow">
                     <svg class="icon-left-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </div>
                     <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" onclick="alert('here')" />
-                    <div x-ref="color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
+                    <div id="color_color" class="color-background color-border color-font color-other color-padding color-rounded color-shadow" wire:ignore></div>
                 </div>
             HTML;
 
@@ -452,7 +452,7 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: '::OK' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
+            <div x-data="Components.inputColorPicker({ value: null, popup: 'right', alpha: false, editor: true, onchange: '', default: '#000000', close: '::OK', id: 'color' })" x-ref="wrapper" x-modelable="value" class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow picker-width">
                 <input type="text" id="color" name="color" x-ref="picker" x-model.lazy="value" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
             </div>
             HTML;

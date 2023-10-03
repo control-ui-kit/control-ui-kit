@@ -225,13 +225,13 @@ window.Components = {
                 this.chars = this.alpha ? 9 : 7
                 if (self.value && self.isValidHexColor(self.value)) {
                     self.hex = self.value
-                    self.$refs.color.style.background = self.hex
+                    document.getElementById(self.id + '_color').style.background = self.hex
                 } else {
                     self.value = null
                 }
                 this.picker = new Picker({
                     parent: this.$refs.wrapper,
-                    color: this.$refs.picker.value,
+                    color: document.getElementById(self.id).value,
                     defaultColor: self.default,
                     layout: 'control',
                     popup: self.popup,
@@ -263,7 +263,7 @@ window.Components = {
                     },
                     onChange: function(color) {
                         if (color) {
-                            self.$refs.color.style.background = color.hex
+                            document.getElementById(self.id + '_color').style.background = color.hex
                         }
                         if (self.onchange) {
                             eval(self.onchange.replace(/\\/g, ''))
@@ -287,7 +287,7 @@ window.Components = {
                 if (color === '') {
                     this.hex = ''
                     this.value = ''
-                    this.$refs.color.style.background = null
+                    document.getElementById(this.id + '_color').style.background = null
                 } else if (this.isValidHexColor(color)) {
                     if (! this.picker.color || this.picker.color.hex.substring(0, this.chars) !== color) {
                         this.picker.setColor(color)
@@ -306,8 +306,8 @@ window.Components = {
                 }
             },
             setBackgroundColor(color) {
-                if (this.$refs.color.style.background !== color) {
-                    this.$refs.color.style.background = color
+                if (document.getElementById(this.id + '_color').style.background !== color) {
+                    document.getElementById(this.id + '_color').style.background = color
                 }
             }
         }
@@ -398,7 +398,7 @@ window.Components = {
                 if (this.data === null) {
                     this.data = '';
                 }
-                this.picker = flatpickr(this.$refs.display, {
+                this.picker = flatpickr(document.getElementById(self.id + '_display'), {
                     mode: this.mode,
                     noCalendar: this.noCalendar,
                     enableTime: this.enableTime,
@@ -592,14 +592,14 @@ window.Components = {
             },
             updateData() {
                 if (this.mode === 'single') {
-                    if (this.$refs.display.value) {
+                    if (document.getElementById(this.id + '_display').value) {
                         this.setOffsetDataTime()
                     } else {
                         this.data = ''
                     }
                     this.updateLinkedDates()
                 } else {
-                    if (this.$refs.display.value && this.picker.selectedDates.length === 2) {
+                    if (document.getElementById(this.id + '_display').value && this.picker.selectedDates.length === 2) {
                         data_from = flatpickr.formatDate(this.picker.selectedDates[0], this.dataFormat)
                         data_to = flatpickr.formatDate(this.picker.selectedDates[1], this.dataFormat)
                         this.data = data_from + this.separator + data_to

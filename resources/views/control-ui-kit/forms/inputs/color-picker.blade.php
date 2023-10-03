@@ -8,13 +8,14 @@
         editor: {{ $editor ? 'true' : 'false' }},
         onchange: '{{ addslashes($onchange) }}',
         default: '{{ $defaultColor }}',
-        close: '{{ $closeButton }}'
+        close: '{{ $closeButton }}',
+        id: '{{ $id }}'
     })"
     x-ref="wrapper"
     x-modelable="value"
     {{ $attributes->merge($wrapperClasses())->whereStartsWith(['class', 'x-model']) }}>
     @if ($colorPosition === 'left')
-        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+        <div id="{{ $id }}_color" class="{{ $colorClasses() }}" wire:ignore></div>
     @elseif ($iconLeft)
         <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
     @elseif (isset($prefix) || $prefixText)
@@ -32,7 +33,7 @@
         {{ $attributes->whereDoesntStartWith(['x-model', 'wire:model', 'required', 'class'])->merge($inputClasses()) }}
     />
     @if ($colorPosition === 'right')
-        <div x-ref="color" class="{{ $colorClasses() }}" wire:ignore></div>
+        <div id="{{ $id }}_color" class="{{ $colorClasses() }}" wire:ignore></div>
     @elseif ($iconRight)
         <x-input-embed icon-right :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" />
     @elseif (isset($suffix) || $suffixText)
