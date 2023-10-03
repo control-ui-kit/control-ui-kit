@@ -7,7 +7,7 @@ namespace Tests\Components\Forms\Inputs;
 use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
-class RadioTest extends ComponentTestCase
+class RadioGroupTest extends ComponentTestCase
 {
     public function setUp(): void
     {

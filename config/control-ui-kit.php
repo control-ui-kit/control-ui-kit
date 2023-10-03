@@ -88,6 +88,7 @@ return [
         'input-password' => \ControlUIKit\Components\Forms\Inputs\Password::class,
         'input-percent' => \ControlUIKit\Components\Forms\Inputs\Percent::class,
         'input-radio' => \ControlUIKit\Components\Forms\Inputs\Radio::class,
+        'input-radio-group' => \ControlUIKit\Components\Forms\Inputs\RadioGroup::class,
         'input-range' => \ControlUIKit\Components\Forms\Inputs\Range::class,
         'input-royalty' => \ControlUIKit\Components\Forms\Inputs\Royalty::class,
         'input-search' => \ControlUIKit\Components\Forms\Inputs\Search::class,
