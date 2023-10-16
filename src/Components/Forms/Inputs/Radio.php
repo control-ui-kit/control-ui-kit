@@ -28,6 +28,7 @@ class Radio extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        array $styles = null,
         string $id = null,
         string $value = null,
         string $checked = null
@@ -38,13 +39,13 @@ class Radio extends Component
         $this->checked = $checked ?? '';
 
         $this->setConfigStyles([
-            'background' => $background,
-            'border' => $border,
-            'color' => $color,
-            'other' => $other,
-            'padding' => $padding,
-            'rounded' => $rounded,
-            'shadow' => $shadow,
+            'background' => $styles['background'] ?? $background,
+            'border' => $styles['border'] ?? $border,
+            'color' => $styles['color'] ?? $color,
+            'other' => $styles['other'] ?? $other,
+            'padding' => $styles['padding'] ?? $padding,
+            'rounded' => $styles['rounded'] ?? $rounded,
+            'shadow' => $styles['shadow'] ?? $shadow,
         ]);
     }
 

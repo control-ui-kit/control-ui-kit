@@ -39,6 +39,7 @@ class Button extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
+        string $width = null,
         string $href = null,
         string $icon = null,
         string $bstyle = null,
@@ -77,7 +78,8 @@ class Button extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
+            'width' => $width,
         ], ['background', 'border', 'color'], 'button.' . $this->bstyle);
 
         $this->type = $this->buttonType($type, $href);

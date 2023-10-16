@@ -122,10 +122,11 @@ return [
         'disabled' => 'opacity-60 cursor-default',
         'font' => 'text-sm',
         'icon-size' => 'w-5 h-5',
-        'other' => 'w-max flex items-center justify-center group outline-none focus:outline-none',
+        'other' => 'flex items-center justify-center group outline-none focus:outline-none',
         'padding' => 'space-x-1 px-2 py-1.5',
         'rounded' => 'rounded',
         'shadow' => '',
+        'width' => 'w-max',
 
         'default' => [
             'background' => 'bg-button-default hover:bg-button-default-hover',
@@ -771,6 +772,16 @@ return [
 
     'input-radio-group' => [
 
+        'background' => 'bg-input',
+        'border' => 'border border-input divide-input',
+        'color' => '',
+        'font' => '',
+        'other' => 'divide-y overflow-hidden',
+        'padding' => '',
+        'rounded' => 'rounded',
+        'shadow' => '',
+        'width' => 'w-full',
+
         'help-background' => '',
         'help-border' => '',
         'help-color' => '',
@@ -809,16 +820,6 @@ return [
         'radio-padding' => '',
         'radio-rounded' => '',
         'radio-shadow' => '',
-
-        'wrapper-background' => 'bg-input',
-        'wrapper-border' => 'border border-input divide-input',
-        'wrapper-color' => '',
-        'wrapper-font' => '',
-        'wrapper-other' => 'divide-y overflow-hidden',
-        'wrapper-padding' => '',
-        'wrapper-rounded' => 'rounded',
-        'wrapper-shadow' => '',
-        'wrapper-width' => 'w-full',
     ],
 
     'input-range' => [
