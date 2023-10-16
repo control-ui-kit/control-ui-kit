@@ -26,6 +26,7 @@ class ButtonTest extends ComponentTestCase
         Config::set('themes.default.button.padding', 'padding');
         Config::set('themes.default.button.rounded', 'rounded');
         Config::set('themes.default.button.shadow', 'shadow');
+        Config::set('themes.default.button.width', 'width');
 
         Config::set('themes.default.button.default.background', 'default-background');
         Config::set('themes.default.button.default.border', 'default-border');
@@ -76,7 +77,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -90,7 +91,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> some.test.lang.string </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> some.test.lang.string </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -104,7 +105,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -120,7 +121,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -136,7 +137,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -150,7 +151,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -164,7 +165,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -178,7 +179,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -192,7 +193,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -206,7 +207,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -220,7 +221,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -234,7 +235,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background info-background border info-border color info-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background info-background border info-border color info-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -248,7 +249,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background info-background border info-border color info-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background info-background border info-border color info-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -262,7 +263,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background link-background border link-border color link-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background link-background border link-border color link-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -276,7 +277,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background link-background border link-border color link-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background link-background border link-border color link-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -290,7 +291,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background success-background border success-border color success-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background success-background border success-border color success-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -304,7 +305,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background success-background border success-border color success-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background success-background border success-border color success-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -318,7 +319,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background muted-background border muted-border color muted-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background muted-background border muted-border color muted-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -332,7 +333,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background muted-background border muted-border color muted-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background muted-background border muted-border color muted-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -347,7 +348,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background warning-background border warning-border color warning-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background warning-background border warning-border color warning-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -361,7 +362,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background warning-background border warning-border color warning-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background warning-background border warning-border color warning-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -376,7 +377,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -390,7 +391,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="submit"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="submit"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -404,7 +405,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <a href="https://example.com" class="background default-background border default-border color default-color cursor font other padding rounded shadow" role="button"> Click Me </a>
+            <a href="https://example.com" class="background default-background border default-border color default-color cursor font other padding rounded shadow width" role="button"> Click Me </a>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -418,7 +419,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <a href="https://example.com" class="background default-background border default-border color default-color cursor font other padding rounded shadow" target="_blank" role="button"> Click Me </a>
+            <a href="https://example.com" class="background default-background border default-border color default-color cursor font other padding rounded shadow width" target="_blank" role="button"> Click Me </a>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -432,7 +433,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" x-on:click="click()" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" x-on:click="click()" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -446,7 +447,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" @click="click()" type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" @click="click()" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -460,7 +461,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button">
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button">
                 <svg class="icon-size fill-current default-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -479,7 +480,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow" type="button">
+            <button class="background danger-background border danger-border color danger-color cursor font other padding rounded shadow width" type="button">
                 <svg class="icon-size fill-current danger-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -498,7 +499,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button">
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button">
                 <svg class="::new-size fill-current default-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -518,7 +519,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" type="button">
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="button">
                 <svg class="icon-size fill-current ::some-class" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -533,7 +534,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-button icon="none" background="none" border="none" color="none" cursor="none" font="none" other="none" padding="none" rounded="none" shadow="none" icon-style="none">Click Me</x-button>
+            <x-button icon="none" background="none" border="none" color="none" cursor="none" font="none" other="none" padding="none" rounded="none" shadow="none" icon-style="none" width="none">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -547,7 +548,7 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_with_icon_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-button icon="icon-dot" background="none" border="none" color="none" cursor="none" font="none" icon-style="none" other="none" padding="none" rounded="none" shadow="none">Click Me</x-button>
+            <x-button icon="icon-dot" background="none" border="none" color="none" cursor="none" font="none" icon-style="none" other="none" padding="none" rounded="none" shadow="none" width="none">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
@@ -566,11 +567,11 @@ class ButtonTest extends ComponentTestCase
     public function a_button_component_with_icon_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-button background="1" border="2" color="3" cursor="4" font="5" other="6" padding="7" rounded="8" shadow="9">Click Me</x-button>
+            <x-button background="1" border="2" color="3" cursor="4" font="5" other="6" padding="7" rounded="8" shadow="9" width="10">Click Me</x-button>
             HTML;
 
         $expected = <<<'HTML'
-            <button class="1 2 3 4 5 6 7 8 9" type="button"> Click Me </button>
+            <button class="1 2 3 4 5 6 7 8 9 10" type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -584,7 +585,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow" disabled type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow width" disabled type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -598,7 +599,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow" disabled type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow width" disabled type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -612,7 +613,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow" disabled type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow width" disabled type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -626,7 +627,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow" disabled type="button"> Click Me </button>
+            <button class="background default-background border default-border color default-color disabled font other padding rounded shadow width" disabled type="button"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -642,7 +643,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background danger-background border danger-border color danger-color cursor font other padding my-shadow" @click="doDelete" type="button">
+            <button class="background danger-background border danger-border color danger-color cursor font other padding my-shadow width" @click="doDelete" type="button">
                 <svg class="icon-size fill-current danger-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
@@ -663,7 +664,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" @click="doDelete" type="button"> Delete </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" @click="doDelete" type="button"> Delete </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -679,7 +680,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow" wire:click="doSomething()" type="button"> Delete </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" wire:click="doSomething()" type="button"> Delete </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

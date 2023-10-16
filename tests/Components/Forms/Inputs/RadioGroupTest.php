@@ -7,7 +7,7 @@ namespace Tests\Components\Forms\Inputs;
 use Illuminate\Support\Facades\Config;
 use Tests\Components\ComponentTestCase;
 
-class RadioTest extends ComponentTestCase
+class RadioGroupTest extends ComponentTestCase
 {
     public function setUp(): void
     {
@@ -65,34 +65,6 @@ class RadioTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_input_radio_component_can_be_rendered_with_array_styles(): void
-    {
-        $template = <<<'HTML'
-            <x-input-radio name="name" value="value_field" :styles="['background' => '1', 'border' => '2', 'color' => '3', 'other' => '4', 'padding' => '5', 'rounded' => '6', 'shadow' => '7']" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_value_field" value="value_field" class="1 2 3 4 5 6 7" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
-    public function an_input_radio_component_can_be_rendered_with_array_no_styles(): void
-    {
-        $template = <<<'HTML'
-            <x-input-radio name="name" value="value_field" :styles="['background' => 'none', 'border' => 'none', 'color' => 'none', 'other' => 'none', 'padding' => 'none', 'rounded' => 'none', 'shadow' => 'none']" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <input name="name" type="radio" id="name_value_field" value="value_field" />
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
     public function an_input_radio_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -133,6 +105,7 @@ class RadioTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
 
     /** @test */
     public function an_input_radio_component_can_be_rendered_with_custom_attribute(): void
