@@ -11,7 +11,7 @@ const theme = {
     backgroundColor: {
 
         'login': withOpacity('--login-bg'),
-        'login-input': withOpacity('--login-bg'),
+        'login-input': withOpacity('--login-input-bg'),
         'app': withOpacity('--app-bg'),
         'header': withOpacity('--header-bg'),
         'header-hover': withOpacity('--header-bg-hover'),
