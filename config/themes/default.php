@@ -130,56 +130,56 @@ return [
 
         'default' => [
             'background' => 'bg-button-default hover:bg-button-default-hover',
-            'border' => 'border border-button-default hover:border-button-default-hover',
+            'border' => 'border border-button-default hover:border-button-default-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-default hover:text-button-default-hover',
             'icon' => 'text-button-default-icon group-hover:text-button-default-icon-hover',
         ],
 
         'brand' => [
             'background' => 'bg-button-brand hover:bg-button-brand-hover',
-            'border' => 'border border-button-brand hover:border-button-brand-hover',
+            'border' => 'border border-button-brand hover:border-button-brand-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-brand hover:text-button-brand-hover',
             'icon' => 'text-button-brand-icon group-hover:text-button-brand-icon-hover',
         ],
 
         'danger' => [
             'background' => 'bg-button-danger hover:bg-button-danger-hover',
-            'border' => 'border border-button-danger hover:border-button-danger-hover',
+            'border' => 'border border-button-danger hover:border-button-danger-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-danger hover:text-button-danger-hover',
             'icon' => 'text-button-danger-icon group-hover:text-button-danger-icon-hover',
         ],
 
         'info' => [
             'background' => 'bg-button-info hover:bg-button-info-hover',
-            'border' => 'border border-button-info hover:border-button-info-hover',
+            'border' => 'border border-button-info hover:border-button-info-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-info hover:text-button-info-hover',
             'icon' => 'text-button-info-icon group-hover:text-button-info-icon-hover',
         ],
 
         'link' => [
             'background' => 'bg-button-link hover:bg-button-link-hover',
-            'border' => 'border border-button-link hover:border-button-link-hover',
+            'border' => 'border border-button-link hover:border-button-link-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-link hover:text-button-link-hover hover:underline',
             'icon' => 'text-button-link-icon group-hover:text-button-link-icon-hover',
         ],
 
         'muted' => [
             'background' => 'bg-button-muted hover:bg-button-muted-hover',
-            'border' => 'border border-button-muted hover:border-button-muted-hover',
+            'border' => 'border border-button-muted hover:border-button-muted-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-muted hover:text-button-muted-hover',
             'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
         ],
 
         'success' => [
             'background' => 'bg-button-success hover:bg-button-success-hover',
-            'border' => 'border border-button-success hover:border-button-success-hover',
+            'border' => 'border border-button-success hover:border-button-success-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-success hover:text-button-success-hover',
             'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
         ],
 
         'warning' => [
             'background' => 'bg-button-warning hover:bg-button-warning-hover',
-            'border' => 'border border-button-warning hover:border-button-warning-hover',
+            'border' => 'border border-button-warning hover:border-button-warning-hover focus-within:ring-1 focus-within:ring-brand',
             'color' => 'text-button-warning hover:text-button-warning-hover',
             'icon' => 'text-button-warning-icon group-hover:text-button-warning-icon-hover',
         ],
