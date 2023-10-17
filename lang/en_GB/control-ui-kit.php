@@ -8,6 +8,6 @@ return [
         'clear' => 'Clear',
     ],
     'error-bag' => [
-        'title' =>'There was :count error!!|There were :count errors',
+        'title' =>'There was :count error|There were :count errors',
     ],
 ];
