@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseInputTheme;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
@@ -11,7 +12,7 @@ use Illuminate\View\Component;
 
 class RadioGroup extends Component
 {
-    use UseThemeFile, UseInputTheme;
+    use UseThemeFile, UseInputTheme, LivewireAttributes;
 
     protected string $component = 'input-radio-group';
 
