@@ -31,6 +31,7 @@ class RadioGroupTest extends ComponentTestCase
         Config::set('themes.default.input-radio-group.help-padding', 'help-padding');
         Config::set('themes.default.input-radio-group.help-rounded', 'help-rounded');
         Config::set('themes.default.input-radio-group.help-shadow', 'help-shadow');
+        Config::set('themes.default.input-radio-group.help-wrapper', 'help-wrapper');
 
         Config::set('themes.default.input-radio-group.label-background', 'label-background');
         Config::set('themes.default.input-radio-group.label-border', 'label-border');
@@ -137,13 +138,13 @@ class RadioGroupTest extends ComponentTestCase
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="group-1" value="1" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help text</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help text</span> </div>
                 </label>
                 <label class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="{ 'option-selected': selected === '0' }">
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="group-0" value="0" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help text</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help text</span> </div>
                 </label>
             </div>
             HTML;
@@ -164,13 +165,13 @@ class RadioGroupTest extends ComponentTestCase
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="yes-id" value="1" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help text</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help text</span> </div>
                 </label>
                 <label class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="{ 'option-selected': selected === '0' }">
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="no-id" value="0" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help text</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help text</span> </div>
                 </label>
             </div>
             HTML;
@@ -254,13 +255,13 @@ class RadioGroupTest extends ComponentTestCase
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="group-1" value="1" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help string</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '1' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">Yes</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">Yes help string</span> </div>
                 </label>
                 <label class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="{ 'option-selected': selected === '0' }">
                     <div class="radio-background radio-border radio-color radio-font radio-other radio-padding radio-rounded radio-shadow">
                         <input name="group" type="radio" id="group-0" value="0" class="input-background input-border input-color input-other input-padding input-rounded input-shadow" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help string</span> </div>
+                    <div class="help-wrapper" :class="{ 'label-selected': selected === '0' }"> <span class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow">No</span> <span class="help-background help-border help-color help-font help-other help-padding help-rounded help-shadow">No help string</span> </div>
                 </label>
             </div>
             HTML;
@@ -321,6 +322,7 @@ class RadioGroupTest extends ComponentTestCase
                 help-padding="none"
                 help-rounded="none"
                 help-shadow="none"
+                help-wrapper="none"
 
                 label-background="none"
                 label-border="none"
@@ -365,7 +367,7 @@ class RadioGroupTest extends ComponentTestCase
                     <div class="">
                         <input name="group" type="radio" id="group-1" value="1" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '1' }"> <span class="">Test</span> <span class="">Help text</span> </div>
+                    <div class="" :class="{ 'label-selected': selected === '1' }"> <span class="">Test</span> <span class="">Help text</span> </div>
                 </label>
             </div>
             HTML;
@@ -396,6 +398,7 @@ class RadioGroupTest extends ComponentTestCase
                 help-padding="15"
                 help-rounded="16"
                 help-shadow="17"
+                help-wrapper="18"
 
                 label-background="20"
                 label-border="21"
@@ -440,7 +443,7 @@ class RadioGroupTest extends ComponentTestCase
                     <div class="40 41 42 43 44 45 46 47">
                         <input name="group" type="radio" id="group-1" value="1" class="50 51 52 53 54 55 56" x-model="selected" />
                     </div>
-                    <div class="flex flex-col space-y-1 cursor-pointer" :class="{ 'label-selected': selected === '1' }"> <span class="20 21 22 23 24 25 26 27">Test</span> <span class="10 11 12 13 14 15 16 17">Help text</span> </div>
+                    <div class="18" :class="{ 'label-selected': selected === '1' }"> <span class="20 21 22 23 24 25 26 27">Test</span> <span class="10 11 12 13 14 15 16 17">Help text</span> </div>
                 </label>
             </div>
             HTML;

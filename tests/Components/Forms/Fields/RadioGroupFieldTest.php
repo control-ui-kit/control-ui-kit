@@ -53,6 +53,7 @@ class RadioGroupFieldTest extends ComponentTestCase
         Config::set('themes.default.input-radio-group.help-padding', 'help-padding');
         Config::set('themes.default.input-radio-group.help-rounded', 'help-rounded');
         Config::set('themes.default.input-radio-group.help-shadow', 'help-shadow');
+        Config::set('themes.default.input-radio-group.help-wrapper', 'help-wrapper');
 
         Config::set('themes.default.input-radio-group.label-background', 'label-background');
         Config::set('themes.default.input-radio-group.label-border', 'label-border');
