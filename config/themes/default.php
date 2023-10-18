@@ -1203,7 +1203,7 @@ return [
         'border' => 'border border-panel',
         'color' => 'text-panel',
         'divider' => 'divide-y divide-panel',
-        'font' => 'text-sm',
+        'font' => 'text-sm leading-6',
         'other' => '',
         'padding' => 'p-6',
         'rounded' => 'rounded',
