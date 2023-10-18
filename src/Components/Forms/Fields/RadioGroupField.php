@@ -8,10 +8,10 @@ use Illuminate\Contracts\View\View;
 
 class RadioGroupField extends InputField
 {
-    public array $options;
+    public array|string $options;
 
     public function __construct(
-        array $options,
+        array|string $options,
         string $name = null,
         string $label = null,
         string $help = null,

@@ -1,14 +1,14 @@
-<div class="{{ $wrapperClasses() }}" x-cloak x-data="{ selected: '{{ $selected }}' }" x-modelable="selected">
+<div {{ $attributes->merge($classes()) }} x-cloak x-data="{ selected: '{{ $selected }}' }" x-modelable="selected">
     @foreach($options as $option)
     <label class="{{ $optionClasses() }}" :class="{ '{{ $optionSelected }}': selected === '{{ $option['value'] }}' }">
         <div class="{{ $radioClasses() }}">
             <x-input-radio
                 :name="$option['name']"
                 :id="$option['id']"
+                :styles="$inputRadioStyles"
                 value="{{ $option['value'] }}"
-                :checked="$option['checked']"
                 x-model="selected"
-                {{ $attributes->whereStartsWith('wire:model') }}
+                {{ $attributes->whereStartsWith(['wire:model', 'input-']) }}
             />
         </div>
         @if($option['help'])
