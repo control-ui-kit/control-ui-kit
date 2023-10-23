@@ -22,6 +22,6 @@
         </div>
     </div>
     @if ($help)
-        <p class="{{ $helpStyle }}">{{ $help }}</p>
+        <p class="{{ $helpStyle }}">{!! $help !!}</p>
     @endif
 </div>
