@@ -99,6 +99,7 @@ class RoyaltyFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
     /** @test */
     public function the_field_royalty_component_can_be_rendered_with_custom_class(): void
     {

@@ -147,6 +147,7 @@ class PillTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
     /** @test */
     public function a_pill_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
@@ -258,6 +259,7 @@ class PillTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
     /** @test */
 
     public function a_pill_component_can_be_rendered_with_warning_styles_shorthand(): void
