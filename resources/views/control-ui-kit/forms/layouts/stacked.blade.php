@@ -19,7 +19,7 @@
         @endif
         <x-error field="{{ $name }}" :styles="$errorStyles" />
         @if ($help)
-            <p class="{{ $helpStyle }}">{{ $help }}</p>
+            <p class="{{ $helpStyle }}">{!! $help !!}</p>
         @endif
     </div>
 </div>

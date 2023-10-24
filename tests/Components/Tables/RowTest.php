@@ -164,6 +164,7 @@ class RowTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
     /** @test */
     public function a_table_row_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
@@ -275,6 +276,7 @@ class RowTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
     /** @test */
 
     public function a_table_row_component_can_be_rendered_with_warning_styles_shorthand(): void

@@ -7,7 +7,7 @@
             @endif
         </p>
         @if ($help)
-            <p class="{{ $helpStyle }}">{{ $help }}</p>
+            <p class="{{ $helpStyle }}">{!! $help !!}</p>
         @endif
     </x-label>
     <div class="{{ $contentStyle }}">
@@ -22,7 +22,7 @@
         @endif
         <x-error field="{{ $name }}" :styles="$errorStyles" />
         @if ($help)
-            <p class="{{ $helpMobile }}">{{ $help }}</p>
+            <p class="{{ $helpMobile }}">{!! $help !!}</p>
         @endif
     </div>
 </div>

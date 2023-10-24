@@ -34,6 +34,7 @@ class Input extends Component
     public ?string $type;
     public ?string $value;
     public ?string $action = null;
+    public ?bool $requiredInput;
 
     public array $iconLeftStyles = [];
     public array $iconRightStyles = [];
@@ -122,6 +123,7 @@ class Input extends Component
 
         string $prefixText = null,
         string $suffixText = null,
+        bool $requiredInput = null,
 
     ) {
         $this->name = $name;
@@ -140,6 +142,7 @@ class Input extends Component
         $this->iconLeftSize = $iconLeftSize ?? $iconSize;
         $this->iconRightSize = $iconRightSize ?? $iconSize;
         $this->placeholder = $this->style('input', 'placeholder', $placeholder, '', $this->component);
+        $this->requiredInput = $requiredInput;
 
         $this->setInputStyles([
             'background' => $background,

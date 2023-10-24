@@ -8,6 +8,7 @@
         @isset($min) min="{{ $min }}" @endisset
         @isset($max) max="{{ $max }}" @endisset
         @isset($step) step="{{ $step }}" @endisset
+        @if($requiredInput) required @endif
         {{ $attributes->except('required')->merge($basicClasses()) }}
     />
 @else
@@ -25,6 +26,7 @@
                @isset($min) min="{{ $min }}" @endisset
                @isset($max) max="{{ $max }}" @endisset
                @isset($step) step="{{ $step }}" @endisset
+               @if($requiredInput) required @endif
                {{ $attributes->except(['required', 'class'])->merge($inputClasses()) }}
         />
         @if ($iconRight)
