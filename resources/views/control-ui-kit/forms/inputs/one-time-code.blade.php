@@ -14,7 +14,7 @@
     {{ $attributes->whereStartsWith(['class', 'x-model']) }}>
     <fieldset class="fs-{{ $name }}-otc">
         @for($i = 1; $i <= $digits; $i++)
-            <input id="{{ $name }}-{{ $i }}" data-digit="{{ $i }}" x-model="digit_{{ $i }}" type="number" {{ $attributes->whereDoesntStartWith(['class', 'x-model'])->merge($basicClasses()) }} pattern="[0-9]*" min="0" max="9" maxlength="1"@if($requiredInput) required @endif />
+            <input id="{{ $name }}-{{ $i }}" data-digit="{{ $i }}" x-model="digit_{{ $i }}" type="number" {{ $attributes->whereDoesntStartWith(['class', 'x-model', 'wire:model'])->merge($basicClasses()) }} pattern="[0-9]*" min="0" max="9" maxlength="1" @if($requiredInput) required @endif />
         @endfor
     </fieldset>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" x-model="value" />
