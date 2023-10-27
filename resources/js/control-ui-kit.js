@@ -356,6 +356,129 @@ window.Components = {
             },
         }
     },
+    inputOneTimeCode(options) {
+        return {
+            ...options,
+            init() {
+
+                let watch = [];
+                for (let i = 1; i <= this.digits; i++) {
+                    watch.push('digit_' + i)
+                }
+
+                this.$watch(watch.join(', '), () => {
+                    this.updateValue()
+                })
+
+                this.$watch('value', () => {
+                    this.updateDigits()
+                })
+
+                this.updateDigits();
+
+                let self = this;
+
+                let first = document.getElementById(this.name + '-1'),
+                    ins = document.querySelectorAll('fieldset.fs-' + this.name + '-otc input[type="number"]'),
+                    splitNumber = function(e) {
+                        let data = e.data || e.target.value; // Chrome doesn't get the e.data, it's always empty, fallback to value then.
+                        if (! data) return; // Shouldn't happen, just in case.
+                        if (data.length === 1) return; // Here is a normal behavior, not a paste action.
+
+                        populateNext(e.target, data);
+                    },
+                    populateNext = function(el, data) {
+                        el.value = data[0]; // Apply first item to first input
+
+                        self['digit_' + el.getAttribute('data-digit')] = el.value;
+                        data = data.substring(1); // remove the first char.
+
+                        if (el.nextElementSibling && data.length) {
+                            // Do the same with the next element and next data
+                            populateNext(el.nextElementSibling, data);
+                        }
+                    };
+
+                ins.forEach(function(input) {
+                    /**
+                     * Control on keyup to catch what the user intends to do.
+                     */
+                    input.addEventListener('keyup', function(e){
+
+                        // Break if Shift, Tab, CMD, Option, Control.
+                        if (e.keyCode === 16 || e.keyCode === 9 || e.keyCode === 224 || e.keyCode === 18 || e.keyCode === 17) {
+                            return;
+                        }
+
+                        // On Backspace or left arrow, go to the previous field.
+                        if ((e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT") {
+                            this.previousElementSibling.select();
+                        } else if (e.keyCode !== 8 && this.nextElementSibling) {
+                            this.nextElementSibling.select();
+                        }
+
+                        // If the target is populated to quickly, value length can be > 1
+                        if (e.target.value.length > 1) {
+                            splitNumber(e);
+                        }
+                    });
+
+                    /**
+                     * Better control on Focus
+                     * - don't allow focus on other field if the first one is empty
+                     * - don't allow focus on field if the previous one if empty (debatable)
+                     * - get the focus on the first empty field
+                     */
+                    input.addEventListener('focus', function(e) {
+                        // If the focus element is the first one, do nothing
+                        if (this === first) return;
+
+                        // If value of input 1 is empty, focus it.
+                        if (first.value === '') {
+                            first.focus();
+                        }
+
+                        // If value of a previous input is empty, focus it.
+                        // To remove if you don't want to force user respecting the fields order.
+                        if (this.previousElementSibling.value === '') {
+                            this.previousElementSibling.focus();
+                        }
+                    });
+                });
+
+                /**
+                 * Handle copy/paste of a big number.
+                 * It catches the value pasted on the first field and spread it into the inputs.
+                 */
+                first.addEventListener('input', splitNumber);
+            },
+            updateValue() {
+                let value = '';
+                for (let i = 1; i <= this.digits; i++) {
+                    value += this['digit_' + i]
+                }
+                this.value = value
+            },
+            updateDigits() {
+                if (this.value !== this.value.toString().substring(0, this.digits)) {
+                    this.value = this.value.toString().substring(0, this.digits)
+                    return
+                }
+
+                let digits = this.value.toString().substring(0, this.digits).split('')
+
+                digits.forEach((digit, index) => {
+                    this['digit_' + (index + 1)] = digit
+                });
+
+                if (this.digits - digits.length) {
+                    for (let i = digits.length + 1; i <= this.digits; i++) {
+                        this['digit_' + i] = '';
+                    }
+                }
+            }
+        }
+    },
     inputPassword(options) {
         return {
             ...options,

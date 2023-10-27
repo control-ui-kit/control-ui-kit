@@ -13,10 +13,12 @@ class FormField extends Component
 
     public ?string $input;
     public string $layout;
+    public string $help;
 
     public function __construct(
         string $layout = null,
-        string $input = null
+        string $input = null,
+        string $help = null,
     ) {
         if ($input === 'input') {
             $this->input = 'input';
@@ -24,6 +26,7 @@ class FormField extends Component
             $this->input = $input ? 'input-' . $input : null;
         }
 
+        $this->help = $help ?? '';
         $this->layout = $this->getLayout($layout);
     }
 

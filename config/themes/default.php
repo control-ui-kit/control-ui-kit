@@ -740,6 +740,21 @@ return [
         'type' => 'number',
     ],
 
+    'input-one-time-code' => [
+        'background' => 'bg-input',
+        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'color' => 'text-input placeholder-input',
+        'font' => 'text-3xl text-center',
+        'other' => '',
+        'padding' => 'p-0',
+        'rounded' => 'rounded',
+        'shadow' => '',
+        'width' => 'w-10 h-14',
+
+        // Config
+        'digits' => 6,
+    ],
+
     'input-password' => [
         'icon-left' => 'icon-eye',
         'icon-left-show' => 'icon-invisible',
