@@ -1,4 +1,4 @@
-<select id="{{ $id }}" name="{{ $name }}" {{ $attributes->merge($classes()) }}>
+<select id="{{ $id }}" name="{{ $name }}" {{ $attributes->merge(['class' => $buttonClasses()]) }}>
     @foreach ($options as $key => $option)
     <option value="{{ $optionValue($key, $option) }}" @if ($optionValue($key, $option) == $value) selected @endif>
         {{ $text($option) }}

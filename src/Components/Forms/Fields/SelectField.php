@@ -16,20 +16,22 @@ class SelectField extends Component
     public bool $required;
     public mixed $options;
     public ?bool $showPleaseSelect;
+    public string $layout;
 
     public function __construct(
         string $name,
         mixed $options,
         bool $required = false,
-        mixed $requiredAction = null,
+        mixed $mode = null,
         string $label = null,
         string $placeholder = null,
-        string $help = null
+        string $help = null,
+        string $layout = null
     ) {
-        if ($requiredAction === 'new') {
+        if ($mode === 'new') {
             $this->required = true;
             $this->showPleaseSelect = true;
-        } elseif ($requiredAction === 'edit') {
+        } elseif ($mode === 'edit') {
             $this->required = true;
             $this->showPleaseSelect = false;
         } else {
@@ -42,10 +44,20 @@ class SelectField extends Component
         $this->label = $label ?? '';
         $this->placeholder = $placeholder ?? '';
         $this->help = $help ?? '';
+        $this->layout = $this->getLayout($layout);
     }
 
     public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.fields.select');
+    }
+
+    private function getLayout(?string $layout): string
+    {
+        if (! $layout) {
+            return (string) config('control-ui-kit.field-layouts.default');
+        }
+
+        return $layout;
     }
 }
