@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use Closure;
 use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
@@ -49,7 +50,7 @@ class Select extends Component
     public function __construct(
 
         string $name,
-        mixed $options,
+        mixed $options = [],
         $value = null,
         bool $native = false,
 

@@ -2837,4 +2837,26 @@ class SelectTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /** @test */
+    public function an_input_select_component_can_be_rendered_in_native_format_with_slot_options(): void
+    {
+        $template = <<<'HTML'
+            <x-input-select native name="language">
+                <option value="" selected> Please Select ... </option>
+                <option value="1"> English </option>
+                <option value="2"> Spanish </option>
+            </x-input-select>
+            HTML;
+
+        $expected = <<<'HTML'
+            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
+                <option value="" selected> Please Select ... </option>
+                <option value="1"> English </option>
+                <option value="2"> Spanish </option>
+            </select>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
