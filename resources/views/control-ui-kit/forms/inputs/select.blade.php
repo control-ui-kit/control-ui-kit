@@ -1,9 +1,17 @@
-<div x-cloak x-data="Components.listbox({ id: '{{ $id }}', value: {!! $jsonValue() !!} })" x-init="init()" class="{{ $buttonWidth() }} relative">
-
+@php
+    [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
+@endphp
+<div x-cloak
+     x-data="Components.inputSelect({
+         id: '{{ $id }}',
+         value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else {!! $jsonValue() !!}@endif
+     })"
+     x-init="init()"
+     x-modelable="value"
+    {{ $attributes->merge(['class' => $buttonWidth() . ' relative'])->whereDoesntStartWith(['wire:model']) }}>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" @if(! is_null($value)) value="{{ $value }}" @endif x-model="value" x-on:change="onValueChange()" />
-
     <button type="button"
-            {{ $attributes->merge($classes()) }}
+            class="{{ $buttonClasses() }}"
             x-ref="button"
             @keydown.arrow-up.stop.prevent="onButtonClick()"
             @keydown.arrow-down.stop.prevent="onButtonClick()"
