@@ -519,6 +519,11 @@ window.Components = {
             },
         }
     },
+    inputRange(options) {
+        return {
+            ...options,
+        }
+    },
     flatpickr(options) {
         return {
             ...options,

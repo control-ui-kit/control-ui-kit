@@ -35,6 +35,21 @@ const theme = {
 
         'toolbar': withOpacity('--toolbar-bg'),
 
+        'brand': withOpacity('--brand'),
+        'brand-hover': withOpacity('--brand-hover'),
+        'default': withOpacity('--default'),
+        'default-hover': withOpacity('--default-hover'),
+        'danger': withOpacity('--danger'),
+        'danger-hover': withOpacity('--danger-hover'),
+        'info': withOpacity('--info'),
+        'info-hover': withOpacity('--info-hover'),
+        'muted': withOpacity('--muted'),
+        'muted-hover': withOpacity('--muted-hover'),
+        'success': withOpacity('--success'),
+        'success-hover': withOpacity('--success-hover'),
+        'warning': withOpacity('--warning'),
+        'warning-hover': withOpacity('--warning-hover'),
+
         'alert-brand': withOpacity('--alert-brand-bg'),
         'alert-default': withOpacity('--alert-default-bg'),
         'alert-danger': withOpacity('--alert-danger-bg'),

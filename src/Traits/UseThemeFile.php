@@ -84,7 +84,6 @@ trait UseThemeFile
 
         foreach ($this->$array as $prop => $value) {
             $keyMerge = ($config && count($merge) && in_array($prop, $merge, true)) ? $config : null;
-//            $component = $config ?: $this->component;
             $this->$prop = $this->style($this->component, $prop, $value, $keyMerge);
             $this->$array[$prop] = $this->$prop;
         }

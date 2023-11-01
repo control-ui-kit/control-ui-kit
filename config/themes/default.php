@@ -838,17 +838,41 @@ return [
     ],
 
     'input-range' => [
-        'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
-        'color' => 'text-input placeholder-input',
-        'font' => 'text-sm',
-        'other' => '',
-        'padding' => 'p-1.5',
-        'rounded' => 'rounded',
-        'shadow' => '',
 
-        'min' => '1',
-        'max' => '100',
+        // Style
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'other' => 'flex items-center relative',
+        'padding' => '',
+        'rounded' => '',
+        'shadow' => '',
+        'width' => 'w-full',
+
+        'pill-background' => 'bg-input',
+        'pill-border' => 'border border-input',
+        'pill-color' => 'text-input',
+        'pill-font' => 'text-xs text-center select-none',
+        'pill-other' => 'flex justify-center items-center',
+        'pill-padding' => '',
+        'pill-rounded' => 'rounded-full',
+        'pill-shadow' => '',
+        'pill-width' => 'min-w-[2.5rem] w-max h-6',
+        'pill-min' => 'mr-2',
+        'pill-max' => 'ml-2',
+        'pill-value' => 'absolute left-1/2 z-50 -ml-5',
+
+        // Config
+        'default-range' => 'brand',
+        'default-size' => 'sm',
+
+        'show-min' => true,
+        'show-max' => true,
+        'show-value' => true,
+
+        'min' => 1,
+        'max' => 100,
+        'step' => 1,
     ],
 
     'input-royalty' => [

@@ -1,20 +1,34 @@
-<!-- https://nikitahl.com/style-range-input-css -->
-<div>
-    <div id="{{ $id }}_value" class="w-40 text-center">{{ $value }}</div>
-
-    <span>{{ $min }}</span>
-
-    <input name="{{ $name }}"
-           id="{{ $id }}"
-           type="range"
-           min="{{ $min }}"
-           max="{{ $max }}"
-           value="{{ $value }}"
-           {{ $attributes->merge($classes()) }}
-           oninput="document.getElementById('{{ $id }}_value').innerHTML = this.value"
-           onchange="document.getElementById('{{ $id }}_value').innerHTML = this.value"
+@php
+    [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
+@endphp
+<div x-data="Components.inputRange({
+    id: '{{ $id }}',
+    value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else '{{ $value }}'@endif
+})"
+     x-modelable="value"
+    {{ $attributes->merge($classes())->whereStartsWith(['class', 'x-model']) }}>
+    @if($showMin)
+    <div class="{{ $minClasses() }}">{{ $min }}</div>
+    @endif
+    @if($showValue)
+    <div class="{{ $valueClasses() }}">
+        <span x-html="value">{{ $value }}</span>
+    </div>
+    @endif
+    <input
+        type="range"
+        x-model="value"
+        name="{{ $name }}"
+        id="{{ $id }}"
+        min="{{ $min }}"
+        max="{{ $max }}"
+        step="{{ $step }}"
+        @if ($value) value="{{ $value }}" @endif
+        class="{{ $theme }}"
+        {{ $attributes->merge($classes())->whereDoesntStartWith(['class', 'x-model']) }}
     />
-
-    <span>{{ $max }}</span>
+    @if($showMax)
+    <div class="{{ $maxClasses() }}">{{ $max }}</div>
+    @endif
 </div>
 
