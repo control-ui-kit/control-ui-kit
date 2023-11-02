@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -13,7 +14,7 @@ use Illuminate\View\ViewException;
 
 class Select extends Component
 {
-    use UseThemeFile;
+    use UseThemeFile, LivewireAttributes;
 
     protected string $component = 'input-select';
 
@@ -37,6 +38,7 @@ class Select extends Component
     public ?string $imageName;
     public ?string $optionValue;
 
+    public array $buttonStyles;
     public array $checkStyles;
     public array $imageStyles;
     public array $listStyles;
@@ -47,7 +49,7 @@ class Select extends Component
     public function __construct(
 
         string $name,
-        $options = [],
+        mixed $options = [],
         $value = null,
         bool $native = false,
 
@@ -184,7 +186,7 @@ class Select extends Component
             'button-rounded' => $buttonRounded,
             'button-shadow' => $buttonShadow,
             'button-width' => $width ?? $buttonWidth,
-        ]);
+        ], [], null, 'buttonStyles');
 
         $this->setConfigStyles([
             'check-background' => $checkBackground,
@@ -282,7 +284,12 @@ class Select extends Component
 
     public function buttonWidth(): string
     {
-        return $this->props['button-width'];
+        return $this->buttonStyles['button-width'];
+    }
+
+    public function buttonClasses(): string
+    {
+        return $this->classList($this->buttonStyles);
     }
 
     public function listClasses(): string
@@ -445,7 +452,7 @@ class Select extends Component
     private function buildOptionsArray(mixed $options): array
     {
         if (is_string($options)) {
-            return $this->stringOptionsToArray($options);
+            return $this->parseOptionsString($options);
         }
 
         if ($options instanceof EloquentCollection) {
@@ -459,14 +466,24 @@ class Select extends Component
         throw new ViewException('Select does not support this data type');
     }
 
-    private function stringOptionsToArray(string $options): array
-    {
-        $values = array_filter(array_map('trim', str_getcsv($options)));
-        return array_combine($values, $values);
-    }
-
     private function collectionOptionsToArray(EloquentCollection $options): array
     {
         return $options->pluck('label', 'value')->toArray();
+    }
+
+    private function parseOptionsString(string $string): array
+    {
+        $options = [];
+
+        foreach (explode('|', $string) as $item) {
+            $a = explode(':', $item);
+            if (count($a) === 1) {
+                $options[strtolower($a[0])] = $a[0];
+            } else {
+                $options[strtolower($a[0])] = $a[1] ?? $a[0];
+            }
+        }
+
+        return $options;
     }
 }
