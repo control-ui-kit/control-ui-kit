@@ -365,15 +365,27 @@ return [
          * Logo Icons (Socials - first)
          */
 
+        'logo-amazon' => \ControlUIKit\Components\Icons\Logo\Amazon::class,
+        'logo-anghami' => \ControlUIKit\Components\Icons\Logo\Anghami::class,
+        'logo-apple' => \ControlUIKit\Components\Icons\Logo\Apple::class,
+        'logo-beatport' => \ControlUIKit\Components\Icons\Logo\Beatport::class,
+        'logo-boomplay' => \ControlUIKit\Components\Icons\Logo\Boomplay::class,
+        'logo-deezer' => \ControlUIKit\Components\Icons\Logo\Deezer::class,
         'logo-facebook' => \ControlUIKit\Components\Icons\Logo\Facebook::class,
+        'logo-google-play' => \ControlUIKit\Components\Icons\Logo\GooglePlay::class,
+        'logo-hardstyle' => \ControlUIKit\Components\Icons\Logo\Hardstyle::class,
         'logo-instagram' => \ControlUIKit\Components\Icons\Logo\Instagram::class,
+        'logo-juno' => \ControlUIKit\Components\Icons\Logo\Juno::class,
+        'logo-pandora' => \ControlUIKit\Components\Icons\Logo\Pandora::class,
+        'logo-shazam' => \ControlUIKit\Components\Icons\Logo\Shazam::class,
         'logo-soundcloud' => \ControlUIKit\Components\Icons\Logo\Soundcloud::class,
+        'logo-spotify' => \ControlUIKit\Components\Icons\Logo\Spotify::class,
+        'logo-toolbox' => \ControlUIKit\Components\Icons\Logo\Toolbox::class,
+        'logo-traxsource' => \ControlUIKit\Components\Icons\Logo\Traxsource::class,
+        'logo-uma' => \ControlUIKit\Components\Icons\Logo\Uma::class,
+        'logo-vk' => \ControlUIKit\Components\Icons\Logo\Vk::class,
         'logo-x' => \ControlUIKit\Components\Icons\Logo\X::class,
         'logo-youtube' => \ControlUIKit\Components\Icons\Logo\Youtube::class,
-
-        /*
-         * Logo Icons (Others - secondary)
-         */
 
 
         /*
