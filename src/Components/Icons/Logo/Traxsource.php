@@ -8,6 +8,6 @@ class Traxsource extends BaseIconComponent
 {
     public function render()
     {
-        return view('control-ui-kit::control-ui-kit.icons.logo.toolbox');
+        return view('control-ui-kit::control-ui-kit.icons.logo.traxsource');
     }
 }
