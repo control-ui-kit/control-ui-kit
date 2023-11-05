@@ -380,13 +380,15 @@ return [
         'logo-shazam' => \ControlUIKit\Components\Icons\Logo\Shazam::class,
         'logo-soundcloud' => \ControlUIKit\Components\Icons\Logo\Soundcloud::class,
         'logo-spotify' => \ControlUIKit\Components\Icons\Logo\Spotify::class,
+        'logo-tiktok' => \ControlUIKit\Components\Icons\Logo\TikTok::class,
         'logo-toolbox' => \ControlUIKit\Components\Icons\Logo\Toolbox::class,
         'logo-traxsource' => \ControlUIKit\Components\Icons\Logo\Traxsource::class,
         'logo-uma' => \ControlUIKit\Components\Icons\Logo\Uma::class,
         'logo-vk' => \ControlUIKit\Components\Icons\Logo\Vk::class,
+        'logo-wechat' => \ControlUIKit\Components\Icons\Logo\WeChat::class,
+        'logo-whatsapp' => \ControlUIKit\Components\Icons\Logo\Whatsapp::class,
         'logo-x' => \ControlUIKit\Components\Icons\Logo\X::class,
         'logo-youtube' => \ControlUIKit\Components\Icons\Logo\Youtube::class,
-
 
         /*
          * File Type Icons
