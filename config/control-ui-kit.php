@@ -259,6 +259,7 @@ return [
         'icon-credit-card-download' => \ControlUIKit\Components\Icons\CreditCardDownload::class,
         'icon-delete' => \ControlUIKit\Components\Icons\Delete::class,
         'icon-desktop' => \ControlUIKit\Components\Icons\Desktop::class,
+        'icon-disc' => \ControlUIKit\Components\Icons\Disc::class,
         'icon-dj' => \ControlUIKit\Components\Icons\Dj::class,
         'icon-document' => \ControlUIKit\Components\Icons\Document::class,
         'icon-document-download' => \ControlUIKit\Components\Icons\DocumentDownload::class,
