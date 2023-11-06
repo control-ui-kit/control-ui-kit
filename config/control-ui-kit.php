@@ -47,6 +47,7 @@ return [
 
         'form-field' => \ControlUIKit\Components\Forms\FormField::class,
 
+        'field-autocomplete' => \ControlUIKit\Components\Forms\Fields\AutocompleteField::class,
         'field-checkbox' => \ControlUIKit\Components\Forms\Fields\CheckboxField::class,
         'field-color-picker' => \ControlUIKit\Components\Forms\Fields\ColorPickerField::class,
         'field-currency' => \ControlUIKit\Components\Forms\Fields\CurrencyField::class,
@@ -74,6 +75,7 @@ return [
         'field-url' => \ControlUIKit\Components\Forms\Fields\UrlField::class,
 
         'input' => \ControlUIKit\Components\Forms\Inputs\Input::class,
+        'input-autocomplete' => \ControlUIKit\Components\Forms\Inputs\AutoComplete::class,
         'input-blank' => \ControlUIKit\Components\Forms\Inputs\Blank::class,
         'input-checkbox' => \ControlUIKit\Components\Forms\Inputs\Checkbox::class,
         'input-color-picker' => \ControlUIKit\Components\Forms\Inputs\ColorPicker::class,

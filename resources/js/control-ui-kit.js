@@ -524,6 +524,404 @@ window.Components = {
             ...options,
         }
     },
+    inputAutocomplete(options) {
+        return {
+            ...options,
+            filter: '',
+            is_ajax: false,
+            show: false,
+            selected: null,
+            selected_text: null,
+            focusedOptionIndex: null,
+            options: null,
+            init() {
+                if (this.data.length > 0) {
+                    this.options = this.data
+                }
+
+                this.is_ajax = this.search_url !== ''
+
+                this.setSelected()
+
+                this.$watch('value', () => {
+                    // this.getAjaxOptions();
+                    this.setSelected()
+                })
+
+                // this.fetch()
+            },
+            setSelected() {
+                if (this.value && this.options) {
+                    let selected = this.options.filter(option => {
+                        return option.id.toString() === this.value.toString()
+                    })
+                    if (selected.length) {
+                        this.selected = selected[0]
+                        this.filter = this.selected.text
+                        this.selected_text = this.selected.text
+                    } else {
+                        this.selected = null
+                        this.selected_text = ''
+                        this.filter = ''
+                    }
+                } else if (this.usingAjax() && this.value && ! this.options) {
+                    this.lookupId()
+                } else {
+                    this.selected = null
+                    this.selected_text = ''
+                }
+            },
+            lookupId() {
+                fetch(this.ajaxIdQuery())
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((record) => {
+                        this.selected = this.convertRow(record)
+                        this.filter = this.selected.text
+                        this.selected_text = this.selected.text
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            },
+            close() {
+                this.show = false;
+                // this.filter = this.selectedName();
+
+                this.filter = this.selected.text;
+                if (this.is_ajax) {
+                    this.options = null
+                } else {
+                    this.options = this.data
+                }
+                // this.focusedOptionIndex = this.selected ? this.focusedOptionIndex : null;
+            },
+            open() {
+                this.show = true;
+                this.filter = '';
+            },
+            toggle() {
+                if (this.show) {
+                    this.close();
+                }
+                else {
+                    this.open()
+                }
+            },
+            isOpen() { return this.show === true },
+            selectedName() { return this.selected ? this.selected.text : this.filter; },
+            classOption(id, index) {
+                const isSelected = this.selected ? (id === this.selected.id) : false;
+                const isFocused = (index === this.focusedOptionIndex);
+                return {
+                    'text-brand': isSelected,
+                    'bg-input-option-hover ': isFocused
+                };
+            },
+            filteredOptions() {
+                return this.options;
+            },
+            usingAjax() {
+                return this.search_url !== '';
+            },
+            async refreshOptions() {
+                if (this.usingAjax()) {
+                    if (this.filter === '') {
+                        this.options = null;
+                    } else {
+                        await this.getAjaxOptions()
+                    }
+                } else {
+                    if (this.filter === '') {
+                        this.options = this.data;
+                    } else {
+                        this.options = this.filteredDataOptions()
+                    }
+                }
+            },
+            filteredDataOptions() {
+
+                return this.options
+                    ? this.options.filter(option => {
+                        return (option.text.toLowerCase().indexOf(this.filter) > -1)
+                    })
+                    : {}
+            },
+            ajaxTermQuery() {
+                console.log(this.search_url)
+                return this.search_url.replace('{term}', this.filter).replace('#term#', this.filter)
+            },
+            ajaxIdQuery() {
+                return this.lookup_url.replace('{id}', this.value).replace('#id#', this.value)
+            },
+            async getAjaxOptions() {
+
+                fetch(this.ajaxTermQuery())
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((rows) => {
+                        console.log('success', rows)
+                        this.options = this.convertData(rows);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+
+            },
+            convertData(data) {
+                const options = [];
+
+                for (const key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        options.push(this.convertRow(data[key]));
+                    }
+                }
+
+                return options;
+            },
+            convertRow(data) {
+                return {
+                    'id': data[this.idName],
+                    'text': data[this.textName],
+                    'sub': data[this.subName] || null,
+                    'thumbnail': data[this.imageName] || null,
+                };
+            },
+            onOptionClick(index) {
+                this.focusedOptionIndex = index;
+                this.selectOption();
+            },
+            selectOption() {
+                if (!this.isOpen() || this.options === null) {
+                    return;
+                }
+                this.focusedOptionIndex = this.focusedOptionIndex ?? 0;
+                const selected = this.filteredOptions()[this.focusedOptionIndex]
+
+                this.value = selected.id
+                if (this.selected && this.selected.id === selected.id) {
+                    this.filter = ''
+                    this.selected = null
+                    this.selected_text = ''
+                }
+                else {
+                    this.selected = selected
+                    this.filter = this.selectedName()
+                    this.selected_text = this.selectedName()
+                }
+                this.close();
+            },
+            focusPrevOption() {
+                if (!this.isOpen() || this.options === null) {
+                    return;
+                }
+                const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+                if (this.focusedOptionIndex > 0 && this.focusedOptionIndex <= optionsNum) {
+                    this.focusedOptionIndex--;
+                }
+                else if (this.focusedOptionIndex === 0) {
+                    this.focusedOptionIndex = optionsNum;
+                }
+            },
+            focusNextOption() {
+                if (this.options === null) {
+                    return;
+                }
+                const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+                if (!this.isOpen()) {
+                    this.open();
+                }
+                if (this.focusedOptionIndex == null || this.focusedOptionIndex === optionsNum) {
+                    this.focusedOptionIndex = 0;
+                }
+                else if (this.focusedOptionIndex >= 0 && this.focusedOptionIndex < optionsNum) {
+                    this.focusedOptionIndex++;
+                }
+            }
+        }
+    },
+    // inputAutocompleteData(options) {
+    //     return {
+    //         ...options,
+    //         filter: '',
+    //         show: false,
+    //         selected: null,
+    //         focusedOptionIndex: null,
+    //         options: null,
+    //         init() {
+    //             if (this.data.length > 0) {
+    //                 this.options = this.data
+    //             } else {
+    //                 console.log('not options set')
+    //             }
+    //
+    //             this.setSelected()
+    //
+    //             this.$watch('value', () => {
+    //                 // this.getAjaxOptions();
+    //                 this.setSelected()
+    //             })
+    //
+    //             // this.fetch()
+    //         },
+    //         setSelected() {
+    //             if (this.value) {
+    //                 let selected = this.options.filter(option => {
+    //                     return option.id.toString() === this.value.toString()
+    //                 })
+    //
+    //                 if (selected.length) {
+    //                     this.selected = selected[0]
+    //                     this.filter = this.selected.text
+    //                 }
+    //             } else {
+    //                 this.selected = null
+    //             }
+    //         },
+    //         close() {
+    //             this.show = false;
+    //             this.filter = this.selectedName();
+    //             this.focusedOptionIndex = this.selected ? this.focusedOptionIndex : null;
+    //         },
+    //         open() {
+    //             this.show = true;
+    //             this.filter = '';
+    //         },
+    //         toggle() {
+    //             if (this.show) {
+    //                 this.close();
+    //             }
+    //             else {
+    //                 this.open()
+    //             }
+    //         },
+    //         isOpen() { return this.show === true },
+    //         selectedName() { return this.selected ? this.selected.text : this.filter; },
+    //         classOption(id, index) {
+    //             const isSelected = this.selected ? (id === this.selected.id) : false;
+    //             const isFocused = (index === this.focusedOptionIndex);
+    //             return {
+    //                 'text-brand': isSelected,
+    //                 'bg-input-option-hover ': isFocused
+    //             };
+    //         },
+    //         filteredOptions() {
+    //
+    //             console.log('filteredOptions')
+    //
+    //             if (this.ajax !== '') {
+    //                 console.log('is ajax')
+    //                 this.getAjaxOptions();
+    //                 return this.options
+    //             }
+    //
+    //             return this.filteredDataOptions()
+    //         },
+    //         filteredDataOptions() {
+    //
+    //             console.log('filteredDataOptions')
+    //
+    //             return this.options
+    //                 ? this.options.filter(option => {
+    //                     return (option.text.toLowerCase().indexOf(this.filter) > -1)
+    //                 })
+    //                 : {}
+    //         },
+    //         ajaxQuery() {
+    //             return this.ajax.replace('{term}', this.filter)
+    //         },
+    //         async getAjaxOptions() {
+    //
+    //             // console.log('getAjaxOptions')
+    //             // console.log('query = ' + this.ajaxQuery())
+    //             //
+    //             // fetch(this.ajaxQuery())
+    //             //     // .then(response => response.json())
+    //             //     // .then(data => this.options = data)
+    //             //     .then(function(response) {
+    //             //         this.options = response.json();
+    //             //         console.log(this.options)
+    //             //     });
+    //
+    //             let response = await fetch(this.ajaxQuery())
+    //
+    //             this.options = await response.json()
+    //
+    //             // function requestListener() {
+    //             //     var data = JSON.parse(this.responseText);
+    //             //     console.log('data', data);
+    //             //     this.options = data
+    //             // }
+    //             //
+    //             // function requestError(error) {
+    //             //     console.log('We have an issue', error);
+    //             // }
+    //             //
+    //             // let request = new XMLHttpRequest();
+    //             // request.onload = requestListener;
+    //             // request.onerror = requestError;
+    //             // request.open('get', this.ajaxQuery(), true);
+    //             // request.send();
+    //
+    //         },
+    //         onOptionClick(index) {
+    //             this.focusedOptionIndex = index;
+    //             this.selectOption();
+    //         },
+    //         selectOption() {
+    //             if (!this.isOpen()) {
+    //                 return;
+    //             }
+    //             this.focusedOptionIndex = this.focusedOptionIndex ?? 0;
+    //             const selected = this.filteredOptions()[this.focusedOptionIndex]
+    //
+    //             console.log( this.filteredOptions())
+    //
+    //             this.value = selected.id
+    //             if (this.selected && this.selected.id === selected.id) {
+    //                 this.filter = '';
+    //                 this.selected = null;
+    //             }
+    //             else {
+    //                 this.selected = selected;
+    //                 this.filter = this.selectedName();
+    //             }
+    //             this.close();
+    //         },
+    //         focusPrevOption() {
+    //             if (!this.isOpen()) {
+    //                 return;
+    //             }
+    //             const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+    //             if (this.focusedOptionIndex > 0 && this.focusedOptionIndex <= optionsNum) {
+    //                 this.focusedOptionIndex--;
+    //             }
+    //             else if (this.focusedOptionIndex === 0) {
+    //                 this.focusedOptionIndex = optionsNum;
+    //             }
+    //         },
+    //         focusNextOption() {
+    //             const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+    //             if (!this.isOpen()) {
+    //                 this.open();
+    //             }
+    //             if (this.focusedOptionIndex == null || this.focusedOptionIndex === optionsNum) {
+    //                 this.focusedOptionIndex = 0;
+    //             }
+    //             else if (this.focusedOptionIndex >= 0 && this.focusedOptionIndex < optionsNum) {
+    //                 this.focusedOptionIndex++;
+    //             }
+    //         }
+    //     }
+    // },
     flatpickr(options) {
         return {
             ...options,

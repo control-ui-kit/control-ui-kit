@@ -573,6 +573,20 @@ return [
         'type' => 'text',
     ],
 
+    'input-autocomplete' => [
+        // Config
+//        'please-select-text' => 'Please Select ...',
+//        'please-select-value' => null,
+//        'please-select-trans' => '',
+
+        'id-name' => 'id',
+        'image-name' => 'image',
+        'subtext-name' => 'subtext',
+        'text-name' => 'value',
+
+        'limit' => 10,
+    ],
+
     'input-checkbox' => [
         'background' => 'bg-input',
         'border' => 'focus:ring-brand border-input focus:ring-offset-input',
