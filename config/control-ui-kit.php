@@ -283,6 +283,7 @@ return [
         'icon-file-upload' => \ControlUIKit\Components\Icons\FileUpload::class,
         'icon-filter' => \ControlUIKit\Components\Icons\Filter::class,
         'icon-flag' => \ControlUIKit\Components\Icons\Flag::class,
+        'icon-folder' => \ControlUIKit\Components\Icons\Folder::class,
         'icon-fullscreen' => \ControlUIKit\Components\Icons\Fullscreen::class,
         'icon-globe' => \ControlUIKit\Components\Icons\Globe::class,
         'icon-graph-bar' => \ControlUIKit\Components\Icons\GraphBar::class,
