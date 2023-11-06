@@ -600,7 +600,7 @@ return [
 
     'input-color-picker' => [
 
-        'icon-left' => 'icon-easel',
+        'icon-left' => 'icon-palette',
         'wrapper-width' => 'w-48',
 
         'color-background' => 'bg-input',
