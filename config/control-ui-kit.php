@@ -253,6 +253,7 @@ return [
         'icon-cog-box' => \ControlUIKit\Components\Icons\CogBox::class,
         'icon-cog-play' => \ControlUIKit\Components\Icons\CogPlay::class,
         'icon-collapse' => \ControlUIKit\Components\Icons\Collapse::class,
+        'icon-color-picker' => \ControlUIKit\Components\Icons\ColorPicker::class,
         'icon-contact' => \ControlUIKit\Components\Icons\Contact::class,
         'icon-copy' => \ControlUIKit\Components\Icons\Copy::class,
         'icon-credit-card' => \ControlUIKit\Components\Icons\CreditCard::class,
