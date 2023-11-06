@@ -629,6 +629,7 @@ window.Components = {
                 return this.search_url !== '';
             },
             async refreshOptions() {
+                console.log('refresh options....')
                 if (this.usingAjax()) {
                     if (this.filter === '') {
                         this.options = null;
@@ -645,8 +646,10 @@ window.Components = {
             },
             filteredDataOptions() {
 
-                return this.options
-                    ? this.options.filter(option => {
+                console.log('filteredDataOptions')
+                
+                return this.data
+                    ? this.data.filter(option => {
                         return (option.text.toLowerCase().indexOf(this.filter) > -1)
                     })
                     : {}
