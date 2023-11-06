@@ -326,6 +326,7 @@ return [
         'icon-play-filled' => \ControlUIKit\Components\Icons\PlayFilled::class,
         'icon-preorder' => \ControlUIKit\Components\Icons\Preorder::class,
         'icon-previous' => \ControlUIKit\Components\Icons\Previous::class,
+        'icon-previous-filled' => \ControlUIKit\Components\Icons\PreviousFilled::class,
         'icon-question' => \ControlUIKit\Components\Icons\Question::class,
         'icon-record' => \ControlUIKit\Components\Icons\Record::class,
         'icon-reload' => \ControlUIKit\Components\Icons\Reload::class,
