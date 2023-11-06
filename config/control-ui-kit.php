@@ -318,8 +318,6 @@ return [
         'icon-options' => \ControlUIKit\Components\Icons\Options::class,
         'icon-pause' => \ControlUIKit\Components\Icons\Pause::class,
         'icon-pause-filled' => \ControlUIKit\Components\Icons\PauseFilled::class,
-        'icon-paypal' => \ControlUIKit\Components\Icons\Paypal::class,
-        'icon-paypal-2' => \ControlUIKit\Components\Icons\Paypal2::class,
         'icon-percent' => \ControlUIKit\Components\Icons\Percent::class,
         'icon-pictures' => \ControlUIKit\Components\Icons\Pictures::class,
         'icon-play' => \ControlUIKit\Components\Icons\Play::class,
@@ -342,7 +340,6 @@ return [
         'icon-status-info' => \ControlUIKit\Components\Icons\StatusInfo::class,
         'icon-status-success' => \ControlUIKit\Components\Icons\StatusSuccess::class,
         'icon-stop' => \ControlUIKit\Components\Icons\Stop::class,
-        'icon-stripe' => \ControlUIKit\Components\Icons\Stripe::class,
         'icon-subtract' => \ControlUIKit\Components\Icons\Subtract::class,
         'icon-sun' => \ControlUIKit\Components\Icons\Sun::class,
         'icon-support-person' => \ControlUIKit\Components\Icons\SupportPerson::class,
@@ -381,9 +378,12 @@ return [
         'logo-instagram' => \ControlUIKit\Components\Icons\Logo\Instagram::class,
         'logo-juno' => \ControlUIKit\Components\Icons\Logo\Juno::class,
         'logo-pandora' => \ControlUIKit\Components\Icons\Logo\Pandora::class,
+        'logo-paypal' => \ControlUIKit\Components\Icons\Logo\Paypal::class,
+        'logo-paypal-2' => \ControlUIKit\Components\Icons\Logo\Paypal2::class,
         'logo-shazam' => \ControlUIKit\Components\Icons\Logo\Shazam::class,
         'logo-soundcloud' => \ControlUIKit\Components\Icons\Logo\Soundcloud::class,
         'logo-spotify' => \ControlUIKit\Components\Icons\Logo\Spotify::class,
+        'logo-stripe' => \ControlUIKit\Components\Icons\Logo\Stripe::class,
         'logo-tiktok' => \ControlUIKit\Components\Icons\Logo\TikTok::class,
         'logo-toolbox' => \ControlUIKit\Components\Icons\Logo\Toolbox::class,
         'logo-traxsource' => \ControlUIKit\Components\Icons\Logo\Traxsource::class,
@@ -393,6 +393,7 @@ return [
         'logo-whatsapp' => \ControlUIKit\Components\Icons\Logo\Whatsapp::class,
         'logo-x' => \ControlUIKit\Components\Icons\Logo\X::class,
         'logo-youtube' => \ControlUIKit\Components\Icons\Logo\Youtube::class,
+
 
         /*
          * File Type Icons
