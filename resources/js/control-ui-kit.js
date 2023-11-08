@@ -510,7 +510,7 @@ window.Components = {
                 if (this.value === 'http://' || this.value === 'https://' || this.value === sanitizedPrefix) {
                     this.value = '';
                 } else if (this.value !== '') {
-                  if (this.value.indexOf(sanitizedPrefix) < 0) {
+                    if (this.value.indexOf(sanitizedPrefix) < 0) {
                         this.value = sanitizedPrefix + this.value;
                     } else {
                         this.value = (this.value.indexOf('http://') > -1 ? 'http' : 'https') + '://' + this.value.replace(/^[htps:]+\/{1,2}/i, '');
@@ -538,17 +538,11 @@ window.Components = {
                 if (this.data.length > 0) {
                     this.options = this.data
                 }
-
                 this.is_ajax = this.search_url !== ''
-
                 this.setSelected()
-
                 this.$watch('value', () => {
-                    // this.getAjaxOptions();
                     this.setSelected()
                 })
-
-                // this.fetch()
             },
             setSelected() {
                 if (this.value && this.options) {
@@ -572,7 +566,7 @@ window.Components = {
                 }
             },
             lookupId() {
-                fetch(this.ajaxIdQuery())
+                fetch(this.ajaxLookupUrl())
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -590,15 +584,13 @@ window.Components = {
             },
             close() {
                 this.show = false;
-                // this.filter = this.selectedName();
-
-                this.filter = this.selected.text;
+                this.filter = this.selectedName();
                 if (this.is_ajax) {
                     this.options = null
                 } else {
                     this.options = this.data
                 }
-                // this.focusedOptionIndex = this.selected ? this.focusedOptionIndex : null;
+                this.focusedOptionIndex = null
             },
             open() {
                 this.show = true;
@@ -614,12 +606,28 @@ window.Components = {
             },
             isOpen() { return this.show === true },
             selectedName() { return this.selected ? this.selected.text : this.filter; },
+            isSelected(id) {
+                return this.selected ? (id === this.selected.id) : false
+            },
+            isFocused(index) {
+                return index === this.focusedOptionIndex
+            },
             classOption(id, index) {
-                const isSelected = this.selected ? (id === this.selected.id) : false;
-                const isFocused = (index === this.focusedOptionIndex);
                 return {
-                    'text-brand': isSelected,
-                    'bg-input-option-hover ': isFocused
+                    [this.conditionals['option-selected']]: this.isSelected(id),
+                    [this.conditionals['option-focus']] : this.isFocused(index)
+                };
+            },
+            classText(id, index) {
+                return {
+                    [this.conditionals['text-selected']]: this.isSelected(id),
+                    [this.conditionals['text-focus']] : this.isFocused(index)
+                };
+            },
+            classSubtext(id, index) {
+                return {
+                    [this.conditionals['subtext-selected']]: this.isSelected(id),
+                    [this.conditionals['subtext-focus']] : this.isFocused(index)
                 };
             },
             filteredOptions() {
@@ -628,42 +636,39 @@ window.Components = {
             usingAjax() {
                 return this.search_url !== '';
             },
-            async refreshOptions() {
-                console.log('refresh options....')
-                if (this.usingAjax()) {
-                    if (this.filter === '') {
-                        this.options = null;
-                    } else {
-                        await this.getAjaxOptions()
-                    }
-                } else {
-                    if (this.filter === '') {
-                        this.options = this.data;
-                    } else {
-                        this.options = this.filteredDataOptions()
-                    }
+            refreshOptions() {
+                if (this.filter === '') {
+                    this.resetOptions();
+                    return;
                 }
+                if (this.usingAjax()) {
+                    this.getAjaxOptions()
+                } else {
+                    this.options = this.filteredDataOptions()
+                }
+                this.resetOptions();
+            },
+            resetOptions() {
+                if (this.filter) {
+                    return
+                }
+                this.options = this.usingAjax() ? null : this.data
             },
             filteredDataOptions() {
-
-                console.log('filteredDataOptions')
-                
                 return this.data
                     ? this.data.filter(option => {
                         return (option.text.toLowerCase().indexOf(this.filter) > -1)
                     })
                     : {}
             },
-            ajaxTermQuery() {
-                console.log(this.search_url)
+            ajaxSearchUrl() {
                 return this.search_url.replace('{term}', this.filter).replace('#term#', this.filter)
             },
-            ajaxIdQuery() {
+            ajaxLookupUrl() {
                 return this.lookup_url.replace('{id}', this.value).replace('#id#', this.value)
             },
-            async getAjaxOptions() {
-
-                fetch(this.ajaxTermQuery())
+            getAjaxOptions() {
+                fetch(this.ajaxSearchUrl())
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -671,23 +676,19 @@ window.Components = {
                         return response.json();
                     })
                     .then((rows) => {
-                        console.log('success', rows)
                         this.options = this.convertData(rows);
                     })
                     .catch((error) => {
-                        console.error('Error:', error);
+                        console.error('Error :', error);
                     });
-
             },
             convertData(data) {
                 const options = [];
-
                 for (const key in data) {
                     if (data.hasOwnProperty(key)) {
                         options.push(this.convertRow(data[key]));
                     }
                 }
-
                 return options;
             },
             convertRow(data) {
@@ -710,15 +711,11 @@ window.Components = {
                 const selected = this.filteredOptions()[this.focusedOptionIndex]
 
                 this.value = selected.id
-                if (this.selected && this.selected.id === selected.id) {
-                    this.filter = ''
-                    this.selected = null
-                    this.selected_text = ''
-                }
-                else {
+                if (this.selected && this.selected.id !== selected.id) {
                     this.selected = selected
                     this.filter = this.selectedName()
                     this.selected_text = this.selectedName()
+                    document.activeElement.blur();
                 }
                 this.close();
             },
@@ -751,180 +748,6 @@ window.Components = {
             }
         }
     },
-    // inputAutocompleteData(options) {
-    //     return {
-    //         ...options,
-    //         filter: '',
-    //         show: false,
-    //         selected: null,
-    //         focusedOptionIndex: null,
-    //         options: null,
-    //         init() {
-    //             if (this.data.length > 0) {
-    //                 this.options = this.data
-    //             } else {
-    //                 console.log('not options set')
-    //             }
-    //
-    //             this.setSelected()
-    //
-    //             this.$watch('value', () => {
-    //                 // this.getAjaxOptions();
-    //                 this.setSelected()
-    //             })
-    //
-    //             // this.fetch()
-    //         },
-    //         setSelected() {
-    //             if (this.value) {
-    //                 let selected = this.options.filter(option => {
-    //                     return option.id.toString() === this.value.toString()
-    //                 })
-    //
-    //                 if (selected.length) {
-    //                     this.selected = selected[0]
-    //                     this.filter = this.selected.text
-    //                 }
-    //             } else {
-    //                 this.selected = null
-    //             }
-    //         },
-    //         close() {
-    //             this.show = false;
-    //             this.filter = this.selectedName();
-    //             this.focusedOptionIndex = this.selected ? this.focusedOptionIndex : null;
-    //         },
-    //         open() {
-    //             this.show = true;
-    //             this.filter = '';
-    //         },
-    //         toggle() {
-    //             if (this.show) {
-    //                 this.close();
-    //             }
-    //             else {
-    //                 this.open()
-    //             }
-    //         },
-    //         isOpen() { return this.show === true },
-    //         selectedName() { return this.selected ? this.selected.text : this.filter; },
-    //         classOption(id, index) {
-    //             const isSelected = this.selected ? (id === this.selected.id) : false;
-    //             const isFocused = (index === this.focusedOptionIndex);
-    //             return {
-    //                 'text-brand': isSelected,
-    //                 'bg-input-option-hover ': isFocused
-    //             };
-    //         },
-    //         filteredOptions() {
-    //
-    //             console.log('filteredOptions')
-    //
-    //             if (this.ajax !== '') {
-    //                 console.log('is ajax')
-    //                 this.getAjaxOptions();
-    //                 return this.options
-    //             }
-    //
-    //             return this.filteredDataOptions()
-    //         },
-    //         filteredDataOptions() {
-    //
-    //             console.log('filteredDataOptions')
-    //
-    //             return this.options
-    //                 ? this.options.filter(option => {
-    //                     return (option.text.toLowerCase().indexOf(this.filter) > -1)
-    //                 })
-    //                 : {}
-    //         },
-    //         ajaxQuery() {
-    //             return this.ajax.replace('{term}', this.filter)
-    //         },
-    //         async getAjaxOptions() {
-    //
-    //             // console.log('getAjaxOptions')
-    //             // console.log('query = ' + this.ajaxQuery())
-    //             //
-    //             // fetch(this.ajaxQuery())
-    //             //     // .then(response => response.json())
-    //             //     // .then(data => this.options = data)
-    //             //     .then(function(response) {
-    //             //         this.options = response.json();
-    //             //         console.log(this.options)
-    //             //     });
-    //
-    //             let response = await fetch(this.ajaxQuery())
-    //
-    //             this.options = await response.json()
-    //
-    //             // function requestListener() {
-    //             //     var data = JSON.parse(this.responseText);
-    //             //     console.log('data', data);
-    //             //     this.options = data
-    //             // }
-    //             //
-    //             // function requestError(error) {
-    //             //     console.log('We have an issue', error);
-    //             // }
-    //             //
-    //             // let request = new XMLHttpRequest();
-    //             // request.onload = requestListener;
-    //             // request.onerror = requestError;
-    //             // request.open('get', this.ajaxQuery(), true);
-    //             // request.send();
-    //
-    //         },
-    //         onOptionClick(index) {
-    //             this.focusedOptionIndex = index;
-    //             this.selectOption();
-    //         },
-    //         selectOption() {
-    //             if (!this.isOpen()) {
-    //                 return;
-    //             }
-    //             this.focusedOptionIndex = this.focusedOptionIndex ?? 0;
-    //             const selected = this.filteredOptions()[this.focusedOptionIndex]
-    //
-    //             console.log( this.filteredOptions())
-    //
-    //             this.value = selected.id
-    //             if (this.selected && this.selected.id === selected.id) {
-    //                 this.filter = '';
-    //                 this.selected = null;
-    //             }
-    //             else {
-    //                 this.selected = selected;
-    //                 this.filter = this.selectedName();
-    //             }
-    //             this.close();
-    //         },
-    //         focusPrevOption() {
-    //             if (!this.isOpen()) {
-    //                 return;
-    //             }
-    //             const optionsNum = Object.keys(this.filteredOptions()).length - 1;
-    //             if (this.focusedOptionIndex > 0 && this.focusedOptionIndex <= optionsNum) {
-    //                 this.focusedOptionIndex--;
-    //             }
-    //             else if (this.focusedOptionIndex === 0) {
-    //                 this.focusedOptionIndex = optionsNum;
-    //             }
-    //         },
-    //         focusNextOption() {
-    //             const optionsNum = Object.keys(this.filteredOptions()).length - 1;
-    //             if (!this.isOpen()) {
-    //                 this.open();
-    //             }
-    //             if (this.focusedOptionIndex == null || this.focusedOptionIndex === optionsNum) {
-    //                 this.focusedOptionIndex = 0;
-    //             }
-    //             else if (this.focusedOptionIndex >= 0 && this.focusedOptionIndex < optionsNum) {
-    //                 this.focusedOptionIndex++;
-    //             }
-    //         }
-    //     }
-    // },
     flatpickr(options) {
         return {
             ...options,
