@@ -538,7 +538,7 @@ window.Components = {
                 if (this.data.length > 0) {
                     this.options = this.data
                 }
-                this.is_ajax = this.search_url !== ''
+                this.is_ajax = !(this.ajax instanceof Array)
                 this.setSelected()
                 this.$watch('value', () => {
                     this.setSelected()
@@ -558,7 +558,7 @@ window.Components = {
                         this.selected_text = ''
                         this.filter = ''
                     }
-                } else if (this.usingAjax() && this.value && ! this.options) {
+                } else if (this.is_ajax && this.value && ! this.options) {
                     this.lookupId()
                 } else {
                     this.selected = null
@@ -633,15 +633,12 @@ window.Components = {
             filteredOptions() {
                 return this.options;
             },
-            usingAjax() {
-                return this.search_url !== '';
-            },
             refreshOptions() {
                 if (this.filter === '') {
                     this.resetOptions();
                     return;
                 }
-                if (this.usingAjax()) {
+                if (this.is_ajax) {
                     this.getAjaxOptions()
                 } else {
                     this.options = this.filteredDataOptions()
@@ -652,7 +649,7 @@ window.Components = {
                 if (this.filter) {
                     return
                 }
-                this.options = this.usingAjax() ? null : this.data
+                this.options = this.is_ajax ? null : this.data
             },
             filteredDataOptions() {
                 return this.data
@@ -662,10 +659,10 @@ window.Components = {
                     : {}
             },
             ajaxSearchUrl() {
-                return this.search_url.replace('{term}', this.filter).replace('#term#', this.filter)
+                return this.ajax['search_url'].replace(this.ajax['search_string'], this.filter)
             },
             ajaxLookupUrl() {
-                return this.lookup_url.replace('{id}', this.value).replace('#id#', this.value)
+                return this.ajax['lookup_url'].replace(this.ajax['id_string'], this.value)
             },
             getAjaxOptions() {
                 fetch(this.ajaxSearchUrl())

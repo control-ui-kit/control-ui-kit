@@ -681,16 +681,16 @@ return [
         'wrapper-width' => 'w-full',
 
         // Config
-//        'please-select-text' => 'Please Select ...',
-//        'please-select-value' => null,
-//        'please-select-trans' => '',
+        'prompt-text' => 'Type To Search....',
+        'selected-text' => 'Selected',
+        'placeholder' => 'Please Select...',
 
-        'type-prompt' => 'Type To Search....',
-        'selected-label' => 'Selected',
-
-        'placeholder' => '',
         'icon-open' => 'icon-chevron-down',
         'icon-close' => 'icon-chevron-up',
+
+        // Ajax Config
+        'url-search' => 'term',
+        'url-id' => 'id',
 
         // Array Config
         'option-value' => 'id',
@@ -698,7 +698,8 @@ return [
         'option-subtext' => 'subtext',
         'option-text' => 'text',
 
-        'limit' => 10,
+        'limit' => 10, // TODO - needed?
+        'preload' => true, // TODO - needed?
     ],
 
     'input-checkbox' => [

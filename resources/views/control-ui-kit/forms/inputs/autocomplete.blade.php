@@ -4,15 +4,14 @@
 <div x-data='Components.inputAutocomplete({
          value: "{{ $value }}",
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR),
-         search_url: "{{ $src }}",
-         lookup_url: "{{ $lookup_src }}",
+         ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR),
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR),
          data: @json($options ?? [], JSON_THROW_ON_ERROR)
      })'
      x-cloak
      x-modelable="value"
-     class="{{ $basicClasses() }}">
-    <div {{ $attributes->merge(['class' => $wrapperClasses()])->only('class') }} @click.away="close()">
+     {{ $attributes->merge(['class' => $basicClasses()])->only('class') }}>
+    <div class="{{ $wrapperClasses() }}" @click.away="close()">
         <input name="{{ $name }}_search"
                type="text"
                id="{{ $id }}_search"
@@ -51,10 +50,10 @@
         </div>
         <div x-show="is_ajax && options === null">
             <div class="{{ $promptClasses() }}">
-                <span>{{ $typePrompt }}</span>
+                <span>{{ $promptText }}</span>
             </div>
             <div class="{{ $selectedClasses() }}">
-                <span>{{ $selectedLabel }}</span>
+                <span>{{ $selectedText }}</span>
                 <span>:</span>
                 <span x-text="selected_text"></span>
             </div>

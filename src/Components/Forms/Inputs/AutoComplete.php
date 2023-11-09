@@ -21,9 +21,6 @@ class AutoComplete extends Component
     public ?string $placeholder; // TODO - Needed?
     public ?string $value;
     public mixed $options;
-    public ?string $src = null;
-    public ?string $lookup_src = null;
-
     public ?string $iconOpen;
     public ?string $iconClose;
     public ?string $iconSize;
@@ -41,30 +38,33 @@ class AutoComplete extends Component
     public array $subtextStyles = [];
     public array $wrapperStyles = [];
     public ?bool $requiredInput;
-    public string $typePrompt;
-    public string $selectedLabel;
+    public string $promptText;
+    public string $selectedText;
     public array $optionConfig;
+    public array $ajaxConfig = [];
 
     public function __construct(
         string $name,
         string $id = null,
-        string $placeholder = null, // TODO - Needed?
+        string $placeholder = null,
         string $value = null,
 
         string $iconOpen = null,
         string $iconClose = null,
         bool $requiredInput = null, # TODO - how?
         mixed $src = null,
-        string $lookup_src = null,
+        string $lookup = null,
+        string $urlId = null,
+        string $urlSearch = null,
 
         string $options = null,
         string $optionValue = null,
         string $optionText = null,
         string $optionSubtext = null,
         string $optionImage = null,
-        string $typePrompt = null,
-        string $selectedLabel = null,
-        bool $preload = null,
+        string $promptText = null,
+        string $selectedText = null,
+        bool $preload = null, # TODO - needed?
 
         string $background = null,
         string $border = null,
@@ -313,12 +313,16 @@ class AutoComplete extends Component
 
         if (is_string($src)) {
             $mode = 'ajax';
-            $this->src = $src;
-            $this->lookup_src = $lookup_src;
+
+            $this->ajaxConfig = [
+                'search_url' => $src,
+                'lookup_url' => $lookup,
+                'id_string' => $this->style($this->component, 'url-id', $urlId),
+                'search_string' => $this->style($this->component, 'url-search', $urlSearch),
+            ];
+
         } else {
             $mode = 'data';
-            $this->src = '';
-            $this->lookup_src = '';
         }
 
         $this->optionConfig = $this->setOptionsConfig($options);
@@ -327,8 +331,8 @@ class AutoComplete extends Component
         $this->optionConfig['subtext'] = $this->style($this->component, 'option-subtext', $optionSubtext ?? $this->optionConfig['subtext']);
         $this->optionConfig['image'] = $this->style($this->component, 'option-image', $optionImage ?? $this->optionConfig['image']);
 
-        $this->typePrompt = $this->style($this->component, 'type-prompt', $typePrompt);
-        $this->selectedLabel = $this->style($this->component, 'selected-label', $selectedLabel);
+        $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
+        $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
 
         if ($mode === 'data') {
             $this->options = $this->setOptions($src);
@@ -398,7 +402,6 @@ class AutoComplete extends Component
 
     private function apiCall(): array
     {
-
         $data = Http::get($this->src)->json();
 
         return $this->convertToArray($data);
