@@ -23,10 +23,6 @@ class AutoComplete extends Component
     public mixed $options;
     public ?string $src = null;
     public ?string $lookup_src = null;
-    public ?string $idName;
-    public ?string $textName;
-    public ?string $subtextName;
-    public ?string $imageName;
 
     public ?string $iconOpen;
     public ?string $iconClose;
@@ -47,12 +43,28 @@ class AutoComplete extends Component
     public ?bool $requiredInput;
     public string $typePrompt;
     public string $selectedLabel;
+    public array $optionConfig;
 
     public function __construct(
         string $name,
         string $id = null,
         string $placeholder = null, // TODO - Needed?
         string $value = null,
+
+        string $iconOpen = null,
+        string $iconClose = null,
+        bool $requiredInput = null, # TODO - how?
+        mixed $src = null,
+        string $lookup_src = null,
+
+        string $options = null,
+        string $optionValue = null,
+        string $optionText = null,
+        string $optionSubtext = null,
+        string $optionImage = null,
+        string $typePrompt = null,
+        string $selectedLabel = null,
+        bool $preload = null,
 
         string $background = null,
         string $border = null,
@@ -158,21 +170,7 @@ class AutoComplete extends Component
         string $wrapperRounded = null,
         string $wrapperShadow = null,
         string $wrapperWidth = null,
-
-        string $iconOpen = null,
-        string $iconClose = null,
-        bool $requiredInput = null, # TODO - how?
-        mixed $src = null,
-        string $lookup_src = null,
-        string $key = null,
-        string $text = null,
-        string $subtext = null,
-        string $image = null,
-        string $typePrompt = null,
-        string $selectedLabel = null,
-        bool $preload = null,
     ) {
-
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = $value;
@@ -215,6 +213,7 @@ class AutoComplete extends Component
             'icon-shadow' => $iconShadow,
             'icon-size' => $iconSize,
         ], [], null, 'iconStyles');
+        $this->cleanUpIconStyles();
 
         $this->setConfigStyles([
             'image-border' => $imageBorder,
@@ -322,10 +321,11 @@ class AutoComplete extends Component
             $this->lookup_src = '';
         }
 
-        $this->idName = $this->style($this->component, 'id-name', $key);
-        $this->textName = $this->style($this->component, 'text-name', $text);
-        $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
-        $this->imageName = $this->style($this->component, 'image-name', $image);
+        $this->optionConfig = $this->setOptionsConfig($options);
+        $this->optionConfig['value'] = $this->style($this->component, 'option-value', $optionValue ?? $this->optionConfig['value']);
+        $this->optionConfig['text'] = $this->style($this->component, 'option-text', $optionText ?? $this->optionConfig['text']);
+        $this->optionConfig['subtext'] = $this->style($this->component, 'option-subtext', $optionSubtext ?? $this->optionConfig['subtext']);
+        $this->optionConfig['image'] = $this->style($this->component, 'option-image', $optionImage ?? $this->optionConfig['image']);
 
         $this->typePrompt = $this->style($this->component, 'type-prompt', $typePrompt);
         $this->selectedLabel = $this->style($this->component, 'selected-label', $selectedLabel);
@@ -373,7 +373,7 @@ class AutoComplete extends Component
                 'id' => $key,
                 'text' => $text,
                 'sub' => null,
-                'thumbnail' => null,
+                'image' => null,
             ];
         }
 
@@ -386,10 +386,10 @@ class AutoComplete extends Component
 
         foreach ($rows as $row) {
             $options[] = [
-                'id' => $row[$this->idName],
-                'text' => $row[$this->textName],
-                'sub' => $row[$this->subtextName] ?? null,
-                'thumbnail' => $row[$this->imageName] ?? null,
+                'id' => $row[$this->optionConfig['value']],
+                'text' => $row[$this->optionConfig['text']],
+                'sub' => $row[$this->optionConfig['subtext']] ?? null,
+                'image' => $row[$this->optionConfig['image']] ?? null,
             ];
         }
 
@@ -412,11 +412,6 @@ class AutoComplete extends Component
     public function dropdownClasses(): string
     {
         return $this->classList($this->dropdownStyles);
-    }
-
-    public function iconClasses(): string
-    {
-        return $this->classList($this->iconStyles);
     }
 
     public function imageClasses(): string
@@ -457,5 +452,27 @@ class AutoComplete extends Component
     public function wrapperClasses(): string
     {
         return $this->classList($this->wrapperStyles);
+    }
+
+    private function setOptionsConfig(?string $options): array
+    {
+        if ($options) {
+            $parts = explode('|', $options);
+        }
+
+        return [
+            'value' => $parts[0] ?? null,
+            'text' => $parts[1] ?? null,
+            'subtext' => $parts[2] ?? null,
+            'image' => $parts[3] ?? null,
+        ];
+    }
+
+    public function cleanUpIconStyles(): void
+    {
+        $this->iconStyles = collect($this->iconStyles)->mapWithKeys(function ($value, $key) {
+            $newKey = str_replace('icon-', '', $key); // Remove the 'icon-' prefix
+            return [$newKey => $value]; // Return the new key=>value pair
+        })->toArray();
     }
 }

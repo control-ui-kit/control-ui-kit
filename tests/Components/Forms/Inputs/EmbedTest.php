@@ -293,7 +293,6 @@ class EmbedTest extends ComponentTestCase
                 'rounded' => '6',
                 'shadow' => '7',
                 'size' => '8',
-
             ]"/>
             HTML;
 

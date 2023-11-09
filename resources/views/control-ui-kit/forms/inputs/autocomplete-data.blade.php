@@ -40,9 +40,9 @@
                      :aria-selected="focusedOptionIndex === index"
                 >
                     <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:bg-input-option-hover">
-                        <div class="w-6 flex flex-col items-center" x-show="option.thumbnail !== null">
+                        <div class="w-6 flex flex-col items-center" x-show="option.image !== null">
                             <div class="flex relative w-5 h-5 justify-center items-center m-1 mr-2 w-4 h-4 mt-1 rounded-full ">
-                                <img class="rounded-full" alt="A" x-bind:src="option.thumbnail">
+                                <img class="rounded-full" alt="A" x-bind:src="option.image">
                             </div>
                         </div>
                         <div class="w-full items-center flex">

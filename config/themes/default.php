@@ -691,12 +691,12 @@ return [
         'placeholder' => '',
         'icon-open' => 'icon-chevron-down',
         'icon-close' => 'icon-chevron-up',
-        'icon-right' => '',
 
-        'id-name' => 'id',
-        'image-name' => 'image',
-        'subtext-name' => 'subtext',
-        'text-name' => 'value',
+        // Array Config
+        'option-value' => 'id',
+        'option-image' => 'image',
+        'option-subtext' => 'subtext',
+        'option-text' => 'text',
 
         'limit' => 10,
     ],

@@ -693,10 +693,10 @@ window.Components = {
             },
             convertRow(data) {
                 return {
-                    'id': data[this.idName],
-                    'text': data[this.textName],
-                    'sub': data[this.subName] || null,
-                    'thumbnail': data[this.imageName] || null,
+                    'id': data[this.config['value']],
+                    'text': data[this.config['text']],
+                    'sub': data[this.config['subtext']] || null,
+                    'image': data[this.config['image']] || null,
                 };
             },
             onOptionClick(index) {
@@ -704,7 +704,11 @@ window.Components = {
                 this.selectOption();
             },
             selectOption() {
-                if (!this.isOpen() || this.options === null) {
+                if (this.options === null) {
+                    return;
+                }
+                if (! this.isOpen()) {
+                    this.open()
                     return;
                 }
                 this.focusedOptionIndex = this.focusedOptionIndex ?? 0;

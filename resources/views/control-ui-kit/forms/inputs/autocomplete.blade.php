@@ -3,10 +3,7 @@
 @endphp
 <div x-data='Components.inputAutocomplete({
          value: "{{ $value }}",
-         idName: "{{ $idName }}",
-         textName: "{{ $textName }}",
-         subName: "{{ $subtextName }}",
-         imageName: "{{ $imageName }}",
+         config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR),
          search_url: "{{ $src }}",
          lookup_url: "{{ $lookup_src }}",
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR),
@@ -35,17 +32,15 @@
         <x-input-embed x-show="show && ! is_ajax" icon-right :icon="$iconClose" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
     </div>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" x-model="value" />
-
     <div x-show="isOpen()" class="{{ $dropdownClasses() }}">
-
-        <div class="flex flex-col" x-show="options !== null">
+        <div x-show="options !== null">
             <template x-for="(option, index) in options" :key="index">
                 <div @click="onOptionClick(index)"
                      :class="classOption(option.id, index)"
                      :aria-selected="focusedOptionIndex === index"
                 >
                     <div class="{{ $optionClasses() }}" :class="classText(option.id, index)">
-                        <img class="{{ $imageClasses() }}" x-bind:src="option.thumbnail" x-show="option.thumbnail !== null">
+                        <img class="{{ $imageClasses() }}" x-bind:src="option.image" x-show="option.image !== null">
                         <div class="{{ $textClasses() }}">
                             <span x-text="option.text"></span>
                             <div class="{{ $subtextClasses() }}" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
@@ -54,8 +49,7 @@
                 </div>
             </template>
         </div>
-
-        <div class="flex flex-col" x-show="is_ajax && options === null">
+        <div x-show="is_ajax && options === null">
             <div class="{{ $promptClasses() }}">
                 <span>{{ $typePrompt }}</span>
             </div>
@@ -66,6 +60,5 @@
             </div>
         </div>
     </div>
-
 </div>
 
