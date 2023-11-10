@@ -605,7 +605,7 @@ return [
 
         'image-border' => '',
         'image-other' => '',
-        'image-padding' => '',
+        'image-padding' => 'mr-2',
         'image-rounded' => 'rounded',
         'image-shadow' => '',
         'image-size' => 'w-6 h-auto',
@@ -664,7 +664,7 @@ return [
         'text-color' => '',
         'text-focus' => '',
         'text-font' => '',
-        'text-other' => 'mx-2 -mt-1',
+        'text-other' => '-mt-1',
         'text-padding' => '',
         'text-rounded' => '',
         'text-selected' => 'text-brand',
@@ -681,6 +681,7 @@ return [
         'wrapper-width' => 'w-full',
 
         // Config
+        'no-results-text' => 'No results found for',
         'prompt-text' => 'Type To Search....',
         'selected-text' => 'Selected',
         'placeholder' => 'Please Select...',
@@ -689,17 +690,17 @@ return [
         'icon-close' => 'icon-chevron-up',
 
         // Ajax Config
+        'ajax-limit' => 20,
         'url-search' => 'term',
         'url-id' => 'id',
+        'url-limit' => 'limit',
 
-        // Array Config
+        // Data
+        'data-limit' => 999,
         'option-value' => 'id',
         'option-image' => 'image',
         'option-subtext' => 'subtext',
         'option-text' => 'text',
-
-        'limit' => 10, // TODO - needed?
-        'preload' => true, // TODO - needed?
     ],
 
     'input-checkbox' => [

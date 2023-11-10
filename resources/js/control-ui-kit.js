@@ -528,20 +528,24 @@ window.Components = {
         return {
             ...options,
             filter: '',
-            is_ajax: false,
+            isAjax: false,
             show: false,
             selected: null,
-            selected_text: null,
+            selectedText: null,
             focusedOptionIndex: null,
+            noResults: false,
             options: null,
             init() {
                 if (this.data.length > 0) {
-                    this.options = this.data
+                    this.options = this.data.slice(0, this.config['limit']);
                 }
-                this.is_ajax = !(this.ajax instanceof Array)
+                this.isAjax = !(this.ajax instanceof Array)
                 this.setSelected()
                 this.$watch('value', () => {
                     this.setSelected()
+                })
+                this.$watch('options', () => {
+                    this.noResults = this.filter.length && (! this.options || this.options.length === 0)
                 })
             },
             setSelected() {
@@ -552,17 +556,17 @@ window.Components = {
                     if (selected.length) {
                         this.selected = selected[0]
                         this.filter = this.selected.text
-                        this.selected_text = this.selected.text
+                        this.selectedText = this.selected.text
                     } else {
                         this.selected = null
-                        this.selected_text = ''
+                        this.selectedText = ''
                         this.filter = ''
                     }
-                } else if (this.is_ajax && this.value && ! this.options) {
+                } else if (this.isAjax && this.value && ! this.options) {
                     this.lookupId()
                 } else {
                     this.selected = null
-                    this.selected_text = ''
+                    this.selectedText = ''
                 }
             },
             lookupId() {
@@ -576,7 +580,7 @@ window.Components = {
                     .then((record) => {
                         this.selected = this.convertRow(record)
                         this.filter = this.selected.text
-                        this.selected_text = this.selected.text
+                        this.selectedText = this.selected.text
                     })
                     .catch((error) => {
                         console.error('Error:', error);
@@ -585,10 +589,10 @@ window.Components = {
             close() {
                 this.show = false;
                 this.filter = this.selectedName();
-                if (this.is_ajax) {
+                if (this.isAjax) {
                     this.options = null
                 } else {
-                    this.options = this.data
+                    this.options = this.data.slice(0, this.config['limit']);
                 }
                 this.focusedOptionIndex = null
             },
@@ -638,7 +642,7 @@ window.Components = {
                     this.resetOptions();
                     return;
                 }
-                if (this.is_ajax) {
+                if (this.isAjax) {
                     this.getAjaxOptions()
                 } else {
                     this.options = this.filteredDataOptions()
@@ -649,17 +653,19 @@ window.Components = {
                 if (this.filter) {
                     return
                 }
-                this.options = this.is_ajax ? null : this.data
+                this.options = this.isAjax ? null : this.data.slice(0, this.config['limit']);
             },
             filteredDataOptions() {
-                return this.data
+                return this.data.slice(0, this.config['limit'])
                     ? this.data.filter(option => {
                         return (option.text.toLowerCase().indexOf(this.filter) > -1)
-                    })
+                    }).slice(0, this.config['limit'])
                     : {}
             },
             ajaxSearchUrl() {
-                return this.ajax['search_url'].replace(this.ajax['search_string'], this.filter)
+                return this.ajax['search_url']
+                    .replace(this.ajax['search_string'], this.filter)
+                    .replace(this.ajax['limit_string'], this.config['limit'])
             },
             ajaxLookupUrl() {
                 return this.ajax['lookup_url'].replace(this.ajax['id_string'], this.value)
@@ -715,7 +721,7 @@ window.Components = {
                 if (this.selected && this.selected.id !== selected.id) {
                     this.selected = selected
                     this.filter = this.selectedName()
-                    this.selected_text = this.selectedName()
+                    this.selectedText = this.selectedName()
                     document.activeElement.blur();
                 }
                 this.close();

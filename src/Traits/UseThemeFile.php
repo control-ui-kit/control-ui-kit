@@ -66,6 +66,8 @@ trait UseThemeFile
 
             if (is_bool($append_input)) {
                 $value = $append_input;
+            } else if (is_numeric($append_input)) {
+                $value = $append_input;
             } else if (is_bool($configStyle)) {
                 $value = $configStyle;
             } else {

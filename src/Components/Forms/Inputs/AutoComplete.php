@@ -18,7 +18,7 @@ class AutoComplete extends Component
 
     public string $name;
     public string $id;
-    public ?string $placeholder; // TODO - Needed?
+    public ?string $placeholder;
     public ?string $value;
     public mixed $options;
     public ?string $iconOpen;
@@ -38,6 +38,7 @@ class AutoComplete extends Component
     public array $subtextStyles = [];
     public array $wrapperStyles = [];
     public ?bool $requiredInput;
+    public string $noResultsText;
     public string $promptText;
     public string $selectedText;
     public array $optionConfig;
@@ -54,8 +55,10 @@ class AutoComplete extends Component
         bool $requiredInput = null, # TODO - how?
         mixed $src = null,
         string $lookup = null,
+        int $limit = null,
         string $urlId = null,
         string $urlSearch = null,
+        int $urlLimit = null,
 
         string $options = null,
         string $optionValue = null,
@@ -64,7 +67,8 @@ class AutoComplete extends Component
         string $optionImage = null,
         string $promptText = null,
         string $selectedText = null,
-        bool $preload = null, # TODO - needed?
+        string $noResultsText = null,
+        bool $preload = null,
 
         string $background = null,
         string $border = null,
@@ -311,18 +315,16 @@ class AutoComplete extends Component
             'text-selected' => $this->style($this->component, 'text-selected', $textSelected),
         ];
 
-        if (is_string($src)) {
-            $mode = 'ajax';
+        $mode = is_string($src) && ! $preload ? 'ajax' : 'data';
 
+        if ($mode === 'ajax') {
             $this->ajaxConfig = [
                 'search_url' => $src,
                 'lookup_url' => $lookup,
                 'id_string' => $this->style($this->component, 'url-id', $urlId),
                 'search_string' => $this->style($this->component, 'url-search', $urlSearch),
+                'limit_string' => $this->style($this->component, 'url-limit', $urlLimit),
             ];
-
-        } else {
-            $mode = 'data';
         }
 
         $this->optionConfig = $this->setOptionsConfig($options);
@@ -330,18 +332,19 @@ class AutoComplete extends Component
         $this->optionConfig['text'] = $this->style($this->component, 'option-text', $optionText ?? $this->optionConfig['text']);
         $this->optionConfig['subtext'] = $this->style($this->component, 'option-subtext', $optionSubtext ?? $this->optionConfig['subtext']);
         $this->optionConfig['image'] = $this->style($this->component, 'option-image', $optionImage ?? $this->optionConfig['image']);
+        $this->optionConfig['limit'] = (int) $this->style($this->component, $mode . '-limit', $limit);
 
+        $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
         $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
 
-        if ($mode === 'data') {
+        if ($preload) {
+            $this->options = $this->preloadApiCall($src);
+        } else if ($mode === 'data') {
             $this->options = $this->setOptions($src);
-        } else if ($preload) {
-            $this->options = $this->apiCall();
         } else {
             $this->options = [];
         }
-
     }
 
     public function render(): View
@@ -400,9 +403,9 @@ class AutoComplete extends Component
         return $options;
     }
 
-    private function apiCall(): array
+    private function preloadApiCall(string $src): array
     {
-        $data = Http::get($this->src)->json();
+        $data = Http::get($src)->json();
 
         return $this->convertToArray($data);
     }

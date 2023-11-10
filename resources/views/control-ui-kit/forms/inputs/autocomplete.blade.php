@@ -27,8 +27,8 @@
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
             {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()]) }}
         />
-        <x-input-embed x-show="! show && ! is_ajax" icon-right :icon="$iconOpen" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
-        <x-input-embed x-show="show && ! is_ajax" icon-right :icon="$iconClose" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
+        <x-input-embed x-show="! show && ! isAjax" icon-right :icon="$iconOpen" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
+        <x-input-embed x-show="show && ! isAjax" icon-right :icon="$iconClose" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
     </div>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" x-model="value" />
     <div x-show="isOpen()" class="{{ $dropdownClasses() }}">
@@ -48,14 +48,19 @@
                 </div>
             </template>
         </div>
-        <div x-show="is_ajax && options === null">
+        <div x-show="noResults">
+            <div class="{{ $promptClasses() }}">
+                {{ $noResultsText }} '<span x-text="filter"></span>'
+            </div>
+        </div>
+        <div x-show="isAjax && options === null">
             <div class="{{ $promptClasses() }}">
                 <span>{{ $promptText }}</span>
             </div>
             <div class="{{ $selectedClasses() }}">
                 <span>{{ $selectedText }}</span>
                 <span>:</span>
-                <span x-text="selected_text"></span>
+                <span x-text="selectedText"></span>
             </div>
         </div>
     </div>
