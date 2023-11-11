@@ -59,6 +59,7 @@ class AutoComplete extends Component
         string $urlId = null,
         string $urlSearch = null,
         int $urlLimit = null,
+        int $minChars = null,
 
         string $options = null,
         string $optionValue = null,
@@ -333,6 +334,7 @@ class AutoComplete extends Component
         $this->optionConfig['subtext'] = $this->style($this->component, 'option-subtext', $optionSubtext ?? $this->optionConfig['subtext']);
         $this->optionConfig['image'] = $this->style($this->component, 'option-image', $optionImage ?? $this->optionConfig['image']);
         $this->optionConfig['limit'] = (int) $this->style($this->component, $mode . '-limit', $limit);
+        $this->optionConfig['min'] = (int) $this->style($this->component, $mode . '-chars', $minChars);
 
         $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);

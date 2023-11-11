@@ -691,12 +691,16 @@ return [
 
         // Ajax Config
         'ajax-limit' => 20,
+        'ajax-chars' => 2,
         'url-search' => 'term',
         'url-id' => 'id',
         'url-limit' => 'limit',
 
         // Data
         'data-limit' => 999,
+        'data-chars' => 1,
+
+        // Options
         'option-value' => 'id',
         'option-image' => 'image',
         'option-subtext' => 'subtext',

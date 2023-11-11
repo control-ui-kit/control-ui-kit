@@ -609,12 +609,14 @@ window.Components = {
                 }
             },
             isOpen() { return this.show === true },
-            selectedName() { return this.selected ? this.selected.text : this.filter; },
-            isSelected(id) {
-                return this.selected ? (id === this.selected.id) : false
-            },
-            isFocused(index) {
-                return index === this.focusedOptionIndex
+            selectedName() { return this.selected ? this.selected.text : this.filter },
+            isSelected(id) { return this.selected ? (id === this.selected.id) : false },
+            isFocused(index) { return index === this.focusedOptionIndex },
+            canFilter() {
+                if (this.config['min'] === null) {
+                    return true;
+                }
+                return this.filter.length >= parseInt(this.config['min'])
             },
             classOption(id, index) {
                 return {
@@ -634,20 +636,20 @@ window.Components = {
                     [this.conditionals['subtext-focus']] : this.isFocused(index)
                 };
             },
-            filteredOptions() {
-                return this.options;
-            },
+            filteredOptions() { return this.options },
             refreshOptions() {
                 if (this.filter === '') {
                     this.resetOptions();
                     return;
                 }
-                if (this.isAjax) {
-                    this.getAjaxOptions()
-                } else {
-                    this.options = this.filteredDataOptions()
+                if (this.canFilter()) {
+                    if (this.isAjax) {
+                        this.getAjaxOptions()
+                    } else {
+                        this.options = this.filteredDataOptions()
+                    }
+                    this.resetOptions();
                 }
-                this.resetOptions();
             },
             resetOptions() {
                 if (this.filter) {
