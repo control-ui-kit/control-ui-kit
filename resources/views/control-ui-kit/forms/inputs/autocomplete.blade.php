@@ -7,7 +7,8 @@
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR),
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR),
-         data: @json($options ?? [], JSON_THROW_ON_ERROR)
+         data: @json($options ?? [], JSON_THROW_ON_ERROR),
+         focus: @json($focus ?? [], JSON_THROW_ON_ERROR)
      })'
      x-cloak
      x-modelable="value"

@@ -536,7 +536,9 @@ window.Components = {
             options: null,
             init() {
                 if (this.data.length > 0) {
-                    this.options = this.data.slice(0, this.config['limit']);
+                    this.options = this.data.slice(0, this.config['limit'])
+                } else if (this.focus.length > 0) {
+                    this.options = this.focus
                 }
                 this.isAjax = !(this.ajax instanceof Array)
                 if (! this.filter) {
@@ -590,10 +592,10 @@ window.Components = {
             close() {
                 this.show = false;
                 this.filter = this.selectedName();
-                if (this.isAjax) {
-                    this.options = null
+                if (this.isAjax && this.focus.length) {
+                    this.options = this.focus.length > 0 ? this.focus : null
                 } else {
-                    this.options = this.data.slice(0, this.config['limit']);
+                    this.options = this.data.slice(0, this.config['limit'])
                 }
                 this.focusedOptionIndex = null
             },

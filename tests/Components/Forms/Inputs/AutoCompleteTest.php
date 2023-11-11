@@ -161,7 +161,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -321,7 +321,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"63","option-selected":"68","subtext-focus":"83","subtext-selected":"88","text-focus":"93","text-selected":"98"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="1 2 3 4 5 6 7 8 9">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"63","option-selected":"68","subtext-focus":"83","subtext-selected":"88","text-focus":"93","text-selected":"98"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="1 2 3 4 5 6 7 8 9">
                 <div class="100 101 102 103 104 105 106 107 108" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="40 41 42 43 44 45 46 47" />
                     <div class="20 21 22 23 24 25 26" x-show="! show && ! isAjax" @click="toggle()">
@@ -481,7 +481,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"","option-selected":"","subtext-focus":"","subtext-selected":"","text-focus":"","text-selected":""}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"","option-selected":"","subtext-focus":"","subtext-selected":"","text-focus":"","text-selected":""}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="">
                 <div class="" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="" />
                     <div x-show="! show && ! isAjax" @click="toggle()">
@@ -543,7 +543,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -605,7 +605,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -671,7 +671,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -734,7 +734,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -788,7 +788,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -843,7 +843,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"search-term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"search-term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -899,7 +899,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":"https:\/\/api.control-ui-kit.com\/lookup\/id-term","id_string":"id-term","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":"https:\/\/api.control-ui-kit.com\/lookup\/id-term","id_string":"id-term","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -943,7 +943,7 @@ class AutoCompleteTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_autocomplete_component_can_be_rendered_with_ajax_preload(): void
+    public function an_autocomplete_component_can_be_rendered_with_ajax_preload_query(): void
     {
         Http::fake([
             'https://api.control-ui-kit.com*' => Http::response([
@@ -961,7 +961,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1009,6 +1009,72 @@ class AutoCompleteTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_ajax_focus_query(): void
+    {
+        Http::fake([
+            'https://api.control-ui-kit.com/focus' => Http::response([
+                ['id' => 16, 'text' => 'English', 'subtext' => 'GB', 'image' => 'https://cdn.label-worx.com/media/flags/GB.png'],
+                ['id' => 34, 'text' => 'German', 'subtext' => 'DE', 'image' => 'https://cdn.label-worx.com/media/flags/DE.png'],
+            ]),
+        ]);
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                src="https://api.control-ui-kit.com/countries"
+                focus="https://api.control-ui-kit.com/focus"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)" :aria-selected="focusedOptionIndex === index">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+
+        Http::assertSent(static function (Request $request) {
+            return $request->url() === 'https://api.control-ui-kit.com/focus';
+        });
+    }
+
+    /** @test */
     public function an_autocomplete_component_can_be_rendered_with_ajax_and_value_and_selected(): void
     {
         $template = <<<'HTML'
@@ -1021,7 +1087,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "16", filter: "USA", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "16", filter: "USA", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1080,7 +1146,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1137,7 +1203,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" placeholder="Please Select..." class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1194,7 +1260,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1249,7 +1315,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width float-right">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width float-right">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1304,7 +1370,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":1,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":1,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1359,7 +1425,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":4,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":4,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1414,7 +1480,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":3}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":3}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1469,7 +1535,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":4}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":4}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1524,7 +1590,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" onclick="alert('here')" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">

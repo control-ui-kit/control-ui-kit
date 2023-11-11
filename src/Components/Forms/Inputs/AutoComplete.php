@@ -20,7 +20,8 @@ class AutoComplete extends Component
     public string $id;
     public ?string $placeholder;
     public ?string $value;
-    public mixed $options;
+    public mixed $options = [];
+    public mixed $focus = [];
     public ?string $iconOpen;
     public ?string $iconClose;
     public ?string $iconSize;
@@ -57,6 +58,7 @@ class AutoComplete extends Component
         bool $requiredInput = null, # TODO - how?
         mixed $src = null,
         string $lookup = null,
+        string $focus = null,
         int $limit = null,
         string $urlId = null,
         string $urlSearch = null,
@@ -320,16 +322,6 @@ class AutoComplete extends Component
 
         $mode = is_string($src) && ! $preload ? 'ajax' : 'data';
 
-        if ($mode === 'ajax') {
-            $this->ajaxConfig = [
-                'search_url' => $src,
-                'lookup_url' => $lookup,
-                'id_string' => $this->style($this->component, 'url-id', $urlId),
-                'search_string' => $this->style($this->component, 'url-search', $urlSearch),
-                'limit_string' => $this->style($this->component, 'url-limit', $urlLimit),
-            ];
-        }
-
         $this->optionConfig = $this->setOptionsConfig($options);
         $this->optionConfig['value'] = $this->style($this->component, 'option-value', $optionValue ?? $this->optionConfig['value']);
         $this->optionConfig['text'] = $this->style($this->component, 'option-text', $optionText ?? $this->optionConfig['text']);
@@ -342,13 +334,24 @@ class AutoComplete extends Component
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
         $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
         $this->selected = $selected;
+        $this->urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
+
+        if ($mode === 'ajax') {
+            $this->ajaxConfig = [
+                'search_url' => $src,
+                'lookup_url' => $lookup,
+                'id_string' => $this->style($this->component, 'url-id', $urlId),
+                'search_string' => $this->style($this->component, 'url-search', $urlSearch),
+                'limit_string' => $this->urlLimit,
+            ];
+        }
 
         if ($preload) {
-            $this->options = $this->preloadApiCall($src);
+            $this->options = $this->apiCall($src);
+        } else if ($focus) {
+            $this->focus = $this->apiCall($focus);
         } else if ($mode === 'data') {
             $this->options = $this->setOptions($src);
-        } else {
-            $this->options = [];
         }
     }
 
@@ -408,11 +411,16 @@ class AutoComplete extends Component
         return $options;
     }
 
-    private function preloadApiCall(string $src): array
+    private function apiCall(string $url): array
     {
-        $data = Http::get($src)->json();
+        $data = Http::get($this->processUrl($url))->json();
 
         return $this->convertToArray($data);
+    }
+
+    private function processUrl(string $url): string
+    {
+        return str_replace($this->urlLimit, (string) $this->optionConfig['limit'], $url);
     }
 
     public function basicClasses(): string
