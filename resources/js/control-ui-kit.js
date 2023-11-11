@@ -527,7 +527,6 @@ window.Components = {
     inputAutocomplete(options) {
         return {
             ...options,
-            filter: '',
             isAjax: false,
             show: false,
             selected: null,
@@ -540,7 +539,9 @@ window.Components = {
                     this.options = this.data.slice(0, this.config['limit']);
                 }
                 this.isAjax = !(this.ajax instanceof Array)
-                this.setSelected()
+                if (! this.filter) {
+                    this.setSelected()
+                }
                 this.$watch('value', () => {
                     this.setSelected()
                 })

@@ -3,6 +3,7 @@
 @endphp
 <div x-data='Components.inputAutocomplete({
          value: "{{ $value }}",
+         filter: "{{ $selected }}",
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR),
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR),

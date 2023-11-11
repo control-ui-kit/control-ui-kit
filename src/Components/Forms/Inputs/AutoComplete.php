@@ -43,12 +43,14 @@ class AutoComplete extends Component
     public string $selectedText;
     public array $optionConfig;
     public array $ajaxConfig = [];
+    public ?string $selected;
 
     public function __construct(
         string $name,
         string $id = null,
         string $placeholder = null,
         string $value = null,
+        string $selected = null,
 
         string $iconOpen = null,
         string $iconClose = null,
@@ -339,6 +341,7 @@ class AutoComplete extends Component
         $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
         $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
+        $this->selected = $selected;
 
         if ($preload) {
             $this->options = $this->preloadApiCall($src);
