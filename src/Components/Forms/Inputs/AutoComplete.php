@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Exceptions\AutoCompleteException;
 use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\Component;
 
@@ -45,6 +47,8 @@ class AutoComplete extends Component
     public array $optionConfig;
     public array $ajaxConfig = [];
     public ?string $selected;
+    public mixed $source;
+    public string $urlLimit;
 
     public function __construct(
         string $name,
@@ -321,6 +325,11 @@ class AutoComplete extends Component
         ];
 
         $mode = is_string($src) && ! $preload ? 'ajax' : 'data';
+        $this->source = $this->setSource($src, $mode);
+
+        if ($mode === 'ajax' && $value && $lookup === null && $selected === null) {
+            throw new AutoCompleteException('Value specified without lookup or selected text');
+        }
 
         $this->optionConfig = $this->setOptionsConfig($options);
         $this->optionConfig['value'] = $this->style($this->component, 'option-value', $optionValue ?? $this->optionConfig['value']);
@@ -338,7 +347,7 @@ class AutoComplete extends Component
 
         if ($mode === 'ajax') {
             $this->ajaxConfig = [
-                'search_url' => $src,
+                'search_url' => $this->source,
                 'lookup_url' => $lookup,
                 'id_string' => $this->style($this->component, 'url-id', $urlId),
                 'search_string' => $this->style($this->component, 'url-search', $urlSearch),
@@ -347,11 +356,11 @@ class AutoComplete extends Component
         }
 
         if ($preload) {
-            $this->options = $this->apiCall($src);
+            $this->options = $this->apiCall($this->source);
         } else if ($focus) {
             $this->focus = $this->apiCall($focus);
         } else if ($mode === 'data') {
-            $this->options = $this->setOptions($src);
+            $this->options = $this->setOptions($this->source);
         }
     }
 
@@ -493,5 +502,23 @@ class AutoComplete extends Component
             $newKey = str_replace('icon-', '', $key); // Remove the 'icon-' prefix
             return [$newKey => $value]; // Return the new key=>value pair
         })->toArray();
+    }
+
+    private function setSource(mixed $src, string $mode): mixed
+    {
+        if ($mode === 'data') {
+            return $src;
+        }
+
+        if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
+            return route('control-ui-kit.ajax-model-term', [
+                'm' => $src,
+                'f' => 'country_name',
+                't' => 'term',
+                'l' => 'limit',
+            ]);
+        }
+
+        return $src;
     }
 }

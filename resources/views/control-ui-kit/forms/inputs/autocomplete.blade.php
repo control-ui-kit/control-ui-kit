@@ -26,6 +26,7 @@
                @keydown.enter.stop.prevent="selectOption()"
                @keydown.arrow-up.prevent="focusPrevOption()"
                @keydown.arrow-down.prevent="focusNextOption()"
+               autocomplete="off"
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
             {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()]) }}
         />
@@ -38,7 +39,6 @@
             <template x-for="(option, index) in options" :key="index">
                 <div @click="onOptionClick(index)"
                      :class="classOption(option.id, index)"
-                     :aria-selected="focusedOptionIndex === index"
                 >
                     <div class="{{ $optionClasses() }}" :class="classText(option.id, index)">
                         <img class="{{ $imageClasses() }}" x-bind:src="option.image" x-show="option.image !== null">
@@ -59,7 +59,7 @@
             <div class="{{ $promptClasses() }}">
                 <span>{{ $promptText }}</span>
             </div>
-            <div class="{{ $selectedClasses() }}">
+            <div x-show="selectedText" class="{{ $selectedClasses() }}">
                 <span>{{ $selectedText }}</span>
                 <span>:</span>
                 <span x-text="selectedText"></span>

@@ -530,6 +530,7 @@ window.Components = {
             isAjax: false,
             show: false,
             selected: null,
+            chosen: null,
             selectedText: null,
             focusedOptionIndex: null,
             noResults: false,
@@ -543,12 +544,20 @@ window.Components = {
                 this.isAjax = !(this.ajax instanceof Array)
                 if (! this.filter) {
                     this.setSelected()
+                } else {
+                    this.selectedText = this.filter
+                    this.selected = {
+                        'id': this.value,
+                        'text': this.filter,
+                        'sub': null,
+                        'image': null,
+                    };
                 }
                 this.$watch('value', () => {
                     this.setSelected()
                 })
                 this.$watch('options', () => {
-                    this.noResults = this.filter.length && (! this.options || this.options.length === 0)
+                    this.noResults = this.filter && this.filter !== this.selectedText && (! this.options || this.options.length === 0)
                 })
             },
             setSelected() {
@@ -565,7 +574,9 @@ window.Components = {
                         this.selectedText = ''
                         this.filter = ''
                     }
-                } else if (this.isAjax && this.value && ! this.options) {
+                } else if (this.isAjax && this.chosen) {
+                    this.chosen = null;
+                } else if (this.isAjax && this.ajax['lookup_url'] && this.value && ! this.options) {
                     this.lookupId()
                 } else {
                     this.selected = null
@@ -592,14 +603,18 @@ window.Components = {
             close() {
                 this.show = false;
                 this.filter = this.selectedName();
-                if (this.isAjax && this.focus.length) {
-                    this.options = this.focus.length > 0 ? this.focus : null
-                } else {
-                    this.options = this.data.slice(0, this.config['limit'])
-                }
+                // Timeout needed to fix a bug with double highlighted options
+                setTimeout(() => {
+                    if (this.isAjax) {
+                        this.options = null
+                    } else {
+                        this.options = this.data.slice(0, this.config['limit'])
+                    }
+                }, 150)
                 this.focusedOptionIndex = null
             },
             open() {
+                this.options = this.isAjax && this.focus.length > 0 ? this.focus : this.options
                 this.show = true;
                 this.filter = '';
             },
@@ -613,7 +628,7 @@ window.Components = {
             },
             isOpen() { return this.show === true },
             selectedName() { return this.selected ? this.selected.text : this.filter },
-            isSelected(id) { return this.selected ? (id === this.selected.id) : false },
+            isSelected(id) { return this.selected ? id === this.selected.id : false },
             isFocused(index) { return index === this.focusedOptionIndex },
             canFilter() {
                 if (this.config['min'] === null) {
@@ -627,7 +642,7 @@ window.Components = {
                     [this.conditionals['option-focus']] : this.isFocused(index)
                 };
             },
-            classText(id, index) {
+            classText(id, index, option) {
                 return {
                     [this.conditionals['text-selected']]: this.isSelected(id),
                     [this.conditionals['text-focus']] : this.isFocused(index)
@@ -721,9 +736,9 @@ window.Components = {
                 }
                 this.focusedOptionIndex = this.focusedOptionIndex ?? 0;
                 const selected = this.filteredOptions()[this.focusedOptionIndex]
-
+                this.chosen = selected;
                 this.value = selected.id
-                if (this.selected && this.selected.id !== selected.id) {
+                if ((this.selected && this.selected.id !== selected.id) || this.selected === null) {
                     this.selected = selected
                     this.filter = this.selectedName()
                     this.selectedText = this.selectedName()

@@ -5,6 +5,7 @@ namespace ControlUIKit;
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\ThemeCommand;
+use ControlUIKit\Controllers\AjaxModelController;
 use ControlUIKit\Controllers\ControlUIKitDateRangeController;
 use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
 use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
@@ -147,6 +148,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
         Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);
+        Route::get('control-ui-kit/ajax-model-query', AjaxModelController::class)->name('control-ui-kit.ajax-model-term');
     }
 
     protected function registerTranslations(): void
