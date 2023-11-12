@@ -4,11 +4,11 @@
 <div x-data='Components.inputAutocomplete({
          value: "{{ $value }}",
          filter: "{{ $selected }}",
-         config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR),
-         ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR),
-         conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR),
-         data: @json($options ?? [], JSON_THROW_ON_ERROR),
-         focus: @json($focus ?? [], JSON_THROW_ON_ERROR)
+         config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+         ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+         conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+         data: @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+         focus: @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
      })'
      x-cloak
      x-modelable="value"

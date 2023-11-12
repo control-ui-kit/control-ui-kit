@@ -692,9 +692,9 @@ return [
         // Ajax Config
         'ajax-limit' => 20,
         'ajax-chars' => 2,
-        'url-search' => 'term',
-        'url-id' => 'id',
-        'url-limit' => 'limit',
+        'url-search' => '__term__',
+        'url-id' => '__id__',
+        'url-limit' => '__limit__',
 
         // Data
         'data-limit' => 999,

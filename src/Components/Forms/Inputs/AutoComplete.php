@@ -48,6 +48,7 @@ class AutoComplete extends Component
     public array $ajaxConfig = [];
     public ?string $selected;
     public mixed $source;
+    public mixed $lookup;
     public string $urlLimit;
 
     public function __construct(
@@ -325,9 +326,9 @@ class AutoComplete extends Component
         ];
 
         $mode = is_string($src) && ! $preload ? 'ajax' : 'data';
-        $this->source = $this->setSource($src, $mode);
+        $this->setSource($src, $lookup, $preload === true);
 
-        if ($mode === 'ajax' && $value && $lookup === null && $selected === null) {
+        if ($mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
             throw new AutoCompleteException('Value specified without lookup or selected text');
         }
 
@@ -348,7 +349,7 @@ class AutoComplete extends Component
         if ($mode === 'ajax') {
             $this->ajaxConfig = [
                 'search_url' => $this->source,
-                'lookup_url' => $lookup,
+                'lookup_url' => $this->lookup,
                 'id_string' => $this->style($this->component, 'url-id', $urlId),
                 'search_string' => $this->style($this->component, 'url-search', $urlSearch),
                 'limit_string' => $this->urlLimit,
@@ -504,21 +505,36 @@ class AutoComplete extends Component
         })->toArray();
     }
 
-    private function setSource(mixed $src, string $mode): mixed
+    private function setSource(mixed $src, mixed $lookup, bool $preload): void
     {
-        if ($mode === 'data') {
-            return $src;
-        }
+        $this->lookup = $lookup;
+        $this->source = $src;
 
         if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
-            return route('control-ui-kit.ajax-model-term', [
-                'm' => $src,
-                'f' => 'country_name',
-                't' => 'term',
-                'l' => 'limit',
+            $this->source = route('control-ui-kit.ajax-model', [
+                'model' => $src,
+                'fields' => [
+                    'f' => 'country_id',
+                    'n' => 'country_name',
+                    's' => 'iso3',
+                    'i' => null,
+                ],
+                'preload' => $preload,
+                't' => '__term__',
+                'l' => '__limit__',
+            ]);
+
+            $this->lookup = route('control-ui-kit.ajax-model', [
+                'model' => $src,
+                'fields' => [
+                    'f' => 'country_id',
+                    'n' => 'country_name',
+                    's' => 'iso3',
+                    'i' => null,
+                ],
+                'preload' => false,
+                'value' => '__id__',
             ]);
         }
-
-        return $src;
     }
 }
