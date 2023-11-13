@@ -2,9 +2,16 @@
 
 namespace Tests\Components\Forms\Inputs;
 
+use ControlUIKit\AutoComplete;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\View\ViewException;
 use Tests\Components\ComponentTestCase;
 
 class AutoCompleteTest extends ComponentTestCase
@@ -137,9 +144,9 @@ class AutoCompleteTest extends ComponentTestCase
 
         Config::set('themes.default.input-autocomplete.ajax-limit', 20);
         Config::set('themes.default.input-autocomplete.ajax-chars', 2);
-        Config::set('themes.default.input-autocomplete.url-id', 'id');
-        Config::set('themes.default.input-autocomplete.url-search', 'term');
-        Config::set('themes.default.input-autocomplete.url-limit', 'limit');
+        Config::set('themes.default.input-autocomplete.url-id', '__id__');
+        Config::set('themes.default.input-autocomplete.url-search', '__term__');
+        Config::set('themes.default.input-autocomplete.url-limit', '__limit__');
 
         Config::set('themes.default.input-autocomplete.data-limit', 999);
         Config::set('themes.default.input-autocomplete.data-chars', 1);
@@ -788,7 +795,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -832,6 +839,23 @@ class AutoCompleteTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_exception_is_thrown_if_an_autocomplete_component_is_configured_for_ajax_and_value_with_no_lookup_or_selected_text(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Value specified without lookup or selected text');
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                src="https://api.control-ui-kit.com/term"
+                value="2"
+            />
+            HTML;
+
+        $this->blade($template);
+    }
+
+    /** @test */
     public function an_autocomplete_component_can_be_rendered_with_ajax_url_and_inline_search_url_field(): void
     {
         $template = <<<'HTML'
@@ -843,7 +867,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"search-term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"search-term","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -899,7 +923,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":"https:\/\/api.control-ui-kit.com\/lookup\/id-term","id_string":"id-term","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":"https:\/\/api.control-ui-kit.com\/lookup\/id-term","id_string":"id-term","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1027,7 +1051,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1087,7 +1111,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "16", filter: "USA", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "16", filter: "USA", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1304,61 +1328,6 @@ class AutoCompleteTest extends ComponentTestCase
     }
 
     /** @test */
-    public function an_autocomplete_component_can_be_rendered_with_custom_class(): void
-    {
-        $template = <<<'HTML'
-            <x-input-autocomplete
-                name="countries"
-                :src="[ 1 => 'France', 2 => 'Germany' ]"
-                class="float-right"
-            />
-            HTML;
-
-        $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width float-right">
-                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
-                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
-                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
-                            </div>
-                        </div>
-                    </div>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    /** @test */
     public function an_autocomplete_component_can_be_rendered_with_data_limit_restriction(): void
     {
         $template = <<<'HTML'
@@ -1425,7 +1394,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":4,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":4,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1535,7 +1504,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":4}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"id","search_string":"term","limit_string":"limit"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":4}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
@@ -1576,6 +1545,355 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_class_type(): void
+    {
+        Config::set('autocompletes', [
+            'countries' => CountriesAutoComplete::class,
+        ]);
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="countries"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_class_type_with_preload(): void
+    {
+        Http::fake([
+            '*' => [
+                0 => [
+                    'id' => 1,
+                    'text' => 'USA',
+                    'sub' => null,
+                    'image' => null,
+                ],
+            ],
+        ]);
+
+        Config::set('autocompletes', [
+            'countries' => CountriesPreloadAutoComplete::class,
+        ]);
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="countries"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"USA","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+
+        Schema::dropIfExists('countries');
+    }
+
+    /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_class_type_with_focus(): void
+    {
+        Http::fake([
+            '*' => [
+                0 => [
+                    'id' => 1,
+                    'text' => 'USA',
+                    'sub' => null,
+                    'image' => null,
+                ],
+            ],
+        ]);
+
+        Config::set('autocompletes', [
+            'countries' => CountriesFocusAutoComplete::class,
+        ]);
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="countries"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":1,"text":"USA","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+
+        Schema::dropIfExists('countries');
+    }
+
+    /** @test */
+    public function an_exception_is_thrown_if_the_type_is_not_a_registered_autocomplete(): void
+    {
+        Config::set('autocompletes', [
+            'countries' => CountriesAutoComplete::class,
+        ]);
+
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Invalid autocomplete type : unknown');
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="unknown"
+            />
+            HTML;
+
+        $this->blade($template);
+    }
+
+    /** @test */
+    public function an_exception_is_thrown_if_the_register_type_is_not_a_valid_autocomplete_class(): void
+    {
+        Config::set('autocompletes', [
+            'countries' => ViewException::class,
+        ]);
+
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('Class specified is not an AutoComplete class : Illuminate\View\ViewException');
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="countries"
+            />
+            HTML;
+
+        $this->blade($template);
+    }
+
+    /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_custom_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                :src="[ 1 => 'France', 2 => 'Germany' ]"
+                class="float-right"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width float-right">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    /** @test */
+    public function an_autocomplete_component_can_be_rendered_with_model_class(): void
+    {
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                :src="$class"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":null,"image":null,"limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-model?model=Tests%5CComponents%5CForms%5CInputs%5CCountry&fields%5Bf%5D=id&fields%5Bn%5D=text&preload=0&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-model?model=Tests%5CComponents%5CForms%5CInputs%5CCountry&fields%5Bf%5D=id&fields%5Bn%5D=text&preload=0&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                    <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                            </svg>
+                        </div>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="hidden" name="countries" id="countries" x-model="value" />
+                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                            <div x-show="options !== null">
+                                <template x-for="(option, index) in options" :key="index">
+                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                <span x-text="option.text"></span>
+                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="noResults">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                            </div>
+                            <div x-show="isAjax && options === null">
+                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template, ['class' => Country::class]);
     }
 
     /** @test */
@@ -1632,4 +1950,73 @@ class AutoCompleteTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+}
+
+class Country extends Model
+{
+    use HasFactory;
+
+    protected string $factory = CountryFactory::class;
+
+    protected $table = 'countries';
+    protected $primaryKey = 'country_id';
+    public $timestamps = false;
+    protected $fillable = ['country_id', 'country_name', 'iso'];
+}
+
+class CountryFactory extends Factory {
+    protected $model = Country::class;
+
+    public function definition(): array
+    {
+        return [
+            'country_name' => $this->faker->country,
+            'iso' => $this->faker->countryISOAlpha3,
+        ];
+    }
+}
+
+class CountriesAutoComplete extends AutoComplete
+{
+    public int $min = 2;
+    public int $limit = 20;
+    public bool $focus = false;
+    public bool $preload = false;
+    public bool $auto = false;
+    public int $count = 20;
+
+    public function count(): int
+    {
+        return 1;
+    }
+
+    public function focus(int $limit): Collection|array
+    {
+        return [];
+    }
+
+    public function lookup(int $id): Model|array
+    {
+        return [];
+    }
+
+    public function preload(): Collection|array
+    {
+        return [];
+    }
+
+    public function search(string $term, int $limit): Collection|array
+    {
+        return [];
+    }
+}
+
+class CountriesPreloadAutoComplete extends CountriesAutoComplete
+{
+    public bool $preload = true;
+}
+
+class CountriesFocusAutoComplete extends CountriesAutoComplete
+{
+    public bool $focus = true;
 }

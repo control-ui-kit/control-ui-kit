@@ -52,6 +52,7 @@ class AutoComplete extends Component
     public string $urlLimit;
     private ?string $type;
     private \ControlUIKit\AutoComplete $class;
+    private ?string $model = null;
 
     public function __construct(
         string $name,
@@ -193,8 +194,12 @@ class AutoComplete extends Component
         $this->type = $type;
         $this->focus = $focus;
 
-        if ($type) {
-            $this->configureAutoComplete($type);
+        if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
+            $this->model = $src;
+        }
+
+        if (! $this->model && $type) {
+            $this->configureAutoComplete();
             $minChars = $minChars ?? $this->class->min;
             $limit = $limit ?? $this->class->limit;
             $preload = $preload ?? $this->class->preload;
@@ -345,22 +350,23 @@ class AutoComplete extends Component
         ];
 
         $mode = (is_string($src) || is_string($type)) && ! $preload ? 'ajax' : 'data';
-        $this->setSource($src, $lookup, $preload === true);
-
-        if ($mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
-            throw new AutoCompleteException('Value specified without lookup or selected text');
-        }
 
         $this->optionConfig = $this->setOptionsConfig($options);
-        $this->optionConfig['value'] = $this->style($this->component, 'option-value', $optionValue ?? $this->optionConfig['value']);
-        $this->optionConfig['text'] = $this->style($this->component, 'option-text', $optionText ?? $this->optionConfig['text']);
-        $this->optionConfig['subtext'] = $this->style($this->component, 'option-subtext', $optionSubtext ?? $this->optionConfig['subtext']);
-        $this->optionConfig['image'] = $this->style($this->component, 'option-image', $optionImage ?? $this->optionConfig['image']);
+        $this->optionConfig['value'] = $this->optionField('option-value', 'value', $optionValue);
+        $this->optionConfig['text'] = $this->optionField('option-text', 'text', $optionText);
+        $this->optionConfig['subtext'] = $this->optionField('option-subtext', 'subtext', $optionSubtext);
+        $this->optionConfig['image'] = $this->optionField('option-image', 'image', $optionImage);
         $this->optionConfig['limit'] = (int) $this->style($this->component, $mode . '-limit', $limit);
         $this->optionConfig['min'] = (int) $this->style($this->component, $mode . '-chars', $minChars);
 
         $this->selected = $selected;
         $this->urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
+
+        $this->setSource($src, $lookup, $preload === true);
+
+        if ($mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
+            throw new AutoCompleteException('Value specified without lookup or selected text');
+        }
 
         if ($mode === 'ajax') {
             $this->ajaxConfig = [
@@ -379,6 +385,15 @@ class AutoComplete extends Component
         } else if ($mode === 'data') {
             $this->options = $this->setOptions($this->source);
         }
+    }
+
+    public function optionField(string $attribute, string $name, mixed $value): ?string
+    {
+        if ($this->model && ($name === 'subtext' || $name === 'image')) {
+            return $value ?? null;
+        }
+
+        return $this->style($this->component, $attribute, $value ?? $this->optionConfig[$name]);
     }
 
     public function render(): View
@@ -409,13 +424,15 @@ class AutoComplete extends Component
     {
         $options = [];
 
-        foreach ($rows as $key => $text) {
-            $options[] = [
-                'id' => $key,
-                'text' => $text,
-                'sub' => null,
-                'image' => null,
-            ];
+        if ($rows) {
+            foreach ($rows as $key => $text) {
+                $options[] = [
+                    'id' => $key,
+                    'text' => $text,
+                    'sub' => null,
+                    'image' => null,
+                ];
+            }
         }
 
         return $options;
@@ -425,13 +442,15 @@ class AutoComplete extends Component
     {
         $options = [];
 
-        foreach ($rows as $row) {
-            $options[] = [
-                'id' => $row[$this->optionConfig['value']],
-                'text' => $row[$this->optionConfig['text']],
-                'sub' => $row[$this->optionConfig['subtext']] ?? null,
-                'image' => $row[$this->optionConfig['image']] ?? null,
-            ];
+        if ($rows) {
+            foreach ($rows as $row) {
+                $options[] = [
+                    'id' => $row[$this->optionConfig['value']],
+                    'text' => $row[$this->optionConfig['text']],
+                    'sub' => $row[$this->optionConfig['subtext']] ?? null,
+                    'image' => $row[$this->optionConfig['image']] ?? null,
+                ];
+            }
         }
 
         return $options;
@@ -530,15 +549,18 @@ class AutoComplete extends Component
         $this->lookup = $lookup;
         $this->source = $src;
 
-        if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
+        if ($this->model) {
+
+            $fields = [
+                'f' => $this->optionConfig['value'],
+                'n' => $this->optionConfig['text'],
+                's' => $this->optionConfig['subtext'],
+                'i' => $this->optionConfig['image'],
+            ];
+
             $this->source = route('control-ui-kit.ajax-model', [
                 'model' => $src,
-                'fields' => [
-                    'f' => 'country_id',
-                    'n' => 'country_name',
-                    's' => 'iso3',
-                    'i' => null,
-                ],
+                'fields' => $fields,
                 'preload' => $preload,
                 'term' => config('themes.default.input-autocomplete.url-search'),
                 'limit' => config('themes.default.input-autocomplete.url-limit'),
@@ -546,57 +568,79 @@ class AutoComplete extends Component
 
             $this->lookup = route('control-ui-kit.ajax-model', [
                 'model' => $src,
-                'fields' => [
-                    'f' => 'country_id',
-                    'n' => 'country_name',
-                    's' => 'iso3',
-                    'i' => null,
-                ],
+                'fields' => $fields,
                 'preload' => false,
                 'value' => config('themes.default.input-autocomplete.url-id'),
             ]);
+
         }
     }
 
-    private function configureAutoComplete(string $type): void
+    private function configureAutoComplete(): void
     {
-        if (! array_key_exists($type, config('autocompletes'))) {
-            return;
-        }
-
-        $this->class = new (config('autocompletes')[$type])();
+        $this->validateAutoCompleteClass();
 
         if ($this->class->preload) {
-
-            $this->source = route('control-ui-kit.ajax-class', [
-                'query' => 'preload',
-                'type' => $type,
-            ]);
-
+            $this->source = $this->classPreloadRoute();
         } else {
-
-            $this->source = route('control-ui-kit.ajax-class', [
-                'query' => 'search',
-                'type' => $type,
-                'term' => config('themes.default.input-autocomplete.url-search'),
-                'limit' => config('themes.default.input-autocomplete.url-limit'),
-            ]);
-
+            $this->source =  $this->classSearchRoute();
         }
 
-        $this->lookup = route('control-ui-kit.ajax-class', [
-            'query' => 'lookup',
-            'type' => $type,
-            'value' => config('themes.default.input-autocomplete.url-id'),
-        ]);
+        $this->lookup = $this->classLookupRoute();
 
         if ($this->class->focus) {
-            $this->focus = route('control-ui-kit.ajax-class', [
-                'query' => 'focus',
-                'type' => $type,
-                'limit' => config('themes.default.input-autocomplete.url-limit'),
-            ]);
+            $this->focus = $this->classFocusRoute();
+        }
+    }
+
+    private function classSearchRoute(): string
+    {
+        return route('control-ui-kit.ajax-class', [
+            'query' => 'search',
+            'type' => $this->type,
+            'term' => config('themes.default.input-autocomplete.url-search'),
+            'limit' => config('themes.default.input-autocomplete.url-limit'),
+        ]);
+    }
+
+    private function classPreloadRoute(): string
+    {
+        return route('control-ui-kit.ajax-class', [
+            'query' => 'preload',
+            'type' => $this->type,
+        ]);
+    }
+
+    private function classLookupRoute(): string
+    {
+        return route('control-ui-kit.ajax-class', [
+            'query' => 'lookup',
+            'type' => $this->type,
+            'value' => config('themes.default.input-autocomplete.url-id'),
+        ]);
+    }
+
+    private function classFocusRoute(): string
+    {
+        return route('control-ui-kit.ajax-class', [
+            'query' => 'focus',
+            'type' => $this->type,
+            'limit' => config('themes.default.input-autocomplete.url-limit'),
+        ]);
+    }
+
+    private function validateAutoCompleteClass(): void
+    {
+        if (! array_key_exists($this->type, config('autocompletes'))) {
+            throw new AutoCompleteException('Invalid autocomplete type : ' . $this->type);
         }
 
+        $class = config('autocompletes')[$this->type];
+
+        if (! class_exists($class) || ! is_subclass_of($class, \ControlUIKit\AutoComplete::class)) {
+            throw new AutoCompleteException('Class specified is not an AutoComplete class : ' . $class);
+        }
+
+        $this->class = new $class();
     }
 }

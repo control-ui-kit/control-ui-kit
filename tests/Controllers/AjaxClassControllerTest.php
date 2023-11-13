@@ -207,11 +207,12 @@ class CountriesAutoComplete extends AutoComplete
                         country_name AS text,
                         iso AS sub
                 FROM countries
-                WHERE iso = "HK"
+                WHERE iso = :iso
                 ORDER BY country_name
                 LIMIT :limit';
 
         return DB::select($sql, [
+            'iso' => 'HK',
             'limit' => $limit,
         ]);
     }
