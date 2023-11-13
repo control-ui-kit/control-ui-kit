@@ -32,6 +32,7 @@ trait UseThemeFile
         }
 
         $append = str_starts_with($input, '...');
+
         return $append ? ' ' . trim(str_replace('...', '', $input)) : '';
     }
 

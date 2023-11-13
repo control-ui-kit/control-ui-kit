@@ -13,7 +13,7 @@ class AjaxModelController extends Controller
 {
     public function __invoke(Request $request): JsonResponse
     {
-        if (!class_exists($request['model']) || !is_subclass_of($request['model'], Model::class)) {
+        if (! class_exists($request['model']) || ! is_subclass_of($request['model'], Model::class)) {
             throw new AutoCompleteException('Class specified is not a Model class');
         }
 
@@ -29,11 +29,11 @@ class AjaxModelController extends Controller
     private function getModelResults(Request $request, array $fields): JsonResponse
     {
         $data = $request['model']::select($fields)
-            ->when(!$request['preload'], function ($query) use ($request) {
-                $query->where($request['fields']['n'], 'LIKE', '%' . $request['t'] . '%');
+            ->when(! $request['preload'], function ($query) use ($request) {
+                $query->where($request['fields']['n'], 'LIKE', '%' . $request['term'] . '%');
             })
             ->orderBy($request['fields']['n'])
-            ->limit($request['l'])
+            ->limit($request['limit'])
             ->get();
 
         return response()->json($data);
@@ -65,5 +65,4 @@ class AjaxModelController extends Controller
             throw new AutoCompleteException('Model specified does not contain field - ' . $field);
         }
     }
-
 }

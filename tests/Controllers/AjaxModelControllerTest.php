@@ -23,7 +23,7 @@ class AjaxModelControllerTest extends TestCase
             $table->char('iso', 2);
         });
 
-        Route::get('control-ui-kit/ajax-model-query', AjaxModelController::class)->name('control-ui-kit.ajax-model');
+        Route::get('control-ui-kit/ajax-model', AjaxModelController::class)->name('control-ui-kit.ajax-model');
     }
 
     protected function tearDown(): void
@@ -55,7 +55,7 @@ class AjaxModelControllerTest extends TestCase
                 'i' => null,
             ],
             'preload' => true,
-            'l' => 10,
+            'limit' => 10,
         ]))
             ->assertJson([
                 0 => [
@@ -94,8 +94,8 @@ class AjaxModelControllerTest extends TestCase
                 'i' => null,
             ],
             'preload' => false,
-            't' => 'hon',
-            'l' => 10,
+            'term' => 'hon',
+            'limit' => 10,
         ]))
             ->assertJson([
                 0 => [

@@ -40,7 +40,6 @@ class AutoComplete extends Component
     public array $selectedStyles = [];
     public array $subtextStyles = [];
     public array $wrapperStyles = [];
-    public ?bool $requiredInput;
     public string $noResultsText;
     public string $promptText;
     public string $selectedText;
@@ -49,7 +48,10 @@ class AutoComplete extends Component
     public ?string $selected;
     public mixed $source;
     public mixed $lookup;
+
     public string $urlLimit;
+    private ?string $type;
+    private \ControlUIKit\AutoComplete $class;
 
     public function __construct(
         string $name,
@@ -57,17 +59,17 @@ class AutoComplete extends Component
         string $placeholder = null,
         string $value = null,
         string $selected = null,
+        string $type = null,
 
         string $iconOpen = null,
         string $iconClose = null,
-        bool $requiredInput = null, # TODO - how?
         mixed $src = null,
         string $lookup = null,
         string $focus = null,
         int $limit = null,
         string $urlId = null,
         string $urlSearch = null,
-        int $urlLimit = null,
+        string $urlLimit = null,
         int $minChars = null,
 
         string $options = null,
@@ -188,11 +190,28 @@ class AutoComplete extends Component
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->value = $value;
+        $this->type = $type;
+        $this->focus = $focus;
+
+        if ($type) {
+            $this->configureAutoComplete($type);
+            $minChars = $minChars ?? $this->class->min;
+            $limit = $limit ?? $this->class->limit;
+            $preload = $preload ?? $this->class->preload;
+            $placeholder = $placeholder ?? $this->class->language()['placeholder'];
+            $noResultsText = $noResultsText ?? $this->class->language()['no-results-text'];
+            $promptText = $promptText ?? $this->class->language()['prompt-text'];
+            $selectedText = $selectedText ?? $this->class->language()['selected-text'];
+        }
+
         $this->placeholder = $this->style($this->component, 'placeholder', $placeholder, '', $this->component);
+        $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
+        $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
+        $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
+
         $this->iconOpen = $this->style($this->component, 'icon-open', $iconOpen, '', $this->component);
         $this->iconClose = $this->style($this->component, 'icon-close', $iconClose, '', $this->component);
         $this->iconSize = $iconSize;
-        $this->requiredInput = $requiredInput;
 
         $this->setConfigStyles([
             'background' => $background,
@@ -325,7 +344,7 @@ class AutoComplete extends Component
             'text-selected' => $this->style($this->component, 'text-selected', $textSelected),
         ];
 
-        $mode = is_string($src) && ! $preload ? 'ajax' : 'data';
+        $mode = (is_string($src) || is_string($type)) && ! $preload ? 'ajax' : 'data';
         $this->setSource($src, $lookup, $preload === true);
 
         if ($mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
@@ -340,9 +359,6 @@ class AutoComplete extends Component
         $this->optionConfig['limit'] = (int) $this->style($this->component, $mode . '-limit', $limit);
         $this->optionConfig['min'] = (int) $this->style($this->component, $mode . '-chars', $minChars);
 
-        $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
-        $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
-        $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
         $this->selected = $selected;
         $this->urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
 
@@ -358,8 +374,8 @@ class AutoComplete extends Component
 
         if ($preload) {
             $this->options = $this->apiCall($this->source);
-        } else if ($focus) {
-            $this->focus = $this->apiCall($focus);
+        } else if ($this->focus) {
+            $this->focus = $this->apiCall($this->focus);
         } else if ($mode === 'data') {
             $this->options = $this->setOptions($this->source);
         }
@@ -507,6 +523,10 @@ class AutoComplete extends Component
 
     private function setSource(mixed $src, mixed $lookup, bool $preload): void
     {
+        if ($this->type) {
+            return;
+        }
+
         $this->lookup = $lookup;
         $this->source = $src;
 
@@ -520,8 +540,8 @@ class AutoComplete extends Component
                     'i' => null,
                 ],
                 'preload' => $preload,
-                't' => '__term__',
-                'l' => '__limit__',
+                'term' => config('themes.default.input-autocomplete.url-search'),
+                'limit' => config('themes.default.input-autocomplete.url-limit'),
             ]);
 
             $this->lookup = route('control-ui-kit.ajax-model', [
@@ -533,8 +553,50 @@ class AutoComplete extends Component
                     'i' => null,
                 ],
                 'preload' => false,
-                'value' => '__id__',
+                'value' => config('themes.default.input-autocomplete.url-id'),
             ]);
         }
+    }
+
+    private function configureAutoComplete(string $type): void
+    {
+        if (! array_key_exists($type, config('autocompletes'))) {
+            return;
+        }
+
+        $this->class = new (config('autocompletes')[$type])();
+
+        if ($this->class->preload) {
+
+            $this->source = route('control-ui-kit.ajax-class', [
+                'query' => 'preload',
+                'type' => $type,
+            ]);
+
+        } else {
+
+            $this->source = route('control-ui-kit.ajax-class', [
+                'query' => 'search',
+                'type' => $type,
+                'term' => config('themes.default.input-autocomplete.url-search'),
+                'limit' => config('themes.default.input-autocomplete.url-limit'),
+            ]);
+
+        }
+
+        $this->lookup = route('control-ui-kit.ajax-class', [
+            'query' => 'lookup',
+            'type' => $type,
+            'value' => config('themes.default.input-autocomplete.url-id'),
+        ]);
+
+        if ($this->class->focus) {
+            $this->focus = route('control-ui-kit.ajax-class', [
+                'query' => 'focus',
+                'type' => $type,
+                'limit' => config('themes.default.input-autocomplete.url-limit'),
+            ]);
+        }
+
     }
 }
