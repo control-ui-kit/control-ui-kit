@@ -585,6 +585,12 @@ window.Components = {
                     this.selectedText = ''
                 }
             },
+            clear() {
+                this.value = null
+                this.filter = null
+                this.selected = null
+                this.selectedText = ''
+            },
             lookupId() {
                 fetch(this.ajaxLookupUrl())
                     .then((response) => {

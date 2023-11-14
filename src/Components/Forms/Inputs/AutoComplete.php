@@ -26,30 +26,33 @@ class AutoComplete extends Component
     public mixed $focus = [];
     public ?string $iconOpen;
     public ?string $iconClose;
+    public ?string $iconClear;
     public ?string $iconSize;
+    public ?string $clearSize;
 
-    public array $basicStyles = [];
-    public array $dropdownStyles = [];
+    private array $basicStyles = [];
+    private array $dropdownStyles = [];
+    private array $clearStyles = [];
     public array $conditionalStyles = [];
     public array $iconStyles = [];
-    public array $inputStyles = [];
-    public array $optionStyles = [];
-    public array $imageStyles = [];
-    public array $promptStyles = [];
-    public array $textStyles = [];
-    public array $selectedStyles = [];
-    public array $subtextStyles = [];
-    public array $wrapperStyles = [];
+    private array $inputStyles = [];
+    private array $optionStyles = [];
+    private array $imageStyles = [];
+    private array $promptStyles = [];
+    private array $textStyles = [];
+    private array $selectedStyles = [];
+    private array $subtextStyles = [];
+    private array $wrapperStyles = [];
     public string $noResultsText;
     public string $promptText;
     public string $selectedText;
     public array $optionConfig;
     public array $ajaxConfig = [];
     public ?string $selected;
-    public mixed $source;
-    public mixed $lookup;
+    private mixed $source;
+    private mixed $lookup;
 
-    public string $urlLimit;
+    private string $urlLimit;
     private ?string $type;
     private \ControlUIKit\AutoComplete $class;
     private ?string $model = null;
@@ -64,6 +67,7 @@ class AutoComplete extends Component
 
         string $iconOpen = null,
         string $iconClose = null,
+        string $iconClear = null,
         mixed $src = null,
         string $lookup = null,
         string $focus = null,
@@ -92,6 +96,15 @@ class AutoComplete extends Component
         string $rounded = null,
         string $shadow = null,
         string $width = null,
+
+        string $clearBackground = null,
+        string $clearBorder = null,
+        string $clearColor = null,
+        string $clearOther = null,
+        string $clearPadding = null,
+        string $clearRounded = null,
+        string $clearShadow = null,
+        string $clearSize = null,
 
         string $dropdownBackground = null,
         string $dropdownBorder = null,
@@ -209,14 +222,16 @@ class AutoComplete extends Component
             $selectedText = $selectedText ?? $this->class->language()['selected-text'];
         }
 
-        $this->placeholder = $this->style($this->component, 'placeholder', $placeholder, '', $this->component);
+        $this->placeholder = $this->style($this->component, 'placeholder', $placeholder);
         $this->noResultsText = $this->style($this->component, 'no-results-text', $noResultsText);
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
         $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
 
-        $this->iconOpen = $this->style($this->component, 'icon-open', $iconOpen, '', $this->component);
-        $this->iconClose = $this->style($this->component, 'icon-close', $iconClose, '', $this->component);
+        $this->iconOpen = $this->style($this->component, 'icon-open', $iconOpen);
+        $this->iconClose = $this->style($this->component, 'icon-close', $iconClose);
+        $this->iconClear = $this->style($this->component, 'icon-clear', $iconClear);
         $this->iconSize = $iconSize;
+        $this->clearSize = $this->style($this->component, 'clear-size', $clearSize);
 
         $this->setConfigStyles([
             'background' => $background,
@@ -229,6 +244,16 @@ class AutoComplete extends Component
             'shadow' => $shadow,
             'width' => $width,
         ], [], null, 'basicStyles');
+
+        $this->setConfigStyles([
+            'clear-background' => $clearBackground,
+            'clear-border' => $clearBorder,
+            'clear-color' => $clearColor,
+            'clear-other' => $clearOther,
+            'clear-padding' => $clearPadding,
+            'clear-rounded' => $clearRounded,
+            'clear-shadow' => $clearShadow,
+        ], [], null, 'clearStyles');
 
         $this->setConfigStyles([
             'dropdown-background' => $dropdownBackground,
@@ -471,6 +496,11 @@ class AutoComplete extends Component
     public function basicClasses(): string
     {
         return $this->classList($this->basicStyles);
+    }
+
+    public function clearClasses(): string
+    {
+        return $this->classList($this->clearStyles);
     }
 
     public function dropdownClasses(): string

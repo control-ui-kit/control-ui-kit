@@ -30,6 +30,7 @@
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
             {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()]) }}
         />
+        <x-dynamic-component :component="$iconClear" x-show="selected" class="{{ $clearClasses() }}" :size="$clearSize" @click="clear()" />
         <x-input-embed x-show="! show && ! isAjax" icon-right :icon="$iconOpen" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
         <x-input-embed x-show="show && ! isAjax" icon-right :icon="$iconClose" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
     </div>

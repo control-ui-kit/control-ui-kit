@@ -594,6 +594,15 @@ return [
         'dropdown-shadow' => '',
         'dropdown-width' => 'max-h-64 min-w-[12rem] w-full max-w-max',
 
+        'clear-background' => '',
+        'clear-border' => '',
+        'clear-color' => 'text-brand hover:text-brand-hover',
+        'clear-other' => 'cursor-pointer',
+        'clear-padding' => 'mx-2',
+        'clear-rounded' => '',
+        'clear-shadow' => '',
+        'clear-size' => 'w-4 h-4',
+
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
         'icon-color' => 'text-muted',
@@ -688,6 +697,7 @@ return [
 
         'icon-open' => 'icon-chevron-down',
         'icon-close' => 'icon-chevron-up',
+        'icon-clear' => 'icon-close',
 
         // Ajax Config
         'ajax-limit' => 20,

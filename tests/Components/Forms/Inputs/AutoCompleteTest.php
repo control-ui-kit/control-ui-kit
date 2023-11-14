@@ -30,6 +30,15 @@ class AutoCompleteTest extends ComponentTestCase
         Config::set('themes.default.input-autocomplete.shadow', 'shadow');
         Config::set('themes.default.input-autocomplete.width', 'width');
 
+        Config::set('themes.default.input-autocomplete.clear-background', 'clear-background');
+        Config::set('themes.default.input-autocomplete.clear-border', 'clear-border');
+        Config::set('themes.default.input-autocomplete.clear-color', 'clear-color');
+        Config::set('themes.default.input-autocomplete.clear-other', 'clear-other');
+        Config::set('themes.default.input-autocomplete.clear-padding', 'clear-padding');
+        Config::set('themes.default.input-autocomplete.clear-rounded', 'clear-rounded');
+        Config::set('themes.default.input-autocomplete.clear-shadow', 'clear-shadow');
+        Config::set('themes.default.input-autocomplete.clear-size', 'clear-size');
+
         Config::set('themes.default.input-autocomplete.dropdown-background', 'dropdown-background');
         Config::set('themes.default.input-autocomplete.dropdown-border', 'dropdown-border');
         Config::set('themes.default.input-autocomplete.dropdown-color', 'dropdown-color');
@@ -171,41 +180,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -227,6 +239,15 @@ class AutoCompleteTest extends ComponentTestCase
                 rounded="7"
                 shadow="8"
                 width="9"
+
+                clear-background="110"
+                clear-border="111"
+                clear-color="112"
+                clear-other="113"
+                clear-padding="114"
+                clear-rounded="115"
+                clear-shadow="116"
+                clear-size="117"
 
                 dropdown-background="10"
                 dropdown-border="11"
@@ -331,41 +352,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"63","option-selected":"68","subtext-focus":"83","subtext-selected":"88","text-focus":"93","text-selected":"98"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="1 2 3 4 5 6 7 8 9">
                 <div class="100 101 102 103 104 105 106 107 108" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="40 41 42 43 44 45 46 47" />
-                    <div class="20 21 22 23 24 25 26" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="27 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="20 21 22 23 24 25 26" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="117 fill-current 110 111 112 113 114 115 116" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="20 21 22 23 24 25 26" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="27 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="10 11 12 13 14 15 16 17">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="60 61 62 64 65 66 67 69" :class="classText(option.id, index)">
-                                            <img class="30 31 32 33 34 35" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="90 91 92 94 95 96 97 99">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="80 81 82 84 85 86 87 89" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="20 21 22 23 24 25 26" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="27 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="10 11 12 13 14 15 16 17">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="60 61 62 64 65 66 67 69" :class="classText(option.id, index)">
+                                                <img class="30 31 32 33 34 35" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="90 91 92 94 95 96 97 99">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="80 81 82 84 85 86 87 89" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="50 51 52 53 54 55 56 57"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="50 51 52 53 54 55 56 57"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="70 71 72 73 74 75 76 77"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="50 51 52 53 54 55 56 57"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="50 51 52 53 54 55 56 57"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="70 71 72 73 74 75 76 77"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -387,6 +411,15 @@ class AutoCompleteTest extends ComponentTestCase
                 rounded="none"
                 shadow="none"
                 width="none"
+
+                clear-background="none"
+                clear-border="none"
+                clear-color="none"
+                clear-other="none"
+                clear-padding="none"
+                clear-rounded="none"
+                clear-shadow="none"
+                clear-size="none"
 
                 dropdown-background="none"
                 dropdown-border="none"
@@ -491,41 +524,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"","option-selected":"","subtext-focus":"","subtext-selected":"","text-focus":"","text-selected":""}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="">
                 <div class="" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="" />
-                    <div x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="fill-current" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="" :class="classText(option.id, index)">
-                                            <img class="" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="" :class="classText(option.id, index)">
+                                                <img class="" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class=""> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class=""> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class=""> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class=""> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class=""> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class=""> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -553,41 +589,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -615,41 +654,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -681,41 +723,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -744,41 +789,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"key","text":"label","subtext":"iso","image":"flag","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -798,41 +846,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -870,41 +921,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"search-term","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -926,41 +980,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/term","lookup_url":"https:\/\/api.control-ui-kit.com\/lookup\/id-term","id_string":"id-term","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -988,41 +1045,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1054,41 +1114,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":16,"text":"English","sub":"GB","image":"https:\/\/cdn.label-worx.com\/media\/flags\/GB.png"},{"id":34,"text":"German","sub":"DE","image":"https:\/\/cdn.label-worx.com\/media\/flags\/DE.png"}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1114,41 +1177,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "16", filter: "USA", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/countries","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1158,7 +1224,8 @@ class AutoCompleteTest extends ComponentTestCase
     public function an_autocomplete_component_can_be_rendered_with_custom_icons(): void
     {
         Config::set('themes.default.input-autocomplete.icon-open', 'icon-dot');
-        Config::set('themes.default.input-autocomplete.icon-closer', 'icon-dot');
+        Config::set('themes.default.input-autocomplete.icon-close', 'icon-dot');
+        Config::set('themes.default.input-autocomplete.icon-clear', 'icon-dot');
 
         $template = <<<'HTML'
             <x-input-autocomplete
@@ -1166,6 +1233,7 @@ class AutoCompleteTest extends ComponentTestCase
                 :src="[ 1 => 'France', 2 => 'Germany' ]"
                 icon-open="icon-chevron-down"
                 icon-close="icon-chevron-up"
+                icon-clear="icon-close"
             />
             HTML;
 
@@ -1173,41 +1241,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1230,41 +1301,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" placeholder="Please Select..." class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1287,41 +1361,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> 111 '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>222</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>333</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> 111 '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>222</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>333</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1342,41 +1419,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":1,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1397,41 +1477,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":4,"min":2}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1452,41 +1535,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":3}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1507,41 +1593,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":4}, ajax: {"search_url":"https:\/\/api.control-ui-kit.com\/search-term","lookup_url":null,"id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1565,41 +1654,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1634,41 +1726,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"USA","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1705,41 +1800,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":1,"text":"USA","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1802,41 +1900,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width float-right">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -1856,41 +1957,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":null,"image":null,"limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-model?model=Tests%5CComponents%5CForms%5CInputs%5CCountry&fields%5Bf%5D=id&fields%5Bn%5D=text&preload=0&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-model?model=Tests%5CComponents%5CForms%5CInputs%5CCountry&fields%5Bf%5D=id&fields%5Bn%5D=text&preload=0&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template, ['class' => Country::class]);
@@ -1911,41 +2015,44 @@ class AutoCompleteTest extends ComponentTestCase
             <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":999,"min":1}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"France","sub":null,"image":null},{"id":2,"text":"Germany","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" onclick="alert('here')" />
-                    <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
-                        <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
-                            </svg>
-                        </div>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                    <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                        </svg>
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                        </div>
-                        <input type="hidden" name="countries" id="countries" x-model="value" />
-                        <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
-                            <div x-show="options !== null">
-                                <template x-for="(option, index) in options" :key="index">
-                                    <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
-                                        <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
-                                            <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
-                                            <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
-                                                <span x-text="option.text"></span>
-                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="hidden" name="countries" id="countries" x-model="value" />
+                            <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                <div x-show="options !== null">
+                                    <template x-for="(option, index) in options" :key="index">
+                                        <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                            <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                    <span x-text="option.text"></span>
+                                                    <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                            <div x-show="noResults">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
-                            </div>
-                            <div x-show="isAjax && options === null">
-                                <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
-                                <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </template>
+                                </div>
+                                <div x-show="noResults">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                </div>
+                                <div x-show="isAjax && options === null">
+                                    <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                    <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
