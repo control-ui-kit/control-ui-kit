@@ -543,25 +543,25 @@ window.Components = {
                 }
                 this.isAjax = !(this.ajax instanceof Array)
                 if (! this.filter) {
-                    this.setSelected()
+                    this.setSelected(true)
                 } else {
                     this.selectedText = this.filter
                     this.selected = {
-                        'id': this.value,
+                        'id': parseInt(this.value),
                         'text': this.filter,
                         'sub': null,
                         'image': null,
                     };
                 }
                 this.$watch('value', () => {
-                    this.setSelected()
+                    this.setSelected(false)
                 })
                 this.$watch('options', () => {
                     this.noResults = this.filter && this.filter !== this.selectedText && (! this.options || this.options.length === 0)
                 })
             },
-            setSelected() {
-                if (this.value && this.options) {
+            setSelected(init) {
+                if (this.value && this.options && (! init || this.focus.length === 0)) {
                     let selected = this.options.filter(option => {
                         return option.id.toString() === this.value.toString()
                     })
@@ -576,6 +576,8 @@ window.Components = {
                     }
                 } else if (this.isAjax && this.chosen) {
                     this.chosen = null;
+                } else if (init && this.options && this.focus.length > 0) {
+                    this.lookupId()
                 } else if (this.isAjax && this.ajax['lookup_url'] && this.value && ! this.options) {
                     this.lookupId()
                 } else {
