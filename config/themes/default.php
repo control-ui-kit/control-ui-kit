@@ -605,12 +605,12 @@ return [
 
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
-        'icon-color' => 'text-muted',
+        'icon-color' => 'text-gray-500',
         'icon-other' => 'flex items-center justify-center self-stretch w-10',
         'icon-padding' => 'px-2.5',
         'icon-rounded' => '',
         'icon-shadow' => '',
-        'icon-size' => 'w-4 h-4',
+        'icon-size' => 'w-5 h-5',
 
         'image-border' => '',
         'image-other' => '',
@@ -1032,7 +1032,6 @@ return [
 
     'input-search' => [
         'icon-left' => 'icon-search',
-        'icon-left-padding' => 'pl-2.5 pr-0',
         'type' => 'search',
     ],
 
@@ -1060,17 +1059,17 @@ return [
         'check-active' => '',
         'check-inactive' => '',
         'check-icon' => 'icon-check',
-        'check-icon-size' =>'w-6 h-6',
+        'check-icon-size' =>'w-5 h-5',
 
         'icon' => 'icon-chevron-down',
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
-        'icon-color' => '',
-        'icon-size' => 'w-4 h-4',
+        'icon-color' => 'text-gray-500',
         'icon-other' => 'absolute flex items-center pointer-events-none',
-        'icon-padding' => 'ml-3 px-3 inset-y-0 right-0',
+        'icon-padding' => 'px-2.5 inset-y-0 right-0',
         'icon-rounded' => '',
         'icon-shadow' => '',
+        'icon-size' => 'w-5 h-5',
 
         'image-border' => '',
         'image-size' => 'h-6 w-auto',
