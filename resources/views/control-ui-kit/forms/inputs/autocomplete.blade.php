@@ -2,7 +2,7 @@
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
 <div x-data='Components.inputAutocomplete({
-         value: "{{ $value }}",
+         value:@if($wireModel) window.Livewire.find("{{ $_instance->id }}").entangle("{{ $wireModel }}"){{ $wireSuffix }}@else "{{ $value }}"@endif,
          filter: "{{ $selected }}",
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
@@ -12,7 +12,7 @@
      })'
      x-cloak
      x-modelable="value"
-     {{ $attributes->merge(['class' => $basicClasses()])->only('class') }}>
+     {{ $attributes->merge(['class' => $basicClasses()])->whereStartsWith(['class', 'x-model']) }}>
     <div class="{{ $wrapperClasses() }}" @click.away="close()">
         <input name="{{ $name }}_search"
                type="text"
@@ -28,7 +28,7 @@
                @keydown.arrow-down.prevent="focusNextOption()"
                autocomplete="off"
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
-            {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()]) }}
+            {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()])->whereDoesntStartWith(['wire:model']) }}
         />
         <x-dynamic-component :component="$iconClear" x-show="selected" class="{{ $clearClasses() }}" :size="$clearSize" @click="clear()" />
         <x-input-embed x-show="! show && ! isAjax" icon-right :icon="$iconOpen" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />

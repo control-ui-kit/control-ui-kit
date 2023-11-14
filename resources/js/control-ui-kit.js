@@ -581,8 +581,7 @@ window.Components = {
                 } else if (this.isAjax && this.ajax['lookup_url'] && this.value && ! this.options) {
                     this.lookupId()
                 } else {
-                    this.selected = null
-                    this.selectedText = ''
+                    this.clear()
                 }
             },
             clear() {

@@ -203,7 +203,7 @@ class AutoComplete extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->value = $value;
+        $this->value = old($name, $value ?? '');
         $this->type = $type;
         $this->focus = $focus;
 
