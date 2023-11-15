@@ -575,6 +575,7 @@ return [
 
     'input-autocomplete' => [
 
+        // Style
         'background' => '',
         'border' => '',
         'color' => '',
@@ -585,15 +586,6 @@ return [
         'shadow' => '',
         'width' => 'w-full',
 
-        'dropdown-background' => 'bg-input',
-        'dropdown-border' => 'border border-input focus:outline-none',
-        'dropdown-color' => '',
-        'dropdown-other' => 'absolute top-9 left-0 overflow-auto z-50',
-        'dropdown-padding' => 'mt-1',
-        'dropdown-rounded' => 'rounded',
-        'dropdown-shadow' => '',
-        'dropdown-width' => 'max-h-64 min-w-[12rem] w-full max-w-max',
-
         'clear-background' => '',
         'clear-border' => '',
         'clear-color' => 'text-brand hover:text-brand-hover',
@@ -602,6 +594,15 @@ return [
         'clear-rounded' => '',
         'clear-shadow' => '',
         'clear-size' => 'w-4 h-4',
+
+        'dropdown-background' => 'bg-input',
+        'dropdown-border' => 'border border-input focus:outline-none',
+        'dropdown-color' => '',
+        'dropdown-other' => 'absolute top-9 left-0 overflow-auto z-50',
+        'dropdown-padding' => 'mt-1',
+        'dropdown-rounded' => 'rounded',
+        'dropdown-shadow' => '',
+        'dropdown-width' => 'max-h-64 min-w-[12rem] w-full max-w-max',
 
         'icon-background' => '',
         'icon-border' => 'border-l border-input',

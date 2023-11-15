@@ -129,6 +129,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
+                __DIR__ . '/../config/autocompletes.php' => $this->app->configPath('autocompletes.php'),
+            ], 'control-ui-kit-autocomplete');
+
+            $this->publishes([
                 __DIR__ . '/../config/control-ui-kit.php' => $this->app->configPath('control-ui-kit.php'),
             ], 'control-ui-kit-config');
 
