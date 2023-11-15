@@ -1,0 +1,62 @@
+<?php
+
+namespace {{ namespace }};
+
+use ControlUIKit\AutoComplete;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends AutoComplete
+{
+    public int $min = 2;
+    public int $limit = 20;
+    public bool $focus = false;
+    public bool $preload = false;
+    public bool $auto = false;
+    public int $count = 20;
+
+    public function language(): array
+    {
+        return [
+            'no-results-text' => config('themes.default.input-autocomplete.no-results-text'),
+            'prompt-text' => config('themes.default.input-autocomplete.prompt-text'),
+            'selected-text' => config('themes.default.input-autocomplete.selected-text'),
+            'placeholder' => config('themes.default.input-autocomplete.placeholder'),
+        ];
+    }
+
+    protected function fields(): array
+    {
+        return [
+            'id' => 'id',
+            'text' => 'text',
+            'subtext' => null,
+            'image' => null,
+        ];
+    }
+
+    public function count(): int
+    {
+        return 0;
+    }
+
+    public function focus(int $limit): Collection|array
+    {
+        return [];
+    }
+
+    public function lookup(int $id): Model|array
+    {
+        return [];
+    }
+
+    public function preload(): Collection|array
+    {
+        return [];
+    }
+
+    public function search(string $term, int $limit): Collection|array
+    {
+        return [];
+    }
+}

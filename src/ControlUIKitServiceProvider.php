@@ -4,6 +4,7 @@ namespace ControlUIKit;
 
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
+use ControlUIKit\Console\MakeAutocompleteCommand;
 use ControlUIKit\Console\ThemeCommand;
 use ControlUIKit\Controllers\AjaxClassController;
 use ControlUIKit\Controllers\AjaxModelController;
@@ -51,6 +52,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->commands([
                 BrandColorCommand::class,
                 GrayColorCommand::class,
+                MakeAutocompleteCommand::class,
                 ThemeCommand::class,
             ]);
         }
@@ -135,6 +137,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/control-ui-kit.php' => $this->app->configPath('control-ui-kit.php'),
             ], 'control-ui-kit-config');
+
+            $this->publishes([
+                __DIR__ . '/../stubs' => base_path('stubs'),
+            ], 'control-ui-kit-stubs');
 
             $this->publishes([
                 __DIR__ . '/../config/themes/default.php' => $this->app->configPath('themes/default.php'),
