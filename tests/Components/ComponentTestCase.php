@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Components;
 
-use Carbon\Carbon;
 use ControlUIKit\ControlUIKitServiceProvider;
 use Gajus\Dindent\Indenter;
 use Illuminate\Support\Facades\Config;

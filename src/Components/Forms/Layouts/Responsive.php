@@ -98,6 +98,7 @@ class Responsive extends Component
         $this->requiredSize = $this->style($this->component, 'required-size', $requiredSize);
         $this->slotStyle = $this->style($this->component, 'slot', $slot);
         $this->textStyle = $this->style($this->component, 'text', $text);
+
         $this->wrapper = $this->style($this->component, 'wrapper', $wrapper);
     }
 

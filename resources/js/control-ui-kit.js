@@ -510,7 +510,7 @@ window.Components = {
                 if (this.value === 'http://' || this.value === 'https://' || this.value === sanitizedPrefix) {
                     this.value = '';
                 } else if (this.value !== '') {
-                  if (this.value.indexOf(sanitizedPrefix) < 0) {
+                    if (this.value.indexOf(sanitizedPrefix) < 0) {
                         this.value = sanitizedPrefix + this.value;
                     } else {
                         this.value = (this.value.indexOf('http://') > -1 ? 'http' : 'https') + '://' + this.value.replace(/^[htps:]+\/{1,2}/i, '');
@@ -522,6 +522,264 @@ window.Components = {
     inputRange(options) {
         return {
             ...options,
+        }
+    },
+    inputAutocomplete(options) {
+        return {
+            ...options,
+            isAjax: false,
+            show: false,
+            selected: null,
+            chosen: null,
+            selectedText: null,
+            focusedOptionIndex: null,
+            noResults: false,
+            options: null,
+            init() {
+                if (this.data.length > 0) {
+                    this.options = this.data.slice(0, this.config['limit'])
+                } else if (this.focus.length > 0) {
+                    this.options = this.focus
+                }
+                this.isAjax = !(this.ajax instanceof Array)
+                if (! this.filter) {
+                    this.setSelected(true)
+                } else {
+                    this.selectedText = this.filter
+                    this.selected = {
+                        'id': parseInt(this.value),
+                        'text': this.filter,
+                        'sub': null,
+                        'image': null,
+                    };
+                }
+                this.$watch('value', () => {
+                    this.setSelected(false)
+                })
+                this.$watch('options', () => {
+                    this.noResults = this.filter && this.filter !== this.selectedText && (! this.options || this.options.length === 0)
+                })
+            },
+            setSelected(init) {
+                if (this.value && this.options && (! init || this.focus.length === 0)) {
+                    let selected = this.options.filter(option => {
+                        return option.id.toString() === this.value.toString()
+                    })
+                    if (selected.length) {
+                        this.selected = selected[0]
+                        this.filter = this.selected.text
+                        this.selectedText = this.selected.text
+                    } else {
+                        this.selected = null
+                        this.selectedText = ''
+                        this.filter = ''
+                    }
+                } else if (this.isAjax && this.chosen) {
+                    this.chosen = null;
+                } else if (init && this.options && this.focus.length > 0) {
+                    this.lookupId()
+                } else if (this.isAjax && this.ajax['lookup_url'] && this.value && ! this.options) {
+                    this.lookupId()
+                } else {
+                    this.clear()
+                }
+            },
+            clear() {
+                this.value = null
+                this.filter = null
+                this.selected = null
+                this.selectedText = ''
+            },
+            lookupId() {
+                fetch(this.ajaxLookupUrl())
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((record) => {
+                        this.selected = this.convertRow(record)
+                        this.filter = this.selected.text
+                        this.selectedText = this.selected.text
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            },
+            close() {
+                this.show = false;
+                this.filter = this.selectedName();
+                // Timeout needed to fix a bug with double highlighted options
+                setTimeout(() => {
+                    if (this.isAjax) {
+                        this.options = null
+                    } else {
+                        this.options = this.data.slice(0, this.config['limit'])
+                    }
+                }, 150)
+                this.focusedOptionIndex = null
+            },
+            open() {
+                this.options = this.isAjax && this.focus.length > 0 ? this.focus : this.options
+                this.show = true;
+                this.filter = '';
+            },
+            toggle() {
+                if (this.show) {
+                    this.close();
+                }
+                else {
+                    this.open()
+                }
+            },
+            isOpen() { return this.show === true },
+            selectedName() { return this.selected ? this.selected.text : this.filter },
+            isSelected(id) { return this.selected ? id === this.selected.id : false },
+            isFocused(index) { return index === this.focusedOptionIndex },
+            canFilter() {
+                if (this.config['min'] === null) {
+                    return true;
+                }
+                return this.filter.length >= parseInt(this.config['min'])
+            },
+            classOption(id, index) {
+                return {
+                    [this.conditionals['option-selected']]: this.isSelected(id),
+                    [this.conditionals['option-focus']] : this.isFocused(index)
+                };
+            },
+            classText(id, index, option) {
+                return {
+                    [this.conditionals['text-selected']]: this.isSelected(id),
+                    [this.conditionals['text-focus']] : this.isFocused(index)
+                };
+            },
+            classSubtext(id, index) {
+                return {
+                    [this.conditionals['subtext-selected']]: this.isSelected(id),
+                    [this.conditionals['subtext-focus']] : this.isFocused(index)
+                };
+            },
+            filteredOptions() { return this.options },
+            refreshOptions() {
+                if (this.filter === '') {
+                    this.resetOptions();
+                    return;
+                }
+                if (this.canFilter()) {
+                    if (this.isAjax) {
+                        this.getAjaxOptions()
+                    } else {
+                        this.options = this.filteredDataOptions()
+                    }
+                    this.resetOptions();
+                }
+            },
+            resetOptions() {
+                if (this.filter) {
+                    return
+                }
+                this.options = this.isAjax ? null : this.data.slice(0, this.config['limit']);
+            },
+            filteredDataOptions() {
+                return this.data.slice(0, this.config['limit'])
+                    ? this.data.filter(option => {
+                        return (option.text.toLowerCase().indexOf(this.filter) > -1)
+                    }).slice(0, this.config['limit'])
+                    : {}
+            },
+            ajaxSearchUrl() {
+                return this.ajax['search_url']
+                    .replace(this.ajax['search_string'], this.filter)
+                    .replace(this.ajax['limit_string'], this.config['limit'])
+            },
+            ajaxLookupUrl() {
+                return this.ajax['lookup_url'].replace(this.ajax['id_string'], this.value)
+            },
+            getAjaxOptions() {
+                fetch(this.ajaxSearchUrl())
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((rows) => {
+                        this.options = this.convertData(rows);
+                    })
+                    .catch((error) => {
+                        console.error('Error :', error);
+                    });
+            },
+            convertData(data) {
+                const options = [];
+                for (const key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        options.push(this.convertRow(data[key]));
+                    }
+                }
+                return options;
+            },
+            convertRow(data) {
+                return {
+                    'id': data[this.config['value']],
+                    'text': data[this.config['text']],
+                    'sub': data[this.config['subtext']] || null,
+                    'image': data[this.config['image']] || null,
+                };
+            },
+            onOptionClick(index) {
+                this.focusedOptionIndex = index;
+                this.selectOption();
+            },
+            selectOption() {
+                if (this.options === null) {
+                    return;
+                }
+                if (! this.isOpen()) {
+                    this.open()
+                    return;
+                }
+                this.focusedOptionIndex = this.focusedOptionIndex ?? 0;
+                const selected = this.filteredOptions()[this.focusedOptionIndex]
+                this.chosen = selected;
+                this.value = selected.id
+                if ((this.selected && this.selected.id !== selected.id) || this.selected === null) {
+                    this.selected = selected
+                    this.filter = this.selectedName()
+                    this.selectedText = this.selectedName()
+                    document.activeElement.blur();
+                }
+                this.close();
+            },
+            focusPrevOption() {
+                if (!this.isOpen() || this.options === null) {
+                    return;
+                }
+                const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+                if (this.focusedOptionIndex > 0 && this.focusedOptionIndex <= optionsNum) {
+                    this.focusedOptionIndex--;
+                }
+                else if (this.focusedOptionIndex === 0) {
+                    this.focusedOptionIndex = optionsNum;
+                }
+            },
+            focusNextOption() {
+                if (this.options === null) {
+                    return;
+                }
+                const optionsNum = Object.keys(this.filteredOptions()).length - 1;
+                if (!this.isOpen()) {
+                    this.open();
+                }
+                if (this.focusedOptionIndex == null || this.focusedOptionIndex === optionsNum) {
+                    this.focusedOptionIndex = 0;
+                }
+                else if (this.focusedOptionIndex >= 0 && this.focusedOptionIndex < optionsNum) {
+                    this.focusedOptionIndex++;
+                }
+            }
         }
     },
     flatpickr(options) {

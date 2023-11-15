@@ -125,11 +125,11 @@ class TextTest extends ComponentTestCase
     public function an_input_text_component_can_be_rendered_with_appended_styles(): void
     {
         $template = <<<'HTML'
-            <x-input-text name="name" background="...1" border="...2"/>
+            <x-input-text name="name" background="... foo" border="... bar"/>
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="text" id="name" class="background 1 border 2 color font other padding rounded shadow width" />
+            <input name="name" type="text" id="name" class="background foo border bar color font other padding rounded shadow width" />
             HTML;
 
         $this->assertComponentRenders($expected, $template);

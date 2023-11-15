@@ -4,7 +4,10 @@ namespace ControlUIKit;
 
 use ControlUIKit\Console\BrandColorCommand;
 use ControlUIKit\Console\GrayColorCommand;
+use ControlUIKit\Console\MakeAutocompleteCommand;
 use ControlUIKit\Console\ThemeCommand;
+use ControlUIKit\Controllers\AjaxClassController;
+use ControlUIKit\Controllers\AjaxModelController;
 use ControlUIKit\Controllers\ControlUIKitDateRangeController;
 use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
 use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
@@ -49,6 +52,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
             $this->commands([
                 BrandColorCommand::class,
                 GrayColorCommand::class,
+                MakeAutocompleteCommand::class,
                 ThemeCommand::class,
             ]);
         }
@@ -127,8 +131,16 @@ class ControlUIKitServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
+                __DIR__ . '/../config/autocompletes.php' => $this->app->configPath('autocompletes.php'),
+            ], 'control-ui-kit-autocomplete');
+
+            $this->publishes([
                 __DIR__ . '/../config/control-ui-kit.php' => $this->app->configPath('control-ui-kit.php'),
             ], 'control-ui-kit-config');
+
+            $this->publishes([
+                __DIR__ . '/../stubs' => base_path('stubs'),
+            ], 'control-ui-kit-stubs');
 
             $this->publishes([
                 __DIR__ . '/../config/themes/default.php' => $this->app->configPath('themes/default.php'),
@@ -147,6 +159,8 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
         Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);
+        Route::get('control-ui-kit/ajax-model', AjaxModelController::class)->name('control-ui-kit.ajax-model');
+        Route::get('control-ui-kit/ajax-class', AjaxClassController::class)->name('control-ui-kit.ajax-class');
     }
 
     protected function registerTranslations(): void
