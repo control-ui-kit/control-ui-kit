@@ -661,6 +661,10 @@ class AutoComplete extends Component
 
     private function validateAutoCompleteClass(): void
     {
+        if (config('autocompletes') === null) {
+            throw new AutoCompleteException('autocomplete config not found - run php artisan vendor:publish --tag=control-ui-kit-autocomplete');
+        }
+
         if (! array_key_exists($this->type, config('autocompletes'))) {
             throw new AutoCompleteException('Invalid autocomplete type : ' . $this->type);
         }

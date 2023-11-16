@@ -1846,6 +1846,22 @@ class AutoCompleteTest extends ComponentTestCase
     }
 
     /** @test */
+    public function an_exception_is_thrown_if_the_autocompletes_config_is_not_found(): void
+    {
+        $this->expectException(ViewException::class);
+        $this->expectExceptionMessage('autocomplete config not found - run php artisan vendor:publish --tag=control-ui-kit-autocomplete');
+
+        $template = <<<'HTML'
+            <x-input-autocomplete
+                name="countries"
+                type="unknown"
+            />
+            HTML;
+
+        $this->blade($template);
+    }
+
+    /** @test */
     public function an_exception_is_thrown_if_the_type_is_not_a_registered_autocomplete(): void
     {
         Config::set('autocompletes', [
