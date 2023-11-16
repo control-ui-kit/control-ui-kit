@@ -58,6 +58,7 @@ abstract class AutoComplete
         $select = [];
 
         foreach ($this->fields() as $key => $field) {
+            $field = $field ?: 'NULL';
             $select[] = "$field AS $key";
         }
 
