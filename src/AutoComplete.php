@@ -36,11 +36,31 @@ abstract class AutoComplete
     public function language(): array
     {
         return [
-            'no-results-text' => config('themes.default.input-autocomplete.no-results-text'),
-            'prompt-text' => config('themes.default.input-autocomplete.prompt-text'),
-            'selected-text' => config('themes.default.input-autocomplete.selected-text'),
-            'placeholder' => config('themes.default.input-autocomplete.placeholder'),
+            'no-results-text' => $this->noResultsText(),
+            'prompt-text' => $this->promptText(),
+            'selected-text' => $this->selectedText(),
+            'placeholder' => $this->placeholder(),
         ];
+    }
+
+    protected function noResultsText(): string
+    {
+        return config('themes.default.input-autocomplete.no-results-text');
+    }
+
+    protected function promptText(): string
+    {
+        return config('themes.default.input-autocomplete.prompt-text');
+    }
+
+    protected function selectedText(): string
+    {
+        return config('themes.default.input-autocomplete.selected-text');
+    }
+
+    protected function placeholder(): string
+    {
+        return config('themes.default.input-autocomplete.placeholder');
     }
 
     protected function fields(): array

@@ -15,21 +15,11 @@ class {{ class }} extends AutoComplete
     public bool $auto = false;
     public int $count = 20;
 
-    public function language(): array
-    {
-        return [
-            'no-results-text' => config('themes.default.input-autocomplete.no-results-text'),
-            'prompt-text' => config('themes.default.input-autocomplete.prompt-text'),
-            'selected-text' => config('themes.default.input-autocomplete.selected-text'),
-            'placeholder' => config('themes.default.input-autocomplete.placeholder'),
-        ];
-    }
-
     protected function fields(): array
     {
         return [
             'id' => 'id',
-            'text' => 'text',
+            'text' => 'name',
             'subtext' => null,
             'image' => null,
         ];
