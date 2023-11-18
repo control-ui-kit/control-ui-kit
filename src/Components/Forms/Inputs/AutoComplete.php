@@ -403,10 +403,14 @@ class AutoComplete extends Component
             ];
         }
 
-        if ($preload) {
+        if ($preload && ! $this->type) {
             $this->options = $this->apiCall($this->source);
-        } else if ($this->focus) {
+        } else if ($preload && $this->type) {
+            $this->options = $this->class->preload();
+        } else if ($this->focus && ! $this->type) {
             $this->focus = $this->apiCall($this->focus);
+        } else if ($this->focus && $this->type) {
+            $this->focus = $this->class->focus($limit);
         } else if ($mode === 'data') {
             $this->options = $this->setOptions($this->source);
         }
@@ -610,9 +614,9 @@ class AutoComplete extends Component
     {
         $this->validateAutoCompleteClass();
 
-        if ($this->class->preload) {
-            $this->source = $this->classPreloadRoute();
-        } else {
+        if (! $this->class->preload) {
+//            $this->source = $this->classPreloadRoute();
+//        } else {
             $this->source =  $this->classSearchRoute();
         }
 

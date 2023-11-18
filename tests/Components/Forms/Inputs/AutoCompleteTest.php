@@ -3,13 +3,16 @@
 namespace Tests\Components\Forms\Inputs;
 
 use ControlUIKit\AutoComplete;
+use ControlUIKit\Controllers\AjaxClassController;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\ViewException;
 use Tests\Components\ComponentTestCase;
@@ -1700,15 +1703,20 @@ class AutoCompleteTest extends ComponentTestCase
     /** @test */
     public function an_autocomplete_component_can_be_rendered_with_class_type_with_preload(): void
     {
-        Http::fake([
-            '*' => [
-                0 => [
-                    'id' => 1,
-                    'text' => 'USA',
-                    'sub' => null,
-                    'image' => null,
-                ],
-            ],
+        Schema::create('countries', static function (Blueprint $table) {
+            $table->increments('country_id');
+            $table->string('country_name');
+            $table->char('iso', 2);
+        });
+
+        Country::create([
+            'country_name' => 'Hong Kong',
+            'iso' => 'HK',
+        ]);
+
+        Country::create([
+            'country_name' => 'Germany',
+            'iso' => 'DE',
         ]);
 
         Config::set('autocompletes', [
@@ -1723,7 +1731,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":1,"text":"USA","sub":null,"image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [{"id":2,"text":"Germany","subtext":"DE","image":null},{"id":1,"text":"Hong Kong","subtext":"HK","image":null}], focus: [] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1774,15 +1782,20 @@ class AutoCompleteTest extends ComponentTestCase
     /** @test */
     public function an_autocomplete_component_can_be_rendered_with_class_type_with_focus(): void
     {
-        Http::fake([
-            '*' => [
-                0 => [
-                    'id' => 1,
-                    'text' => 'USA',
-                    'sub' => null,
-                    'image' => null,
-                ],
-            ],
+        Schema::create('countries', static function (Blueprint $table) {
+            $table->increments('country_id');
+            $table->string('country_name');
+            $table->char('iso', 2);
+        });
+
+        Country::create([
+            'country_name' => 'Hong Kong',
+            'iso' => 'HK',
+        ]);
+
+        Country::create([
+            'country_name' => 'Germany',
+            'iso' => 'DE',
         ]);
 
         Config::set('autocompletes', [
@@ -1797,7 +1810,7 @@ class AutoCompleteTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":1,"text":"USA","sub":null,"image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
+            <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=countries&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=countries&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, data: [], focus: [{"id":2,"text":"Germany","subtext":"DE","image":null},{"id":1,"text":"Hong Kong","subtext":"HK","image":null}] })' x-cloak x-modelable="value" class="background border color font other padding rounded shadow width">
                 <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
                     <input name="countries_search" type="text" id="countries_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2108,6 +2121,16 @@ class CountriesAutoComplete extends AutoComplete
     public bool $auto = false;
     public int $count = 20;
 
+    protected function fields(): array
+    {
+        return [
+            'id' => 'country_id',
+            'text' => 'country_name',
+            'subtext' => 'iso',
+            'image' => null,
+        ];
+    }
+
     public function count(): int
     {
         return 1;
@@ -2115,7 +2138,9 @@ class CountriesAutoComplete extends AutoComplete
 
     public function focus(int $limit): Collection|array
     {
-        return [];
+        return Country::selectRaw($this->selectFields())
+            ->orderBy('country_name')
+            ->get();
     }
 
     public function lookup(int $id): Model|array
@@ -2125,7 +2150,9 @@ class CountriesAutoComplete extends AutoComplete
 
     public function preload(): Collection|array
     {
-        return [];
+        return Country::selectRaw($this->selectFields())
+            ->orderBy('country_name')
+            ->get();
     }
 
     public function search(string $term, int $limit): Collection|array
