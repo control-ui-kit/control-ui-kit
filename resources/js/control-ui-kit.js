@@ -536,6 +536,9 @@ window.Components = {
             noResults: false,
             options: null,
             init() {
+                if (this.preload['url'] !== undefined) {
+                    this.preloadData()
+                }
                 if (this.data.length > 0) {
                     this.options = this.data.slice(0, this.config['limit'])
                 } else if (this.focus.length > 0) {
@@ -589,6 +592,7 @@ window.Components = {
                 this.filter = null
                 this.selected = null
                 this.selectedText = ''
+                this.show = false
             },
             lookupId() {
                 fetch(this.ajaxLookupUrl())
@@ -608,8 +612,8 @@ window.Components = {
                     });
             },
             close() {
-                this.show = false;
-                this.filter = this.selectedName();
+                this.show = false
+                this.filter = this.selectedName()
                 // Timeout needed to fix a bug with double highlighted options
                 setTimeout(() => {
                     if (this.isAjax) {
@@ -694,6 +698,9 @@ window.Components = {
                     .replace(this.ajax['search_string'], this.filter)
                     .replace(this.ajax['limit_string'], this.config['limit'])
             },
+            ajaxPreloadUrl() {
+                return this.preload['url'].replace(this.preload['limit_string'], this.config['limit'])
+            },
             ajaxLookupUrl() {
                 return this.ajax['lookup_url'].replace(this.ajax['id_string'], this.value)
             },
@@ -707,6 +714,22 @@ window.Components = {
                     })
                     .then((rows) => {
                         this.options = this.convertData(rows);
+                    })
+                    .catch((error) => {
+                        console.error('Error :', error);
+                    });
+            },
+            preloadData() {
+                fetch(this.ajaxPreloadUrl(this.preload))
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((rows) => {
+                        this.data = this.convertData(rows);
+                        this.options = this.data;
                     })
                     .catch((error) => {
                         console.error('Error :', error);
