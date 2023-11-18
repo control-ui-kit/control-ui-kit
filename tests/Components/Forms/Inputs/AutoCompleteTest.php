@@ -183,12 +183,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -355,12 +355,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="117 fill-current 110 111 112 113 114 115 116" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="20 21 22 23 24 25 26" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="20 21 22 23 24 25 26" x-show="! show" @click="toggle()">
                             <svg class="27 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="20 21 22 23 24 25 26" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="20 21 22 23 24 25 26" x-show="show" @click="toggle()">
                                 <svg class="27 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -527,12 +527,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="fill-current" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div x-show="! show && ! isAjax" @click="toggle()">
+                        <div x-show="! show" @click="toggle()">
                             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div x-show="show && ! isAjax" @click="toggle()">
+                            <div x-show="show" @click="toggle()">
                                 <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -592,12 +592,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -657,12 +657,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -726,12 +726,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -792,12 +792,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -849,12 +849,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -924,12 +924,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -983,12 +983,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1048,12 +1048,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1117,12 +1117,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1180,12 +1180,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1244,12 +1244,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1304,12 +1304,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1364,12 +1364,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1422,12 +1422,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1480,12 +1480,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1538,12 +1538,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1596,12 +1596,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1657,12 +1657,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1729,12 +1729,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1803,12 +1803,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1919,12 +1919,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -1976,12 +1976,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
@@ -2034,12 +2034,12 @@ class AutoCompleteTest extends ComponentTestCase
                     <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                         </svg>
-                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show && ! isAjax" @click="toggle()">
+                        <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
                             <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
                                 </svg>
                             </div>
-                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show && ! isAjax" @click="toggle()">
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
                                 <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
                                     </svg>
