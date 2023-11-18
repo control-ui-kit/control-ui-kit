@@ -56,6 +56,10 @@ class AutoComplete extends Component
     private ?string $type;
     private \ControlUIKit\AutoComplete $class;
     private ?string $model = null;
+    /**
+     * @var mixed|string
+     */
+    public array $preloadConfig = [];
 
     public function __construct(
         string $name,
@@ -206,12 +210,13 @@ class AutoComplete extends Component
         $this->value = old($name, $value ?? '');
         $this->type = $type;
         $this->focus = $focus;
+        $input_mode = $this->setMode($src, $type);
 
-        if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
+        if ($input_mode === 'model') {
             $this->model = $src;
         }
 
-        if (! $this->model && $type) {
+        if ($input_mode === 'class') {
             $this->configureAutoComplete();
             $minChars = $minChars ?? $this->class->min;
             $limit = $limit ?? $this->class->limit;
@@ -387,9 +392,17 @@ class AutoComplete extends Component
         $this->selected = $selected;
         $this->urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
 
+        if ($input_mode === 'ajax' && $preload) {
+            $this->preloadConfig = [
+                'url' => $src,
+                'limit_string' => $this->urlLimit,
+            ];
+            $input_mode = 'data';
+        }
+
         $this->setSource($src, $lookup, $preload === true);
 
-        if ($mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
+        if ($input_mode === 'ajax' && $value && $this->lookup === null && $selected === null) {
             throw new AutoCompleteException('Value specified without lookup or selected text');
         }
 
@@ -403,15 +416,24 @@ class AutoComplete extends Component
             ];
         }
 
-        if ($preload && ! $this->type) {
-            $this->options = $this->apiCall($this->source);
-        } else if ($preload && $this->type) {
+        if ($input_mode === 'class' && $preload) {
             $this->options = $this->class->preload();
-        } else if ($this->focus && ! $this->type) {
+            $input_mode = 'data';
+        }
+
+        if ($input_mode === 'model' && $preload) {
+            $this->preloadConfig = [
+                'url' => $this->source,
+                'limit_string' => $this->urlLimit,
+            ];
+        }
+
+        if ($this->focus && ! $this->type) {
+            // TODO - swap to AJAX loading
             $this->focus = $this->apiCall($this->focus);
         } else if ($this->focus && $this->type) {
             $this->focus = $this->class->focus($limit);
-        } else if ($mode === 'data') {
+        } else if ($mode === 'data' && ! $preload) {
             $this->options = $this->setOptions($this->source);
         }
     }
@@ -615,8 +637,6 @@ class AutoComplete extends Component
         $this->validateAutoCompleteClass();
 
         if (! $this->class->preload) {
-//            $this->source = $this->classPreloadRoute();
-//        } else {
             $this->source =  $this->classSearchRoute();
         }
 
@@ -634,14 +654,6 @@ class AutoComplete extends Component
             'type' => $this->type,
             'term' => config('themes.default.input-autocomplete.url-search'),
             'limit' => config('themes.default.input-autocomplete.url-limit'),
-        ]);
-    }
-
-    private function classPreloadRoute(): string
-    {
-        return route('control-ui-kit.ajax-class', [
-            'query' => 'preload',
-            'type' => $this->type,
         ]);
     }
 
@@ -681,4 +693,24 @@ class AutoComplete extends Component
 
         $this->class = new $class();
     }
+
+    private function setMode(mixed $src, mixed $type): string
+    {
+        if (is_string($src) && class_exists($src) && is_subclass_of($src, Model::class)) {
+            return 'model';
+        }
+
+        if (is_string($type) && $type !== '') {
+            return 'class';
+        }
+
+        if (is_string($src)) {
+            return 'ajax';
+        }
+
+        return 'data';
+    }
 }
+
+
+
