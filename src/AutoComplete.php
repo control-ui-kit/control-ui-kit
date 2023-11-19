@@ -14,11 +14,6 @@ abstract class AutoComplete
     public bool $auto = false;
     public int $count = 20;
 
-    public string $field_id = 'id';
-    public string $field_text = 'name';
-    public ?string $field_sub = null;
-    public ?string $field_image = null;
-
     abstract public function count(): int;
     abstract public function focus(int $limit): Collection|array;
     abstract public function lookup(int $id): Model|array;
@@ -68,7 +63,7 @@ abstract class AutoComplete
         return [
             'id' => 'id',
             'text' => 'text',
-            'subtext' => null,
+            'sub' => null,
             'image' => null,
         ];
     }

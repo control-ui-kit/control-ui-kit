@@ -20,7 +20,7 @@ class {{ class }} extends AutoComplete
         return [
             'id' => 'id',
             'text' => 'name',
-            'subtext' => null,
+            'sub' => null,
             'image' => null,
         ];
     }

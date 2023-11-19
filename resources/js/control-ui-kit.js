@@ -536,16 +536,18 @@ window.Components = {
             noResults: false,
             options: null,
             init() {
-                if (this.preload['url'] !== undefined) {
-                    this.preloadData()
-                }
                 if (this.data.length > 0) {
                     this.options = this.data.slice(0, this.config['limit'])
                 } else if (this.focus.length > 0) {
                     this.options = this.focus
                 }
                 this.isAjax = !(this.ajax instanceof Array)
-                if (! this.filter) {
+                if (this.focusLoad['url'] !== undefined) {
+                    this.focusData()
+                }
+                if (this.preload['url'] !== undefined) {
+                    this.preloadData()
+                } else if (! this.filter) {
                     this.setSelected(true)
                 } else {
                     this.selectedText = this.filter
@@ -625,7 +627,7 @@ window.Components = {
                 this.focusedOptionIndex = null
             },
             open() {
-                this.options = this.isAjax && this.focus.length > 0 ? this.focus : this.options
+                this.options = this.isAjax && this.selected === null && this.focus.length > 0 ? this.focus : this.options
                 this.show = true;
                 this.filter = '';
             },
@@ -698,6 +700,9 @@ window.Components = {
                     .replace(this.ajax['search_string'], this.filter)
                     .replace(this.ajax['limit_string'], this.config['limit'])
             },
+            ajaxFocusUrl() {
+                return this.focusLoad['url'].replace(this.focusLoad['limit_string'], this.config['limit'])
+            },
             ajaxPreloadUrl() {
                 return this.preload['url'].replace(this.preload['limit_string'], this.config['limit'])
             },
@@ -708,31 +713,49 @@ window.Components = {
                 fetch(this.ajaxSearchUrl())
                     .then((response) => {
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            throw new Error('Network response was not ok')
                         }
-                        return response.json();
+                        return response.json()
                     })
                     .then((rows) => {
-                        this.options = this.convertData(rows);
+                        this.options = this.convertData(rows)
                     })
                     .catch((error) => {
-                        console.error('Error :', error);
-                    });
+                        console.error('Error :', error)
+                    })
             },
             preloadData() {
-                fetch(this.ajaxPreloadUrl(this.preload))
+                fetch(this.ajaxPreloadUrl())
                     .then((response) => {
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            throw new Error('Network response was not ok')
                         }
-                        return response.json();
+                        return response.json()
                     })
                     .then((rows) => {
-                        this.data = this.convertData(rows);
-                        this.options = this.data;
+                        this.data = this.convertData(rows)
+                        this.options = this.data
+                        this.setSelected(true)
                     })
                     .catch((error) => {
-                        console.error('Error :', error);
+                        console.error('Error :', error)
+                    })
+            },
+            focusData() {
+                fetch(this.ajaxFocusUrl())
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok')
+                        }
+                        return response.json()
+                    })
+                    .then((rows) => {
+                        this.data = this.convertData(rows)
+                        this.focus = this.data
+                        this.setSelected(true)
+                    })
+                    .catch((error) => {
+                        console.error('Error :', error)
                     });
             },
             convertData(data) {
