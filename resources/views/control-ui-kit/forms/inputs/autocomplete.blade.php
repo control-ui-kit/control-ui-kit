@@ -47,7 +47,7 @@
                         <img class="{{ $imageClasses() }}" x-bind:src="option.image" x-show="option.image !== null">
                         <div class="{{ $textClasses() }}">
                             <span x-text="option.text"></span>
-                            <div x-show="option.sub" class="{{ $subtextClasses() }}" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                            <div x-show="option.subtext" class="{{ $subtextClasses() }}" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
                         </div>
                     </div>
                 </div>

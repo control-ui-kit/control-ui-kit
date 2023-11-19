@@ -227,7 +227,7 @@ class AutocompleteFieldTest extends ComponentTestCase
                                                             <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
                                                             <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
                                                                 <span x-text="option.text"></span>
-                                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                                <div x-show="option.subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -298,7 +298,7 @@ class AutocompleteFieldTest extends ComponentTestCase
                                                             <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
                                                             <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
                                                                 <span x-text="option.text"></span>
-                                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                                <div x-show="option.subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -369,7 +369,7 @@ class AutocompleteFieldTest extends ComponentTestCase
                                                             <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
                                                             <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
                                                                 <span x-text="option.text"></span>
-                                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                                <div x-show="option.subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -442,7 +442,7 @@ class AutocompleteFieldTest extends ComponentTestCase
                                                             <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
                                                             <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
                                                                 <span x-text="option.text"></span>
-                                                                <div x-show="option.sub" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.sub"></div>
+                                                                <div x-show="option.subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
                                                             </div>
                                                         </div>
                                                     </div>
