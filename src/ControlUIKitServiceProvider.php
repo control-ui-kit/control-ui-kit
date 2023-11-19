@@ -159,8 +159,12 @@ class ControlUIKitServiceProvider extends ServiceProvider
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
         Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);
-        Route::get('control-ui-kit/ajax-model', AjaxModelController::class)->name('control-ui-kit.ajax-model');
-        Route::get('control-ui-kit/ajax-class', AjaxClassController::class)->name('control-ui-kit.ajax-class');
+        Route::get('control-ui-kit/ajax-model', AjaxModelController::class)
+            ->name('control-ui-kit.ajax-model')
+            ->middleware(config('control-ui-kit.middleware_group', ''));
+        Route::get('control-ui-kit/ajax-class', AjaxClassController::class)
+            ->name('control-ui-kit.ajax-class')
+            ->middleware(config('control-ui-kit.middleware_group', ''));
     }
 
     protected function registerTranslations(): void
