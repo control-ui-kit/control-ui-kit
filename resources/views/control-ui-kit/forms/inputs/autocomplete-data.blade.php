@@ -48,7 +48,7 @@
                         <div class="w-full items-center flex">
                             <div class="mx-2 -mt-1">
                                 <span x-text="option.text"></span>
-                                <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500" x-text="option.sub"></div>
+                                <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500" x-text="option.subtext"></div>
                             </div>
                         </div>
                     </div>

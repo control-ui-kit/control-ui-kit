@@ -554,7 +554,7 @@ window.Components = {
                     this.selected = {
                         'id': parseInt(this.value),
                         'text': this.filter,
-                        'sub': null,
+                        'subtext': null,
                         'image': null,
                     };
                 }
@@ -771,7 +771,7 @@ window.Components = {
                 return {
                     'id': data[this.config['value']],
                     'text': data[this.config['text']],
-                    'sub': data[this.config['subtext']] || null,
+                    'subtext': data[this.config['subtext']] || null,
                     'image': data[this.config['image']] || null,
                 };
             },
