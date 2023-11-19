@@ -63,7 +63,7 @@ abstract class AutoComplete
         return [
             'id' => 'id',
             'text' => 'text',
-            'sub' => null,
+            'subtext' => null,
             'image' => null,
         ];
     }
