@@ -9,7 +9,6 @@ use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Http;
 use Illuminate\View\Component;
 
 class AutoComplete extends Component
@@ -60,6 +59,7 @@ class AutoComplete extends Component
      * @var mixed|string
      */
     public array $preloadConfig = [];
+    public array $focusConfig = [];
 
     public function __construct(
         string $name,
@@ -429,9 +429,14 @@ class AutoComplete extends Component
         }
 
         if ($this->focus && ! $this->type) {
-            // TODO - swap to AJAX loading
-            $this->focus = $this->apiCall($this->focus);
-        } else if ($this->focus && $this->type) {
+            $this->focusConfig = [
+                'url' => $this->focus,
+                'limit_string' => $this->urlLimit,
+            ];
+            $this->focus = [];
+        }
+
+        if ($this->focus && $this->type) {
             $this->focus = $this->class->focus($limit);
         } else if ($mode === 'data' && ! $preload) {
             $this->options = $this->setOptions($this->source);
@@ -505,18 +510,6 @@ class AutoComplete extends Component
         }
 
         return $options;
-    }
-
-    private function apiCall(string $url): array
-    {
-        $data = Http::get($this->processUrl($url))->json();
-
-        return $this->convertToArray($data);
-    }
-
-    private function processUrl(string $url): string
-    {
-        return str_replace($this->urlLimit, (string) $this->optionConfig['limit'], $url);
     }
 
     public function basicClasses(): string
@@ -712,5 +705,5 @@ class AutoComplete extends Component
     }
 }
 
-
+?>
 

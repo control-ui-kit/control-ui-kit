@@ -7,6 +7,7 @@
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          preload: @json($preloadConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+         focusLoad: @json($focusConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          data: @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          focus: @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
