@@ -458,6 +458,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Middleware Group
+    |--------------------------------------------------------------------------
+    |
+    | This value sets the middleware group that will be applied to UI Kit
+    | endpoints to as AutoComplete ajax calls. It is set to "web" by default.
+    |
+    */
+
+    'middleware_group' => 'web',
+
+    /*
+    |--------------------------------------------------------------------------
     | User Timezone Field
     |--------------------------------------------------------------------------
     |
