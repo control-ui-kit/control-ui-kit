@@ -58,12 +58,12 @@ class AjaxClassControllerTest extends TestCase
                 [
                     'id' => 2,
                     'text' => 'Germany',
-                    'sub' => 'DE',
+                    'subtext' => 'DE',
                 ],
                 [
                     'id' => 1,
                     'text' => 'Hong Kong',
-                    'sub' => 'HK',
+                    'subtext' => 'HK',
                 ],
             ]);
 
@@ -92,7 +92,7 @@ class AjaxClassControllerTest extends TestCase
             ->assertJson([
                 'id' => 2,
                 'text' => 'Germany',
-                'sub' => 'DE',
+                'subtext' => 'DE',
             ]);
 
         $this->assertModelExists($country_1);
@@ -121,7 +121,7 @@ class AjaxClassControllerTest extends TestCase
                 [
                     'id' => 1,
                     'text' => 'Hong Kong',
-                    'sub' => 'HK',
+                    'subtext' => 'HK',
                 ],
             ]);
 
@@ -152,7 +152,7 @@ class AjaxClassControllerTest extends TestCase
                 [
                     'id' => 1,
                     'text' => 'Hong Kong',
-                    'sub' => 'HK',
+                    'subtext' => 'HK',
                 ],
             ]);
 
@@ -205,7 +205,7 @@ class CountriesAutoComplete extends AutoComplete
     {
         $sql = 'SELECT  country_id AS id,
                         country_name AS text,
-                        iso AS sub
+                        iso AS subtext
                 FROM countries
                 WHERE iso = :iso
                 ORDER BY country_name
@@ -221,7 +221,7 @@ class CountriesAutoComplete extends AutoComplete
     {
         $sql = 'SELECT  country_id AS id,
                         country_name AS text,
-                        iso AS sub
+                        iso AS subtext
                 FROM countries
                 WHERE country_id = :country_id
                 ORDER BY country_name';
@@ -237,7 +237,7 @@ class CountriesAutoComplete extends AutoComplete
     {
         $sql = 'SELECT  country_id AS id,
                         country_name AS text,
-                        iso AS sub
+                        iso AS subtext
                 FROM countries
                 ORDER BY country_name';
 
@@ -248,7 +248,7 @@ class CountriesAutoComplete extends AutoComplete
     {
         $sql = 'SELECT  country_id AS id,
                         country_name AS text,
-                        iso AS sub
+                        iso AS subtext
                 FROM countries
                 WHERE country_name LIKE :term
                 ORDER BY country_name
