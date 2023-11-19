@@ -288,6 +288,7 @@ return [
         'icon-folder' => \ControlUIKit\Components\Icons\Folder::class,
         'icon-fullscreen' => \ControlUIKit\Components\Icons\Fullscreen::class,
         'icon-globe' => \ControlUIKit\Components\Icons\Globe::class,
+        'icon-globe-alt' => \ControlUIKit\Components\Icons\GlobeAlt::class,
         'icon-graph-bar' => \ControlUIKit\Components\Icons\GraphBar::class,
         'icon-graph-pie' => \ControlUIKit\Components\Icons\GraphPie::class,
         'icon-grid' => \ControlUIKit\Components\Icons\Grid::class,

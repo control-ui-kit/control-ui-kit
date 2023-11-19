@@ -1203,7 +1203,7 @@ return [
     ],
 
     'input-url' => [
-        'prefix-text' => '',
+        'icon-left' => 'icon-globe-alt',
         'type' => 'url',
     ],
 
