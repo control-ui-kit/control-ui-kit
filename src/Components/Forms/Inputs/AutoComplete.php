@@ -485,7 +485,7 @@ class AutoComplete extends Component
                 $options[] = [
                     'id' => $key,
                     'text' => $text,
-                    'sub' => null,
+                    'subtext' => null,
                     'image' => null,
                 ];
             }
@@ -503,7 +503,7 @@ class AutoComplete extends Component
                 $options[] = [
                     'id' => $row[$this->optionConfig['value']],
                     'text' => $row[$this->optionConfig['text']],
-                    'sub' => $row[$this->optionConfig['subtext']] ?? null,
+                    'subtext' => $row[$this->optionConfig['subtext']] ?? null,
                     'image' => $row[$this->optionConfig['image']] ?? null,
                 ];
             }
