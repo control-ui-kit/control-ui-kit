@@ -15,6 +15,7 @@ class UrlTest extends ComponentTestCase
 
         Config::set('themes.default.input-url.placeholder', '');
         Config::set('themes.default.input-url.prefix-text', '');
+        Config::set('themes.default.input-url.icon-left', '');
 
         Config::set('themes.default.input.decimals', '');
         Config::set('themes.default.input.default', '');
