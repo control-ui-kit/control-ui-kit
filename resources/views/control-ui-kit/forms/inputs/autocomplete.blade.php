@@ -12,7 +12,7 @@
      })'
      x-cloak
      x-modelable="value"
-     x-init='init(
+     x-init='setup(
         @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
         @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
      )'

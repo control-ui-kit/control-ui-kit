@@ -537,7 +537,7 @@ window.Components = {
             options: null,
             data: [],
             focus: [],
-            init(data, focus) {
+            setup(data, focus) {
                 this.data = data
                 this.focus = focus
                 if (this.data.length > 0) {
