@@ -535,7 +535,11 @@ window.Components = {
             focusedOptionIndex: null,
             noResults: false,
             options: null,
-            init() {
+            data: [],
+            focus: [],
+            init(data, focus) {
+                this.data = data
+                this.focus = focus
                 if (this.data.length > 0) {
                     this.options = this.data.slice(0, this.config['limit'])
                 } else if (this.focus.length > 0) {
