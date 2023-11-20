@@ -691,7 +691,7 @@ window.Components = {
             filteredDataOptions() {
                 return this.data.slice(0, this.config['limit'])
                     ? this.data.filter(option => {
-                        return (option.text.toLowerCase().indexOf(this.filter) > -1)
+                        return (option.text.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
                     }).slice(0, this.config['limit'])
                     : {}
             },
