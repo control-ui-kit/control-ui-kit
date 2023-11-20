@@ -29,6 +29,7 @@
                @keydown.arrow-up.prevent="focusPrevOption()"
                @keydown.arrow-down.prevent="focusNextOption()"
                autocomplete="off"
+               autocapitalize="off"
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
             {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()])->whereDoesntStartWith(['wire:model']) }}
         />
