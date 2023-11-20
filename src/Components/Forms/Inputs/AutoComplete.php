@@ -704,6 +704,3 @@ class AutoComplete extends Component
         return 'data';
     }
 }
-
-?>
-

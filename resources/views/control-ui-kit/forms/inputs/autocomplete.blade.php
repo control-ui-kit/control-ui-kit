@@ -9,11 +9,13 @@
          preload: @json($preloadConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          focusLoad: @json($focusConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          conditionals: @json($conditionalStyles ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
-         data: @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
-         focus: @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
      })'
      x-cloak
      x-modelable="value"
+     x-init='init(
+        @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
+        @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
+     )'
      {{ $attributes->merge(['class' => $basicClasses()])->whereStartsWith(['class', 'x-model']) }}>
     <div class="{{ $wrapperClasses() }}" @click.away="close()">
         <input name="{{ $name }}_search"
