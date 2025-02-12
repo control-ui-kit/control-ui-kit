@@ -9,23 +9,23 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
         "facade/ignition-contracts": "^1.0",
         "guzzlehttp/guzzle": "^7.8",
-        "illuminate/filesystem": "^9.0|^10.0",
-        "illuminate/support": "^9.0|^10.0",
-        "illuminate/view": "^9.0|^10.0",
-        "league/uri": "^6.4",
-        "league/uri-components": "^2.3",
-        "nesbot/carbon": "^2.38"
+        "illuminate/filesystem": "^11.0",
+        "illuminate/support": "^11.0",
+        "illuminate/view": "^11.0",
+        "league/uri": "^7.5",
+        "league/uri-components": "^7.5",
+        "nesbot/carbon": "^3.0"
     },
     "require-dev": {
         "gajus/dindent": "^2.0",
         "league/commonmark": "^2.3",
-        "orchestra/testbench": "^7.1|^8.0",
+        "orchestra/testbench": "^9.0",
         "phpunit/phpunit": "^10.0"
     },
     "autoload": {
