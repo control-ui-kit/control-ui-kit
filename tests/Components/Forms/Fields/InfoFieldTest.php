@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Fields;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class InfoFieldTest extends ComponentTestCase
@@ -38,7 +39,7 @@ class InfoFieldTest extends ComponentTestCase
         Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
     }
 
-    /** @test */
+    #[Test]
     public function the_field_info_component_can_be_rendered_with_value(): void
     {
         $this->withViewErrors([]);
@@ -63,7 +64,7 @@ class InfoFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_field_info_component_can_be_rendered_with_slot(): void
     {
         $this->withViewErrors([]);
@@ -88,7 +89,7 @@ class InfoFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_field_info_component_can_be_rendered_with_custom_class(): void
     {
         $this->withViewErrors([]);
@@ -113,7 +114,7 @@ class InfoFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_field_info_component_can_be_rendered_with_custom_attribute(): void
     {
         $this->withViewErrors([]);

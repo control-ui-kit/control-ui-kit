@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class DateRangeTest extends ComponentTestCase
@@ -51,7 +52,7 @@ class DateRangeTest extends ComponentTestCase
         Config::set('themes.default.input-date-range.separator', '#');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -68,7 +69,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_specific_id(): void
     {
         $template = <<<'HTML'
@@ -85,7 +86,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -102,7 +103,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -119,7 +120,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_passed_in_string_date_range(): void
     {
         $template = <<<'HTML'
@@ -136,7 +137,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_passed_in_array_date_range(): void
     {
         $template = <<<'HTML'
@@ -153,7 +154,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_passed_in_individual_dates_for_range(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class DateRangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_will_rendered_with_week_numbers(): void
     {
         $template = <<<'HTML'
@@ -189,7 +190,7 @@ class DateRangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_will_render_with_language_changed(): void
     {
         $template = <<<'HTML'
@@ -208,7 +209,7 @@ class DateRangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_will_render_with_a_different_display_format(): void
     {
         $template = <<<'HTML'
@@ -225,7 +226,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_will_render_with_different_data_format(): void
     {
         $template = <<<'HTML'
@@ -242,7 +243,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -259,7 +260,7 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_range_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

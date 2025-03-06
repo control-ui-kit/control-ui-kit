@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class PasswordTest extends ComponentTestCase
@@ -105,7 +106,7 @@ class PasswordTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -121,7 +122,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered_left_icon_and_show_icon(): void
     {
         $template = <<<'HTML'
@@ -147,7 +148,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered_right_icon_and_show_icon(): void
     {
         $template = <<<'HTML'
@@ -173,7 +174,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -189,7 +190,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -205,7 +206,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -222,7 +223,7 @@ class PasswordTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_url_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -238,7 +239,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_url_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'
@@ -254,7 +255,7 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_url_component_can_be_rendered_with_wire_model_attribute(): void
     {
         $template = <<<'HTML'
@@ -271,7 +272,7 @@ class PasswordTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_password_component_can_be_rendered_with_no_peek_disabling_icons(): void
     {
         Config::set('themes.default.input-password.icon-left', 'icon-eye');

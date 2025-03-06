@@ -11,6 +11,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class AutoCompleteTest extends ComponentTestCase
@@ -165,7 +166,7 @@ class AutoCompleteTest extends ComponentTestCase
         Config::set('themes.default.input-autocomplete.option-text', 'text');
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -222,7 +223,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -394,7 +395,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -566,7 +567,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_multi_dimensional_array_data(): void
     {
         Config::set('themes.default.input-autocomplete.id-name', 'id');
@@ -631,7 +632,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_multi_dimensional_collection_data(): void
     {
         Config::set('themes.default.input-autocomplete.id-name', 'id');
@@ -696,7 +697,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_multi_dimensional_array_data_with_option_inline_text_overrides(): void
     {
         Config::set('themes.default.input-autocomplete.id-name', 'id');
@@ -765,7 +766,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_multi_dimensional_array_data_with_options_string_overrides(): void
     {
         Config::set('themes.default.input-autocomplete.id-name', 'id');
@@ -831,7 +832,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_url(): void
     {
         $template = <<<'HTML'
@@ -888,7 +889,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_an_autocomplete_component_is_configured_for_ajax_and_value_with_no_lookup_or_selected_text(): void
     {
         $this->expectException(ViewException::class);
@@ -905,7 +906,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->blade($template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_url_and_inline_search_url_field(): void
     {
         $template = <<<'HTML'
@@ -963,7 +964,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_lookup_and_inline_url_id_field(): void
     {
         $template = <<<'HTML'
@@ -1022,7 +1023,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_preload_query(): void
     {
         $template = <<<'HTML'
@@ -1080,7 +1081,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_focus_query(): void
     {
         $template = <<<'HTML'
@@ -1138,7 +1139,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_and_value_and_selected(): void
     {
         $template = <<<'HTML'
@@ -1197,7 +1198,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_custom_icons(): void
     {
         Config::set('themes.default.input-autocomplete.icon-open', 'icon-dot');
@@ -1261,7 +1262,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_placeholder(): void
     {
         Config::set('themes.default.input-autocomplete.placeholder', '');
@@ -1321,7 +1322,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_custom_texts(): void
     {
         $template = <<<'HTML'
@@ -1381,7 +1382,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_data_limit_restriction(): void
     {
         $template = <<<'HTML'
@@ -1439,7 +1440,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_limit_restrictions(): void
     {
         $template = <<<'HTML'
@@ -1497,7 +1498,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_data_and_min_char_change(): void
     {
         $template = <<<'HTML'
@@ -1555,7 +1556,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_ajax_and_min_char_change(): void
     {
         $template = <<<'HTML'
@@ -1613,7 +1614,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_class_type(): void
     {
         Config::set('autocompletes', [
@@ -1674,7 +1675,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_class_type_with_preload(): void
     {
         Schema::create('countries', static function (Blueprint $table) {
@@ -1753,7 +1754,7 @@ class AutoCompleteTest extends ComponentTestCase
         Schema::dropIfExists('countries');
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_class_type_with_focus(): void
     {
         Schema::create('countries', static function (Blueprint $table) {
@@ -1832,7 +1833,7 @@ class AutoCompleteTest extends ComponentTestCase
         Schema::dropIfExists('countries');
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_autocompletes_config_is_not_found(): void
     {
         $this->expectException(ViewException::class);
@@ -1848,7 +1849,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->blade($template);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_type_is_not_a_registered_autocomplete(): void
     {
         Config::set('autocompletes', [
@@ -1868,7 +1869,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->blade($template);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_register_type_is_not_a_valid_autocomplete_class(): void
     {
         Config::set('autocompletes', [
@@ -1888,7 +1889,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->blade($template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -1946,7 +1947,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_model_class(): void
     {
         $template = <<<'HTML'
@@ -2003,7 +2004,7 @@ class AutoCompleteTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template, ['class' => Country::class]);
     }
 
-    /** @test */
+    #[Test]
     public function an_autocomplete_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Layouts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class BodyTest extends ComponentTestCase
@@ -24,7 +25,7 @@ class BodyTest extends ComponentTestCase
         Config::set('themes.default.layout-body.theme', 'light');
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -42,7 +43,7 @@ class BodyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -60,7 +61,7 @@ class BodyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -78,7 +79,7 @@ class BodyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_can_have_a_dark_theme(): void
     {
         $template = <<<'HTML'
@@ -96,7 +97,7 @@ class BodyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_can_have_a_light_theme(): void
     {
         $template = <<<'HTML'
@@ -114,7 +115,7 @@ class BodyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_body_component_cannot_have_an_invalid_theme(): void
     {
         $template = <<<'HTML'

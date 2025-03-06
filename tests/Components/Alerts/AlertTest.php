@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Alerts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class AlertTest extends ComponentTestCase
@@ -99,7 +100,7 @@ class AlertTest extends ComponentTestCase
         Config::set('themes.default.alert.warning.url-color', 'warning-url-color');
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_alert_component_can_be_rendered_with_no_icon(): void
     {
         $template = <<<'HTML'
@@ -121,7 +122,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_alert_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -146,7 +147,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_alert_component_can_be_rendered_with_a_title_using_type(): void
     {
         $template = <<<'HTML'
@@ -196,7 +197,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -226,7 +227,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_danger_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -256,7 +257,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_info_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -286,7 +287,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_success_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -316,7 +317,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_muted_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -346,7 +347,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_warning_alert_component_can_be_rendered_with_a_title(): void
     {
         $template = <<<'HTML'
@@ -376,7 +377,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_no_bar_styles(): void
     {
         $template = <<<'HTML'
@@ -398,7 +399,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_inline_bar_styles(): void
     {
         $template = <<<'HTML'
@@ -420,7 +421,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_no_text_and_title_styles(): void
     {
         $template = <<<'HTML'
@@ -455,7 +456,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_inline_text_and_title_styles(): void
     {
         $template = <<<'HTML'
@@ -490,7 +491,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_inline_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -517,7 +518,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -544,7 +545,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_a_single_url_with_no_url_text(): void
     {
         $template = <<<'HTML'
@@ -569,7 +570,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_a_single_url_with_url_text(): void
     {
         $template = <<<'HTML'
@@ -594,7 +595,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_multiple_urls_with_url_text(): void
     {
         $template = <<<'HTML'
@@ -623,7 +624,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_inline_url_styles(): void
     {
         $template = <<<'HTML'
@@ -653,7 +654,7 @@ class AlertTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_alert_component_can_be_rendered_with_no_url_styles(): void
     {
         $template = <<<'HTML'

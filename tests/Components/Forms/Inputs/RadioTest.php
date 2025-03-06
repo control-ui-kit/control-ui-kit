@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RadioTest extends ComponentTestCase
@@ -22,7 +23,7 @@ class RadioTest extends ComponentTestCase
         Config::set('themes.default.input-radio.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -36,7 +37,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -50,7 +51,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -64,7 +65,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_array_styles(): void
     {
         $template = <<<'HTML'
@@ -78,7 +79,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_array_no_styles(): void
     {
         $template = <<<'HTML'
@@ -92,7 +93,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -106,7 +107,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_when_checked(): void
     {
         $template = <<<'HTML'
@@ -120,7 +121,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -134,7 +135,7 @@ class RadioTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

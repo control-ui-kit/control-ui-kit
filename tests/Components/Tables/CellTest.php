@@ -3,6 +3,7 @@
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class CellTest extends ComponentTestCase
@@ -75,7 +76,7 @@ class CellTest extends ComponentTestCase
         Config::set('themes.default.pill.warning.color', 'pill-color-warning');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -91,7 +92,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -115,7 +116,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -139,7 +140,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_shorthand_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -155,7 +156,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_attribute_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_shorthand_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -187,7 +188,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_attribute_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -203,7 +204,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_shorthand_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -219,7 +220,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_align_attribute_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -235,7 +236,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_data_attribute(): void
     {
         $template = <<<'HTML'
@@ -251,7 +252,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_2(): void
     {
         $template = <<<'HTML'
@@ -267,7 +268,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_decimal_formatting_precision_8(): void
     {
         $template = <<<'HTML'
@@ -283,7 +284,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_currency_formatting(): void
     {
         $template = <<<'HTML'
@@ -299,7 +300,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
@@ -315,7 +316,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
@@ -331,7 +332,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_currency_formatting_and_symbol(): void
     {
         $template = <<<'HTML'
@@ -347,7 +348,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_date_formatting_with_null_value(): void
     {
         $template = <<<'HTML'
@@ -364,7 +365,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
     {
         $template = <<<'HTML'
@@ -380,7 +381,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
     {
         $template = <<<'HTML'
@@ -396,7 +397,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_default_date_formatting(): void
     {
         $template = <<<'HTML'
@@ -412,7 +413,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_default_date_formatting_set_to_en_US(): void
     {
         Config::set('app.locale', 'en_US');
@@ -430,7 +431,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_can_be_rendered_with_diff_for_humans(): void
     {
         $template = <<<'HTML'
@@ -447,7 +448,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_href_has_hyperlink_around_data(): void
     {
         $template = <<<'HTML'
@@ -465,7 +466,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_href_but_no_permission(): void
     {
         $template = <<<'HTML'
@@ -481,7 +482,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_href_and_target_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -499,7 +500,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_href_and_text_align_works_correctly(): void
     {
         $template = <<<'HTML'
@@ -517,7 +518,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_href_and_custom_href_color_works_correctly(): void
     {
         $template = <<<'HTML'
@@ -535,7 +536,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_icon_and_custom_icon_styles_works_correctly(): void
     {
         $template = <<<'HTML'
@@ -555,7 +556,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_icon_and_icon_styles_works_correctly(): void
     {
         $template = <<<'HTML'
@@ -585,7 +586,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_icon_and_href_and_alignment_correctly(): void
     {
         $template = <<<'HTML'
@@ -607,7 +608,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_image_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -625,7 +626,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_image_and_custom_image_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -651,7 +652,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_image_and_no_image_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -677,7 +678,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_pill_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -693,7 +694,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_pill_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -709,7 +710,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_default_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -725,7 +726,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_default_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -741,7 +742,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_brand_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -757,7 +758,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_brand_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -773,7 +774,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_danger_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -789,7 +790,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_danger_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -805,7 +806,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_info_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -821,7 +822,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_info_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -837,7 +838,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_muted_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -853,7 +854,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_muted_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -869,7 +870,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_success_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -885,7 +886,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_success_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -901,7 +902,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_warning_pill_style_and_slot_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -917,7 +918,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_warning_pill_style_and_data_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -933,7 +934,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_custom_pill_style_and_slot_renders_correctly(): void
     {
         Config::set('themes.default.pill.custom.background', 'pill-background-custom');
@@ -952,7 +953,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_custom_pill_style_and_data_renders_correctly(): void
     {
         Config::set('themes.default.pill.custom.background', 'pill-background-custom');
@@ -971,7 +972,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_custom_pill_style_and_no_data_or_slot_renders_correctly(): void
     {
         Config::set('themes.default.pill.new-release.background', 'pill-background-new-release');
@@ -990,7 +991,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_pill_and_href_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -1008,7 +1009,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_pill_and_custom_inline_pill_styles_renders_correctly(): void
     {
         $template = <<<'HTML'
@@ -1032,7 +1033,7 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_cell_component_with_pill_and_inline_pill_styles_set_to_none_renders_correctly(): void
     {
         $template = <<<'HTML'

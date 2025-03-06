@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class PercentTest extends ComponentTestCase
@@ -112,7 +113,7 @@ class PercentTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -137,7 +138,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_can_be_rendered_with_no_icon(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');
@@ -156,7 +157,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_can_be_rendered_with_no_styles_and_no_icon(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');
@@ -175,7 +176,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_can_be_rendered_with_inline_styles_and_no_icon(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');
@@ -194,7 +195,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_with_defaults_can_be_disabled_inline(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');
@@ -216,7 +217,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_with_custom_class_can_be_rendered(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');
@@ -235,7 +236,7 @@ class PercentTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_percent_component_with_custom_attribute_can_be_rendered(): void
     {
         Config::set('themes.default.input-percent.icon-right', 'none');

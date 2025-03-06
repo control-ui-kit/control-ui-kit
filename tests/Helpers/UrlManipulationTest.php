@@ -4,10 +4,11 @@ namespace Tests\Helpers;
 
 use ControlUIKit\Helpers\UrlManipulation;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UrlManipulationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function a_basic_url_can_be_appended(): void
     {
         $url = 'https://example.com';
@@ -17,7 +18,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_url_does_not_double_parameters_if_they_are_already_present(): void
     {
         $url = 'https://example.com?new=parameter';
@@ -27,7 +28,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_parameter_url_can_be_appended(): void
     {
         $url = 'https://example.com?previous=option';
@@ -37,7 +38,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function an_anchor_url_can_be_appended(): void
     {
         $url = 'https://example.com#anchor';
@@ -47,7 +48,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_parameter_anchor_url_can_be_appended(): void
     {
         $url = 'https://example.com?previous=option#anchor';
@@ -57,7 +58,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_parameter_anchor_url_can_be_appended_with_anchor(): void
     {
         $url = 'https://example.com?previous=option#anchor';
@@ -68,7 +69,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->withAnchor($anchor)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_parameter_url_can_be_appended_with_anchor_while_passing_in_empty_anchor(): void
     {
         $url = 'https://example.com?previous=option#anchor';
@@ -79,7 +80,7 @@ class UrlManipulationTest extends TestCase
         self::assertSame($expected, (new UrlManipulation)->url($url)->withAnchor($anchor)->append($query));
     }
 
-    /** @test */
+    #[Test]
     public function a_parameter_url_can_be_appended_with_anchor_while_passing_in_null_anchor(): void
     {
         $url = 'https://example.com?previous=option#anchor';

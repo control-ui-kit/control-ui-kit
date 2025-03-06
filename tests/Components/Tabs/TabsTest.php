@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tabs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TabsTest extends ComponentTestCase
@@ -45,7 +46,7 @@ class TabsTest extends ComponentTestCase
         Config::set('themes.default.tabs-panel.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -108,7 +109,7 @@ class TabsTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class TabsTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'

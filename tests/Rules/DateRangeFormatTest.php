@@ -5,6 +5,7 @@ namespace Tests\Rules;
 use ControlUIKit\Rules\DateRangeFormat;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class DateRangeFormatTest extends ComponentTestCase
@@ -17,7 +18,7 @@ class DateRangeFormatTest extends ComponentTestCase
         Config::set('themes.default.input-date-range.separator', '#');
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_passes_when_valid(): void
     {
         $rule = new DateRangeFormat();
@@ -27,7 +28,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertTrue($validator->passes());
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_passes_when_valid_with_specified_separator(): void
     {
         $rule = new DateRangeFormat(separator: '$$');
@@ -37,7 +38,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertTrue($validator->passes());
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_passes_when_date_format_specified(): void
     {
         $rule = new DateRangeFormat(format: 'd/m/Y');
@@ -47,7 +48,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertTrue($validator->passes());
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_passes_when_date_format_changed_in_config(): void
     {
         Config::set('themes.default.input-date-range.data', 'd/m/Y');
@@ -59,7 +60,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertTrue($validator->passes());
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_fails_when_only_a_single_date_is_passed(): void
     {
         $rule = new DateRangeFormat();
@@ -71,7 +72,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertSame(trans('validation.exists', ['attribute' => 'range']), $validator->messages()->messages()['range'][0]);
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_fails_when_the_from_date_is_not_valid(): void
     {
         $rule = new DateRangeFormat();
@@ -83,7 +84,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertSame(trans('validation.date_format', ['attribute' => 'range \'from\'', 'format' => 'Y-m-d']), $validator->messages()->messages()['range'][0]);
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_fails_when_the_to_date_is_not_valid(): void
     {
         $rule = new DateRangeFormat();
@@ -95,7 +96,7 @@ class DateRangeFormatTest extends ComponentTestCase
         $this->assertSame(trans('validation.date_format', ['attribute' => 'range \'to\'', 'format' => 'Y-m-d']), $validator->messages()->messages()['range'][0]);
     }
 
-    /** @test */
+    #[Test]
     public function a_date_range_fails_when_both_dates_have_invalid_formats(): void
     {
         $rule = new DateRangeFormat();

@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class OneTimeCodeTest extends ComponentTestCase
@@ -22,7 +23,7 @@ class OneTimeCodeTest extends ComponentTestCase
         Config::set('themes.default.input-one-time-code.width', 'width');
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -47,7 +48,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_digits_override_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -70,7 +71,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_custom_id_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -93,7 +94,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_no_styles_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -116,7 +117,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_inline_styles_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -139,7 +140,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_value_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -162,7 +163,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_required_input_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -185,7 +186,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_custom_class_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
@@ -208,7 +209,7 @@ class OneTimeCodeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_one_time_passcode_field_with_custom_attribute_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);

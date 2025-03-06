@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class DateTimeTest extends ComponentTestCase
@@ -77,7 +78,7 @@ class DateTimeTest extends ComponentTestCase
         Config::set('themes.default.input-datetime.show-seconds', false);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -94,7 +95,7 @@ class DateTimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered_including_seconds(): void
     {
         $template = <<<'HTML'
@@ -111,7 +112,7 @@ class DateTimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered_with_12_hour_clock(): void
     {
         $template = <<<'HTML'
@@ -128,7 +129,7 @@ class DateTimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered_with_step_increments(): void
     {
         $template = <<<'HTML'
@@ -145,7 +146,7 @@ class DateTimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -162,7 +163,7 @@ class DateTimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_datetime_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

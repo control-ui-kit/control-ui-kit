@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class DateTest extends ComponentTestCase
@@ -72,7 +73,7 @@ class DateTest extends ComponentTestCase
         Config::set('themes.default.input-date.time-only', false);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -89,7 +90,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_specific_id(): void
     {
         $template = <<<'HTML'
@@ -106,7 +107,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -123,7 +124,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -140,7 +141,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_passed_in_date(): void
     {
         $template = <<<'HTML'
@@ -157,7 +158,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_will_rendered_with_week_numbers(): void
     {
         $template = <<<'HTML'
@@ -174,7 +175,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_will_render_with_min_and_max_dates_added(): void
     {
         $template = <<<'HTML'
@@ -191,7 +192,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_will_render_with_language_changed(): void
     {
         $template = <<<'HTML'
@@ -209,7 +210,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_will_render_with_a_different_display_format(): void
     {
         $template = <<<'HTML'
@@ -226,7 +227,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_will_render_with_different_data_format(): void
     {
         $template = <<<'HTML'
@@ -243,7 +244,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_time_no_seconds(): void
     {
         $template = <<<'HTML'
@@ -260,7 +261,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_only_time(): void
     {
         $template = <<<'HTML'
@@ -277,7 +278,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_time_including_seconds(): void
     {
         $template = <<<'HTML'
@@ -294,7 +295,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_time_and_12_hour_clock(): void
     {
         $template = <<<'HTML'
@@ -311,7 +312,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_time_and_step_increments(): void
     {
         $template = <<<'HTML'
@@ -328,7 +329,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_linked_to_input(): void
     {
         $template = <<<'HTML'
@@ -345,7 +346,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_linked_from_input(): void
     {
         $template = <<<'HTML'
@@ -362,7 +363,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_time_showing_based_on_format(): void
     {
         $template = <<<'HTML'
@@ -379,7 +380,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_custom_year_before_and_after(): void
     {
         $template = <<<'HTML'
@@ -396,7 +397,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_user_timezone_differs_to_app(): void
     {
         Config::set('control-ui-kit.user_timezone', 'Test');
@@ -423,14 +424,14 @@ class DateTest extends ComponentTestCase
                     <option value="10" data-offset="1">Africa/Brazzaville (UTC +1)</option>
                     <option value="11" data-offset="2">Africa/Bujumbura (UTC +2)</option>
                     <option value="12" data-offset="2">Africa/Cairo (UTC +2)</option>
-                    <option value="13" data-offset="1">Africa/Casablanca (UTC +1)</option>
+                    <option value="13" data-offset="0">Africa/Casablanca (UTC +0)</option>
                     <option value="14" data-offset="1">Africa/Ceuta (UTC +1)</option>
                     <option value="15" data-offset="0">Africa/Conakry (UTC +0)</option>
                     <option value="16" data-offset="0">Africa/Dakar (UTC +0)</option>
                     <option value="17" data-offset="3">Africa/Dar es Salaam (UTC +3)</option>
                     <option value="18" data-offset="3">Africa/Djibouti (UTC +3)</option>
                     <option value="19" data-offset="1">Africa/Douala (UTC +1)</option>
-                    <option value="20" data-offset="1">Africa/El Aaiun (UTC +1)</option>
+                    <option value="20" data-offset="0">Africa/El Aaiun (UTC +0)</option>
                     <option value="21" data-offset="0">Africa/Freetown (UTC +0)</option>
                     <option value="22" data-offset="2">Africa/Gaborone (UTC +2)</option>
                     <option value="23" data-offset="2">Africa/Harare (UTC +2)</option>
@@ -835,7 +836,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_no_timezone_styles(): void
     {
         Config::set('control-ui-kit.user_timezone', 'Test');
@@ -862,14 +863,14 @@ class DateTest extends ComponentTestCase
                     <option value="10" data-offset="1">Africa/Brazzaville (UTC +1)</option>
                     <option value="11" data-offset="2">Africa/Bujumbura (UTC +2)</option>
                     <option value="12" data-offset="2">Africa/Cairo (UTC +2)</option>
-                    <option value="13" data-offset="1">Africa/Casablanca (UTC +1)</option>
+                    <option value="13" data-offset="0">Africa/Casablanca (UTC +0)</option>
                     <option value="14" data-offset="1">Africa/Ceuta (UTC +1)</option>
                     <option value="15" data-offset="0">Africa/Conakry (UTC +0)</option>
                     <option value="16" data-offset="0">Africa/Dakar (UTC +0)</option>
                     <option value="17" data-offset="3">Africa/Dar es Salaam (UTC +3)</option>
                     <option value="18" data-offset="3">Africa/Djibouti (UTC +3)</option>
                     <option value="19" data-offset="1">Africa/Douala (UTC +1)</option>
-                    <option value="20" data-offset="1">Africa/El Aaiun (UTC +1)</option>
+                    <option value="20" data-offset="0">Africa/El Aaiun (UTC +0)</option>
                     <option value="21" data-offset="0">Africa/Freetown (UTC +0)</option>
                     <option value="22" data-offset="2">Africa/Gaborone (UTC +2)</option>
                     <option value="23" data-offset="2">Africa/Harare (UTC +2)</option>
@@ -1274,7 +1275,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_inline_timezone_styles(): void
     {
         Config::set('control-ui-kit.user_timezone', 'Test');
@@ -1301,14 +1302,14 @@ class DateTest extends ComponentTestCase
                     <option value="10" data-offset="1">Africa/Brazzaville (UTC +1)</option>
                     <option value="11" data-offset="2">Africa/Bujumbura (UTC +2)</option>
                     <option value="12" data-offset="2">Africa/Cairo (UTC +2)</option>
-                    <option value="13" data-offset="1">Africa/Casablanca (UTC +1)</option>
+                    <option value="13" data-offset="0">Africa/Casablanca (UTC +0)</option>
                     <option value="14" data-offset="1">Africa/Ceuta (UTC +1)</option>
                     <option value="15" data-offset="0">Africa/Conakry (UTC +0)</option>
                     <option value="16" data-offset="0">Africa/Dakar (UTC +0)</option>
                     <option value="17" data-offset="3">Africa/Dar es Salaam (UTC +3)</option>
                     <option value="18" data-offset="3">Africa/Djibouti (UTC +3)</option>
                     <option value="19" data-offset="1">Africa/Douala (UTC +1)</option>
-                    <option value="20" data-offset="1">Africa/El Aaiun (UTC +1)</option>
+                    <option value="20" data-offset="0">Africa/El Aaiun (UTC +0)</option>
                     <option value="21" data-offset="0">Africa/Freetown (UTC +0)</option>
                     <option value="22" data-offset="2">Africa/Gaborone (UTC +2)</option>
                     <option value="23" data-offset="2">Africa/Harare (UTC +2)</option>
@@ -1713,7 +1714,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -1730,7 +1731,7 @@ class DateTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_date_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

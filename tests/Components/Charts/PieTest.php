@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Charts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class PieTest extends ComponentTestCase
@@ -14,7 +15,7 @@ class PieTest extends ComponentTestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -51,7 +52,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_legend_disabled_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -88,7 +89,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_legend_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -125,7 +126,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_legend_alignment_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -162,7 +163,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_legend_width_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -199,7 +200,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_width_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -236,7 +237,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -273,7 +274,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -310,7 +311,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -347,7 +348,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -384,7 +385,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_label_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -421,7 +422,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -458,7 +459,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_display_disabled_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -495,7 +496,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -532,7 +533,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -569,7 +570,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_family_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -606,7 +607,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -643,7 +644,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_style_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -680,7 +681,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -717,7 +718,7 @@ class PieTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pie_chart_component_with_title_line_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'

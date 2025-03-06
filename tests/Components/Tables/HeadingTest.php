@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class HeadingTest extends ComponentTestCase
@@ -32,7 +33,7 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.table-heading.icon-desc', 'icon-caret-down');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_basic_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -46,7 +47,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_basic_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -71,7 +72,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_basic_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -95,7 +96,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_shorthand_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -109,7 +110,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_attribute_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -123,7 +124,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_shorthand_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -137,7 +138,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_attribute_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -151,7 +152,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_shorthand_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -165,7 +166,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_align_attribute_center_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -179,7 +180,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_href_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -195,7 +196,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_alpine_onclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -209,7 +210,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_alpine_xonclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -224,7 +225,7 @@ class HeadingTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_onclick_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -238,7 +239,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_href_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -267,7 +268,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_href_and_current_sort_asc_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -296,7 +297,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_href_and_current_sort_desc_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -325,7 +326,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -354,7 +355,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_current_sort_asc_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -383,7 +384,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_current_sort_desc_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -412,7 +413,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_icon_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -441,7 +442,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_anchor_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -470,7 +471,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_href_and_anchor_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -499,7 +500,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_disabled_icons_can_be_rendered(): void
     {
         Config::set('themes.default.table-heading.icon-asc', '');
@@ -518,7 +519,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_heading_component_with_sorting_and_alignment_can_be_rendered(): void
     {
         Config::set('themes.default.table-heading.icon-asc', '');

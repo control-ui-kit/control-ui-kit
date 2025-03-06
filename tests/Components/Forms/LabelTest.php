@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class LabelTest extends ComponentTestCase
@@ -23,7 +24,7 @@ class LabelTest extends ComponentTestCase
         Config::set('themes.default.label.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function a_label_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -37,7 +38,7 @@ class LabelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_label_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -61,7 +62,7 @@ class LabelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_label_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -85,7 +86,7 @@ class LabelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_label_component_can_be_rendered_with_array_styles(): void
     {
         $template = <<<'HTML'
@@ -111,7 +112,7 @@ class LabelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_label_component_can_be_rendered_with_no_slot_using_fallback(): void
     {
         $template = <<<'HTML'

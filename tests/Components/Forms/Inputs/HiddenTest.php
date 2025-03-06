@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Components\Forms\Inputs;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class HiddenTest extends ComponentTestCase
 {
-    /** @test */
+    #[Test]
     public function an_input_hidden_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -22,7 +23,7 @@ class HiddenTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_hidden_component_with_id_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -36,7 +37,7 @@ class HiddenTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_hidden_component_with_alpine_model_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -50,7 +51,7 @@ class HiddenTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_hidden_component_with_livewire_model_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -64,7 +65,7 @@ class HiddenTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_hidden_component_with_value_can_be_rendered(): void
     {
         $template = <<<'HTML'

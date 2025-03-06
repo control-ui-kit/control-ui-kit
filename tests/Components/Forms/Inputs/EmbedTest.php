@@ -6,6 +6,7 @@ namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class EmbedTest extends ComponentTestCase
@@ -51,7 +52,7 @@ class EmbedTest extends ComponentTestCase
         Config::set('themes.default.input.suffix-shadow', 'suffix-shadow');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_prefix_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -65,7 +66,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_prefix_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -79,7 +80,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_prefix_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -93,7 +94,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_suffix_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -107,7 +108,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_suffix_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -121,7 +122,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_suffix_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -135,7 +136,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_left_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -153,7 +154,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_left_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_left_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -190,7 +191,7 @@ class EmbedTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_left_with_custom_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -208,7 +209,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_right_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -226,7 +227,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_right_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -244,7 +245,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_right_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -262,7 +263,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_right_with_custom_size_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -280,7 +281,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_icon_right_can_be_rendered_with_bulk_styles(): void
     {
         $template = <<<'HTML'
@@ -307,7 +308,7 @@ class EmbedTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_embed_component_throws_an_exception_if_embed_type_not_set(): void
     {
         $template = <<<'HTML'

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Maps;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RegionTest extends ComponentTestCase
@@ -17,7 +18,7 @@ class RegionTest extends ComponentTestCase
         Config::set('themes.default.map-region.height', 'h-screen');
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -70,7 +71,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_with_uppercase_iso_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -123,7 +124,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_can_be_rendered_with_multiple_different_countries_on_page(): void
     {
         $template = <<<'HTML'
@@ -230,7 +231,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_can_be_rendered_with_multiple_of_same_country_on_page(): void
     {
         $template = <<<'HTML'
@@ -337,7 +338,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -390,7 +391,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_with_data_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -445,7 +446,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_with_name_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -498,7 +499,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_australia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -560,7 +561,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_brazil_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -641,7 +642,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_canada_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -708,7 +709,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_germany_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -778,7 +779,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_spain_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -851,7 +852,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_france_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -918,7 +919,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_britain_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1080,7 +1081,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_mexico_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1166,7 +1167,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_netherlands_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1232,7 +1233,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_america_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1336,7 +1337,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_italy_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1410,7 +1411,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_argentina_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1488,7 +1489,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_turkey_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1624,7 +1625,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_russia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1761,7 +1762,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_poland_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1831,7 +1832,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_sweden_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1906,7 +1907,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_belgium_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1971,7 +1972,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_the_philippines_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2042,7 +2043,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_indonesia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2130,7 +2131,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_switzerland_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2211,7 +2212,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_india_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2300,7 +2301,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_japan_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2401,7 +2402,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_singapore_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2460,7 +2461,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_colombia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2547,7 +2548,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_new_zealand_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2618,7 +2619,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_austria_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2681,7 +2682,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_finland_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2754,7 +2755,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_malaysia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2824,7 +2825,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_taiwan_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2900,7 +2901,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_denmark_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2959,7 +2960,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_portugal_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3033,7 +3034,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_ireland_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3113,7 +3114,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_czech_republic_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3182,7 +3183,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_hungary_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3256,7 +3257,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_peru_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3336,7 +3337,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_south_africa_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3399,7 +3400,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_ukraine_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3480,7 +3481,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_romania_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3576,7 +3577,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_greece_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3644,7 +3645,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_israel_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3704,7 +3705,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_costa_rica_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3765,7 +3766,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_vietnam_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3882,7 +3883,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_slovakia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -3944,7 +3945,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_lithuania_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4008,7 +4009,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_guatemala_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4084,7 +4085,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_estonia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4153,7 +4154,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_latvia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4213,7 +4214,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_bulgaria_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4295,7 +4296,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_united_arab_emirates_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4356,7 +4357,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_uruguay_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4429,7 +4430,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_paraguay_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4501,7 +4502,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_dominican_republic_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4587,7 +4588,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_belarus_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4648,7 +4649,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_panama_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4715,7 +4716,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_saudi_arabia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4782,7 +4783,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_iceland_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4844,7 +4845,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_egypt_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -4925,7 +4926,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_ecuador_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5003,7 +5004,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_el_salvador_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5071,7 +5072,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_bolivia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5134,7 +5135,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_croatia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5209,7 +5210,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_serbia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5267,7 +5268,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_tunisia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5344,7 +5345,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_kazakhstan_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5415,7 +5416,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_slovenia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5481,7 +5482,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_honduras_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5553,7 +5554,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_south_korea_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5624,7 +5625,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_algeria_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5726,7 +5727,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_nigeria_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5817,7 +5818,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_moldova_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5908,7 +5909,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_cambodia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -5987,7 +5988,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_cyprus_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6047,7 +6048,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_nicaragua_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6118,7 +6119,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_pakistan_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6180,7 +6181,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_macedonia_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6242,7 +6243,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_kenya_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6304,7 +6305,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_qatar_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6366,7 +6367,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_kuwait_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6426,7 +6427,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_jordan_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6492,7 +6493,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_bangladesh_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6554,7 +6555,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_for_lebanon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -6616,7 +6617,7 @@ class RegionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_region_map_component_with_an_invalid_iso_can_not_be_rendered(): void
     {
         $template = <<<'HTML'

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ToggleTest extends ComponentTestCase
@@ -42,7 +43,7 @@ class ToggleTest extends ComponentTestCase
         Config::set('themes.default.input-toggle.switch-state-on', 'switch-state-on');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -59,7 +60,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_no_wrapper_styles(): void
     {
         $template = <<<'HTML'
@@ -76,7 +77,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_inline_wrapper_styles(): void
     {
         $template = <<<'HTML'
@@ -93,7 +94,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_no_base_styles(): void
     {
         $template = <<<'HTML'
@@ -110,7 +111,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_inline_base_styles(): void
     {
         $template = <<<'HTML'
@@ -127,7 +128,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_no_switch_styles(): void
     {
         $template = <<<'HTML'
@@ -144,7 +145,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_inline_switch_styles(): void
     {
         $template = <<<'HTML'
@@ -161,7 +162,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_with_on_and_off_states_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -178,7 +179,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_with_on_and_off_states_and_value_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -195,7 +196,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -212,7 +213,7 @@ class ToggleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_toggle_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

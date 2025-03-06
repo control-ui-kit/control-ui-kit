@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Icons;
 
 use ControlUIKit\Components\Icons\BaseIconComponent;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class IconsTest extends ComponentTestCase
@@ -20,7 +21,7 @@ class IconsTest extends ComponentTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function all_icons_components_can_be_rendered(): void
     {
         $icons = collect(config('control-ui-kit.icons'))
@@ -37,7 +38,7 @@ class IconsTest extends ComponentTestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function all_file_icons_components_can_be_rendered(): void
     {
         $icons = collect(config('control-ui-kit.icons'))
@@ -54,7 +55,7 @@ class IconsTest extends ComponentTestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function an_icon_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -70,7 +71,7 @@ class IconsTest extends ComponentTestCase
         $this->assertComponentRenders($this->indent($expected), $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_icon_component_can_be_rendered_with_custom_size(): void
     {
         $template = <<<'HTML'
@@ -86,7 +87,7 @@ class IconsTest extends ComponentTestCase
         $this->assertComponentRenders($this->indent($expected), $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_icon_component_can_be_rendered_with_styles_array(): void
     {
         $template = <<<'HTML'
@@ -111,7 +112,7 @@ class IconsTest extends ComponentTestCase
         $this->assertComponentRenders($this->indent($expected), $template);
     }
 
-    /** @test */
+    #[Test]
     public function icon_component_coverage_test(): void
     {
         $icon = new BaseIconComponent();

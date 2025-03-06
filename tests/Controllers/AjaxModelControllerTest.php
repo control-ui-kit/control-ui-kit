@@ -10,6 +10,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class AjaxModelControllerTest extends TestCase
 {
@@ -33,7 +34,7 @@ class AjaxModelControllerTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function preload_model_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -72,7 +73,7 @@ class AjaxModelControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function filter_model_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -108,7 +109,7 @@ class AjaxModelControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function record_model_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -144,7 +145,7 @@ class AjaxModelControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_an_invalid_model_is_passed_to_the_access_model_controller(): void
     {
         $this->get(route('control-ui-kit.ajax-model', [
@@ -158,7 +159,7 @@ class AjaxModelControllerTest extends TestCase
         ]))->assertServerError();
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_name_field_specified_is_not_a_valid_model_field(): void
     {
         $this->get(route('control-ui-kit.ajax-model', [
@@ -172,7 +173,7 @@ class AjaxModelControllerTest extends TestCase
         ]))->assertServerError();
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_sub_field_specified_is_not_a_valid_model_field(): void
     {
         $this->get(route('control-ui-kit.ajax-model', [
@@ -186,7 +187,7 @@ class AjaxModelControllerTest extends TestCase
         ]))->assertServerError();
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_image_field_specified_is_not_a_valid_model_field(): void
     {
         $this->get(route('control-ui-kit.ajax-model', [

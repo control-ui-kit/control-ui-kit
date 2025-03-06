@@ -6,6 +6,7 @@ use ControlUIKit\ControlUIKitServiceProvider;
 use ControlUIKit\Exceptions\ControlUIKitException;
 use ControlUIKit\Traits\UseThemeFile;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UseThemeFileTest extends TestCase
 {
@@ -27,13 +28,13 @@ class UseThemeFileTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function a_theme_is_returned(): void
     {
         self::assertSame(self::THEME, $this->theme());
     }
 
-    /** @test */
+    #[Test]
     public function styles_should_be_appended_no_space(): void
     {
         $input = '...text-green-500';
@@ -42,7 +43,7 @@ class UseThemeFileTest extends TestCase
         self::assertSame($expected, $this->appendStyles($input));
     }
 
-    /** @test */
+    #[Test]
     public function styles_should_be_appended_with_space(): void
     {
         $input = '... text-green-500';
@@ -51,7 +52,7 @@ class UseThemeFileTest extends TestCase
         self::assertSame($expected, $this->appendStyles($input));
     }
 
-    /** @test */
+    #[Test]
     public function styles_should_not_be_appended(): void
     {
         $input = 'text-green-500';
@@ -60,7 +61,7 @@ class UseThemeFileTest extends TestCase
         self::assertSame($expected, $this->appendStyles($input));
     }
 
-    /** @test */
+    #[Test]
     public function a_style_throws_an_exception_for_invalid_key(): void
     {
         $theme = self::THEME;
@@ -71,7 +72,7 @@ class UseThemeFileTest extends TestCase
         $this->style('invalid-component', 'invalid-attribute', null);
     }
 
-    /** @test */
+    #[Test]
     public function a_style_throws_an_exception_for_invalid_merge_key(): void
     {
         $theme = self::THEME;

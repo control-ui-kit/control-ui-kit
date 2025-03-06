@@ -5,6 +5,7 @@ namespace Tests\Helpers;
 use ControlUIKit\Helpers\ComponentStyles;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ComponentStylesTest extends TestCase
 {
@@ -23,7 +24,7 @@ class ComponentStylesTest extends TestCase
         Config::set('themes.default.panel.stacked', 'stacked');
     }
 
-    /** @test */
+    #[Test]
     public function a_style_class_string_can_be_returned(): void
     {
         $expected = 'background border color font other padding rounded shadow stacked';

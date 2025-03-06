@@ -3,6 +3,7 @@
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ActionTest extends ComponentTestCase
@@ -21,7 +22,7 @@ class ActionTest extends ComponentTestCase
         Config::set('themes.default.table-action.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_action_component_can_be_rendered_without_href(): void
     {
         $template = <<<'HTML'
@@ -39,7 +40,7 @@ class ActionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_action_component_can_be_rendered_with_href(): void
     {
         $template = <<<'HTML'
@@ -57,7 +58,7 @@ class ActionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_action_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -83,7 +84,7 @@ class ActionTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_action_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'

@@ -12,28 +12,20 @@ trait InteractsWithViews
 {
     /**
      * Create a new TestView from the given view.
-     *
-     * @param  string  $view
-     * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
-     * @return \Tests\TestView
      */
-    protected function view(string $view, array $data = [])
+    protected function view(string $view, $data = []): TestView
     {
         return new TestView(view($view, $data));
     }
 
     /**
      * Render the contents of the given Blade template string.
-     *
-     * @param  string  $template
-     * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
-     * @return \Tests\TestView
      */
-    protected function blade(string $template, array $data = [])
+    protected function blade(string $template, $data = []): TestView
     {
         $tempDirectory = sys_get_temp_dir();
 
-        if (! in_array($tempDirectory, ViewFacade::getFinder()->getPaths())) {
+        if (!in_array($tempDirectory, ViewFacade::getFinder()->getPaths(), true)) {
             ViewFacade::addLocation(sys_get_temp_dir());
         }
 
@@ -46,12 +38,8 @@ trait InteractsWithViews
 
     /**
      * Render the given view component.
-     *
-     * @param  string  $componentClass
-     * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
-     * @return \Tests\TestView
      */
-    protected function component(string $componentClass, array $data = [])
+    protected function component(string $componentClass, $data = []): TestView
     {
         $component = $this->app->make($componentClass, $data);
 
@@ -64,12 +52,8 @@ trait InteractsWithViews
 
     /**
      * Populate the shared view error bag with the given errors.
-     *
-     * @param  array  $errors
-     * @param  string  $key
-     * @return void
      */
-    protected function withViewErrors(array $errors, $key = 'default')
+    protected function withViewErrors(array $errors, $key = 'default'): void
     {
         ViewFacade::share('errors', (new ViewErrorBag())->put($key, new MessageBag($errors)));
     }

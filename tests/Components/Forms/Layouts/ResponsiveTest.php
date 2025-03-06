@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Layouts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ResponsiveTest extends ComponentTestCase
@@ -46,7 +47,7 @@ class ResponsiveTest extends ComponentTestCase
         Config::set('themes.default.input-text.width', 'width');
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -77,7 +78,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_no_styles(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -134,7 +135,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_inline_styles(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -191,7 +192,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_slot_and_custom_class(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -217,7 +218,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_input_and_custom_class(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -245,7 +246,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_slot_and_custom_attribute(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -271,7 +272,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_input_and_custom_attribute(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -299,7 +300,7 @@ class ResponsiveTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_responsive_layout_component_can_be_rendered_with_for(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);

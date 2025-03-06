@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ErrorBagTest extends ComponentTestCase
@@ -52,7 +53,7 @@ class ErrorBagTest extends ComponentTestCase
         Config::set('themes.default.alert.danger.text-other', 'danger-text-other');
     }
 
-    /** @test */
+    #[Test]
     public function an_error_bag_component_can_be_rendered_when_errors_are_present(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);
@@ -83,7 +84,7 @@ class ErrorBagTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_error_bag_component_can_be_rendered_when_no_errors_are_present(): void
     {
         $template = <<<'HTML'
@@ -95,7 +96,7 @@ class ErrorBagTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_error_bag_component_can_be_rendered_with_warning_type_and_custom_icon(): void
     {
         $this->withViewErrors(['test' => 'This is a test message']);

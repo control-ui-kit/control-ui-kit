@@ -7,6 +7,7 @@ use ControlUIKit\Helpers\Formatters\DateFormatter;
 use ControlUIKit\Helpers\Formatters\DateTimeFormatter;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DateTimeFormatterTest extends TestCase
 {
@@ -19,7 +20,7 @@ class DateTimeFormatterTest extends TestCase
         Config::set('control-ui-kit.user_timezone', 'UTC');
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_handles_datetime_default_correctly(): void
     {
         $options = '';
@@ -29,7 +30,7 @@ class DateTimeFormatterTest extends TestCase
         self::assertSame($expected, app(DateTimeFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_handles_datetime_us_correctly(): void
     {
         Config::set('app.locale', 'en_US');

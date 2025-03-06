@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class AjaxClassControllerTest extends TestCase
 {
@@ -37,7 +38,7 @@ class AjaxClassControllerTest extends TestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function preload_class_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -71,7 +72,7 @@ class AjaxClassControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function lookup_class_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -99,7 +100,7 @@ class AjaxClassControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function focus_class_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -129,7 +130,7 @@ class AjaxClassControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function search_class_data_can_be_returned(): void
     {
         $country_1 = CountryFactory::new()->create([
@@ -160,7 +161,7 @@ class AjaxClassControllerTest extends TestCase
         $this->assertModelExists($country_2);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_class_type_is_not_found(): void
     {
         $this->get(route('control-ui-kit.ajax-class', [
@@ -169,7 +170,7 @@ class AjaxClassControllerTest extends TestCase
         ]))->assertServerError();
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_class_type_is_not_an_auto_complete(): void
     {
         Config::set('autocompletes', [

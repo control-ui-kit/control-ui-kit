@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class SearchTest extends ComponentTestCase
@@ -56,7 +57,7 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.icon-right-shadow', 'search-icon-shadow');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -70,7 +71,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_with_no_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -84,7 +85,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -98,7 +99,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -112,7 +113,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -125,7 +126,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_with_icon_can_be_rendered(): void
     {
         Config::set('themes.default.input-search.icon-right', 'icon-dot');
@@ -148,7 +149,7 @@ class SearchTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_using_override_config_styles(): void
     {
         Config::set('themes.default.input-search.background', 'config-background');
@@ -172,7 +173,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -186,7 +187,7 @@ class SearchTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_search_component_can_be_rendered_with_icon_and_custom_class(): void
     {
         Config::set('themes.default.input-search.icon-right', 'icon-dot');

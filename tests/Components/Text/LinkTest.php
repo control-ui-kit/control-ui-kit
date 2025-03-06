@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Text;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class LinkTest extends ComponentTestCase
@@ -56,7 +57,7 @@ class LinkTest extends ComponentTestCase
         Config::set('themes.default.link.warning.size', 'warning-size');
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -70,7 +71,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_link_component_can_be_rendered_with_href(): void
     {
         $template = <<<'HTML'
@@ -84,7 +85,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_link_component_can_be_rendered_with_onclick(): void
     {
         $template = <<<'HTML'
@@ -98,7 +99,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -112,7 +113,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_basic_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -126,7 +127,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -140,7 +141,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -154,7 +155,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -168,7 +169,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -182,7 +183,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -196,7 +197,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -210,7 +211,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_danger_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -224,7 +225,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_danger_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -238,7 +239,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_danger_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -252,7 +253,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_info_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -266,7 +267,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_info_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -280,7 +281,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_info_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -294,7 +295,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_muted_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -308,7 +309,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_muted_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -322,7 +323,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_muted_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -336,7 +337,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_success_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -350,7 +351,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_success_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -364,7 +365,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_success_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -378,7 +379,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_warning_link_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -392,7 +393,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_warning_link_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -406,7 +407,7 @@ class LinkTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_warning_link_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'

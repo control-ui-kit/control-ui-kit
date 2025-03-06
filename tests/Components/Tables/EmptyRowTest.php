@@ -3,6 +3,7 @@
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class EmptyRowTest extends ComponentTestCase
@@ -52,7 +53,7 @@ class EmptyRowTest extends ComponentTestCase
         Config::set('themes.default.table-row.default.background', 'row-background');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -72,7 +73,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -100,7 +101,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -128,7 +129,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_custom_text(): void
     {
         $template = <<<'HTML'
@@ -148,7 +149,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_custom_html(): void
     {
         $template = <<<'HTML'
@@ -174,7 +175,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_stacked(): void
     {
         $template = <<<'HTML'
@@ -194,7 +195,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_icon(): void
     {
         $template = <<<'HTML'
@@ -219,7 +220,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_icon_size_and_styles(): void
     {
         $template = <<<'HTML'
@@ -244,7 +245,7 @@ class EmptyRowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_empty_row_component_can_be_rendered_with_custom_colspan(): void
     {
         $template = <<<'HTML'

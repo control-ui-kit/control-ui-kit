@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TextareaTest extends ComponentTestCase
@@ -26,7 +27,7 @@ class TextareaTest extends ComponentTestCase
         Config::set('themes.default.input-textarea.rows', 'rows');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -40,7 +41,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -54,7 +55,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -68,7 +69,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -82,7 +83,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -96,7 +97,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_with_custom_rows_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -110,7 +111,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -124,7 +125,7 @@ class TextareaTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_textarea_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

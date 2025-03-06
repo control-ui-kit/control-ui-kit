@@ -7,6 +7,7 @@ namespace Tests\Components\Forms\Inputs;
 use ControlUIKit\Exceptions\InputNumberException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class NumberTest extends ComponentTestCase
@@ -103,7 +104,7 @@ class NumberTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -120,7 +121,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -137,7 +138,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -154,7 +155,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_placeholder_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_value_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -188,7 +189,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_decimal_value_can_be_rendered(): void
     {
         Config::set('themes.default.input-number.decimals', 0);
@@ -207,7 +208,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_min_max_and_step_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -224,7 +225,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_custom_class_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -241,7 +242,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_custom_attribute_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -258,7 +259,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_currency_component_can_be_rendered_with_allow_negatives_enabled(): void
     {
         Config::set('themes.default.input-currency.min', 0);
@@ -277,7 +278,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_min_higher_than_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -290,7 +291,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_value_lower_than_min_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -303,7 +304,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_value_higher_than_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -316,7 +317,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_non_numeric_step_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -329,7 +330,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_non_numeric_min_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -342,7 +343,7 @@ class NumberTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_number_component_with_non_numeric_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);

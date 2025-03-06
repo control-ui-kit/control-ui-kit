@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ActiveFilterTest extends ComponentTestCase
@@ -33,7 +34,7 @@ class ActiveFilterTest extends ComponentTestCase
         Config::set('themes.default.table-active-filter.icon-size', 'icon-size');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -54,7 +55,7 @@ class ActiveFilterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -84,7 +85,7 @@ class ActiveFilterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -114,7 +115,7 @@ class ActiveFilterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -144,7 +145,7 @@ class ActiveFilterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered_with_inline_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -174,7 +175,7 @@ class ActiveFilterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_active_filter_component_can_be_rendered_with_custom_icon(): void
     {
         $template = <<<'HTML'

@@ -6,6 +6,7 @@ namespace Tests\Components\Buttons;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class LogoutTest extends ComponentTestCase
@@ -42,7 +43,7 @@ class LogoutTest extends ComponentTestCase
         })->name('logout');
     }
 
-    /** @test */
+    #[Test]
     public function a_text_logout_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -59,7 +60,7 @@ class LogoutTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_text_logout_component_with_action_and_attributes_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -76,7 +77,7 @@ class LogoutTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_default_button_logout_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -93,7 +94,7 @@ class LogoutTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_button_logout_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -110,7 +111,7 @@ class LogoutTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_brand_button_logout_component_with_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -133,7 +134,7 @@ class LogoutTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_icon_only_button_logout_component_can_be_rendered(): void
     {
         $template = <<<'HTML'

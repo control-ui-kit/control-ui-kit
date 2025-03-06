@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Fields;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TimeFieldTest extends ComponentTestCase
@@ -100,7 +101,7 @@ class TimeFieldTest extends ComponentTestCase
         Config::set('themes.default.input-time.icon', 'icon-clock');
     }
 
-    /** @test */
+    #[Test]
     public function the_field_url_component_can_be_rendered(): void
     {
         $this->withViewErrors(['time' => 'This is a test message']);
@@ -129,7 +130,7 @@ class TimeFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_field_url_component_can_be_rendered_with_custom_class(): void
     {
         $this->withViewErrors(['time' => 'This is a test message']);
@@ -158,7 +159,7 @@ class TimeFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_field_url_component_can_be_rendered_with_custom_attribute(): void
     {
         $this->withViewErrors(['time' => 'This is a test message']);
