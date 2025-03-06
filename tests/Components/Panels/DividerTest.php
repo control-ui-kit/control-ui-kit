@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Panels;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class DividerTest extends ComponentTestCase
@@ -16,7 +17,7 @@ class DividerTest extends ComponentTestCase
         Config::set('themes.default.panel-divider.border', 'border');
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_divider_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -30,7 +31,7 @@ class DividerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_divider_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -45,7 +46,7 @@ class DividerTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_panel_divider_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'

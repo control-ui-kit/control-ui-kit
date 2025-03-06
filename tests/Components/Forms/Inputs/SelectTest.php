@@ -6,6 +6,7 @@ namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class SelectTest extends ComponentTestCase
@@ -103,7 +104,7 @@ class SelectTest extends ComponentTestCase
         Config::set('themes.default.input-select.subtext-inactive', 'subtext-inactive');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_key_value_format(): void
     {
         $template = <<<'HTML'
@@ -159,7 +160,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_native_format(): void
     {
         $template = <<<'HTML'
@@ -181,7 +182,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_array_key_value_format(): void
     {
         $template = <<<'HTML'
@@ -237,7 +238,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_text_key_value_format(): void
     {
         $template = <<<'HTML'
@@ -293,7 +294,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_button_styles(): void
     {
         $template = <<<'HTML'
@@ -358,7 +359,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_button_styles(): void
     {
         $template = <<<'HTML'
@@ -423,7 +424,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_list_styles(): void
     {
         $template = <<<'HTML'
@@ -488,7 +489,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_list_styles(): void
     {
         $template = <<<'HTML'
@@ -553,7 +554,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_option_styles(): void
     {
         $template = <<<'HTML'
@@ -620,7 +621,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_option_styles(): void
     {
         $template = <<<'HTML'
@@ -687,7 +688,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_text_styles(): void
     {
         $template = <<<'HTML'
@@ -753,7 +754,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_text_styles(): void
     {
         $template = <<<'HTML'
@@ -819,7 +820,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_subtext_styles(): void
     {
         $template = <<<'HTML'
@@ -888,7 +889,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_subtext_styles(): void
     {
         $template = <<<'HTML'
@@ -957,7 +958,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_check_styles(): void
     {
         $template = <<<'HTML'
@@ -1025,7 +1026,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_check_styles(): void
     {
         $template = <<<'HTML'
@@ -1091,7 +1092,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_custom_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -1156,7 +1157,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -1220,7 +1221,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_subtext(): void
     {
         $template = <<<'HTML'
@@ -1279,7 +1280,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_bespoke_subtext_name(): void
     {
         $template = <<<'HTML'
@@ -1339,7 +1340,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_bespoke_text_name(): void
     {
         $template = <<<'HTML'
@@ -1399,7 +1400,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_image(): void
     {
         $template = <<<'HTML'
@@ -1464,7 +1465,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_image_name(): void
     {
         $template = <<<'HTML'
@@ -1530,7 +1531,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_image_and_custom_image_styles(): void
     {
         $template = <<<'HTML'
@@ -1601,7 +1602,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_image_and_no_image_styles(): void
     {
         $template = <<<'HTML'
@@ -1672,7 +1673,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_as_required(): void
     {
         $template = <<<'HTML'
@@ -1721,7 +1722,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_please_select_text(): void
     {
         $template = <<<'HTML'
@@ -1778,7 +1779,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_array_please_select_value_and_text(): void
     {
         $template = <<<'HTML'
@@ -1835,7 +1836,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_please_select_value_text_and_trans_via_array(): void
     {
         $template = <<<'HTML'
@@ -1892,7 +1893,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_please_select_value_and_text_set_in_config(): void
     {
         Config::set('themes.default.input-select.please-select-value', '::please-select-value');
@@ -1951,7 +1952,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_please_select_value_and_lang_string_set_in_config(): void
     {
         Config::set('themes.default.input-select.please-select-value', '::please-select-value');
@@ -2011,7 +2012,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_array_please_select_value_without_text_element(): void
     {
         Config::set('themes.default.input-select.please-select-text', '::please-select-text');
@@ -2036,7 +2037,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_please_select_value_and_lang_string_set_in_config_with_overriding_inline_please_select(): void
     {
         Config::set('themes.default.input-select.please-select-value', '::please-select-value');
@@ -2097,7 +2098,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_key_value_format_with_a_selected_value_and_required(): void
     {
         $template = <<<'HTML'
@@ -2147,7 +2148,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_basic_int_array(): void
     {
         $template = <<<'HTML'
@@ -2197,7 +2198,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_basic_string_array(): void
     {
         $template = <<<'HTML'
@@ -2247,7 +2248,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_inline_int_values(): void
     {
         $template = <<<'HTML'
@@ -2270,7 +2271,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_inline_options(): void
     {
         $template = <<<'HTML'
@@ -2292,7 +2293,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_inline_string_values(): void
     {
         $template = <<<'HTML'
@@ -2315,7 +2316,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_inline_key_value(): void
     {
         $template = <<<'HTML'
@@ -2338,7 +2339,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_multi_dimensional_array(): void
     {
         $template = <<<'HTML'
@@ -2392,7 +2393,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_builder_collection_data(): void
     {
         $template = <<<'HTML'
@@ -2446,7 +2447,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_eloquent_collection_data(): void
     {
         $template = <<<'HTML'
@@ -2499,7 +2500,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_exception_is_thrown_if_the_options_data_type_is_not_expected(): void
     {
         $this->expectException(ViewException::class);
@@ -2518,7 +2519,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_native_format_with_alpine_x_model(): void
     {
         $template = <<<'HTML'
@@ -2541,7 +2542,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_alpine_x_model(): void
     {
         $template = <<<'HTML'
@@ -2598,7 +2599,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_native_format_with_livewire_model(): void
     {
         $template = <<<'HTML'
@@ -2621,7 +2622,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_livewire_model(): void
     {
         $template = <<<'HTML'
@@ -2678,7 +2679,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_native_format_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -2701,7 +2702,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_key_value_format_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -2758,7 +2759,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_native_format_with_custom_attribute(): void
     {
         $template = <<<'HTML'
@@ -2781,7 +2782,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_in_key_value_format_with_custom_attribute(): void
     {
         $template = <<<'HTML'
@@ -2838,7 +2839,7 @@ class SelectTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_select_component_can_be_rendered_with_slot_options(): void
     {
         $template = <<<'HTML'

@@ -4,10 +4,11 @@ namespace Tests\Helpers\Formatters;
 
 use ControlUIKit\Helpers\Formatters\CurrencyFormatter;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CurrencyFormatterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function currency_formatter_handles_2_decimal_places_correctly(): void
     {
         $options = '2';
@@ -17,7 +18,7 @@ class CurrencyFormatterTest extends TestCase
         self::assertSame($expected, app(CurrencyFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function currency_formatter_handles_whole_numbers_correctly(): void
     {
         $options = '2';
@@ -27,7 +28,7 @@ class CurrencyFormatterTest extends TestCase
         self::assertSame($expected, app(CurrencyFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function currency_formatter_handles_zero_value_correctly(): void
     {
         $options = '2';

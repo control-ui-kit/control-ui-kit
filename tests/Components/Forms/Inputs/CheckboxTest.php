@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class CheckboxTest extends ComponentTestCase
@@ -22,7 +23,7 @@ class CheckboxTest extends ComponentTestCase
         Config::set('themes.default.input-checkbox.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -36,7 +37,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -50,7 +51,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -64,7 +65,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_amended_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -78,7 +79,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_checked_shorthand(): void
     {
         $template = <<<'HTML'
@@ -92,7 +93,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_checked_true(): void
     {
         $template = <<<'HTML'
@@ -106,7 +107,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_checked_checked(): void
     {
         $template = <<<'HTML'
@@ -120,7 +121,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_checked_value(): void
     {
         $template = <<<'HTML'
@@ -135,7 +136,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_not_checked_value(): void
     {
         $template = <<<'HTML'
@@ -150,7 +151,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_checked_value_and_explicit_value(): void
     {
         $template = <<<'HTML'
@@ -165,7 +166,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_not_checked_value_and_explicit_value(): void
     {
         $template = <<<'HTML'
@@ -180,7 +181,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -194,7 +195,7 @@ class CheckboxTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_checkbox_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

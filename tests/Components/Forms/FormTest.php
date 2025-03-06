@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Components\Forms;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class FormTest extends ComponentTestCase
 {
-    /** @test */
+    #[Test]
     public function a_form_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -29,7 +30,7 @@ class FormTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_form_component_with_method_can_be_set(): void
     {
         $template = <<<'HTML'
@@ -50,7 +51,7 @@ class FormTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_form_component_with_uploads_enabled(): void
     {
         $template = <<<'HTML'

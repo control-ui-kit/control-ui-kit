@@ -6,6 +6,7 @@ namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\ViewException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class InputTest extends ComponentTestCase
@@ -91,7 +92,7 @@ class InputTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -105,7 +106,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -119,7 +120,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -133,7 +134,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_appended_styles(): void
     {
         $template = <<<'HTML'
@@ -147,7 +148,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -161,7 +162,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -175,7 +176,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_using_override_config_styles(): void
     {
         Config::set('themes.default.input-text.background', 'config-background');
@@ -199,7 +200,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_left_icon(): void
     {
         $template = <<<'HTML'
@@ -220,7 +221,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_right_icon(): void
     {
         $template = <<<'HTML'
@@ -241,7 +242,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
@@ -258,7 +259,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
@@ -275,7 +276,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_left_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
@@ -296,7 +297,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_right_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
@@ -317,7 +318,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -338,7 +339,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -359,7 +360,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_prefix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -376,7 +377,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_prefix_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -393,7 +394,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -410,7 +411,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -427,7 +428,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_and_no_input_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -444,7 +445,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_and_inline_input_styles(): void
     {
         $template = <<<'HTML'
@@ -461,7 +462,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_prefix_slot(): void
     {
         $template = <<<'HTML'
@@ -480,7 +481,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_slot(): void
     {
         $template = <<<'HTML'
@@ -499,7 +500,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_event(): void
     {
         $template = <<<'HTML'
@@ -513,7 +514,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_suffix_and_event(): void
     {
         $template = <<<'HTML'
@@ -530,7 +531,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_type_number_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -544,7 +545,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_invalid_type_throws_an_exception(): void
     {
         $template = <<<'HTML'
@@ -561,7 +562,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_type_when_none_is_passed(): void
     {
         Config::set('themes.default.input.type', 'range');
@@ -577,7 +578,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_icon_left_when_none_is_passed(): void
     {
         Config::set('themes.default.input.icon-left', 'icon-dot');
@@ -600,7 +601,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_icon_right_when_none_is_passed(): void
     {
         Config::set('themes.default.input.icon-right', 'icon-dot');
@@ -624,7 +625,7 @@ class InputTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_prefix_text_when_none_is_passed(): void
     {
         Config::set('themes.default.input.prefix-text', '::prefix-text');
@@ -643,7 +644,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_suffix_text_when_none_is_passed(): void
     {
         Config::set('themes.default.input.suffix-text', '::suffix-text');
@@ -662,7 +663,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_min_max_step_when_none_is_passed(): void
     {
         Config::set('themes.default.input.min', 5);
@@ -681,7 +682,7 @@ class InputTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_component_uses_config_decimals_when_none_is_passed(): void
     {
         Config::set('themes.default.input.decimals', 2);
@@ -697,7 +698,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_zero_values(): void
     {
         $template = <<<'HTML'
@@ -711,7 +712,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_zero_values_and_prefix(): void
     {
         $template = <<<'HTML'
@@ -728,7 +729,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_search_type(): void
     {
         $template = <<<'HTML'
@@ -742,7 +743,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_config_default(): void
     {
         Config::set('themes.default.input.default', '::default');
@@ -758,7 +759,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_inline_default(): void
     {
         Config::set('themes.default.input.default', '');
@@ -774,7 +775,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_inline_default_and_value(): void
     {
         Config::set('themes.default.input.default', '');
@@ -790,7 +791,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_will_render_with_inline_step(): void
     {
         $template = <<<'HTML'
@@ -804,7 +805,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_default_step_can_be_disabled_inline(): void
     {
         Config::set('themes.default.input.default', '');
@@ -821,7 +822,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_default_min_can_be_disabled_inline(): void
     {
         Config::set('themes.default.input.min', 0);
@@ -837,7 +838,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_default_max_can_be_disabled_inline(): void
     {
         Config::set('themes.default.input.max', 10);
@@ -853,7 +854,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_wrapper_and_width_override(): void
     {
         $template = <<<'HTML'
@@ -870,7 +871,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_left_icon_and_width_override(): void
     {
         $template = <<<'HTML'
@@ -891,7 +892,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_a_default_left_icon_disabled(): void
     {
         Config::set('themes.default.input.icon-left', 'icon-dot');
@@ -907,7 +908,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_a_default_right_icon_disabled(): void
     {
         Config::set('themes.default.input.icon-right', 'icon-dot');
@@ -923,7 +924,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_a_default_left_icon_set_to_none(): void
     {
         Config::set('themes.default.input.icon-left', 'none');
@@ -939,7 +940,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_a_default_right_icon_set_to_none(): void
     {
         Config::set('themes.default.input.icon-right', 'none');
@@ -955,7 +956,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_decimal_formatting(): void
     {
         $template = <<<'HTML'
@@ -969,7 +970,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_min_higher_than_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -982,7 +983,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_value_lower_than_min_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -995,7 +996,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_value_higher_than_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -1008,7 +1009,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_non_numeric_step_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -1021,7 +1022,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_non_numeric_min_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -1034,7 +1035,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_with_non_numeric_max_throws_an_exception(): void
     {
         $this->expectException(ViewException::class);
@@ -1047,7 +1048,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders('', $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -1061,7 +1062,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_icon_and_custom_class(): void
     {
         Config::set('themes.default.input.icon-right', 'icon-dot');
@@ -1084,7 +1085,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'
@@ -1098,7 +1099,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_icon_and_custom_attribute(): void
     {
         Config::set('themes.default.input.icon-right', 'icon-dot');
@@ -1121,7 +1122,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_required_input(): void
     {
         $template = <<<'HTML'
@@ -1135,7 +1136,7 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_component_can_be_rendered_with_wrapper_and_required_input(): void
     {
         Config::set('themes.default.input.icon-right', 'icon-dot');

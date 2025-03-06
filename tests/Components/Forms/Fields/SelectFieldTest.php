@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Fields;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class SelectFieldTest extends ComponentTestCase
@@ -124,7 +125,7 @@ class SelectFieldTest extends ComponentTestCase
         Config::set('themes.default.input-select.subtext-inactive', 'subtext-inactive');
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);
@@ -162,7 +163,7 @@ class SelectFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered_with_custom_class(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);
@@ -201,7 +202,7 @@ class SelectFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered_with_custom_attribute(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);
@@ -240,7 +241,7 @@ class SelectFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered_with_edit_mode(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);
@@ -283,7 +284,7 @@ class SelectFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered_with_new_mode(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);
@@ -327,7 +328,7 @@ class SelectFieldTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function the_select_form_field_component_can_be_rendered_with_different_layout(): void
     {
         $this->withViewErrors(['language' => 'This is a test message']);

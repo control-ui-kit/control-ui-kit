@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Fields;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ColorPickerFieldTest extends ComponentTestCase
@@ -135,7 +136,7 @@ class ColorPickerFieldTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function the_field_color_picker_component_can_be_rendered(): void
     {
         $this->withViewErrors(['color' => 'This is a test message']);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Buttons;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ButtonTest extends ComponentTestCase
@@ -69,7 +70,7 @@ class ButtonTest extends ComponentTestCase
         Config::set('themes.default.button.warning.icon', 'warning-icon');
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_text_and_no_slot(): void
     {
         $template = <<<'HTML'
@@ -83,7 +84,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_trans_and_no_slot(): void
     {
         $template = <<<'HTML'
@@ -97,7 +98,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_no_set_style(): void
     {
         $template = <<<'HTML'
@@ -111,7 +112,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_primary_button_changed_in_config_to_brand(): void
     {
         Config::set('themes.default.button.primary-button', 'brand');
@@ -127,7 +128,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_primary_button_changed_in_config_to_invalid(): void
     {
         Config::set('themes.default.button.primary-button', 'invalid');
@@ -143,7 +144,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_default_styles(): void
     {
         $template = <<<'HTML'
@@ -157,7 +158,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_default_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -171,7 +172,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_brand_styles(): void
     {
         $template = <<<'HTML'
@@ -185,7 +186,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_brand_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -199,7 +200,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_danger_styles(): void
     {
         $template = <<<'HTML'
@@ -213,7 +214,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -227,7 +228,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_info_styles(): void
     {
         $template = <<<'HTML'
@@ -241,7 +242,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_info_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -255,7 +256,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_link_styles(): void
     {
         $template = <<<'HTML'
@@ -269,7 +270,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_link_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -283,7 +284,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_success_styles(): void
     {
         $template = <<<'HTML'
@@ -297,7 +298,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_success_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -311,7 +312,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_muted_styles(): void
     {
         $template = <<<'HTML'
@@ -325,7 +326,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_muted_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -340,7 +341,7 @@ class ButtonTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_warning_styles(): void
     {
         $template = <<<'HTML'
@@ -354,7 +355,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -369,7 +370,7 @@ class ButtonTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_invalid_styles(): void
     {
         $template = <<<'HTML'
@@ -383,7 +384,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_a_type(): void
     {
         $template = <<<'HTML'
@@ -397,7 +398,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_a_href(): void
     {
         $template = <<<'HTML'
@@ -411,7 +412,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_a_href_and_a_target(): void
     {
         $template = <<<'HTML'
@@ -425,7 +426,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_alpine_onclick(): void
     {
         $template = <<<'HTML'
@@ -439,7 +440,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_alpine_onclick_shorthand(): void
     {
         $template = <<<'HTML'
@@ -453,7 +454,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
@@ -472,7 +473,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_danger_button_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
@@ -491,7 +492,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_icon_updated_size(): void
     {
         $template = <<<'HTML'
@@ -511,7 +512,7 @@ class ButtonTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_icon_updated_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -530,7 +531,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -544,7 +545,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_with_icon_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -563,7 +564,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_with_icon_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -577,7 +578,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_as_disabled_with_bool(): void
     {
         $template = <<<'HTML'
@@ -591,7 +592,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_as_disabled_with_attribute(): void
     {
         $template = <<<'HTML'
@@ -605,7 +606,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_href_button_component_can_be_rendered_as_disabled_with_bool(): void
     {
         $template = <<<'HTML'
@@ -619,7 +620,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_href_button_component_can_be_rendered_as_disabled_with_attribute(): void
     {
         $template = <<<'HTML'
@@ -633,7 +634,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_updated_styles(): void
     {
         $template = <<<'HTML'
@@ -654,7 +655,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_an_alpine_action(): void
     {
         $template = <<<'HTML'
@@ -670,7 +671,7 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_button_component_can_be_rendered_with_a_livewire_action(): void
     {
         $template = <<<'HTML'

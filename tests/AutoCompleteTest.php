@@ -5,11 +5,12 @@ namespace Tests;
 use ControlUIKit\AutoComplete;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class AutoCompleteTest extends ComponentTestCase
 {
-    /** @test */
+    #[Test]
     public function autocomplete_can_be_rendered(): void
     {
         $class = new TestAutoComplete();

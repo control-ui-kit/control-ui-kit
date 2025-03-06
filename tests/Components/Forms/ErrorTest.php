@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ErrorTest extends ComponentTestCase
@@ -19,7 +20,7 @@ class ErrorTest extends ComponentTestCase
         Config::set('themes.default.error.padding', 'padding');
     }
 
-    /** @test */
+    #[Test]
     public function an_error_can_be_rendered(): void
     {
         $this->withViewErrors(['test' => 'This is a test message.']);
@@ -35,7 +36,7 @@ class ErrorTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_error_can_be_rendered_with_slot(): void
     {
         $this->withViewErrors(['first_name' => ['Incorrect first name.', 'Needs at least 5 characters.']]);
@@ -63,7 +64,7 @@ class ErrorTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_error_can_be_rendered_with_no_styles(): void
     {
         $this->withViewErrors(['test' => 'This is a test message.']);
@@ -79,7 +80,7 @@ class ErrorTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_error_can_be_rendered_with_inline_styles(): void
     {
         $this->withViewErrors(['test' => 'This is a test message.']);
@@ -95,7 +96,7 @@ class ErrorTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_error_can_be_rendered_with_array_styles(): void
     {
         $this->withViewErrors(['test' => 'This is a test message.']);

@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TimeTest extends ComponentTestCase
@@ -74,7 +75,7 @@ class TimeTest extends ComponentTestCase
         Config::set('themes.default.input-time.icon', 'icon-clock');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -91,7 +92,7 @@ class TimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered_with_seconds(): void
     {
         $template = <<<'HTML'
@@ -108,7 +109,7 @@ class TimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered_with_12_hour_clock(): void
     {
         $template = <<<'HTML'
@@ -125,7 +126,7 @@ class TimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered_with_step_increments(): void
     {
         $template = <<<'HTML'
@@ -142,7 +143,7 @@ class TimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -159,7 +160,7 @@ class TimeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_time_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

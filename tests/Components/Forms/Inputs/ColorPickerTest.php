@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ColorPickerTest extends ComponentTestCase
@@ -110,7 +111,7 @@ class ColorPickerTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -126,7 +127,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -161,7 +162,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -196,7 +197,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_custom_id(): void
     {
         $template = <<<'HTML'
@@ -212,7 +213,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_left_icon_and_right_color_display(): void
     {
         Config::set('themes.default.input-color-picker.icon-left', 'icon-dot');
@@ -237,7 +238,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_right_icon_and_left_color_display(): void
     {
         Config::set('themes.default.input-color-picker.icon-right', 'icon-dot');
@@ -262,7 +263,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_custom_popup(): void
     {
         $template = <<<'HTML'
@@ -278,7 +279,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_alpha_enabled(): void
     {
         $template = <<<'HTML'
@@ -294,7 +295,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_editor_disabled_inline(): void
     {
         Config::set('themes.default.input-color-picker.editor', true);
@@ -312,7 +313,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_editor_enabled_inline(): void
     {
         Config::set('themes.default.input-color-picker.editor', false);
@@ -330,7 +331,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_onchange(): void
     {
         $template = <<<'HTML'
@@ -346,7 +347,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_with_default_color_change(): void
     {
         $template = <<<'HTML'
@@ -362,7 +363,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_with_no_icon_and_custom_class_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -378,7 +379,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_with_icon_and_custom_class_can_be_rendered(): void
     {
         Config::set('themes.default.input-color-picker.icon-left', 'icon-dot');
@@ -403,7 +404,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_with_no_icon_and_custom_attribute_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -419,7 +420,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_with_custom_attribute_can_be_rendered(): void
     {
         Config::set('themes.default.input-color-picker.icon-left', 'icon-dot');
@@ -444,7 +445,7 @@ class ColorPickerTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_color_picker_component_can_be_rendered_inline_close_button_text(): void
     {
         $template = <<<'HTML'

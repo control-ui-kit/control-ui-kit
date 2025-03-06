@@ -4,6 +4,7 @@ namespace Tests\Components\Tables;
 
 use ControlUIKit\Components\Tables\EmptyRow;
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RowTest extends ComponentTestCase
@@ -51,7 +52,7 @@ class RowTest extends ComponentTestCase
         Config::set('themes.default.table-row.warning.color', 'color-warning');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -65,7 +66,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -87,7 +88,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -109,7 +110,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_default_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -123,7 +124,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_default_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -137,7 +138,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_brand_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -151,7 +152,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_brand_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -165,7 +166,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -179,7 +180,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_danger_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -193,7 +194,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_info_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -207,7 +208,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_info_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -221,7 +222,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_muted_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -235,7 +236,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_muted_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -249,7 +250,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_success_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -263,7 +264,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_success_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -277,7 +278,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
 
     public function a_table_row_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
@@ -292,7 +293,7 @@ class RowTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_row_component_can_be_rendered_with_warning_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'

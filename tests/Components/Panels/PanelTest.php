@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Panels;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class PanelTest extends ComponentTestCase
@@ -69,7 +70,7 @@ class PanelTest extends ComponentTestCase
         Config::set('themes.default.panel-section.spacing', 'spacing');
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -86,7 +87,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_with_a_title(): void
     {
         $template = <<< HTML
@@ -108,7 +109,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_custom_padding_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -125,7 +126,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_marked_as_padded_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -142,7 +143,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_tiny_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -159,7 +160,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_small_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -176,7 +177,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_medium_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -193,7 +194,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_large_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -210,7 +211,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_xl_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -227,7 +228,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_jumbo_width_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -244,7 +245,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -261,7 +262,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -278,7 +279,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_with_a_dynamic_component(): void
     {
         $template = <<<'HTML'
@@ -294,7 +295,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_a_header_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -313,7 +314,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_a_footer_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -330,7 +331,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_with_a_section_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -356,7 +357,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_stacked(): void
     {
         $template = <<<'HTML'
@@ -373,7 +374,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_simple(): void
     {
         $template = <<<'HTML'
@@ -390,7 +391,7 @@ class PanelTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_panel_component_can_be_rendered_with_additional_attributes(): void
     {
         $template = <<<'HTML'

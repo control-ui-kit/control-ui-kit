@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class ChangeTest extends ComponentTestCase
@@ -13,7 +14,7 @@ class ChangeTest extends ComponentTestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_no_previous_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -37,7 +38,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_no_previous_and_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -71,7 +72,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_no_previous_icon_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -110,7 +111,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_increase_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -141,7 +142,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_increase_and_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -182,7 +183,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_increase_icon_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -228,7 +229,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_increase_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -260,7 +261,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_increase_and_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -302,7 +303,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_increase_icon_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -349,7 +350,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_decrease_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -380,7 +381,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_decrease_and_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -421,7 +422,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_numerical_decrease_icon_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -467,7 +468,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_decrease_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -499,7 +500,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_decrease_and_icon_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -541,7 +542,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_decrease_icon_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -588,7 +589,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percentage_decrease_image_and_link_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -629,7 +630,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_icon_attribute_set_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -664,7 +665,7 @@ class ChangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_percent_decimal_number_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -697,7 +698,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_increase_icon_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -732,7 +733,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_decrease_icon_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -764,7 +765,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_wrapper_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -796,7 +797,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_title_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -828,7 +829,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_image_container_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -864,7 +865,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_image_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -900,7 +901,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_icon_container_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -941,7 +942,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_icon_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -983,7 +984,7 @@ class ChangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_container_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1015,7 +1016,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_increase_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1054,7 +1055,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_decrease_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1093,7 +1094,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_link_container_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1130,7 +1131,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_link_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1168,7 +1169,7 @@ class ChangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_number_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1200,7 +1201,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_decreased_icon_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1239,7 +1240,7 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_change_chart_component_with_increased_icon_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'

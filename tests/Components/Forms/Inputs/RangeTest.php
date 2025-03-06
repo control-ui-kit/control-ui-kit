@@ -3,6 +3,7 @@
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RangeTest extends ComponentTestCase
@@ -44,7 +45,7 @@ class RangeTest extends ComponentTestCase
         Config::set('themes.default.input-range.pill-value', 'pill-value');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -60,7 +61,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_mix_max_and_value(): void
     {
         Config::set('themes.default.input-range.show-max', true);
@@ -83,7 +84,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_inline_styles(): void
     {
         Config::set('themes.default.input-range.show-max', true);
@@ -128,7 +129,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_no_styles(): void
     {
         Config::set('themes.default.input-range.show-max', true);
@@ -173,7 +174,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_brand_style(): void
     {
         $template = <<<'HTML'
@@ -189,7 +190,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_default_style(): void
     {
         $template = <<<'HTML'
@@ -205,7 +206,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_danger_style(): void
     {
         $template = <<<'HTML'
@@ -221,7 +222,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_info_style(): void
     {
         $template = <<<'HTML'
@@ -237,7 +238,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_success_style(): void
     {
         $template = <<<'HTML'
@@ -253,7 +254,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_muted_style(): void
     {
         $template = <<<'HTML'
@@ -269,7 +270,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_warning_style(): void
     {
         $template = <<<'HTML'
@@ -285,7 +286,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_type_attribute(): void
     {
         $template = <<<'HTML'
@@ -301,7 +302,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_without_default_range(): void
     {
         Config::set('themes.default.input-range.default-range', null);
@@ -319,7 +320,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_xs_size(): void
     {
         $template = <<<'HTML'
@@ -335,7 +336,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_sm_size(): void
     {
         $template = <<<'HTML'
@@ -351,7 +352,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_md_size(): void
     {
         $template = <<<'HTML'
@@ -367,7 +368,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_lg_size(): void
     {
         $template = <<<'HTML'
@@ -383,7 +384,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_size_attribute(): void
     {
         $template = <<<'HTML'
@@ -399,7 +400,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_without_default_size(): void
     {
         Config::set('themes.default.input-range.default-size', null);
@@ -417,7 +418,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_min_and_max_attributes(): void
     {
         $template = <<<'HTML'
@@ -434,7 +435,7 @@ class RangeTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_step_attribute(): void
     {
         $template = <<<'HTML'
@@ -450,7 +451,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -466,7 +467,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'
@@ -482,7 +483,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_min_shown(): void
     {
         $template = <<<'HTML'
@@ -499,7 +500,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_min_hidden(): void
     {
         Config::set('themes.default.input-range.show-min', true);
@@ -517,7 +518,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_max_shown(): void
     {
         $template = <<<'HTML'
@@ -534,7 +535,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_max_hidden(): void
     {
         Config::set('themes.default.input-range.show-max', true);
@@ -552,7 +553,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_value_shown(): void
     {
         $template = <<<'HTML'
@@ -569,7 +570,7 @@ class RangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_range_component_can_be_rendered_with_value_hidden(): void
     {
         Config::set('themes.default.input-range.show-value', true);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Layouts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class FooterTest extends ComponentTestCase
@@ -23,7 +24,7 @@ class FooterTest extends ComponentTestCase
         Config::set('themes.default.layout-footer.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_footer_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -40,7 +41,7 @@ class FooterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_footer_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -57,7 +58,7 @@ class FooterTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_layout_footer_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'

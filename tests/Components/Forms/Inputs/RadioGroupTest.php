@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RadioGroupTest extends ComponentTestCase
@@ -71,7 +72,7 @@ class RadioGroupTest extends ComponentTestCase
         Config::set('themes.default.input-radio.shadow', 'input-shadow');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_single_string_options(): void
     {
         $template = <<<'HTML'
@@ -98,7 +99,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_value_label_string_options(): void
     {
         $template = <<<'HTML'
@@ -125,7 +126,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_value_label_help_string_options(): void
     {
         $template = <<<'HTML'
@@ -152,7 +153,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_value_label_help_id_string_options(): void
     {
         $template = <<<'HTML'
@@ -179,7 +180,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_array_options_containing_label_only(): void
     {
         $template = <<<'HTML'
@@ -209,7 +210,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_array_options_containing_label_and_value(): void
     {
         $template = <<<'HTML'
@@ -239,7 +240,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_array_options_containing_label_value_and_help(): void
     {
         $template = <<<'HTML'
@@ -269,7 +270,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_array_options_containing_label_value_and_id(): void
     {
         $template = <<<'HTML'
@@ -299,7 +300,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -375,7 +376,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -451,7 +452,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_value(): void
     {
         $template = <<<'HTML'
@@ -478,7 +479,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -505,7 +506,7 @@ class RadioGroupTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_radio_group_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

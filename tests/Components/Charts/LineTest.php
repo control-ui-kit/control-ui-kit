@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Charts;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class LineTest extends ComponentTestCase
@@ -14,7 +15,7 @@ class LineTest extends ComponentTestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -61,7 +62,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_multiple_data_sets_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -119,7 +120,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_custom_colours_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -167,7 +168,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_legend_disabled_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -215,7 +216,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -263,7 +264,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_legend_alignment_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -310,7 +311,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_legend_width_amended_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -357,7 +358,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_width_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -404,7 +405,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -451,7 +452,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -498,7 +499,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_colour_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -545,7 +546,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -592,7 +593,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_label_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -639,7 +640,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -686,7 +687,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -733,7 +734,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -780,7 +781,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -827,7 +828,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -874,7 +875,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -921,7 +922,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -968,7 +969,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1015,7 +1016,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_title_line_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1062,7 +1063,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_point_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1109,7 +1110,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_grid_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1156,7 +1157,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_axis_labels_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1203,7 +1204,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1250,7 +1251,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1297,7 +1298,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1344,7 +1345,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1391,7 +1392,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1438,7 +1439,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1485,7 +1486,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1532,7 +1533,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1579,7 +1580,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1626,7 +1627,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1673,7 +1674,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1720,7 +1721,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_family_set_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1767,7 +1768,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_size_changed__can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1814,7 +1815,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1861,7 +1862,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1908,7 +1909,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1955,7 +1956,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2002,7 +2003,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2049,7 +2050,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2096,7 +2097,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2150,7 +2151,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2203,7 +2204,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -2257,7 +2258,7 @@ class LineTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_line_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'

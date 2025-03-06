@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use ControlUIKit\Helpers\Formatters\DateFormatter;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DateFormatterTest extends TestCase
 {
@@ -18,7 +19,7 @@ class DateFormatterTest extends TestCase
         Config::set('control-ui-kit.user_timezone', 'UTC');
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_can_format_date_string_to_specified_format_correctly(): void
     {
         $options = 'd/m/Y';
@@ -28,7 +29,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_can_format_carbon_date_instance_to_specified_format_correctly(): void
     {
         $options = 'd/m/Y';
@@ -38,7 +39,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_returns_diff_for_humans_correctly(): void
     {
         $options = 'diff';
@@ -48,7 +49,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_returns_default_uk_date_when_no_format_passed(): void
     {
         $options = '';
@@ -58,7 +59,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_returns_default_us_date_when_no_format_passed(): void
     {
         Config::set('app.locale', 'en_US');
@@ -70,7 +71,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_handles_datetime_default_correctly(): void
     {
         $options = 'datetime';
@@ -80,7 +81,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_handles_datetime_us_correctly(): void
     {
         Config::set('app.locale', 'en_US');
@@ -92,7 +93,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_returns_timezone_altered_date_if_user_timezone_set(): void
     {
         $options = 'diffForHumans';
@@ -105,7 +106,7 @@ class DateFormatterTest extends TestCase
         self::assertSame($expected, app(DateFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function date_formatter_handles_empty_date_correctly(): void
     {
         $options = 'd/m/Y';

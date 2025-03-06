@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class MatrixTest extends ComponentTestCase
@@ -13,7 +14,7 @@ class MatrixTest extends ComponentTestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -146,7 +147,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -279,7 +280,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_format_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -412,7 +413,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_label_changes_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -545,7 +546,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_x_margin_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -678,7 +679,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_y_margin_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -811,7 +812,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_x_label_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -945,7 +946,7 @@ class MatrixTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_y_label_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1078,7 +1079,7 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_x_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -1212,7 +1213,7 @@ class MatrixTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_matrix_chart_component_with_y_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'

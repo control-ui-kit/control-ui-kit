@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class EmailTest extends ComponentTestCase
@@ -27,7 +28,7 @@ class EmailTest extends ComponentTestCase
         Config::set('themes.default.input-email.width', 'width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -41,7 +42,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -55,7 +56,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -69,7 +70,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -83,7 +84,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -97,7 +98,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -111,7 +112,7 @@ class EmailTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_email_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

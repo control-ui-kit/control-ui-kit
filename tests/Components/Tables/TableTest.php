@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TableTest extends ComponentTestCase
@@ -175,7 +176,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table-heading.icon-desc', 'icon-caret-down');
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -196,7 +197,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_no_table_styles(): void
     {
         $template = <<<'HTML'
@@ -226,7 +227,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_override_table_styles(): void
     {
         $template = <<<'HTML'
@@ -256,7 +257,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_no_table_body_styles(): void
     {
         $template = <<<'HTML'
@@ -286,7 +287,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_override_table_body_styles(): void
     {
         $template = <<<'HTML'
@@ -316,7 +317,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_no_table_wrapper_styles(): void
     {
         $template = <<<'HTML'
@@ -348,7 +349,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_override_table_wrapper_styles(): void
     {
         $template = <<<'HTML'
@@ -380,7 +381,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_headings(): void
     {
         $template = <<<'HTML'
@@ -414,7 +415,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_headings_and_no_styles(): void
     {
         $template = <<<'HTML'
@@ -457,7 +458,7 @@ class TableTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_table_component_can_be_rendered_with_headings_and_override_styles(): void
     {
         $template = <<<'HTML'

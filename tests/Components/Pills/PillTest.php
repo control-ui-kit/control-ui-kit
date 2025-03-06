@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Pills;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class PillTest extends ComponentTestCase
@@ -45,7 +46,7 @@ class PillTest extends ComponentTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_no_specified_style_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -59,7 +60,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -75,7 +76,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -92,7 +93,7 @@ class PillTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_default_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -106,7 +107,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_default_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -120,7 +121,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_brand_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -134,7 +135,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_brand_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -148,7 +149,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_danger_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -162,7 +163,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_danger_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -176,7 +177,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_info_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -190,7 +191,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_info_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -204,7 +205,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_muted_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -218,7 +219,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_muted_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -232,7 +233,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_success_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -246,7 +247,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_success_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -260,7 +261,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
 
     public function a_pill_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
@@ -275,7 +276,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_warning_styles_using_row_style_attribute(): void
     {
         $template = <<<'HTML'
@@ -289,7 +290,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_no_specified_style_can_be_rendered_using_name_attribute(): void
     {
         $template = <<<'HTML'
@@ -303,7 +304,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_custom_style_can_be_rendered(): void
     {
         Config::set('themes.default.pill.new-release.background', 'background-new-release');
@@ -320,7 +321,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_custom_style_using_only_name_can_be_rendered(): void
     {
         Config::set('themes.default.pill.new-release.background', 'background-new-release');
@@ -337,7 +338,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_custom_style_using_slot_and_name_can_be_rendered(): void
     {
         Config::set('themes.default.pill.new-release.background', 'background-new-release');
@@ -354,7 +355,7 @@ class PillTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_pill_component_with_name_and_pill_style_uses_pill_style_even_if_custom_style_exists(): void
     {
         Config::set('themes.default.pill.new-release.background', 'background-new-release');
@@ -372,7 +373,7 @@ class PillTest extends ComponentTestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function a_pill_component_can_be_rendered_with_styles_array(): void
     {
         $template = <<<'HTML'

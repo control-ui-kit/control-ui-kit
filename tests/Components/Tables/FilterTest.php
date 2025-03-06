@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Tests\Components\Tables;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class FilterTest extends ComponentTestCase
 {
-    /** @test */
+    #[Test]
     public function a_table_filter_select_component_can_be_rendered_with_array_options(): void
     {
         $template = <<<'HTML'

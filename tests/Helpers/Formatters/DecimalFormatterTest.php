@@ -5,10 +5,11 @@ namespace Tests\Helpers\Formatters;
 use ControlUIKit\Exceptions\DecimalFormatterException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DecimalFormatterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_round_down_correctly(): void
     {
         $options = '2';
@@ -18,7 +19,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_round_up_correctly(): void
     {
         $options = '2';
@@ -28,7 +29,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_correctly(): void
     {
         $options = '2';
@@ -38,7 +39,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_correctly_2(): void
     {
         $options = '2';
@@ -48,7 +49,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_fixed_decimal_zeros_correctly(): void
     {
         $options = '2|fixed';
@@ -58,7 +59,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_fixed_decimal_zeros_correctly_2(): void
     {
         $options = '2|fixed';
@@ -68,7 +69,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_correctly_when_large_decimal_supplied(): void
     {
         $options = '2';
@@ -78,7 +79,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_with_round_down_correctly(): void
     {
         $options = '3';
@@ -88,7 +89,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_with_round_up_correctly(): void
     {
         $options = '3';
@@ -98,7 +99,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_correctly(): void
     {
         $options = '3';
@@ -108,7 +109,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_correctly_2(): void
     {
         $options = '3';
@@ -118,7 +119,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_with_fixed_zeros_correctly(): void
     {
         $options = '3|fixed';
@@ -128,7 +129,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_with_fixed_zeros_correctly_2(): void
     {
         $options = '3|fixed';
@@ -138,7 +139,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_3_decimal_places_correctly_when_large_decimal_supplied(): void
     {
         $options = '3';
@@ -148,7 +149,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_forced_round_down_and_low_decimal_correctly(): void
     {
         $options = '2|round-down';
@@ -158,7 +159,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_forced_round_up_and_low_decimal_correctly(): void
     {
         $options = '2|round-up';
@@ -168,7 +169,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_forced_round_down_and_high_decimal_correctly(): void
     {
         $options = '2|round-down';
@@ -178,7 +179,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_2_decimal_places_with_forced_round_up_and_high_decimal_correctly(): void
     {
         $options = '2|round-up';
@@ -188,7 +189,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_7_decimal_places_with_forced_round_down_and_long_low_decimal_correctly(): void
     {
         $options = '7|round-down';
@@ -198,7 +199,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_7_decimal_places_with_forced_round_up_and_long_low_decimal_correctly(): void
     {
         $options = '7|round-up';
@@ -208,7 +209,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_7_decimal_places_with_forced_round_down_and_long_high_decimal_correctly(): void
     {
         $options = '7|round-down';
@@ -218,7 +219,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_7_decimal_places_with_forced_round_up_and_long_high_decimal_correctly(): void
     {
         $options = '7|round-up';
@@ -228,7 +229,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_negative_2_decimal_places_with_round_up_correctly(): void
     {
         $options = '2';
@@ -238,7 +239,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_negative_2_decimal_places_with_round_down_correctly(): void
     {
         $options = '2';
@@ -248,7 +249,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_negative_2_decimal_places_with_forced_round_down_correctly(): void
     {
         $options = '2|round-down';
@@ -258,7 +259,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_negative_2_decimal_places_with_forced_round_up_correctly(): void
     {
         $options = '2|round-up';
@@ -268,7 +269,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_round_up_and_fixed_decimals_correctly(): void
     {
         $options = '3|round-up|fixed';
@@ -278,7 +279,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_invalid_number_correctly(): void
     {
         $options = '2';
@@ -288,7 +289,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_invalid_option_string_correctly(): void
     {
         $options = '2|cheese';
@@ -298,7 +299,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_throws_exception_if_no_option_passed(): void
     {
         $options = '';
@@ -311,7 +312,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_empty_value_correctly(): void
     {
         $options = '2';
@@ -321,7 +322,7 @@ class DecimalFormatterTest extends TestCase
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
     }
 
-    /** @test */
+    #[Test]
     public function decimal_formatter_handles_zero_value_correctly(): void
     {
         $options = '2|fixed';

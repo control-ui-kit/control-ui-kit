@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RoyaltyTest extends ComponentTestCase
@@ -101,7 +102,7 @@ class RoyaltyTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -118,7 +119,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_royalty_symbol(): void
     {
         Config::set('themes.default.input-royalty.prefix-text', '£');
@@ -138,7 +139,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_inline_royalty_symbol(): void
     {
         Config::set('themes.default.input-royalty.prefix-text', '£');
@@ -158,7 +159,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -175,7 +176,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -192,7 +193,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -209,7 +210,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -226,7 +227,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_onblur(): void
     {
         $template = <<<'HTML'
@@ -243,7 +244,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_large_decimal_value_which_is_rounded(): void
     {
         Config::set('themes.default.input-royalty.decimals', 2);
@@ -263,7 +264,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_config_default(): void
     {
         Config::set('themes.default.input-royalty.decimals', 1);
@@ -283,7 +284,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_inline_decimals(): void
     {
         Config::set('themes.default.input-royalty.decimals', 4);
@@ -303,7 +304,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_allow_negatives_enabled(): void
     {
         Config::set('themes.default.input-royalty.min', 0);
@@ -322,7 +323,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_min_disabled(): void
     {
         Config::set('themes.default.input-royalty.min', 10);
@@ -342,7 +343,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_max_disabled(): void
     {
         Config::set('themes.default.input-royalty.min', null);
@@ -362,7 +363,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_step_disabled(): void
     {
         Config::set('themes.default.input-royalty.min', null);
@@ -381,7 +382,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_min_and_max_values(): void
     {
         $template = <<<'HTML'
@@ -398,7 +399,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_custom_step(): void
     {
         $template = <<<'HTML'
@@ -415,7 +416,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_no_symbol_and_with_custom_attributes(): void
     {
         $template = <<<'HTML'
@@ -432,7 +433,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_symbol_and_with_custom_attributes(): void
     {
         $template = <<<'HTML'
@@ -450,7 +451,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_no_symbol_and_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -467,7 +468,7 @@ class RoyaltyTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_royalty_component_can_be_rendered_with_symbol_and_with_custom_class(): void
     {
         $template = <<<'HTML'

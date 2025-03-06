@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms\Inputs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TextTest extends ComponentTestCase
@@ -79,7 +80,7 @@ class TextTest extends ComponentTestCase
         Config::set('themes.default.input-text.wrapper-width', 'wrapper-width');
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -93,7 +94,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -107,7 +108,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -121,7 +122,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_appended_styles(): void
     {
         $template = <<<'HTML'
@@ -135,7 +136,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_with_placeholder_amended(): void
     {
         $template = <<<'HTML'
@@ -149,7 +150,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_with_value_amended(): void
     {
         $template = <<<'HTML'
@@ -163,7 +164,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_using_override_config_styles(): void
     {
         Config::set('themes.default.input-text.background', 'config-background');
@@ -187,7 +188,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_left_icon(): void
     {
         $template = <<<'HTML'
@@ -208,7 +209,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_default_left_icon(): void
     {
         Config::set('themes.default.input-text.icon-left', 'icon-dot');
@@ -231,7 +232,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_default_left_icon_disabled(): void
     {
         Config::set('themes.default.input-text.icon-left', 'icon-dot');
@@ -247,7 +248,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_right_icon(): void
     {
         $template = <<<'HTML'
@@ -268,7 +269,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_prefix(): void
     {
         $template = <<<'HTML'
@@ -285,7 +286,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix(): void
     {
         $template = <<<'HTML'
@@ -302,7 +303,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_left_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
@@ -323,7 +324,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_right_icon_and_custom_size(): void
     {
         $template = <<<'HTML'
@@ -344,7 +345,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_left_icon_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -365,7 +366,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_left_icon_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -386,7 +387,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_prefix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -403,7 +404,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_prefix_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -420,7 +421,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -437,7 +438,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -454,7 +455,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix_and_no_input_icon_styles(): void
     {
         $template = <<<'HTML'
@@ -471,7 +472,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix_and_inline_input_styles(): void
     {
         $template = <<<'HTML'
@@ -488,7 +489,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_prefix_slot(): void
     {
         $template = <<<'HTML'
@@ -507,7 +508,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_suffix_slot(): void
     {
         $template = <<<'HTML'
@@ -526,7 +527,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_event(): void
     {
         $template = <<<'HTML'
@@ -540,7 +541,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_embed_and_event(): void
     {
         $template = <<<'HTML'
@@ -557,7 +558,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_maxlength(): void
     {
         $template = <<<'HTML'
@@ -571,7 +572,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_custom_class(): void
     {
         $template = <<<'HTML'
@@ -585,7 +586,7 @@ class TextTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function an_input_text_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

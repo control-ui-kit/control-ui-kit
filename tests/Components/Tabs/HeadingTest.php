@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tabs;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class HeadingTest extends ComponentTestCase
@@ -26,7 +27,7 @@ class HeadingTest extends ComponentTestCase
         Config::set('themes.default.tabs-heading.icon-size', 'icon-size');
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_heading_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -42,7 +43,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_heading_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -58,7 +59,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_heading_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
@@ -74,7 +75,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_heading_component_can_be_rendered_with_an_icon(): void
     {
         $template = <<<'HTML'
@@ -95,7 +96,7 @@ class HeadingTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_tabs_heading_component_can_be_rendered_with_an_icon_and_custom_icon_size(): void
     {
         $template = <<<'HTML'

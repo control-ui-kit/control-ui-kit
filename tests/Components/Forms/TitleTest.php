@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class TitleTest extends ComponentTestCase
@@ -23,7 +24,7 @@ class TitleTest extends ComponentTestCase
         Config::set('themes.default.title.shadow', 'shadow');
     }
 
-    /** @test */
+    #[Test]
     public function a_title_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
@@ -39,7 +40,7 @@ class TitleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_title_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
@@ -55,7 +56,7 @@ class TitleTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-    /** @test */
+    #[Test]
     public function a_title_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
