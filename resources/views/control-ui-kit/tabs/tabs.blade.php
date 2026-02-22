@@ -2,7 +2,7 @@
 
     <div class="sm:hidden">
         <select id="{{ $name }}" name="{{ $name }}" x-model="showTab"
-                class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
+                class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
             @foreach($getHeadingsArray($headings) as $tab => $heading)
                 <option value="{{ str_replace("#{$name}-", "", $tab) }}">{{ $heading }}</option>
             @endforeach

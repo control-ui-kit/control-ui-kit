@@ -27,7 +27,7 @@
         x-model="fields.{{ $name }}.selected"
     />
 
-{{--    <select id="{{ $id }}" name="{{ $name }}" class="text-sm pr-8 bg-table-filters focus:outline-none focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative"--}}
+{{--    <select id="{{ $id }}" name="{{ $name }}" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative"--}}
 {{--        {{ $attributes->whereStartsWith('wire:') }}--}}
 {{--        x-on:change="onChange()"--}}
 {{--        x-model="fields.{{ $name }}.selected"--}}

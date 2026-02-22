@@ -33,12 +33,12 @@ return [
         'url-size' => 'text-sm',
         'url-other' => 'hover:opacity-70',
 
-        'tiny' => 'w-full max-w-3xl m-auto',
-        'small' => 'w-full max-w-4xl m-auto',
-        'medium' => 'w-full max-w-5xl m-auto',
-        'large' => 'w-full max-w-6xl m-auto',
-        'xl' => 'w-full max-w-7xl m-auto',
-        'jumbo' => 'w-full max-w-8xl m-auto',
+        'tiny' => 'w-full max-w-3xl mx-auto',
+        'small' => 'w-full max-w-4xl mx-auto',
+        'medium' => 'w-full max-w-5xl mx-auto',
+        'large' => 'w-full max-w-6xl mx-auto',
+        'xl' => 'w-full max-w-7xl mx-auto',
+        'jumbo' => 'w-full max-w-8xl mx-auto',
 
         'default' => [
             'background' => 'bg-alert-default',
@@ -122,9 +122,9 @@ return [
         'disabled' => 'opacity-60 cursor-default',
         'font' => 'text-sm',
         'icon-size' => 'w-5 h-5',
-        'other' => 'flex items-center justify-center group outline-none focus:outline-none',
+        'other' => 'flex items-center justify-center group outline-hidden focus:outline-hidden',
         'padding' => 'space-x-1 px-2 py-1.5',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-max',
 
@@ -436,7 +436,7 @@ return [
         'font' => '',
         'other' => 'absolute flex flex-col z-50',
         'padding' => '',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => 'shadow-md',
         'width' => '',
 
@@ -493,12 +493,12 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
 
@@ -521,12 +521,12 @@ return [
         'icon-right-shadow' => '',
 
         'input-background' => 'bg-input',
-        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'input-color' => 'text-input placeholder-input',
         'input-font' => 'text-sm',
         'input-other' => 'block w-full appearance-none',
         'input-padding' => 'py-1.5 px-3',
-        'input-rounded' => 'rounded',
+        'input-rounded' => 'rounded-sm',
         'input-shadow' => '',
 
         'prefix-background' => '',
@@ -555,7 +555,7 @@ return [
         'wrapper-font' => '',
         'wrapper-other' => 'flex items-center',
         'wrapper-padding' => '',
-        'wrapper-rounded' => 'rounded',
+        'wrapper-rounded' => 'rounded-sm',
         'wrapper-shadow' => '',
         'wrapper-width' => 'w-full',
 
@@ -596,11 +596,11 @@ return [
         'clear-size' => 'w-4 h-4',
 
         'dropdown-background' => 'bg-input',
-        'dropdown-border' => 'border border-input focus:outline-none',
+        'dropdown-border' => 'border border-input focus:outline-hidden',
         'dropdown-color' => '',
         'dropdown-other' => 'absolute top-9 left-0 overflow-auto z-50',
         'dropdown-padding' => 'mt-1',
-        'dropdown-rounded' => 'rounded',
+        'dropdown-rounded' => 'rounded-sm',
         'dropdown-shadow' => '',
         'dropdown-width' => 'max-h-64 min-w-[12rem] w-full max-w-max',
 
@@ -616,17 +616,17 @@ return [
         'image-border' => '',
         'image-other' => '',
         'image-padding' => 'mr-2',
-        'image-rounded' => 'rounded',
+        'image-rounded' => 'rounded-sm',
         'image-shadow' => '',
         'image-size' => 'w-6 h-auto',
 
         'input-background' => 'bg-input',
-        'input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'input-color' => 'text-input placeholder-input',
         'input-font' => 'text-sm',
         'input-other' => 'block w-full appearance-none',
         'input-padding' => 'py-1.5 px-3',
-        'input-rounded' => 'rounded',
+        'input-rounded' => 'rounded-sm',
         'input-shadow' => '',
 
         'prompt-background' => '',
@@ -686,7 +686,7 @@ return [
         'wrapper-font' => '',
         'wrapper-other' => 'flex items-center',
         'wrapper-padding' => '',
-        'wrapper-rounded' => 'rounded',
+        'wrapper-rounded' => 'rounded-sm',
         'wrapper-shadow' => '',
         'wrapper-width' => 'w-full',
 
@@ -725,7 +725,7 @@ return [
         'disable' => 'opacity-60',
         'other' => 'h-4 w-4 cursor-pointer',
         'padding' => '',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
     ],
 
@@ -739,7 +739,7 @@ return [
         'color-font' => 'text-sm',
         'color-other' => 'h-6 aspect-square cursor-pointer',
         'color-padding' => 'mx-1',
-        'color-rounded' => 'rounded',
+        'color-rounded' => 'rounded-sm',
         'color-shadow' => '',
 
         // Config
@@ -767,12 +767,12 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-0',
+        'border' => 'border-0 focus:border-input focus:outline-hidden focus:ring-0',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
 
@@ -786,7 +786,7 @@ return [
         'icon-shadow' => '',
 
         'timezone-background' => 'bg-input',
-        'timezone-border' => 'border-0 focus:outline-none focus:ring-0',
+        'timezone-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'timezone-color' => 'text-input placeholder-input',
         'timezone-font' => 'text-xs',
         'timezone-other' => 'text-right',
@@ -834,12 +834,12 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border-0 focus:border-input focus:outline-none focus:ring-0',
+        'border' => 'border-0 focus:border-input focus:outline-hidden focus:ring-0',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'p-1.5',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
 
@@ -887,12 +887,12 @@ return [
 
     'input-one-time-code' => [
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => 'text-3xl text-center',
         'other' => '',
         'padding' => 'p-0',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-10 h-14',
 
@@ -938,7 +938,7 @@ return [
         'font' => '',
         'other' => 'divide-y overflow-hidden',
         'padding' => '',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
 
@@ -1040,12 +1040,12 @@ return [
 
         // Style
         'button-background' => 'bg-input',
-        'button-border' => 'border border-input focus:border-input focus:outline-none focus:ring-1 focus:ring-brand',
+        'button-border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand',
         'button-color' => '',
         'button-font' => 'text-input text-sm',
         'button-other' => 'flex items-center cursor-pointer',
         'button-padding' => 'space-x-2 py-1.5 px-3',
-        'button-rounded' => 'rounded',
+        'button-rounded' => 'rounded-sm',
         'button-shadow' => '',
         'button-width' => 'w-full',
 
@@ -1080,12 +1080,12 @@ return [
         'image-shadow' => '',
 
         'list-background' => 'bg-input',
-        'list-border' => 'border border-input focus:outline-none',
+        'list-border' => 'border border-input focus:outline-hidden',
         'list-color' => '',
         'list-font' => '',
         'list-other' => 'absolute mt-1 max-h-60 overflow-auto z-50',
         'list-padding' => 'py-1',
-        'list-rounded' => 'rounded',
+        'list-rounded' => 'rounded-sm',
         'list-shadow' => 'shadow-md',
         'list-width' => 'w-full',
 
@@ -1141,12 +1141,12 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-none focus:ring-brand',
+        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
         'padding' => 'py-1.5 px-3',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
 
@@ -1181,7 +1181,7 @@ return [
         'base-background' => '',
         'base-border' => 'border border-input',
         'base-color' => '',
-        'base-focus' => 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand focus:ring-offset-input',
+        'base-focus' => 'focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-brand focus:ring-offset-input',
         'base-other' => 'inline-flex shrink-0 cursor-pointer ',
         'base-rounded' => 'rounded-full',
         'base-shadow' => '',
@@ -1196,7 +1196,7 @@ return [
         'switch-focus' => 'ring-0',
         'switch-other' => 'pointer-events-none inline-block ml-[1px] mt-[1px]',
         'switch-rounded' => 'rounded-full',
-        'switch-shadow' => 'shadow',
+        'switch-shadow' => 'shadow-sm',
         'switch-size' => 'h-5 w-5',
         'switch-state-off' => 'translate-x-0',
         'switch-state-on' => 'translate-x-[22px]',
@@ -1389,16 +1389,16 @@ return [
         'font' => 'text-sm leading-6',
         'other' => '',
         'padding' => 'p-6',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
         'spacing' => 'flex flex-col space-y-2',
         'width' => 'w-full',
-        'tiny' => 'w-full max-w-3xl m-auto',
-        'small' => 'w-full max-w-4xl m-auto',
-        'medium' => 'w-full max-w-5xl m-auto',
-        'large' => 'w-full max-w-6xl m-auto',
-        'xl' => 'w-full max-w-7xl m-auto',
-        'jumbo' => 'w-full max-w-8xl m-auto',
+        'tiny' => 'w-full max-w-3xl mx-auto',
+        'small' => 'w-full max-w-4xl mx-auto',
+        'medium' => 'w-full max-w-5xl mx-auto',
+        'large' => 'w-full max-w-6xl mx-auto',
+        'xl' => 'w-full max-w-7xl mx-auto',
+        'jumbo' => 'w-full max-w-8xl mx-auto',
     ],
 
     'panel-divider' => [
@@ -1516,7 +1516,7 @@ return [
         'clear-filters-href' => '',
         'clear-filters-text' => 'Clear Filters',
         'clear-filters-background' => '',
-        'clear-filters-border' => 'focus:outline-none focus:ring-0',
+        'clear-filters-border' => 'focus:outline-hidden focus:ring-0',
         'clear-filters-color' => 'text-brand hover:text-brand-lighter focus:text-brand-lightest',
         'clear-filters-font' => '',
         'clear-filters-other' => 'shrink-0 ml-2 pt-1',
@@ -1537,7 +1537,7 @@ return [
 
         # TODO - test
         'search-input-background' => 'bg-table-filters',
-        'search-input-border' => 'border-0 focus:outline-none focus:ring-0',
+        'search-input-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'search-input-color' => 'text-input placeholder-input',
         'search-input-font' => 'text-sm',
         'search-input-other' => 'block appearance-none',
@@ -1553,7 +1553,7 @@ return [
         'search-wrapper-font' => '',
         'search-wrapper-other' => 'h-10 flex items-center overflow-hidden',
         'search-wrapper-padding' => '',
-        'search-wrapper-rounded' => 'rounded',
+        'search-wrapper-rounded' => 'rounded-sm',
         'search-wrapper-shadow' => '',
         'search-wrapper-width' => '',
 
@@ -1591,7 +1591,7 @@ return [
         'table-filters-background' => '',
         'table-filters-border' => '',
         'table-filters-color' => '',
-        'table-filters-container' => 'flex-grow flex flex-col sm:items-end',
+        'table-filters-container' => 'grow flex flex-col sm:items-end',
         'table-filters-empty' => 'hidden sm:block mb-0 sm:mb-4 h-10',
         'table-filters-font' => '',
         'table-filters-other' => 'inline-flex space-x-1',
@@ -1615,7 +1615,7 @@ return [
         'table-wrapper-font' => '',
         'table-wrapper-other' => 'overflow-x-auto',
         'table-wrapper-padding' => '',
-        'table-wrapper-rounded' => 'rounded',
+        'table-wrapper-rounded' => 'rounded-sm',
         'table-wrapper-shadow' => '',
         'table-wrapper-with-filters' => 'mt-0 sm:mt-2',
         'table-wrapper-without-filters' => '',
@@ -1643,7 +1643,7 @@ return [
         'font' => 'text-sm',
         'other' => 'flex items-center space-x-1 w-max',
         'padding' => 'px-1.5 py-0.5 mr-2 mb-4',
-        'rounded' => 'rounded',
+        'rounded' => 'rounded-sm',
         'shadow' => '',
 
         'icon-background' => '',
@@ -1684,7 +1684,7 @@ return [
         'image-border' => '',
         'image-other' => 'shrink-0',
         'image-padding' => '',
-        'image-rounded' => 'rounded-sm',
+        'image-rounded' => 'rounded-xs',
         'image-shadow' => '',
         'image-size' => 'h-8 w-auto',
     ],
@@ -1715,14 +1715,14 @@ return [
 
         // Style
         'button-background' => 'bg-table-filters',
-        'button-border' => 'focus:outline-none focus:ring-0 border border-table-filters focus:border-brand ',
+        'button-border' => 'focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand ',
         'button-color' => 'text-input',
         'button-font' => '',
         'button-icon' => 'icon-filter',
         'button-icon-size' => 'w-5 h-5',
         'button-other' => 'flex items-center shrink-0 cursor-pointer',
         'button-padding' => 'h-10 px-2.5',
-        'button-rounded' => 'rounded',
+        'button-rounded' => 'rounded-sm',
         'button-shadow' => '',
         'button-width' => 'w-max',
 
@@ -1742,7 +1742,7 @@ return [
         'padding' => 'px-2.5 py-2',
         'rounded' => '',
         'shadow' => '',
-        'sortable' => 'inline-flex items-center space-x-0.5 group focus:outline-none focus:text-brand hover:text-brand cursor-pointer',
+        'sortable' => 'inline-flex items-center space-x-0.5 group focus:outline-hidden focus:text-brand hover:text-brand cursor-pointer',
         'width' => 'w-auto',
 
         // Config
@@ -1817,12 +1817,12 @@ return [
         'button-numbers' => 'hidden md:flex',
 
         'button-background' => 'bg-paginate-button hover:bg-paginate-button-hover',
-        'button-border' => 'border border-paginate-button hover:border-paginate-button-hover focus:outline-none',
+        'button-border' => 'border border-paginate-button hover:border-paginate-button-hover focus:outline-hidden',
         'button-color' => 'text-paginate-button hover:text-paginate-button-hover',
         'button-font' => 'font-medium text-sm',
         'button-other' => 'relative inline-flex items-center justify-center focus:z-10 transition ease-in-out duration-150 cursor-pointer',
         'button-padding' => '',
-        'button-rounded' => 'rounded',
+        'button-rounded' => 'rounded-sm',
         'button-shadow' => '',
         'button-width' => 'h-9 w-9',
 
@@ -1832,7 +1832,7 @@ return [
         'button-active-font' => 'font-medium text-sm',
         'button-active-other' => 'relative inline-flex items-center justify-center cursor-default',
         'button-active-padding' => '',
-        'button-active-rounded' => 'rounded',
+        'button-active-rounded' => 'rounded-sm',
         'button-active-shadow' => '',
         'button-active-width' => 'h-9 w-9',
 
@@ -1842,17 +1842,17 @@ return [
         'button-disabled-font' => 'font-medium text-sm',
         'button-disabled-other' => 'relative inline-flex items-center justify-center cursor-default',
         'button-disabled-padding' => '',
-        'button-disabled-rounded' => 'rounded',
+        'button-disabled-rounded' => 'rounded-sm',
         'button-disabled-shadow' => '',
         'button-disabled-width' => 'h-9 w-9',
 
         'limit-background' => 'bg-paginate-limit hover:bg-paginate-limit-hover bg-none',
-        'limit-border' => 'border border-paginate-limit hover:border-paginate-limit-hover focus:border-paginate-limit focus:outline-none focus:ring-1 focus:ring-brand',
+        'limit-border' => 'border border-paginate-limit hover:border-paginate-limit-hover focus:border-paginate-limit focus:outline-hidden focus:ring-1 focus:ring-brand',
         'limit-color' => 'text-paginate-limit hover:text-paginate-limit-hover',
         'limit-font' => 'text-sm text-center',
         'limit-other' => 'flex items-center cursor-pointer',
         'limit-padding' => 'py-1 px-1.5',
-        'limit-rounded' => 'rounded',
+        'limit-rounded' => 'rounded-sm',
         'limit-shadow' => '',
         'limit-width' => '',
 
