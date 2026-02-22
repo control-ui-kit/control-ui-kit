@@ -70,7 +70,7 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()" class="background border color font other padding rounded shadow">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
+                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
                         <option value="profile">Profile</option>
                         <option value="settings">Settings</option>
                     </select>
@@ -133,7 +133,7 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
+                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
                         <option value="profile">Profile</option>
                         <option value="settings">Settings</option>
                     </select>
@@ -196,7 +196,7 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()" class="1 2 3 4 5 6 7 8">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-none focus:ring-brand rounded">
+                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
                         <option value="profile">Profile</option>
                         <option value="settings">Settings</option>
                     </select>

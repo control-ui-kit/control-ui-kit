@@ -32,7 +32,7 @@
     </div>
     <input type="text" name="{{ $name }}" id="{{ $id }}" x-model="value" />
     </div>
-    <div x-show="isOpen()" class="absolute top-10 left-0 mt-1 max-h-60 overflow-auto z-50 bg-input border border-input focus:outline-none w-full rounded overflow-y-auto">
+    <div x-show="isOpen()" class="absolute top-10 left-0 mt-1 max-h-60 overflow-auto z-50 bg-input border border-input focus:outline-hidden w-full rounded overflow-y-auto">
         <div class="flex flex-col w-full">
             <template x-for="(option, index) in await filteredOptions()" :key="index">
                 <div @click="onOptionClick(index)"
