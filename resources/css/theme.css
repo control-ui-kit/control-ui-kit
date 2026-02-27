@@ -538,6 +538,10 @@
 
     /* Divide Colors */
 
+    .divide-input > :not(:last-child) {
+        border-color: rgb(var(--input-divider));
+    }
+
     .divide-table > :not(:last-child) {
         border-color: rgb(var(--table-divider));
     }

@@ -111,7 +111,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                     </div>
@@ -133,7 +133,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <h3 class="title-color default-title-color title-font title-size title-other">
                             Some title
@@ -158,7 +158,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <h3 class="title-color default-title-color title-font title-size title-other">
                             Some title
@@ -183,7 +183,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <h3 class="title-color default-title-color title-font title-size title-other">
                             Some title
@@ -208,7 +208,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background brand-background border brand-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="brand-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -238,7 +238,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background danger-background border danger-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="danger-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -268,7 +268,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background info-background border info-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="info-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -298,7 +298,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background success-background border success-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="success-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -328,7 +328,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background muted-background border muted-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="muted-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -358,7 +358,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background warning-background border warning-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="warning-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -388,7 +388,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div>
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                     </div>
@@ -410,7 +410,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="1 2 3 4 5 6 7">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                     </div>
@@ -442,7 +442,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <h3 class="">
                             some title
@@ -477,7 +477,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <h3 class="5 6 7 8">
                             some title
@@ -502,7 +502,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="custom-color custom-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -529,7 +529,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="shrink-0 mr-3">
                         <svg class="fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="3" cy="3" r="3"/>
@@ -556,7 +556,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                         <div class="flex items-center space-x-3">
@@ -581,7 +581,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                         <div class="flex items-center space-x-3">
@@ -609,7 +609,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                         <div class="flex items-center space-x-3">
@@ -640,7 +640,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                         <div class="flex items-center space-x-3">
@@ -670,7 +670,7 @@ class AlertTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background default-background border default-border other padding rounded shadow width">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex flex-col space-y-2">
                         <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
                         <div class="flex items-center space-x-3">
