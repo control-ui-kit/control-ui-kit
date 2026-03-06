@@ -101,6 +101,8 @@
 
     .bg-table-row-1 { background-color: rgb(var(--table-row-bg-1)); }
     .bg-table-row-2 { background-color: rgb(var(--table-row-bg-2)); }
+    .odd\:bg-table-row-1:nth-child(odd) { background-color: rgb(var(--table-row-bg-1)); }
+    .even\:bg-table-row-2:nth-child(even) { background-color: rgb(var(--table-row-bg-2)); }
     .hover\:bg-table-row-hover:hover { background-color: rgb(var(--table-row-bg-hover)); }
 
     .bg-table-row-muted { background-color: rgb(var(--table-row-muted-bg)); }
