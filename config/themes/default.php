@@ -462,7 +462,7 @@ return [
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
-        'text' => 'font-medium flex items-center space-x-1.5 min-h-[2rem]',
+        'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
         'wrapper' => 'flex items-start space-x-2 min-h-[2rem]',
     ],
 
@@ -474,7 +474,7 @@ return [
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
-        'text' => 'font-medium flex items-center space-x-1.5 min-h-[2rem]',
+        'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
         'wrapper' => 'md:flex md:items-start md:space-x-2 min-h-[2rem]',
     ],
 
@@ -485,7 +485,7 @@ return [
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
-        'text' => 'font-medium flex items-center space-x-1.5 min-h-[2rem]',
+        'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
         'wrapper' => 'min-h-[2rem]',
     ],
 

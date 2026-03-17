@@ -18,9 +18,6 @@
     .bg-nav-bar-option { background-color: rgb(var(--nav-bar-option-bg)); }
     .hover\:bg-nav-bar-option-hover:hover { background-color: rgb(var(--nav-bar-option-bg-hover)); }
 
-    .bg-nav-bar-selected { background-color: rgb(var(--nav-bar-selected-bg)); }
-    .hover\:bg-nav-bar-selected-hover:hover { background-color: rgb(var(--nav-bar-selected-bg-hover)); }
-
     .bg-nav-side { background-color: rgb(var(--nav-side-bg)); }
     .hover\:bg-nav-side-hover:hover { background-color: rgb(var(--nav-side-bg-hover)); }
 
@@ -29,6 +26,15 @@
 
     .bg-nav-side-selected { background-color: rgb(var(--nav-side-selected-bg)); }
     .hover\:bg-nav-side-selected-hover:hover { background-color: rgb(var(--nav-side-selected-bg-hover)); }
+
+    .bg-nav-mobile-main-option { background-color: rgb(var(--nav-mob-main-option-bg)); }
+    .hover\:bg-nav-mobile-main-option-hover:hover { background-color: rgb(var(--nav-mob-main-option-bg-hover)); }
+
+    .bg-nav-mobile-sub-option { background-color: rgb(var(--nav-mob-sub-option-bg)); }
+    .hover\:bg-nav-mobile-sub-option-hover:hover { background-color: rgb(var(--nav-mob-sub-option-bg-hover)); }
+
+    .bg-nav-mobile-last-option { background-color: rgb(var(--nav-mob-last-option-bg)); }
+    .hover\:bg-nav-mobile-last-option-hover:hover { background-color: rgb(var(--nav-mob-last-option-bg-hover)); }
 
     .bg-nav-profile-header { background-color: rgb(var(--nav-profile-header-bg)); }
 
@@ -172,10 +178,6 @@
 
     .border-nav-bar { border-color: rgb(var(--nav-bar-border)); }
     .border-nav-bar-divider { border-color: rgb(var(--nav-bar-divider)); }
-    .border-nav-bar-option { border-color: rgb(var(--nav-bar-option-border)); }
-    .hover\:border-nav-bar-option-hover:hover { border-color: rgb(var(--nav-bar-option-border-hover)); }
-    .border-nav-bar-selected { border-color: rgb(var(--nav-bar-selected-border)); }
-    .hover\:border-nav-bar-selected-hover:hover { border-color: rgb(var(--nav-bar-selected-border-hover)); }
 
     .border-nav-side { border-color: rgb(var(--nav-side-border)); }
     .border-nav-side-divider { border-color: rgb(var(--nav-side-divider)); }
@@ -183,6 +185,9 @@
     .hover\:border-nav-side-option-hover:hover { border-color: rgb(var(--nav-side-option-border-hover)); }
     .border-nav-side-selected { border-color: rgb(var(--nav-side-selected-border)); }
     .hover\:border-nav-side-selected-hover:hover { border-color: rgb(var(--nav-side-selected-border-hover)); }
+
+    .border-nav-mobile { border-color: rgb(var(--nav-mob-border)); }
+    .border-nav-mobile-divider { border-color: rgb(var(--nav-mob-divider)); }
 
     .border-nav-profile-avatar { border-color: rgb(var(--nav-profile-avatar-border)); }
 
@@ -323,20 +328,36 @@
 
     .text-nav-bar { color: rgb(var(--nav-bar)); }
     .hover\:text-nav-bar-hover:hover { color: rgb(var(--nav-bar-hover)); }
-
+    .group-hover\/top\:text-nav-bar-hover {
+        &:is(:where(.group\/top):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--nav-bar-hover));
+            }
+        }
+    }
     .text-nav-bar-muted { color: rgb(var(--nav-bar-muted)); }
-
     .text-nav-bar-option { color: rgb(var(--nav-bar-option)); }
-    .hover\:text-nav-bar-option-hover:hover { color: rgb(var(--nav-bar-option-hover)); }
-
+    .group-hover\/sub\:text-nav-bar-option-hover {
+        &:is(:where(.group\/sub):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--nav-bar-option-hover));
+            }
+        }
+    }
     .text-nav-bar-icon { color: rgb(var(--nav-bar-icon)); }
-    .hover\:text-nav-bar-icon-hover:hover { color: rgb(var(--nav-bar-icon-hover)); }
-
+    .group-hover\/sub\:text-nav-bar-icon-hover {
+        &:is(:where(.group\/sub):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--nav-bar-icon-hover));
+            }
+        }
+    }
 
     /* Nav Side */
 
     .text-nav-side { color: rgb(var(--nav-side)); }
     .hover\:text-nav-side-hover:hover { color: rgb(var(--nav-side-hover)); }
+    .group-1-hover\:text-nav-side-hover:hover { color: rgb(var(--nav-side-hover)); }
 
     .text-nav-side-muted { color: rgb(var(--nav-side-muted)); }
 
@@ -346,6 +367,20 @@
     .text-nav-side-icon { color: rgb(var(--nav-side-icon)); }
     .hover\:text-nav-side-icon-hover:hover { color: rgb(var(--nav-side-icon-hover)); }
 
+
+    /* Nav Mobile */
+
+    .text-nav-mobile { color: rgb(var(--nav-mob)); }
+    .hover\:text-nav-mobile-hover:hover { color: rgb(var(--nav-mob-hover)); }
+
+    .text-nav-mobile-icon { color: rgb(var(--nav-mob-icon)); }
+    .group-hover\:text-nav-mobile-icon-hover {
+        &:is(:where(.group):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--nav-mob-icon-hover));
+            }
+        }
+    }
 
     /* Profile / Toolbar */
 
