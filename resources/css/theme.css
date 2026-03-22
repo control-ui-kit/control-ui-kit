@@ -19,13 +19,17 @@
     .hover\:bg-nav-bar-option-hover:hover { background-color: rgb(var(--nav-bar-option-bg-hover)); }
 
     .bg-nav-side { background-color: rgb(var(--nav-side-bg)); }
-    .hover\:bg-nav-side-hover:hover { background-color: rgb(var(--nav-side-bg-hover)); }
 
-    .bg-nav-side-option { background-color: rgb(var(--nav-side-option-bg)); }
-    .hover\:bg-nav-side-option-hover:hover { background-color: rgb(var(--nav-side-option-bg-hover)); }
+    .bg-nav-side-main-option { background-color: rgb(var(--nav-side-main-opt-bg)); }
+    .hover\:bg-nav-side-main-option-hover:hover { background-color: rgb(var(--nav-side-main-opt-bg-hover)); }
 
-    .bg-nav-side-selected { background-color: rgb(var(--nav-side-selected-bg)); }
-    .hover\:bg-nav-side-selected-hover:hover { background-color: rgb(var(--nav-side-selected-bg-hover)); }
+    .bg-nav-side-sub-options { background-color: rgb(var(--nav-side-sub-options-bg)); }
+    .bg-nav-side-sub-option { background-color: rgb(var(--nav-side-sub-opt-bg)); }
+    .hover\:bg-nav-side-sub-option-hover:hover { background-color: rgb(var(--nav-side-sub-opt-bg-hover)); }
+
+    .bg-nav-side-last-options { background-color: rgb(var(--nav-side-last-options-bg)); }
+    .bg-nav-side-last-option { background-color: rgb(var(--nav-side-last-opt-bg)); }
+    .hover\:bg-nav-side-last-option-hover:hover { background-color: rgb(var(--nav-side-last-opt-bg-hover)); }
 
     .bg-nav-mobile-main-option { background-color: rgb(var(--nav-mob-main-option-bg)); }
     .hover\:bg-nav-mobile-main-option-hover:hover { background-color: rgb(var(--nav-mob-main-option-bg-hover)); }
@@ -181,10 +185,9 @@
 
     .border-nav-side { border-color: rgb(var(--nav-side-border)); }
     .border-nav-side-divider { border-color: rgb(var(--nav-side-divider)); }
-    .border-nav-side-option { border-color: rgb(var(--nav-side-option-border)); }
-    .hover\:border-nav-side-option-hover:hover { border-color: rgb(var(--nav-side-option-border-hover)); }
-    .border-nav-side-selected { border-color: rgb(var(--nav-side-selected-border)); }
-    .hover\:border-nav-side-selected-hover:hover { border-color: rgb(var(--nav-side-selected-border-hover)); }
+
+    .border-nav-side-main-option { border-color: rgb(var(--nav-side-main-opt-border)); }
+    .hover\:border-nav-side-main-option-hover:hover { border-color: rgb(var(--nav-side-main-opt-border-hover)); }
 
     .border-nav-mobile { border-color: rgb(var(--nav-mob-border)); }
     .border-nav-mobile-divider { border-color: rgb(var(--nav-mob-divider)); }
@@ -357,16 +360,18 @@
 
     .text-nav-side { color: rgb(var(--nav-side)); }
     .hover\:text-nav-side-hover:hover { color: rgb(var(--nav-side-hover)); }
-    .group-1-hover\:text-nav-side-hover:hover { color: rgb(var(--nav-side-hover)); }
 
-    .text-nav-side-muted { color: rgb(var(--nav-side-muted)); }
-
-    .text-nav-side-option { color: rgb(var(--nav-side-option)); }
-    .hover\:text-nav-side-option-hover:hover { color: rgb(var(--nav-side-option-hover)); }
+    .text-nav-side-header { color: rgb(var(--nav-side-header)); }
 
     .text-nav-side-icon { color: rgb(var(--nav-side-icon)); }
     .hover\:text-nav-side-icon-hover:hover { color: rgb(var(--nav-side-icon-hover)); }
-
+    .group-hover\:text-nav-side-icon-hover {
+        &:is(:where(.group):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--nav-side-icon-hover));
+            }
+        }
+    }
 
     /* Nav Mobile */
 
