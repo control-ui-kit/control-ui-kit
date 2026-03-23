@@ -966,7 +966,7 @@ return [
         'option-border' => '',
         'option-color' => '',
         'option-font' => '',
-        'option-other' => 'relative flex cursor-pointer space-x-4 items-start',
+        'option-other' => 'flex cursor-pointer space-x-4 items-start',
         'option-padding' => 'p-4',
         'option-rounded' => '',
         'option-selected' => 'bg-input-item',
