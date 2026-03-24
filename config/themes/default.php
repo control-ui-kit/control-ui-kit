@@ -122,7 +122,7 @@ return [
         'disabled' => 'opacity-60 cursor-default',
         'font' => 'text-sm',
         'icon-size' => 'w-5 h-5',
-        'other' => 'flex items-center justify-center group outline-hidden focus:outline-hidden',
+        'other' => 'flex items-center justify-center group-hover outline-hidden focus:outline-hidden',
         'padding' => 'space-x-1 px-2 py-1.5',
         'rounded' => 'rounded-sm',
         'shadow' => '',
@@ -130,7 +130,7 @@ return [
 
         'default' => [
             'background' => 'bg-button-default hover:bg-button-default-hover',
-            'border' => 'border border-button-default hover:border-button-default-hover focus-within:ring-1 focus-within:ring-brand',
+            'border' => 'border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand',
             'color' => 'text-button-default hover:text-button-default-hover',
             'icon' => 'text-button-default-icon group-hover:text-button-default-icon-hover',
         ],
@@ -493,7 +493,7 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
+        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
@@ -550,7 +550,7 @@ return [
         'suffix-shadow' => '',
 
         'wrapper-background' => 'bg-input',
-        'wrapper-border' => 'border border-input focus-within:ring-1 focus-within:ring-brand',
+        'wrapper-border' => 'border border-input focus-within:ring-brand',
         'wrapper-color' => '',
         'wrapper-font' => '',
         'wrapper-other' => 'flex items-center',
@@ -641,7 +641,7 @@ return [
         'option-background' => 'hover:bg-input-option-hover',
         'option-border' => 'border-transparent border-l-2',
         'option-color' => '',
-        'option-focus' => 'bg-input-option-hover',
+        'option-focus' => 'hover:bg-input-option-hover',
         'option-font' => '',
         'option-other' => 'flex items-center w-full relative cursor-pointer',
         'option-padding' => 'p-2',
@@ -719,14 +719,17 @@ return [
     ],
 
     'input-checkbox' => [
-        'background' => 'bg-input',
-        'border' => 'focus:ring-brand border-input focus:ring-offset-input',
-        'color' => 'text-brand',
-        'disable' => 'opacity-60',
-        'other' => 'h-4 w-4 cursor-pointer',
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'layout' => 'group grid size-4 grid-cols-1 has-[input:disabled]:opacity-50',
+        'other' => '',
         'padding' => '',
-        'rounded' => 'rounded-sm',
-        'shadow' => '',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border border-input checked:bg-brand checked:border-brand focus:outline-none focus:ring-1 focus:ring-brand ring-offset-1 ring-offset-input',
+        'input-other' => 'col-start-1 row-start-1 cursor-pointer appearance-none',
+        'input-rounded' => 'rounded',
     ],
 
     'input-color-picker' => [
@@ -922,11 +925,11 @@ return [
 
     'input-radio' => [
         'background' => 'bg-input',
-        'border' => 'focus:ring-brand border-input focus:ring-offset-input',
+        'border' => 'border border-input checked:bg-brand checked:border-brand focus:outline-none focus:ring-1 focus:ring-brand ring-offset-1 ring-offset-input',
         'color' => 'text-brand',
-        'other' => 'h-4 w-4 cursor-pointer',
+        'other' => 'relative h-4 w-4 size-4 cursor-pointer appearance-none before:absolute before:inset-1 before:rounded-full before:bg-input not-checked:before:hidden forced-colors:appearance-auto forced-colors:before:hidden',
         'padding' => '',
-        'rounded' => '',
+        'rounded' => 'rounded-full',
         'shadow' => '',
     ],
 
@@ -1098,13 +1101,13 @@ return [
         'option-rounded' => '',
         'option-shadow' => '',
         'option-spacing' => '',
-        'option-active' => 'bg-input-option-hover',
+        'option-active' => 'hover:bg-input-option-hover',
         'option-inactive' => 'bg-input-option text-input-option',
 
         'text-background' => '',
         'text-border' => '',
         'text-color' => '',
-        'text-font' => 'text-input-option group-hover:text-input-option-hover',
+        'text-font' => 'text-input-option hover:text-input-option-hover',
         'text-other' => 'block truncate',
         'text-padding' => '',
         'text-rounded' => '',
@@ -1114,7 +1117,7 @@ return [
 
         'subtext-background' => '',
         'subtext-border' => '',
-        'subtext-color' => 'text-input-option-sub group-hover:text-input-option-sub-hover',
+        'subtext-color' => 'text-input-option-sub hover:text-input-option-sub-hover',
         'subtext-font' => '',
         'subtext-other' => 'block truncate',
         'subtext-padding' => 'pl-2',
@@ -1141,7 +1144,7 @@ return [
 
         // Style
         'background' => 'bg-input',
-        'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
+        'border' => 'border border-input focus:border-input focus:outline-hidden focus:border-brand',
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
