@@ -163,6 +163,7 @@
     .bg-input-brand { background-color: rgb(var(--brand)); }
     .bg-input-muted { background-color: rgb(var(--input-muted-bg)); }
     .bg-input-option { background-color: rgb(var(--input-option-bg)); }
+    .hover\:bg-input-option-hover { background-color: rgb(var(--input-option-bg-hover)); }
     .hover\:bg-input-option-hover:hover { background-color: rgb(var(--input-option-bg-hover)); }
 
     .bg-modal { background-color: rgb(var(--modal-bg)); }
@@ -172,6 +173,33 @@
 
     .bg-modal-button { background-color: rgb(var(--modal-button-bg)); }
     .hover\:bg-modal-button-hover:hover { background-color: rgb(var(--modal-button-bg-hover)); }
+
+    .checked\:bg-brand {
+        &:checked {
+            background-color: rgb(var(--brand));
+        }
+    }
+
+    .checked\:border-brand {
+        &:checked {
+            border-color: rgb(var(--brand));
+        }
+    }
+
+    .stroke-input {
+        stroke: rgb(var(--input-item-bg));
+    }
+
+    .ring-offset-input {
+        --tw-ring-offset-color: rgb(var(--input-item-bg));
+    }
+
+    .before\:bg-input {
+        &::before {
+            content: var(--tw-content);
+            background-color: rgb(var(--input-bg));
+        }
+    }
 
     /* Borders Colors */
 
@@ -438,50 +466,97 @@
     .hover\:text-button-brand-hover:hover { color: rgb(var(--button-brand-hover)); }
 
     .text-button-brand-icon { color: rgb(var(--button-brand-icon)); }
-    .hover\:text-button-brand-icon-hover:hover { color: rgb(var(--button-brand-icon-hover)); }
+    .group-hover\:text-button-brand-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-brand-icon-hover));
+            }
+        }
+    }
 
     .text-button-default { color: rgb(var(--button-default)); }
     .hover\:text-button-default-hover:hover { color: rgb(var(--button-default-hover)); }
 
     .text-button-default-icon { color: rgb(var(--button-default-icon)); }
-    .hover\:text-button-default-icon-hover:hover { color: rgb(var(--button-default-icon-hover)); }
+    .group-hover\:text-button-default-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-default-icon-hover));
+            }
+        }
+    }
 
     .text-button-danger { color: rgb(var(--button-danger)); }
     .hover\:text-button-danger-hover:hover { color: rgb(var(--button-danger-hover)); }
 
     .text-button-danger-icon { color: rgb(var(--button-danger-icon)); }
-    .hover\:text-button-danger-icon-hover:hover { color: rgb(var(--button-danger-icon-hover)); }
+    .group-hover\:text-button-danger-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-danger-icon-hover));
+            }
+        }
+    }
 
     .text-button-info { color: rgb(var(--button-info)); }
     .hover\:text-button-info-hover:hover { color: rgb(var(--button-info-hover)); }
 
     .text-button-info-icon { color: rgb(var(--button-info-icon)); }
-    .hover\:text-button-info-icon-hover:hover { color: rgb(var(--button-info-icon-hover)); }
+    .group-hover\:text-button-info-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-info-icon-hover));
+            }
+        }
+    }
 
     .text-button-link { color: rgb(var(--button-link)); }
     .hover\:text-button-link-hover:hover { color: rgb(var(--button-link-hover)); }
 
     .text-button-link-icon { color: rgb(var(--button-link-icon)); }
-    .hover\:text-button-link-icon-hover:hover { color: rgb(var(--button-link-icon-hover)); }
+    .group-hover\:text-button-link-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-link-icon-hover));
+            }
+        }
+    }
 
     .text-button-muted { color: rgb(var(--button-muted)); }
     .hover\:text-button-muted-hover:hover { color: rgb(var(--button-muted-hover)); }
 
     .text-button-muted-icon { color: rgb(var(--button-muted-icon)); }
-    .hover\:text-button-muted-icon-hover:hover { color: rgb(var(--button-muted-icon-hover)); }
+    .group-hover\:text-button-muted-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-muted-icon-hover));
+            }
+        }
+    }
 
     .text-button-success { color: rgb(var(--button-success)); }
     .hover\:text-button-success-hover:hover { color: rgb(var(--button-success-hover)); }
 
     .text-button-success-icon { color: rgb(var(--button-success-icon)); }
-    .hover\:text-button-success-icon-hover:hover { color: rgb(var(--button-success-icon-hover)); }
+    .group-hover\:text-button-success-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-success-icon-hover));
+            }
+        }
+    }
 
     .text-button-warning { color: rgb(var(--button-warning)); }
     .hover\:text-button-warning-hover:hover { color: rgb(var(--button-warning-hover)); }
 
     .text-button-warning-icon { color: rgb(var(--button-warning-icon)); }
-    .hover\:text-button-warning-icon-hover:hover { color: rgb(var(--button-warning-icon-hover)); }
-
+    .group-hover\:text-button-warning-icon-hover {
+        &:is(:where(.group-hover):hover *) {
+            @media (hover: hover) {
+                color: rgb(var(--button-warning-icon-hover));
+            }
+        }
+    }
 
     /* Pills */
 
@@ -951,16 +1026,33 @@
     }
 
     /* Ring Colors */
-
-    .ring-brand {
-        --tw-ring-color: rgb(var(--brand));
+    .focus-within\:ring-brand {
+        &:focus-within {
+            border-color: rgb(var(--brand));
+        }
     }
 
-    .ring-input {
-        --tw-ring-color: rgb(var(--input));
+    .focus\:border-brand {
+        &:focus {
+            border-color: rgb(var(--brand));
+        }
     }
 
-    .ring-offset-input {
-        --tw-ring-offset-color: rgb(var(--input-bg));
+    .focus\:ring-brand {
+        &:focus {
+            --tw-ring-color: rgb(var(--brand));
+        }
+    }
+
+    .focus\:ring-input {
+        &:focus {
+            --tw-ring-color: rgb(var(--input));
+        }
+    }
+
+    .focus\:ring-offset-input {
+        &:focus {
+            --tw-ring-offset-color: rgb(var(--input-bg));
+        }
     }
 }

@@ -41,10 +41,14 @@ class CheckboxFieldTest extends ComponentTestCase
         Config::set('themes.default.input-checkbox.background', 'background');
         Config::set('themes.default.input-checkbox.border', 'border');
         Config::set('themes.default.input-checkbox.color', 'color');
+        Config::set('themes.default.input-checkbox.layout', 'layout');
         Config::set('themes.default.input-checkbox.other', 'other');
         Config::set('themes.default.input-checkbox.padding', 'padding');
-        Config::set('themes.default.input-checkbox.rounded', 'rounded');
-        Config::set('themes.default.input-checkbox.shadow', 'shadow');
+
+        Config::set('themes.default.input-checkbox.input-background', 'input-background');
+        Config::set('themes.default.input-checkbox.input-border', 'input-border');
+        Config::set('themes.default.input-checkbox.input-other', 'input-other');
+        Config::set('themes.default.input-checkbox.input-rounded', 'input-rounded');
     }
 
     #[Test]
@@ -63,7 +67,12 @@ class CheckboxFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" />
+                        <div class="background border color layout other padding">
+                            <input name="enable" type="checkbox" id="enable" value="1" class="input-background input-border input-other input-rounded" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                                <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>
@@ -89,7 +98,12 @@ class CheckboxFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" />
+                        <div class="background border color layout other padding">
+                            <input name="enable" type="checkbox" id="enable" value="1" class="input-background input-border input-other input-rounded" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                                <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>
@@ -115,7 +129,12 @@ class CheckboxFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <input name="enable" type="checkbox" id="enable" value="1" class="background border color other padding rounded shadow" onclick="alert('here')" />
+                        <div class="background border color layout other padding">
+                            <input name="enable" type="checkbox" id="enable" value="1" class="input-background input-border input-other input-rounded" onclick="alert('here')" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                                <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                            </svg>
+                        </div>
                     </div>
                     <div class="color font other padding"> This is a test message </div>
                 </div>

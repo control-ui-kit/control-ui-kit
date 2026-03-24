@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Inputs;
 
+use ControlUIKit\Traits\UseInputTheme;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Checkbox extends Component
 {
-    use UseThemeFile;
+    use UseThemeFile, UseInputTheme;
 
     protected string $component = 'input-checkbox';
 
@@ -20,15 +21,23 @@ class Checkbox extends Component
     private ?string $checked;
     public bool $disabled;
 
+    private array $checkboxStyles;
+
     public function __construct(
         string $name,
+
         string $background = null,
         string $border = null,
         string $color = null,
+        string $layout = null,
         string $other = null,
         string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
+
+        string $inputBackground = null,
+        string $inputBorder = null,
+        string $inputOther = null,
+        string $inputRounded = null,
+
         string $id = null,
         string $value = '1',
         string $checked = null,
@@ -44,12 +53,18 @@ class Checkbox extends Component
             'background' => $background,
             'border' => $border,
             'color' => $color,
-            'disable' => $disabled ? null : 'none',
+            'layout' => $layout,
             'other' => $other,
             'padding' => $padding,
-            'rounded' => $rounded,
-            'shadow' => $shadow,
         ]);
+
+        $this->setInputStyles([
+            'input-background' => $inputBackground,
+            'input-border' => $inputBorder,
+            'input-other' => $inputOther,
+            'input-rounded' => $inputRounded,
+        ], 'input-checkbox', 'checkboxStyles', 'input-checkbox');
+
     }
 
     public function render(): View
@@ -72,5 +87,10 @@ class Checkbox extends Component
         }
 
         return '';
+    }
+
+    public function inputClasses(): string
+    {
+        return $this->classList($this->checkboxStyles);
     }
 }

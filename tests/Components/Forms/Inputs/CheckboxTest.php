@@ -17,10 +17,14 @@ class CheckboxTest extends ComponentTestCase
         Config::set('themes.default.input-checkbox.background', 'background');
         Config::set('themes.default.input-checkbox.border', 'border');
         Config::set('themes.default.input-checkbox.color', 'color');
+        Config::set('themes.default.input-checkbox.layout', 'layout');
         Config::set('themes.default.input-checkbox.other', 'other');
         Config::set('themes.default.input-checkbox.padding', 'padding');
-        Config::set('themes.default.input-checkbox.rounded', 'rounded');
-        Config::set('themes.default.input-checkbox.shadow', 'shadow');
+
+        Config::set('themes.default.input-checkbox.input-background', 'input-background');
+        Config::set('themes.default.input-checkbox.input-border', 'input-border');
+        Config::set('themes.default.input-checkbox.input-other', 'input-other');
+        Config::set('themes.default.input-checkbox.input-rounded', 'input-rounded');
     }
 
     #[Test]
@@ -31,7 +35,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -41,11 +50,16 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-input-checkbox name="name" background="none" border="none" color="none" other="none" padding="none" rounded="none" shadow="none" />
+            <x-input-checkbox name="name" background="none" border="none" color="none" layout="none" other="none" padding="none" input-background="none" input-border="none" input-other="none" input-rounded="none" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" />
+            <div>
+                <input name="name" type="checkbox" id="name" value="1" class="" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -55,11 +69,16 @@ class CheckboxTest extends ComponentTestCase
     public function an_input_checkbox_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-input-checkbox name="name" background="1" border="2" color="3" other="4" padding="5" rounded="6" shadow="7" />
+            <x-input-checkbox name="name" background="1" border="2" color="3" layout="4" other="5" padding="6" input-background="7" input-border="8" input-other="9" input-rounded="10" />
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="1 2 3 4 5 6 7" />
+            <div class="1 2 3 4 5 6">
+                <input name="name" type="checkbox" id="name" value="1" class="7 8 9 10" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -73,7 +92,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_new_test_value" value="new_test_value" class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name_new_test_value" value="new_test_value" class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -87,7 +111,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" checked class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -101,7 +130,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" checked class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -115,7 +149,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" checked class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -130,7 +169,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" checked class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" checked class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -145,7 +189,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -160,7 +209,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_yes" value="yes" checked class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name_yes" value="yes" checked class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -175,7 +229,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name_yes" value="yes" class="background border color other padding rounded shadow" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name_yes" value="yes" class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -189,7 +248,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow float-right" />
+            <div class="background border color layout other padding float-right">
+                <input name="name" type="checkbox" id="name" value="1" class="input-background input-border input-other input-rounded" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -203,7 +267,12 @@ class CheckboxTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <input name="name" type="checkbox" id="name" value="1" class="background border color other padding rounded shadow" onblur="console.log(this)" />
+            <div class="background border color layout other padding">
+                <input name="name" type="checkbox" id="name" value="1" class="input-background input-border input-other input-rounded" onblur="console.log(this)" />
+                <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                    <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                </svg>
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
