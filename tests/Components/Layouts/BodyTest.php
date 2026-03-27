@@ -35,7 +35,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;
@@ -47,13 +47,13 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_be_rendered_with_no_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout-body background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none" theme="none">
+            <x-layout-body background="none" border="none" color="none" font="none" other="none" padding="none" rounded="none" shadow="none">
                 Document html
             </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
-            <body data-theme="light">
+            <body data-mode="light">
             Document html
             </body>
             HTML;
@@ -65,13 +65,13 @@ class BodyTest extends ComponentTestCase
     public function a_layout_body_component_can_be_rendered_with_inline_styles(): void
     {
         $template = <<<'HTML'
-            <x-layout-body background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8" theme="9">
+            <x-layout-body background="1" border="2" color="3" font="4" other="5" padding="6" rounded="7" shadow="8">
                 Document html
             </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
-            <body class="1 2 3 4 5 6 7 8" data-theme="light">
+            <body class="1 2 3 4 5 6 7 8" data-mode="light">
             Document html
             </body>
             HTML;
@@ -80,16 +80,16 @@ class BodyTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_layout_body_component_can_have_a_dark_theme(): void
+    public function a_layout_body_component_can_have_a_dark_mode(): void
     {
         $template = <<<'HTML'
-            <x-layout-body theme="dark">
+            <x-layout-body mode="dark">
                 Document html
             </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="dark">
+            <body class="background border color font other padding rounded shadow" data-mode="dark">
             Document html
             </body>
             HTML;
@@ -98,16 +98,16 @@ class BodyTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_layout_body_component_can_have_a_light_theme(): void
+    public function a_layout_body_component_can_have_a_light_mode(): void
     {
         $template = <<<'HTML'
-            <x-layout-body theme="light">
+            <x-layout-body mode="light">
                 Document html
             </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;
@@ -116,16 +116,16 @@ class BodyTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_layout_body_component_cannot_have_an_invalid_theme(): void
+    public function a_layout_body_component_cannot_have_an_invalid_mode(): void
     {
         $template = <<<'HTML'
-            <x-layout-body theme="invalid">
+            <x-layout-body mode="invalid">
                 Document html
             </x-layout-body>
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;
