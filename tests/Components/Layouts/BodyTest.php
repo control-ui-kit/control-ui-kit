@@ -35,7 +35,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;
@@ -53,7 +53,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body data-theme="light">
+            <body data-mode="light">
             Document html
             </body>
             HTML;
@@ -71,7 +71,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="1 2 3 4 5 6 7 8" data-theme="light">
+            <body class="1 2 3 4 5 6 7 8" data-mode="light">
             Document html
             </body>
             HTML;
@@ -89,7 +89,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="dark">
+            <body class="background border color font other padding rounded shadow" data-mode="dark">
             Document html
             </body>
             HTML;
@@ -107,7 +107,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;
@@ -125,7 +125,7 @@ class BodyTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <body class="background border color font other padding rounded shadow" data-theme="light">
+            <body class="background border color font other padding rounded shadow" data-mode="light">
             Document html
             </body>
             HTML;

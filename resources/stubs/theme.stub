@@ -53,7 +53,7 @@ $chart-900: #E09FE1;
 
 }
 
-.theme[data-theme="light"] {
+:root[data-mode="light"] {
 
     /* Framework Defaults */
     --app-bg                       : #{$gray-50};        // bg *
@@ -165,7 +165,7 @@ $chart-900: #E09FE1;
     @include input-svg($gray-50);
 }
 
-.theme[data-theme="dark"] {
+:root[data-mode="dark"] {
 
     /* Framework Defaults */
     --app-bg                       : #{$black};          // bg

@@ -1,3 +1,3 @@
-<body {{ $attributes->merge($classes()) }} data-theme="{{ $theme }}">
+<body {{ $attributes->merge($classes()) }} data-mode="{{ $theme }}">
 {{ $slot }}
 </body>

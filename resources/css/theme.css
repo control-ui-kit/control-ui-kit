@@ -111,6 +111,9 @@
 
     .bg-table-row-1 { background-color: rgb(var(--table-row-bg-1)); }
     .bg-table-row-2 { background-color: rgb(var(--table-row-bg-2)); }
+    .odd\:bg-table-row-1:nth-child(odd) { background-color: rgb(var(--table-row-bg-1)); }
+    .even\:bg-table-row-2:nth-child(even) { background-color: rgb(var(--table-row-bg-2)); }
+
     .odd\:bg-table-row:nth-child(odd) { background-color: rgb(var(--table-row-bg-1)); }
     .even\:bg-table-row:nth-child(even) { background-color: rgb(var(--table-row-bg-2)); }
     .hover\:bg-table-row-hover:hover { background-color: rgb(var(--table-row-bg-hover)); }
@@ -213,6 +216,7 @@
 
     .border-nav-side { border-color: rgb(var(--nav-side-border)); }
     .border-nav-side-divider { border-color: rgb(var(--nav-side-divider)); }
+    .border-nav-side-selected { border-color: rgb(var(--nav-side-selected-border)); }
 
     .border-nav-side-main-option { border-color: rgb(var(--nav-side-main-opt-border)); }
     .hover\:border-nav-side-main-option-hover:hover { border-color: rgb(var(--nav-side-main-opt-border-hover)); }
@@ -385,9 +389,12 @@
     }
 
     /* Nav Side */
+    .text-nav-side-selected { color: rgb(var(--nav-side-selected)); }
+    .chris { color: red !important; }
 
     .text-nav-side { color: rgb(var(--nav-side)); }
     .hover\:text-nav-side-hover:hover { color: rgb(var(--nav-side-hover)); }
+    .hover\:text-nav-side-selected-hover:hover { color: rgb(var(--nav-side-selected-hover)); }
 
     .text-nav-side-header { color: rgb(var(--nav-side-header)); }
 
