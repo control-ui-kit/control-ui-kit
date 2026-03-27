@@ -25,7 +25,7 @@ class Body extends Component
         string $padding = null,
         string $rounded = null,
         string $shadow = null,
-        string $theme = null
+        string $mode = null
     ) {
         $this->setConfigStyles([
             'background' => $background,
@@ -38,16 +38,16 @@ class Body extends Component
             'shadow' => $shadow,
         ]);
 
-        if ($theme === 'none') {
-            $theme = null;
+        if ($mode === 'none') {
+            $mode = null;
         }
 
-        $this->theme = $this->validTheme($theme ?? $this->style($this->component, 'theme', $theme));
+        $this->theme = $this->validMode($mode ?? $this->style($this->component, 'mode', $mode));
     }
 
-    private function validTheme($theme): string
+    private function validMode($mode): string
     {
-        return in_array($theme, ['light', 'dark']) ? $theme : 'light';
+        return in_array($mode, ['light', 'dark']) ? $mode : 'light';
     }
 
     public function render(): View

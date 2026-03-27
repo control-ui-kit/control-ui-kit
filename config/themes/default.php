@@ -1215,11 +1215,11 @@ return [
         'border' => '',
         'color' => 'text-default',
         'font' => '',
+        'mode' => 'light',
         'other' => 'branding theme',
         'padding' => '',
         'rounded' => '',
         'shadow' => '',
-        'theme' => 'light',
     ],
 
     'layout-content' => [
