@@ -80,8 +80,8 @@ class Filters extends Component
                 $filters[$name]['name'] = $name;
             }
 
-            if (! array_key_exists('empty', $filter)) {
-                $filters[$name]['empty'] = '';
+            if (! array_key_exists('unset', $filter)) {
+                $filters[$name]['unset'] = '';
             }
         }
 

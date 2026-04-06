@@ -105,7 +105,7 @@ class RadioGroupFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="enable_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Enable</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>
@@ -146,7 +146,7 @@ class RadioGroupFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="enable_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Enable</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>
@@ -187,7 +187,7 @@ class RadioGroupFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="enable_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Enable</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>

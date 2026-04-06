@@ -166,8 +166,8 @@
     .bg-input-brand { background-color: rgb(var(--brand)); }
     .bg-input-muted { background-color: rgb(var(--input-muted-bg)); }
     .bg-input-option { background-color: rgb(var(--input-option-bg)); }
-    .hover\:bg-input-option-hover { background-color: rgb(var(--input-option-bg-hover)); }
     .hover\:bg-input-option-hover:hover { background-color: rgb(var(--input-option-bg-hover)); }
+    .bg-input-option-focus { background-color: rgb(var(--input-option-bg-hover)) !important; }
 
     .bg-modal { background-color: rgb(var(--modal-bg)); }
     .bg-modal-blur { background-color: rgb(var(--modal-blur-bg)); }
@@ -330,6 +330,8 @@
     .hover\:text-link-hover:hover { color: rgb(var(--link-hover)); }
 
     .text-brand { color: rgb(var(--brand)); }
+    .text-brand\! { color: rgb(var(--brand)) !important; }
+    .hover\:text-brand:hover { color: rgb(var(--brand)); }
     .hover\:text-brand-hover:hover { color: rgb(var(--brand-hover)); }
 
     .text-danger { color: rgb(var(--danger)); }
@@ -1039,6 +1041,12 @@
         }
     }
 
+    .focus-within\:border-brand {
+        &:focus-within {
+            border-color: rgb(var(--brand));
+        }
+    }
+
     .focus\:border-brand {
         &:focus {
             border-color: rgb(var(--brand));
@@ -1061,5 +1069,9 @@
         &:focus {
             --tw-ring-offset-color: rgb(var(--input-bg));
         }
+    }
+
+    input[type="search"]::-webkit-search-cancel-button {
+        display: none;
     }
 }

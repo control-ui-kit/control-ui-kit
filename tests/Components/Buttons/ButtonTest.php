@@ -392,7 +392,7 @@ class ButtonTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="submit"> Click Me </button>
+            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="submit" onclick="this.form.submit(); this.disabled=true"> Click Me </button>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

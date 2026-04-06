@@ -1,60 +1,59 @@
 <div class="relative"
-     @clear-filters.window="clearFilters()"
-     @clear-single-filter.window="clearSingleFilter($event.detail)"
-     @clear-search-filter.window="clearSearchFilter($event.detail)"
      x-data="{
          showFilters: false,
          fields: {
              @foreach ($filters as $name => $filter)
+             @if ($filter['type'] !== 'search')
              {{ $name }}: {
-                 selected: '{{ $filter['selected'] }}',
-                 reset: '{{ $filter['empty'] }}',
-                 toggle: {{ $filter['selected'] === $filter['empty'] ? 'false' : 'true' }},
+                 original: '{{ $filter['selected'] ?: '' }}',
+                 selected: '{{ $filter['selected'] ?: '' }}',
+                 unset: '{{ $filter['unset'] }}',
+                 toggle: {{ $filter['selected'] === $filter['unset'] ? 'false' : 'true' }},
              },
+             @endif
              @endforeach
          },
          clearFilters() {
-             $wire.emit('clearFilters')
-
-             for (const [key, value] of Object.entries(this.fields)) {
-                 this.fields[key].selected = this.fields[key].reset
-                 this.fields[key].toggle = false
-             }
-
-             this.showFilters = false
-         },
-         clearSingleFilter(filter) {
-             $wire.emit('clearSingleFilter', filter)
-             this.fields[filter].selected = this.fields[filter].reset
-             this.fields[filter].toggle = false
-         },
-         clearSearchFilter(index) {
-             $wire.emit('clearSearchFilter', index)
+             let params = new URLSearchParams()
+             Object.keys(this.fields).forEach(field => {
+                 if (this.fields[field].selected) {
+                     params.append(field, this.fields[field].unset)
+                 }
+             })
+             window.location.search = params.toString()
          },
          updateFilters() {
-             $wire.emit('updateFilters', this.fields)
-             this.showFilters = false
-
-             for (const [key, value] of Object.entries(this.fields)) {
-                 this.fields[key].toggle = this.fields[key].selected !== this.fields[key].reset
-             }
+             let params = new URLSearchParams()
+             Object.keys(this.fields).forEach(field => {
+                 if (this.fields[field].selected) {
+                     params.append(field, this.fields[field].selected)
+                 }
+             })
+             window.location.search = params.toString()
          },
+         clickAway() {
+             Object.keys(this.fields).forEach(field => {
+                 this.fields[field].selected = this.fields[field].original
+                 this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset
+             })
+             this.showFilters = false
+         }
      }"
-     @click.away="showFilters = false"
+     @click.away="clickAway()"
 >
 
-    <button class="{{ $filtersButtonClasses() }} relative group hover:border-brand-500" x-on:click="showFilters = !showFilters">
-        <x-dynamic-component :component="$filtersButtonIcon()" :size="$filtersButtonIconSize()" color="text-gray-700 cursor-pointer group-hover:text-brand-500" />
+    <button class="{{ $filtersButtonClasses() }} relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">
+        <x-dynamic-component :component="$filtersButtonIcon()" :size="$filtersButtonIconSize()" />
     </button>
 
     <div  x-show="showFilters"
-          class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-lg bg-white ring-1 ring-black/50 focus:outline-hidden"
+          class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel overflow-hidden"
           tabindex="-1"
           x-cloak
     >
 
         {{--FILTER MENU HEADER--}}
-        <div class="flex items-center justify-between p-2 bg-gray-150">
+        <div class="flex items-center justify-between p-2 bg-panel-header">
             <x-button class="w-full" x-on:click="clearFilters()">Clear</x-button>
             <span class="text-xs uppercase text-gray-600 font-bold">Filters</span>
             <x-button class="w-full" x-on:click="updateFilters()">Update</x-button>

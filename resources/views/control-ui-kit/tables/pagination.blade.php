@@ -1,23 +1,20 @@
 
 @if ($showAlways || $paginator->hasPages())
 
-    @if ($wire)
-        @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1)
-    @endif
-
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between mt-2 sm:mt-4">
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
 
     <div class="{{ $wrapperClasses }}">
-
         <div class="{{ $resultsClasses }}">
             <span>{!! __('Display') !!} #</span>
-            <select id="limit" name="limit" wire:model="limit" class="{{ $limitClasses }}">
-                @foreach ([5, 10, 25, 50, 100, 200] as $value)
-                    <option value="{{ $value }}" @if (! $wire && $value === $limit) selected @endif>
-                        {{ $value }}
-                    </option>
-                @endforeach
-            </select>
+            <form method="get" action="{{ $formUrl }}" name="pagination" id="pagination">
+                <select id="limit" name="limit" class="{{ $limitClasses }}" onchange="document.pagination.submit();">
+                    @foreach ([5, 10, 25, 50, 100, 200] as $value)
+                        <option value="{{ $value }}" @if (! $wire && $value === $limit) selected @endif>
+                            {{ $value }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
             <span></span>
             @if ($paginator->total() === 0)
             <span>{!! __('No Results') !!}</span>
@@ -62,7 +59,7 @@
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
-                        @if ($wire)<div wire:key="paginator-{{ $paginator->getPageName() }}-{{ $this->numberOfPaginatorsRendered[$paginator->getPageName()] }}-page{{ $page }}">@endif
+                        @if ($wire)<div wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">@endif
                         @if ($page === $paginator->currentPage())
                             <div aria-current="page">
                                 <span class="{{ $buttonActive }}">{{ $page }}</span>

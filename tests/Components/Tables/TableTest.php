@@ -184,7 +184,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -214,7 +214,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table>
@@ -244,7 +244,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow">
@@ -274,7 +274,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -304,7 +304,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -336,7 +336,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -368,7 +368,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -395,7 +395,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -438,7 +438,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
@@ -481,7 +481,7 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="Components.table({ orderby: '', sort: '', })" x-init="init()"
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
             >
                 <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
                     <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">

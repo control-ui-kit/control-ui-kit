@@ -2118,9 +2118,9 @@ class CountriesAutoComplete extends AutoComplete
             ->get();
     }
 
-    public function lookup(int $id): Model|array
+    public function lookup(int $id): ?object
     {
-        return [];
+        return (object) [];
     }
 
     public function preload(): Collection|array

@@ -28,7 +28,6 @@ class AutoComplete extends Component
     public ?string $iconClear;
     public ?string $iconSize;
     public ?string $clearSize;
-
     private array $basicStyles = [];
     private array $dropdownStyles = [];
     private array $clearStyles = [];
@@ -50,14 +49,10 @@ class AutoComplete extends Component
     public ?string $selected;
     private mixed $source;
     private mixed $lookup;
-
     private string $urlLimit;
     private ?string $type;
     private \ControlUIKit\AutoComplete $class;
     private ?string $model = null;
-    /**
-     * @var mixed|string
-     */
     public array $preloadConfig = [];
     public array $focusConfig = [];
 

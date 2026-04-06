@@ -16,7 +16,7 @@ class ActiveFilter extends Component
 
     protected string $component = 'table-active-filter';
 
-    public ?string $href;
+    public ?string $href = null;
     public string $label;
     public string $icon;
     private array $iconStyles;
@@ -70,12 +70,9 @@ class ActiveFilter extends Component
             'icon-size' => $iconSize,
         ], [], null, 'iconStyles');
 
-        if (is_null($href)) {
-            $this->href = $this->buildHref($name, $resetValue);
-        }
-
         $this->label = $label;
         $this->text = $text;
+        $this->href = $href;
 
         $this->icon = $this->style($this->component, 'icon', $icon);
     }
@@ -92,11 +89,5 @@ class ActiveFilter extends Component
         }
 
         return $styles;
-    }
-
-    private function buildHref($name, $resetValue): string
-    {
-//        return (new UrlManipulation)->url(Request::fullUrl())->append($name . '=' . $resetValue);
-        return '';
     }
 }

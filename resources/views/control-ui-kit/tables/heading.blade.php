@@ -6,10 +6,7 @@
 </th>
 @else
 <th {{ $attributes->merge($classes())->only('class') }}>
-    <a @if($href) href="{{ $href }}" @endif {{ $attributes->except('class') }} class="{{ $sortable }}"
-       @if ($wire) wire:click="sortBy('{{ $field }}')" @endif
-        x-on:click="sortBy('{{ $field }}')"
-    >
+    <a @if($href) href="{{ $href }}" @else x-bind:href="href('{{ $field }}')" @endif {{ $attributes->except('class') }} class="{{ $sortable }}">
         @if (($isCurrentSort() && ($icon || $iconAlt)) || (! $isCurrentSort() && $iconAsc))
         <span>{{ $slot->isNotEmpty() ? $slot : $text }}</span>
         <span class="flex items-center" x-cloak>

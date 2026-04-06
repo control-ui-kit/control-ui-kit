@@ -16,7 +16,7 @@ abstract class AutoComplete
 
     abstract public function count(): int;
     abstract public function focus(int $limit): Collection|array;
-    abstract public function lookup(int $id): Model|array;
+    abstract public function lookup(int $id): ?object;
     abstract public function preload(): Collection|array;
     abstract public function search(string $term, int $limit): Collection|array;
 

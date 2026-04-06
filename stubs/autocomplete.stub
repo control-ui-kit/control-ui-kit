@@ -4,7 +4,6 @@ namespace {{ namespace }};
 
 use ControlUIKit\AutoComplete;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class {{ class }} extends AutoComplete
 {
@@ -35,9 +34,14 @@ class {{ class }} extends AutoComplete
         return [];
     }
 
-    public function lookup(int $id): Model|array
+    public function lookup(int $id): ?object
     {
-        return [];
+        return (object) [];
+    }
+
+    protected function placeholder(): string
+    {
+        return 'Search...';
     }
 
     public function preload(): Collection|array

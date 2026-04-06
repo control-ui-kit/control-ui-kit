@@ -18,7 +18,7 @@ class Heading extends Component
 
     public ?string $align;
     public ?string $anchor;
-    public ?string $href;
+    public string|bool $href = false;
     public string $icon;
     public string $iconAlt;
     public string $iconAsc;
@@ -91,7 +91,10 @@ class Heading extends Component
         $this->text = $text;
         $this->currentOrder = $currentOrder ?? $this->currentOrder();
         $this->currentSort = $currentOrder ? $this->cleanDirection($currentSort) : $this->currentSort();
-        $this->href = $wire ? null : $this->buildHref($href, $field, $this->currentSort);
+
+        if (is_string($href) && ! $wire) {
+            $this->href = $this->buildHref($href, $field, $this->currentSort);
+        }
 
         $this->setIcons();
     }
