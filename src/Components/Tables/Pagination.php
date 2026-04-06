@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
@@ -32,6 +33,7 @@ class Pagination extends Component
     private array $limitStyles;
     private array $resultsStyles;
     private array $wrapperStyles;
+    private string $formUrl;
 
     public function __construct(
         LengthAwarePaginator $rows,
@@ -115,6 +117,7 @@ class Pagination extends Component
         $this->showAlways = (bool)$this->style($this->component, 'show-always', $showAlways);
         $this->eachSide = (int)$this->style($this->component, 'each-side', $eachSide);
         $this->wire = $wire;
+        $this->formUrl = request()->getRequestUri();
 
         $this->setConfigStyles([
             'button-background' => $buttonBackground,
@@ -229,6 +232,7 @@ class Pagination extends Component
             'resultsClasses' => $this->resultsClasses(),
             'wrapperClasses' => $this->wrapperClasses(),
             'wire' => $this->wire,
+            'formUrl' => $this->formUrl,
         ];
     }
 

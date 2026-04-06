@@ -60,7 +60,7 @@ class FilterTest extends ComponentTestCase
                 'name' => 'name',
                 'type' => 'select',
                 'selected' => null,
-                'empty' => '',
+                'unset' => '',
                 'label' => 'label',
                 'options' => [ 1 => 'A', 2 => 'B' ],
             ]" />

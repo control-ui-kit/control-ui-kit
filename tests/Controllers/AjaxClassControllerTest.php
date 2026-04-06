@@ -218,7 +218,7 @@ class CountriesAutoComplete extends AutoComplete
         ]);
     }
 
-    public function lookup(int $id): Model|array
+    public function lookup(int $id): ?object
     {
         $sql = 'SELECT  country_id AS id,
                         country_name AS text,
@@ -231,7 +231,7 @@ class CountriesAutoComplete extends AutoComplete
             'country_id' => $id,
         ]);
 
-        return collect($record[0])->toArray();
+        return collect($record[0]);
     }
 
     public function preload(): Collection|array

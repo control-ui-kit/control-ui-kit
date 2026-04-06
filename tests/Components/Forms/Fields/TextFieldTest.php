@@ -60,7 +60,7 @@ class TextFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">
@@ -86,7 +86,7 @@ class TextFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">
@@ -112,7 +112,7 @@ class TextFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">

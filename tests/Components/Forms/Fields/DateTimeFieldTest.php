@@ -115,7 +115,7 @@ class DateTimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="datetime_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>datetime</span> </p>
                 </label>
                 <div class="content-style">
@@ -144,7 +144,7 @@ class DateTimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="datetime_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>datetime</span> </p>
                 </label>
                 <div class="content-style">
@@ -173,7 +173,7 @@ class DateTimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="datetime_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>datetime</span> </p>
                 </label>
                 <div class="content-style">

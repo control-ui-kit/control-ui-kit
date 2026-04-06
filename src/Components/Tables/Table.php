@@ -25,7 +25,7 @@ class Table extends Component
     public ?string $clearFiltersHref;
     public ?string $clearFiltersText;
     public array $activeFilters;
-    public ?string $search;
+    public string $search = '';
     private ?bool $showSearch;
     private ?bool $hideSearch;
     public ?bool $wireSearch;
@@ -172,7 +172,7 @@ class Table extends Component
         string $tableWrapperWithoutFilters = null,
 
         array $activeFilters = [],
-        string $search = null,
+        string $search = '',
         bool $hideSearch = null,
         bool $showSearch = null,
         bool $wireSearch = null,
@@ -346,7 +346,7 @@ class Table extends Component
         $this->sort = $sort ?: request($this->style('table-heading', 'field-sort', $sort));
         $this->orderby = $orderby ?: request($this->style('table-heading', 'field-order', $orderby));
 
-        $this->search = is_null($search) ? request('search') : null;
+        $this->search = $search;
         $this->filters = $filters;
     }
 
@@ -448,6 +448,11 @@ class Table extends Component
         return Request::fullUrl();
     }
 
+    public function pageUrl(): string
+    {
+        return url()->current();
+    }
+
     public function showSearch(): bool|string
     {
         $configSearch = $this->style($this->component, 'search-enable', null);
@@ -474,7 +479,7 @@ class Table extends Component
 
         foreach ($this->filters as $name => $filter) {
 
-            if ($filter['type'] !== 'search' && $filter['selected'] === ($filter['empty'] ?? '')) {
+            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['unset']) {
                 continue;
             }
 
@@ -486,9 +491,11 @@ class Table extends Component
                 'index' => $filter['type'] === 'search' ? $filter['index'] : '',
                 'label' => $filter['label'],
                 'text' => $text,
+                'unset' => $filter['unset'],
             ];
 
             $active[] = $activeFilter;
+
         }
 
         return $active;
@@ -504,10 +511,10 @@ class Table extends Component
             $options = $this->flatten($options);
         }
 
-        if (is_array($options)) {
+        if (is_array($options) && $selected) {
             return $options[$selected];
         }
 
-        return $selected;
+        return $selected ?: '';
     }
 }

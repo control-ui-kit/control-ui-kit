@@ -17,7 +17,7 @@ class AutoCompleteTest extends ComponentTestCase
 
         $this->assertSame(1, $class->count());
         $this->assertIsArray($class->focus(1));
-        $this->assertIsArray($class->lookup(1));
+        $this->assertIsObject($class->lookup(1));
         $this->assertIsArray($class->preload());
         $this->assertIsArray($class->search('test', 1));
         $this->assertIsArray($class->language());
@@ -38,9 +38,9 @@ class TestAutoComplete extends AutoComplete
         return [];
     }
 
-    public function lookup(int $id): Model|array
+    public function lookup(int $id): ?object
     {
-        return [];
+        return (object) [];
     }
 
     public function preload(): Collection|array

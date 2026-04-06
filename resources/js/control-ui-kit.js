@@ -659,7 +659,7 @@ window.Components = {
                     [this.conditionals['option-focus']] : this.isFocused(index)
                 };
             },
-            classText(id, index, option) {
+            classText(id, index) {
                 return {
                     [this.conditionals['text-selected']]: this.isSelected(id),
                     [this.conditionals['text-focus']] : this.isFocused(index)

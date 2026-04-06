@@ -248,7 +248,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=desc" class="sortable" x-on:click="sortBy('example')">
+                <a href="http://example.com?order=example&amp;sort=desc" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -306,7 +306,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
+                <a href="http://example.com?order=example&amp;sort=asc" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -335,7 +335,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
+                <a x-bind:href="href('example')" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -364,7 +364,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=desc" class="sortable" x-on:click="sortBy('example')">
+                <a x-bind:href="href('example')" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -393,7 +393,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
+                <a x-bind:href="href('example')" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -422,7 +422,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')">
+                <a x-bind:href="href('example')" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="::some-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -451,7 +451,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc#cheese" class="sortable" x-on:click="sortBy('example')">
+                <a x-bind:href="href('example')" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -480,7 +480,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sortable" x-on:click="sortBy('example')">
+                <a href="http://example.com?order=example&amp;sort=asc#cheese" class="sortable">
                     <span>::Some Heading</span>
                     <span class="flex items-center" x-cloak>
                         <svg class="icon-size fill-current" x-show="orderby == 'example' && sort == 'asc'" alt="asc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -512,7 +512,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="align background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')"> ::Some Heading </a>
+                <a x-bind:href="href('example')" class="sortable"> ::Some Heading </a>
             </th>
             HTML;
 
@@ -531,7 +531,7 @@ class HeadingTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <th class="text-right background border color font other padding rounded shadow width">
-                <a href="http://localhost?order=example&amp;sort=asc" class="sortable" x-on:click="sortBy('example')"> ::Some Heading </a>
+                <a x-bind:href="href('example')" class="sortable"> ::Some Heading </a>
             </th>
             HTML;
 

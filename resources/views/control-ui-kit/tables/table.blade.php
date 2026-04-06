@@ -1,14 +1,11 @@
 <div
-{{--    x-cloak--}}
-     x-data="Components.table({
-{{--        hasFilters: {{ count($filters) ? 'true' : 'false' }},--}}
-{{--        hasSearch: {{ $showSearch() ? 'true' : 'false' }},--}}
-{{--        withFilters: '{{ $tableWrapperWithFilters() }}',--}}
-{{--        withoutFilters: '{{ $tableWrapperWithoutFilters() }}',--}}
+    x-data="{
         orderby: '{{ $orderby }}',
         sort: '{{ $sort }}',
-      })"
-     x-init="init()"
+        href: function(name) {
+            return '{{ $pageUrl() }}?orderby={{ $orderby }}&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc');
+        },
+    }"
 >
     @if ($showSearch())
 
@@ -18,7 +15,7 @@
 
                 @if ($showSearch())
 
-                    <div class="{{ $searchContainer }}" x-ref="search" @click="open = false">
+                    <div class="{{ $searchContainer }}">
                         <x-form action="{{ $searchUrl() }}" method="get" name="{{ $searchFormName }}" id="{{ $searchFormName }}">
                             <div class="{{ $searchWrapperClasses() }}">
                                 @if ($searchIcon())
@@ -31,22 +28,12 @@
                                        id="{{ $searchId }}"
                                        value="{{ $search }}"
                                        placeholder="{{ $searchPlaceholder }}"
-                                       @if ($wireSearch)
-                                       wire:model.debounce.500ms="search"
-                                       wire:keydown.prevent.enter=""
-                                       @else
                                        onchange="document.search.submit();"
-                                       @endif
                                        class="{{ $searchInputClasses() }}"
                                        autocomplete="off"
                                        autofocus
                                     {{ $attributes->whereStartsWith('wire:') }}
                                 />
-                                @if ($wireSearch)
-                                <div wire:loading>
-                                   <x-dynamic-component component="icon-spinner" class="mr-2 text-orange-500" />
-                                </div>
-                                @endif
                             </div>
                         </x-form>
 
@@ -58,9 +45,6 @@
 
                     @endif
 
-{{--                <button class="{{ $moreButtonClasses() }}">--}}
-{{--                    <x-dynamic-component component="icon-download" :size="$moreButtonIconSize()" color="text-gray-700" />--}}
-{{--                </button>--}}
                 @endif
 
             </div>
@@ -72,19 +56,17 @@
                 <div class="{{ $activeFilterListClasses() }}">
                     @foreach ($activeFilters() as $filter)
                         @if ($filter['type'] === 'search')
-                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" x-on:click="$dispatch('clear-search-filter', {{ $filter['index'] }})" />
+                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" :href="$pageUrl() . '?clear-search=' . $filter['text']" />
                         @else
-                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" x-on:click="$dispatch('clear-single-filter', '{{ $filter['name'] }}' )" />
+                            <x-table-active-filter :name="$filter['name']" :label="$filter['label']" :text="$filter['text']" :href="$pageUrl() . '?' . $filter['name'] . '=' . $filter['unset']" />
                         @endif
                     @endforeach
                 </div>
 
                 <a class="{{ $clearFilterClasses() }} cursor-pointer"
-                   x-on:click="$dispatch('clear-filters')"
-
-{{--                   @if($clearFiltersHref) href="{{ $clearFiltersHref }}" @endif--}}
-{{--                    @if($clearFiltersEvent) {!! $clearFiltersEvent !!} @endif--}}
-                >{{ $clearFiltersText }}</a>
+                   href="{{ $clearFiltersHref }}">
+                    {{ $clearFiltersText }}
+                </a>
 
             </div>
         @endisset

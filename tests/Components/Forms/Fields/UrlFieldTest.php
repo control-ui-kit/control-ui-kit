@@ -130,7 +130,7 @@ class UrlFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="url" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>url</span> </p>
                 </label>
                 <div class="content-style">
@@ -158,7 +158,7 @@ class UrlFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="url" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>url</span> </p>
                 </label>
                 <div class="content-style">
@@ -186,7 +186,7 @@ class UrlFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="url" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>url</span> </p>
                 </label>
                 <div class="content-style">

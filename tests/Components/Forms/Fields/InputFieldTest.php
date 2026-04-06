@@ -126,7 +126,7 @@ class InputFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">
@@ -152,7 +152,7 @@ class InputFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>Track</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -183,7 +183,7 @@ class InputFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">
@@ -210,7 +210,7 @@ class InputFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Track</span> </p>
                 </label>
                 <div class="content-style">

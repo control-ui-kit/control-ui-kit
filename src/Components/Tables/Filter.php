@@ -18,7 +18,7 @@ class Filter extends Component
     public string $name;
     public string $label;
     public string $type;
-    public ?string $empty;
+    public ?string $unset;
     public mixed $options;
     public bool $enabled;
     public ?string $selected;
@@ -31,10 +31,10 @@ class Filter extends Component
         $this->label = $filter['label'];
         $this->type = $filter['type'];
         $this->options = $this->setOptions($filter);
-        $this->enabled = $filter['selected'] !== $filter['empty'];
+        $this->enabled = $filter['selected'] !== $filter['unset'];
         $this->selected = $filter['selected'];
         $this->wire = array_key_exists('wire', $filter) ? $filter['wire'] : false;
-        $this->empty = $filter['empty'] ?? '';
+        $this->unset = $filter['unset'] ?? '';
     }
 
     public function render(): View

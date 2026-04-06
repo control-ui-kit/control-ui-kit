@@ -31,7 +31,7 @@ class ActionTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="background border color font other padding rounded shadow">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </div>
@@ -49,7 +49,7 @@ class ActionTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <a href="test.com" class="background border color font other padding rounded shadow">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </a>
@@ -75,7 +75,7 @@ class ActionTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div>
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </div>
@@ -101,7 +101,7 @@ class ActionTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="1 2 3 4 5 6 7 8">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="3" cy="3" r="3"/>
                     </svg>
                 </div>

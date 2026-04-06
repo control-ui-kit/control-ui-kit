@@ -58,7 +58,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="">
-                <label for="test" class="">
+                <label class="">
                     <p class="">
                         <span>::Label</span>
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -172,7 +172,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="9">
-                <label for="test" class="14 15 16 17 18 19 20 21 2">
+                <label class="14 15 16 17 18 19 20 21 2">
                     <p class="3">
                         <span>::Label</span>
                         <svg class="6 7 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -203,7 +203,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -229,7 +229,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -257,7 +257,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -283,7 +283,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -311,7 +311,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label for="test_custom" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

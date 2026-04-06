@@ -26,6 +26,7 @@ class Button extends Component
     public string $disabled;
     public string $action;
     public ?string $text;
+    public bool $singleClick = false;
 
     public function __construct(
         string $background = null,
@@ -55,7 +56,8 @@ class Button extends Component
         bool $link = false,
         bool $success = false,
         bool $muted = false,
-        bool $warning = false
+        bool $warning = false,
+        bool $singleClick = false,
     ) {
         $this->bstyle = $this->buttonVersion($bstyle, [
             'default' => $default,
@@ -95,6 +97,11 @@ class Button extends Component
             $text = trans($trans);
         }
         $this->text = $text;
+        $this->singleClick = $singleClick;
+
+        if ($this->type === 'submit') {
+            $this->singleClick = true;
+        }
     }
 
     public function render(): View

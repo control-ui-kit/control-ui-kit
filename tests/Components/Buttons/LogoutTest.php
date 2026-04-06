@@ -87,7 +87,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="" autocomplete="off">
-                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="submit"> Log Out </button>
+                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow width" type="submit" onclick="this.form.submit(); this.disabled=true"> Log Out </button>
             </form>
             HTML;
 
@@ -104,7 +104,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="" autocomplete="off">
-                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit"> Sign Out </button>
+                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit" onclick="this.form.submit(); this.disabled=true"> Sign Out </button>
             </form>
             HTML;
 
@@ -121,7 +121,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="" autocomplete="off">
-                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit">
+                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit" onclick="this.form.submit(); this.disabled=true">
                     <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
@@ -144,7 +144,7 @@ class LogoutTest extends ComponentTestCase
         $expected = <<<'HTML'
             <form method="POST" action="http://localhost/logout">
                 <input type="hidden" name="_token" value="" autocomplete="off">
-                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit">
+                <button class="background brand-background border brand-border color brand-color cursor font other padding rounded shadow width" type="submit" onclick="this.form.submit(); this.disabled=true">
                     <svg class="icon-size fill-current brand-icon" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
