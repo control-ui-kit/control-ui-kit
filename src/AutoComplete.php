@@ -3,7 +3,6 @@
 namespace ControlUIKit;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 abstract class AutoComplete
 {
@@ -38,27 +37,27 @@ abstract class AutoComplete
         ];
     }
 
-    protected function noResultsText(): string
+    public function noResultsText(): string
     {
         return config('themes.default.input-autocomplete.no-results-text');
     }
 
-    protected function promptText(): string
+    public function promptText(): string
     {
         return config('themes.default.input-autocomplete.prompt-text');
     }
 
-    protected function selectedText(): string
+    public function selectedText(): string
     {
         return config('themes.default.input-autocomplete.selected-text');
     }
 
-    protected function placeholder(): string
+    public function placeholder(): string
     {
         return config('themes.default.input-autocomplete.placeholder');
     }
 
-    protected function fields(): array
+    public function fields(): array
     {
         return [
             'id' => 'id',
@@ -68,7 +67,7 @@ abstract class AutoComplete
         ];
     }
 
-    protected function selectFields(): string
+    public function selectFields(): string
     {
         $select = [];
 
