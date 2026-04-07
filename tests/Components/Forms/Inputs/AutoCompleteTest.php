@@ -2096,7 +2096,7 @@ class CountriesAutoComplete extends AutoComplete
     public bool $auto = false;
     public int $count = 20;
 
-    protected function fields(): array
+    public function fields(): array
     {
         return [
             'id' => 'country_id',

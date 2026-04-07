@@ -14,7 +14,7 @@ class {{ class }} extends AutoComplete
     public bool $auto = false;
     public int $count = 20;
 
-    protected function fields(): array
+    public function fields(): array
     {
         return [
             'id' => 'id',
@@ -39,7 +39,7 @@ class {{ class }} extends AutoComplete
         return (object) [];
     }
 
-    protected function placeholder(): string
+    public function placeholder(): string
     {
         return 'Search...';
     }
