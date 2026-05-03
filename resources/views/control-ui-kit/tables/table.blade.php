@@ -3,7 +3,7 @@
         orderby: '{{ $orderby }}',
         sort: '{{ $sort }}',
         href: function(name) {
-            return '{{ $pageUrl() }}?orderby={{ $orderby }}&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc');
+            return '{{ $pageUrl() }}?orderby=' + name + '&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc');
         },
     }"
 >
