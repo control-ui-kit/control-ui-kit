@@ -35,9 +35,13 @@
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
             {{ $attributes->except(['required', 'class'])->merge(['class' => $inputClasses()])->whereDoesntStartWith(['wire:model']) }}
         />
+        @unless($noClear)
         <x-dynamic-component :component="$iconClear" x-show="selected" class="{{ $clearClasses() }}" :size="$clearSize" @click="clear()" />
+        @endunless
+        @unless($noDropdownButton)
         <x-input-embed x-show="! show" icon-right :icon="$iconOpen" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
         <x-input-embed x-show="show" icon-right :icon="$iconClose" :styles="$iconStyles" :icon-size="$iconSize" @click="toggle()"  />
+        @endunless
     </div>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" x-model="value" />
     <div x-show="isOpen()" class="{{ $dropdownClasses() }}">
