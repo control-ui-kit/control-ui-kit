@@ -34,8 +34,8 @@ class ContentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <main class="background border color font other padding rounded shadow"> Content html
-            </main>
+            <div class="background border color font other padding rounded shadow"> Content html
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -51,8 +51,8 @@ class ContentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <main> Content html
-            </main>
+            <div> Content html
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -68,8 +68,8 @@ class ContentTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <main class="1 2 3 4 5 6 7 8"> Content html
-            </main>
+            <div class="1 2 3 4 5 6 7 8"> Content html
+            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

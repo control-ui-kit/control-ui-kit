@@ -55,6 +55,8 @@ class AutoComplete extends Component
     private ?string $model = null;
     public array $preloadConfig = [];
     public array $focusConfig = [];
+    public bool $noClear;
+    public bool $noDropdownButton;
 
     public function __construct(
         string $name,
@@ -85,6 +87,8 @@ class AutoComplete extends Component
         string $selectedText = null,
         string $noResultsText = null,
         bool $preload = null,
+        bool $noClear = false,
+        bool $noDropdownButton = false,
 
         string $background = null,
         string $border = null,
@@ -205,6 +209,8 @@ class AutoComplete extends Component
         $this->value = old($name, $value ?? '');
         $this->type = $type;
         $this->focus = $focus;
+        $this->noClear = $noClear;
+        $this->noDropdownButton = $noDropdownButton;
         $input_mode = $this->setMode($src, $type);
 
         if ($input_mode === 'model') {
@@ -385,12 +391,12 @@ class AutoComplete extends Component
         $this->optionConfig['min'] = (int) $this->style($this->component, $mode . '-chars', $minChars);
 
         $this->selected = $selected;
-        $this->urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
+        $urlLimit = $this->style($this->component, 'url-limit', $urlLimit);
 
         if ($input_mode === 'ajax' && $preload) {
             $this->preloadConfig = [
                 'url' => $src,
-                'limit_string' => $this->urlLimit,
+                'limit_string' => $urlLimit,
             ];
             $input_mode = 'data';
         }
@@ -407,7 +413,7 @@ class AutoComplete extends Component
                 'lookup_url' => $this->lookup,
                 'id_string' => $this->style($this->component, 'url-id', $urlId),
                 'search_string' => $this->style($this->component, 'url-search', $urlSearch),
-                'limit_string' => $this->urlLimit,
+                'limit_string' => $urlLimit,
             ];
         }
 
@@ -419,14 +425,14 @@ class AutoComplete extends Component
         if ($input_mode === 'model' && $preload) {
             $this->preloadConfig = [
                 'url' => $this->source,
-                'limit_string' => $this->urlLimit,
+                'limit_string' => $urlLimit,
             ];
         }
 
         if ($this->focus && ! $this->type) {
             $this->focusConfig = [
                 'url' => $this->focus,
-                'limit_string' => $this->urlLimit,
+                'limit_string' => $urlLimit,
             ];
             $this->focus = [];
         }
