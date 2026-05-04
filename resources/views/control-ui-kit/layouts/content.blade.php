@@ -1,3 +1,3 @@
-<main {{ $attributes->merge($classes()) }}>
+<div {{ $attributes->merge($classes()) }}>
     {{ $slot }}
-</main>
+</div>
