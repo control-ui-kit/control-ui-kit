@@ -832,6 +832,21 @@ window.Components = {
             }
         }
     },
+    inputImageUpload() {
+        return {
+            src: '',
+            previewImage(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => { this.src = e.target.result; };
+                    reader.readAsDataURL(file);
+                } else {
+                    this.src = '';
+                }
+            },
+        }
+    },
     flatpickr(options) {
         return {
             ...options,
