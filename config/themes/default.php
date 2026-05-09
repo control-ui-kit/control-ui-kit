@@ -900,6 +900,33 @@ return [
         'input-shadow' => '',
     ],
 
+    'input-image-upload' => [
+        'accept' => 'image/jpeg,image/png,image/gif,image/webp,image/svg+xml',
+        'capture' => '',
+        'display' => 'inline',
+        'container-above' => 'flex flex-col gap-2',
+        'container-inline' => 'flex items-center gap-2',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => 'text-sm',
+        'input-other' => 'block w-full appearance-none file:mr-4 file:px-2 file:border-input file:h-8 file:border-r file:text-input',
+        'input-padding' => 'py-0 px-0 h-8',
+        'input-rounded' => '',
+        'input-shadow' => '',
+
+        'preview-background' => '',
+        'preview-border' => 'border border-input',
+        'preview-color' => '',
+        'preview-other' => 'object-cover',
+        'preview-padding' => '',
+        'preview-rounded' => 'rounded',
+        'preview-shadow' => '',
+        'preview-width' => 'w-9',
+        'preview-height' => 'h-9',
+    ],
+
     'input-number' => [
         'decimals' => 0,
         'default' => 0,
