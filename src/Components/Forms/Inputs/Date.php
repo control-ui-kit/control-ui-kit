@@ -194,7 +194,7 @@ class Date extends Component
     public function locale(): string
     {
         return match ($this->lang) {
-            'en_GB', 'en_US' => 'default',
+            'en', 'en_GB', 'en_US' => 'default',
             default => $this->lang,
         };
     }
