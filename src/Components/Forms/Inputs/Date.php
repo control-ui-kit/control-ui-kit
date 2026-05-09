@@ -193,10 +193,7 @@ class Date extends Component
 
     public function locale(): string
     {
-        return match ($this->lang) {
-            'en', 'en_GB', 'en_US' => 'default',
-            default => $this->lang,
-        };
+        return str_starts_with($this->lang, 'en') ? 'default' : $this->lang;
     }
 
     private function setTimeFromFormat(): void

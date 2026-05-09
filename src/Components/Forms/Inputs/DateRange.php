@@ -144,10 +144,7 @@ class DateRange extends Component
 
     public function locale(): string
     {
-        return match ($this->lang) {
-            'en_GB', 'en_US' => 'default',
-            default => $this->lang,
-        };
+        return str_starts_with($this->lang, 'en') ? 'default' : $this->lang;
     }
 
     public function setValue(): string
