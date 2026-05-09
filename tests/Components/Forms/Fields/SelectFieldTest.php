@@ -142,7 +142,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Language</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>
@@ -181,7 +181,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Language</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>
@@ -220,7 +220,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Language</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>
@@ -259,7 +259,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>Language</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -302,7 +302,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>Language</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -346,7 +346,7 @@ class SelectFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="language" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>Language</span> </p>
                     <p class="help-style">Some help text</p>
                 </label>

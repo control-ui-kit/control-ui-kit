@@ -463,6 +463,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs leading-relaxed mt-2',
         'wrapper' => 'flex items-start space-x-2 min-h-[2rem]',
     ],
 
@@ -475,6 +476,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs mt-2',
         'wrapper' => 'md:flex md:items-start md:space-x-2 min-h-[2rem]',
     ],
 
@@ -486,6 +488,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs mt-2',
         'wrapper' => 'min-h-[2rem]',
     ],
 

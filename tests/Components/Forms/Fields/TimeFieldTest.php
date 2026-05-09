@@ -112,7 +112,7 @@ class TimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="time_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>time</span> </p>
                 </label>
                 <div class="content-style">
@@ -141,7 +141,7 @@ class TimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="time_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>time</span> </p>
                 </label>
                 <div class="content-style">
@@ -170,7 +170,7 @@ class TimeFieldTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="time_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>time</span> </p>
                 </label>
                 <div class="content-style">

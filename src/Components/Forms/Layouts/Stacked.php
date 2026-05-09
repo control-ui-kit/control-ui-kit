@@ -19,6 +19,8 @@ class Stacked extends Component
     public ?string $input;
     public ?string $label;
     public ?string $help;
+    public string $tooltip;
+    public string $underneath;
     public bool $required = false;
 
     public ?string $contentStyle;
@@ -28,6 +30,7 @@ class Stacked extends Component
     public ?string $requiredSize;
     public ?string $slotStyle;
     public ?string $textStyle;
+    public ?string $underneathStyle;
     public ?string $wrapper;
     public array $errorStyles;
     public array $labelStyles;
@@ -36,6 +39,7 @@ class Stacked extends Component
         string $content = null,
         string $helpStyle = null,
         string $labelStyle = null,
+        string $underneathStyle = null,
         string $requiredColor = null,
         string $requiredSize = null,
         string $slot = null,
@@ -61,6 +65,8 @@ class Stacked extends Component
         string $label = null,
         string $input = null,
         string $help = null,
+        string $tooltip = null,
+        string $underneath = null,
         bool $required = false
     ) {
         $this->name = $name;
@@ -68,6 +74,8 @@ class Stacked extends Component
         $this->input = $input;
         $this->label = $label;
         $this->help = $help;
+        $this->tooltip = $tooltip ?? '';
+        $this->underneath = $underneath ?? '';
         $this->required = $required;
 
         $this->errorStyles = [
@@ -91,6 +99,7 @@ class Stacked extends Component
         $this->contentStyle = $this->style($this->component, 'content', $content);
         $this->helpStyle = $this->style($this->component, 'help', $helpStyle);
         $this->labelStyle = $this->style($this->component, 'label', $labelStyle);
+        $this->underneathStyle = $this->style($this->component, 'underneath', $underneathStyle);
         $this->requiredColor = $this->style($this->component, 'required-color', $requiredColor);
         $this->requiredSize = $this->style($this->component, 'required-size', $requiredSize);
         $this->slotStyle = $this->style($this->component, 'slot', $slot);

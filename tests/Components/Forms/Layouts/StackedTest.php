@@ -33,6 +33,7 @@ class StackedTest extends ComponentTestCase
         Config::set('themes.default.form-layout-stacked.required-size', 'required-size');
         Config::set('themes.default.form-layout-stacked.required-color', 'required-color');
         Config::set('themes.default.form-layout-stacked.slot', 'slot-style');
+        Config::set('themes.default.form-layout-stacked.underneath', 'underneath-style');
         Config::set('themes.default.form-layout-stacked.wrapper', 'wrapper');
 
         Config::set('themes.default.input-text.background', 'background');
@@ -283,6 +284,34 @@ class StackedTest extends ComponentTestCase
                     </div>
                     <div class="error-color error-font error-other error-padding"> This is a test message </div>
                     <p class="help-style">::Help</p>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_stacked_layout_component_can_be_rendered_with_underneath_text(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-stacked name="test" label="::Label" help="::Help" underneath="::Underneath" input="input-text" onblur="test()" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>::Label</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="test" type="text" id="test" class="background border color font other padding rounded shadow width" onblur="test()" />
+                    </div>
+                    <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    <p class="help-style">::Help</p>
+                    <p class="underneath-style">::Underneath</p>
                 </div>
             </div>
             HTML;
