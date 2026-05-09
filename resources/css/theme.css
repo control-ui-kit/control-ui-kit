@@ -169,6 +169,12 @@
     .hover\:bg-input-option-hover:hover { background-color: rgb(var(--input-option-bg-hover)); }
     .bg-input-option-focus { background-color: rgb(var(--input-option-bg-hover)) !important; }
 
+    .file\:bg-input {
+        &::file-selector-button {
+            background-color: rgb(var(--input-muted-bg));
+        }
+    }
+
     .bg-modal { background-color: rgb(var(--modal-bg)); }
     .bg-modal-blur { background-color: rgb(var(--modal-blur-bg)); }
     .bg-modal-header { background-color: rgb(var(--modal-header-bg)); }
@@ -302,6 +308,12 @@
     .border-input { border-color: rgb(var(--input-border)); }
     .border-input-focus:focus { border-color: rgb(var(--input-focus-border)); }
 
+    .file\:border-input {
+        &::file-selector-button {
+            border-color: rgb(var(--input-border));
+        }
+    }
+
     /* Modal */
 
     .border-modal { border-color: rgb(var(--modal-border)); }
@@ -320,6 +332,13 @@
 
     .text-login-placeholder { color: rgb(var(--login-placeholder)); }
 
+    .file\:text-input {
+        &::file-selector-button {
+            color: rgb(var(--default-hover));
+            font-variant: small-caps;
+            text-transform: lowercase;
+        }
+    }
 
     /* Core */
 

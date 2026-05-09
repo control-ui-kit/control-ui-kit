@@ -879,6 +879,24 @@ return [
         'type' => 'email',
     ],
 
+    'input-file-upload' => [
+        'accept' => '',
+        'capture' => '',
+        'icon-left' => 'icon-upload',
+        'icon-left-show' => 'icon-invisible',
+        'icon-right' => 'none',
+        'icon-right-show' => 'icon-invisible',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => 'text-sm',
+        'input-other' => 'block w-full appearance-none file:mr-4 file:px-2 file:border-input file:h-8 file:border-r file:text-input',
+        'input-padding' => 'py-0 px-0 h-8',
+        'input-rounded' => '',
+        'input-shadow' => '',
+    ],
+
     'input-number' => [
         'decimals' => 0,
         'default' => 0,
