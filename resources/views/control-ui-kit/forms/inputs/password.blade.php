@@ -18,7 +18,7 @@
     />
     @if ($iconRight)
         <x-input-embed x-show="type == 'password'" icon-left :icon="$iconRight" :styles="$iconRightStyles" :icon-size="$iconRightSize" x-on:click="showToggle" />
-        <x-input-embed x-show="type == 'text'" icon-Right :icon="$iconRightShow" :styles="$iconRightStyles" :icon-size="$iconRightSize" x-on:click="showToggle" />
+        <x-input-embed x-show="type == 'text'" icon-right :icon="$iconRightShow" :styles="$iconRightStyles" :icon-size="$iconRightSize" x-on:click="showToggle" />
     @endif
 </div>
 

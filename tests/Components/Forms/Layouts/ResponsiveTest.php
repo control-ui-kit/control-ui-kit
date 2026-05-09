@@ -34,7 +34,18 @@ class ResponsiveTest extends ComponentTestCase
         Config::set('themes.default.form-layout-responsive.required-size', 'required-size');
         Config::set('themes.default.form-layout-responsive.required-color', 'required-color');
         Config::set('themes.default.form-layout-responsive.slot', 'slot-style');
+        Config::set('themes.default.form-layout-responsive.underneath', 'underneath-style');
         Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
+
+        Config::set('themes.default.input-text.background', 'background');
+        Config::set('themes.default.input-text.border', 'border');
+        Config::set('themes.default.input-text.color', 'color');
+        Config::set('themes.default.input-text.font', 'font');
+        Config::set('themes.default.input-text.other', 'other');
+        Config::set('themes.default.input-text.padding', 'padding');
+        Config::set('themes.default.input-text.rounded', 'rounded');
+        Config::set('themes.default.input-text.shadow', 'shadow');
+        Config::set('themes.default.input-text.width', 'width');
 
         Config::set('themes.default.input-text.background', 'background');
         Config::set('themes.default.input-text.border', 'border');
@@ -58,7 +69,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -115,7 +126,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="">
-                <label class="">
+                <label for="test" class="">
                     <p class="">
                         <span>::Label</span>
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -172,7 +183,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="9">
-                <label class="14 15 16 17 18 19 20 21 2">
+                <label for="test" class="14 15 16 17 18 19 20 21 2">
                     <p class="3">
                         <span>::Label</span>
                         <svg class="6 7 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -203,7 +214,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -229,7 +240,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper float-right">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -257,7 +268,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -283,7 +294,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style"> <span>::Label</span> </p>
                     <p class="help-style">::Help</p>
                 </label>
@@ -311,7 +322,7 @@ class ResponsiveTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div class="wrapper">
-                <label class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                <label for="test_custom" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
                     <p class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -324,6 +335,38 @@ class ResponsiveTest extends ComponentTestCase
                         <div class="slot-style"> ::SLOT </div>
                         <div class="error-color error-font error-other error-padding"> This is a test message </div>
                         <p class="help-mobile">::Help</p>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_responsive_layout_component_can_be_rendered_with_underneath_text(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-responsive name="test" for="test_custom" label="::Label" help="::Help" underneath="::Underneath" required>::SLOT</x-form-layout-responsive>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="test_custom" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>::Label</span>
+                        <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
+                            </svg>
+                        </p>
+                        <p class="help-style">::Help</p>
+                    </label>
+                    <div class="content-style">
+                        <div class="slot-style"> ::SLOT </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                        <p class="help-mobile">::Help</p>
+                        <p class="underneath-style">::Underneath</p>
                     </div>
                 </div>
             HTML;

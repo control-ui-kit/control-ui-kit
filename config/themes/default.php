@@ -463,6 +463,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs leading-relaxed mt-2',
         'wrapper' => 'flex items-start space-x-2 min-h-[2rem]',
     ],
 
@@ -475,6 +476,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs mt-2',
         'wrapper' => 'md:flex md:items-start md:space-x-2 min-h-[2rem]',
     ],
 
@@ -486,6 +488,7 @@ return [
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
         'text' => 'font-normal flex items-center space-x-1.5 min-h-[2rem]',
+        'underneath' => 'text-xs mt-2',
         'wrapper' => 'min-h-[2rem]',
     ],
 
@@ -877,6 +880,24 @@ return [
         'prefix-text' => '@',
         'placeholder' => 'name@example.com',
         'type' => 'email',
+    ],
+
+    'input-file-upload' => [
+        'accept' => '',
+        'capture' => '',
+        'icon-left' => 'icon-upload',
+        'icon-left-show' => 'icon-invisible',
+        'icon-right' => 'none',
+        'icon-right-show' => 'icon-invisible',
+
+        'input-background' => 'bg-input',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => 'text-sm',
+        'input-other' => 'block w-full appearance-none file:mr-4 file:px-2 file:border-input file:h-8 file:border-r file:text-input',
+        'input-padding' => 'py-0 px-0 h-8',
+        'input-rounded' => '',
+        'input-shadow' => '',
     ],
 
     'input-number' => [
