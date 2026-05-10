@@ -1575,6 +1575,65 @@ return [
         ],
     ],
 
+    'progress-bar' => [
+
+        'background' => 'bg-progress-track',
+        'border' => '',
+        'color' => '',
+        'font' => '',
+        'other' => 'overflow-hidden relative',
+        'padding' => '',
+        'rounded' => 'rounded-full',
+        'shadow' => '',
+        'width' => 'w-full',
+
+        'size' => 'md',
+        'size-xs' => 'h-1',
+        'size-sm' => 'h-2',
+        'size-md' => 'h-3',
+        'size-lg' => 'h-4',
+        'size-xl' => 'h-6',
+
+        'bar-background' => '',
+        'bar-other' => 'h-full transition-all duration-300 ease-in-out',
+        'bar-rounded' => '',
+        'bar-animated' => 'progress-bar-stripes',
+
+        'label-color' => '',
+        'label-font' => 'text-xs font-medium',
+        'label-other' => 'absolute inset-0 flex items-center justify-center',
+
+        'brand' => [
+            'bar-background' => 'bg-progress-brand',
+            'label-color' => 'text-progress-brand-label',
+        ],
+
+        'info' => [
+            'bar-background' => 'bg-progress-info',
+            'label-color' => 'text-progress-info-label',
+        ],
+
+        'success' => [
+            'bar-background' => 'bg-progress-success',
+            'label-color' => 'text-progress-success-label',
+        ],
+
+        'danger' => [
+            'bar-background' => 'bg-progress-danger',
+            'label-color' => 'text-progress-danger-label',
+        ],
+
+        'warning' => [
+            'bar-background' => 'bg-progress-warning',
+            'label-color' => 'text-progress-warning-label',
+        ],
+
+        'muted' => [
+            'bar-background' => 'bg-progress-muted',
+            'label-color' => 'text-progress-muted-label',
+        ],
+    ],
+
     'table' => [
 
         # TODO - test

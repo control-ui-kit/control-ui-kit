@@ -873,6 +873,19 @@ window.Components = {
             ...options,
         }
     },
+    progressBar(options) {
+        return {
+            value: options.value !== undefined ? options.value : 0,
+            min: options.min !== undefined ? options.min : 0,
+            max: options.max !== undefined ? options.max : 100,
+            get percentage() {
+                if (this.max <= this.min) return 0;
+                const pct = ((this.value - this.min) / (this.max - this.min)) * 100;
+                return Math.min(100, Math.max(0, Math.round(pct)));
+            },
+            ...options,
+        }
+    },
     flatpickr(options) {
         return {
             ...options,

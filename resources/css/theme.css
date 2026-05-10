@@ -105,6 +105,27 @@
     .bg-pill-muted { background-color: rgb(var(--pill-muted-bg)); }
     .bg-pill-warning { background-color: rgb(var(--pill-warning-bg)); }
 
+    /* Progress Bar */
+
+    .bg-progress-track { background-color: rgb(var(--progress-track-bg)); }
+    .bg-progress-brand { background-color: rgb(var(--progress-brand-bg)); }
+    .bg-progress-info { background-color: rgb(var(--progress-info-bg)); }
+    .bg-progress-success { background-color: rgb(var(--progress-success-bg)); }
+    .bg-progress-danger { background-color: rgb(var(--progress-danger-bg)); }
+    .bg-progress-warning { background-color: rgb(var(--progress-warning-bg)); }
+    .bg-progress-muted { background-color: rgb(var(--progress-muted-bg)); }
+
+    .progress-bar-stripes {
+        background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+        background-size: 1rem 1rem;
+        animation: progress-bar-stripes 1s linear infinite;
+    }
+
+    @keyframes progress-bar-stripes {
+        from { background-position: 1rem 0; }
+        to { background-position: 0 0; }
+    }
+
     /* Tables */
 
     .bg-table-header { background-color: rgb(var(--table-header-bg)); }
@@ -597,6 +618,15 @@
     .text-pill-success { color: rgb(var(--pill-success)); }
     .text-pill-warning { color: rgb(var(--pill-warning)); }
 
+
+    /* Progress Bar */
+
+    .text-progress-brand-label { color: rgb(var(--progress-brand-label)); }
+    .text-progress-info-label { color: rgb(var(--progress-info-label)); }
+    .text-progress-success-label { color: rgb(var(--progress-success-label)); }
+    .text-progress-danger-label { color: rgb(var(--progress-danger-label)); }
+    .text-progress-warning-label { color: rgb(var(--progress-warning-label)); }
+    .text-progress-muted-label { color: rgb(var(--progress-muted-label)); }
 
     /* Tables */
 
