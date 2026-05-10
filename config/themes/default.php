@@ -960,7 +960,7 @@ return [
         'tag-shadow' => '',
 
         'tag-close-color' => 'text-tag',
-        'tag-close-other' => 'leading-none focus:outline-none',
+        'tag-close-other' => 'leading-none focus:outline-none cursor-pointer',
         'tag-close-size' => 'text-base',
     ],
 
