@@ -847,6 +847,32 @@ window.Components = {
             },
         }
     },
+    inputTags(options) {
+        return {
+            tags: options.tags || [],
+            input: '',
+            maxTags: options.maxTags || 0,
+            addTag() {
+                const tag = this.input.trim();
+                if (!tag || this.tags.includes(tag)) return;
+                if (this.maxTags > 0 && this.tags.length >= this.maxTags) return;
+                this.tags.push(tag);
+                this.input = '';
+            },
+            removeTag(index) {
+                this.tags.splice(index, 1);
+            },
+            onKeydown(event) {
+                if ((event.key === 'Enter' || event.key === 'Tab' || event.key === ',') && this.input.trim()) {
+                    event.preventDefault();
+                    this.addTag();
+                } else if (event.key === 'Backspace' && !this.input) {
+                    this.removeTag(this.tags.length - 1);
+                }
+            },
+            ...options,
+        }
+    },
     flatpickr(options) {
         return {
             ...options,

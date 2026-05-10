@@ -175,6 +175,8 @@
         }
     }
 
+    .bg-tag { background-color: rgb(var(--input-muted-bg)); }
+
     .bg-modal { background-color: rgb(var(--modal-bg)); }
     .bg-modal-blur { background-color: rgb(var(--modal-blur-bg)); }
     .bg-modal-header { background-color: rgb(var(--modal-header-bg)); }
@@ -672,6 +674,7 @@
     .text-input-option-sub { color: rgb(var(--input-option-sub)); }
     .hover\:text-input-option-sub-hover:hover { color: rgb(var(--input-option-sub-hover)); }
 
+    .text-tag { color: rgb(var(--input)); }
 
     /* Modals */
 

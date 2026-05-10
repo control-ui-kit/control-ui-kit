@@ -927,6 +927,43 @@ return [
         'preview-height' => 'h-9',
     ],
 
+    'input-tags' => [
+        'max' => '0',
+        'placeholder' => '',
+
+        'background' => 'bg-input',
+        'border' => 'border border-input',
+        'color' => '',
+        'font' => 'text-sm',
+        'other' => 'flex flex-wrap items-center gap-1 cursor-text',
+        'padding' => 'px-2 py-1 min-h-[2rem]',
+        'rounded' => 'rounded',
+        'shadow' => '',
+        'width' => '',
+
+        'input-background' => '',
+        'input-border' => 'border-0 focus:outline-hidden focus:ring-0',
+        'input-color' => 'text-input placeholder-input',
+        'input-font' => 'text-sm',
+        'input-other' => 'flex-1 min-w-[6rem] bg-transparent',
+        'input-padding' => 'p-0 h-6',
+        'input-rounded' => '',
+        'input-shadow' => '',
+
+        'tag-background' => 'bg-tag',
+        'tag-border' => '',
+        'tag-color' => 'text-tag',
+        'tag-font' => 'text-xs',
+        'tag-other' => 'inline-flex items-center gap-1',
+        'tag-padding' => 'px-2 py-0.5',
+        'tag-rounded' => 'rounded',
+        'tag-shadow' => '',
+
+        'tag-close-color' => 'text-tag',
+        'tag-close-other' => 'leading-none focus:outline-none',
+        'tag-close-size' => 'text-base',
+    ],
+
     'input-number' => [
         'decimals' => 0,
         'default' => 0,
