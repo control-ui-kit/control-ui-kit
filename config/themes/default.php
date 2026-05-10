@@ -923,8 +923,8 @@ return [
         'preview-padding' => '',
         'preview-rounded' => 'rounded',
         'preview-shadow' => '',
-        'preview-width' => 'w-9',
-        'preview-height' => 'h-9',
+        'preview-width' => 'w-8.5',
+        'preview-height' => 'h-8.5',
     ],
 
     'input-tags' => [
