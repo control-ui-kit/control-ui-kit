@@ -136,6 +136,8 @@ return [
 
         'pill' => \ControlUIKit\Components\Pills\Pill::class,
 
+        'progress-bar' => \ControlUIKit\Components\Progress\Bar::class,
+
         'table' => \ControlUIKit\Components\Tables\Table::class,
         'table-action' => \ControlUIKit\Components\Tables\Action::class,
         'table-action-options' => \ControlUIKit\Components\Tables\ActionOptions::class,
