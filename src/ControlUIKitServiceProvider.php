@@ -2,25 +2,13 @@
 
 namespace ControlUIKit;
 
-use ControlUIKit\Console\BrandColorCommand;
-use ControlUIKit\Console\GrayColorCommand;
 use ControlUIKit\Console\MakeAutocompleteCommand;
-use ControlUIKit\Console\ThemeCommand;
+use ControlUIKit\Console\ThemeCreatorCommand;
+use ControlUIKit\Console\ThemeUpdaterCommand;
 use ControlUIKit\Controllers\AjaxClassController;
 use ControlUIKit\Controllers\AjaxModelController;
-use ControlUIKit\Controllers\ControlUIKitDateRangeController;
-use ControlUIKit\Controllers\ControlUIKitMapAmericaDataController;
-use ControlUIKit\Controllers\ControlUIKitMapAustraliaDataController;
-use ControlUIKit\Controllers\ControlUIKitMapBrazilDataController;
-use ControlUIKit\Controllers\ControlUIKitMapCanadaDataController;
 use ControlUIKit\Controllers\ControlUIKitMapController;
 use ControlUIKit\Controllers\ControlUIKitMapDataController;
-use ControlUIKit\Controllers\ControlUIKitMapFranceDataController;
-use ControlUIKit\Controllers\ControlUIKitMapGermanyDataController;
-use ControlUIKit\Controllers\ControlUIKitMapGreatBritainDataController;
-use ControlUIKit\Controllers\ControlUIKitMapMexicoDataController;
-use ControlUIKit\Controllers\ControlUIKitMapNetherlandsDataController;
-use ControlUIKit\Controllers\ControlUIKitMapSpainDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Controllers\FlatPickrYearPluginController;
@@ -50,10 +38,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                BrandColorCommand::class,
-                GrayColorCommand::class,
                 MakeAutocompleteCommand::class,
-                ThemeCommand::class,
+                ThemeCreatorCommand::class,
+                ThemeUpdaterCommand::class,
             ]);
         }
     }
