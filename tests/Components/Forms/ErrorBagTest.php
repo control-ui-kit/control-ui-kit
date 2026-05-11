@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Tests\Components\Forms;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
@@ -123,6 +126,58 @@ class ErrorBagTest extends ComponentTestCase
                     </div>
                 </div>
             HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_error_bag_component_renders_title_from_session_errors(): void
+    {
+        $messageBag = new MessageBag(['test' => ['error message']]);
+        $viewErrorBag = (new ViewErrorBag)->put('default', $messageBag);
+        Session::put('errors', $viewErrorBag);
+        $this->withViewErrors(['test' => 'error message']);
+
+        $template = <<<'HTML'
+            <x-error-bag />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background danger-background border danger-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="shrink-0 mr-3">
+                        <svg class="danger-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <h3 class="title-color danger-title-color title-font title-size title-other">
+                                There was 1 error
+                            </h3>
+                            <div class="text-color text-alert-danger-text text-font text-size text-other">
+                                <ul class="list-disc pl-5">
+                                    <li>error message</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_error_bag_component_uses_translation_string_when_use_translation_is_enabled(): void
+    {
+        Config::set('themes.default::control-ui-kit.error-bag.use-translation', true);
+        Config::set('themes.default.error-bag.locale-title-lang-string', 'control-ui-kit::control-ui-kit.error-bag.title');
+
+        $template = <<<'HTML'
+            <x-error-bag />
+            HTML;
+
+        $expected = '';
 
         $this->assertComponentRenders($expected, $template);
     }

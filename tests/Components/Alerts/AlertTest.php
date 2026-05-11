@@ -683,4 +683,28 @@ class AlertTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function an_alert_component_falls_back_to_default_type_when_default_alert_config_is_invalid(): void
+    {
+        Config::set('themes.default.alert.default-alert', 'invalid');
+
+        $template = <<<'HTML'
+            <x-alert>
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

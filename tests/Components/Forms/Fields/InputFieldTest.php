@@ -38,6 +38,15 @@ class InputFieldTest extends ComponentTestCase
         Config::set('themes.default.form-layout-responsive.slot', 'slot-style');
         Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
 
+        Config::set('themes.default.form-layout-stacked.content', 'stacked-content');
+        Config::set('themes.default.form-layout-stacked.help', 'stacked-help');
+        Config::set('themes.default.form-layout-stacked.text', 'stacked-text');
+        Config::set('themes.default.form-layout-stacked.label', 'stacked-label');
+        Config::set('themes.default.form-layout-stacked.required-size', 'stacked-required-size');
+        Config::set('themes.default.form-layout-stacked.required-color', 'stacked-required-color');
+        Config::set('themes.default.form-layout-stacked.slot', 'stacked-slot');
+        Config::set('themes.default.form-layout-stacked.wrapper', 'stacked-wrapper');
+
         Config::set('themes.default.input.decimals', '');
         Config::set('themes.default.input.default', '');
         Config::set('themes.default.input.type', 'text');
@@ -218,6 +227,31 @@ class InputFieldTest extends ComponentTestCase
                         <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" onclick="alert('here')" />
                     </div>
                     <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_explicit_layout(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-input name="track" type="text" label="Track" placeholder="Track Name" layout="stacked" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="stacked-wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow stacked-label">
+                    <p class="stacked-text"> <span>Track</span> </p>
+                </label>
+                <div class="stacked-content">
+                    <div class="stacked-slot">
+                        <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                    </div>
                 </div>
             </div>
             HTML;

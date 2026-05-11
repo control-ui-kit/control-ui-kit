@@ -420,4 +420,20 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function a_text_component_falls_back_to_default_type_when_default_text_config_is_invalid(): void
+    {
+        Config::set('themes.default.text.default-text', 'invalid');
+
+        $template = <<<'HTML'
+            <x-text>Text content</x-text>
+            HTML;
+
+        $expected = <<<'HTML'
+            <span class="color default-color font default-font other default-other size default-size">Text content</span>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
