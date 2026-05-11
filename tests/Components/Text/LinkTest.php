@@ -14,7 +14,7 @@ class LinkTest extends ComponentTestCase
     {
         parent::setUp();
 
-        Config::set('themes.default.link.default-text', 'default');
+        Config::set('themes.default.link.link-default', 'default');
 
         Config::set('themes.default.link.color', 'color');
         Config::set('themes.default.link.font', 'font');
@@ -424,7 +424,7 @@ class LinkTest extends ComponentTestCase
     #[Test]
     public function a_link_component_falls_back_to_default_type_when_default_link_config_is_invalid(): void
     {
-        Config::set('themes.default.link.default-link', 'invalid');
+        Config::set('themes.default.link.link-default', 'invalid');
 
         $template = <<<'HTML'
             <x-link>Link content</x-link>
