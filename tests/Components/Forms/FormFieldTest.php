@@ -38,6 +38,17 @@ class FormFieldTest extends ComponentTestCase
         Config::set('themes.default.form-layout-stacked.underneath', 'underneath-style');
         Config::set('themes.default.form-layout-stacked.wrapper', 'wrapper');
 
+        Config::set('themes.default.form-layout-responsive.content', 'r-content-style');
+        Config::set('themes.default.form-layout-responsive.help', 'r-help-style');
+        Config::set('themes.default.form-layout-responsive.help-mobile', 'r-help-mobile');
+        Config::set('themes.default.form-layout-responsive.text', 'r-text-style');
+        Config::set('themes.default.form-layout-responsive.label', 'r-label-style');
+        Config::set('themes.default.form-layout-responsive.required-size', 'r-required-size');
+        Config::set('themes.default.form-layout-responsive.required-color', 'r-required-color');
+        Config::set('themes.default.form-layout-responsive.slot', 'r-slot-style');
+        Config::set('themes.default.form-layout-responsive.underneath', 'r-underneath-style');
+        Config::set('themes.default.form-layout-responsive.wrapper', 'r-wrapper');
+
         Config::set('themes.default.input-text.background', 'background');
         Config::set('themes.default.input-text.border', 'border');
         Config::set('themes.default.input-text.color', 'color');
@@ -147,6 +158,29 @@ class FormFieldTest extends ComponentTestCase
                     </div>
                     <div class="error-color error-font error-other error-padding"> This is a test message </div>
                     <p class="underneath-style">::Underneath</p>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_form_field_component_defaults_to_responsive_layout_when_no_layout_is_specified(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-form-field name="test" label="::Label" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="r-wrapper">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow r-label-style">
+                    <p class="r-text-style"> <span>::Label</span> </p>
+                </label>
+                <div class="r-content-style">
+                    <div class="r-slot-style"></div>
                 </div>
             </div>
             HTML;

@@ -1057,5 +1057,16 @@ class CellTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
+    #[Test]
+    public function a_table_cell_component_throws_exception_for_invalid_formatter(): void
+    {
+        $this->expectException(\Illuminate\View\ViewException::class);
+        $this->expectExceptionMessage('Formatter does not exist for [nonexistent]');
 
+        $template = <<<'HTML'
+            <x-table-cell data="test" format="nonexistent" />
+            HTML;
+
+        $this->assertComponentRenders('', $template);
+    }
 }

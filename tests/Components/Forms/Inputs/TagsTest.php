@@ -486,6 +486,33 @@ class TagsTest extends ComponentTestCase
     }
 
     #[Test]
+    public function the_input_tags_component_uses_old_array_input_when_available(): void
+    {
+        $session = app('session')->driver();
+        $session->flashInput(['tags' => ['apple', 'banana', 'orange']]);
+        request()->setLaravelSession($session);
+
+        $template = <<<'HTML'
+            <x-input-tags name="tags" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data='Components.inputTags({"tags": ["apple","banana","orange"], "maxTags": 0})' x-modelable="tags" class="background border color font other padding rounded shadow width">
+                <template x-for="(tag, index) in tags" :key="tag">
+                    <span class="tag-background tag-border tag-color tag-font tag-other tag-padding tag-rounded tag-shadow">
+                        <span x-text="tag"></span>
+                        <button type="button" x-on:click="removeTag(index)" class="tag-close-color tag-close-other tag-close-size">&times;</button>
+                        <input type="hidden" name="tags[]" :value="tag" />
+                    </span>
+                </template>
+                <input id="tags" type="text" x-model="input" x-on:keydown="onKeydown($event)" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
     public function the_input_tags_component_can_be_rendered_with_custom_attribute(): void
     {
         $template = <<<'HTML'

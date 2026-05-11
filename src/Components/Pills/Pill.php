@@ -59,7 +59,7 @@ class Pill extends Component
 
         } else {
 
-            $this->pillStyle = $this->pillStyle($pillStyle, [
+            $this->pillStyle = $this->pillStyle([
                 'brand' => $brand,
                 'danger' => $danger,
                 'default' => $default,
@@ -88,12 +88,8 @@ class Pill extends Component
         return view('control-ui-kit::control-ui-kit.pills.pill');
     }
 
-    private function pillStyle($pillStyle, $styles): string
+    private function pillStyle($styles): string
     {
-        if ($this->validStyle($pillStyle)) {
-            return $pillStyle;
-        }
-
         foreach ($styles as $style => $enable) {
             if ($enable) {
                 return $style;
@@ -101,11 +97,6 @@ class Pill extends Component
         }
 
         return 'default';
-    }
-
-    private function validStyle($style): bool
-    {
-        return in_array($style, $this->styles, true);
     }
 
     private function nameFormat(): string

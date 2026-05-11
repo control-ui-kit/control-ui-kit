@@ -420,4 +420,20 @@ class LinkTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function a_link_component_falls_back_to_default_type_when_default_link_config_is_invalid(): void
+    {
+        Config::set('themes.default.link.default-link', 'invalid');
+
+        $template = <<<'HTML'
+            <x-link>Link content</x-link>
+            HTML;
+
+        $expected = <<<'HTML'
+            <a class="color default-color font default-font other default-other size default-size">Link content</a>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
