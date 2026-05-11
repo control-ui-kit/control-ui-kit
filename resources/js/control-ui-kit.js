@@ -570,7 +570,7 @@ window.Components = {
                 })
             },
             setSelected(init) {
-                if (this.value && this.options && (! init || this.focus.length === 0)) {
+                if (this.value !== null && this.value !== '' && this.options && (! init || this.focus.length === 0)) {
                     let selected = this.options.filter(option => {
                         return option.id.toString() === this.value.toString()
                     })
@@ -587,7 +587,7 @@ window.Components = {
                     this.chosen = null;
                 } else if (init && this.options && this.focus.length > 0) {
                     this.lookupId()
-                } else if (this.isAjax && this.ajax['lookup_url'] && this.value && ! this.options) {
+                } else if (this.isAjax && this.ajax['lookup_url'] && this.value !== null && this.value !== '' && ! this.options) {
                     this.lookupId()
                 } else {
                     this.clear()
