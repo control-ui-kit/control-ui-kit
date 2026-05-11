@@ -39,7 +39,7 @@ class IconsTest extends ComponentTestCase
     }
 
     #[Test]
-    public function all_file_icons_components_can_be_rendered(): void
+    public function all_file_icon_components_can_be_rendered(): void
     {
         $icons = collect(config('control-ui-kit.icons'))
             ->keys()
@@ -48,6 +48,23 @@ class IconsTest extends ComponentTestCase
         foreach ($icons as $icon) {
             $template = '<x-dynamic-component component="' . $icon . '" />';
             $iconHtml = $this->getIconHtml('file/' . substr($icon, 5));
+
+            $expected = $this->indent($iconHtml);
+
+            $this->assertComponentRenders($expected, $template);
+        }
+    }
+
+    #[Test]
+    public function all_logo_icon_components_can_be_rendered(): void
+    {
+        $icons = collect(config('control-ui-kit.icons'))
+            ->keys()
+            ->filter(fn($key) => str($key)->startsWith('logo-'));
+
+        foreach ($icons as $icon) {
+            $template = '<x-dynamic-component component="' . $icon . '" />';
+            $iconHtml = $this->getIconHtml('logo/' . substr($icon, 5));
 
             $expected = $this->indent($iconHtml);
 
