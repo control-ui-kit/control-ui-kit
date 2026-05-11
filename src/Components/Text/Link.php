@@ -76,12 +76,12 @@ class Link extends Component
             }
         }
 
-        return ($default === 'default') ? $this->defaultText() : '';
+        return $default === 'default' ? $this->defaultText() : '';
     }
 
     private function defaultText()
     {
-        $primary = config($this->theme() . '.link.default-link', 'default');
+        $primary = config($this->theme() . '.link.link-default', 'default');
 
         if ($this->validType($primary)) {
             return $primary;
