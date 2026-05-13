@@ -1464,6 +1464,7 @@ return [
     'modal' => [
         'lang-keys' => [
             'close' => 'buttons.close',
+            'confirming' => 'buttons.confirming',
             'no' => 'buttons.no',
             'yes' => 'buttons.yes',
         ],

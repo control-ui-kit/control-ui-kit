@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Button extends Component
 {
-    use UseThemeFile, UseButtons;
+    use UseButtons, UseThemeFile;
 
     protected string $component = 'button';
 
@@ -27,27 +27,28 @@ class Button extends Component
     public string $action;
     public ?string $text;
     public bool $singleClick = false;
+    private array $extraAttrs = [];
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $cursor = null,
-        string $font = null,
-        string $iconSize = null,
-        string $iconStyle = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
-        string $href = null,
-        string $icon = null,
-        string $bstyle = null,
-        string $type = null,
-        string $text = null,
-        string $trans = null,
-        string $action = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $cursor = null,
+        ?string $font = null,
+        ?string $iconSize = null,
+        ?string $iconStyle = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
+        ?string $href = null,
+        ?string $icon = null,
+        ?string $bstyle = null,
+        ?string $type = null,
+        ?string $text = null,
+        ?string $trans = null,
+        ?string $action = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,
@@ -58,6 +59,7 @@ class Button extends Component
         bool $muted = false,
         bool $warning = false,
         bool $singleClick = false,
+        array $attrs = [],
     ) {
         $this->bstyle = $this->buttonVersion($bstyle, [
             'default' => $default,
@@ -102,6 +104,13 @@ class Button extends Component
         if ($this->type === 'submit') {
             $this->singleClick = true;
         }
+
+        $this->extraAttrs = $attrs;
+    }
+
+    public function withAttributes(array $attributes): static
+    {
+        return parent::withAttributes(array_merge($this->extraAttrs, $attributes));
     }
 
     public function render(): View

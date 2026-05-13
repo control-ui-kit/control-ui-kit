@@ -127,6 +127,7 @@ return [
         'toc' => \ControlUIKit\Components\Markdown\ToC::class,
 
         'modal' => \ControlUIKit\Components\Modals\Modal::class,
+        'modal-action' => \ControlUIKit\Components\Modals\Action::class,
         'modal-dialog' => \ControlUIKit\Components\Modals\Dialog::class,
         'modal-confirmation' => \ControlUIKit\Components\Modals\Confirmation::class,
 
