@@ -58,7 +58,8 @@
                 window.dispatchEvent(new CustomEvent('open-modal', {
                     detail: { id: '{{ $resultsModal }}', type: 'danger' }
                 }))
-            }),
+            })
+        },
         @endif
         width(maxWidth) {
             switch (maxWidth) {
