@@ -126,4 +126,30 @@ class TextFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_a_value_with_an_ampersand(): void
+    {
+        $this->withViewErrors(['track' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" value="Chris & Matt" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Track</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <input name="track" type="text" id="track" value="Chris &amp; Matt" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

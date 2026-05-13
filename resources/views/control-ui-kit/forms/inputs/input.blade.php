@@ -3,7 +3,7 @@
         name="{{ $name }}"
         type="{{ $type }}"
         id="{{ $id }}"
-        @if(! is_null($value)) value="{{ $value }}" @endif
+        @if(! is_null($value)) value="{!! e($value, false) !!}" @endif
         @if($placeholder) placeholder="{{ $placeholder }}" @endif
         @isset($min) min="{{ $min }}" @endisset
         @isset($max) max="{{ $max }}" @endisset
@@ -21,7 +21,7 @@
         <input name="{{ $name }}"
                type="{{ $type }}"
                id="{{ $id }}"
-               @if(! is_null($value)) value="{{ $value }}" @endif
+               @if(! is_null($value)) value="{!! e($value, false) !!}" @endif
                @if($placeholder) placeholder="{{ $placeholder }}" @endif
                @isset($min) min="{{ $min }}" @endisset
                @isset($max) max="{{ $max }}" @endisset
