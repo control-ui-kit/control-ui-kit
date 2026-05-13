@@ -122,7 +122,7 @@
 
             <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
                 <button type="button" x-on:click="show = false">{{ $no }}</button>
-                <button type="submit" :disabled="loading" x-on:click="loading = true">
+                <button type="submit" :disabled="loading">
                     <span x-show="!loading">{{ $yes }}</span>
                     <span x-show="loading">{{ $confirming }}</span>
                 </button>
