@@ -599,4 +599,18 @@ class TextTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function an_input_text_component_can_be_rendered_ampersand(): void
+    {
+        $template = <<<'HTML'
+            <x-input-text name="name" value="Chris & Matt" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="name" type="text" id="name" value="Chris &amp; Matt" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
