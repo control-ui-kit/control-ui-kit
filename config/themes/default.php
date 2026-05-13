@@ -458,7 +458,7 @@ return [
     'form-layout-inline' => [
         'content' => 'mt-1 w-1/2 sm:w-2/3 lg:w-3/4',
         'help' => 'block text-xs text-muted leading-relaxed pr-2',
-        'label' => 'w-1/2 sm:w-1/3 lg:w-1/4 leading-2 space-y-2',
+        'label' => 'w-1/2 sm:w-1/3 lg:w-1/4 leading-relaxed space-y-2',
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
@@ -471,7 +471,7 @@ return [
         'content' => 'mt-1 md:mt-0 w-full md:w-2/3 lg:w-3/4',
         'help' => 'hidden sm:block text-xs text-muted leading-relaxed pr-2',
         'help-mobile' => 'sm:hidden text-xs text-muted mt-2',
-        'label' => 'w-full md:w-1/3 lg:w-1/4 leading-2 space-y-2',
+        'label' => 'w-full md:w-1/3 lg:w-1/4 leading-relaxed space-y-2',
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
@@ -483,7 +483,7 @@ return [
     'form-layout-stacked' => [
         'content' => 'mt-1 w-full',
         'help' => 'text-xs text-muted mt-2',
-        'label' => 'w-full leading-2 space-y-2',
+        'label' => 'w-full leading-relaxed space-y-2',
         'required-color' => 'text-danger',
         'required-size' => 'w-2 h-2',
         'slot' => 'min-h-[2rem] flex items-center',
