@@ -133,11 +133,11 @@
 
             <div
                 class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                <x-button type="button" x-on:click="show = false" width="min-w-20 space-x-0!">{{ $no }}</x-button>
                 <x-button type="submit" x-bind:disabled="loading" width="min-w-20 space-x-0!" :single-click="false">
                     <span x-show="!loading">{{ $yes }}</span>
                     <span x-show="loading">{{ $confirming }}</span>
                 </x-button>
+                <x-button type="button" x-on:click="show = false" width="min-w-20 space-x-0!">{{ $no }}</x-button>
             </div>
         </form>
     </div>
