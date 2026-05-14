@@ -18,7 +18,7 @@
         prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
         autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() },
         detail: {
-            type: 'default',
+            type: '{{ $type }}',
         },
         maxWidth: '{{ $maxWidth }}',
         openModal() {
@@ -31,7 +31,7 @@
             this.loading = true
             let data = new FormData(form)
             @if($fields)
-            let allowed = {!! json_encode(array_map('trim', explode(',', $fields))) !!}
+            let allowed = {!! json_encode(array_map('trim', explode(',', $fields)), JSON_THROW_ON_ERROR) !!}
             let filtered = new FormData()
             for (let key of allowed) { if (data.has(key)) filtered.append(key, data.get(key)) }
             data = filtered
@@ -110,18 +110,30 @@
          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     >
-        <form method="POST" action="{{ $route }}"@if($action === 'ajax') x-on:submit.prevent="submitAction($event.target)"@endif>
+        <form method="POST" action="{{ $route }}"
+              @if($action === 'ajax') x-on:submit.prevent="submitAction($event.target)"@endif>
             @csrf
             @if($needsMethodSpoofing)
                 @method($method)
             @endif
 
             <div class="p-4">
+                @isset($title)
+
+                    <x-alert type="default" x-show="detail.type == 'default'">{{ $title }}</x-alert>
+                    <x-alert type="brand" x-show="detail.type == 'brand'">{{ $title }}</x-alert>
+                    <x-alert type="danger" x-show="detail.type == 'danger'">{{ $title }}</x-alert>
+                    <x-alert type="info" x-show="detail.type == 'info'">{{ $title }}</x-alert>
+                    <x-alert type="success" x-show="detail.type == 'success'">{{ $title }}</x-alert>
+                    <x-alert type="warning" x-show="detail.type == 'warning'">{{ $title }}</x-alert>
+
+                @endisset
                 {{ $slot }}
             </div>
 
-            <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                <button type="button" x-on:click="show = false">{{ $no }}</button>
+            <div
+                class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
+                <x-button type="button" x-on:click="show = false">{{ $no }}</x-button>
                 <button type="submit" :disabled="loading">
                     <span x-show="!loading">{{ $yes }}</span>
                     <span x-show="loading">{{ $confirming }}</span>
@@ -131,9 +143,8 @@
     </div>
 </div>
 @if($autoResultsModal)
-
     <x-modal-dialog id="{{ $resultsModal }}"
-        x-on:open-modal.window="if ($event.detail.id === '{{ $resultsModal }}') { detail = { ...detail, ...$event.detail }; openModal() }">
+                    x-on:open-modal.window="if ($event.detail.id === '{{ $resultsModal }}') { detail = { ...detail, ...$event.detail }; openModal() }">
         <x-slot name="footer">
             <button type="button" x-on:click="show = false" x-text="detail.button || '{{ $close }}'"></button>
         </x-slot>

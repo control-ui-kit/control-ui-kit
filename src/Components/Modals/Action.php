@@ -21,6 +21,7 @@ class Action extends Component
     public string $resultsModal;
     public bool $autoResultsModal;
     public bool $needsMethodSpoofing;
+    public string $type;
     public string $yes;
     public string $no;
     public string $confirming;
@@ -34,6 +35,7 @@ class Action extends Component
         string $action = 'post',
         string $fields = null,
         string $resultsModal = null,
+        string $type = 'default',
         string $yes = null,
         string $no = null,
         string $confirming = null,
@@ -44,6 +46,7 @@ class Action extends Component
         $this->method = strtoupper($method);
         $this->action = strtolower($action);
         $this->fields = $fields;
+        $this->type = $type;
 
         $this->autoResultsModal = $resultsModal === null;
         $this->resultsModal = $resultsModal ?? (($id ?? 'action') . '-results');
