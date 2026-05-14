@@ -11,7 +11,7 @@ use Tests\Components\ComponentTestCase;
 
 class SelectTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

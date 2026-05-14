@@ -18,18 +18,18 @@ class Section extends Component
     public ?string $sub_url;
 
     public function __construct(
-        string $header = null,
-        string $subText = null,
-        string $subUrl = null,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $spacing = null
+        ?string $header = null,
+        ?string $subText = null,
+        ?string $subUrl = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $spacing = null
     ) {
         $this->header = $header;
         $this->sub_text = $subText;

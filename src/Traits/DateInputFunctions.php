@@ -41,7 +41,7 @@ trait DateInputFunctions
     public function minYear(): int
     {
         if ($this->min) {
-            return (int)$this->getYearFromFormat($this->min);
+            return (int) $this->getYearFromFormat($this->min);
         }
 
         return (int) date('Y') - 10;
@@ -50,7 +50,7 @@ trait DateInputFunctions
     public function maxYear(): int
     {
         if ($this->max) {
-            return (int)$this->getYearFromFormat($this->max);
+            return (int) $this->getYearFromFormat($this->max);
         }
 
         return (int) date('Y') + 10;

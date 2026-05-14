@@ -2,8 +2,6 @@
 
 namespace Tests\Helpers\Formatters;
 
-use Carbon\Carbon;
-use ControlUIKit\Helpers\Formatters\DateFormatter;
 use ControlUIKit\Helpers\Formatters\DateTimeFormatter;
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase;
@@ -11,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 
 class DateTimeFormatterTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

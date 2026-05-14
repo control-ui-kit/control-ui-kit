@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class DateRangeTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -171,7 +171,6 @@ class DateRangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function an_input_date_range_component_will_rendered_with_week_numbers(): void
     {
@@ -188,7 +187,6 @@ class DateRangeTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_date_range_component_will_render_with_language_changed(): void
@@ -207,7 +205,6 @@ class DateRangeTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_date_range_component_will_render_with_a_different_display_format(): void

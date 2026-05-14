@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class ErrorTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -62,7 +62,6 @@ class ErrorTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_error_can_be_rendered_with_no_styles(): void

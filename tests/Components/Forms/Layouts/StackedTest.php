@@ -8,7 +8,7 @@ use Tests\Components\ComponentTestCase;
 
 class StackedTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -312,6 +312,30 @@ class StackedTest extends ComponentTestCase
                     <div class="error-color error-font error-other error-padding"> This is a test message </div>
                     <p class="help-style">::Help</p>
                     <p class="underneath-style">::Underneath</p>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_stacked_layout_component_ignores_size_and_width_props(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-stacked name="test" label="::Label" size="sm" label-width="w-1/3" input-width="w-2/3">::SLOT</x-form-layout-stacked>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>::Label</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style"> ::SLOT </div>
+                    <div class="error-color error-font error-other error-padding"> This is a test message </div>
                 </div>
             </div>
             HTML;

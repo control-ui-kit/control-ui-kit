@@ -38,7 +38,7 @@ class LogoutTest extends ComponentTestCase
         Config::set('themes.default.button.brand.color', 'brand-color');
         Config::set('themes.default.button.brand.icon', 'brand-icon');
 
-        Route::post('logout', function() {
+        Route::post('logout', function () {
             // ...
         })->name('logout');
     }
@@ -132,7 +132,6 @@ class LogoutTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_icon_only_button_logout_component_can_be_rendered(): void

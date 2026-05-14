@@ -2,8 +2,6 @@
 
 namespace ControlUIKit\Helpers;
 
-use Illuminate\Support\Arr;
-
 class MatrixChart
 {
     private array $parameters = [];

@@ -14,7 +14,7 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
-    use UseInputTheme, LivewireAttributes;
+    use LivewireAttributes, UseInputTheme;
 
     protected string $component = 'input';
 
@@ -43,87 +43,87 @@ class Input extends Component
 
     public function __construct(
         string $name,
-        string $id = null,
+        ?string $id = null,
 
-        string $decimals = null,
-        string $default = null,
-        float|string $max = null,
-        float|string $min = null,
-        string $placeholder = null,
-        float|string $step = null,
-        string $type = null,
-        string $value = null,
+        ?string $decimals = null,
+        ?string $default = null,
+        float|string|null $max = null,
+        float|string|null $min = null,
+        ?string $placeholder = null,
+        float|string|null $step = null,
+        ?string $type = null,
+        ?string $value = null,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null,
 
-        string $iconLeftBackground = null,
-        string $iconLeftBorder = null,
-        string $iconLeftColor = null,
-        string $iconLeftOther = null,
-        string $iconLeftPadding = null,
-        string $iconLeftRounded = null,
-        string $iconLeftShadow = null,
-        string $iconLeftSize = null,
+        ?string $iconLeftBackground = null,
+        ?string $iconLeftBorder = null,
+        ?string $iconLeftColor = null,
+        ?string $iconLeftOther = null,
+        ?string $iconLeftPadding = null,
+        ?string $iconLeftRounded = null,
+        ?string $iconLeftShadow = null,
+        ?string $iconLeftSize = null,
 
-        string $iconRightBackground = null,
-        string $iconRightBorder = null,
-        string $iconRightColor = null,
-        string $iconRightOther = null,
-        string $iconRightPadding = null,
-        string $iconRightRounded = null,
-        string $iconRightShadow = null,
-        string $iconRightSize = null,
+        ?string $iconRightBackground = null,
+        ?string $iconRightBorder = null,
+        ?string $iconRightColor = null,
+        ?string $iconRightOther = null,
+        ?string $iconRightPadding = null,
+        ?string $iconRightRounded = null,
+        ?string $iconRightShadow = null,
+        ?string $iconRightSize = null,
 
-        string $inputBackground = null,
-        string $inputBorder = null,
-        string $inputColor = null,
-        string $inputFont = null,
-        string $inputOther = null,
-        string $inputPadding = null,
-        string $inputRounded = null,
-        string $inputShadow = null,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputColor = null,
+        ?string $inputFont = null,
+        ?string $inputOther = null,
+        ?string $inputPadding = null,
+        ?string $inputRounded = null,
+        ?string $inputShadow = null,
 
-        string $prefixBackground = null,
-        string $prefixBorder = null,
-        string $prefixColor = null,
-        string $prefixFont = null,
-        string $prefixOther = null,
-        string $prefixPadding = null,
-        string $prefixRounded = null,
-        string $prefixShadow = null,
+        ?string $prefixBackground = null,
+        ?string $prefixBorder = null,
+        ?string $prefixColor = null,
+        ?string $prefixFont = null,
+        ?string $prefixOther = null,
+        ?string $prefixPadding = null,
+        ?string $prefixRounded = null,
+        ?string $prefixShadow = null,
 
-        string $suffixBackground = null,
-        string $suffixBorder = null,
-        string $suffixColor = null,
-        string $suffixFont = null,
-        string $suffixOther = null,
-        string $suffixPadding = null,
-        string $suffixRounded = null,
-        string $suffixShadow = null,
+        ?string $suffixBackground = null,
+        ?string $suffixBorder = null,
+        ?string $suffixColor = null,
+        ?string $suffixFont = null,
+        ?string $suffixOther = null,
+        ?string $suffixPadding = null,
+        ?string $suffixRounded = null,
+        ?string $suffixShadow = null,
 
-        string $iconLeft = null,
-        string $iconRight = null,
+        ?string $iconLeft = null,
+        ?string $iconRight = null,
 
-        string $prefixText = null,
-        string $suffixText = null,
-        bool $requiredInput = null,
+        ?string $prefixText = null,
+        ?string $suffixText = null,
+        ?bool $requiredInput = null,
 
     ) {
         $this->name = $name;
@@ -246,7 +246,7 @@ class Input extends Component
     private function validateInputType(): void
     {
         if (! $this->isValidType($this->type)) {
-            throw (new InputException())::make('invalidTypeSolution', 'Specified HTML input type invalid');
+            throw (new InputException)::make('invalidTypeSolution', 'Specified HTML input type invalid');
         }
     }
 
@@ -316,7 +316,7 @@ class Input extends Component
             return (float) $number;
         }
 
-        throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric ['.$type.']');
+        throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric [' . $type . ']');
     }
 
     private function formatValue($value, $default): void

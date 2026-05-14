@@ -15,7 +15,7 @@ class DecimalFormatter extends BaseFormatter
     public function format(string $data, ?string $options): string
     {
         if (! $options) {
-            throw (new DecimalFormatterException())::make('missingOptionSolution', 'Decimal places not specified');
+            throw (new DecimalFormatterException)::make('missingOptionSolution', 'Decimal places not specified');
         }
 
         $this->options($options);
@@ -27,6 +27,7 @@ class DecimalFormatter extends BaseFormatter
     {
         if (is_numeric($options)) {
             $this->decimals = $options;
+
             return;
         }
 
@@ -35,7 +36,7 @@ class DecimalFormatter extends BaseFormatter
 
         if ($this->shouldRoundUp($config)) {
             $this->rounding = 'round-up';
-        } else if ($this->shouldRoundDown($config)) {
+        } elseif ($this->shouldRoundDown($config)) {
             $this->rounding = 'round-down';
         }
 
@@ -82,12 +83,14 @@ class DecimalFormatter extends BaseFormatter
     {
         $sign = $data > 0 ? 1 : -1;
         $base = 10 ** $this->decimals;
+
         return floor(abs($data) * $base) / $base * $sign;
     }
 
     private function roundUp($data)
     {
         $multi = 10 ** $this->decimals; // Can be cached in lookup table
+
         return ceil($data * $multi) / $multi;
     }
 

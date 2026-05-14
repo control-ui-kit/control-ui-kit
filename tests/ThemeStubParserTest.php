@@ -19,7 +19,7 @@ class ThemeStubParserTest extends TestCase
         parent::setUp();
         $this->tempDir = sys_get_temp_dir() . '/cuk-stub-parser-' . uniqid();
         mkdir($this->tempDir, 0755, true);
-        $this->parser = new ThemeStubParser();
+        $this->parser = new ThemeStubParser;
         $this->realStubPath = realpath(__DIR__ . '/../resources/stubs/theme_css.stub');
     }
 
@@ -40,6 +40,7 @@ class ThemeStubParserTest extends TestCase
     {
         $path = $this->tempDir . '/test.stub';
         file_put_contents($path, $content);
+
         return $path;
     }
 
@@ -58,7 +59,7 @@ class ThemeStubParserTest extends TestCase
     public function it_returns_20_gray_variable_names(): void
     {
         $names = $this->parser->getPaletteVariableNames();
-        $grays = array_filter($names, fn($n) => str_starts_with($n, '--gray-'));
+        $grays = array_filter($names, fn ($n) => str_starts_with($n, '--gray-'));
         $this->assertCount(20, $grays);
     }
 
@@ -66,7 +67,7 @@ class ThemeStubParserTest extends TestCase
     public function it_returns_10_brand_variable_names(): void
     {
         $names = $this->parser->getPaletteVariableNames();
-        $brands = array_filter($names, fn($n) => str_starts_with($n, '--brand-'));
+        $brands = array_filter($names, fn ($n) => str_starts_with($n, '--brand-'));
         $this->assertCount(10, $brands);
     }
 
@@ -132,7 +133,7 @@ class ThemeStubParserTest extends TestCase
     {
         $stub = ":root {\n    --white: 0 0 0;\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $varEntry = array_values(array_filter($entries, fn($e) => $e['type'] === 'variable'))[0] ?? null;
+        $varEntry = array_values(array_filter($entries, fn ($e) => $e['type'] === 'variable'))[0] ?? null;
 
         $this->assertNotNull($varEntry);
         $this->assertSame('variable', $varEntry['type']);
@@ -145,7 +146,7 @@ class ThemeStubParserTest extends TestCase
     {
         $stub = ":root {\n\n    --white: 0 0 0;\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $blankEntry = array_values(array_filter($entries, fn($e) => $e['type'] === 'blank'))[0] ?? null;
+        $blankEntry = array_values(array_filter($entries, fn ($e) => $e['type'] === 'blank'))[0] ?? null;
 
         $this->assertNotNull($blankEntry);
         $this->assertSame('blank', $blankEntry['type']);
@@ -157,7 +158,7 @@ class ThemeStubParserTest extends TestCase
     {
         $stub = ":root {\n    /* Section Comment */\n    --white: 0 0 0;\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $commentEntry = array_values(array_filter($entries, fn($e) => $e['type'] === 'comment'))[0] ?? null;
+        $commentEntry = array_values(array_filter($entries, fn ($e) => $e['type'] === 'comment'))[0] ?? null;
 
         $this->assertNotNull($commentEntry);
         $this->assertSame('comment', $commentEntry['type']);
@@ -171,7 +172,7 @@ class ThemeStubParserTest extends TestCase
         // /* --var: description */ contains a CSS variable name → NOT a section comment
         $stub = ":root {\n    /* --white: something */\n    --white: 0 0 0;\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $commentEntries = array_filter($entries, fn($e) => $e['type'] === 'comment');
+        $commentEntries = array_filter($entries, fn ($e) => $e['type'] === 'comment');
 
         $this->assertEmpty($commentEntries);
     }
@@ -197,7 +198,7 @@ class ThemeStubParserTest extends TestCase
     {
         $stub = ":root {\n{{ gray-colors }}\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $varNames = array_column(array_filter($entries, fn($e) => $e['type'] === 'variable'), 'name');
+        $varNames = array_column(array_filter($entries, fn ($e) => $e['type'] === 'variable'), 'name');
 
         $this->assertContains('--gray-50', $varNames);
         $this->assertContains('--gray-1000', $varNames);
@@ -208,7 +209,7 @@ class ThemeStubParserTest extends TestCase
     {
         $stub = ":root {\n{{ brand-colors }}\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
-        $varNames = array_column(array_filter($entries, fn($e) => $e['type'] === 'variable'), 'name');
+        $varNames = array_column(array_filter($entries, fn ($e) => $e['type'] === 'variable'), 'name');
 
         $this->assertContains('--brand-50', $varNames);
         $this->assertContains('--brand-900', $varNames);
@@ -221,7 +222,7 @@ class ThemeStubParserTest extends TestCase
         $entries = $this->parser->parse($this->writeStub($stub))['light'];
 
         $this->assertNotEmpty($entries);
-        $varNames = array_column(array_filter($entries, fn($e) => $e['type'] === 'variable'), 'name');
+        $varNames = array_column(array_filter($entries, fn ($e) => $e['type'] === 'variable'), 'name');
         $this->assertContains('--link', $varNames);
     }
 
@@ -232,7 +233,7 @@ class ThemeStubParserTest extends TestCase
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
         $grayVars = array_filter(
             $entries,
-            fn($e) => $e['type'] === 'variable' && str_starts_with($e['name'], '--gray-'),
+            fn ($e) => $e['type'] === 'variable' && str_starts_with($e['name'], '--gray-'),
         );
 
         $this->assertCount(20, $grayVars);
@@ -245,7 +246,7 @@ class ThemeStubParserTest extends TestCase
         $entries = $this->parser->parse($this->writeStub($stub))['root'];
         $brandVars = array_filter(
             $entries,
-            fn($e) => $e['type'] === 'variable' && str_starts_with($e['name'], '--brand-'),
+            fn ($e) => $e['type'] === 'variable' && str_starts_with($e['name'], '--brand-'),
         );
 
         $this->assertCount(10, $brandVars);
@@ -269,7 +270,7 @@ class ThemeStubParserTest extends TestCase
     public function it_real_stub_root_contains_gray_and_brand_variables(): void
     {
         $entries = $this->parser->parse($this->realStubPath)['root'];
-        $varNames = array_column(array_filter($entries, fn($e) => $e['type'] === 'variable'), 'name');
+        $varNames = array_column(array_filter($entries, fn ($e) => $e['type'] === 'variable'), 'name');
 
         $this->assertContains('--gray-50', $varNames);
         $this->assertContains('--brand-50', $varNames);
@@ -281,7 +282,7 @@ class ThemeStubParserTest extends TestCase
     public function it_real_stub_light_section_contains_variables(): void
     {
         $entries = $this->parser->parse($this->realStubPath)['light'];
-        $variables = array_filter($entries, fn($e) => $e['type'] === 'variable');
+        $variables = array_filter($entries, fn ($e) => $e['type'] === 'variable');
 
         $this->assertNotEmpty($variables);
     }
@@ -290,7 +291,7 @@ class ThemeStubParserTest extends TestCase
     public function it_real_stub_dark_section_contains_variables(): void
     {
         $entries = $this->parser->parse($this->realStubPath)['dark'];
-        $variables = array_filter($entries, fn($e) => $e['type'] === 'variable');
+        $variables = array_filter($entries, fn ($e) => $e['type'] === 'variable');
 
         $this->assertNotEmpty($variables);
     }
@@ -299,7 +300,7 @@ class ThemeStubParserTest extends TestCase
     public function it_real_stub_root_contains_section_comments(): void
     {
         $entries = $this->parser->parse($this->realStubPath)['light'];
-        $comments = array_filter($entries, fn($e) => $e['type'] === 'comment');
+        $comments = array_filter($entries, fn ($e) => $e['type'] === 'comment');
 
         $this->assertNotEmpty($comments);
     }

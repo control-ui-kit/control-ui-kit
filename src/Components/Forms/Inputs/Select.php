@@ -7,14 +7,14 @@ namespace ControlUIKit\Components\Forms\Inputs;
 use ControlUIKit\Traits\LivewireAttributes;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\ViewException;
 
 class Select extends Component
 {
-    use UseThemeFile, LivewireAttributes;
+    use LivewireAttributes, UseThemeFile;
 
     protected string $component = 'input-select';
 
@@ -53,99 +53,99 @@ class Select extends Component
         $value = null,
         bool $native = false,
 
-        string $id = null,
-        string $image = null,
+        ?string $id = null,
+        ?string $image = null,
         $pleaseSelect = null,
         bool $required = false,
         mixed $showPleaseSelect = null,
-        string $subtext = null,
-        string $text = null,
-        string $width = null,
-        string $optionValue = null,
+        ?string $subtext = null,
+        ?string $text = null,
+        ?string $width = null,
+        ?string $optionValue = null,
 
-        string $buttonBackground = null,
-        string $buttonBorder = null,
-        string $buttonColor = null,
-        string $buttonFont = null,
-        string $buttonOther = null,
-        string $buttonPadding = null,
-        string $buttonRounded = null,
-        string $buttonShadow = null,
-        string $buttonWidth = null,
+        ?string $buttonBackground = null,
+        ?string $buttonBorder = null,
+        ?string $buttonColor = null,
+        ?string $buttonFont = null,
+        ?string $buttonOther = null,
+        ?string $buttonPadding = null,
+        ?string $buttonRounded = null,
+        ?string $buttonShadow = null,
+        ?string $buttonWidth = null,
 
-        string $icon = null,
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconSize = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
+        ?string $icon = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconSize = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
 
-        string $imageBorder = null,
-        string $imageSize = null,
-        string $imageOther = null,
-        string $imagePadding = null,
-        string $imageRounded = null,
-        string $imageShadow = null,
+        ?string $imageBorder = null,
+        ?string $imageSize = null,
+        ?string $imageOther = null,
+        ?string $imagePadding = null,
+        ?string $imageRounded = null,
+        ?string $imageShadow = null,
 
-        string $listBackground = null,
-        string $listBorder = null,
-        string $listColor = null,
-        string $listFont = null,
-        string $listOther = null,
-        string $listPadding = null,
-        string $listRounded = null,
-        string $listShadow = null,
-        string $listWidth = null,
+        ?string $listBackground = null,
+        ?string $listBorder = null,
+        ?string $listColor = null,
+        ?string $listFont = null,
+        ?string $listOther = null,
+        ?string $listPadding = null,
+        ?string $listRounded = null,
+        ?string $listShadow = null,
+        ?string $listWidth = null,
 
-        string $optionBackground = null,
-        string $optionBorder = null,
-        string $optionColor = null,
-        string $optionFont = null,
-        string $optionOther = null,
-        string $optionPadding = null,
-        string $optionRounded = null,
-        string $optionShadow = null,
-        string $optionSpacing = null,
-        string $optionActive = null,
-        string $optionInactive = null,
+        ?string $optionBackground = null,
+        ?string $optionBorder = null,
+        ?string $optionColor = null,
+        ?string $optionFont = null,
+        ?string $optionOther = null,
+        ?string $optionPadding = null,
+        ?string $optionRounded = null,
+        ?string $optionShadow = null,
+        ?string $optionSpacing = null,
+        ?string $optionActive = null,
+        ?string $optionInactive = null,
 
-        string $textBackground = null,
-        string $textBorder = null,
-        string $textColor = null,
-        string $textFont = null,
-        string $textOther = null,
-        string $textPadding = null,
-        string $textRounded = null,
-        string $textShadow = null,
-        string $textActive = null,
-        string $textInactive = null,
+        ?string $textBackground = null,
+        ?string $textBorder = null,
+        ?string $textColor = null,
+        ?string $textFont = null,
+        ?string $textOther = null,
+        ?string $textPadding = null,
+        ?string $textRounded = null,
+        ?string $textShadow = null,
+        ?string $textActive = null,
+        ?string $textInactive = null,
 
-        string $subtextBackground = null,
-        string $subtextBorder = null,
-        string $subtextColor = null,
-        string $subtextFont = null,
-        string $subtextOther = null,
-        string $subtextPadding = null,
-        string $subtextRounded = null,
-        string $subtextShadow = null,
-        string $subtextActive = null,
-        string $subtextInactive = null,
+        ?string $subtextBackground = null,
+        ?string $subtextBorder = null,
+        ?string $subtextColor = null,
+        ?string $subtextFont = null,
+        ?string $subtextOther = null,
+        ?string $subtextPadding = null,
+        ?string $subtextRounded = null,
+        ?string $subtextShadow = null,
+        ?string $subtextActive = null,
+        ?string $subtextInactive = null,
 
-        string $checkBackground = null,
-        string $checkBorder = null,
-        string $checkColor = null,
-        string $checkFont = null,
-        string $checkIcon = null,
-        string $checkIconSize = null,
-        string $checkOther = null,
-        string $checkPadding = null,
-        string $checkRounded = null,
-        string $checkShadow = null,
-        string $checkActive = null,
-        string $checkInactive = null
+        ?string $checkBackground = null,
+        ?string $checkBorder = null,
+        ?string $checkColor = null,
+        ?string $checkFont = null,
+        ?string $checkIcon = null,
+        ?string $checkIconSize = null,
+        ?string $checkOther = null,
+        ?string $checkPadding = null,
+        ?string $checkRounded = null,
+        ?string $checkShadow = null,
+        ?string $checkActive = null,
+        ?string $checkInactive = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -156,7 +156,7 @@ class Select extends Component
             $options = $this->buildOptionsArray($options);
         }
 
-        if ($showPleaseSelect || (is_null($showPleaseSelect) && !$required)) {
+        if ($showPleaseSelect || (is_null($showPleaseSelect) && ! $required)) {
             $pleaseSelectOption = $this->pleaseSelect($pleaseSelect);
             $this->options = $pleaseSelectOption + $options;
         } else {
@@ -419,7 +419,6 @@ class Select extends Component
             return [$value => $text];
         }
 
-
         if (array_key_exists('text', $pleaseSelect)) {
             $text = $pleaseSelect['text'];
         } else {
@@ -446,7 +445,7 @@ class Select extends Component
 
     private function setFirstValue(): void
     {
-        $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options) ;
+        $this->value = array_key_first($this->options) === '' ? null : array_key_first($this->options);
     }
 
     private function buildOptionsArray(mixed $options): array

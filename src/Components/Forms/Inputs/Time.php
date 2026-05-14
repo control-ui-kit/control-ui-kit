@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Time extends Component
 {
-    use UseThemeFile, DateInputFunctions;
+    use DateInputFunctions, UseThemeFile;
 
     protected string $component = 'input-time';
 
@@ -27,14 +27,14 @@ class Time extends Component
 
     public function __construct(
         string $name,
-        string $format = null,
-        string $data = null,
-        string $id = null,
-        bool $showSeconds = null,
-        string $clockType = null,
-        string $hourStep = null,
-        string $minuteStep = null,
-        string $icon = null,
+        ?string $format = null,
+        ?string $data = null,
+        ?string $id = null,
+        ?bool $showSeconds = null,
+        ?string $clockType = null,
+        ?string $hourStep = null,
+        ?string $minuteStep = null,
+        ?string $icon = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

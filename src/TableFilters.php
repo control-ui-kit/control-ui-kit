@@ -16,8 +16,9 @@ class TableFilters
 
     /**
      * Filter constructor.
-     * @param null $key
-     * @param null $value
+     *
+     * @param  null  $key
+     * @param  null  $value
      */
     public function __construct($key = null, $value = null)
     {
@@ -33,7 +34,6 @@ class TableFilters
 
     /**
      * Appends the value to the current session value.
-     * @param $value
      */
     public function append($value)
     {
@@ -42,8 +42,6 @@ class TableFilters
 
     /**
      * Removes all of the module session values.
-     *
-     * @param $module
      */
     public function resetModule($module)
     {
@@ -53,7 +51,6 @@ class TableFilters
     /**
      * Returns the current value from the session.
      *
-     * @param $key
      * @return mixed
      */
     public function get($key = null)
@@ -68,7 +65,6 @@ class TableFilters
     /**
      * Returns boolean if the filtered set value matches value passed in.
      *
-     * @param $val
      * @return bool
      */
     public function is($val)
@@ -87,7 +83,6 @@ class TableFilters
     /**
      * Pushes value into session array.
      *
-     * @param $val
      * @return mixed
      */
     public function push($val)
@@ -110,7 +105,6 @@ class TableFilters
     /**
      * Pops value off session array.
      *
-     * @param $val
      * @return mixed
      */
     public function pop($val)
@@ -139,7 +133,6 @@ class TableFilters
     /**
      * Implode array.
      *
-     * @param $delimiter
      * @return mixed
      */
     public function implode($delimiter = ',')
@@ -163,18 +156,14 @@ class TableFilters
 
     /**
      * Returns true if active filters are in place.
-     *
-     * @return bool
      */
-    public function activeFilters() : bool
+    public function activeFilters(): bool
     {
         return count(session($this->getModule())) > 0;
     }
 
     /**
      * Saves the specified value to the session.
-     *
-     * @param $value
      */
     public function set($value)
     {
@@ -204,7 +193,7 @@ class TableFilters
     /**
      * Enable checkbox mode which looks for a trigger input in the request.
      *
-     * @param null $trigger
+     * @param  null  $trigger
      * @return $this
      */
     public function checkbox($trigger = null)
@@ -217,7 +206,7 @@ class TableFilters
     /**
      * Updates the session based on what is in the request.
      *
-     * @param $unsetMode - the value that we unset the session variable
+     * @param  $unsetMode  - the value that we unset the session variable
      * @return mixed
      */
     public function request($unsetMode = null)
@@ -247,7 +236,8 @@ class TableFilters
 
     /**
      * Updates the session based on what is in the request.
-     * @param int $unset
+     *
+     * @param  int  $unset
      * @return mixed
      */
     public function requestInt($unset = null)
@@ -278,7 +268,6 @@ class TableFilters
     /**
      * Set the module name.  Required if the 'option' is not available in the request.
      *
-     * @param $module
      * @return $this
      */
     public function module($module)
@@ -301,8 +290,8 @@ class TableFilters
     private function moduleHasFilters()
     {
         return collect(session()->get($this->getModule()))
-                ->forget(['orderby', 'sort', 'number'])
-                ->count() !== 0;
+            ->forget(['orderby', 'sort', 'number'])
+            ->count() !== 0;
     }
 
     /**

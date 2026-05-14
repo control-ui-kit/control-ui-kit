@@ -28,17 +28,17 @@ class Pill extends Component
     ];
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $name = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $pillStyle = null,
-        string $shadow = null,
-        array $styles = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $name = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $pillStyle = null,
+        ?string $shadow = null,
+        ?array $styles = null,
         bool $brand = false,
         bool $danger = false,
         bool $default = false,
@@ -80,7 +80,7 @@ class Pill extends Component
             'padding' => $styles['padding'] ?? $padding,
             'rounded' => $styles['rounded'] ?? $rounded,
             'shadow' => $styles['shadow'] ?? $shadow,
-        ], ['background', 'color'], $this->component. '.' . $this->pillStyle);
+        ], ['background', 'color'], $this->component . '.' . $this->pillStyle);
     }
 
     public function render(): View
@@ -113,6 +113,4 @@ class Pill extends Component
     {
         return config($this->theme() . '.' . $this->component . '.' . $this->nameFormat() . '.' . $element);
     }
-
-
 }

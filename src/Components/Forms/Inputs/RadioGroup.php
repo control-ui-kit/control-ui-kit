@@ -12,7 +12,7 @@ use Illuminate\View\Component;
 
 class RadioGroup extends Component
 {
-    use UseThemeFile, UseInputTheme, LivewireAttributes;
+    use LivewireAttributes, UseInputTheme, UseThemeFile;
 
     protected string $component = 'input-radio-group';
 
@@ -32,64 +32,64 @@ class RadioGroup extends Component
     public function __construct(
         string $name,
         array|string $options,
-        string $value = null,
+        ?string $value = null,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $helpBackground = null,
-        string $helpBorder = null,
-        string $helpColor = null,
-        string $helpFont = null,
-        string $helpOther = null,
-        string $helpPadding = null,
-        string $helpRounded = null,
-        string $helpShadow = null,
-        string $helpWrapper = null,
+        ?string $helpBackground = null,
+        ?string $helpBorder = null,
+        ?string $helpColor = null,
+        ?string $helpFont = null,
+        ?string $helpOther = null,
+        ?string $helpPadding = null,
+        ?string $helpRounded = null,
+        ?string $helpShadow = null,
+        ?string $helpWrapper = null,
 
-        string $labelBackground = null,
-        string $labelBorder = null,
-        string $labelColor = null,
-        string $labelFont = null,
-        string $labelOther = null,
-        string $labelPadding = null,
-        string $labelRounded = null,
-        string $labelSelected = null,
-        string $labelShadow = null,
+        ?string $labelBackground = null,
+        ?string $labelBorder = null,
+        ?string $labelColor = null,
+        ?string $labelFont = null,
+        ?string $labelOther = null,
+        ?string $labelPadding = null,
+        ?string $labelRounded = null,
+        ?string $labelSelected = null,
+        ?string $labelShadow = null,
 
-        string $optionBackground = null,
-        string $optionBorder = null,
-        string $optionColor = null,
-        string $optionFont = null,
-        string $optionOther = null,
-        string $optionPadding = null,
-        string $optionRounded = null,
-        string $optionSelected = null,
-        string $optionShadow = null,
+        ?string $optionBackground = null,
+        ?string $optionBorder = null,
+        ?string $optionColor = null,
+        ?string $optionFont = null,
+        ?string $optionOther = null,
+        ?string $optionPadding = null,
+        ?string $optionRounded = null,
+        ?string $optionSelected = null,
+        ?string $optionShadow = null,
 
-        string $radioBackground = null,
-        string $radioBorder = null,
-        string $radioColor = null,
-        string $radioFont = null,
-        string $radioOther = null,
-        string $radioPadding = null,
-        string $radioRounded = null,
-        string $radioShadow = null,
+        ?string $radioBackground = null,
+        ?string $radioBorder = null,
+        ?string $radioColor = null,
+        ?string $radioFont = null,
+        ?string $radioOther = null,
+        ?string $radioPadding = null,
+        ?string $radioRounded = null,
+        ?string $radioShadow = null,
 
-        string $inputBackground = null,
-        string $inputBorder = null,
-        string $inputColor = null,
-        string $inputOther = null,
-        string $inputPadding = null,
-        string $inputRounded = null,
-        string $inputShadow = null,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputColor = null,
+        ?string $inputOther = null,
+        ?string $inputPadding = null,
+        ?string $inputRounded = null,
+        ?string $inputShadow = null,
     ) {
         $this->name = $name;
         $this->value = $value;
@@ -206,7 +206,7 @@ class RadioGroup extends Component
     {
         $selected = old($this->name, $this->value);
 
-        return is_null($selected) ? "" : $selected;
+        return is_null($selected) ? '' : $selected;
     }
 
     public function helpClasses(): string

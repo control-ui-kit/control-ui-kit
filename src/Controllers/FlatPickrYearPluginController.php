@@ -11,7 +11,7 @@ class FlatPickrYearPluginController extends Controller
         $this->disablePackageConflicts();
 
         header('Content-Type: text/javascript; charset=UTF8');
-        print file_get_contents(__DIR__ . '/../../resources/js/flatpickr.year-select-plugin.js');
+        echo file_get_contents(__DIR__ . '/../../resources/js/flatpickr.year-select-plugin.js');
         exit;
     }
 

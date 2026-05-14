@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
-use ControlUIKit\Helpers\Formatters\CurrencyFormatter;
-use ControlUIKit\Helpers\Formatters\DateFormatter;
-use ControlUIKit\Helpers\Formatters\DateTimeFormatter;
-use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -40,60 +36,60 @@ class Cell extends Component
     public ?string $actionStyles;
 
     public function __construct(
-        string $align = null,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $data = null,
-        string $font = null,
-        string $format = null,
-        string $href = null,
-        string $hrefColor = null,
+        ?string $align = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $data = null,
+        ?string $font = null,
+        ?string $format = null,
+        ?string $href = null,
+        ?string $hrefColor = null,
         bool $can = true,
 
-        string $icon = null,
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null,
+        ?string $icon = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null,
 
-        string $imageBorder = null,
-        string $imageOther = null,
-        string $imagePadding = null,
-        string $imageRounded = null,
-        string $imageShadow = null,
-        string $imageSize = null,
+        ?string $imageBorder = null,
+        ?string $imageOther = null,
+        ?string $imagePadding = null,
+        ?string $imageRounded = null,
+        ?string $imageShadow = null,
+        ?string $imageSize = null,
 
-        string $image = null,
-        string $imageStyle = null,
-        string $imageAlt = null,
-        string $other = null,
-        string $padding = null,
+        ?string $image = null,
+        ?string $imageStyle = null,
+        ?string $imageAlt = null,
+        ?string $other = null,
+        ?string $padding = null,
 
-        string $pill = null,
-        string $pillBackground = null,
-        string $pillBorder = null,
-        string $pillColor = null,
-        string $pillFont = null,
-        string $pillOther = null,
-        string $pillPadding = null,
-        string $pillRounded = null,
-        string $pillShadow = null,
+        ?string $pill = null,
+        ?string $pillBackground = null,
+        ?string $pillBorder = null,
+        ?string $pillColor = null,
+        ?string $pillFont = null,
+        ?string $pillOther = null,
+        ?string $pillPadding = null,
+        ?string $pillRounded = null,
+        ?string $pillShadow = null,
 
-        string $prefix = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $suffix = null,
+        ?string $prefix = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $suffix = null,
         bool $left = false,
         bool $center = false,
         bool $right = false,
 
         bool $actions = false,
-        string $actionStyles = null
+        ?string $actionStyles = null
     ) {
         $this->setConfigStyles([
             'align' => $this->align($this->style($this->component, 'align', $align), $left, $center, $right),
@@ -169,7 +165,7 @@ class Cell extends Component
 
     public function iconStyles($styles = []): array
     {
-        foreach($this->iconStyles as $key => $value) {
+        foreach ($this->iconStyles as $key => $value) {
             $styles[substr($key, 5)] = $value;
         }
 
@@ -194,7 +190,7 @@ class Cell extends Component
         if (! str_contains($format, ':')) {
             $formatter = $format;
         } else {
-            [$formatter, $options] = explode(":", $format);
+            [$formatter, $options] = explode(':', $format);
         }
 
         $formatter = $this->getFormatter($formatter);
@@ -210,7 +206,7 @@ class Cell extends Component
             return $formatters[$formatter];
         }
 
-        throw new ControlUIKitException('Formatter does not exist for ['.$formatter.']');
+        throw new ControlUIKitException('Formatter does not exist for [' . $formatter . ']');
     }
 
     private function setPillStyle($style): void
@@ -225,6 +221,7 @@ class Cell extends Component
 
         if (in_array($style, ['default', 'brand', 'danger', 'info', 'muted', 'success', 'warning'])) {
             $this->pillStyle = $style;
+
             return;
         }
 

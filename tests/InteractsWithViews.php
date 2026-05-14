@@ -25,11 +25,11 @@ trait InteractsWithViews
     {
         $tempDirectory = sys_get_temp_dir();
 
-        if (!in_array($tempDirectory, ViewFacade::getFinder()->getPaths(), true)) {
+        if (! in_array($tempDirectory, ViewFacade::getFinder()->getPaths(), true)) {
             ViewFacade::addLocation(sys_get_temp_dir());
         }
 
-        $tempFile = tempnam($tempDirectory, 'laravel-blade').'.blade.php';
+        $tempFile = tempnam($tempDirectory, 'laravel-blade') . '.blade.php';
 
         file_put_contents($tempFile, $template);
 
@@ -55,6 +55,6 @@ trait InteractsWithViews
      */
     protected function withViewErrors(array $errors, $key = 'default'): void
     {
-        ViewFacade::share('errors', (new ViewErrorBag())->put($key, new MessageBag($errors)));
+        ViewFacade::share('errors', (new ViewErrorBag)->put($key, new MessageBag($errors)));
     }
 }

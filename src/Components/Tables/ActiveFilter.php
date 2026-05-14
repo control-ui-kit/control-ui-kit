@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
-use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class ActiveFilter extends Component
@@ -25,28 +23,28 @@ class ActiveFilter extends Component
     public function __construct(
         string $label,
         string $text,
-        string $name = null,
-        string $resetValue = null,
-        string $href = null,
+        ?string $name = null,
+        ?string $resetValue = null,
+        ?string $href = null,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
 
-        string $icon = null,
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null
+        ?string $icon = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null
     ) {
         $this->setConfigStyles([
             'background' => $background,
@@ -84,7 +82,7 @@ class ActiveFilter extends Component
 
     public function iconStyles($styles = []): array
     {
-        foreach($this->iconStyles as $key => $value) {
+        foreach ($this->iconStyles as $key => $value) {
             $styles[substr($key, 5)] = $value;
         }
 

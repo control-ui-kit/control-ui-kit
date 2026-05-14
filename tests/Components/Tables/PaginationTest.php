@@ -13,7 +13,7 @@ class PaginationTest extends ComponentTestCase
 {
     private LengthAwarePaginator $paginator;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

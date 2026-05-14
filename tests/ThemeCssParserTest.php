@@ -18,7 +18,7 @@ class ThemeCssParserTest extends TestCase
         parent::setUp();
         $this->tempDir = sys_get_temp_dir() . '/cuk-css-parser-' . uniqid();
         mkdir($this->tempDir, 0755, true);
-        $this->parser = new ThemeCssParser();
+        $this->parser = new ThemeCssParser;
     }
 
     protected function tearDown(): void
@@ -38,6 +38,7 @@ class ThemeCssParserTest extends TestCase
     {
         $path = $this->tempDir . '/test.css';
         file_put_contents($path, $css);
+
         return $this->parser->parse($path);
     }
 

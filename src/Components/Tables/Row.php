@@ -27,16 +27,16 @@ class Row extends Component
     ];
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $hover = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $rowStyle = null,
-        string $shadow = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $hover = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $rowStyle = null,
+        ?string $shadow = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,
@@ -65,7 +65,7 @@ class Row extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-        ], ['background', 'hover', 'color'], $this->component. '.' . $this->rowStyle);
+        ], ['background', 'hover', 'color'], $this->component . '.' . $this->rowStyle);
     }
 
     public function render(): View

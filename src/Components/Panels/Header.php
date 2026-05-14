@@ -18,17 +18,17 @@ class Header extends Component
     public ?string $sub_title = null;
 
     public function __construct(
-        string $subText = null,
-        string $subUrl = null,
-        string $subTitle = null,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null
+        ?string $subText = null,
+        ?string $subUrl = null,
+        ?string $subTitle = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null
     ) {
         $this->sub_text = $subText;
         $this->sub_url = $subUrl;
@@ -42,7 +42,7 @@ class Header extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
     }
 

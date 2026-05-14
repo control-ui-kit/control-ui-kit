@@ -11,7 +11,7 @@ class BrandColorPalette
     private array $rgb;
 
     private array $shades = [
-        '50'  => 200,
+        '50' => 200,
         '100' => 160,
         '200' => 120,
         '300' => 80,

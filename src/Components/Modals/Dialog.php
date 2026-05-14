@@ -13,7 +13,7 @@ class Dialog extends Component
     public string $maxWidth;
 
     public function __construct(
-        string $id = null,
+        ?string $id = null,
         string $maxWidth = '2xl'
     ) {
         $this->id = $id;

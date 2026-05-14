@@ -21,17 +21,17 @@ class Radio extends Component
 
     public function __construct(
         string $name,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        array $styles = null,
-        string $id = null,
-        string $value = null,
-        string $checked = null
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?array $styles = null,
+        ?string $id = null,
+        ?string $value = null,
+        ?string $checked = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name . '_' . str_replace(' ', '_', $value);

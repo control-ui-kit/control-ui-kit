@@ -14,7 +14,7 @@ use Illuminate\View\Component;
 
 class Date extends Component
 {
-    use UseInputTheme, DateInputFunctions, LivewireAttributes;
+    use DateInputFunctions, LivewireAttributes, UseInputTheme;
 
     protected string $component = 'input-date';
 
@@ -56,54 +56,54 @@ class Date extends Component
 
     public function __construct(
         string $name,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null,
 
-        string $timezoneBackground = null,
-        string $timezoneBorder = null,
-        string $timezoneColor = null,
-        string $timezoneFont = null,
-        string $timezoneOther = null,
-        string $timezonePadding = null,
-        string $timezoneRounded = null,
-        string $timezoneShadow = null,
-        string $timezoneWidth = null,
+        ?string $timezoneBackground = null,
+        ?string $timezoneBorder = null,
+        ?string $timezoneColor = null,
+        ?string $timezoneFont = null,
+        ?string $timezoneOther = null,
+        ?string $timezonePadding = null,
+        ?string $timezoneRounded = null,
+        ?string $timezoneShadow = null,
+        ?string $timezoneWidth = null,
 
-        string $format = null,
-        string $data = null,
-        string $min = null,
-        string $max = null,
-        bool $weekNumbers = null,
-        bool $showTime = null,
-        bool $showSeconds = null,
-        string $clockType = null,
-        bool $timeOnly = null,
-        string $hourStep = null,
-        string $minuteStep = null,
-        string $icon = null,
-        string $lang = null,
-        string $id = null,
+        ?string $format = null,
+        ?string $data = null,
+        ?string $min = null,
+        ?string $max = null,
+        ?bool $weekNumbers = null,
+        ?bool $showTime = null,
+        ?bool $showSeconds = null,
+        ?string $clockType = null,
+        ?bool $timeOnly = null,
+        ?string $hourStep = null,
+        ?string $minuteStep = null,
+        ?string $icon = null,
+        ?string $lang = null,
+        ?string $id = null,
         mixed $value = null,
-        string $linkedFrom = null,
-        string $linkedTo = null,
-        string $yearsBefore = null,
-        string $yearsAfter = null,
+        ?string $linkedFrom = null,
+        ?string $linkedTo = null,
+        ?string $yearsBefore = null,
+        ?string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -228,7 +228,7 @@ class Date extends Component
     {
         $i = 0;
 
-        foreach ((new TimeZoneService())->listIdentifiers() as $timezone) {
+        foreach ((new TimeZoneService)->listIdentifiers() as $timezone) {
             $carbon = Carbon::now($timezone);
             $offset = $carbon->offset / 3600;  // Convert seconds to hours
             $formattedOffset = ($offset < 0 ? '-' : '+') . abs($offset);

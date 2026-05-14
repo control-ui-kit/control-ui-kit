@@ -24,18 +24,18 @@ class EmptyRow extends Component
     public string $records;
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $colspan = null,
-        string $font = null,
-        string $icon = null,
-        string $iconSize = null,
-        string $iconStyle = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $colspan = null,
+        ?string $font = null,
+        ?string $icon = null,
+        ?string $iconSize = null,
+        ?string $iconStyle = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
         string $records = 'records',
         bool $stacked = false
     ) {

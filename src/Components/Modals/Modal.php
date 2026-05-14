@@ -19,7 +19,7 @@ class Modal extends Component
     public string $no;
 
     public function __construct(
-        string $id = null,
+        ?string $id = null,
         string $maxWidth = '2xl'
     ) {
         $this->id = $id;

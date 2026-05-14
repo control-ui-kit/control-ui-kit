@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Range extends Component
 {
-    use UseThemeFile, LivewireAttributes;
+    use LivewireAttributes, UseThemeFile;
 
     protected string $component = 'input-range';
 
@@ -33,37 +33,37 @@ class Range extends Component
     public function __construct(
         string $name,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $pillBackground = null,
-        string $pillBorder = null,
-        string $pillColor = null,
-        string $pillFont = null,
-        string $pillOther = null,
-        string $pillPadding = null,
-        string $pillRounded = null,
-        string $pillShadow = null,
-        string $pillWidth = null,
+        ?string $pillBackground = null,
+        ?string $pillBorder = null,
+        ?string $pillColor = null,
+        ?string $pillFont = null,
+        ?string $pillOther = null,
+        ?string $pillPadding = null,
+        ?string $pillRounded = null,
+        ?string $pillShadow = null,
+        ?string $pillWidth = null,
 
-        string $pillMin = null,
-        string $pillMax = null,
-        string $pillValue = null,
+        ?string $pillMin = null,
+        ?string $pillMax = null,
+        ?string $pillValue = null,
 
-        string $min = null,
-        string $max = null,
-        string $id = null,
+        ?string $min = null,
+        ?string $max = null,
+        ?string $id = null,
         string $step = '1',
-        string $value = null,
+        ?string $value = null,
 
-        string $type = null,
-        string $size = null,
+        ?string $type = null,
+        ?string $size = null,
 
         bool $default = false,
         bool $brand = false,
@@ -78,12 +78,12 @@ class Range extends Component
         bool $md = false,
         bool $lg = false,
 
-        bool $showMin = null,
-        bool $showMax = null,
-        bool $showValue = null,
-        bool $hideMin = null,
-        bool $hideMax = null,
-        bool $hideValue = null,
+        ?bool $showMin = null,
+        ?bool $showMax = null,
+        ?bool $showValue = null,
+        ?bool $hideMin = null,
+        ?bool $hideMax = null,
+        ?bool $hideValue = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -178,7 +178,7 @@ class Range extends Component
         'info',
         'success',
         'muted',
-        'warning'
+        'warning',
     ];
 
     private array $sizes = [

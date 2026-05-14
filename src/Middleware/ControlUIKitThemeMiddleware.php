@@ -11,7 +11,7 @@ class ControlUIKitThemeMiddleware
     public function handle($request, Closure $next)
     {
         if (! app()->has('control-ui-kit.theme')) {
-            app()->singleton('control-ui-kit.theme', function() {
+            app()->singleton('control-ui-kit.theme', function () {
                 return 'themes.default';
             });
         }

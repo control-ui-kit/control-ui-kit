@@ -23,7 +23,7 @@ class UseThemeFileTest extends TestCase
     {
         parent::setUp();
 
-        app()->singleton('control-ui-kit.theme', function() {
+        app()->singleton('control-ui-kit.theme', function () {
             return self::THEME;
         });
     }
@@ -80,6 +80,6 @@ class UseThemeFileTest extends TestCase
 
         $this->expectException(ControlUIKitException::class);
         $this->expectExceptionMessage("Merge config key not found [{$error_key}] in [{$theme}]");
-        $this->style('title', 'background', null, "merge-key");
+        $this->style('title', 'background', null, 'merge-key');
     }
 }

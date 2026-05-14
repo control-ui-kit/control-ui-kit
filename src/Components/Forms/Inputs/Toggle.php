@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Toggle extends Component
 {
-    use UseThemeFile, LivewireAttributes;
+    use LivewireAttributes, UseThemeFile;
 
     protected string $component = 'input-toggle';
 
@@ -26,35 +26,35 @@ class Toggle extends Component
 
     public function __construct(
         string $name,
-        string $background = null,
-        string $border = null,
-        string $other = null,
-        string $padding = null,
-        string $shadow = null,
-        string $baseAnimation = null,
-        string $baseBackground = null,
-        string $baseBorder = null,
-        string $baseFocus = null,
-        string $baseOther = null,
-        string $baseRounded = null,
-        string $baseShadow = null,
-        string $baseSize = null,
-        string $baseStateOn = null,
-        string $baseStateOff = null,
-        string $switchAnimation = null,
-        string $switchBackground = null,
-        string $switchBorder = null,
-        string $switchFocus = null,
-        string $switchOther = null,
-        string $switchRounded = null,
-        string $switchShadow = null,
-        string $switchSize = null,
-        string $switchStateOn = null,
-        string $switchStateOff = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $shadow = null,
+        ?string $baseAnimation = null,
+        ?string $baseBackground = null,
+        ?string $baseBorder = null,
+        ?string $baseFocus = null,
+        ?string $baseOther = null,
+        ?string $baseRounded = null,
+        ?string $baseShadow = null,
+        ?string $baseSize = null,
+        ?string $baseStateOn = null,
+        ?string $baseStateOff = null,
+        ?string $switchAnimation = null,
+        ?string $switchBackground = null,
+        ?string $switchBorder = null,
+        ?string $switchFocus = null,
+        ?string $switchOther = null,
+        ?string $switchRounded = null,
+        ?string $switchShadow = null,
+        ?string $switchSize = null,
+        ?string $switchStateOn = null,
+        ?string $switchStateOff = null,
         string $on = '1',
         string $off = '0',
-        string $value = null,
-        string $id = null
+        ?string $value = null,
+        ?string $id = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

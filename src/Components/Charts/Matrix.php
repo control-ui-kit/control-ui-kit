@@ -32,24 +32,24 @@ class Matrix extends Component
 
     public function __construct(
         string $id,
-        array $data = null,
-        string $color = null,
-        string $format = null,
-        string $label = null,
-        string $xMargin = null,
-        string $xLabelVisible = null,
-        string $xLabelPosition = null,
-        string $yMargin = null,
-        string $yReverse = null,
-        string $yLabelVisible = null,
-        string $yLabelPosition = null
+        ?array $data = null,
+        ?string $color = null,
+        ?string $format = null,
+        ?string $label = null,
+        ?string $xMargin = null,
+        ?string $xLabelVisible = null,
+        ?string $xLabelPosition = null,
+        ?string $yMargin = null,
+        ?string $yReverse = null,
+        ?string $yLabelVisible = null,
+        ?string $yLabelPosition = null
     ) {
         $this->id = $id;
         $this->data = $data;
         $this->color = $this->style($this->component, 'color', $color);
         $this->format = $this->style($this->component, 'format', $format);
         $this->highestValue = $this->calculateDivider();
-        $this->label = !is_null($label) ? $label : 'Count';
+        $this->label = ! is_null($label) ? $label : 'Count';
         $this->labels = $this->labels();
 
         $this->xMargin = $this->style($this->component, 'axes.x.margin', $xMargin);
@@ -87,23 +87,23 @@ class Matrix extends Component
 
     private function calculateDivider(): string
     {
-        if (!is_array($this->data)) {
-            return "10";
+        if (! is_array($this->data)) {
+            return '10';
         }
 
-        return (string)max(array_column($this->data,'v'));
+        return (string) max(array_column($this->data, 'v'));
     }
 
     private function labels(): array
     {
-        if (!is_array($this->data)) {
+        if (! is_array($this->data)) {
             return [];
         }
 
         $labels = [];
 
         foreach ($this->data as $row) {
-            if (array_key_exists('y', $row) && !in_array($row['y'], $labels, true)) {
+            if (array_key_exists('y', $row) && ! in_array($row['y'], $labels, true)) {
                 $labels[] = $row['y'];
             }
         }
@@ -113,6 +113,6 @@ class Matrix extends Component
 
     private function parseBool($arg): string
     {
-        return $arg === "true" ? "true" : "false";
+        return $arg === 'true' ? 'true' : 'false';
     }
 }

@@ -17,7 +17,7 @@ class Hidden extends Component
 
     public function __construct(
         string $name,
-        string $id = null,
+        ?string $id = null,
         ?string $value = null
     ) {
         $this->name = $name;

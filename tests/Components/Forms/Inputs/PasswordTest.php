@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class PasswordTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -222,7 +222,6 @@ class PasswordTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function an_input_url_component_can_be_rendered_with_custom_class(): void
     {
@@ -270,7 +269,6 @@ class PasswordTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_password_component_can_be_rendered_with_no_peek_disabling_icons(): void

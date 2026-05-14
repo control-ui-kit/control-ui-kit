@@ -17,11 +17,11 @@ class Link extends Component
     public string $type;
 
     public function __construct(
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $size = null,
-        string $type = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $size = null,
+        ?string $type = null,
 
         bool $default = false,
         bool $brand = false,
@@ -61,7 +61,7 @@ class Link extends Component
         'info',
         'success',
         'muted',
-        'warning'
+        'warning',
     ];
 
     private function type($type, $styles, $default = 'default'): string

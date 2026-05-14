@@ -26,20 +26,20 @@ class Heading extends Component
         string $id,
         string $name = 'tabs',
 
-        string $icon = null,
-        string $iconSize = null,
+        ?string $icon = null,
+        ?string $iconSize = null,
 
-        string $active = null,
-        string $inactive = null,
+        ?string $active = null,
+        ?string $inactive = null,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -53,7 +53,7 @@ class Heading extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
 
         $this->active = $this->style($this->component, 'active', $active);

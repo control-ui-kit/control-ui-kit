@@ -16,7 +16,7 @@ use Tests\Components\ComponentTestCase;
 
 class AutoCompleteTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -2133,7 +2133,8 @@ class Country extends Model
     protected $fillable = ['country_id', 'country_name', 'iso'];
 }
 
-class CountryFactory extends Factory {
+class CountryFactory extends Factory
+{
     protected $model = Country::class;
 
     public function definition(): array

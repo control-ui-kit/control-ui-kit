@@ -34,6 +34,7 @@ final class ThemeCreatorCommand extends Command
             $palette = new BrandColorPalette($this->option('color'));
         } catch (InvalidArgumentException $e) {
             $this->error($e->getMessage());
+
             return 1;
         }
 
@@ -41,6 +42,7 @@ final class ThemeCreatorCommand extends Command
 
         if (! in_array($grey, $this->validGreys, true)) {
             $this->error("Invalid grey palette '{$grey}'. Valid options are: " . implode(', ', $this->validGreys) . '.');
+
             return 1;
         }
 
@@ -55,11 +57,13 @@ final class ThemeCreatorCommand extends Command
         if ($fileExists && ! $this->option('force')) {
             $this->error("Theme file already exists: {$filePath}");
             $this->line('Use --force to overwrite.');
+
             return 1;
         }
 
         if (! $this->showPreviewAndConfirm($palette, $grey, $name, $filePath, $fileExists)) {
             $this->line('Aborted.');
+
             return 0;
         }
 
@@ -82,16 +86,19 @@ final class ThemeCreatorCommand extends Command
     {
         if (! $this->option('color')) {
             $this->error('The --color option is required. Provide a hex code (e.g. #AD28FF) or comma-separated RGB (e.g. 173,40,255).');
+
             return false;
         }
 
         if (! $this->option('grey')) {
             $this->error('The --grey option is required. Valid options are: ' . implode(', ', $this->validGreys) . '.');
+
             return false;
         }
 
         if (! $this->option('name')) {
             $this->error('The --name option is required. This will become the theme file name.');
+
             return false;
         }
 

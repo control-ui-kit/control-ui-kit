@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class SearchTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -147,7 +147,6 @@ class SearchTest extends ComponentTestCase
             HTML;
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_search_component_can_be_rendered_using_override_config_styles(): void

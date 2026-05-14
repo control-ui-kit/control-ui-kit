@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
-use ControlUIKit\Helpers\UrlManipulation;
 use ControlUIKit\Traits\ArrayHelper;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Table extends Component
 {
-    use UseThemeFile, ArrayHelper;
+    use ArrayHelper, UseThemeFile;
 
     protected string $component = 'table';
 
@@ -44,7 +42,7 @@ class Table extends Component
 
     public array $activeFilterListStyles;
     public array $activeFilterWrapperStyles;
-//    public array $clearFilterStyles;
+    //    public array $clearFilterStyles;
     public array $tableBodyStyles;
     public array $tableFiltersStyles;
     public array $tableHeadingsStyles;
@@ -54,141 +52,141 @@ class Table extends Component
     public array $searchWrapperStyles;
 
     public function __construct(
-        string $tableBackground = null,
-        string $tableBorder = null,
-        string $tableColor = null,
-        string $tableFont = null,
-        string $tableOther = null,
-        string $tablePadding = null,
-        string $tableRounded = null,
-        string $tableShadow = null,
+        ?string $tableBackground = null,
+        ?string $tableBorder = null,
+        ?string $tableColor = null,
+        ?string $tableFont = null,
+        ?string $tableOther = null,
+        ?string $tablePadding = null,
+        ?string $tableRounded = null,
+        ?string $tableShadow = null,
 
-        string $activeFiltersListBackground = null,
-        string $activeFiltersListBorder = null,
-        string $activeFiltersListColor = null,
-        string $activeFiltersListFont = null,
-        string $activeFiltersListOther = null,
-        string $activeFiltersListPadding = null,
-        string $activeFiltersListRounded = null,
-        string $activeFiltersListShadow = null,
+        ?string $activeFiltersListBackground = null,
+        ?string $activeFiltersListBorder = null,
+        ?string $activeFiltersListColor = null,
+        ?string $activeFiltersListFont = null,
+        ?string $activeFiltersListOther = null,
+        ?string $activeFiltersListPadding = null,
+        ?string $activeFiltersListRounded = null,
+        ?string $activeFiltersListShadow = null,
 
-        string $activeFiltersWrapperBackground = null,
-        string $activeFiltersWrapperBorder = null,
-        string $activeFiltersWrapperColor = null,
-        string $activeFiltersWrapperFont = null,
-        string $activeFiltersWrapperOther = null,
-        string $activeFiltersWrapperPadding = null,
-        string $activeFiltersWrapperRounded = null,
-        string $activeFiltersWrapperShadow = null,
+        ?string $activeFiltersWrapperBackground = null,
+        ?string $activeFiltersWrapperBorder = null,
+        ?string $activeFiltersWrapperColor = null,
+        ?string $activeFiltersWrapperFont = null,
+        ?string $activeFiltersWrapperOther = null,
+        ?string $activeFiltersWrapperPadding = null,
+        ?string $activeFiltersWrapperRounded = null,
+        ?string $activeFiltersWrapperShadow = null,
 
-        string $clearFiltersBackground = null,
-        string $clearFiltersBorder = null,
-        string $clearFiltersColor = null,
-        string $clearFiltersFont = null,
-        string $clearFiltersOther = null,
-        string $clearFiltersPadding = null,
-        string $clearFiltersRounded = null,
-        string $clearFiltersShadow = null,
+        ?string $clearFiltersBackground = null,
+        ?string $clearFiltersBorder = null,
+        ?string $clearFiltersColor = null,
+        ?string $clearFiltersFont = null,
+        ?string $clearFiltersOther = null,
+        ?string $clearFiltersPadding = null,
+        ?string $clearFiltersRounded = null,
+        ?string $clearFiltersShadow = null,
 
-        string $searchId = null,
-        string $searchName = null,
-        string $searchFormName = null,
-        string $searchPlaceholder = null,
-        string $searchType = null,
+        ?string $searchId = null,
+        ?string $searchName = null,
+        ?string $searchFormName = null,
+        ?string $searchPlaceholder = null,
+        ?string $searchType = null,
 
-        string $searchIconBackground = null,
-        string $searchIconBorder = null,
-        string $searchIconColor = null,
-        string $searchIcon = null,
-        string $searchIconSize = null,
-        string $searchIconOther = null,
-        string $searchIconPadding = null,
-        string $searchIconRounded = null,
-        string $searchIconShadow = null,
+        ?string $searchIconBackground = null,
+        ?string $searchIconBorder = null,
+        ?string $searchIconColor = null,
+        ?string $searchIcon = null,
+        ?string $searchIconSize = null,
+        ?string $searchIconOther = null,
+        ?string $searchIconPadding = null,
+        ?string $searchIconRounded = null,
+        ?string $searchIconShadow = null,
 
-        string $searchInputBackground = null,
-        string $searchInputBorder = null,
-        string $searchInputColor = null,
-        string $searchInputFont = null,
-        string $searchInputOther = null,
-        string $searchInputPadding = null,
-        string $searchInputRounded = null,
-        string $searchInputShadow = null,
-        string $searchInputWidth = null,
+        ?string $searchInputBackground = null,
+        ?string $searchInputBorder = null,
+        ?string $searchInputColor = null,
+        ?string $searchInputFont = null,
+        ?string $searchInputOther = null,
+        ?string $searchInputPadding = null,
+        ?string $searchInputRounded = null,
+        ?string $searchInputShadow = null,
+        ?string $searchInputWidth = null,
 
-        string $searchBar = null,
-        string $searchBarSpacing = null,
-        string $searchContainer = null,
+        ?string $searchBar = null,
+        ?string $searchBarSpacing = null,
+        ?string $searchContainer = null,
 
-        string $searchWrapperBackground = null,
-        string $searchWrapperBorder = null,
-        string $searchWrapperColor = null,
-        string $searchWrapperFont = null,
-        string $searchWrapperOther = null,
-        string $searchWrapperPadding = null,
-        string $searchWrapperRounded = null,
-        string $searchWrapperShadow = null,
-        string $searchWrapperWidth = null,
+        ?string $searchWrapperBackground = null,
+        ?string $searchWrapperBorder = null,
+        ?string $searchWrapperColor = null,
+        ?string $searchWrapperFont = null,
+        ?string $searchWrapperOther = null,
+        ?string $searchWrapperPadding = null,
+        ?string $searchWrapperRounded = null,
+        ?string $searchWrapperShadow = null,
+        ?string $searchWrapperWidth = null,
 
-        string $tableBodyBackground = null,
-        string $tableBodyBorder = null,
-        string $tableBodyColor = null,
-        string $tableBodyFont = null,
-        string $tableBodyOther = null,
-        string $tableBodyPadding = null,
-        string $tableBodyRounded = null,
-        string $tableBodyShadow = null,
+        ?string $tableBodyBackground = null,
+        ?string $tableBodyBorder = null,
+        ?string $tableBodyColor = null,
+        ?string $tableBodyFont = null,
+        ?string $tableBodyOther = null,
+        ?string $tableBodyPadding = null,
+        ?string $tableBodyRounded = null,
+        ?string $tableBodyShadow = null,
 
-        string $tableFiltersBackground = null,
-        string $tableFiltersBorder = null,
-        string $tableFiltersColor = null,
-        string $tableFiltersContainer = null,
-        string $tableFiltersEmpty = null,
-        string $tableFiltersFont = null,
-        string $tableFiltersOther = null,
-        string $tableFiltersPadding = null,
-        string $tableFiltersRounded = null,
-        string $tableFiltersShadow = null,
-        string $tableFiltersWidth = null,
+        ?string $tableFiltersBackground = null,
+        ?string $tableFiltersBorder = null,
+        ?string $tableFiltersColor = null,
+        ?string $tableFiltersContainer = null,
+        ?string $tableFiltersEmpty = null,
+        ?string $tableFiltersFont = null,
+        ?string $tableFiltersOther = null,
+        ?string $tableFiltersPadding = null,
+        ?string $tableFiltersRounded = null,
+        ?string $tableFiltersShadow = null,
+        ?string $tableFiltersWidth = null,
 
-        string $tableHeadingsBackground = null,
-        string $tableHeadingsBorder = null,
-        string $tableHeadingsColor = null,
-        string $tableHeadingsFont = null,
-        string $tableHeadingsOther = null,
-        string $tableHeadingsPadding = null,
-        string $tableHeadingsRounded = null,
-        string $tableHeadingsShadow = null,
+        ?string $tableHeadingsBackground = null,
+        ?string $tableHeadingsBorder = null,
+        ?string $tableHeadingsColor = null,
+        ?string $tableHeadingsFont = null,
+        ?string $tableHeadingsOther = null,
+        ?string $tableHeadingsPadding = null,
+        ?string $tableHeadingsRounded = null,
+        ?string $tableHeadingsShadow = null,
 
-        string $tableWrapperBackground = null,
-        string $tableWrapperBorder = null,
-        string $tableWrapperColor = null,
-        string $tableWrapperFont = null,
-        string $tableWrapperOther = null,
-        string $tableWrapperPadding = null,
-        string $tableWrapperRounded = null,
-        string $tableWrapperShadow = null,
-        string $tableWrapperWithFilters = null,
-        string $tableWrapperWithoutFilters = null,
+        ?string $tableWrapperBackground = null,
+        ?string $tableWrapperBorder = null,
+        ?string $tableWrapperColor = null,
+        ?string $tableWrapperFont = null,
+        ?string $tableWrapperOther = null,
+        ?string $tableWrapperPadding = null,
+        ?string $tableWrapperRounded = null,
+        ?string $tableWrapperShadow = null,
+        ?string $tableWrapperWithFilters = null,
+        ?string $tableWrapperWithoutFilters = null,
 
         array $activeFilters = [],
         string $search = '',
-        bool $hideSearch = null,
-        bool $showSearch = null,
-        bool $wireSearch = null,
+        ?bool $hideSearch = null,
+        ?bool $showSearch = null,
+        ?bool $wireSearch = null,
 
-        string $orderby = null,
-        string $sort = null,
+        ?string $orderby = null,
+        ?string $sort = null,
 
-        string $clearFiltersEvent = null,
-        string $clearFiltersHref = null,
-        string $clearFiltersText = null,
+        ?string $clearFiltersEvent = null,
+        ?string $clearFiltersHref = null,
+        ?string $clearFiltersText = null,
 
         array $filters = []
     ) {
 
         /* ACTIVE FILTERS */
-        # TODO - combine all these
+        // TODO - combine all these
 
         $this->setConfigStyles([
             'active-filters-list-background' => $activeFiltersListBackground,
@@ -377,7 +375,7 @@ class Table extends Component
 
     public function tableFiltersClasses(): string
     {
-        return $this->classList($this->tableFiltersStyles, '', [], ['table-filters-container','table-filters-empty']);
+        return $this->classList($this->tableFiltersStyles, '', [], ['table-filters-container', 'table-filters-empty']);
     }
 
     public function tableFiltersContainer(): string
@@ -399,7 +397,7 @@ class Table extends Component
     {
         return $this->classList($this->tableWrapperStyles, '', [], [
             'table-wrapper-with-filters',
-            'table-wrapper-without-filters'
+            'table-wrapper-without-filters',
         ]);
     }
 

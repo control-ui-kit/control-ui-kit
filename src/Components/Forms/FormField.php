@@ -18,11 +18,11 @@ class FormField extends Component
     public string $underneath;
 
     public function __construct(
-        string $layout = null,
-        string $input = null,
-        string $help = null,
-        string $tooltip = null,
-        string $underneath = null,
+        ?string $layout = null,
+        ?string $input = null,
+        ?string $help = null,
+        ?string $tooltip = null,
+        ?string $underneath = null,
     ) {
         if ($input === 'input') {
             $this->input = 'input';

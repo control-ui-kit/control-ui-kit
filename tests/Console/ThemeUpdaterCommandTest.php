@@ -360,7 +360,7 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
         $stub = file_get_contents($this->stubPath);
 
         $palette = new BrandColorPalette('#FF0000');
-        $greys = new GreyColors();
+        $greys = new GreyColors;
 
         $brandLines = [];
         foreach ($palette->getPalette() as $shade => $rgb) {
@@ -386,13 +386,14 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
     {
         $path = $this->tempDir . '/' . $name . '.css';
         file_put_contents($path, $this->buildThemeCss($name));
+
         return $path;
     }
 
     private function removeLineContaining(string $filePath, string $needle): void
     {
         $lines = file($filePath, FILE_IGNORE_NEW_LINES);
-        $filtered = array_filter($lines, fn($line) => ! str_contains($line, $needle));
+        $filtered = array_filter($lines, fn ($line) => ! str_contains($line, $needle));
         file_put_contents($filePath, implode("\n", $filtered));
     }
 }

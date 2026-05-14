@@ -12,7 +12,7 @@ use Illuminate\View\Component;
 
 class DateRange extends Component
 {
-    use UseInputTheme, DateInputFunctions, LivewireAttributes;
+    use DateInputFunctions, LivewireAttributes, UseInputTheme;
 
     protected string $component = 'input-date-range';
 
@@ -43,39 +43,39 @@ class DateRange extends Component
 
     public function __construct(
         string $name,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null,
 
-        string $format = null,
-        string $data = null,
-        string $min = null,
-        string $max = null,
-        bool $weekNumbers = null,
-        string $separator = null,
-        string $icon = null,
-        string $lang = null,
-        string $id = null,
-        array|string $value = null,
-        string $from = null,
-        string $to = null,
-        string $yearsBefore = null,
-        string $yearsAfter = null,
+        ?string $format = null,
+        ?string $data = null,
+        ?string $min = null,
+        ?string $max = null,
+        ?bool $weekNumbers = null,
+        ?string $separator = null,
+        ?string $icon = null,
+        ?string $lang = null,
+        ?string $id = null,
+        array|string|null $value = null,
+        ?string $from = null,
+        ?string $to = null,
+        ?string $yearsBefore = null,
+        ?string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

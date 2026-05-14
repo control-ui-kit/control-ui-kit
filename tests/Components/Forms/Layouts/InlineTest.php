@@ -8,7 +8,7 @@ use Tests\Components\ComponentTestCase;
 
 class InlineTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -27,14 +27,25 @@ class InlineTest extends ComponentTestCase
         Config::set('themes.default.error.padding', 'error-padding');
 
         Config::set('themes.default.form-layout-inline.content', 'content-style');
+        Config::set('themes.default.form-layout-inline.content-other', 'content-other-style');
+        Config::set('themes.default.form-layout-inline.content-width', 'content-width-style');
         Config::set('themes.default.form-layout-inline.help', 'help-style');
-        Config::set('themes.default.form-layout-inline.text', 'text-style');
         Config::set('themes.default.form-layout-inline.label', 'label-style');
+        Config::set('themes.default.form-layout-inline.label-other', 'label-other-style');
+        Config::set('themes.default.form-layout-inline.label-width', 'label-width-style');
         Config::set('themes.default.form-layout-inline.required-size', 'required-size');
         Config::set('themes.default.form-layout-inline.required-color', 'required-color');
         Config::set('themes.default.form-layout-inline.slot', 'slot-style');
+        Config::set('themes.default.form-layout-inline.text', 'text-style');
         Config::set('themes.default.form-layout-inline.underneath', 'underneath-style');
         Config::set('themes.default.form-layout-inline.wrapper', 'wrapper');
+
+        Config::set('themes.default.form-layout-inline.sm.label-width', 'w-1/2');
+        Config::set('themes.default.form-layout-inline.sm.content-width', 'w-1/2');
+        Config::set('themes.default.form-layout-inline.md.label-width', 'w-1/3');
+        Config::set('themes.default.form-layout-inline.md.content-width', 'w-2/3');
+        Config::set('themes.default.form-layout-inline.lg.label-width', 'w-1/4');
+        Config::set('themes.default.form-layout-inline.lg.content-width', 'w-3/4');
 
         Config::set('themes.default.input-text.background', 'background');
         Config::set('themes.default.input-text.border', 'border');
@@ -327,6 +338,84 @@ class InlineTest extends ComponentTestCase
                         </div>
                         <div class="error-color error-font error-other error-padding"> This is a test message </div>
                         <p class="underneath-style">::Underneath</p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_inline_layout_component_can_be_rendered_with_size_preset(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-inline name="test" label="::Label" size="sm">::SLOT</x-form-layout-inline>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div>
+                <div class="wrapper">
+                    <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-1/2 label-other-style">
+                        <p class="text-style"> <span>::Label</span> </p>
+                    </label>
+                    <div class="w-1/2 content-other-style">
+                        <div class="slot-style"> ::SLOT </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_inline_layout_component_can_be_rendered_with_custom_widths(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-inline name="test" label="::Label" label-width="w-2/5" input-width="w-3/5">::SLOT</x-form-layout-inline>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div>
+                <div class="wrapper">
+                    <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-2/5 label-other-style">
+                        <p class="text-style"> <span>::Label</span> </p>
+                    </label>
+                    <div class="w-3/5 content-other-style">
+                        <div class="slot-style"> ::SLOT </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_inline_layout_component_label_width_prop_overrides_size_preset(): void
+    {
+        $this->withViewErrors(['test' => 'This is a test message']);
+
+        $template = <<<'HTML'
+            <x-form-layout-inline name="test" label="::Label" size="sm" label-width="w-1/3" input-width="w-2/3">::SLOT</x-form-layout-inline>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div>
+                <div class="wrapper">
+                    <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-1/3 label-other-style">
+                        <p class="text-style"> <span>::Label</span> </p>
+                    </label>
+                    <div class="w-2/3 content-other-style">
+                        <div class="slot-style"> ::SLOT </div>
+                        <div class="error-color error-font error-other error-padding"> This is a test message </div>
                     </div>
                 </div>
             </div>

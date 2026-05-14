@@ -18,9 +18,9 @@ class Logout extends Component
     public bool $iconOnly;
 
     public function __construct(
-        string $action = null,
-        string $bstyle = null,
-        string $icon = null,
+        ?string $action = null,
+        ?string $bstyle = null,
+        ?string $icon = null,
         bool $default = false,
         bool $brand = false,
         bool $danger = false,

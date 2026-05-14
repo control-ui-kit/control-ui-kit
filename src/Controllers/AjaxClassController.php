@@ -14,7 +14,7 @@ class AjaxClassController extends Controller
     {
         $class = $this->validateRequest($request);
 
-        $autocomplete = new $class();
+        $autocomplete = new $class;
 
         if ($request['query'] === 'lookup') {
             return response()->json($autocomplete->lookup($request['value']));

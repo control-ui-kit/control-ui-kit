@@ -12,11 +12,11 @@ class RadioGroupField extends InputField
 
     public function __construct(
         array|string $options,
-        string $name = null,
-        string $label = null,
-        string $help = null,
-        string $value = null,
-        string $layout = null
+        ?string $name = null,
+        ?string $label = null,
+        ?string $help = null,
+        ?string $value = null,
+        ?string $layout = null
     ) {
         parent::__construct($name, $label, $help, $value, $layout);
 

@@ -13,7 +13,7 @@ use Tests\Components\ComponentTestCase;
 
 class ErrorBagTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -13,8 +13,8 @@ class Region extends Component
 {
     use UseThemeFile;
 
-    protected string $component  = 'map-region';
-    protected array  $valid_iso = [
+    protected string $component = 'map-region';
+    protected array $valid_iso = [
         'au',
         'br',
         'ca',
@@ -103,7 +103,7 @@ class Region extends Component
         'jo',
         'bd',
         'az',
-        'lb'
+        'lb',
     ];
 
     public string $iso;
@@ -115,29 +115,29 @@ class Region extends Component
     public function __construct(
         string $iso,
         array $values = [],
-        string $title = null,
-        string $width = null,
-        string $height = null,
-        string $other = null,
-        string $name = null,
-        string $id = null
+        ?string $title = null,
+        ?string $width = null,
+        ?string $height = null,
+        ?string $other = null,
+        ?string $name = null,
+        ?string $id = null
     ) {
-        $this->iso    = strtolower($iso);
+        $this->iso = strtolower($iso);
         $this->values = json_encode($values);
-        $this->title  = $title;
-        $this->name   = $this->style($this->component, 'name', $name);
-        $this->id     = !is_null($id) ? (string)Str::of($id)->slug('_') : '';
+        $this->title = $title;
+        $this->name = $this->style($this->component, 'name', $name);
+        $this->id = ! is_null($id) ? (string) Str::of($id)->slug('_') : '';
 
         $this->setConfigStyles([
-            'width'  => $width,
+            'width' => $width,
             'height' => $height,
-            'other'  => $other
+            'other' => $other,
         ]);
     }
 
     public function render(): View|string
     {
-        if (!in_array($this->iso, $this->valid_iso, true)) {
+        if (! in_array($this->iso, $this->valid_iso, true)) {
             return 'Invalid ISO. {Expected: ' . implode(', ', $this->valid_iso) . '}';
         }
 

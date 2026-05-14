@@ -14,7 +14,7 @@ class Option extends Component
     public ?string $url;
 
     public function __construct(
-        string $url = null
+        ?string $url = null
     ) {
         $this->url = $url;
     }
@@ -22,7 +22,7 @@ class Option extends Component
     public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.dropdowns.option', [
-            'href' => $this->href()
+            'href' => $this->href(),
         ]);
     }
 

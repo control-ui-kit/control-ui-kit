@@ -8,7 +8,7 @@ use Tests\Components\ComponentTestCase;
 
 class OneTimeCodeFieldTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -112,7 +112,6 @@ class OneTimeCodeFieldTest extends ComponentTestCase
         Config::set('themes.default.input.wrapper-shadow', 'wrapper-shadow');
         Config::set('themes.default.input.wrapper-width', 'wrapper-width');
     }
-
 
     #[Test]
     public function the_field_otc_component_can_be_rendered(): void

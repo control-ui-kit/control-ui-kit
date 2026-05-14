@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 
 class NumberField extends InputField
 {
-    public function render(): View    {
+    public function render(): View
+    {
         return view('control-ui-kit::control-ui-kit.forms.fields.number');
     }
 }

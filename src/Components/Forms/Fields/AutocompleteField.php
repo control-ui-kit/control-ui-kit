@@ -17,12 +17,12 @@ class AutocompleteField extends Component
     public string $text;
 
     public function __construct(
-        string $name = null,
-        string $label = null,
-        string $help = null,
-        string $value = null,
-        string $layout = null,
-        string $text = null,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $help = null,
+        ?string $value = null,
+        ?string $layout = null,
+        ?string $text = null,
     ) {
         $this->name = $name ?? '';
         $this->label = $label ?? '';
