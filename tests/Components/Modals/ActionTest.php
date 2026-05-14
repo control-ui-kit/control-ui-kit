@@ -41,8 +41,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -72,8 +72,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_method" value="PUT">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -103,8 +103,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_method" value="PATCH">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -134,8 +134,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_method" value="DELETE">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -164,8 +164,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -194,8 +194,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -224,8 +224,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> Cancel </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">Confirm</span> <span x-show="loading">Please wait...</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> Cancel </button>
                         </div>
                     </form>
                 </div>
@@ -254,8 +254,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -284,8 +284,8 @@ class ActionTest extends ComponentTestCase
                         <input type="hidden" name="_token" value="" autocomplete="off">
                         <div class="p-4 text-sm leading-6"></div>
                         <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                             <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                            <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                         </div>
                     </form>
                 </div>
@@ -387,8 +387,8 @@ class ActionTest extends ComponentTestCase
                                                 </div>
                                             </div>
                                             <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                                                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                                                 <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-bind:disabled="loading" type="submit"> <span x-show="!loading">buttons.yes</span> <span x-show="loading">buttons.confirming</span> </button>
+                                                <button class="background default-background border default-border color default-color cursor font other padding rounded shadow min-w-20 space-x-0!" x-on:click="show = false" type="button"> buttons.no </button>
                                             </div>
                                         </form>
                                     </div>
