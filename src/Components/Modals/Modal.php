@@ -46,8 +46,10 @@ class Modal extends Component
             'sm' => 'sm:max-w-sm',
             'md' => 'sm:max-w-md',
             'lg' => 'sm:max-w-lg',
-            'xl' => 'sm:max-w-xl',
-            default => 'sm:max-w-2xl',
+            '2xl' => 'sm:max-w-2xl',
+            '3xl' => 'sm:max-w-3xl',
+            '4xl' => 'sm:max-w-4xl',
+            default => 'sm:max-w-xl',
         };
     }
 }

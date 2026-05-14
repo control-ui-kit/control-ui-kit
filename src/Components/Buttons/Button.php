@@ -58,7 +58,7 @@ class Button extends Component
         bool $success = false,
         bool $muted = false,
         bool $warning = false,
-        bool $singleClick = false,
+        ?bool $singleClick = null,
         array $attrs = [],
     ) {
         $this->bstyle = $this->buttonVersion($bstyle, [
@@ -99,11 +99,7 @@ class Button extends Component
             $text = trans($trans);
         }
         $this->text = $text;
-        $this->singleClick = $singleClick;
-
-        if ($this->type === 'submit') {
-            $this->singleClick = true;
-        }
+        $this->singleClick = $singleClick ?? ($this->type === 'submit');
 
         $this->extraAttrs = $attrs;
     }

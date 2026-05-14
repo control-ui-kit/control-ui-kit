@@ -117,36 +117,39 @@
                 @method($method)
             @endif
 
-            <div class="p-4">
+            <div class="p-4 text-sm leading-6">
                 @isset($title)
-
-                    <x-alert type="default" x-show="detail.type == 'default'">{{ $title }}</x-alert>
-                    <x-alert type="brand" x-show="detail.type == 'brand'">{{ $title }}</x-alert>
-                    <x-alert type="danger" x-show="detail.type == 'danger'">{{ $title }}</x-alert>
-                    <x-alert type="info" x-show="detail.type == 'info'">{{ $title }}</x-alert>
-                    <x-alert type="success" x-show="detail.type == 'success'">{{ $title }}</x-alert>
-                    <x-alert type="warning" x-show="detail.type == 'warning'">{{ $title }}</x-alert>
-
+                    <div class="mb-4">
+                        <x-alert type="default" x-show="detail.type == 'default'">{{ $title }}</x-alert>
+                        <x-alert type="brand" x-show="detail.type == 'brand'">{{ $title }}</x-alert>
+                        <x-alert type="danger" x-show="detail.type == 'danger'">{{ $title }}</x-alert>
+                        <x-alert type="info" x-show="detail.type == 'info'">{{ $title }}</x-alert>
+                        <x-alert type="success" x-show="detail.type == 'success'">{{ $title }}</x-alert>
+                        <x-alert type="warning" x-show="detail.type == 'warning'">{{ $title }}</x-alert>
+                    </div>
                 @endisset
                 {{ $slot }}
             </div>
 
             <div
                 class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
-                <x-button type="button" x-on:click="show = false">{{ $no }}</x-button>
-                <button type="submit" :disabled="loading">
+                <x-button type="button" x-on:click="show = false" width="min-w-20 space-x-0!">{{ $no }}</x-button>
+                <x-button type="submit" x-bind:disabled="loading" width="min-w-20 space-x-0!" :single-click="false">
                     <span x-show="!loading">{{ $yes }}</span>
                     <span x-show="loading">{{ $confirming }}</span>
-                </button>
+                </x-button>
             </div>
         </form>
     </div>
 </div>
+
 @if($autoResultsModal)
-    <x-modal-dialog id="{{ $resultsModal }}"
-                    x-on:open-modal.window="if ($event.detail.id === '{{ $resultsModal }}') { detail = { ...detail, ...$event.detail }; openModal() }">
+    <x-modal-dialog
+        id="{{ $resultsModal }}"
+        x-on:open-modal.window="if ($event.detail.id === '{{ $resultsModal }}') { detail = { ...detail, ...$event.detail }; openModal() }"
+    >
         <x-slot name="footer">
-            <button type="button" x-on:click="show = false" x-text="detail.button || '{{ $close }}'"></button>
+            <x-button type="button" x-on:click="show = false" x-text="detail.button || '{{ $close }}'"></x-button>
         </x-slot>
     </x-modal-dialog>
 @endif
