@@ -36,6 +36,9 @@ class Stacked extends Component
     public array $labelStyles;
 
     public function __construct(
+        string $size = null,
+        string $labelWidth = null,
+        string $inputWidth = null,
         string $content = null,
         string $helpStyle = null,
         string $labelStyle = null,
