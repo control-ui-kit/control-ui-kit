@@ -51,6 +51,10 @@
                     return 'sm:max-w-lg';
                 case '2xl':
                     return 'sm:max-w-2xl';
+                case '3xl':
+                    return 'sm:max-w-3xl';
+                case '4xl':
+                    return 'sm:max-w-4xl';
                 case 'xl':
                 default:
                     return 'sm:max-w-xl';
