@@ -11,7 +11,7 @@ use Tests\Components\ComponentTestCase;
 
 class EmbedTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -189,7 +189,6 @@ class EmbedTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_embed_component_icon_left_with_custom_size_can_be_rendered(): void

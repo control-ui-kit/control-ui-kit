@@ -50,6 +50,7 @@ final class ThemeUpdaterCommand extends Command
 
         if (! $filesystem->isDirectory($cssPath)) {
             $this->error("Path does not exist: {$cssPath}");
+
             return null;
         }
 
@@ -59,6 +60,7 @@ final class ThemeUpdaterCommand extends Command
 
             if (! $filesystem->exists($filePath)) {
                 $this->error("Theme file not found: {$filePath}");
+
                 return null;
             }
 
@@ -69,6 +71,7 @@ final class ThemeUpdaterCommand extends Command
 
         if (empty($files)) {
             $this->error("No CSS files found in: {$cssPath}");
+
             return null;
         }
 
@@ -92,6 +95,7 @@ final class ThemeUpdaterCommand extends Command
         if ($missingCount === 0 && $paletteCount === 0) {
             $extras = $extraCount > 0 ? " ({$extraCount} extra variable(s) not in stub)" : '';
             $this->line("<info>{$filePath}</info> — up to date{$extras}");
+
             return;
         }
 
@@ -100,6 +104,7 @@ final class ThemeUpdaterCommand extends Command
         if (! $this->confirm('Apply changes to this file?', false)) {
             $this->line('Skipped.');
             $this->line('');
+
             return;
         }
 
@@ -176,11 +181,12 @@ final class ThemeUpdaterCommand extends Command
             if ($fileSection['start'] === null) {
                 $this->line('');
                 $this->line("  <comment>[{$label}]</comment> <fg=red>section not found — re-run uikit:create-new-theme</>");
+
                 continue;
             }
 
             $displayEntries = $this->filterOrphanedComments($diff[$section]['missing']);
-            $varCount = count(array_filter($displayEntries, fn($e) => $e['type'] === 'variable'));
+            $varCount = count(array_filter($displayEntries, fn ($e) => $e['type'] === 'variable'));
             $palette = $diff[$section]['palette_missing'];
             $extra = $diff[$section]['extra'];
 
@@ -206,7 +212,7 @@ final class ThemeUpdaterCommand extends Command
 
             if (! empty($palette)) {
                 $this->line('');
-                $this->line("    <fg=red>⚠  Palette variables missing (re-run uikit:create-new-theme):</>");
+                $this->line('    <fg=red>⚠  Palette variables missing (re-run uikit:create-new-theme):</>');
                 $this->line('      ' . implode(', ', $palette));
             }
 
@@ -244,8 +250,8 @@ final class ThemeUpdaterCommand extends Command
 
             $missingVarNames = array_filter(array_column($displayEntries, 'name'));
             $missingCommentTexts = array_map(
-                fn($e) => $e['text'],
-                array_filter($displayEntries, fn($e) => $e['type'] === 'comment'),
+                fn ($e) => $e['text'],
+                array_filter($displayEntries, fn ($e) => $e['type'] === 'comment'),
             );
 
             $lastExistingLine = $fileSection['start'];
@@ -256,6 +262,7 @@ final class ThemeUpdaterCommand extends Command
                     if (! empty($pendingLines)) {
                         $pendingLines[] = $entry['content'];
                     }
+
                     continue;
                 }
 
@@ -273,6 +280,7 @@ final class ThemeUpdaterCommand extends Command
                     } elseif (in_array($entry['text'], $missingCommentTexts, true)) {
                         $pendingLines[] = $entry['content'];
                     }
+
                     continue;
                 }
 
@@ -307,7 +315,7 @@ final class ThemeUpdaterCommand extends Command
     private function applyInsertions(array $fileLines, array $insertions): array
     {
         // Apply from bottom to top to keep line numbers valid
-        usort($insertions, fn($a, $b) => $b['after'] <=> $a['after']);
+        usort($insertions, fn ($a, $b) => $b['after'] <=> $a['after']);
 
         foreach ($insertions as $insertion) {
             array_splice($fileLines, $insertion['after'] + 1, 0, $insertion['lines']);
@@ -352,18 +360,18 @@ final class ThemeUpdaterCommand extends Command
     private function countMissingVariables(array $diff): int
     {
         return array_sum(array_map(
-            fn($d) => count(array_filter($d['missing'], fn($e) => $e['type'] === 'variable')),
+            fn ($d) => count(array_filter($d['missing'], fn ($e) => $e['type'] === 'variable')),
             $diff,
         ));
     }
 
     private function countPaletteWarnings(array $diff): int
     {
-        return array_sum(array_map(fn($d) => count($d['palette_missing']), $diff));
+        return array_sum(array_map(fn ($d) => count($d['palette_missing']), $diff));
     }
 
     private function countExtra(array $diff): int
     {
-        return array_sum(array_map(fn($d) => count($d['extra']), $diff));
+        return array_sum(array_map(fn ($d) => count($d['extra']), $diff));
     }
 }

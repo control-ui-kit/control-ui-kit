@@ -25,17 +25,17 @@ class Embed extends Component
 
         bool $iconLeft = false,
         bool $iconRight = false,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $icon = null,
-        string $iconSize = null,
-        array $styles = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $icon = null,
+        ?string $iconSize = null,
+        ?array $styles = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null
     ) {
         $this->icon = $icon;
 
@@ -74,21 +74,25 @@ class Embed extends Component
     {
         if ($prefix) {
             $this->type = 'prefix';
+
             return;
         }
 
         if ($suffix) {
             $this->type = 'suffix';
+
             return;
         }
 
         if ($iconLeft) {
             $this->type = 'icon-left';
+
             return;
         }
 
         if ($iconRight) {
             $this->type = 'icon-right';
+
             return;
         }
 

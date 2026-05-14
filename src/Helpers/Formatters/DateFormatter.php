@@ -9,7 +9,7 @@ class DateFormatter extends BaseFormatter
     public function format(?string $data, ?string $options): string
     {
         if (! $data) {
-            return "-";
+            return '-';
         }
 
         Carbon::setLocale($this->getLocale());
@@ -34,6 +34,7 @@ class DateFormatter extends BaseFormatter
     private function getLocale(): string
     {
         $locale = \App::currentLocale() ?? config('app.locale');
+
         return $locale === 'en' ? 'en_GB' : $locale;
     }
 

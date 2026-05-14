@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class CheckboxTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

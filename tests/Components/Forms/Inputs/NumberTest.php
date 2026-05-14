@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Components\Forms\Inputs;
 
-use ControlUIKit\Exceptions\InputNumberException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\View\ViewException;
 use PHPUnit\Framework\Attributes\Test;
@@ -12,7 +11,7 @@ use Tests\Components\ComponentTestCase;
 
 class NumberTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

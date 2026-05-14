@@ -186,7 +186,6 @@ class AjaxClassControllerTest extends TestCase
 
 use ControlUIKit\AutoComplete;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class CountriesAutoComplete extends AutoComplete
 {

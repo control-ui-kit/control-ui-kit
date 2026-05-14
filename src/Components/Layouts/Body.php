@@ -17,15 +17,15 @@ class Body extends Component
     public string $theme;
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $mode = null
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $mode = null
     ) {
         $this->setConfigStyles([
             'background' => $background,

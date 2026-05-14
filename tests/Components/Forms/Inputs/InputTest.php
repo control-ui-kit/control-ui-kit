@@ -11,7 +11,7 @@ use Tests\Components\ComponentTestCase;
 
 class InputTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -624,7 +624,6 @@ class InputTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function an_input_component_uses_config_prefix_text_when_none_is_passed(): void
     {
@@ -680,7 +679,6 @@ class InputTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function an_input_component_uses_config_decimals_when_none_is_passed(): void

@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Tags extends Component
 {
-    use UseThemeFile, LivewireAttributes;
+    use LivewireAttributes, UseThemeFile;
 
     protected string $component = 'input-tags';
 
@@ -27,42 +27,42 @@ class Tags extends Component
 
     public function __construct(
         string $name,
-        string $id = null,
-        string $value = null,
-        string $placeholder = null,
-        int $max = null,
+        ?string $id = null,
+        ?string $value = null,
+        ?string $placeholder = null,
+        ?int $max = null,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $inputBackground = null,
-        string $inputBorder = null,
-        string $inputColor = null,
-        string $inputFont = null,
-        string $inputOther = null,
-        string $inputPadding = null,
-        string $inputRounded = null,
-        string $inputShadow = null,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputColor = null,
+        ?string $inputFont = null,
+        ?string $inputOther = null,
+        ?string $inputPadding = null,
+        ?string $inputRounded = null,
+        ?string $inputShadow = null,
 
-        string $tagBackground = null,
-        string $tagBorder = null,
-        string $tagColor = null,
-        string $tagFont = null,
-        string $tagOther = null,
-        string $tagPadding = null,
-        string $tagRounded = null,
-        string $tagShadow = null,
+        ?string $tagBackground = null,
+        ?string $tagBorder = null,
+        ?string $tagColor = null,
+        ?string $tagFont = null,
+        ?string $tagOther = null,
+        ?string $tagPadding = null,
+        ?string $tagRounded = null,
+        ?string $tagShadow = null,
 
-        string $tagCloseColor = null,
-        string $tagCloseOther = null,
-        string $tagCloseSize = null,
+        ?string $tagCloseColor = null,
+        ?string $tagCloseOther = null,
+        ?string $tagCloseSize = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

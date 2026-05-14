@@ -13,7 +13,7 @@ use Illuminate\View\Component;
 
 class AutoComplete extends Component
 {
-    use UseThemeFile, LivewireAttributes;
+    use LivewireAttributes, UseThemeFile;
 
     protected string $component = 'input-autocomplete';
 
@@ -60,149 +60,149 @@ class AutoComplete extends Component
 
     public function __construct(
         string $name,
-        string $id = null,
-        string $placeholder = null,
-        string $value = null,
-        string $selected = null,
-        string $type = null,
+        ?string $id = null,
+        ?string $placeholder = null,
+        ?string $value = null,
+        ?string $selected = null,
+        ?string $type = null,
 
-        string $iconOpen = null,
-        string $iconClose = null,
-        string $iconClear = null,
+        ?string $iconOpen = null,
+        ?string $iconClose = null,
+        ?string $iconClear = null,
         mixed $src = null,
-        string $lookup = null,
-        string $focus = null,
-        int $limit = null,
-        string $urlId = null,
-        string $urlSearch = null,
-        string $urlLimit = null,
-        int $minChars = null,
+        ?string $lookup = null,
+        ?string $focus = null,
+        ?int $limit = null,
+        ?string $urlId = null,
+        ?string $urlSearch = null,
+        ?string $urlLimit = null,
+        ?int $minChars = null,
 
-        string $options = null,
-        string $optionValue = null,
-        string $optionText = null,
-        string $optionSubtext = null,
-        string $optionImage = null,
-        string $promptText = null,
-        string $selectedText = null,
-        string $noResultsText = null,
-        bool $preload = null,
+        ?string $options = null,
+        ?string $optionValue = null,
+        ?string $optionText = null,
+        ?string $optionSubtext = null,
+        ?string $optionImage = null,
+        ?string $promptText = null,
+        ?string $selectedText = null,
+        ?string $noResultsText = null,
+        ?bool $preload = null,
         bool $noClear = false,
         bool $noDropdownButton = false,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $clearBackground = null,
-        string $clearBorder = null,
-        string $clearColor = null,
-        string $clearOther = null,
-        string $clearPadding = null,
-        string $clearRounded = null,
-        string $clearShadow = null,
-        string $clearSize = null,
+        ?string $clearBackground = null,
+        ?string $clearBorder = null,
+        ?string $clearColor = null,
+        ?string $clearOther = null,
+        ?string $clearPadding = null,
+        ?string $clearRounded = null,
+        ?string $clearShadow = null,
+        ?string $clearSize = null,
 
-        string $dropdownBackground = null,
-        string $dropdownBorder = null,
-        string $dropdownColor = null,
-        string $dropdownOther = null,
-        string $dropdownPadding = null,
-        string $dropdownRounded = null,
-        string $dropdownShadow = null,
-        string $dropdownWidth = null,
+        ?string $dropdownBackground = null,
+        ?string $dropdownBorder = null,
+        ?string $dropdownColor = null,
+        ?string $dropdownOther = null,
+        ?string $dropdownPadding = null,
+        ?string $dropdownRounded = null,
+        ?string $dropdownShadow = null,
+        ?string $dropdownWidth = null,
 
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
-        string $iconSize = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
+        ?string $iconSize = null,
 
-        string $imageBorder = null,
-        string $imageOther = null,
-        string $imagePadding = null,
-        string $imageRounded = null,
-        string $imageShadow = null,
-        string $imageSize = null,
+        ?string $imageBorder = null,
+        ?string $imageOther = null,
+        ?string $imagePadding = null,
+        ?string $imageRounded = null,
+        ?string $imageShadow = null,
+        ?string $imageSize = null,
 
-        string $inputBackground = null,
-        string $inputBorder = null,
-        string $inputColor = null,
-        string $inputFont = null,
-        string $inputOther = null,
-        string $inputPadding = null,
-        string $inputRounded = null,
-        string $inputShadow = null,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputColor = null,
+        ?string $inputFont = null,
+        ?string $inputOther = null,
+        ?string $inputPadding = null,
+        ?string $inputRounded = null,
+        ?string $inputShadow = null,
 
-        string $optionBackground = null,
-        string $optionBorder = null,
-        string $optionColor = null,
-        string $optionFocus = null,
-        string $optionFont = null,
-        string $optionOther = null,
-        string $optionPadding = null,
-        string $optionRounded = null,
-        string $optionSelected = null,
-        string $optionShadow = null,
+        ?string $optionBackground = null,
+        ?string $optionBorder = null,
+        ?string $optionColor = null,
+        ?string $optionFocus = null,
+        ?string $optionFont = null,
+        ?string $optionOther = null,
+        ?string $optionPadding = null,
+        ?string $optionRounded = null,
+        ?string $optionSelected = null,
+        ?string $optionShadow = null,
 
-        string $promptBackground = null,
-        string $promptBorder = null,
-        string $promptColor = null,
-        string $promptFont = null,
-        string $promptOther = null,
-        string $promptPadding = null,
-        string $promptRounded = null,
-        string $promptShadow = null,
+        ?string $promptBackground = null,
+        ?string $promptBorder = null,
+        ?string $promptColor = null,
+        ?string $promptFont = null,
+        ?string $promptOther = null,
+        ?string $promptPadding = null,
+        ?string $promptRounded = null,
+        ?string $promptShadow = null,
 
-        string $selectedBackground = null,
-        string $selectedBorder = null,
-        string $selectedColor = null,
-        string $selectedFont = null,
-        string $selectedOther = null,
-        string $selectedPadding = null,
-        string $selectedRounded = null,
-        string $selectedShadow = null,
+        ?string $selectedBackground = null,
+        ?string $selectedBorder = null,
+        ?string $selectedColor = null,
+        ?string $selectedFont = null,
+        ?string $selectedOther = null,
+        ?string $selectedPadding = null,
+        ?string $selectedRounded = null,
+        ?string $selectedShadow = null,
 
-        string $subtextBackground = null,
-        string $subtextBorder = null,
-        string $subtextColor = null,
-        string $subtextFocus = null,
-        string $subtextFont = null,
-        string $subtextOther = null,
-        string $subtextPadding = null,
-        string $subtextRounded = null,
-        string $subtextSelected = null,
-        string $subtextShadow = null,
+        ?string $subtextBackground = null,
+        ?string $subtextBorder = null,
+        ?string $subtextColor = null,
+        ?string $subtextFocus = null,
+        ?string $subtextFont = null,
+        ?string $subtextOther = null,
+        ?string $subtextPadding = null,
+        ?string $subtextRounded = null,
+        ?string $subtextSelected = null,
+        ?string $subtextShadow = null,
 
-        string $textBackground = null,
-        string $textBorder = null,
-        string $textColor = null,
-        string $textFocus = null,
-        string $textFont = null,
-        string $textOther = null,
-        string $textPadding = null,
-        string $textRounded = null,
-        string $textSelected = null,
-        string $textShadow = null,
+        ?string $textBackground = null,
+        ?string $textBorder = null,
+        ?string $textColor = null,
+        ?string $textFocus = null,
+        ?string $textFont = null,
+        ?string $textOther = null,
+        ?string $textPadding = null,
+        ?string $textRounded = null,
+        ?string $textSelected = null,
+        ?string $textShadow = null,
 
-        string $wrapperBackground = null,
-        string $wrapperBorder = null,
-        string $wrapperColor = null,
-        string $wrapperFont = null,
-        string $wrapperOther = null,
-        string $wrapperPadding = null,
-        string $wrapperRounded = null,
-        string $wrapperShadow = null,
-        string $wrapperWidth = null,
+        ?string $wrapperBackground = null,
+        ?string $wrapperBorder = null,
+        ?string $wrapperColor = null,
+        ?string $wrapperFont = null,
+        ?string $wrapperOther = null,
+        ?string $wrapperPadding = null,
+        ?string $wrapperRounded = null,
+        ?string $wrapperShadow = null,
+        ?string $wrapperWidth = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -439,7 +439,7 @@ class AutoComplete extends Component
 
         if ($this->focus && $this->type) {
             $this->focus = $this->class->focus($limit);
-        } else if ($mode === 'data' && ! $preload) {
+        } elseif ($mode === 'data' && ! $preload) {
             $this->options = $this->setOptions($this->source);
         }
     }
@@ -474,6 +474,7 @@ class AutoComplete extends Component
                 return true;
             }
         }
+
         return false;
     }
 
@@ -586,6 +587,7 @@ class AutoComplete extends Component
     {
         $this->iconStyles = collect($this->iconStyles)->mapWithKeys(function ($value, $key) {
             $newKey = str_replace('icon-', '', $key); // Remove the 'icon-' prefix
+
             return [$newKey => $value]; // Return the new key=>value pair
         })->toArray();
     }
@@ -631,7 +633,7 @@ class AutoComplete extends Component
         $this->validateAutoCompleteClass();
 
         if (! $this->class->preload) {
-            $this->source =  $this->classSearchRoute();
+            $this->source = $this->classSearchRoute();
         }
 
         $this->lookup = $this->classLookupRoute();
@@ -685,7 +687,7 @@ class AutoComplete extends Component
             throw new AutoCompleteException('Class specified is not an AutoComplete class : ' . $class);
         }
 
-        $this->class = new $class();
+        $this->class = new $class;
     }
 
     private function setMode(mixed $src, mixed $type): string

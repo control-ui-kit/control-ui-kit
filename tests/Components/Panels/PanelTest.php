@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class PanelTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -90,13 +90,13 @@ class PanelTest extends ComponentTestCase
     #[Test]
     public function a_panel_component_can_be_rendered_with_a_title(): void
     {
-        $template = <<< HTML
+        $template = <<< 'HTML'
             <x-panel title="title">
                 content
             </x-panel>
             HTML;
 
-        $expected = <<< HTML
+        $expected = <<< 'HTML'
             <div class="flex flex-col width">
                 <h3 class="background border color font other padding rounded shadow">
                     title

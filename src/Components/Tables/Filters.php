@@ -19,17 +19,17 @@ class Filters extends Component
 
     public function __construct(
         array $filters,
-        string $buttonBackground = null,
-        string $buttonBorder = null,
-        string $buttonColor = null,
-        string $buttonFont = null,
-        string $buttonIcon = null,
-        string $buttonIconSize = null,
-        string $buttonOther = null,
-        string $buttonPadding = null,
-        string $buttonRounded = null,
-        string $buttonShadow = null,
-        string $buttonWidth = null
+        ?string $buttonBackground = null,
+        ?string $buttonBorder = null,
+        ?string $buttonColor = null,
+        ?string $buttonFont = null,
+        ?string $buttonIcon = null,
+        ?string $buttonIconSize = null,
+        ?string $buttonOther = null,
+        ?string $buttonPadding = null,
+        ?string $buttonRounded = null,
+        ?string $buttonShadow = null,
+        ?string $buttonWidth = null
 
     ) {
         $this->setupFilters($filters);

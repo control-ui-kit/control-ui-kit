@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 
 class MatrixTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
@@ -945,7 +945,6 @@ class MatrixTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function a_matrix_chart_component_with_y_label_hidden_can_be_rendered(): void
     {
@@ -1211,7 +1210,6 @@ class MatrixTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_matrix_chart_component_with_y_label_position_changed_can_be_rendered(): void

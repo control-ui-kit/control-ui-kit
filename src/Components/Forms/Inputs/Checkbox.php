@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class Checkbox extends Component
 {
-    use UseThemeFile, UseInputTheme;
+    use UseInputTheme, UseThemeFile;
 
     protected string $component = 'input-checkbox';
 
@@ -26,21 +26,21 @@ class Checkbox extends Component
     public function __construct(
         string $name,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $layout = null,
-        string $other = null,
-        string $padding = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $layout = null,
+        ?string $other = null,
+        ?string $padding = null,
 
-        string $inputBackground = null,
-        string $inputBorder = null,
-        string $inputOther = null,
-        string $inputRounded = null,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputOther = null,
+        ?string $inputRounded = null,
 
-        string $id = null,
+        ?string $id = null,
         string $value = '1',
-        string $checked = null,
+        ?string $checked = null,
         bool $disabled = false
     ) {
         $this->name = $name;

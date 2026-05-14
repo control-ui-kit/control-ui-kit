@@ -33,40 +33,40 @@ class Alert extends Component
     private bool $jumbo;
 
     public function __construct(
-        string $title = null,
-        string $text = null,
+        ?string $title = null,
+        ?string $text = null,
         array $urls = [],
-        string $url = null,
-        string $urlText = null,
+        ?string $url = null,
+        ?string $urlText = null,
 
-        string $background = null,
-        string $border = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $textColor = null,
-        string $textFont = null,
-        string $textSize = null,
-        string $textOther = null,
+        ?string $textColor = null,
+        ?string $textFont = null,
+        ?string $textSize = null,
+        ?string $textOther = null,
 
-        string $titleColor = null,
-        string $titleFont = null,
-        string $titleSize = null,
-        string $titleOther = null,
+        ?string $titleColor = null,
+        ?string $titleFont = null,
+        ?string $titleSize = null,
+        ?string $titleOther = null,
 
-        string $urlColor = null,
-        string $urlFont = null,
-        string $urlSize = null,
-        string $urlOther = null,
+        ?string $urlColor = null,
+        ?string $urlFont = null,
+        ?string $urlSize = null,
+        ?string $urlOther = null,
 
-        string $icon = null,
-        string $iconColor = null,
-        string $iconSize = null,
+        ?string $icon = null,
+        ?string $iconColor = null,
+        ?string $iconSize = null,
 
-        string $type = null,
+        ?string $type = null,
 
         bool $default = false,
         bool $brand = false,
@@ -94,7 +94,7 @@ class Alert extends Component
         $this->jumbo = $jumbo;
 
         if ($url) {
-            $this->urls[] = ['url' => $url, 'text' => $urlText ?: $url ];
+            $this->urls[] = ['url' => $url, 'text' => $urlText ?: $url];
         }
 
         $this->type = $this->type($type, [
@@ -114,7 +114,7 @@ class Alert extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
-            'width' => $this->getWidth($width)
+            'width' => $this->getWidth($width),
         ], ['background', 'border'], 'alert.' . $this->type);
 
         $this->setConfigStyles([
@@ -167,7 +167,7 @@ class Alert extends Component
         'info',
         'success',
         'muted',
-        'warning'
+        'warning',
     ];
 
     private function type($type, $styles, $default = 'default'): string

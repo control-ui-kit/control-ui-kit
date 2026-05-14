@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class InputFieldTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -206,7 +206,6 @@ class InputFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function the_field_text_component_can_be_rendered_with_custom_attribute(): void

@@ -13,7 +13,7 @@ trait ArrayHelper
     {
         $options = [];
 
-        foreach($array as $option) {
+        foreach ($array as $option) {
             $options[$option['value']] = $option['label'];
         }
 

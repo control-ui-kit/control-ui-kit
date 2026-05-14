@@ -4,7 +4,6 @@ namespace Tests;
 
 use ControlUIKit\AutoComplete;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
@@ -13,7 +12,7 @@ class AutoCompleteTest extends ComponentTestCase
     #[Test]
     public function autocomplete_can_be_rendered(): void
     {
-        $class = new TestAutoComplete();
+        $class = new TestAutoComplete;
 
         $this->assertSame(1, $class->count());
         $this->assertIsArray($class->focus(1));
@@ -30,7 +29,7 @@ class TestAutoComplete extends AutoComplete
 
     public function count(): int
     {
-       return 1;
+        return 1;
     }
 
     public function focus(int $limit): Collection|array
@@ -51,8 +50,7 @@ class TestAutoComplete extends AutoComplete
     public function search(string $term, int $limit): Collection|array
     {
         return [
-            1 => $this->selectFields()
+            1 => $this->selectFields(),
         ];
     }
 }
-

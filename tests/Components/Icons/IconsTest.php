@@ -15,7 +15,7 @@ class IconsTest extends ComponentTestCase
     public function getIconHtml($icon): string
     {
         return str_replace(
-            [' {{ $attributes->merge($classes(\'fill-current\')) }}', ' {{ $attributes->merge($classes()) }}', ' {{ $attributes->merge($classes(\'animate-spin\')) }}' ],
+            [' {{ $attributes->merge($classes(\'fill-current\')) }}', ' {{ $attributes->merge($classes()) }}', ' {{ $attributes->merge($classes(\'animate-spin\')) }}'],
             [' class="w-5 h-5 fill-current"', ' class="w-5 h-5"', ' class="w-5 h-5 animate-spin"'],
             file_get_contents(self::ICON_PATH . $icon . '.blade.php')
         );
@@ -26,7 +26,7 @@ class IconsTest extends ComponentTestCase
     {
         $icons = collect(config('control-ui-kit.icons'))
             ->keys()
-            ->filter(fn($key) => str($key)->startsWith('icon-'));
+            ->filter(fn ($key) => str($key)->startsWith('icon-'));
 
         foreach ($icons as $icon) {
             $template = '<x-dynamic-component component="' . $icon . '" />';
@@ -43,7 +43,7 @@ class IconsTest extends ComponentTestCase
     {
         $icons = collect(config('control-ui-kit.icons'))
             ->keys()
-            ->filter(fn($key) => str($key)->startsWith('file-'));
+            ->filter(fn ($key) => str($key)->startsWith('file-'));
 
         foreach ($icons as $icon) {
             $template = '<x-dynamic-component component="' . $icon . '" />';
@@ -60,7 +60,7 @@ class IconsTest extends ComponentTestCase
     {
         $icons = collect(config('control-ui-kit.icons'))
             ->keys()
-            ->filter(fn($key) => str($key)->startsWith('logo-'));
+            ->filter(fn ($key) => str($key)->startsWith('logo-'));
 
         foreach ($icons as $icon) {
             $template = '<x-dynamic-component component="' . $icon . '" />';
@@ -132,7 +132,7 @@ class IconsTest extends ComponentTestCase
     #[Test]
     public function icon_component_coverage_test(): void
     {
-        $icon = new BaseIconComponent();
+        $icon = new BaseIconComponent;
         self::assertEmpty($icon->render());
     }
 }

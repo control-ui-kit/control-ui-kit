@@ -188,7 +188,7 @@ return [
     'change-chart' => [
         'icon' => '',
         'icon-size' => 'h-6 w-6',
-        'percent-difference' => "false",
+        'percent-difference' => 'false',
         'decimals' => 0,
         'difference-increase-icon' => 'icon-arrow-up',
         'difference-decrease-icon' => 'icon-arrow-down',
@@ -318,8 +318,8 @@ return [
                         'height' => 1.2,
                         'reverse' => 'false',
                         'padding' => 0,
-                        'z-index' => 0
-                    ]
+                        'z-index' => 0,
+                    ],
                 ],
                 'y' => [
                     'label' => 'Value',
@@ -332,9 +332,9 @@ return [
                         'height' => 1.2,
                         'reverse' => 'false',
                         'padding' => 0,
-                        'z-index' => 0
-                    ]
-                ]
+                        'z-index' => 0,
+                    ],
+                ],
             ],
             'legend' => [
                 'display' => 'true',
@@ -348,8 +348,8 @@ return [
                     'fontStyle' => 'normal',
                     'fontColor' => '#666',
                     'fontFamily' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-                    'padding' => 10
-                ]
+                    'padding' => 10,
+                ],
             ],
             'title' => [
                 'display' => false,
@@ -378,7 +378,7 @@ return [
             'point' => [
                 'style' => 'circle',
                 'radius' => 3,
-                'hoverRadius' => 4
+                'hoverRadius' => 4,
             ],
             'tooltips' => [
                 'enabled' => true,
@@ -424,8 +424,8 @@ return [
             'hide-grid' => 'false',
             'hide-axis' => 'false',
             'background-color' => 'rgba(0, 0, 0, 0.1)',
-            'grid-color' => 'rgba(0, 0, 0, 0.1)'
-        ]
+            'grid-color' => 'rgba(0, 0, 0, 0.1)',
+        ],
     ],
 
     'dropdown-menu' => [
@@ -1162,7 +1162,7 @@ return [
         'check-active' => '',
         'check-inactive' => '',
         'check-icon' => 'icon-check',
-        'check-icon-size' =>'w-5 h-5',
+        'check-icon-size' => 'w-5 h-5',
 
         'icon' => 'icon-chevron-down',
         'icon-background' => '',
@@ -1252,7 +1252,7 @@ return [
         'shadow' => '',
         'width' => 'w-full',
 
-        //Config
+        // Config
         'rows' => 4,
     ],
 
@@ -1447,10 +1447,10 @@ return [
     ],
 
     'map-region' => [
-        'width'  => 'w-full',
+        'width' => 'w-full',
         'height' => 'h-full',
-        'other'  => '',
-        'name'   => 'Count',
+        'other' => '',
+        'name' => 'Count',
     ],
 
     'matrix' => [
@@ -1459,20 +1459,20 @@ return [
         'axes' => [
             'x' => [
                 'label' => [
-                    'visible' => "true",
-                    'position' => 'bottom'
+                    'visible' => 'true',
+                    'position' => 'bottom',
                 ],
-                'margin' => "1"
+                'margin' => '1',
             ],
             'y' => [
                 'label' => [
-                    'visible' => "true",
-                    'position' => 'left'
+                    'visible' => 'true',
+                    'position' => 'left',
                 ],
-                'margin' => "1",
-                'reverse' => 'true'
-            ]
-        ]
+                'margin' => '1',
+                'reverse' => 'true',
+            ],
+        ],
     ],
 
     'modal' => [
@@ -1651,7 +1651,7 @@ return [
 
     'table' => [
 
-        # TODO - test
+        // TODO - test
         'active-filters-list-background' => '',
         'active-filters-list-border' => '',
         'active-filters-list-color' => '',
@@ -1662,7 +1662,7 @@ return [
         'active-filters-list-shadow' => '',
         'active-filters-list-width' => '',
 
-        # TODO - test
+        // TODO - test
         'active-filters-wrapper-background' => '',
         'active-filters-wrapper-border' => '',
         'active-filters-wrapper-color' => '',
@@ -1673,7 +1673,7 @@ return [
         'active-filters-wrapper-shadow' => '',
         'active-filters-wrapper-width' => 'w-full',
 
-        # TODO - test
+        // TODO - test
         'clear-filters-event' => '',
         'clear-filters-href' => '',
         'clear-filters-text' => 'Clear Filters',
@@ -1686,7 +1686,7 @@ return [
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
 
-        # TODO - test
+        // TODO - test
         'search-icon-background' => '',
         'search-icon-border' => 'border-0 ',
         'search-icon-color' => 'text-muted',
@@ -1697,7 +1697,7 @@ return [
         'search-icon-rounded' => '',
         'search-icon-shadow' => '',
 
-        # TODO - test
+        // TODO - test
         'search-input-background' => 'bg-table-filters',
         'search-input-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'search-input-color' => 'text-input placeholder-input',
@@ -1708,7 +1708,7 @@ return [
         'search-input-shadow' => '',
         'search-input-width' => 'w-full',
 
-        # TODO - test
+        // TODO - test
         'search-wrapper-background' => 'bg-table-filters',
         'search-wrapper-border' => 'border border-input focus-within:border-brand',
         'search-wrapper-color' => '',
@@ -1719,7 +1719,7 @@ return [
         'search-wrapper-shadow' => '',
         'search-wrapper-width' => '',
 
-        # TODO - test
+        // TODO - test
         'search-enable' => false,
         'search-bar' => 'mb-2 sm:mb-4',
         'search-bar-spacing' => 'flex space-x-2 sm:space-x-2',

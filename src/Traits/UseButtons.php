@@ -14,7 +14,7 @@ trait UseButtons
         'link',
         'success',
         'muted',
-        'warning'
+        'warning',
     ];
 
     private function buttonVersion($bstyle, $styles, $default = 'primary'): string

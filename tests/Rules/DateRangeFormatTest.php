@@ -21,7 +21,7 @@ class DateRangeFormatTest extends ComponentTestCase
     #[Test]
     public function a_date_range_passes_when_valid(): void
     {
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => '2021-01-01#2021-01-31'], ['range' => $rule]);
 
@@ -53,7 +53,7 @@ class DateRangeFormatTest extends ComponentTestCase
     {
         Config::set('themes.default.input-date-range.data', 'd/m/Y');
 
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => '01/01/2021#31/01/2021'], ['range' => $rule]);
 
@@ -63,7 +63,7 @@ class DateRangeFormatTest extends ComponentTestCase
     #[Test]
     public function a_date_range_fails_when_only_a_single_date_is_passed(): void
     {
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => '2021-01-31'], ['range' => $rule]);
 
@@ -75,7 +75,7 @@ class DateRangeFormatTest extends ComponentTestCase
     #[Test]
     public function a_date_range_fails_when_the_from_date_is_not_valid(): void
     {
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => 'invalid#2021-01-01'], ['range' => $rule]);
 
@@ -87,7 +87,7 @@ class DateRangeFormatTest extends ComponentTestCase
     #[Test]
     public function a_date_range_fails_when_the_to_date_is_not_valid(): void
     {
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => '2021-01-01#invalid'], ['range' => $rule]);
 
@@ -99,7 +99,7 @@ class DateRangeFormatTest extends ComponentTestCase
     #[Test]
     public function a_date_range_fails_when_both_dates_have_invalid_formats(): void
     {
-        $rule = new DateRangeFormat();
+        $rule = new DateRangeFormat;
 
         $validator = Validator::make(['range' => 'invalid#invalid'], ['range' => $rule]);
 

@@ -28,13 +28,13 @@ class Bar extends Component
     private array $styles = ['brand', 'info', 'success', 'danger', 'warning', 'muted'];
 
     public function __construct(
-        string $value = null,
-        string $min = null,
-        string $max = null,
+        ?string $value = null,
+        ?string $min = null,
+        ?string $max = null,
         bool $animated = false,
         bool $showValue = false,
-        string $size = null,
-        string $barStyle = null,
+        ?string $size = null,
+        ?string $barStyle = null,
 
         bool $brand = false,
         bool $info = false,
@@ -43,23 +43,23 @@ class Bar extends Component
         bool $warning = false,
         bool $muted = false,
 
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
 
-        string $barBackground = null,
-        string $barOther = null,
-        string $barRounded = null,
+        ?string $barBackground = null,
+        ?string $barOther = null,
+        ?string $barRounded = null,
 
-        string $labelColor = null,
-        string $labelFont = null,
-        string $labelOther = null,
+        ?string $labelColor = null,
+        ?string $labelFont = null,
+        ?string $labelOther = null,
     ) {
         $this->value = $value !== null ? (float) $value : 0.0;
         $this->min = $min !== null ? (float) $min : 0.0;

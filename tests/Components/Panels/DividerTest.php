@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class DividerTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -44,7 +44,6 @@ class DividerTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_panel_divider_component_can_be_rendered_with_inline_styles(): void

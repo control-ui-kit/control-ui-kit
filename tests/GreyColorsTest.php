@@ -20,7 +20,7 @@ class GreyColorsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->greys = new GreyColors();
+        $this->greys = new GreyColors;
     }
 
     // --- getData() ---

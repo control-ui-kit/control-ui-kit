@@ -11,7 +11,7 @@ use Illuminate\View\Component;
 
 class DateTime extends Component
 {
-    use UseInputTheme, DateInputFunctions;
+    use DateInputFunctions, UseInputTheme;
 
     protected string $component = 'input-datetime';
 
@@ -31,18 +31,18 @@ class DateTime extends Component
 
     public function __construct(
         string $name,
-        string $id = null,
-        string $format = null,
-        string $data = null,
-        bool $showSeconds = null,
-        string $clockType = null,
-        string $hourStep = null,
-        string $minuteStep = null,
-        string $icon = null,
-        string $linkedFrom = null,
-        string $linkedTo = null,
-        string $yearsBefore = null,
-        string $yearsAfter = null,
+        ?string $id = null,
+        ?string $format = null,
+        ?string $data = null,
+        ?bool $showSeconds = null,
+        ?string $clockType = null,
+        ?string $hourStep = null,
+        ?string $minuteStep = null,
+        ?string $icon = null,
+        ?string $linkedFrom = null,
+        ?string $linkedTo = null,
+        ?string $yearsBefore = null,
+        ?string $yearsAfter = null,
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

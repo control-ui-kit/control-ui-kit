@@ -26,7 +26,6 @@ class TestView
     /**
      * Create a new test view instance.
      *
-     * @param  \Illuminate\View\View  $view
      * @return void
      */
     public function __construct(View $view)
@@ -54,7 +53,6 @@ class TestView
     /**
      * Assert that the given strings are contained in order within the view.
      *
-     * @param  array  $values
      * @param  bool  $escape
      * @return $this
      */
@@ -86,7 +84,6 @@ class TestView
     /**
      * Assert that the given strings are contained in order within the view text.
      *
-     * @param  array  $values
      * @param  bool  $escape
      * @return $this
      */

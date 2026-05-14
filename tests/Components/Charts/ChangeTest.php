@@ -9,7 +9,7 @@ use Tests\Components\ComponentTestCase;
 
 class ChangeTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
@@ -664,7 +664,6 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function a_change_chart_component_with_percent_decimal_number_changed_can_be_rendered(): void
     {
@@ -983,7 +982,6 @@ class ChangeTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function a_change_chart_component_with_container_styles_changed_can_be_rendered(): void
     {
@@ -1167,7 +1165,6 @@ class ChangeTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_change_chart_component_with_number_styles_changed_can_be_rendered(): void

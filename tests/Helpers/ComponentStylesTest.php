@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 
 class ComponentStylesTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -29,6 +29,6 @@ class ComponentStylesTest extends TestCase
     {
         $expected = 'background border color font other padding rounded shadow stacked';
 
-        self::assertSame($expected, (new ComponentStyles())->get('panel'));
+        self::assertSame($expected, (new ComponentStyles)->get('panel'));
     }
 }

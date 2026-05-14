@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "gajus/dindent": "^2.0",
+        "laravel/pint": "^1.29",
         "league/commonmark": "^2.3",
         "orchestra/testbench": "^11",
         "phpunit/phpunit": "^10|^11|^12"

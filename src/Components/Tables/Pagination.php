@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Traits\UseThemeFile;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
@@ -38,84 +37,84 @@ class Pagination extends Component
     public function __construct(
         LengthAwarePaginator $rows,
 
-        string $iconNext = null,
-        string $iconPrevious = null,
-        string $iconSize = null,
-        string $limit = null,
+        ?string $iconNext = null,
+        ?string $iconPrevious = null,
+        ?string $iconSize = null,
+        ?string $limit = null,
 
-        bool $showAlways = null,
-        int $eachSide = null,
+        ?bool $showAlways = null,
+        ?int $eachSide = null,
         bool $wire = false,
 
-        string $buttonContainer = null,
-        string $buttonNumbers = null,
-        string $buttonSpacing = null,
+        ?string $buttonContainer = null,
+        ?string $buttonNumbers = null,
+        ?string $buttonSpacing = null,
 
-        string $buttonBackground = null,
-        string $buttonBorder = null,
-        string $buttonColor = null,
-        string $buttonFont = null,
-        string $buttonOther = null,
-        string $buttonPadding = null,
-        string $buttonRounded = null,
-        string $buttonShadow = null,
-        string $buttonWidth = null,
+        ?string $buttonBackground = null,
+        ?string $buttonBorder = null,
+        ?string $buttonColor = null,
+        ?string $buttonFont = null,
+        ?string $buttonOther = null,
+        ?string $buttonPadding = null,
+        ?string $buttonRounded = null,
+        ?string $buttonShadow = null,
+        ?string $buttonWidth = null,
 
-        string $buttonActiveBackground = null,
-        string $buttonActiveBorder = null,
-        string $buttonActiveColor = null,
-        string $buttonActiveFont = null,
-        string $buttonActiveOther = null,
-        string $buttonActivePadding = null,
-        string $buttonActiveRounded = null,
-        string $buttonActiveShadow = null,
-        string $buttonActiveWidth = null,
+        ?string $buttonActiveBackground = null,
+        ?string $buttonActiveBorder = null,
+        ?string $buttonActiveColor = null,
+        ?string $buttonActiveFont = null,
+        ?string $buttonActiveOther = null,
+        ?string $buttonActivePadding = null,
+        ?string $buttonActiveRounded = null,
+        ?string $buttonActiveShadow = null,
+        ?string $buttonActiveWidth = null,
 
-        string $buttonDisabledBackground = null,
-        string $buttonDisabledBorder = null,
-        string $buttonDisabledColor = null,
-        string $buttonDisabledFont = null,
-        string $buttonDisabledOther = null,
-        string $buttonDisabledPadding = null,
-        string $buttonDisabledRounded = null,
-        string $buttonDisabledShadow = null,
-        string $buttonDisabledWidth = null,
+        ?string $buttonDisabledBackground = null,
+        ?string $buttonDisabledBorder = null,
+        ?string $buttonDisabledColor = null,
+        ?string $buttonDisabledFont = null,
+        ?string $buttonDisabledOther = null,
+        ?string $buttonDisabledPadding = null,
+        ?string $buttonDisabledRounded = null,
+        ?string $buttonDisabledShadow = null,
+        ?string $buttonDisabledWidth = null,
 
-        string $limitBackground = null,
-        string $limitBorder = null,
-        string $limitColor = null,
-        string $limitFont = null,
-        string $limitOther = null,
-        string $limitPadding = null,
-        string $limitRounded = null,
-        string $limitShadow = null,
-        string $limitWidth = null,
+        ?string $limitBackground = null,
+        ?string $limitBorder = null,
+        ?string $limitColor = null,
+        ?string $limitFont = null,
+        ?string $limitOther = null,
+        ?string $limitPadding = null,
+        ?string $limitRounded = null,
+        ?string $limitShadow = null,
+        ?string $limitWidth = null,
 
-        string $resultsBackground = null,
-        string $resultsBorder = null,
-        string $resultsColor = null,
-        string $resultsFont = null,
-        string $resultsOther = null,
-        string $resultsPadding = null,
-        string $resultsRounded = null,
-        string $resultsShadow = null,
+        ?string $resultsBackground = null,
+        ?string $resultsBorder = null,
+        ?string $resultsColor = null,
+        ?string $resultsFont = null,
+        ?string $resultsOther = null,
+        ?string $resultsPadding = null,
+        ?string $resultsRounded = null,
+        ?string $resultsShadow = null,
 
-        string $wrapperBackground = null,
-        string $wrapperBorder = null,
-        string $wrapperColor = null,
-        string $wrapperFont = null,
-        string $wrapperOther = null,
-        string $wrapperPadding = null,
-        string $wrapperRounded = null,
-        string $wrapperShadow = null
+        ?string $wrapperBackground = null,
+        ?string $wrapperBorder = null,
+        ?string $wrapperColor = null,
+        ?string $wrapperFont = null,
+        ?string $wrapperOther = null,
+        ?string $wrapperPadding = null,
+        ?string $wrapperRounded = null,
+        ?string $wrapperShadow = null
     ) {
         $this->rowData = $rows;
         $this->iconNext = $this->style($this->component, 'icon-next', $iconNext);
         $this->iconPrevious = $this->style($this->component, 'icon-previous', $iconPrevious);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
-        $this->limit = (int)$this->style($this->component, 'limit', $limit);
-        $this->showAlways = (bool)$this->style($this->component, 'show-always', $showAlways);
-        $this->eachSide = (int)$this->style($this->component, 'each-side', $eachSide);
+        $this->limit = (int) $this->style($this->component, 'limit', $limit);
+        $this->showAlways = (bool) $this->style($this->component, 'show-always', $showAlways);
+        $this->eachSide = (int) $this->style($this->component, 'each-side', $eachSide);
         $this->wire = $wire;
         $this->formUrl = request()->getRequestUri();
 

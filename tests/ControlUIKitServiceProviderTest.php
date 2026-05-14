@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use ControlUIKit\Console\MakeAutocompleteCommand;
-use ControlUIKit\Console\ThemeCreatorCommand;
-use ControlUIKit\Console\ThemeUpdaterCommand;
 use ControlUIKit\ControlUIKitServiceProvider;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
 use Illuminate\Support\Facades\Blade;
@@ -124,21 +121,21 @@ class ControlUIKitServiceProviderTest extends TestCase
     #[Test]
     public function it_registers_javascript_route(): void
     {
-        $routes = collect(Route::getRoutes())->map(fn($r) => $r->uri());
+        $routes = collect(Route::getRoutes())->map(fn ($r) => $r->uri());
         $this->assertTrue($routes->contains('control-ui-kit/javascript/control-ui-kit.js'));
     }
 
     #[Test]
     public function it_registers_flatpickr_plugin_route(): void
     {
-        $routes = collect(Route::getRoutes())->map(fn($r) => $r->uri());
+        $routes = collect(Route::getRoutes())->map(fn ($r) => $r->uri());
         $this->assertTrue($routes->contains('control-ui-kit/javascript/flatpickr.year-plugin.js'));
     }
 
     #[Test]
     public function it_registers_map_data_route(): void
     {
-        $routes = collect(Route::getRoutes())->map(fn($r) => $r->uri());
+        $routes = collect(Route::getRoutes())->map(fn ($r) => $r->uri());
         $this->assertTrue($routes->contains('control-ui-kit/map-data/countries.json'));
     }
 

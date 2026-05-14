@@ -23,10 +23,10 @@ class SelectField extends Component
         mixed $options,
         bool $required = false,
         mixed $mode = null,
-        string $label = null,
-        string $placeholder = null,
-        string $help = null,
-        string $layout = null
+        ?string $label = null,
+        ?string $placeholder = null,
+        ?string $help = null,
+        ?string $layout = null
     ) {
         if ($mode === 'new') {
             $this->required = true;

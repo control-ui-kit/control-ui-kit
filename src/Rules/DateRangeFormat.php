@@ -11,7 +11,7 @@ class DateRangeFormat implements ValidationRule
     private string $format;
     private string $separator;
 
-    public function __construct(string $format = null, string $separator = null)
+    public function __construct(?string $format = null, ?string $separator = null)
     {
         $this->format = $format ?? config('themes.default.input-date-range.data');
         $this->separator = $separator ?? config('themes.default.input-date-range.separator');
@@ -23,6 +23,7 @@ class DateRangeFormat implements ValidationRule
 
         if (count($dates) !== 2) {
             $fail(trans('validation.exists', ['attribute' => $attribute]));
+
             return;
         }
 
@@ -30,11 +31,11 @@ class DateRangeFormat implements ValidationRule
         $toDateValid = DateTime::createFromFormat($this->format, $dates[1]) !== false;
 
         if (! $fromDateValid) {
-            $fail(trans('validation.date_format', ['attribute' => $attribute .' \'from\'', 'format' => $this->format]));
+            $fail(trans('validation.date_format', ['attribute' => $attribute . ' \'from\'', 'format' => $this->format]));
         }
 
         if (! $toDateValid) {
-            $fail(trans('validation.date_format', ['attribute' => $attribute .' \'to\'', 'format' => $this->format]));
+            $fail(trans('validation.date_format', ['attribute' => $attribute . ' \'to\'', 'format' => $this->format]));
         }
     }
 }

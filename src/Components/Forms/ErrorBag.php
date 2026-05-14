@@ -19,7 +19,8 @@ class ErrorBag extends Component
     private string $lang_string;
     private bool $use_translation;
 
-    public function __construct(string $type = null) {
+    public function __construct(?string $type = null)
+    {
         $this->type = $type ?: config($this->theme() . '::control-ui-kit.error-bag.alert', 'danger');
         $this->use_translation = config($this->theme() . '::control-ui-kit.error-bag.use-translation', false);
     }
@@ -45,6 +46,7 @@ class ErrorBag extends Component
     {
         if ($this->use_translation) {
             $this->lang_string = config($this->theme() . '.error-bag.locale-title-lang-string');
+
             return;
         }
 

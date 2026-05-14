@@ -8,7 +8,7 @@ use Tests\Components\ComponentTestCase;
 
 class CellTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -366,7 +366,7 @@ class CellTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dmY(): void
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_string_to_dm_y(): void
     {
         $template = <<<'HTML'
             <x-table-cell data="2021-03-09 15:16:17" format="date:d/m/Y" />
@@ -382,7 +382,7 @@ class CellTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_mdY(): void
+    public function a_table_cell_component_can_be_rendered_with_date_formatting_from_carbon_object_to_md_y(): void
     {
         $template = <<<'HTML'
             <x-table-cell data="2021-03-09 15:16:17" format="date:mdY" />
@@ -414,7 +414,7 @@ class CellTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_table_cell_component_can_be_rendered_with_default_date_formatting_set_to_en_US(): void
+    public function a_table_cell_component_can_be_rendered_with_default_date_formatting_set_to_en_us(): void
     {
         Config::set('app.locale', 'en_US');
 

@@ -13,7 +13,7 @@ trait UseThemeFile
     private function theme()
     {
         if (! app()->has('control-ui-kit.theme')) {
-            app()->singleton('control-ui-kit.theme', function() {
+            app()->singleton('control-ui-kit.theme', function () {
                 return 'themes.default';
             });
         }
@@ -67,9 +67,9 @@ trait UseThemeFile
 
             if (is_bool($append_input)) {
                 $value = $append_input;
-            } else if (is_numeric($append_input)) {
+            } elseif (is_numeric($append_input)) {
                 $value = $append_input;
-            } else if (is_bool($configStyle)) {
+            } elseif (is_bool($configStyle)) {
                 $value = $configStyle;
             } else {
                 $value = trim($configStyle . $append_input);
@@ -78,10 +78,10 @@ trait UseThemeFile
             return is_null($configStyle) && is_null($append_input) ? '' : $value;
         }
 
-        return ($input === 'none' ? '' : $input);
+        return $input === 'none' ? '' : $input;
     }
 
-    private function setConfigStyles(array $props, array $merge = [], string $config = null, $array = 'props'): void
+    private function setConfigStyles(array $props, array $merge = [], ?string $config = null, $array = 'props'): void
     {
         $this->$array = $props;
 

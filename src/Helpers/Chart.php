@@ -24,7 +24,7 @@ class Chart
         'labels' => [],
         'type' => 'line',
         'options' => [],
-        'size' => ['width' => null, 'height' => null]
+        'size' => ['width' => null, 'height' => null],
     ];
 
     /**
@@ -39,24 +39,21 @@ class Chart
         'line',
         'pie',
         'polarArea',
-        'radar'
+        'radar',
     ];
 
     /**
-     * @param $name
-     *
      * @return $this|Chart
      */
     public function name($name)
     {
         $this->name = $name;
         $this->charts[$name] = $this->defaults;
+
         return $this;
     }
 
     /**
-     * @param $element
-     *
      * @return Chart
      */
     public function element($element)
@@ -65,8 +62,6 @@ class Chart
     }
 
     /**
-     * @param array $labels
-     *
      * @return Chart
      */
     public function labels(array $labels)
@@ -75,8 +70,6 @@ class Chart
     }
 
     /**
-     * @param array $datasets
-     *
      * @return Chart
      */
     public function datasets(array $datasets)
@@ -85,21 +78,19 @@ class Chart
     }
 
     /**
-     * @param $type
-     *
      * @return Chart
      */
     public function type($type)
     {
-        if (!in_array($type, $this->types)) {
+        if (! in_array($type, $this->types)) {
             throw new \InvalidArgumentException('Invalid Chart type.');
         }
+
         return $this->set('type', $type);
     }
 
     /**
-     * @param array $size
-     *
+     * @param  array  $size
      * @return Chart
      */
     public function size($size)
@@ -108,8 +99,6 @@ class Chart
     }
 
     /**
-     * @param array $options
-     *
      * @return $this|Chart
      */
     public function options(array $options)
@@ -122,18 +111,19 @@ class Chart
     }
 
     /**
-     *
-     * @param string|array $optionsRaw
+     * @param  string|array  $optionsRaw
      * @return \self
      */
     public function optionsRaw($optionsRaw)
     {
         if (is_array($optionsRaw)) {
             $this->set('optionsRaw', json_encode($optionsRaw, true));
+
             return $this;
         }
 
         $this->set('optionsRaw', $optionsRaw);
+
         return $this;
     }
 
@@ -155,8 +145,6 @@ class Chart
     }
 
     /**
-     * @param $key
-     *
      * @return mixed
      */
     private function get($key)
@@ -165,9 +153,6 @@ class Chart
     }
 
     /**
-     * @param $key
-     * @param $value
-     *
      * @return $this|Chart
      */
     private function set($key, $value)

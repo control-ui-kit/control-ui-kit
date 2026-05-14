@@ -17,7 +17,7 @@ class InputException extends Exception implements ProvidesSolution
 
     public function invalidTypeSolution(): Solution
     {
-        $markdown = <<<MARKDOWN
+        $markdown = <<<'MARKDOWN'
         You passed an invalid HTML input type to the <x-input> component.  Valid types are -
 
         `<x-input type="button">`

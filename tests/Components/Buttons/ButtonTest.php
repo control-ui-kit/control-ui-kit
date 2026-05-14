@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class ButtonTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -340,7 +340,6 @@ class ButtonTest extends ComponentTestCase
         $this->assertComponentRenders($expected, $template);
     }
 
-
     #[Test]
     public function a_button_component_can_be_rendered_with_warning_styles(): void
     {
@@ -368,7 +367,6 @@ class ButtonTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_button_component_can_be_rendered_with_invalid_styles(): void
@@ -510,7 +508,6 @@ class ButtonTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_button_component_can_be_rendered_with_an_icon_updated_icon_styles(): void

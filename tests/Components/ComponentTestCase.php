@@ -18,7 +18,7 @@ abstract class ComponentTestCase extends TestCase
     {
         parent::setUp();
 
-        app()->singleton('control-ui-kit.theme', function() {
+        app()->singleton('control-ui-kit.theme', function () {
             return 'themes.default';
         });
 
@@ -48,14 +48,15 @@ abstract class ComponentTestCase extends TestCase
 
     public function indent($html): string
     {
-        $indenter = new Indenter();
+        $indenter = new Indenter;
         $indenter->setElementType('h1', Indenter::ELEMENT_TYPE_INLINE);
         $indenter->setElementType('del', Indenter::ELEMENT_TYPE_INLINE);
         $indenter->setElementType('a', Indenter::ELEMENT_TYPE_BLOCK);
         $indenter->setElementType('svg', Indenter::ELEMENT_TYPE_INLINE);
 
         $indented = $indenter->indent($html);
-        return str_replace([" >", " \n"], [">", "\n"], $indented);
+
+        return str_replace([' >', " \n"], ['>', "\n"], $indented);
     }
 
     public function expectedWithYearRange(string $expected): string

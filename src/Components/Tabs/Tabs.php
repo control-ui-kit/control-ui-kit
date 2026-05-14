@@ -20,17 +20,17 @@ class Tabs extends Component
     public string $spacing;
 
     public function __construct(
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
         string $name = 'tabs',
-        string $padding = null,
-        string $rounded = null,
-        string $selected = null,
-        string $shadow = null,
-        string $spacing = null
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $selected = null,
+        ?string $shadow = null,
+        ?string $spacing = null
     ) {
         $this->name = $name;
         $this->selected = $selected;
@@ -43,7 +43,7 @@ class Tabs extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
 
         $this->spacing = $this->style($this->component, 'spacing', $spacing);
@@ -56,14 +56,14 @@ class Tabs extends Component
 
     public function getHeadingsArray(string $html): array
     {
-        $dom = new DomDocument();
+        $dom = new DomDocument;
         libxml_use_internal_errors(true);
         $dom->loadHTML($html);
 
         $nodes = $dom->getElementsByTagName('a');
         $matches = [];
 
-        for ($i = 0; $i < $nodes->length; $i ++) {
+        for ($i = 0; $i < $nodes->length; $i++) {
             if ($node = $nodes->item($i)) {
                 $matches[$node->attributes['href']->value] = trim($node->textContent);
             }

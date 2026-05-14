@@ -23,15 +23,15 @@ class ThemeStubParser
     public function getPaletteVariableNames(): array
     {
         return array_merge(
-            array_map(static fn($s) => "--gray-$s", self::GREY_SHADES),
-            array_map(static fn($s) => "--brand-$s", self::BRAND_SHADES),
+            array_map(static fn ($s) => "--gray-$s", self::GREY_SHADES),
+            array_map(static fn ($s) => "--brand-$s", self::BRAND_SHADES),
         );
     }
 
     private function resolveStub(string $content): string
     {
-        $greyLines = implode("\n", array_map(static fn($s) => "    --gray-$s: 0 0 0;", self::GREY_SHADES));
-        $brandLines = implode("\n", array_map(static fn($s) => "    --brand-$s: 0 0 0;", self::BRAND_SHADES));
+        $greyLines = implode("\n", array_map(static fn ($s) => "    --gray-$s: 0 0 0;", self::GREY_SHADES));
+        $brandLines = implode("\n", array_map(static fn ($s) => "    --brand-$s: 0 0 0;", self::BRAND_SHADES));
 
         return str_replace(
             ['{{ gray-colors }}', '{{ brand-colors }}', '{{ theme-name }}'],

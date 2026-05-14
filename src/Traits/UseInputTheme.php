@@ -21,7 +21,7 @@ trait UseInputTheme
         $this->$style = $props;
 
         foreach ($this->$style as $prop => $value) {
-            $this->$prop = $this->style($config, $prefix.$prop, $value, '', $keyOverride);
+            $this->$prop = $this->style($config, $prefix . $prop, $value, '', $keyOverride);
             $this->$style[$prop] = $this->$prop;
         }
     }

@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class PillTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -91,7 +91,6 @@ class PillTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_pill_component_can_be_rendered_with_default_styles_shorthand(): void
@@ -262,7 +261,6 @@ class PillTest extends ComponentTestCase
     }
 
     #[Test]
-
     public function a_pill_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
         $template = <<<'HTML'
@@ -371,7 +369,6 @@ class PillTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_pill_component_can_be_rendered_with_styles_array(): void

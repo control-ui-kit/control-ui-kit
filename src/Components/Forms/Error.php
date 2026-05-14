@@ -20,11 +20,11 @@ class Error extends Component
 
     public function __construct(
         string $field,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        array $styles = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?array $styles = null,
         string $bag = 'default'
     ) {
         $this->field = $field;
@@ -39,7 +39,7 @@ class Error extends Component
             'color' => $color,
             'font' => $font,
             'other' => $other,
-            'padding' => $padding
+            'padding' => $padding,
         ]);
     }
 

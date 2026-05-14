@@ -47,129 +47,129 @@ class Change extends Component
 
     public function __construct(
         string $title,
-        float $current = null,
-        float $previous = null,
-        int $decimals = null,
-        string $link = null,
-        string $linkText = null,
-        string $icon = null,
-        string $iconSize = null,
-        string $image = null,
-        string $imageSize = null,
-        string $percentDifference = null,
+        ?float $current = null,
+        ?float $previous = null,
+        ?int $decimals = null,
+        ?string $link = null,
+        ?string $linkText = null,
+        ?string $icon = null,
+        ?string $iconSize = null,
+        ?string $image = null,
+        ?string $imageSize = null,
+        ?string $percentDifference = null,
 
-        string $increaseIcon = null,
-        string $decreaseIcon = null,
+        ?string $increaseIcon = null,
+        ?string $decreaseIcon = null,
 
-        string $wrapperBackground = null,
-        string $wrapperBorder = null,
-        string $wrapperColor = null,
-        string $wrapperFont = null,
-        string $wrapperOther = null,
-        string $wrapperPadding = null,
-        string $wrapperRounded = null,
-        string $wrapperShadow = null,
+        ?string $wrapperBackground = null,
+        ?string $wrapperBorder = null,
+        ?string $wrapperColor = null,
+        ?string $wrapperFont = null,
+        ?string $wrapperOther = null,
+        ?string $wrapperPadding = null,
+        ?string $wrapperRounded = null,
+        ?string $wrapperShadow = null,
 
-        string $titleBackground = null,
-        string $titleBorder = null,
-        string $titleColor = null,
-        string $titleFont = null,
-        string $titleOther = null,
-        string $titlePadding = null,
-        string $titleRounded = null,
-        string $titleShadow = null,
+        ?string $titleBackground = null,
+        ?string $titleBorder = null,
+        ?string $titleColor = null,
+        ?string $titleFont = null,
+        ?string $titleOther = null,
+        ?string $titlePadding = null,
+        ?string $titleRounded = null,
+        ?string $titleShadow = null,
 
-        string $imageContainerBackground = null,
-        string $imageContainerBorder = null,
-        string $imageContainerColor = null,
-        string $imageContainerFont = null,
-        string $imageContainerOther = null,
-        string $imageContainerPadding = null,
-        string $imageContainerRounded = null,
-        string $imageContainerShadow = null,
+        ?string $imageContainerBackground = null,
+        ?string $imageContainerBorder = null,
+        ?string $imageContainerColor = null,
+        ?string $imageContainerFont = null,
+        ?string $imageContainerOther = null,
+        ?string $imageContainerPadding = null,
+        ?string $imageContainerRounded = null,
+        ?string $imageContainerShadow = null,
 
-        string $imageBackground = null,
-        string $imageBorder = null,
-        string $imageColor = null,
-        string $imageFont = null,
-        string $imageOther = null,
-        string $imagePadding = null,
-        string $imageRounded = null,
-        string $imageShadow = null,
+        ?string $imageBackground = null,
+        ?string $imageBorder = null,
+        ?string $imageColor = null,
+        ?string $imageFont = null,
+        ?string $imageOther = null,
+        ?string $imagePadding = null,
+        ?string $imageRounded = null,
+        ?string $imageShadow = null,
 
-        string $iconContainerBackground = null,
-        string $iconContainerBorder = null,
-        string $iconContainerColor = null,
-        string $iconContainerFont = null,
-        string $iconContainerOther = null,
-        string $iconContainerPadding = null,
-        string $iconContainerRounded = null,
-        string $iconContainerShadow = null,
+        ?string $iconContainerBackground = null,
+        ?string $iconContainerBorder = null,
+        ?string $iconContainerColor = null,
+        ?string $iconContainerFont = null,
+        ?string $iconContainerOther = null,
+        ?string $iconContainerPadding = null,
+        ?string $iconContainerRounded = null,
+        ?string $iconContainerShadow = null,
 
-        string $iconBackground = null,
-        string $iconBorder = null,
-        string $iconColor = null,
-        string $iconFont = null,
-        string $iconOther = null,
-        string $iconPadding = null,
-        string $iconRounded = null,
-        string $iconShadow = null,
+        ?string $iconBackground = null,
+        ?string $iconBorder = null,
+        ?string $iconColor = null,
+        ?string $iconFont = null,
+        ?string $iconOther = null,
+        ?string $iconPadding = null,
+        ?string $iconRounded = null,
+        ?string $iconShadow = null,
 
-        string $containerBackground = null,
-        string $containerBorder = null,
-        string $containerColor = null,
-        string $containerFont = null,
-        string $containerOther = null,
-        string $containerPadding = null,
-        string $containerRounded = null,
-        string $containerShadow = null,
+        ?string $containerBackground = null,
+        ?string $containerBorder = null,
+        ?string $containerColor = null,
+        ?string $containerFont = null,
+        ?string $containerOther = null,
+        ?string $containerPadding = null,
+        ?string $containerRounded = null,
+        ?string $containerShadow = null,
 
-        string $differenceBackground = null,
-        string $differenceBorder = null,
-        string $differenceFont = null,
-        string $differenceOther = null,
-        string $differencePadding = null,
-        string $differenceRounded = null,
-        string $differenceShadow = null,
+        ?string $differenceBackground = null,
+        ?string $differenceBorder = null,
+        ?string $differenceFont = null,
+        ?string $differenceOther = null,
+        ?string $differencePadding = null,
+        ?string $differenceRounded = null,
+        ?string $differenceShadow = null,
 
-        string $increaseColor = null,
-        string $decreaseColor = null,
+        ?string $increaseColor = null,
+        ?string $decreaseColor = null,
 
-        string $linkContainerBackground = null,
-        string $linkContainerBorder = null,
-        string $linkContainerColor = null,
-        string $linkContainerFont = null,
-        string $linkContainerOther = null,
-        string $linkContainerPadding = null,
-        string $linkContainerRounded = null,
-        string $linkContainerShadow = null,
+        ?string $linkContainerBackground = null,
+        ?string $linkContainerBorder = null,
+        ?string $linkContainerColor = null,
+        ?string $linkContainerFont = null,
+        ?string $linkContainerOther = null,
+        ?string $linkContainerPadding = null,
+        ?string $linkContainerRounded = null,
+        ?string $linkContainerShadow = null,
 
-        string $linkBackground = null,
-        string $linkBorder = null,
-        string $linkColor = null,
-        string $linkFont = null,
-        string $linkOther = null,
-        string $linkPadding = null,
-        string $linkRounded = null,
-        string $linkShadow = null,
+        ?string $linkBackground = null,
+        ?string $linkBorder = null,
+        ?string $linkColor = null,
+        ?string $linkFont = null,
+        ?string $linkOther = null,
+        ?string $linkPadding = null,
+        ?string $linkRounded = null,
+        ?string $linkShadow = null,
 
-        string $numberBackground = null,
-        string $numberBorder = null,
-        string $numberColor = null,
-        string $numberFont = null,
-        string $numberOther = null,
-        string $numberPadding = null,
-        string $numberRounded = null,
-        string $numberShadow = null,
+        ?string $numberBackground = null,
+        ?string $numberBorder = null,
+        ?string $numberColor = null,
+        ?string $numberFont = null,
+        ?string $numberOther = null,
+        ?string $numberPadding = null,
+        ?string $numberRounded = null,
+        ?string $numberShadow = null,
 
-        string $differenceIconBackground = null,
-        string $differenceIconBorder = null,
-        string $differenceIconColor = null,
-        string $differenceIconFont = null,
-        string $differenceIconOther = null,
-        string $differenceIconPadding = null,
-        string $differenceIconRounded = null,
-        string $differenceIconShadow = null
+        ?string $differenceIconBackground = null,
+        ?string $differenceIconBorder = null,
+        ?string $differenceIconColor = null,
+        ?string $differenceIconFont = null,
+        ?string $differenceIconOther = null,
+        ?string $differenceIconPadding = null,
+        ?string $differenceIconRounded = null,
+        ?string $differenceIconShadow = null
     ) {
         $this->title = $title;
         $this->current = $current;
@@ -184,8 +184,8 @@ class Change extends Component
 
         $this->displayPercent = $this->style($this->component, 'percent-difference', $percentDifference);
 
-        $this->increase = (string)$this->increase();
-        $this->decrease = (string)$this->decrease();
+        $this->increase = (string) $this->increase();
+        $this->decrease = (string) $this->decrease();
 
         $this->increaseIcon = $this->style($this->component, 'difference-increase-icon', $increaseIcon);
         $this->decreaseIcon = $this->style($this->component, 'difference-decrease-icon', $decreaseIcon);
@@ -341,7 +341,7 @@ class Change extends Component
 
     private function increase(): bool|string
     {
-        if (!$this->previous) {
+        if (! $this->previous) {
             return false;
         }
 
@@ -353,16 +353,16 @@ class Change extends Component
             return false;
         }
 
-        if ($this->displayPercent === "true") {
+        if ($this->displayPercent === 'true') {
             return $this->percentage($this->current, $this->previous, $this->decimals) . '%';
         }
 
-        return number_format($this->current - $this->previous, (int)$this->decimals);
+        return number_format($this->current - $this->previous, (int) $this->decimals);
     }
 
     private function decrease(): bool|string
     {
-        if (!$this->previous) {
+        if (! $this->previous) {
             return false;
         }
 
@@ -374,16 +374,16 @@ class Change extends Component
             return false;
         }
 
-        if ($this->displayPercent === "true") {
+        if ($this->displayPercent === 'true') {
             return abs((float) $this->percentage($this->current, $this->previous, $this->decimals)) . '%';
         }
 
-        return number_format($this->previous - $this->current, (int)$this->decimals);
+        return number_format($this->previous - $this->current, (int) $this->decimals);
     }
 
     private function percentage($number, $divider, $decimals = 2): string
     {
-        return number_format((($number / $divider) * 100) - 100 , (int)$decimals);
+        return number_format((($number / $divider) * 100) - 100, (int) $decimals);
     }
 
     public function wrapperClasses(): string
@@ -391,7 +391,6 @@ class Change extends Component
         if ($this->link && $this->linkText) {
             $this->wrapperStyles['wrapper-other'] .= ' pb-12';
         }
-
 
         return $this->classList($this->wrapperStyles);
     }

@@ -28,17 +28,17 @@ class Action extends Component
     public string $close;
 
     public function __construct(
-        string $id = null,
+        ?string $id = null,
         string $maxWidth = '2xl',
         string $route = '',
         string $method = 'POST',
         string $action = 'post',
-        string $fields = null,
-        string $resultsModal = null,
+        ?string $fields = null,
+        ?string $resultsModal = null,
         string $type = 'default',
-        string $yes = null,
-        string $no = null,
-        string $confirming = null,
+        ?string $yes = null,
+        ?string $no = null,
+        ?string $confirming = null,
     ) {
         $this->id = $id;
         $this->maxWidth = $maxWidth;

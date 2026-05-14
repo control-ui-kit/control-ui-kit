@@ -48,31 +48,31 @@ class Pie extends Component
 
     public function __construct(
         string $id,
-        string $title = null,
+        ?string $title = null,
         $colors = null,
-        array $data = null,
+        ?array $data = null,
 
-        string $legendDisplay = null,
-        string $legendPosition = null,
-        string $legendAlign = null,
-        string $legendWidth = null,
-        string $legendReverse = null,
+        ?string $legendDisplay = null,
+        ?string $legendPosition = null,
+        ?string $legendAlign = null,
+        ?string $legendWidth = null,
+        ?string $legendReverse = null,
 
-        string $labelWidth = null,
-        string $labelSize = null,
-        string $labelStyle = null,
-        string $labelColor = null,
-        string $labelFamily = null,
-        string $labelPadding = null,
+        ?string $labelWidth = null,
+        ?string $labelSize = null,
+        ?string $labelStyle = null,
+        ?string $labelColor = null,
+        ?string $labelFamily = null,
+        ?string $labelPadding = null,
 
-        bool $titleDisplay = null,
-        string $titlePosition = null,
-        string $titleSize = null,
-        string $titleFamily = null,
-        string $titleColor = null,
-        string $titleStyle = null,
-        string $titlePadding = null,
-        string $titleHeight = null
+        ?bool $titleDisplay = null,
+        ?string $titlePosition = null,
+        ?string $titleSize = null,
+        ?string $titleFamily = null,
+        ?string $titleColor = null,
+        ?string $titleStyle = null,
+        ?string $titlePadding = null,
+        ?string $titleHeight = null
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -115,8 +115,8 @@ class Pie extends Component
                 [
                     'backgroundColor' => $this->colors,
                     'hoverBackgroundColor' => $this->hoverColors,
-                    'data' => array_values($this->data)
-                ]
+                    'data' => array_values($this->data),
+                ],
             ])
             ->options($this->options());
 
@@ -127,7 +127,7 @@ class Pie extends Component
 
     private function getColours($colors = null)
     {
-        if (!is_array($colors)) {
+        if (! is_array($colors)) {
             return config($this->theme() . '.charts.defaults.colors');
         }
 
@@ -136,7 +136,7 @@ class Pie extends Component
 
     private function getHoverColours(): array
     {
-        return array_map(function($arg) {
+        return array_map(function ($arg) {
             return $this->colorLuminance($arg, 0.3);
         }, $this->colors);
     }
@@ -151,25 +151,25 @@ class Pie extends Component
                 'fullWidth' => $this->booleanFromString($this->legendWidth),
                 'reverse' => $this->booleanFromString($this->legendReverse),
                 'labels' => [
-                    'boxWidth' => (int)$this->labelWidth,
-                    'fontSize' => (int)$this->labelSize,
+                    'boxWidth' => (int) $this->labelWidth,
+                    'fontSize' => (int) $this->labelSize,
                     'fontStyle' => $this->labelStyle,
                     'fontColor' => $this->labelColor,
                     'fontFamily' => $this->labelFamily,
-                    'padding' => (int)$this->labelPadding
-                ]
+                    'padding' => (int) $this->labelPadding,
+                ],
             ],
             'title' => [
                 'display' => $this->booleanFromString($this->titleDisplay),
-                'text' => (!is_null($this->title) ? $this->title : ''),
+                'text' => (! is_null($this->title) ? $this->title : ''),
                 'position' => $this->titlePosition,
-                'fontSize' => (int)$this->titleSize,
+                'fontSize' => (int) $this->titleSize,
                 'fontFamily' => $this->titleFamily,
                 'fontColor' => $this->titleColor,
                 'fontStyle' => $this->titleStyle,
-                'padding' => (int)$this->titlePadding,
-                'lineHeight' => (float)$this->titleHeight,
-            ]
+                'padding' => (int) $this->titlePadding,
+                'lineHeight' => (float) $this->titleHeight,
+            ],
         ];
     }
 

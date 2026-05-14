@@ -10,7 +10,7 @@ use Tests\Components\ComponentTestCase;
 
 class HeadingTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -223,7 +223,6 @@ class HeadingTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
-
 
     #[Test]
     public function a_table_heading_component_with_onclick_can_be_rendered(): void

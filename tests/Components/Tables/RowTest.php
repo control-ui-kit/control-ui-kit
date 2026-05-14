@@ -2,14 +2,13 @@
 
 namespace Tests\Components\Tables;
 
-use ControlUIKit\Components\Tables\EmptyRow;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class RowTest extends ComponentTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -279,7 +278,6 @@ class RowTest extends ComponentTestCase
     }
 
     #[Test]
-
     public function a_table_row_component_can_be_rendered_with_warning_styles_shorthand(): void
     {
         $template = <<<'HTML'

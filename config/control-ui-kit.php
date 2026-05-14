@@ -408,7 +408,6 @@ return [
         'logo-x' => \ControlUIKit\Components\Icons\Logo\X::class,
         'logo-youtube' => \ControlUIKit\Components\Icons\Logo\Youtube::class,
 
-
         /*
          * File Type Icons
          */
@@ -514,6 +513,6 @@ return [
 
     'prefix' => '',
 
-    'docs-url' => 'https://ui-kit.labelworx.dev/'
+    'docs-url' => 'https://ui-kit.labelworx.dev/',
 
 ];

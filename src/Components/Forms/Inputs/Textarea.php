@@ -22,19 +22,19 @@ class Textarea extends Component
 
     public function __construct(
         string $name,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        string $width = null,
-        string $id = null,
-        string $value = null,
-        string $placeholder = null,
-        string $rows = null
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?string $width = null,
+        ?string $id = null,
+        ?string $value = null,
+        ?string $placeholder = null,
+        ?string $rows = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;

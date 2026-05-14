@@ -18,16 +18,16 @@ class Label extends Component
     public ?string $for;
 
     public function __construct(
-        string $for = null,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null,
-        array $styles = null,
+        ?string $for = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null,
+        ?array $styles = null,
     ) {
         $this->for = $for;
 
@@ -48,7 +48,7 @@ class Label extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
     }
 

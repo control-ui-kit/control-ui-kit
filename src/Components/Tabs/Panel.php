@@ -19,15 +19,15 @@ class Panel extends Component
 
     public function __construct(
         string $id,
-        string $component = null,
-        string $background = null,
-        string $border = null,
-        string $color = null,
-        string $font = null,
-        string $other = null,
-        string $padding = null,
-        string $rounded = null,
-        string $shadow = null
+        ?string $component = null,
+        ?string $background = null,
+        ?string $border = null,
+        ?string $color = null,
+        ?string $font = null,
+        ?string $other = null,
+        ?string $padding = null,
+        ?string $rounded = null,
+        ?string $shadow = null
     ) {
         $this->id = $id;
         $this->dynamicComponent = $component;
@@ -40,7 +40,7 @@ class Panel extends Component
             'other' => $other,
             'padding' => $padding,
             'rounded' => $rounded,
-            'shadow' => $shadow
+            'shadow' => $shadow,
         ]);
     }
 
