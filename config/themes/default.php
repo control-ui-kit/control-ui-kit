@@ -1490,7 +1490,7 @@ return [
         'color' => 'text-panel',
         'divider' => 'divide-y divide-panel',
         'font' => 'text-sm leading-6',
-        'other' => '',
+        'other' => 'overflow-hidden',
         'padding' => 'p-6',
         'rounded' => 'rounded-sm',
         'shadow' => '',
