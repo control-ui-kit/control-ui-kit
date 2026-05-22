@@ -1486,7 +1486,7 @@ return [
 
     'panel' => [
         'background' => 'bg-panel',
-        'border' => 'border border-panel',
+        'border' => 'border border-panel overflow-hidden',
         'color' => 'text-panel',
         'divider' => 'divide-y divide-panel',
         'font' => 'text-sm leading-6',
