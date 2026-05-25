@@ -18,6 +18,9 @@
      )'
      {{ $attributes->merge(['class' => $basicClasses()])->whereStartsWith(['class', 'x-model']) }}>
     <div class="{{ $wrapperClasses() }}" @click.away="close()">
+        @if($iconLeft)
+        <x-input-embed icon-left :icon="$iconLeft" :styles="$iconLeftStyles" :icon-size="$iconLeftSize" />
+        @endif
         <input name="{{ $name }}_search"
                type="text"
                id="{{ $id }}_search"

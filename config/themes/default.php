@@ -713,6 +713,16 @@ return [
         'selected-text' => 'Selected',
         'placeholder' => 'Please Select...',
 
+        'icon-left' => '',
+        'icon-left-background' => '',
+        'icon-left-border' => 'border-r border-input',
+        'icon-left-color' => 'text-muted',
+        'icon-left-other' => 'flex items-center justify-center self-stretch w-10',
+        'icon-left-padding' => 'px-2.5',
+        'icon-left-rounded' => '',
+        'icon-left-shadow' => '',
+        'icon-left-size' => 'w-5 h-5',
+
         'icon-open' => 'icon-chevron-down',
         'icon-close' => 'icon-chevron-up',
         'icon-clear' => 'icon-close',

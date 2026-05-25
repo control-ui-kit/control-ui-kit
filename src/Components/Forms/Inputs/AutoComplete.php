@@ -23,6 +23,8 @@ class AutoComplete extends Component
     public ?string $value;
     public mixed $options = [];
     public mixed $focus = [];
+    public ?string $iconLeft;
+    public ?string $iconLeftSize;
     public ?string $iconOpen;
     public ?string $iconClose;
     public ?string $iconClear;
@@ -32,6 +34,7 @@ class AutoComplete extends Component
     private array $dropdownStyles = [];
     private array $clearStyles = [];
     public array $conditionalStyles = [];
+    public array $iconLeftStyles = [];
     public array $iconStyles = [];
     private array $inputStyles = [];
     private array $optionStyles = [];
@@ -65,6 +68,16 @@ class AutoComplete extends Component
         ?string $value = null,
         ?string $selected = null,
         ?string $type = null,
+
+        ?string $iconLeft = null,
+        ?string $iconLeftBackground = null,
+        ?string $iconLeftBorder = null,
+        ?string $iconLeftColor = null,
+        ?string $iconLeftOther = null,
+        ?string $iconLeftPadding = null,
+        ?string $iconLeftRounded = null,
+        ?string $iconLeftShadow = null,
+        ?string $iconLeftSize = null,
 
         ?string $iconOpen = null,
         ?string $iconClose = null,
@@ -233,6 +246,11 @@ class AutoComplete extends Component
         $this->promptText = $this->style($this->component, 'prompt-text', $promptText);
         $this->selectedText = $this->style($this->component, 'selected-text', $selectedText);
 
+        $this->iconLeft = $this->style($this->component, 'icon-left', $iconLeft);
+        if ($this->iconLeft === 'none' || $this->iconLeft === '') {
+            $this->iconLeft = null;
+        }
+
         $this->iconOpen = $this->style($this->component, 'icon-open', $iconOpen);
         $this->iconClose = $this->style($this->component, 'icon-close', $iconClose);
         $this->iconClear = $this->style($this->component, 'icon-clear', $iconClear);
@@ -271,6 +289,19 @@ class AutoComplete extends Component
             'dropdown-shadow' => $dropdownShadow,
             'dropdown-width' => $dropdownWidth,
         ], [], null, 'dropdownStyles');
+
+        $this->setConfigStyles([
+            'icon-left-background' => $iconLeftBackground,
+            'icon-left-border' => $iconLeftBorder,
+            'icon-left-color' => $iconLeftColor,
+            'icon-left-other' => $iconLeftOther,
+            'icon-left-padding' => $iconLeftPadding,
+            'icon-left-rounded' => $iconLeftRounded,
+            'icon-left-shadow' => $iconLeftShadow,
+            'icon-left-size' => $iconLeftSize,
+        ], [], null, 'iconLeftStyles');
+        $this->cleanUpIconLeftStyles();
+        $this->iconLeftSize = $this->iconLeftStyles['size'] ?? null;
 
         $this->setConfigStyles([
             'icon-background' => $iconBackground,
@@ -581,6 +612,13 @@ class AutoComplete extends Component
             'subtext' => $parts[2] ?? null,
             'image' => $parts[3] ?? null,
         ];
+    }
+
+    public function cleanUpIconLeftStyles(): void
+    {
+        $this->iconLeftStyles = collect($this->iconLeftStyles)->mapWithKeys(function ($value, $key) {
+            return [str_replace('icon-left-', '', $key) => $value];
+        })->toArray();
     }
 
     public function cleanUpIconStyles(): void
