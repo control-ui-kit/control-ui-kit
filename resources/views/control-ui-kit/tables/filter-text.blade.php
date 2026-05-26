@@ -1,6 +1,6 @@
 <div
     x-data="{
-        onChange(value) {
+        onChange() {
             fields.{{ $name }}.toggle = fields.{{ $name }}.selected !== fields.{{ $name }}.unset
         },
         toggle() {
@@ -19,15 +19,11 @@
         <label for="{{ $name }}_toggle" class="cursor-pointer">{{ $label }}</label>
     </div>
 
-    <select id="{{ $id }}" name="{{ $name }}" class="{{ $filterSelectClasses() }}"
-        {{ $attributes->whereStartsWith('wire:') }}
-        x-on:change="onChange()"
-        x-model="fields.{{ $name }}.selected"
-    >
-        <option value="">Please Select</option>
-        @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
-        @endforeach
-    </select>
+    <input id="{{ $id }}" name="{{ $name }}" type="text"
+           class="{{ $filterTextClasses() }}"
+           {{ $attributes->whereStartsWith('wire:') }}
+           x-model="fields.{{ $name }}.selected"
+           x-on:change="onChange()"
+    />
 
 </div>

@@ -1882,6 +1882,23 @@ return [
         'default-icon' => 'icon-warning',
     ],
 
+    'table-filter' => [
+
+        // Style
+        'input-background' => 'bg-table-filters',
+        'input-border' => 'focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand',
+        'input-color' => 'text-input',
+        'input-font' => 'text-sm',
+        'input-other' => 'flex items-center shrink-0 relative',
+        'input-padding' => 'h-10 px-2.5',
+        'input-rounded' => 'rounded',
+        'input-shadow' => '',
+        'input-width' => 'w-max',
+        'select-other' => 'cursor-pointer pr-8',
+        'text-other' => 'cursor-text',
+
+    ],
+
     'table-filters' => [
 
         // Style

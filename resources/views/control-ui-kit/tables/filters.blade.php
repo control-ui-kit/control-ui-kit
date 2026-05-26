@@ -47,7 +47,7 @@
     </button>
 
     <div  x-show="showFilters"
-          class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel overflow-hidden"
+          class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel"
           tabindex="-1"
           x-cloak
     >
@@ -60,7 +60,7 @@
         </div>
 
         {{--FILTERS--}}
-        <div class="divide-y divide-gray-150">
+        <div class="divide-y divide-panel">
 
             @foreach ($filters as $name => $filter)
 

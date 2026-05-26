@@ -477,16 +477,27 @@ class Table extends Component
 
         foreach ($this->filters as $name => $filter) {
 
-            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['unset']) {
+            if ($filter['selected'] === $filter['unset']) {
                 continue;
             }
 
-            $text = $filter['type'] === 'search' ? $filter['selected'] : $this->selectedOptionText($filter['options'], $filter['selected']);
+            if (in_array($filter['type'], ['search', 'text'])) {
+                $text = $filter['selected'];
+            } elseif ($filter['type'] === 'autocomplete') {
+                $text = $filter['selected_text'] ?? $filter['selected'];
+            } elseif ($filter['type'] === 'toggle') {
+                $onText = $filter['on_text'] ?? 'true';
+                $offText = $filter['off_text'] ?? 'false';
+                $on = $filter['on'] ?? '1';
+                $text = ($filter['selected'] == $on ? $onText : $offText);
+            } else {
+                $text = $this->selectedOptionText($filter['options'], $filter['selected']);
+            }
 
             $activeFilter = [
                 'name' => $filter['name'] ?? $name,
                 'type' => $filter['type'],
-                'index' => $filter['type'] === 'search' ? $filter['index'] : '',
+                'index' => $filter['type'] === 'search' ? ($filter['index'] ?? $name) : '',
                 'label' => $filter['label'],
                 'text' => $text,
                 'unset' => $filter['unset'],

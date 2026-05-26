@@ -51,6 +51,46 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.input-checkbox.input-border', 'input-border');
         Config::set('themes.default.input-checkbox.input-other', 'input-other');
         Config::set('themes.default.input-checkbox.input-rounded', 'input-rounded');
+
+        Config::set('themes.default.input-toggle.background', 'background');
+        Config::set('themes.default.input-toggle.border', 'border');
+        Config::set('themes.default.input-toggle.other', 'other');
+        Config::set('themes.default.input-toggle.padding', 'padding');
+        Config::set('themes.default.input-toggle.shadow', 'shadow');
+
+        Config::set('themes.default.input-toggle.base-animation', 'base-animation');
+        Config::set('themes.default.input-toggle.base-background', 'base-background');
+        Config::set('themes.default.input-toggle.base-border', 'base-border');
+        Config::set('themes.default.input-toggle.base-focus', 'base-focus');
+        Config::set('themes.default.input-toggle.base-other', 'base-other');
+        Config::set('themes.default.input-toggle.base-rounded', 'base-rounded');
+        Config::set('themes.default.input-toggle.base-shadow', 'base-shadow');
+        Config::set('themes.default.input-toggle.base-size', 'base-size');
+        Config::set('themes.default.input-toggle.base-state-off', 'base-state-off');
+        Config::set('themes.default.input-toggle.base-state-on', 'base-state-on');
+
+        Config::set('themes.default.input-toggle.switch-animation', 'switch-background');
+        Config::set('themes.default.input-toggle.switch-background', 'switch-background');
+        Config::set('themes.default.input-toggle.switch-border', 'switch-border');
+        Config::set('themes.default.input-toggle.switch-focus', 'switch-focus');
+        Config::set('themes.default.input-toggle.switch-other', 'switch-other');
+        Config::set('themes.default.input-toggle.switch-rounded', 'switch-rounded');
+        Config::set('themes.default.input-toggle.switch-shadow', 'switch-shadow');
+        Config::set('themes.default.input-toggle.switch-size', 'switch-size');
+        Config::set('themes.default.input-toggle.switch-state-off', 'switch-state-off');
+        Config::set('themes.default.input-toggle.switch-state-on', 'switch-state-on');
+
+        Config::set('themes.default.table-filter.input-background', 'input-background');
+        Config::set('themes.default.table-filter.input-border', 'input-border');
+        Config::set('themes.default.table-filter.input-color', 'input-color');
+        Config::set('themes.default.table-filter.input-font', 'input-font');
+        Config::set('themes.default.table-filter.input-other', 'input-other');
+        Config::set('themes.default.table-filter.input-padding', 'input-padding');
+        Config::set('themes.default.table-filter.input-rounded', 'input-rounded');
+        Config::set('themes.default.table-filter.input-shadow', 'input-shadow');
+        Config::set('themes.default.table-filter.input-width', 'input-width');
+        Config::set('themes.default.table-filter.select-other', 'select-other');
+        Config::set('themes.default.table-filter.text-other', 'text-other');
     }
 
     #[Test]
@@ -69,7 +109,7 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.reset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.reset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
@@ -80,7 +120,7 @@ class FilterTest extends ComponentTestCase
                     </div>
                     <label for="name_toggle" class="cursor-pointer">label</label>
                 </div>
-                <select id="id" name="name" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.name.selected">
+                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
                     <option value="">Please Select</option>
                     <option value="1">A</option>
                     <option value="2">B</option>
@@ -127,7 +167,7 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.reset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.reset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
@@ -138,7 +178,7 @@ class FilterTest extends ComponentTestCase
                     </div>
                     <label for="name_toggle" class="cursor-pointer">label</label>
                 </div>
-                <select id="id" name="name" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.name.selected">
+                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
                     <option value="">Please Select</option>
                 </select>
             </div>
@@ -168,7 +208,7 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.reset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.reset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
@@ -179,7 +219,7 @@ class FilterTest extends ComponentTestCase
                     </div>
                     <label for="name_toggle" class="cursor-pointer">label</label>
                 </div>
-                <select id="id" name="name" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.name.selected">
+                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
                     <option value="">Please Select</option>
                     <option value="1">Alpha</option>
                     <option value="2">Beta</option>
@@ -209,7 +249,7 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.reset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.reset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
@@ -220,11 +260,80 @@ class FilterTest extends ComponentTestCase
                     </div>
                     <label for="name_toggle" class="cursor-pointer">label</label>
                 </div>
-                <select id="id" name="name" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.name.selected">
+                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
                     <option value="">Please Select</option>
                     <option value="1">Alpha</option>
                     <option value="2">Beta</option>
                 </select>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_text_component_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'text',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer">label</label>
+                </div>
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" x-model="fields.name.selected" x-on:change="onChange()" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_toggle_component_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'toggle',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ toggle() { if (fields.name.toggle) { fields.name.toggle = false fields.name.selected = fields.name.unset } else { fields.name.toggle = true fields.name.selected = '1' } } }" x-effect="fields.name.toggle = fields.name.selected === '1'" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer">label</label>
+                </div>
+                <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" x-model="fields.name.selected">
+                    <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
+                    <input type="hidden" name="name" id="id" value="0" x-model="value" />
+                </div>
             </div>
             HTML;
 
