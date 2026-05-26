@@ -50,7 +50,7 @@
                 {{-- "Three Dots" Separator --}}
                 @if ($element === '...')
                     <div aria-disabled="true">
-                        <span class="bg-paginate-disabled hover:bg-paginate-disabled-hover border border-paginate-disabled hover:border-paginate-disabled-hover text-paginate-disabled hover:text-paginate-disabled-hover font-medium text-sm relative inline-flex items-center justify-center cursor-default rounded h-9 w-9">
+                        <span class="bg-paginate-disabled hover:bg-paginate-disabled-hover border border-paginate-disabled hover:border-paginate-disabled-hover text-paginate-disabled hover:text-paginate-disabled-hover font-medium text-sm relative inline-flex items-center justify-center cursor-default rounded h-9 min-w-9 px-2">
                             ...
                         </span>
                     </div>
