@@ -477,7 +477,7 @@ class Table extends Component
 
         foreach ($this->filters as $name => $filter) {
 
-            if ($filter['type'] !== 'search' && $filter['selected'] === $filter['unset']) {
+            if ($filter['selected'] === $filter['unset']) {
                 continue;
             }
 
@@ -497,7 +497,7 @@ class Table extends Component
             $activeFilter = [
                 'name' => $filter['name'] ?? $name,
                 'type' => $filter['type'],
-                'index' => $filter['type'] === 'search' ? $filter['index'] : '',
+                'index' => $filter['type'] === 'search' ? ($filter['index'] ?? $name) : '',
                 'label' => $filter['label'],
                 'text' => $text,
                 'unset' => $filter['unset'],
