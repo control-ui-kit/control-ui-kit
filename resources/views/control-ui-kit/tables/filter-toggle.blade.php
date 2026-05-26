@@ -2,11 +2,15 @@
     x-data="{
         toggle() {
             if (fields.{{ $name }}.toggle) {
+                fields.{{ $name }}.toggle = false
                 fields.{{ $name }}.selected = fields.{{ $name }}.unset
+            } else {
+                fields.{{ $name }}.toggle = true
+                fields.{{ $name }}.selected = '{{ $on }}'
             }
         }
     }"
-    x-effect="fields.{{ $name }}.toggle = fields.{{ $name }}.selected !== null && fields.{{ $name }}.selected !== fields.{{ $name }}.unset"
+    x-effect="fields.{{ $name }}.toggle = fields.{{ $name }}.selected === '{{ $on }}'"
     class="text-sm flex justify-between items-center mr-2"
 >
     <div class="flex space-x-2 items-center m-4">
@@ -18,10 +22,11 @@
         <label for="{{ $name }}_toggle" class="cursor-pointer">{{ $label }}</label>
     </div>
 
-    <x-input-autocomplete
+    <x-input-toggle
         id="{{ $id }}"
         name="{{ $name }}"
-        :type="$options['autocomplete']"
+        on="{{ $on }}"
+        off="{{ $off }}"
         x-model="fields.{{ $name }}.selected"
     />
 

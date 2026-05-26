@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Tables;
 
+use ControlUIKit\Components\Tables\Table;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -499,5 +500,115 @@ class TableTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function active_filters_toggle_on_returns_on_text_without_label(): void
+    {
+        $table = new Table(filters: [
+            'active' => [
+                'id' => 'active',
+                'name' => 'active',
+                'label' => 'Active',
+                'type' => 'toggle',
+                'selected' => '1',
+                'unset' => '',
+                'on' => '1',
+                'off' => '0',
+                'on_text' => 'Active Only',
+                'off_text' => 'Inactive Only',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Active Only', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_toggle_off_returns_off_text(): void
+    {
+        $table = new Table(filters: [
+            'active' => [
+                'id' => 'active',
+                'name' => 'active',
+                'label' => 'Active',
+                'type' => 'toggle',
+                'selected' => '0',
+                'unset' => '',
+                'on' => '1',
+                'off' => '0',
+                'on_text' => 'Active Only',
+                'off_text' => 'Inactive Only',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Inactive Only', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_toggle_defaults_to_true_false_when_text_not_provided(): void
+    {
+        $table = new Table(filters: [
+            'status' => [
+                'id' => 'status',
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'toggle',
+                'selected' => '1',
+                'unset' => '',
+                'on' => '1',
+                'off' => '0',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertSame('true', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_autocomplete_returns_selected_text_when_provided(): void
+    {
+        $table = new Table(filters: [
+            'country' => [
+                'id' => 'country',
+                'name' => 'country',
+                'label' => 'Country',
+                'type' => 'autocomplete',
+                'selected' => '42',
+                'selected_text' => 'United Kingdom',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('United Kingdom', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_autocomplete_falls_back_to_raw_id_when_selected_text_absent(): void
+    {
+        $table = new Table(filters: [
+            'country' => [
+                'id' => 'country',
+                'name' => 'country',
+                'label' => 'Country',
+                'type' => 'autocomplete',
+                'selected' => '42',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('42', $active[0]['text']);
     }
 }

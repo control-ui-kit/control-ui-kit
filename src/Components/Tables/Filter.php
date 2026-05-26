@@ -4,13 +4,14 @@ namespace ControlUIKit\Components\Tables;
 
 use ControlUIKit\Exceptions\ControlUIKitException;
 use ControlUIKit\Traits\ArrayHelper;
+use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class Filter extends Component
 {
-    use ArrayHelper;
+    use ArrayHelper, UseThemeFile;
 
     protected string $component = 'table-filter';
 
@@ -23,9 +24,24 @@ class Filter extends Component
     public bool $enabled;
     public ?string $selected;
     public ?string $wire;
+    public string $on;
+    public string $off;
+    public array $filterInputStyles;
 
-    public function __construct(array $filter)
-    {
+    public function __construct(
+        array $filter,
+        ?string $inputBackground = null,
+        ?string $inputBorder = null,
+        ?string $inputColor = null,
+        ?string $inputFont = null,
+        ?string $inputOther = null,
+        ?string $inputPadding = null,
+        ?string $inputRounded = null,
+        ?string $inputShadow = null,
+        ?string $inputWidth = null,
+        ?string $selectOther = null,
+        ?string $textOther = null,
+    ) {
         $this->id = $filter['id'];
         $this->name = $filter['name'];
         $this->label = $filter['label'];
@@ -35,6 +51,32 @@ class Filter extends Component
         $this->selected = $filter['selected'];
         $this->wire = array_key_exists('wire', $filter) ? $filter['wire'] : false;
         $this->unset = $filter['unset'] ?? '';
+        $this->on = $filter['on'] ?? '1';
+        $this->off = $filter['off'] ?? '0';
+
+        $this->setConfigStyles([
+            'input-background' => $inputBackground,
+            'input-border' => $inputBorder,
+            'input-color' => $inputColor,
+            'input-font' => $inputFont,
+            'input-other' => $inputOther,
+            'input-padding' => $inputPadding,
+            'input-rounded' => $inputRounded,
+            'input-shadow' => $inputShadow,
+            'input-width' => $inputWidth,
+            'select-other' => $selectOther,
+            'text-other' => $textOther,
+        ], [], null, 'filterInputStyles');
+    }
+
+    public function filterSelectClasses(): string
+    {
+        return $this->classList($this->filterInputStyles, '', [], ['text-other']);
+    }
+
+    public function filterTextClasses(): string
+    {
+        return $this->classList($this->filterInputStyles, '', [], ['select-other']);
     }
 
     public function render(): View
@@ -56,6 +98,9 @@ class Filter extends Component
         return [
             'select',
             'search',
+            'text',
+            'autocomplete',
+            'toggle',
         ];
     }
 

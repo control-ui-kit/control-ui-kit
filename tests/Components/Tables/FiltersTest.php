@@ -25,6 +25,29 @@ class FiltersTest extends ComponentTestCase
         Config::set('themes.default.table-filters.button-rounded', 'button-rounded');
         Config::set('themes.default.table-filters.button-shadow', 'button-shadow');
         Config::set('themes.default.table-filters.button-width', 'button-width');
+
+        Config::set('themes.default.input-checkbox.background', 'background');
+        Config::set('themes.default.input-checkbox.border', 'border');
+        Config::set('themes.default.input-checkbox.color', 'color');
+        Config::set('themes.default.input-checkbox.layout', 'layout');
+        Config::set('themes.default.input-checkbox.other', 'other');
+        Config::set('themes.default.input-checkbox.padding', 'padding');
+        Config::set('themes.default.input-checkbox.input-background', 'input-background');
+        Config::set('themes.default.input-checkbox.input-border', 'input-border');
+        Config::set('themes.default.input-checkbox.input-other', 'input-other');
+        Config::set('themes.default.input-checkbox.input-rounded', 'input-rounded');
+
+        Config::set('themes.default.table-filter.input-background', 'input-background');
+        Config::set('themes.default.table-filter.input-border', 'input-border');
+        Config::set('themes.default.table-filter.input-color', 'input-color');
+        Config::set('themes.default.table-filter.input-font', 'input-font');
+        Config::set('themes.default.table-filter.input-other', 'input-other');
+        Config::set('themes.default.table-filter.input-padding', 'input-padding');
+        Config::set('themes.default.table-filter.input-rounded', 'input-rounded');
+        Config::set('themes.default.table-filter.input-shadow', 'input-shadow');
+        Config::set('themes.default.table-filter.input-width', 'input-width');
+        Config::set('themes.default.table-filter.select-other', 'select-other');
+        Config::set('themes.default.table-filter.text-other', 'text-other');
     }
 
     private function filters(): array
@@ -55,25 +78,25 @@ class FiltersTest extends ComponentTestCase
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </button>
-                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel overflow-hidden" tabindex="-1" x-cloak>
+                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel" tabindex="-1" x-cloak>
                         <div class="flex items-center justify-between p-2 bg-panel-header">
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="clearFilters()" type="button"> Clear </button>
                             <span class="text-xs uppercase text-gray-600 font-bold">Filters</span>
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
-                        <div class="divide-y divide-gray-150">
-                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.reset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.reset } }" class="text-sm flex justify-between items-center mr-2"
+                        <div class="divide-y divide-panel">
+                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.unset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex space-x-2 items-center m-4">
-                                    <div class="group grid size-4 grid-cols-1 has-[input:disabled]:opacity-50">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="bg-input border border-input checked:bg-brand checked:border-brand focus:outline-none focus:ring-1 focus:ring-brand ring-offset-1 ring-offset-input col-start-1 row-start-1 cursor-pointer appearance-none rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                    <div class="background border color layout other padding">
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer">Status</label>
                                 </div>
-                                <select id="status" name="status" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.status.selected">
+                                <select id="status" name="status" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.status.selected">
                                     <option value="">Please Select</option>
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
@@ -112,25 +135,25 @@ class FiltersTest extends ComponentTestCase
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </button>
-                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel overflow-hidden" tabindex="-1" x-cloak>
+                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel" tabindex="-1" x-cloak>
                         <div class="flex items-center justify-between p-2 bg-panel-header">
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="clearFilters()" type="button"> Clear </button>
                             <span class="text-xs uppercase text-gray-600 font-bold">Filters</span>
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
-                        <div class="divide-y divide-gray-150">
-                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.reset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.reset } }" class="text-sm flex justify-between items-center mr-2"
+                        <div class="divide-y divide-panel">
+                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.unset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex space-x-2 items-center m-4">
-                                    <div class="group grid size-4 grid-cols-1 has-[input:disabled]:opacity-50">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="bg-input border border-input checked:bg-brand checked:border-brand focus:outline-none focus:ring-1 focus:ring-brand ring-offset-1 ring-offset-input col-start-1 row-start-1 cursor-pointer appearance-none rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                    <div class="background border color layout other padding">
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer">Status</label>
                                 </div>
-                                <select id="status" name="status" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.status.selected">
+                                <select id="status" name="status" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.status.selected">
                                     <option value="">Please Select</option>
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
@@ -170,25 +193,25 @@ class FiltersTest extends ComponentTestCase
                         <circle cx="3" cy="3" r="3"/>
                         </svg>
                     </button>
-                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel overflow-hidden" tabindex="-1" x-cloak>
+                    <div x-show="showFilters" class="origin-top-right absolute z-10 right-0 mt-2 min-w-[400px] w-max rounded-md shadow-md bg-panel border border-panel" tabindex="-1" x-cloak>
                         <div class="flex items-center justify-between p-2 bg-panel-header">
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="clearFilters()" type="button"> Clear </button>
                             <span class="text-xs uppercase text-gray-600 font-bold">Filters</span>
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
-                        <div class="divide-y divide-gray-150">
-                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.reset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.reset } }" class="text-sm flex justify-between items-center mr-2"
+                        <div class="divide-y divide-panel">
+                            <div x-data="{ onChange(value) { fields.status.toggle = fields.status.selected !== fields.status.unset }, toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex space-x-2 items-center m-4">
-                                    <div class="group grid size-4 grid-cols-1 has-[input:disabled]:opacity-50">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="bg-input border border-input checked:bg-brand checked:border-brand focus:outline-none focus:ring-1 focus:ring-brand ring-offset-1 ring-offset-input col-start-1 row-start-1 cursor-pointer appearance-none rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                    <div class="background border color layout other padding">
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer">Status</label>
                                 </div>
-                                <select id="status" name="status" class="text-sm pr-8 bg-table-filters focus:outline-hidden focus:ring-0 border border-table-filters focus:border-brand text-input flex items-center shrink-0 cursor-pointer h-10 px-2.5 rounded w-max relative" x-on:change="onChange()" x-model="fields.status.selected">
+                                <select id="status" name="status" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.status.selected">
                                     <option value="">Please Select</option>
                                 </select>
                             </div>
