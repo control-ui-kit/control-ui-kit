@@ -22,7 +22,7 @@
         id="{{ $id }}"
         name="{{ $name }}"
         :type="$options['autocomplete']"
+        :focus="$options['focus'] ?? null"
         x-model="fields.{{ $name }}.selected"
     />
-
 </div>
