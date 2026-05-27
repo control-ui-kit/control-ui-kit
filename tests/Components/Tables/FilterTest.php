@@ -92,6 +92,98 @@ class FilterTest extends ComponentTestCase
         Config::set('themes.default.table-filter.select-other', 'select-other');
         Config::set('themes.default.table-filter.text-other', 'text-other');
 
+        Config::set('themes.default.input-select.please-select-text', 'Please Select ...');
+        Config::set('themes.default.input-select.please-select-value', null);
+        Config::set('themes.default.input-select.please-select-trans', '');
+
+        Config::set('themes.default.input-select.button-background', 'button-background');
+        Config::set('themes.default.input-select.button-border', 'button-border');
+        Config::set('themes.default.input-select.button-color', 'button-color');
+        Config::set('themes.default.input-select.button-font', 'button-font');
+        Config::set('themes.default.input-select.button-other', 'button-other');
+        Config::set('themes.default.input-select.button-padding', 'button-padding');
+        Config::set('themes.default.input-select.button-rounded', 'button-rounded');
+        Config::set('themes.default.input-select.button-shadow', 'button-shadow');
+        Config::set('themes.default.input-select.button-width', 'button-width');
+
+        Config::set('themes.default.input-select.check-background', 'check-background');
+        Config::set('themes.default.input-select.check-border', 'check-border');
+        Config::set('themes.default.input-select.check-color', 'check-color');
+        Config::set('themes.default.input-select.check-font', 'check-font');
+        Config::set('themes.default.input-select.check-other', 'check-other');
+        Config::set('themes.default.input-select.check-padding', 'check-padding');
+        Config::set('themes.default.input-select.check-rounded', 'check-rounded');
+        Config::set('themes.default.input-select.check-shadow', 'check-shadow');
+        Config::set('themes.default.input-select.check-active', 'check-active');
+        Config::set('themes.default.input-select.check-inactive', 'check-inactive');
+        Config::set('themes.default.input-select.check-icon', 'icon-check');
+        Config::set('themes.default.input-select.check-icon-size', 'check-icon-size');
+
+        Config::set('themes.default.input-select.icon-closed', 'icon-chevron-down');
+        Config::set('themes.default.input-select.icon-open', 'icon-chevron-up');
+        Config::set('themes.default.input-select.icon-background', 'icon-background');
+        Config::set('themes.default.input-select.icon-border', 'icon-border');
+        Config::set('themes.default.input-select.icon-color', 'icon-color');
+        Config::set('themes.default.input-select.icon-other', 'icon-other');
+        Config::set('themes.default.input-select.icon-padding', 'icon-padding');
+        Config::set('themes.default.input-select.icon-rounded', 'icon-rounded');
+        Config::set('themes.default.input-select.icon-shadow', 'icon-shadow');
+        Config::set('themes.default.input-select.icon-size', 'icon-size');
+
+        Config::set('themes.default.input-select.image-border', 'image-border');
+        Config::set('themes.default.input-select.image-other', 'image-other');
+        Config::set('themes.default.input-select.image-padding', 'image-padding');
+        Config::set('themes.default.input-select.image-rounded', 'image-rounded');
+        Config::set('themes.default.input-select.image-shadow', 'image-shadow');
+        Config::set('themes.default.input-select.image-size', 'image-size');
+        Config::set('themes.default.input-select.image-name', 'image');
+
+        Config::set('themes.default.input-select.list-background', 'list-background');
+        Config::set('themes.default.input-select.list-border', 'list-border');
+        Config::set('themes.default.input-select.list-color', 'list-color');
+        Config::set('themes.default.input-select.list-font', 'list-font');
+        Config::set('themes.default.input-select.list-other', 'list-other');
+        Config::set('themes.default.input-select.list-padding', 'list-padding');
+        Config::set('themes.default.input-select.list-rounded', 'list-rounded');
+        Config::set('themes.default.input-select.list-shadow', 'list-shadow');
+        Config::set('themes.default.input-select.list-width', 'list-width');
+
+        Config::set('themes.default.input-select.option-background', 'option-background');
+        Config::set('themes.default.input-select.option-border', 'option-border');
+        Config::set('themes.default.input-select.option-color', 'option-color');
+        Config::set('themes.default.input-select.option-font', 'option-font');
+        Config::set('themes.default.input-select.option-other', 'option-other');
+        Config::set('themes.default.input-select.option-padding', 'option-padding');
+        Config::set('themes.default.input-select.option-rounded', 'option-rounded');
+        Config::set('themes.default.input-select.option-shadow', 'option-shadow');
+        Config::set('themes.default.input-select.option-spacing', 'option-spacing');
+        Config::set('themes.default.input-select.option-active', 'option-active');
+        Config::set('themes.default.input-select.option-inactive', 'option-inactive');
+
+        Config::set('themes.default.input-select.text-background', 'text-background');
+        Config::set('themes.default.input-select.text-border', 'text-border');
+        Config::set('themes.default.input-select.text-color', 'text-color');
+        Config::set('themes.default.input-select.text-font', 'text-font');
+        Config::set('themes.default.input-select.text-other', 'text-other');
+        Config::set('themes.default.input-select.text-padding', 'text-padding');
+        Config::set('themes.default.input-select.text-rounded', 'text-rounded');
+        Config::set('themes.default.input-select.text-shadow', 'text-shadow');
+        Config::set('themes.default.input-select.text-active', 'text-active');
+        Config::set('themes.default.input-select.text-inactive', 'text-inactive');
+        Config::set('themes.default.input-select.text-name', 'text');
+
+        Config::set('themes.default.input-select.subtext-background', 'subtext-background');
+        Config::set('themes.default.input-select.subtext-border', 'subtext-border');
+        Config::set('themes.default.input-select.subtext-color', 'subtext-color');
+        Config::set('themes.default.input-select.subtext-font', 'subtext-font');
+        Config::set('themes.default.input-select.subtext-other', 'subtext-other');
+        Config::set('themes.default.input-select.subtext-padding', 'subtext-padding');
+        Config::set('themes.default.input-select.subtext-rounded', 'subtext-rounded');
+        Config::set('themes.default.input-select.subtext-shadow', 'subtext-shadow');
+        Config::set('themes.default.input-select.subtext-active', 'subtext-active');
+        Config::set('themes.default.input-select.subtext-inactive', 'subtext-inactive');
+        Config::set('themes.default.input-select.subtext-name', 'subtext');
+
         Config::set('themes.default.input-autocomplete.background', 'ac-background');
         Config::set('themes.default.input-autocomplete.border', 'ac-border');
         Config::set('themes.default.input-autocomplete.color', 'ac-color');
@@ -254,23 +346,65 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
-                    <option value="">Please Select</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                </select>
-            </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="A" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">A</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="B" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">B</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -312,21 +446,49 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
-                    <option value="">Please Select</option>
-                </select>
-            </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -353,23 +515,65 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
-                    <option value="">Please Select</option>
-                    <option value="1">Alpha</option>
-                    <option value="2">Beta</option>
-                </select>
-            </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Alpha" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">Alpha</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Beta" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Beta</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template, ['collection' => $collection]);
@@ -394,23 +598,311 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange(value) { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <select id="id" name="name" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width select-other" x-on:change="onChange()" x-model="fields.name.selected">
-                    <option value="">Please Select</option>
-                    <option value="1">Alpha</option>
-                    <option value="2">Beta</option>
-                </select>
-            </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Alpha" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">Alpha</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Beta" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Beta</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_select_component_can_be_rendered_with_a_width(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'select',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'options' => [ 1 => 'A', 2 => 'B' ],
+                'width' => 'w-48',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="w-48 relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-48" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="A" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">A</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="B" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">B</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_select_component_can_be_rendered_with_a_custom_please_select(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'select',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'options' => [ 1 => 'A', 2 => 'B' ],
+                'please-select' => 'All Items',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="All Items" data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">All Items</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="A" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">A</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="B" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">B</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_select_component_can_be_rendered_with_subtext_options(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'select',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'subtext' => 'subtext',
+                'options' => [
+                    '1' => ['text' => 'Alpha', 'subtext' => 'Sub Alpha'],
+                    '2' => ['text' => 'Beta', 'subtext' => 'Sub Beta'],
+                ],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                    <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
+                    <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                        <div class="flex items-center">
+                            <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
+                            <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
+                        </div>
+                        <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                            <span x-show="!open">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                                <span x-show="open">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                            <ul x-show="open" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="list-background list-border list-color list-font list-other list-padding list-rounded list-shadow list-width" x-max="1" @click.away="open = false" @keydown.enter.stop.prevent="onKeyboardSelect()" @keydown.space.stop.prevent="onKeyboardSelect()" @keydown.escape="onEscape()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" x-ref="listbox-id" tabindex="-1" role="listbox" aria-labelledby="listbox-label" :aria-activedescendant="activeDescendant" aria-activedescendant="">
+                                <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-text="Please Select ..." data-value="" @click="onMouseSelect(0)" @mouseenter="activeIndex = 0" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 0, 'option-inactive': !(activeIndex === 0) }">
+                                    <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 0, 'text-inactive': !(highlightIndex === 0) }">Please Select ...</span> </div>
+                                    <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 0, 'check-inactive': !(activeIndex === 0) }" x-show="highlightIndex === 0">
+                                        <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-subtext="Sub Alpha" data-text="Alpha" data-value="1" @click="onMouseSelect(1)" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 1, 'option-inactive': !(activeIndex === 1) }">
+                                        <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 1, 'text-inactive': !(highlightIndex === 1) }">Alpha</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 1, 'subtext-inactive': !(highlightIndex === 1) }">Sub Alpha</span> </div>
+                                        <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 1, 'check-inactive': !(activeIndex === 1) }" x-show="highlightIndex === 1">
+                                            <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                </svg>
+                                            </span>
+                                        </li>
+                                        <li class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" role="option" data-subtext="Sub Beta" data-text="Beta" data-value="2" @click="onMouseSelect(2)" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = null" :class="{ 'option-active': activeIndex === 2, 'option-inactive': !(activeIndex === 2) }">
+                                            <div class="flex items-center option-spacing"> <span class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow" :class="{ 'text-active': highlightIndex === 2, 'text-inactive': !(highlightIndex === 2) }">Beta</span> <span class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="{ 'subtext-active': highlightIndex === 2, 'subtext-inactive': !(highlightIndex === 2) }">Sub Beta</span> </div>
+                                            <span class="check-background check-border check-color check-font check-other check-padding check-rounded check-shadow" :class="{ 'check-active': activeIndex === 2, 'check-inactive': !(activeIndex === 2) }" x-show="highlightIndex === 2">
+                                                <svg class="check-icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M10.9627 16.7186L6 12.7898l1.24068-1.6542 3.30852 2.6881L16.5458 7 18.2 8.24068l-7.2373 8.47792z" />
+                                                    </svg>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -433,16 +925,119 @@ class FilterTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
                 <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" x-model="fields.name.selected" x-on:change="onChange()" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_text_component_can_be_rendered_with_a_placeholder(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'text',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'placeholder' => 'Search here...',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" placeholder="Search here..." x-model="fields.name.selected" x-on:change="onChange()" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_text_component_can_be_rendered_with_a_width(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'text',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'width' => 'w-48',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" x-model="fields.name.selected" x-on:change="onChange()" />
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_text_component_can_be_rendered_with_a_placeholder_and_width(): void
+    {
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'id',
+                'name' => 'name',
+                'type' => 'text',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'label',
+                'placeholder' => 'Search here...',
+                'width' => 'w-48',
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
+                </div>
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" placeholder="Search here..." x-model="fields.name.selected" x-on:change="onChange()" />
             </div>
             HTML;
 
@@ -466,20 +1061,97 @@ class FilterTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-data="{ toggle() { if (fields.name.toggle) { fields.name.toggle = false fields.name.selected = fields.name.unset } else { fields.name.toggle = true fields.name.selected = '1' } } }" x-effect="fields.name.toggle = fields.name.selected === '1'" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="name_toggle" class="cursor-pointer">label</label>
+                    <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
                 <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" x-model="fields.name.selected">
                     <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                     <input type="hidden" name="name" id="id" value="0" x-model="value" />
                 </div>
             </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_table_filter_autocomplete_component_can_be_rendered_with_a_width(): void
+    {
+        Config::set('autocompletes', ['test-filter-ac' => TestFilterAutoComplete::class]);
+
+        $template = <<<'HTML'
+            <x-table-filter :filter="[
+                'id' => 'country',
+                'name' => 'country',
+                'type' => 'autocomplete',
+                'selected' => null,
+                'unset' => '',
+                'label' => 'Country',
+                'width' => 'w-48',
+                'options' => ['autocomplete' => 'test-filter-ac'],
+            ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
+            >
+                <div class="flex shrink-0 space-x-2 items-center m-4">
+                    <div class="background border color layout other padding">
+                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
+                            <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
+                        </svg>
+                    </div>
+                    <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
+                </div>
+                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow w-48" x-model="fields.country.selected">
+                    <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
+                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields.country.selected" />
+                        <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                            </svg>
+                            <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="! show" @click="toggle()">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </div>
+                                <div class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow" x-show="show" @click="toggle()">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M16.2951 15.705l1.41-1.41-6-6.00002L5.70508 14.295l1.41 1.41 4.59002-4.58 4.59 4.58z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="country" id="country" x-model="value" />
+                                <div x-show="isOpen()" class="dropdown-background dropdown-border dropdown-color dropdown-other dropdown-padding dropdown-rounded dropdown-shadow dropdown-width">
+                                    <div x-show="options !== null">
+                                        <template x-for="(option, index) in options" :key="index">
+                                            <div @click="onOptionClick(index)" :class="classOption(option.id, index)">
+                                                <div class="option-background option-border option-color option-font option-other option-padding option-rounded option-shadow" :class="classText(option.id, index)">
+                                                    <img class="image-border image-other image-padding image-rounded image-shadow image-size" x-bind:src="option.image" x-show="option.image !== null">
+                                                    <div class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow">
+                                                        <span x-text="option.text"></span>
+                                                        <div x-show="option.subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow" :class="classSubtext(option.id, index)" x-text="option.subtext"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                    <div x-show="noResults">
+                                        <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> ::no-results '<span x-text="filter"></span>' </div>
+                                    </div>
+                                    <div x-show="isAjax && options === null">
+                                        <div class="prompt-background prompt-border prompt-color prompt-font prompt-other prompt-padding prompt-rounded prompt-shadow"> <span>::prompt-text</span> </div>
+                                        <div x-show="selectedText" class="selected-background selected-border selected-color selected-font selected-other selected-padding selected-rounded selected-shadow"> <span>::selected</span> <span>:</span> <span x-text="selectedText"></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -505,14 +1177,14 @@ class FilterTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="country_toggle" class="cursor-pointer">Country</label>
+                    <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
                 </div>
                 <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields.country.selected">
                     <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
@@ -581,14 +1253,14 @@ class FilterTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
             >
-                <div class="flex space-x-2 items-center m-4">
+                <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
                         <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
-                    <label for="country_toggle" class="cursor-pointer">Country</label>
+                    <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
                 </div>
                 <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [{"id":1,"text":"Preloaded Option","subtext":null,"image":null}] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields.country.selected">
                     <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">

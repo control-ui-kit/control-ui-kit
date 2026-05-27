@@ -3,6 +3,7 @@
 namespace ControlUIKit;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Enumerable;
 
 abstract class AutoComplete
 {
@@ -21,7 +22,7 @@ abstract class AutoComplete
 
     abstract public function preload(): Collection|array;
 
-    abstract public function search(string $term, int $limit): Collection|array;
+    abstract public function search(string $term, int $limit): Collection|array|Enumerable;
 
     public function __construct()
     {

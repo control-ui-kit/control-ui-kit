@@ -1174,7 +1174,8 @@ return [
         'check-icon' => 'icon-check',
         'check-icon-size' => 'w-5 h-5',
 
-        'icon' => 'icon-chevron-down',
+        'icon-closed' => 'icon-chevron-down',
+        'icon-open' => 'icon-chevron-up',
         'icon-background' => '',
         'icon-border' => 'border-l border-input',
         'icon-color' => 'text-input',
@@ -1890,7 +1891,7 @@ return [
         'input-color' => 'text-input',
         'input-font' => 'text-sm',
         'input-other' => 'flex items-center shrink-0 relative',
-        'input-padding' => 'h-10 px-2.5',
+        'input-padding' => 'h-8.5 px-2.5',
         'input-rounded' => 'rounded',
         'input-shadow' => '',
         'input-width' => 'w-max',

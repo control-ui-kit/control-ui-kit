@@ -484,10 +484,10 @@ class Table extends Component
             if (in_array($filter['type'], ['search', 'text'])) {
                 $text = $filter['selected'];
             } elseif ($filter['type'] === 'autocomplete') {
-                $text = $filter['selected_text'] ?? $filter['selected'];
+                $text = $filter['selected-text'] ?? $filter['selected'];
             } elseif ($filter['type'] === 'toggle') {
-                $onText = $filter['on_text'] ?? 'true';
-                $offText = $filter['off_text'] ?? 'false';
+                $onText = $filter['on-text'] ?? 'true';
+                $offText = $filter['off-text'] ?? 'false';
                 $on = $filter['on'] ?? '1';
                 $text = ($filter['selected'] == $on ? $onText : $offText);
             } else {

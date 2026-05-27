@@ -9,13 +9,13 @@
     x-effect="fields.{{ $name }}.toggle = fields.{{ $name }}.selected !== null && fields.{{ $name }}.selected !== fields.{{ $name }}.unset"
     class="text-sm flex justify-between items-center mr-2"
 >
-    <div class="flex space-x-2 items-center m-4">
+    <div class="flex shrink-0 space-x-2 items-center m-4">
         <x-input-checkbox
             name="{{ $name }}_toggle"
             x-model="fields.{{ $name }}.toggle"
             x-on:click="toggle()"
         />
-        <label for="{{ $name }}_toggle" class="cursor-pointer">{{ $label }}</label>
+        <label for="{{ $name }}_toggle" class="cursor-pointer whitespace-nowrap">{{ $label }}</label>
     </div>
 
     <x-input-autocomplete
@@ -23,6 +23,8 @@
         name="{{ $name }}"
         :type="$options['autocomplete']"
         :focus="$options['focus'] ?? null"
+        :selected="$selectedText"
+        :width="$width"
         x-model="fields.{{ $name }}.selected"
     />
 </div>
