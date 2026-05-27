@@ -27,6 +27,8 @@
              Object.keys(this.fields).forEach(field => {
                  if (this.fields[field].selected) {
                      params.append(field, this.fields[field].selected)
+                 } else if (this.fields[field].original) {
+                     params.append(field, this.fields[field].unset)
                  }
              })
              window.location.search = params.toString()

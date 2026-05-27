@@ -1156,7 +1156,7 @@ return [
         'button-color' => '',
         'button-font' => 'text-input text-sm',
         'button-other' => 'flex items-center cursor-pointer',
-        'button-padding' => 'space-x-2 py-1.5 px-3',
+        'button-padding' => 'py-1.5 pl-3 pr-10',
         'button-rounded' => 'rounded-sm',
         'button-shadow' => '',
         'button-width' => 'w-full',
