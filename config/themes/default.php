@@ -868,7 +868,7 @@ return [
         'color' => 'text-input placeholder-input',
         'font' => 'text-sm',
         'other' => '',
-        'padding' => 'p-1.5',
+        'padding' => 'py-1.5 px-3',
         'rounded' => 'rounded-sm',
         'shadow' => '',
         'width' => 'w-full',
