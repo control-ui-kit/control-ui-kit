@@ -21,7 +21,7 @@
             aria-labelledby="listbox-label"
             aria-expanded="true"
     >
-        <div class="flex items-center">
+        <div class="flex items-center min-w-0">
             <img x-show="image !== undefined" :src="image" class="{{ $imageClasses() }}">
             <span x-text="text" class="{{ $textClasses() }}"></span>
             <span x-text="subtext" class="{{ $subtextClasses() }}"></span>

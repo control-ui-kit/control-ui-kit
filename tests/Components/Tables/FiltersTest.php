@@ -99,7 +99,7 @@ class FiltersTest extends ComponentTestCase
                                 <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
                                     <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>
@@ -198,7 +198,7 @@ class FiltersTest extends ComponentTestCase
                                 <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
                                     <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>
@@ -298,7 +298,7 @@ class FiltersTest extends ComponentTestCase
                                 <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
                                     <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>

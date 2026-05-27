@@ -34,6 +34,26 @@ class Filter extends Component
     public ?string $image;
     public array $filterInputStyles;
 
+    public ?string $format;
+    public ?string $dataFormat;
+    public ?string $min;
+    public ?string $max;
+    public ?bool $weekNumbers;
+    public ?string $yearsBefore;
+    public ?string $yearsAfter;
+    public ?bool $showTime;
+    public ?bool $showSeconds;
+    public ?string $clockType;
+    public ?bool $timeOnly;
+    public ?string $hourStep;
+    public ?string $minuteStep;
+    public ?string $dateIcon;
+    public ?string $lang;
+    public ?string $linkedTo;
+    public ?string $linkedFrom;
+    public ?string $from;
+    public ?string $to;
+
     public function __construct(
         array $filter,
         ?string $inputBackground = null,
@@ -65,6 +85,25 @@ class Filter extends Component
         $this->pleaseSelect = $filter['please-select'] ?? null;
         $this->subtext = $filter['subtext'] ?? null;
         $this->image = $filter['image'] ?? null;
+        $this->format = $filter['format'] ?? null;
+        $this->dataFormat = $filter['data'] ?? null;
+        $this->min = $filter['min'] ?? null;
+        $this->max = $filter['max'] ?? null;
+        $this->weekNumbers = $filter['week-numbers'] ?? null;
+        $this->yearsBefore = $filter['years-before'] ?? null;
+        $this->yearsAfter = $filter['years-after'] ?? null;
+        $this->showTime = $filter['show-time'] ?? null;
+        $this->showSeconds = $filter['show-seconds'] ?? null;
+        $this->clockType = $filter['clock-type'] ?? null;
+        $this->timeOnly = $filter['time-only'] ?? null;
+        $this->hourStep = $filter['hour-step'] ?? null;
+        $this->minuteStep = $filter['minute-step'] ?? null;
+        $this->dateIcon = $filter['icon'] ?? null;
+        $this->lang = $filter['lang'] ?? null;
+        $this->linkedTo = $filter['linked-to'] ?? null;
+        $this->linkedFrom = $filter['linked-from'] ?? null;
+        $this->from = $filter['from'] ?? null;
+        $this->to = $filter['to'] ?? null;
 
         $this->setConfigStyles([
             'input-background' => $inputBackground,
@@ -113,6 +152,8 @@ class Filter extends Component
             'text',
             'autocomplete',
             'toggle',
+            'date',
+            'date-range',
         ];
     }
 

@@ -119,7 +119,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -204,7 +204,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -267,7 +267,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -339,7 +339,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="custom-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow custom-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -411,7 +411,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -483,7 +483,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -555,7 +555,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -629,7 +629,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -703,7 +703,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -776,7 +776,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -849,7 +849,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class=""></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -925,7 +925,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="custom-background custom-border custom-color custom-font custom-other custom-padding custom-rounded custom-shadow"></span>
                     </div>
@@ -1001,7 +1001,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class=""></span>
                     </div>
@@ -1076,7 +1076,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1149,7 +1149,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1221,7 +1221,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1292,7 +1292,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1358,7 +1358,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1425,7 +1425,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1492,7 +1492,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1558,7 +1558,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1631,7 +1631,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1709,7 +1709,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="custom-border custom-other custom-padding custom-rounded custom-shadow custom-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1787,7 +1787,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1857,7 +1857,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 1 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="1" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1913,7 +1913,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -1977,7 +1977,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 0 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="0" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2041,7 +2041,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 0 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="0" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2107,7 +2107,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: '::please-select-value' })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2174,7 +2174,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: '::please-select-value' })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2267,7 +2267,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: '::please-select-value' })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="::please-select-value" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2332,7 +2332,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 2 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="2" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2389,7 +2389,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 2 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="2" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2446,7 +2446,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 'b' })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="b" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2598,7 +2598,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 4 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2659,7 +2659,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 4 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2719,7 +2719,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: 4 })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" value="4" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2817,7 +2817,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="value">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2904,7 +2904,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: @entangle($wireModel) })" x-init="init()" x-modelable="value" class="button-width relative">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -2991,7 +2991,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative float-right">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>
@@ -3078,7 +3078,7 @@ class SelectTest extends ComponentTestCase
             <div x-cloak x-data="Components.inputSelect({ id: 'language', value: null })" x-init="init()" x-modelable="value" class="button-width relative" onclick="alert('here')">
                 <input type="hidden" name="language" id="language" x-model="value" x-on:change="onValueChange()" />
                 <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                    <div class="flex items-center">
+                    <div class="flex items-center min-w-0">
                         <img x-show="image !== undefined" :src="image" class="image-border image-other image-padding image-rounded image-shadow image-size">
                         <span x-text="text" class="text-background text-border text-color text-font text-other text-padding text-rounded text-shadow"></span> <span x-text="subtext" class="subtext-background subtext-border subtext-color subtext-font subtext-other subtext-padding subtext-rounded subtext-shadow"></span>
                     </div>

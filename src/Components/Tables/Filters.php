@@ -83,6 +83,14 @@ class Filters extends Component
             if (! array_key_exists('unset', $filter)) {
                 $filters[$name]['unset'] = '';
             }
+
+            if (($filter['type'] ?? '') === 'date-range') {
+                if (! array_key_exists('selected', $filter) || $filter['selected'] === null) {
+                    $from = $filter['from'] ?? '';
+                    $to = $filter['to'] ?? '';
+                    $filters[$name]['selected'] = ($from && $to) ? $from . '#' . $to : '';
+                }
+            }
         }
 
         $this->filters = $filters;
