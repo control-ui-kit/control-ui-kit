@@ -41,7 +41,7 @@
              this.showFilters = false
          }
      }"
-     @click.away="clickAway()"
+     @click.away="if (!$event.target.closest('.flatpickr-calendar')) clickAway()"
 >
 
     <button class="{{ $filtersButtonClasses() }} relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">
