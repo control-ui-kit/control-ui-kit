@@ -23,9 +23,15 @@ class Filter extends Component
     public mixed $options;
     public bool $enabled;
     public ?string $selected;
+    public ?string $selectedText;
     public ?string $wire;
     public string $on;
     public string $off;
+    public string $placeholder;
+    public ?string $width;
+    public ?string $pleaseSelect;
+    public ?string $subtext;
+    public ?string $image;
     public array $filterInputStyles;
 
     public function __construct(
@@ -49,10 +55,16 @@ class Filter extends Component
         $this->options = $this->setOptions($filter);
         $this->enabled = $filter['selected'] !== $filter['unset'];
         $this->selected = $filter['selected'];
+        $this->selectedText = $filter['selected-text'] ?? null;
         $this->wire = array_key_exists('wire', $filter) ? $filter['wire'] : false;
         $this->unset = $filter['unset'] ?? '';
         $this->on = $filter['on'] ?? '1';
         $this->off = $filter['off'] ?? '0';
+        $this->placeholder = $filter['placeholder'] ?? '';
+        $this->width = $filter['width'] ?? null;
+        $this->pleaseSelect = $filter['please-select'] ?? null;
+        $this->subtext = $filter['subtext'] ?? null;
+        $this->image = $filter['image'] ?? null;
 
         $this->setConfigStyles([
             'input-background' => $inputBackground,
@@ -63,7 +75,7 @@ class Filter extends Component
             'input-padding' => $inputPadding,
             'input-rounded' => $inputRounded,
             'input-shadow' => $inputShadow,
-            'input-width' => $inputWidth,
+            'input-width' => $filter['width'] ?? $inputWidth,
             'select-other' => $selectOther,
             'text-other' => $textOther,
         ], [], null, 'filterInputStyles');
@@ -115,7 +127,11 @@ class Filter extends Component
         }
 
         if ($this->is_multidimensional($filter['options'])) {
-            return $this->flatten($filter['options']);
+            $first = reset($filter['options']);
+            if (is_array($first) && array_key_exists('value', $first) && array_key_exists('label', $first)) {
+                return $this->flatten($filter['options']);
+            }
+            return $filter['options'];
         }
 
         return $filter['options'];

@@ -515,8 +515,8 @@ class TableTest extends ComponentTestCase
                 'unset' => '',
                 'on' => '1',
                 'off' => '0',
-                'on_text' => 'Active Only',
-                'off_text' => 'Inactive Only',
+                'on-text' => 'Active Only',
+                'off-text' => 'Inactive Only',
             ],
         ]);
 
@@ -539,8 +539,8 @@ class TableTest extends ComponentTestCase
                 'unset' => '',
                 'on' => '1',
                 'off' => '0',
-                'on_text' => 'Active Only',
-                'off_text' => 'Inactive Only',
+                'on-text' => 'Active Only',
+                'off-text' => 'Inactive Only',
             ],
         ]);
 
@@ -581,7 +581,7 @@ class TableTest extends ComponentTestCase
                 'label' => 'Country',
                 'type' => 'autocomplete',
                 'selected' => '42',
-                'selected_text' => 'United Kingdom',
+                'selected-text' => 'United Kingdom',
                 'unset' => '',
             ],
         ]);

@@ -26,9 +26,14 @@
             <span x-text="text" class="{{ $textClasses() }}"></span>
             <span x-text="subtext" class="{{ $subtextClasses() }}"></span>
         </div>
-        @if ($icon)
+        @if ($iconClosed || $iconOpen)
         <span class="{{ $iconClasses() }}">
-            <x-dynamic-component :component="$icon" :size="$iconSize" />
+            @if ($iconClosed)
+            <span x-show="!open"><x-dynamic-component :component="$iconClosed" :size="$iconSize" /></span>
+            @endif
+            @if ($iconOpen)
+            <span x-show="open"><x-dynamic-component :component="$iconOpen" :size="$iconSize" /></span>
+            @endif
         </span>
         @endif
     </button>

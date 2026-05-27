@@ -28,7 +28,8 @@ class Select extends Component
     public ?string $checkIcon;
     public ?string $checkIconSize;
 
-    public ?string $icon;
+    public ?string $iconClosed;
+    public ?string $iconOpen;
     public ?string $iconSize;
 
     public array $iconStyles;
@@ -73,7 +74,8 @@ class Select extends Component
         ?string $buttonShadow = null,
         ?string $buttonWidth = null,
 
-        ?string $icon = null,
+        ?string $iconClosed = null,
+        ?string $iconOpen = null,
         ?string $iconBackground = null,
         ?string $iconBorder = null,
         ?string $iconColor = null,
@@ -169,7 +171,8 @@ class Select extends Component
 
         $this->checkIcon = $this->style($this->component, 'check-icon', $checkIcon);
         $this->checkIconSize = $this->style($this->component, 'check-icon-size', $checkIconSize);
-        $this->icon = $this->style($this->component, 'icon', $icon);
+        $this->iconClosed = $this->style($this->component, 'icon-closed', $iconClosed);
+        $this->iconOpen = $this->style($this->component, 'icon-open', $iconOpen);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->textName = $this->style($this->component, 'text-name', $text);
         $this->subtextName = $this->style($this->component, 'subtext-name', $subtext);
