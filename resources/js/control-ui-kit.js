@@ -585,7 +585,7 @@ window.Components = {
                     }
                 } else if (this.isAjax && this.chosen) {
                     this.chosen = null;
-                } else if (init && this.options && this.focus.length > 0) {
+                } else if (init && this.options && this.focus.length > 0 && this.value !== null && this.value !== '') {
                     this.lookupId()
                 } else if (this.isAjax && this.ajax['lookup_url'] && this.value !== null && this.value !== '' && ! this.options) {
                     this.lookupId()

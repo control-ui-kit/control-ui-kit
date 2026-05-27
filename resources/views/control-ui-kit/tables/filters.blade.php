@@ -4,7 +4,7 @@
          fields: {
              @foreach ($filters as $name => $filter)
              @if ($filter['type'] !== 'search')
-             {{ $name }}: {
+             '{{ $name }}': {
                  original: '{{ $filter['selected'] ?: '' }}',
                  selected: '{{ $filter['selected'] ?: '' }}',
                  unset: '{{ $filter['unset'] }}',
@@ -27,6 +27,8 @@
              Object.keys(this.fields).forEach(field => {
                  if (this.fields[field].selected) {
                      params.append(field, this.fields[field].selected)
+                 } else if (this.fields[field].original) {
+                     params.append(field, this.fields[field].unset)
                  }
              })
              window.location.search = params.toString()
@@ -39,7 +41,7 @@
              this.showFilters = false
          }
      }"
-     @click.away="clickAway()"
+     @click.away="if (!$event.target.closest('.flatpickr-calendar')) clickAway()"
 >
 
     <button class="{{ $filtersButtonClasses() }} relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">

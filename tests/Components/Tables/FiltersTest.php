@@ -70,8 +70,8 @@ class FiltersTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="relative" x-data="{ showFilters: false, fields: { status: { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
-                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="clickAway()"
+            <div class="relative" x-data="{ showFilters: false, fields: { 'status': { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
+                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } else if (this.fields[field].original) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="if (!$event.target.closest('.flatpickr-calendar')) clickAway()"
             >
                 <button class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">
                     <svg class="icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
@@ -85,21 +85,21 @@ class FiltersTest extends ComponentTestCase
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
                         <div class="divide-y divide-panel">
-                            <div x-data="{ toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" x-effect="fields.status.toggle = fields.status.selected !== null && fields.status.selected !== fields.status.unset" class="text-sm flex justify-between items-center mr-2"
+                            <div x-data="{ toggle() { fields['status'].toggle = !fields['status'].toggle fields['status'].selected = fields['status'].unset } }" x-effect="fields['status'].toggle = fields['status'].selected !== null && fields['status'].selected !== fields['status'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex shrink-0 space-x-2 items-center m-4">
                                     <div class="background border color layout other padding">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['status'].toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer whitespace-nowrap">Status</label>
                                 </div>
-                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
+                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields['status'].selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
-                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer py-1.5 pl-3 pr-10 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>
@@ -169,8 +169,8 @@ class FiltersTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="relative" x-data="{ showFilters: false, fields: { status: { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
-                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="clickAway()"
+            <div class="relative" x-data="{ showFilters: false, fields: { 'status': { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
+                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } else if (this.fields[field].original) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="if (!$event.target.closest('.flatpickr-calendar')) clickAway()"
             >
                 <button class=" relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">
                     <svg class="icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
@@ -184,21 +184,21 @@ class FiltersTest extends ComponentTestCase
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
                         <div class="divide-y divide-panel">
-                            <div x-data="{ toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" x-effect="fields.status.toggle = fields.status.selected !== null && fields.status.selected !== fields.status.unset" class="text-sm flex justify-between items-center mr-2"
+                            <div x-data="{ toggle() { fields['status'].toggle = !fields['status'].toggle fields['status'].selected = fields['status'].unset } }" x-effect="fields['status'].toggle = fields['status'].selected !== null && fields['status'].selected !== fields['status'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex shrink-0 space-x-2 items-center m-4">
                                     <div class="background border color layout other padding">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['status'].toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer whitespace-nowrap">Status</label>
                                 </div>
-                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
+                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields['status'].selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
-                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer py-1.5 pl-3 pr-10 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>
@@ -269,8 +269,8 @@ class FiltersTest extends ComponentTestCase
         ];
 
         $expected = <<<'HTML'
-            <div class="relative" x-data="{ showFilters: false, fields: { status: { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
-                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="clickAway()"
+            <div class="relative" x-data="{ showFilters: false, fields: { 'status': { original: '', selected: '', unset: '', toggle: false, }, }, clearFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field =>
+                { if (this.fields[field].selected) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, updateFilters() { let params = new URLSearchParams() Object.keys(this.fields).forEach(field => { if (this.fields[field].selected) { params.append(field, this.fields[field].selected) } else if (this.fields[field].original) { params.append(field, this.fields[field].unset) } }) window.location.search = params.toString() }, clickAway() { Object.keys(this.fields).forEach(field => { this.fields[field].selected = this.fields[field].original this.fields[field].toggle = this.fields[field].selected !== this.fields[field].unset }) this.showFilters = false } }" @click.away="if (!$event.target.closest('.flatpickr-calendar')) clickAway()"
             >
                 <button class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width relative group border-button-default hover:border-button-default-hover text-button-default hover:text-button-default-hover cursor-pointer" x-on:click="showFilters = !showFilters">
                     <svg class="icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
@@ -284,21 +284,21 @@ class FiltersTest extends ComponentTestCase
                             <button class="bg-button-default hover:bg-button-default-hover border border-button-default hover:border-button-default-hover focus:ring-1 focus:ring-brand text-button-default hover:text-button-default-hover cursor-pointer text-sm flex items-center justify-center group-hover outline-hidden focus:outline-hidden space-x-1 px-2 py-1.5 rounded-sm w-max w-full" x-on:click="updateFilters()" type="button"> Update </button>
                         </div>
                         <div class="divide-y divide-panel">
-                            <div x-data="{ toggle() { fields.status.toggle = !fields.status.toggle fields.status.selected = fields.status.unset } }" x-effect="fields.status.toggle = fields.status.selected !== null && fields.status.selected !== fields.status.unset" class="text-sm flex justify-between items-center mr-2"
+                            <div x-data="{ toggle() { fields['status'].toggle = !fields['status'].toggle fields['status'].selected = fields['status'].unset } }" x-effect="fields['status'].toggle = fields['status'].selected !== null && fields['status'].selected !== fields['status'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                                 <div class="flex shrink-0 space-x-2 items-center m-4">
                                     <div class="background border color layout other padding">
-                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.status.toggle" x-on:click="toggle()" />
+                                        <input name="status_toggle" type="checkbox" id="status_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['status'].toggle" x-on:click="toggle()" />
                                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                                         </svg>
                                     </div>
                                     <label for="status_toggle" class="cursor-pointer whitespace-nowrap">Status</label>
                                 </div>
-                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields.status.selected">
+                                <div x-cloak x-data="Components.inputSelect({ id: 'status', value: '' })" x-init="init()" x-modelable="value" class="w-full relative" x-model="fields['status'].selected">
                                     <input type="hidden" name="status" id="status" value="" x-model="value" x-on:change="onValueChange()" />
-                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer space-x-2 py-1.5 px-3 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
-                                        <div class="flex items-center">
+                                    <button type="button" class="bg-input border border-input focus:border-input focus:outline-hidden focus:ring-1 focus:ring-brand text-input text-sm flex items-center cursor-pointer py-1.5 pl-3 pr-10 rounded-sm w-full" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
+                                        <div class="flex items-center min-w-0">
                                             <img x-show="image !== undefined" :src="image" class="shrink-0 pr-2 h-6 w-auto">
                                             <span x-text="text" class="text-input-option hover:text-input-option-hover block truncate"></span> <span x-text="subtext" class="text-input-option-sub hover:text-input-option-sub-hover block truncate pl-2"></span>
                                         </div>

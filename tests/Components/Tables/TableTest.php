@@ -611,4 +611,110 @@ class TableTest extends ComponentTestCase
         $this->assertCount(1, $active);
         $this->assertSame('42', $active[0]['text']);
     }
+
+    #[Test]
+    public function active_filters_date_returns_formatted_date(): void
+    {
+        $table = new Table(filters: [
+            'created_at' => [
+                'id' => 'created_at',
+                'name' => 'created_at',
+                'label' => 'Created At',
+                'type' => 'date',
+                'selected' => '2024-01-15',
+                'unset' => '',
+                'data' => 'Y-m-d',
+                'format' => 'd/m/Y',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('15/01/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_date_returns_raw_value_when_format_not_parseable(): void
+    {
+        $table = new Table(filters: [
+            'created_at' => [
+                'id' => 'created_at',
+                'name' => 'created_at',
+                'label' => 'Created At',
+                'type' => 'date',
+                'selected' => 'not-a-date',
+                'unset' => '',
+                'data' => 'Y-m-d',
+                'format' => 'd/m/Y',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('not-a-date', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_date_uses_default_formats_when_not_specified(): void
+    {
+        $table = new Table(filters: [
+            'created_at' => [
+                'id' => 'created_at',
+                'name' => 'created_at',
+                'label' => 'Created At',
+                'type' => 'date',
+                'selected' => '2024-06-30',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('30/06/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_date_range_returns_formatted_range(): void
+    {
+        $table = new Table(filters: [
+            'date_range' => [
+                'id' => 'date_range',
+                'name' => 'date_range',
+                'label' => 'Date Range',
+                'type' => 'date-range',
+                'selected' => '2024-01-15#2024-01-31',
+                'unset' => '',
+                'data' => 'Y-m-d',
+                'format' => 'd/m/Y',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('15/01/2024 - 31/01/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_date_range_uses_default_formats_when_not_specified(): void
+    {
+        $table = new Table(filters: [
+            'date_range' => [
+                'id' => 'date_range',
+                'name' => 'date_range',
+                'label' => 'Date Range',
+                'type' => 'date-range',
+                'selected' => '2024-06-01#2024-06-30',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('01/06/2024 - 30/06/2024', $active[0]['text']);
+    }
 }

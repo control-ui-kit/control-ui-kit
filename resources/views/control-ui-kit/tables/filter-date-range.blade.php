@@ -1,8 +1,9 @@
 <div
     x-data="{
         toggle() {
-            fields['{{ $name }}'].toggle = !fields['{{ $name }}'].toggle
-            fields['{{ $name }}'].selected = fields['{{ $name }}'].unset
+            if (fields['{{ $name }}'].toggle) {
+                fields['{{ $name }}'].selected = fields['{{ $name }}'].unset
+            }
         }
     }"
     x-effect="fields['{{ $name }}'].toggle = fields['{{ $name }}'].selected !== null && fields['{{ $name }}'].selected !== fields['{{ $name }}'].unset"
@@ -17,16 +18,18 @@
         <label for="{{ $name }}_toggle" class="cursor-pointer whitespace-nowrap">{{ $label }}</label>
     </div>
 
-    <x-input-select
+    <x-input-date-range
         id="{{ $id }}"
         name="{{ $name }}"
-        :options="$options"
-        :value="$selected"
         :width="$width"
-        :please-select="$pleaseSelect"
-        :subtext="$subtext"
-        :image="$image"
+        :format="$format"
+        :data="$dataFormat"
+        :min="$min"
+        :max="$max"
+        :week-numbers="$weekNumbers"
+        :years-before="$yearsBefore"
+        :years-after="$yearsAfter"
+        :icon="$dateIcon"
         x-model="fields['{{ $name }}'].selected"
     />
-
 </div>

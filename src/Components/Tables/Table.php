@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tables;
 
+use Carbon\Carbon;
 use ControlUIKit\Traits\ArrayHelper;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
@@ -490,6 +491,13 @@ class Table extends Component
                 $offText = $filter['off-text'] ?? 'false';
                 $on = $filter['on'] ?? '1';
                 $text = ($filter['selected'] == $on ? $onText : $offText);
+            } elseif ($filter['type'] === 'date') {
+                $text = $this->formatFilterDate($filter['selected'], $filter['data'] ?? 'Y-m-d', $filter['format'] ?? 'd/m/Y');
+            } elseif ($filter['type'] === 'date-range') {
+                $parts = explode('#', $filter['selected'], 2);
+                $from = $this->formatFilterDate($parts[0] ?? '', $filter['data'] ?? 'Y-m-d', $filter['format'] ?? 'd/m/Y');
+                $to = $this->formatFilterDate($parts[1] ?? '', $filter['data'] ?? 'Y-m-d', $filter['format'] ?? 'd/m/Y');
+                $text = $from . ' - ' . $to;
             } else {
                 $text = $this->selectedOptionText($filter['options'], $filter['selected']);
             }
@@ -525,5 +533,18 @@ class Table extends Component
         }
 
         return $selected ?: '';
+    }
+
+    private function formatFilterDate(string $date, string $dataFormat, string $displayFormat): string
+    {
+        if (! $date) {
+            return '';
+        }
+
+        try {
+            return Carbon::createFromFormat($dataFormat, $date)->format($displayFormat);
+        } catch (\Exception $e) {
+            return $date;
+        }
     }
 }
