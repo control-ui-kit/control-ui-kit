@@ -428,18 +428,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -528,18 +528,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -597,18 +597,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -680,18 +680,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -761,18 +761,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="w-48 relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="w-48 relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-48" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -842,18 +842,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -926,18 +926,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" x-effect="fields.name.toggle = fields.name.selected !== null && fields.name.selected !== fields.name.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" x-effect="fields['name'].toggle = fields['name'].selected !== null && fields['name'].selected !== fields['name'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields.name.selected">
+                <div x-cloak x-data="Components.inputSelect({ id: 'id', value: null })" x-init="init()" x-modelable="value" class="button-width relative" x-model="fields['name'].selected">
                     <input type="hidden" name="name" id="id" x-model="value" x-on:change="onValueChange()" />
                     <button type="button" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-ref="button" @keydown.arrow-up.stop.prevent="onButtonClick()" @keydown.arrow-down.stop.prevent="onButtonClick()" @click="onButtonClick()" aria-haspopup="listbox" :aria-expanded="open" aria-labelledby="listbox-label" aria-expanded="true">
                         <div class="flex items-center min-w-0">
@@ -1005,18 +1005,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange() { fields['name'].toggle = fields['name'].selected !== fields['name'].unset }, toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" x-model="fields.name.selected" x-on:change="onChange()" />
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" x-model="fields['name'].selected" x-on:change="onChange()" />
             </div>
             HTML;
 
@@ -1039,18 +1039,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange() { fields['name'].toggle = fields['name'].selected !== fields['name'].unset }, toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" placeholder="Search here..." x-model="fields.name.selected" x-on:change="onChange()" />
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow input-width text-other" placeholder="Search here..." x-model="fields['name'].selected" x-on:change="onChange()" />
             </div>
             HTML;
 
@@ -1073,18 +1073,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange() { fields['name'].toggle = fields['name'].selected !== fields['name'].unset }, toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" x-model="fields.name.selected" x-on:change="onChange()" />
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" x-model="fields['name'].selected" x-on:change="onChange()" />
             </div>
             HTML;
 
@@ -1108,18 +1108,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ onChange() { fields.name.toggle = fields.name.selected !== fields.name.unset }, toggle() { fields.name.toggle = !fields.name.toggle fields.name.selected = fields.name.unset } }" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ onChange() { fields['name'].toggle = fields['name'].selected !== fields['name'].unset }, toggle() { fields['name'].toggle = !fields['name'].toggle fields['name'].selected = fields['name'].unset } }" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" placeholder="Search here..." x-model="fields.name.selected" x-on:change="onChange()" />
+                <input id="id" name="name" type="text" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow w-48 text-other" placeholder="Search here..." x-model="fields['name'].selected" x-on:change="onChange()" />
             </div>
             HTML;
 
@@ -1141,18 +1141,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.name.toggle) { fields.name.toggle = false fields.name.selected = fields.name.unset } else { fields.name.toggle = true fields.name.selected = '1' } } }" x-effect="fields.name.toggle = fields.name.selected === '1'" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['name'].toggle) { fields['name'].toggle = false fields['name'].selected = fields['name'].unset } else { fields['name'].toggle = true fields['name'].selected = '1' } } }" x-effect="fields['name'].toggle = fields['name'].selected === '1'" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.name.toggle" x-on:click="toggle()" />
+                        <input name="name_toggle" type="checkbox" id="name_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['name'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="name_toggle" class="cursor-pointer whitespace-nowrap">label</label>
                 </div>
-                <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" x-model="fields.name.selected">
+                <div x-data="Components.inputToggle({ value: '0', on: '1', off: '0' })" x-modelable="value" class="background border other padding shadow" x-model="fields['name'].selected">
                     <button type="button" :class="{ 'base-state-on': value == on, 'base-state-off': value == off }" class="base-animation base-background base-border base-focus base-other base-rounded base-shadow base-size" @click.prevent="flipToggle()"> <span :class="{ 'switch-state-on': value == on, 'switch-state-off': value == off }" class="switch-background switch-border switch-focus switch-other switch-rounded switch-shadow switch-size"></span> </button>
                     <input type="hidden" name="name" id="id" value="0" x-model="value" />
                 </div>
@@ -1181,20 +1181,20 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['country'].toggle) { fields['country'].selected = fields['country'].unset } } }" x-effect="fields['country'].toggle = fields['country'].selected !== null && fields['country'].selected !== fields['country'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
+                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['country'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
                 </div>
-                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow w-48" x-model="fields.country.selected">
+                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow w-48" x-model="fields['country'].selected">
                     <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
-                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields.country.selected" />
+                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields['country'].selected" />
                         <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                             </svg>
@@ -1257,20 +1257,20 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['country'].toggle) { fields['country'].selected = fields['country'].unset } } }" x-effect="fields['country'].toggle = fields['country'].selected !== null && fields['country'].selected !== fields['country'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
+                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['country'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
                 </div>
-                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields.country.selected">
+                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields['country'].selected">
                     <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
-                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields.country.selected" />
+                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields['country'].selected" />
                         <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                             </svg>
@@ -1333,20 +1333,20 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.country.toggle) { fields.country.selected = fields.country.unset } } }" x-effect="fields.country.toggle = fields.country.selected !== null && fields.country.selected !== fields.country.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['country'].toggle) { fields['country'].selected = fields['country'].unset } } }" x-effect="fields['country'].toggle = fields['country'].selected !== null && fields['country'].selected !== fields['country'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.country.toggle" x-on:click="toggle()" />
+                        <input name="country_toggle" type="checkbox" id="country_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['country'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="country_toggle" class="cursor-pointer whitespace-nowrap">Country</label>
                 </div>
-                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [{"id":1,"text":"Preloaded Option","subtext":null,"image":null}] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields.country.selected">
+                <div x-data='Components.inputAutocomplete({ value: "", filter: "", config: {"value":"id","text":"text","subtext":"subtext","image":"image","limit":20,"min":2}, ajax: {"search_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=search&type=test-filter-ac&term=__term__&limit=__limit__","lookup_url":"http:\/\/localhost\/control-ui-kit\/ajax-class?query=lookup&type=test-filter-ac&value=__id__","id_string":"__id__","search_string":"__term__","limit_string":"__limit__"}, preload: [], focusLoad: [], conditionals: {"option-focus":"option-focus","option-selected":"option-selected","subtext-focus":"subtext-focus","subtext-selected":"subtext-selected","text-focus":"text-focus","text-selected":"text-selected"}, })' x-cloak x-modelable="value" x-init='setup( [], [{"id":1,"text":"Preloaded Option","subtext":null,"image":null}] )' class="ac-background ac-border ac-color ac-font ac-other ac-padding ac-rounded ac-shadow ac-width" x-model="fields['country'].selected">
                     <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width" @click.away="close()">
-                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields.country.selected" />
+                        <input name="country_search" type="text" id="country_search" x-model="filter" @mousedown="open()" @focus="open()" @input.debounce.250="refreshOptions()" @keydown.escape="close()" @keydown.tab="close()" @keydown.enter.stop.prevent="selectOption()" @keydown.arrow-up.prevent="focusPrevOption()" @keydown.arrow-down.prevent="focusNextOption()" autocomplete="off" autocapitalize="off" class="ac-input-background ac-input-border ac-input-color ac-input-font ac-input-other ac-input-padding ac-input-rounded ac-input-shadow" x-model="fields['country'].selected" />
                         <svg class="clear-size fill-current clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow" x-show="selected" @click="clear()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
                             </svg>
@@ -1407,18 +1407,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.created_at.toggle) { fields.created_at.selected = fields.created_at.unset } } }" x-effect="fields.created_at.toggle = fields.created_at.selected !== null && fields.created_at.selected !== fields.created_at.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['created_at'].toggle) { fields['created_at'].selected = fields['created_at'].unset } } }" x-effect="fields['created_at'].toggle = fields['created_at'].selected !== null && fields['created_at'].selected !== fields['created_at'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="created_at_toggle" type="checkbox" id="created_at_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.created_at.toggle" x-on:click="toggle()" />
+                        <input name="created_at_toggle" type="checkbox" id="created_at_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['created_at'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="created_at_toggle" class="cursor-pointer whitespace-nowrap">Created At</label>
                 </div>
-                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-model="fields.created_at.selected" x-data="Components.flatpickr({ mode: 'single', id: 'created_at', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-model="fields['created_at'].selected" x-data="Components.flatpickr({ mode: 'single', id: 'created_at', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
                     <input x-ref="display" type="text" id="created_at_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                     <input name="created_at" x-ref="data" x-model="data" type="hidden" id="created_at" />
                 </div>
@@ -1444,18 +1444,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.date_range.toggle) { fields.date_range.selected = fields.date_range.unset } } }" x-effect="fields.date_range.toggle = fields.date_range.selected !== null && fields.date_range.selected !== fields.date_range.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['date_range'].toggle) { fields['date_range'].selected = fields['date_range'].unset } } }" x-effect="fields['date_range'].toggle = fields['date_range'].selected !== null && fields['date_range'].selected !== fields['date_range'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="date_range_toggle" type="checkbox" id="date_range_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.date_range.toggle" x-on:click="toggle()" />
+                        <input name="date_range_toggle" type="checkbox" id="date_range_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['date_range'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="date_range_toggle" class="cursor-pointer whitespace-nowrap">Date Range</label>
                 </div>
-                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-model="fields.date_range.selected" x-data="Components.flatpickr({ mode: 'range', id: 'date_range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow width" x-model="fields['date_range'].selected" x-data="Components.flatpickr({ mode: 'range', id: 'date_range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
                     <input x-ref="display" type="text" id="date_range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                     <input name="date_range" x-ref="data" x-model="data" type="hidden" id="date_range" />
                 </div>
@@ -1482,18 +1482,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.created_at.toggle) { fields.created_at.selected = fields.created_at.unset } } }" x-effect="fields.created_at.toggle = fields.created_at.selected !== null && fields.created_at.selected !== fields.created_at.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['created_at'].toggle) { fields['created_at'].selected = fields['created_at'].unset } } }" x-effect="fields['created_at'].toggle = fields['created_at'].selected !== null && fields['created_at'].selected !== fields['created_at'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="created_at_toggle" type="checkbox" id="created_at_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.created_at.toggle" x-on:click="toggle()" />
+                        <input name="created_at_toggle" type="checkbox" id="created_at_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['created_at'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="created_at_toggle" class="cursor-pointer whitespace-nowrap">Created At</label>
                 </div>
-                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow w-48" x-model="fields.created_at.selected" x-data="Components.flatpickr({ mode: 'single', id: 'created_at', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow w-48" x-model="fields['created_at'].selected" x-data="Components.flatpickr({ mode: 'single', id: 'created_at', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: true, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: '', linkedFrom: '', separator: '#', offset: '0', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
                     <input x-ref="display" type="text" id="created_at_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                     <input name="created_at" x-ref="data" x-model="data" type="hidden" id="created_at" />
                 </div>
@@ -1520,18 +1520,18 @@ class FilterTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div x-data="{ toggle() { if (fields.date_range.toggle) { fields.date_range.selected = fields.date_range.unset } } }" x-effect="fields.date_range.toggle = fields.date_range.selected !== null && fields.date_range.selected !== fields.date_range.unset" class="text-sm flex justify-between items-center mr-2"
+            <div x-data="{ toggle() { if (fields['date_range'].toggle) { fields['date_range'].selected = fields['date_range'].unset } } }" x-effect="fields['date_range'].toggle = fields['date_range'].selected !== null && fields['date_range'].selected !== fields['date_range'].unset" class="text-sm flex justify-between items-center mr-2"
             >
                 <div class="flex shrink-0 space-x-2 items-center m-4">
                     <div class="background border color layout other padding">
-                        <input name="date_range_toggle" type="checkbox" id="date_range_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields.date_range.toggle" x-on:click="toggle()" />
+                        <input name="date_range_toggle" type="checkbox" id="date_range_toggle" value="1" class="input-background input-border input-other input-rounded" x-model="fields['date_range'].toggle" x-on:click="toggle()" />
                         <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-input">
                             <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100"></path>
                         </svg>
                     </div>
                     <label for="date_range_toggle" class="cursor-pointer whitespace-nowrap">Date Range</label>
                 </div>
-                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow w-48" x-model="fields.date_range.selected" x-data="Components.flatpickr({ mode: 'range', id: 'date_range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow w-48" x-model="fields['date_range'].selected" x-data="Components.flatpickr({ mode: 'range', id: 'date_range', data: '', dataFormat: 'Y-m-d', format: 'd/m/Y', today: 'Today', close: 'Close', now: 'Now', clear: 'Clear', locale: 'default', weekNumbers: false, noCalendar: false, enableTime: false, enableSeconds: false, time_24hr: 24, hourIncrement: 1, minuteIncrement: 1, minDate: null, maxDate: null, linkedTo: null, linkedFrom: null, separator: '#', offset: '', yearsBefore: 100, yearsAfter: 5, showTimeZones: false, })" x-modelable="data" wire:ignore>
                     <input x-ref="display" type="text" id="date_range_display" placeholder="DD/MM/YYYY" class="background border color font other padding rounded shadow w-full" autocomplete="off" x-on:blur="updateData()" />
                     <input name="date_range" x-ref="data" x-model="data" type="hidden" id="date_range" />
                 </div>

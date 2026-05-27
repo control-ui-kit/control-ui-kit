@@ -4,7 +4,7 @@
          fields: {
              @foreach ($filters as $name => $filter)
              @if ($filter['type'] !== 'search')
-             {{ $name }}: {
+             '{{ $name }}': {
                  original: '{{ $filter['selected'] ?: '' }}',
                  selected: '{{ $filter['selected'] ?: '' }}',
                  unset: '{{ $filter['unset'] }}',
