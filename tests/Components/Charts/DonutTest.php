@@ -33,12 +33,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -70,12 +93,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":false,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -107,12 +153,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -144,12 +213,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"end","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -181,12 +273,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":false,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -218,12 +333,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":50,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -255,12 +393,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":20,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -292,12 +453,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"italic","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -329,12 +513,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#c3c3c3","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -366,12 +573,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -403,12 +633,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":50}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -440,12 +693,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"Chart Title","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -477,12 +753,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -514,12 +813,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"bottom","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -551,12 +873,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":20,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -588,12 +933,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -625,12 +993,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#c3c3c3","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -662,12 +1053,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -699,12 +1113,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":30,"lineHeight":1.2}},"cutout":"70%"}
                                                 });
@@ -736,12 +1173,35 @@ class DonutTest extends ComponentTestCase
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
                             var ctx = document.getElementById("donut_chart");
                             window.donut_chart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"data":[40,60,100]}])
                                 },
                                                     options: {"plugins":{"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.8}},"cutout":"70%"}
                                                 });

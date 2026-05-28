@@ -136,9 +136,7 @@ class Pie extends Component
 
     private function getHoverColours(): array
     {
-        return array_map(function ($arg) {
-            return $this->colorLuminance($arg, 0.3);
-        }, $this->colors);
+        return $this->colors;
     }
 
     private function options(): array

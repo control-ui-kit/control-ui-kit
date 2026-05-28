@@ -35,6 +35,11 @@ return [
         'matrix-chart' => \ControlUIKit\Components\Charts\Matrix::class,
         'change-chart' => \ControlUIKit\Components\Charts\Change::class,
 
+        'chart-utils' => \ControlUIKit\Components\Charts\ChartUtils::class,
+        'gradient-line-chart' => \ControlUIKit\Components\Charts\GradientLineChart::class,
+        'segment-donut-chart' => \ControlUIKit\Components\Charts\SegmentDoughnutChart::class,
+        'gradient-bar-chart' => \ControlUIKit\Components\Charts\GradientBarChart::class,
+
         'dropdown-divider' => \ControlUIKit\Components\Dropdowns\Divider::class,
         'dropdown-menu' => \ControlUIKit\Components\Dropdowns\Menu::class,
         'dropdown-option' => \ControlUIKit\Components\Dropdowns\Option::class,

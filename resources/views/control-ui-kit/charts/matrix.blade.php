@@ -13,7 +13,11 @@
                         backgroundColor(c) {
                             const value = c.dataset.data[c.dataIndex].v;
                             const alpha = (value - 5) / {{ $highestValue }};
-                            return Chart.helpers.color('{{ $color }}').alpha(alpha).darken(0.3).rgbString();
+                            const raw = '{{ $color }}';
+                            const resolved = raw.startsWith('--')
+                                ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                : raw;
+                            return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                         },
                         borderWidth: {
                             top: 2,

@@ -51,7 +51,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -184,7 +188,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('red').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = 'red';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -317,7 +325,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -450,7 +462,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -583,7 +599,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -716,7 +736,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -849,7 +873,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -982,7 +1010,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -1115,7 +1147,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
@@ -1248,7 +1284,11 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
                                     borderWidth: {
                                         top: 2,
