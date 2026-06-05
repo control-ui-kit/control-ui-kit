@@ -10,6 +10,7 @@ use ControlUIKit\Controllers\AjaxModelController;
 use ControlUIKit\Controllers\ControlUIKitMapController;
 use ControlUIKit\Controllers\ControlUIKitMapDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
+use ControlUIKit\Controllers\ChartUtilsScriptController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Controllers\FlatPickrYearPluginController;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
@@ -142,6 +143,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
     private function registerRoutes(): void
     {
         Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
+        Route::get('control-ui-kit/javascript/chart-utils.js', ChartUtilsScriptController::class);
         Route::get('control-ui-kit/javascript/flatpickr.year-plugin.js', FlatPickrYearPluginController::class);
         Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
         Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);

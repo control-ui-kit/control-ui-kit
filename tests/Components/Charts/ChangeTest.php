@@ -25,12 +25,12 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -51,9 +51,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -61,10 +61,10 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
                         </dd>
                     </div>
             HTML;
@@ -87,9 +87,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -97,12 +97,12 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                            <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                            <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                             </div>
                         </dd>
                     </div>
@@ -123,13 +123,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                             </svg>
@@ -156,9 +156,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -166,11 +166,11 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                            <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                            <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                                     </svg>
@@ -199,9 +199,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -209,18 +209,18 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                            <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                            <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                                     </svg>
                                     <span class="sr-only">Increased by</span> 50,000
                                 </p>
-                                <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                                <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                                 </div>
                             </dd>
                         </div>
@@ -242,13 +242,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                             </svg>
@@ -276,9 +276,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -286,11 +286,11 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                            <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                            <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                                     </svg>
@@ -320,9 +320,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -330,18 +330,18 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                            <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                            <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                                     </svg>
                                     <span class="sr-only">Increased by</span> 100%
                                 </p>
-                                <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                                <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                                 </div>
                             </dd>
                         </div>
@@ -362,13 +362,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                    <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                    <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                             </svg>
@@ -395,9 +395,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -405,11 +405,11 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                            <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                            <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                                     </svg>
@@ -438,9 +438,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -448,18 +448,18 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                            <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                            <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                                     </svg>
                                     <span class="sr-only">Decreased by</span> 50,000
                                 </p>
-                                <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                                <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                                 </div>
                             </dd>
                         </div>
@@ -481,13 +481,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                    <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                    <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                             </svg>
@@ -515,9 +515,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -525,11 +525,11 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                            <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                            <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                                     </svg>
@@ -559,9 +559,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -569,18 +569,18 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                            <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                            <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                            <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                                 <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                                     </svg>
                                     <span class="sr-only">Decreased by</span> 50%
                                 </p>
-                                <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                                <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                                 </div>
                             </dd>
                         </div>
@@ -605,23 +605,23 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
                     <div class="absolute rounded-md">
                         <img src="https://cdn.label-worx.com/media/covers/31-854538_1000.jpg" alt="Image" class="h-12 w-12 rounded-md">
                     </div>
-                    <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 50,000 </p>
-                    <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 50,000 </p>
+                    <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                             </svg>
                             <span class="sr-only">Decreased by</span> 50%
                         </p>
-                        <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-lighter">Link</a>
+                        <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="text-sm font-medium text-brand hover:text-brand-hover animate">Link</a>
                         </div>
                     </dd>
                 </div>
@@ -643,9 +643,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -653,10 +653,10 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
                         </dd>
                     </div>
             HTML;
@@ -678,13 +678,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                             </svg>
@@ -710,13 +710,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -745,13 +745,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M22 14v-4h-2.264c-.232-.901-.611-1.743-1.122-2.493l1.518-1.518-2.121-2.121-1.518 1.518c-.749-.511-1.592-.888-2.493-1.123V2h-4v2.263c-.901.235-1.744.612-2.493 1.122L5.989 3.868 3.868 5.989l1.518 1.518c-.511.749-.89 1.591-1.122 2.493H2v4h2.264c.232.903.611 1.744 1.122 2.493l-1.518 1.518 2.121 2.122 1.518-1.518c.749.51 1.592.888 2.493 1.122V22h4v-2.263c.901-.233 1.744-.612 2.493-1.122l1.518 1.518 2.121-2.122-1.518-1.518c.511-.749.89-1.59 1.122-2.493H22zm-10 4c-3.309 0-6-2.69-6-6 0-3.309 2.691-6 6-6s6 2.691 6 6-2.691 6-6 6z" />
                             </svg>
@@ -785,10 +785,10 @@ class ChangeTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="1 2 3 4 5 6 7 8">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -815,12 +815,12 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
                     <p class="1 2 3 4 5 6 7 8">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -848,15 +848,15 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
                     <div class="1 2 3 4 5 6 7 8">
                         <img src="http://www.fillmurray.com/200/200" alt="Image" class="h-12 w-12 rounded-md">
                     </div>
-                    <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -884,15 +884,15 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
                     <div class="absolute rounded-md">
                         <img src="http://www.fillmurray.com/200/200" alt="Image" class="1 2 3 4 5 6 7 8">
                     </div>
-                    <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -920,7 +920,7 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
                     <div class="1 2 3 4 5 6 7 8">
                         <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
@@ -930,10 +930,10 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
                         </dd>
                     </div>
             HTML;
@@ -961,9 +961,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <div class="text-black absolute p-3 rounded-md">
+                    <div class="text-muted absolute p-3 rounded-md">
                         <svg class="1 2 3 4 5 6 7 8 fill-current" viewBox="0 0 24 24">
                             <path fill="none" d="M0 0h24v24H0z"/>
                                 <g>
@@ -971,10 +971,10 @@ class ChangeTest extends ComponentTestCase
                                     </g>
                                 </svg>
                             </div>
-                            <p class="text-sm font-medium text-gray-500 truncate ml-16">Chart Title</p>
+                            <p class="text-sm font-medium panel-text truncate ml-16">Chart Title</p>
                         </dt>
                         <dd class="flex items-baseline ml-16 pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                            <p class="text-2xl font-semibold text-default"> 100,000 </p>
                         </dd>
                     </div>
             HTML;
@@ -1001,12 +1001,12 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="1 2 3 4 5 6 7 8">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                 </dd>
             </div>
             HTML;
@@ -1034,12 +1034,12 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                     <p class="1 2 8 3 4 5 6 7">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
@@ -1073,12 +1073,12 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                     <p class="1 2 8 3 4 5 6 7">
                         <svg class="w-5 h-5 fill-current self-center shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
@@ -1113,14 +1113,14 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
                     <div class="1 2 3 4 5 6 7 8">
-                        <a href="https://www.google.com" class="text-sm font-medium text-brand hover:text-brand-lighter">Google</a>
+                        <a href="https://www.google.com" class="text-sm font-medium text-brand hover:text-brand-hover animate">Google</a>
                     </div>
                 </dd>
             </div>
@@ -1150,13 +1150,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pb-12 pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <div class="bg-gray-50 absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <div class="bg-panel-footer absolute bottom-0 inset-x-0 px-4 py-4 sm:px-6">
                         <a href="https://www.google.com" class="1 2 3 4 5 6 7 8">Google</a>
                     </div>
                 </dd>
@@ -1185,9 +1185,9 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
                     <p class="1 2 3 4 5 6 7 8"> 100,000 </p>
@@ -1218,13 +1218,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-red-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-danger-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current 1 2 3 4 5 6 7 8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.293l-2.293 2.293V2h-2v15.586l-2.293-2.293L7 16.707l4.707 4.707 4.707-4.707L15 15.293z"/>
                             </svg>
@@ -1257,13 +1257,13 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <div class="bg-white relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
+            <div class="bg-panel relative overflow-hidden pt-5 px-4 sm:pt-6 sm:px-6 rounded-lg shadow">
                 <dt>
-                    <p class="text-sm font-medium text-gray-500 truncate">Chart Title</p>
+                    <p class="text-sm font-medium panel-text truncate">Chart Title</p>
                 </dt>
                 <dd class="flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900"> 100,000 </p>
-                    <p class="text-green-600 text-sm font-semibold flex items-baseline ml-2">
+                    <p class="text-2xl font-semibold text-default"> 100,000 </p>
+                    <p class="text-success-500 text-sm font-semibold flex items-baseline ml-2">
                         <svg class="w-5 h-5 fill-current 1 2 3 4 5 6 7 8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.414 6.70712l-4.707-4.707L7 6.70712l1.414 1.414 2.293-2.293V21.4141h2V5.82812L15 8.12112l1.414-1.414z"/>
                             </svg>

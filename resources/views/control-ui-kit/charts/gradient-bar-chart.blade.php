@@ -1,3 +1,8 @@
+@once('chart-utils-js')
+@push('scripts')
+<script src="{{ url('control-ui-kit/javascript/chart-utils.js?v=1.0.0') }}"></script>
+@endpush
+@endonce
 <canvas id="{{ $id }}"></canvas>
 
 <script>

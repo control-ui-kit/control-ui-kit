@@ -113,7 +113,8 @@ class Line extends Component
     public ?bool $tooltipDisplayColors;
     public ?string $tooltipBorderColor;
     public ?string $tooltipBorderWidth;
-    public ?bool $tooltipRtl;
+    public ?string $tooltipBoxPadding;
+    public ?string $tooltipRtl;
 
     public function __construct(
         string $id,
@@ -184,7 +185,8 @@ class Line extends Component
         ?bool $tooltipDisplayColors = null,
         ?string $tooltipBorderColor = null,
         ?string $tooltipBorderWidth = null,
-        ?bool $tooltipRtl = null,
+        ?string $tooltipBoxPadding = null,
+        ?string $tooltipRtl = null,
 
         ?string $tooltipTitleFamily = null,
         ?string $tooltipTitleSize = null,
@@ -306,6 +308,7 @@ class Line extends Component
         $this->tooltipDisplayColors = $this->style($this->defaults, 'tooltips.display-colors', $tooltipDisplayColors);
         $this->tooltipBorderColor = $this->style($this->defaults, 'tooltips.border-color', $tooltipBorderColor);
         $this->tooltipBorderWidth = $this->style($this->defaults, 'tooltips.border-width', $tooltipBorderWidth);
+        $this->tooltipBoxPadding = $this->style($this->defaults, 'tooltips.box-padding', $tooltipBoxPadding);
         $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl);
 
         $this->labels = $this->labels();
@@ -319,7 +322,7 @@ class Line extends Component
             ->type('line')
             ->size(['width' => 400, 'height' => 200])
             ->datasets($this->datasets)
-            ->options($this->options());
+            ->optionsRaw($this->options());
 
         return <<<'blade'
             {!! $chart->render() !!}
@@ -339,84 +342,138 @@ class Line extends Component
     {
         return [
             'responsive' => true,
-            'legend' => [
-                'display' => $this->booleanFromString($this->legendDisplay),
-                'position' => $this->legendPosition,
-                'align' => $this->legendAlign,
-                'fullWidth' => $this->booleanFromString($this->legendWidth),
-                'reverse' => $this->booleanFromString($this->legendReverse),
-                'labels' => [
-                    'boxWidth' => (int) $this->labelWidth,
-                    'fontSize' => (int) $this->labelSize,
-                    'fontStyle' => $this->labelStyle,
-                    'fontColor' => $this->labelColor,
-                    'fontFamily' => $this->labelFamily,
-                    'padding' => (int) $this->labelPadding,
-                ],
-            ],
-            'title' => [
-                'display' => $this->booleanFromString($this->titleDisplay),
-                'text' => (! is_null($this->title) ? $this->title : ''),
-                'position' => $this->titlePosition,
-                'fontSize' => (int) $this->titleSize,
-                'fontFamily' => $this->titleFamily,
-                'fontColor' => $this->titleColor,
-                'fontStyle' => $this->titleStyle,
-                'padding' => (int) $this->titlePadding,
-                'lineHeight' => (float) $this->titleHeight,
-            ],
-            'scales' => [
-                'xAxes' => [
-                    [
-                        'display' => $this->hideAxis === 'false',
-                        'type' => 'time',
-                        'time' => [
-                            'format' => 'DD/MM/YYYY',
-                            'tooltipFormat' => 'll',
+            'plugins' => [
+                'legend' => [
+                    'display' => $this->booleanFromString($this->legendDisplay),
+                    'position' => $this->legendPosition,
+                    'align' => $this->legendAlign,
+                    'fullSize' => $this->booleanFromString($this->legendWidth),
+                    'reverse' => $this->booleanFromString($this->legendReverse),
+                    'labels' => [
+                        'boxWidth' => (int) $this->labelWidth,
+                        'color' => $this->labelColor,
+                        'font' => [
+                            'size' => (int) $this->labelSize,
+                            'style' => $this->labelStyle,
+                            'family' => $this->labelFamily,
                         ],
-                        'scaleLabel' => [
-                            'display' => true,
-                            'labelString' => $this->xAxisLabel,
-                        ],
-                        'gridLines' => [
-                            'display' => $this->hideGrid === 'false',
-                            'color' => $this->gridColor,
-                        ],
-                        'ticks' => [
-                            'display' => $this->xTickDisplay !== 'false',
-                            'fontColor' => $this->xTickColor,
-                            'fontFamily' => $this->xTickFamily,
-                            'fontSize' => (int) $this->xTickSize,
-                            'fontStyle' => $this->xTickStyle,
-                            'lineHeight' => $this->xTickHeight,
-                            'reverse' => $this->xTickReverse !== 'false',
-                            'padding' => (int) $this->xTickPadding,
-                            'z' => (int) $this->xTickZIndex,
-                        ],
+                        'padding' => (int) $this->labelPadding,
                     ],
                 ],
-                'yAxes' => [
-                    [
-                        'display' => $this->hideAxis === 'false',
-                        'scaleLabel' => [
-                            'display' => true,
-                            'labelString' => $this->yAxisLabel,
+                'title' => [
+                    'display' => $this->booleanFromString($this->titleDisplay),
+                    'text' => (! is_null($this->title) ? $this->title : ''),
+                    'position' => $this->titlePosition,
+                    'color' => $this->titleColor,
+                    'font' => [
+                        'size' => (int) $this->titleSize,
+                        'family' => $this->titleFamily,
+                        'style' => $this->titleStyle,
+                        'lineHeight' => (float) $this->titleHeight,
+                    ],
+                    'padding' => (int) $this->titlePadding,
+                ],
+                'tooltip' => [
+                    'enabled' => $this->tooltipEnabled !== 'false',
+                    'mode' => $this->tooltipMode,
+                    'intersect' => $this->tooltipIntersect === 'false',
+                    'position' => $this->tooltipPosition,
+                    'backgroundColor' => $this->tooltipBackgroundColor,
+                    'titleColor' => $this->tooltipTitleColor,
+                    'titleFont' => [
+                        'family' => $this->tooltipTitleFamily,
+                        'size' => (int) $this->tooltipTitleSize,
+                        'style' => $this->tooltipTitleStyle,
+                    ],
+                    'titleAlign' => $this->tooltipTitleAlign,
+                    'titleSpacing' => (int) $this->tooltipTitleSpacing,
+                    'titleMarginBottom' => (int) $this->tooltipTitleMarginBottom,
+                    'bodyColor' => $this->tooltipBodyColor,
+                    'bodyFont' => [
+                        'family' => $this->tooltipBodyFamily,
+                        'size' => (int) $this->tooltipBodySize,
+                        'style' => $this->tooltipBodyStyle,
+                    ],
+                    'bodyAlign' => $this->tooltipBodyAlign,
+                    'bodySpacing' => (int) $this->tooltipBodySpacing,
+                    'footerColor' => $this->tooltipFooterColor,
+                    'footerFont' => [
+                        'family' => $this->tooltipFooterFamily,
+                        'size' => (int) $this->tooltipFooterSize,
+                        'style' => $this->tooltipFooterStyle,
+                    ],
+                    'footerAlign' => $this->tooltipFooterAlign,
+                    'footerSpacing' => (int) $this->tooltipFooterSpacing,
+                    'footerMarginTop' => (int) $this->tooltipFooterMarginTop,
+                    'padding' => [
+                        'x' => (int) $this->tooltipXPadding,
+                        'y' => (int) $this->tooltipYPadding,
+                    ],
+                    'caretPadding' => (int) $this->tooltipCaretPadding,
+                    'caretSize' => (int) $this->tooltipCaretSize,
+                    'cornerRadius' => (int) $this->tooltipCornerRadius,
+                    'multiKeyBackground' => $this->tooltipMultiKeyBackground,
+                    'displayColors' => $this->tooltipDisplayColors !== 'false',
+                    'boxPadding' => (int) $this->tooltipBoxPadding,
+                    'borderColor' => $this->tooltipBorderColor,
+                    'borderWidth' => (int) $this->tooltipBorderWidth,
+                    'rtl' => $this->tooltipRtl === 'true',
+                ],
+            ],
+            'scales' => [
+                'x' => [
+                    'display' => $this->hideAxis === 'false',
+                    'type' => 'time',
+                    'time' => [
+                        'format' => 'DD/MM/YYYY',
+                        'tooltipFormat' => 'll',
+                    ],
+                    'title' => [
+                        'display' => true,
+                        'text' => $this->xAxisLabel,
+                        'color' => $this->xTickColor,
+                    ],
+                    'grid' => [
+                        'display' => $this->hideGrid === 'false',
+                        'color' => $this->gridColor,
+                    ],
+                    'ticks' => [
+                        'display' => $this->xTickDisplay !== 'false',
+                        'color' => $this->xTickColor,
+                        'font' => [
+                            'family' => $this->xTickFamily,
+                            'size' => (int) $this->xTickSize,
+                            'style' => $this->xTickStyle,
+                            'lineHeight' => $this->xTickHeight,
                         ],
-                        'gridLines' => [
-                            'display' => $this->hideGrid === 'false',
-                            'color' => $this->gridColor,
-                        ],
-                        'ticks' => [
-                            'display' => $this->yTickDisplay !== 'false',
-                            'fontColor' => $this->yTickColor,
-                            'fontFamily' => $this->yTickFamily,
-                            'fontSize' => (int) $this->yTickSize,
-                            'fontStyle' => $this->yTickStyle,
+                        'reverse' => $this->xTickReverse !== 'false',
+                        'padding' => (int) $this->xTickPadding,
+                        'z' => (int) $this->xTickZIndex,
+                    ],
+                ],
+                'y' => [
+                    'display' => $this->hideAxis === 'false',
+                    'title' => [
+                        'display' => true,
+                        'text' => $this->yAxisLabel,
+                        'color' => $this->yTickColor,
+                    ],
+                    'grid' => [
+                        'display' => $this->hideGrid === 'false',
+                        'color' => $this->gridColor,
+                    ],
+                    'ticks' => [
+                        'display' => $this->yTickDisplay !== 'false',
+                        'color' => $this->yTickColor,
+                        'font' => [
+                            'family' => $this->yTickFamily,
+                            'size' => (int) $this->yTickSize,
+                            'style' => $this->yTickStyle,
                             'lineHeight' => $this->yTickHeight,
-                            'reverse' => $this->yTickReverse !== 'false',
-                            'padding' => (int) $this->yTickPadding,
-                            'z' => (int) $this->yTickZIndex,
                         ],
+                        'reverse' => $this->yTickReverse !== 'false',
+                        'padding' => (int) $this->yTickPadding,
+                        'z' => (int) $this->yTickZIndex,
                     ],
                 ],
             ],
@@ -425,45 +482,6 @@ class Line extends Component
                     'pointStyle' => $this->pointStyle,
                 ],
             ],
-            'tooltips' => [
-                'enabled' => $this->tooltipEnabled !== 'false',
-                'mode' => $this->tooltipMode,
-                'intersect' => $this->tooltipIntersect === 'false',
-                'position' => $this->tooltipPosition,
-                'backgroundColor' => $this->tooltipBackgroundColor,
-                'titleFontFamily' => $this->tooltipTitleFamily,
-                'titleFontSize' => (int) $this->tooltipTitleSize,
-                'titleFontStyle' => $this->tooltipTitleStyle,
-                'titleFontColor' => $this->tooltipTitleColor,
-                'titleAlign' => $this->tooltipTitleAlign,
-                'titleSpacing' => (int) $this->tooltipTitleSpacing,
-                'titleMarginBottom' => (int) $this->tooltipTitleMarginBottom,
-                'bodyFontFamily' => $this->tooltipBodyFamily,
-                'bodyFontSize' => (int) $this->tooltipBodySize,
-                'bodyFontStyle' => $this->tooltipBodyStyle,
-                'bodyFontColor' => $this->tooltipBodyColor,
-                'bodyAlign' => $this->tooltipBodyAlign,
-                'bodySpacing' => (int) $this->tooltipBodySpacing,
-                'footerFontFamily' => $this->tooltipFooterFamily,
-                'footerFontSize' => (int) $this->tooltipFooterSize,
-                'footerFontStyle' => $this->tooltipFooterStyle,
-                'footerFontColor' => $this->tooltipFooterColor,
-                'footerAlign' => $this->tooltipFooterAlign,
-                'footerSpacing' => (int) $this->tooltipFooterSpacing,
-                'footerMarginTop' => (int) $this->tooltipFooterMarginTop,
-                'xPadding' => (int) $this->tooltipXPadding,
-                'yPadding' => (int) $this->tooltipYPadding,
-                'caretPadding' => (int) $this->tooltipCaretPadding,
-                'caretSize' => (int) $this->tooltipCaretSize,
-                'cornerRadius' => (int) $this->tooltipCornerRadius,
-                'multiKeyBackground' => $this->tooltipMultiKeyBackground,
-                'displayColors' => $this->tooltipDisplayColors !== 'false',
-                'borderColor' => $this->tooltipBorderColor,
-                'borderWidth' => (int) $this->tooltipBorderWidth,
-                'rtl' => $this->tooltipRtl !== 'false',
-            ],
-            'showLines' => true,
-            'spanGaps' => false,
         ];
     }
 

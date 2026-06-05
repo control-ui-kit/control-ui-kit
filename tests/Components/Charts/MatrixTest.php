@@ -57,12 +57,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -194,12 +189,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -331,12 +321,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -468,12 +453,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -605,12 +585,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -742,12 +717,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -879,12 +849,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1016,12 +981,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1153,12 +1113,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1290,12 +1245,7 @@ class MatrixTest extends ComponentTestCase
                                             : raw;
                                         return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;

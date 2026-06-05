@@ -66,6 +66,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -73,8 +87,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -147,6 +174,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -154,8 +195,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"},{"label":"Downloads","data":[{"x":"01\/01\/2020","y":120},{"x":"02\/01\/2020","y":165},{"x":"03\/01\/2020","y":40},{"x":"04\/01\/2020","y":32},{"x":"05\/01\/2020","y":79},{"x":"06\/01\/2020","y":203},{"x":"07\/01\/2020","y":3}],"fill":false,"borderColor":"--chart-200","backgroundColor":"--chart-200"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -218,6 +272,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -225,8 +293,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"red","backgroundColor":"red"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -289,6 +370,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -296,8 +391,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":false,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -360,6 +468,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -367,8 +489,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"bottom","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -430,6 +565,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -437,8 +586,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"start","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"start","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -500,6 +662,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -507,8 +683,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":false,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -570,6 +759,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -577,8 +780,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":20,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":20,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -640,6 +856,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -647,8 +877,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":24,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":24,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -710,6 +953,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -717,8 +974,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"italic","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -780,6 +1050,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -787,8 +1071,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#c3c3c3","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -850,6 +1147,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -857,8 +1168,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -920,6 +1244,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -927,8 +1265,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":30}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":30}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -990,6 +1341,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -997,8 +1362,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"Graph Title","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"Graph Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1060,6 +1438,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1067,8 +1459,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1130,6 +1535,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1137,8 +1556,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"bottom","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1200,6 +1632,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1207,8 +1653,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":20,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1270,6 +1729,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1277,8 +1750,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1340,6 +1826,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1347,8 +1847,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#c3c3c3","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1410,6 +1923,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1417,8 +1944,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1480,6 +2020,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1487,8 +2041,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":20,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":20},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1550,6 +2117,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1557,8 +2138,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.8},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1620,6 +2214,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1627,8 +2235,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"rect"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"rect"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1690,6 +2311,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1697,8 +2332,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":false,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":false,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1760,6 +2408,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1767,8 +2429,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":false,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":false,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":false,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":false,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1830,6 +2505,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1837,8 +2526,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1900,6 +2602,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1907,8 +2623,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"#666"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"#666","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -1970,6 +2699,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -1977,8 +2720,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2040,6 +2796,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2047,8 +2817,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":20,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":20,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2110,6 +2893,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2117,8 +2914,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"italic","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2180,6 +2990,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2187,8 +3011,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.8","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2250,6 +3087,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2257,8 +3108,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2320,6 +3184,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2327,8 +3205,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":20,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":20,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2390,6 +3281,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2397,8 +3302,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":50}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":50}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2460,6 +3378,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2467,8 +3399,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":false,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":false,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2530,6 +3475,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2537,8 +3496,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"red","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"red"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"red","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2600,6 +3572,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2607,8 +3593,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2670,6 +3669,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2677,8 +3690,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":30,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":30,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2740,6 +3766,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2747,8 +3787,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"italic","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2810,6 +3863,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2817,8 +3884,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.8","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2880,6 +3960,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2887,8 +3981,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":true,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":true,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -2950,6 +4057,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -2957,8 +4078,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":30,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":30,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3020,6 +4154,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3027,8 +4175,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":150}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":150}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3090,6 +4251,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3097,8 +4272,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"index","intersect":false,"position":"average","backgroundColor":"#222","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"index","intersect":false,"position":"average","backgroundColor":"#222","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3167,6 +4355,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3174,8 +4376,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"serif","titleFontSize":14,"titleFontStyle":"italic","titleFontColor":"yellow","titleAlign":"right","titleSpacing":20,"titleMarginBottom":20,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"yellow","titleFont":{"family":"serif","size":14,"style":"italic"},"titleAlign":"right","titleSpacing":20,"titleMarginBottom":20,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3243,6 +4458,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3250,8 +4479,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"serif","bodyFontSize":10,"bodyFontStyle":"italic","bodyFontColor":"limegreen","bodyAlign":"right","bodySpacing":20,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"limegreen","bodyFont":{"family":"serif","size":10,"style":"italic"},"bodyAlign":"right","bodySpacing":20,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3320,6 +4562,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3327,8 +4583,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"serif","footerFontSize":20,"footerFontStyle":"italic","footerFontColor":"lightblue","footerAlign":"right","footerSpacing":20,"footerMarginTop":40,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"lightblue","footerFont":{"family":"serif","size":20,"style":"italic"},"footerAlign":"right","footerSpacing":20,"footerMarginTop":40,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -3400,6 +4669,20 @@ class LineTest extends ComponentTestCase
                                     return r;
                                 });
                             };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("line_chart");
                             window.line_chart = new Chart(ctx, {
                                 type: 'line',
@@ -3407,8 +4690,21 @@ class LineTest extends ComponentTestCase
                                     labels: [],
                                     datasets: _rd([{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"--chart-100","backgroundColor":"--chart-100"}])
                                 },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":50,"yPadding":50,"caretPadding":5,"caretSize":5,"cornerRadius":20,"multiKeyBackground":"purple","displayColors":true,"borderColor":"purple","borderWidth":5,"rtl":true},"showLines":true,"spanGaps":false}
+                                                    options: _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"style":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","style":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":50,"y":50},"caretPadding":5,"caretSize":5,"cornerRadius":20,"multiKeyBackground":"purple","displayColors":true,"boxPadding":4,"borderColor":"purple","borderWidth":5,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"style":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}})
                                                 });
+                            document.querySelectorAll('[data-chart="line_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['line_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['line_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['line_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['line_chart'].setActiveElements([]);
+                                    window['line_chart'].tooltip.setActiveElements([]);
+                                    window['line_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
