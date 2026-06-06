@@ -99,6 +99,7 @@ class Pie extends Component
     public ?string $tooltipBorderColor;
     public ?string $tooltipBorderWidth;
     public ?string $tooltipBoxPadding;
+    public ?string $tooltipBoxBorderWidth;
     public ?string $tooltipRtl;
 
     public function __construct(
@@ -158,6 +159,7 @@ class Pie extends Component
         ?string $tooltipBorderColor = null,
         ?string $tooltipBorderWidth = null,
         ?string $tooltipBoxPadding = null,
+        ?string $tooltipBoxBorderWidth = null,
         ?string $tooltipRtl = null,
 
         ?string $tooltipTitleFamily = null,
@@ -261,6 +263,7 @@ class Pie extends Component
         $this->tooltipBorderColor = $this->style($this->defaults, 'tooltips.border-color', $tooltipBorderColor);
         $this->tooltipBorderWidth = $this->style($this->defaults, 'tooltips.border-width', $tooltipBorderWidth);
         $this->tooltipBoxPadding = $this->style($this->defaults, 'tooltips.box-padding', $tooltipBoxPadding);
+        $this->tooltipBoxBorderWidth = $this->style($this->defaults, 'tooltips.box-border-width', $tooltipBoxBorderWidth);
         $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl);
     }
 
@@ -337,7 +340,7 @@ class Pie extends Component
                         'color' => $this->labelColor,
                         'font' => [
                             'size' => (int) $this->labelSize,
-                            'style' => $this->labelStyle,
+                            'weight' => $this->labelStyle,
                             'family' => $this->labelFamily,
                         ],
                         'padding' => (int) $this->labelPadding,
@@ -352,7 +355,7 @@ class Pie extends Component
                     'font' => [
                         'size' => (int) $this->titleSize,
                         'family' => $this->titleFamily,
-                        'style' => $this->titleStyle,
+                        'weight' => $this->titleStyle,
                         'lineHeight' => (float) $this->titleHeight,
                     ],
                     'padding' => (int) $this->titlePadding,
@@ -367,7 +370,7 @@ class Pie extends Component
                     'titleFont' => [
                         'family' => $this->tooltipTitleFamily,
                         'size' => (int) $this->tooltipTitleSize,
-                        'style' => $this->tooltipTitleStyle,
+                        'weight' => $this->tooltipTitleStyle,
                     ],
                     'titleAlign' => $this->tooltipTitleAlign,
                     'titleSpacing' => (int) $this->tooltipTitleSpacing,
@@ -376,7 +379,7 @@ class Pie extends Component
                     'bodyFont' => [
                         'family' => $this->tooltipBodyFamily,
                         'size' => (int) $this->tooltipBodySize,
-                        'style' => $this->tooltipBodyStyle,
+                        'weight' => $this->tooltipBodyStyle,
                     ],
                     'bodyAlign' => $this->tooltipBodyAlign,
                     'bodySpacing' => (int) $this->tooltipBodySpacing,
@@ -384,7 +387,7 @@ class Pie extends Component
                     'footerFont' => [
                         'family' => $this->tooltipFooterFamily,
                         'size' => (int) $this->tooltipFooterSize,
-                        'style' => $this->tooltipFooterStyle,
+                        'weight' => $this->tooltipFooterStyle,
                     ],
                     'footerAlign' => $this->tooltipFooterAlign,
                     'footerSpacing' => (int) $this->tooltipFooterSpacing,
@@ -399,6 +402,7 @@ class Pie extends Component
                     'multiKeyBackground' => $this->tooltipMultiKeyBackground,
                     'displayColors' => $this->tooltipDisplayColors !== 'false',
                     'boxPadding' => (int) $this->tooltipBoxPadding,
+                    'boxBorderWidth' => (int) $this->tooltipBoxBorderWidth,
                     'borderColor' => $this->tooltipBorderColor,
                     'borderWidth' => (int) $this->tooltipBorderWidth,
                     'rtl' => $this->tooltipRtl === 'true',

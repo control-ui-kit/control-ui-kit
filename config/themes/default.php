@@ -395,6 +395,7 @@ return [
                 'multikey-background' => 'rgb(--chart-tooltip-text)',
                 'display-colors' => true,
                 'box-padding' => 4,
+                'box-border-width' => 0,
                 'border-color' => 'rgb(--chart-tooltip-border)',
                 'border-width' => 1,
                 'rtl' => 'false',

@@ -50,6 +50,9 @@
                         tooltip: {
                             enabled: true,
                             displayColors: false,
+                            boxPadding: {{ $tooltipBoxPadding }},
+                            boxBorderWidth: {{ $tooltipBoxBorderWidth }},
+                            rtl: {{ $tooltipRtl ? 'true' : 'false' }},
                             callbacks: {
                                 title: function (tooltip) {
                                     return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('{{ $format }}');

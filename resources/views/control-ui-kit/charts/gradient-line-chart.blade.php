@@ -52,6 +52,9 @@
                     legend: { display: false },
                     tooltip: {
                         backgroundColor: 'rgba(0,0,0,0.8)',
+                        boxPadding: {{ $tooltipBoxPadding }},
+                        boxBorderWidth: {{ $tooltipBoxBorderWidth }},
+                        rtl: {{ $tooltipRtl ? 'true' : 'false' }},
                         callbacks: {
                             label: (c) => `${Number(c.parsed.y).toLocaleString()}`
                         }

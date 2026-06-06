@@ -83,6 +83,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -215,6 +218,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -347,6 +353,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('DD MMM YYYY');
@@ -479,6 +488,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -611,6 +623,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -743,6 +758,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -875,6 +893,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -1007,6 +1028,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -1139,6 +1163,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -1271,6 +1298,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');

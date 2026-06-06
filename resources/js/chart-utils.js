@@ -84,24 +84,34 @@ const _applyChartColors = (chart) => {
         if (leg?.labels) leg.labels.color = legendLabelColor;
         const ttl = chart.options.plugins.title;
         if (ttl) ttl.color = titleLabelColor;
-        const tt = chart.options.plugins.tooltip;
-        if (tt) {
-            tt.backgroundColor = tooltipBg;
-            tt.titleColor      = tooltipText;
-            tt.bodyColor       = tooltipText;
-            tt.footerColor     = tooltipText;
-            tt.borderColor     = tooltipBorder;
-            const _border = tooltipBorder;
-            tt.callbacks = tt.callbacks || {};
-            tt.callbacks.labelColor = function(context) {
-                const ds = context.dataset;
-                const i  = context.dataIndex;
-                const bg = Array.isArray(ds.backgroundColor)
-                    ? ds.backgroundColor[i]
-                    : (ds.backgroundColor || ds.borderColor);
-                return { borderColor: _border, backgroundColor: bg, borderWidth: 1 };
-            };
-        }
+    }
+
+    // Write tooltip overrides directly to the source config so the resolver
+    // picks them up cleanly after chart.update() recreates the resolver.
+    // Using chart.options.plugins.tooltip (a resolver proxy) causes the
+    // callbacks object to be replaced with a sub-resolver, which breaks
+    // labelColor callback lookup for pie/donut charts.
+    const srcTT = chart.config.options &&
+                  chart.config.options.plugins &&
+                  chart.config.options.plugins.tooltip;
+    if (srcTT) {
+        srcTT.backgroundColor    = tooltipBg;
+        srcTT.titleColor         = tooltipText;
+        srcTT.bodyColor          = tooltipText;
+        srcTT.footerColor        = tooltipText;
+        srcTT.borderColor        = tooltipBorder;
+        srcTT.multiKeyBackground = tooltipBg;
+        const _border      = tooltipBorder;
+        const _borderWidth = srcTT.boxBorderWidth ?? 0;
+        if (!srcTT.callbacks) srcTT.callbacks = {};
+        srcTT.callbacks.labelColor = function(context) {
+            const ds = context.dataset;
+            const i  = context.dataIndex;
+            const bg = Array.isArray(ds.backgroundColor)
+                ? ds.backgroundColor[i]
+                : (ds.backgroundColor || ds.borderColor);
+            return { borderColor: _borderWidth ? _border : 'rgba(0,0,0,0)', backgroundColor: bg, borderWidth: _borderWidth };
+        };
     }
     chart.update('none');
 };
