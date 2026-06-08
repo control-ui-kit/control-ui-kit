@@ -118,20 +118,32 @@ const _applyChartColors = (chart) => {
 
 window.gradientColor = gradientColor;
 
-if (typeof Chart !== 'undefined' && typeof Proxy !== 'undefined') {
-    window.Chart = new Proxy(Chart, {
-        construct: (Target, args) => {
-            const chart = new Target(args[0], _resolveColors(args[1]));
-            requestAnimationFrame(() => _applyChartColors(chart));
-            return chart;
-        }
-    });
+(function () {
+    function _installProxy() {
+        if (typeof window.Chart === 'undefined' || typeof Proxy === 'undefined') return;
+        if (window.__chartUtilsProxyInstalled) return;
+        window.__chartUtilsProxyInstalled = true;
 
-    new MutationObserver(() => {
-        requestAnimationFrame(() => {
-            if (typeof Chart !== 'undefined') {
-                Object.values(Chart.instances).forEach(_applyChartColors);
+        window.Chart = new Proxy(window.Chart, {
+            construct: (Target, args) => {
+                const chart = new Target(args[0], _resolveColors(args[1]));
+                requestAnimationFrame(() => _applyChartColors(chart));
+                return chart;
             }
         });
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] });
-}
+
+        new MutationObserver(() => {
+            requestAnimationFrame(() => {
+                if (typeof Chart !== 'undefined') {
+                    Object.values(Chart.instances).forEach(_applyChartColors);
+                }
+            });
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] });
+    }
+
+    if (typeof window.Chart !== 'undefined') {
+        _installProxy();
+    } else {
+        document.addEventListener('DOMContentLoaded', _installProxy);
+    }
+})();

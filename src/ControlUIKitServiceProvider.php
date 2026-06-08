@@ -7,10 +7,10 @@ use ControlUIKit\Console\ThemeCreatorCommand;
 use ControlUIKit\Console\ThemeUpdaterCommand;
 use ControlUIKit\Controllers\AjaxClassController;
 use ControlUIKit\Controllers\AjaxModelController;
+use ControlUIKit\Controllers\ChartUtilsScriptController;
 use ControlUIKit\Controllers\ControlUIKitMapController;
 use ControlUIKit\Controllers\ControlUIKitMapDataController;
 use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
-use ControlUIKit\Controllers\ChartUtilsScriptController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Controllers\FlatPickrYearPluginController;
 use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
@@ -75,6 +75,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
                 $controlUiKitVersion = \ControlUIKit\ControlUIKitServiceProvider::packageVersion();
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=' . $controlUiKitVersion);
+                $chartUtilsScriptUrl = url('control-ui-kit/javascript/chart-utils.js?v=' . $controlUiKitVersion);
                 $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=' . $controlUiKitVersion);
                 $locale = config('app.locale');
 
@@ -84,14 +85,17 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 }
 
                 echo <<<scripts
-
+                <script src="$controlUiScriptUrl"></script>
+                <script src="$chartUtilsScriptUrl"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2/dist/chartjs-chart-matrix.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
                 <script src="$flatpickrPluginUrl"></script>
                 <script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.3.0/dist/shortcut-buttons-flatpickr.min.js"></script>
                 <script src="https://unpkg.com/vanilla-picker@2.12.2/dist/vanilla-picker.csp.min.js"></script>
                 $flatpickr_locale
-
-                <script src="$controlUiScriptUrl"></script>
                 scripts;
                 ?>
             blade;

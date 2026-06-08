@@ -1,8 +1,3 @@
-@once('chart-utils-js')
-@push('scripts')
-<script src="{{ url('control-ui-kit/javascript/chart-utils.js?v=' . \ControlUIKit\ControlUIKitServiceProvider::packageVersion()) }}"></script>
-@endpush
-@endonce
 <canvas id="{{ $id }}"></canvas>
 
 <script>
@@ -51,7 +46,7 @@
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        backgroundColor: '--chart-tooltip-bg',
                         boxPadding: {{ $tooltipBoxPadding }},
                         boxBorderWidth: {{ $tooltipBoxBorderWidth }},
                         rtl: {{ $tooltipRtl ? 'true' : 'false' }},

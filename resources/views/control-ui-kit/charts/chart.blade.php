@@ -1,8 +1,3 @@
-@once('chart-utils-js')
-@push('scripts')
-<script src="{{ url('control-ui-kit/javascript/chart-utils.js?v=' . \ControlUIKit\ControlUIKitServiceProvider::packageVersion()) }}"></script>
-@endpush
-@endonce
 <canvas id="{!! $element !!}"@if(!empty($size['width'])) width="{!! $size['width'] !!}" height="{!! $size['height'] !!}"@endif>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
