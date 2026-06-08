@@ -106,3 +106,5 @@ const YearDropdownPlugin = function (pluginConfig) {
         };
     };
 }
+
+window.YearDropdownPlugin = YearDropdownPlugin;

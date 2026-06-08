@@ -2,6 +2,7 @@
 
 namespace ControlUIKit\Controllers;
 
+use ControlUIKit\ControlUIKitServiceProvider;
 use Illuminate\Routing\Controller;
 
 class ControlUIKitScriptController extends Controller
@@ -10,8 +11,18 @@ class ControlUIKitScriptController extends Controller
     {
         $this->disablePackageConflicts();
 
-        header('Content-Type: text/javascript; charset=UTF8', true);
-        echo file_get_contents(__DIR__ . '/../../resources/js/control-ui-kit.js');
+        $etag = '"' . ControlUIKitServiceProvider::packageVersion() . '"';
+
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
+            http_response_code(304);
+            exit;
+        }
+
+        header('Content-Type: text/javascript; charset=UTF-8');
+        header('Cache-Control: public, max-age=31536000, immutable');
+        header('ETag: ' . $etag);
+
+        echo file_get_contents(__DIR__ . '/../../dist/control-ui-kit.min.js');
         exit;
     }
 

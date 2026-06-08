@@ -73,8 +73,9 @@ class ControlUIKitServiceProvider extends ServiceProvider
             return <<<'blade'
                 <?php
 
-                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=1.5.0');
-                $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=1.0');
+                $controlUiKitVersion = \ControlUIKit\ControlUIKitServiceProvider::packageVersion();
+                $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=' . $controlUiKitVersion);
+                $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=' . $controlUiKitVersion);
                 $locale = config('app.locale');
 
                 $flatpickr_locale = '';
@@ -84,28 +85,22 @@ class ControlUIKitServiceProvider extends ServiceProvider
 
                 echo <<<scripts
 
-                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
                 <script src="$flatpickrPluginUrl"></script>
                 <script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.3.0/dist/shortcut-buttons-flatpickr.min.js"></script>
                 <script src="https://unpkg.com/vanilla-picker@2.12.2/dist/vanilla-picker.csp.min.js"></script>
                 $flatpickr_locale
-
-                <!--                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />-->
-
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.js"></script>-->
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix/dist/chartjs-chart-matrix.js"></script>-->
-                <!--                <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@2.1.0/build/Chart.Geo.min.js"></script>-->
-
-                <!--                <script src="https://code.highcharts.com/maps/highmaps.js"></script>-->
-                <!--                <script src="https://code.highcharts.com/maps/modules/data.js"></script>-->
-                <!--                <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>-->
-                <!--                <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>-->
 
                 <script src="$controlUiScriptUrl"></script>
                 scripts;
                 ?>
             blade;
         });
+    }
+
+    public static function packageVersion(): string
+    {
+        return \Composer\InstalledVersions::getVersion('control-ui-kit/control-ui-kit') ?? 'dev';
     }
 
     protected function registerMiddleware(): void
