@@ -116,6 +116,8 @@ const _applyChartColors = (chart) => {
     chart.update('none');
 };
 
+window.gradientColor = gradientColor;
+
 if (typeof Chart !== 'undefined' && typeof Proxy !== 'undefined') {
     window.Chart = new Proxy(Chart, {
         construct: (Target, args) => {
