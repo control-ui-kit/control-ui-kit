@@ -8,7 +8,7 @@ use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Line extends Component
+class Stacked extends Component
 {
     use UseThemeFile;
 
@@ -81,7 +81,6 @@ class Line extends Component
     public ?string $yTickReverse;
     public ?string $yTickPadding;
     public ?string $yTickZIndex;
-    public ?string $yMin;
 
     public ?bool $tooltipEnabled;
     public ?string $tooltipMode;
@@ -189,7 +188,6 @@ class Line extends Component
         ?string $yTickReverse = null,
         ?string $yTickPadding = null,
         ?string $yTickZIndex = null,
-        ?string $yMin = null,
 
         ?bool $tooltipEnabled = null,
         ?string $tooltipMode = null,
@@ -301,7 +299,6 @@ class Line extends Component
         $this->yTickReverse = $this->style($this->defaults, 'axes.y.ticks.reverse', $yTickReverse);
         $this->yTickPadding = $this->style($this->defaults, 'axes.y.ticks.padding', $yTickPadding);
         $this->yTickZIndex = $this->style($this->defaults, 'axes.y.ticks.z-index', $yTickZIndex);
-        $this->yMin = $yMin;
 
         $this->tooltipEnabled = $this->style($this->defaults, 'tooltips.enabled', $tooltipEnabled);
         $this->tooltipMode = $this->style($this->defaults, 'tooltips.mode', $tooltipMode);
@@ -348,7 +345,7 @@ class Line extends Component
 
     public function render(): View
     {
-        return view('control-ui-kit::control-ui-kit.charts.line-chart', [
+        return view('control-ui-kit::control-ui-kit.charts.stacked-chart', [
             'chartOptions' => $this->chartOptions(),
         ]);
     }
@@ -361,6 +358,7 @@ class Line extends Component
     private function chartOptions(): array
     {
         $xAxis = [
+            'stacked' => true,
             'display' => $this->hideAxis === 'false',
             'title' => [
                 'display' => true,
@@ -486,34 +484,32 @@ class Line extends Component
             ],
             'scales' => [
                 'x' => $xAxis,
-                'y' => array_merge(
-                    [
-                        'display' => $this->hideAxis === 'false',
-                        'title' => [
-                            'display' => true,
-                            'text' => $this->yAxisLabel,
-                            'color' => $this->yTickColor,
-                        ],
-                        'grid' => [
-                            'display' => $this->hideGrid === 'false',
-                            'color' => $this->gridColor,
-                        ],
-                        'ticks' => [
-                            'display' => $this->yTickDisplay !== 'false',
-                            'color' => $this->yTickColor,
-                            'font' => [
-                                'family' => $this->yTickFamily,
-                                'size' => (int) $this->yTickSize,
-                                'weight' => $this->yTickStyle,
-                                'lineHeight' => $this->yTickHeight,
-                            ],
-                            'reverse' => $this->yTickReverse !== 'false',
-                            'padding' => (int) $this->yTickPadding,
-                            'z' => (int) $this->yTickZIndex,
-                        ],
+                'y' => [
+                    'stacked' => true,
+                    'display' => $this->hideAxis === 'false',
+                    'title' => [
+                        'display' => true,
+                        'text' => $this->yAxisLabel,
+                        'color' => $this->yTickColor,
                     ],
-                    $this->yMin !== null ? ['min' => (float) $this->yMin] : []
-                ),
+                    'grid' => [
+                        'display' => $this->hideGrid === 'false',
+                        'color' => $this->gridColor,
+                    ],
+                    'ticks' => [
+                        'display' => $this->yTickDisplay !== 'false',
+                        'color' => $this->yTickColor,
+                        'font' => [
+                            'family' => $this->yTickFamily,
+                            'size' => (int) $this->yTickSize,
+                            'weight' => $this->yTickStyle,
+                            'lineHeight' => $this->yTickHeight,
+                        ],
+                        'reverse' => $this->yTickReverse !== 'false',
+                        'padding' => (int) $this->yTickPadding,
+                        'z' => (int) $this->yTickZIndex,
+                    ],
+                ],
             ],
             'elements' => [
                 'point' => [
