@@ -51,14 +51,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -84,6 +83,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -184,14 +186,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('red').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = 'red';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -217,6 +218,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -317,14 +321,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -350,6 +353,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('DD MMM YYYY');
@@ -450,14 +456,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -483,6 +488,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -583,14 +591,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -616,6 +623,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -716,14 +726,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -749,6 +758,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -849,14 +861,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -882,6 +893,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -982,14 +996,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1015,6 +1028,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -1115,14 +1131,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1148,6 +1163,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');
@@ -1248,14 +1266,13 @@ class MatrixTest extends ComponentTestCase
                                     backgroundColor(c) {
                                         const value = c.dataset.data[c.dataIndex].v;
                                         const alpha = (value - 5) / 8916;
-                                        return Chart.helpers.color('green').alpha(alpha).darken(0.3).rgbString();
+                                        const raw = '--chart-100';
+                                        const resolved = raw.startsWith('--')
+                                            ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                            : raw;
+                                        return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                                     },
-                                    borderWidth: {
-                                        top: 2,
-                                        right: 2,
-                                        bottom: 2,
-                                        left: 2
-                                    },
+                                    borderWidth: 0,
                                     width(c) {
                                         const a = c.chart.chartArea || {};
                                         const nt = c.chart.scales.x.ticks.length;
@@ -1281,6 +1298,9 @@ class MatrixTest extends ComponentTestCase
                                     tooltip: {
                                         enabled: true,
                                         displayColors: false,
+                                        boxPadding: 4,
+                                        boxBorderWidth: 0,
+                                        rtl: false,
                                         callbacks: {
                                             title: function (tooltip) {
                                                 return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('LL');

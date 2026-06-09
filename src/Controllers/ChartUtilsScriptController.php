@@ -5,7 +5,7 @@ namespace ControlUIKit\Controllers;
 use ControlUIKit\ControlUIKitServiceProvider;
 use Illuminate\Routing\Controller;
 
-class ControlUIKitScriptController extends Controller
+class ChartUtilsScriptController extends Controller
 {
     public function __invoke(): string
     {
@@ -22,7 +22,7 @@ class ControlUIKitScriptController extends Controller
         header('Cache-Control: public, max-age=31536000, immutable');
         header('ETag: ' . $etag);
 
-        echo file_get_contents(__DIR__ . '/../../dist/control-ui-kit.min.js');
+        echo file_get_contents(__DIR__ . '/../../dist/chart-utils.min.js');
         exit;
     }
 

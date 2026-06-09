@@ -168,7 +168,7 @@ window.Components = {
                             document.getElementById(self.id + '_color').style.background = color.hex
                         }
                         if (self.onchange) {
-                            eval(self.onchange.replace(/\\/g, ''))
+                            new Function(self.onchange.replace(/\\/g, ''))()
                         }
                     },
                 })

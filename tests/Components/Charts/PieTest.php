@@ -28,20 +28,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -65,20 +132,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":false,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -102,20 +236,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"bottom","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -139,20 +340,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"end","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"end","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -176,20 +444,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":false,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -213,20 +548,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":50,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":50,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -250,20 +652,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":20,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":20,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -287,20 +756,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"italic","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -324,20 +860,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#c3c3c3","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -361,20 +964,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -398,20 +1068,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":50,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":50}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -435,20 +1172,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"Chart Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"Chart Title","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -472,20 +1276,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -509,20 +1380,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"bottom","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -546,20 +1484,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":20,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -583,20 +1588,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -620,20 +1692,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#c3c3c3","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -657,20 +1796,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -694,20 +1900,87 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":30},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":30,"lineHeight":1.2}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>
@@ -731,20 +2004,293 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="pie_chart" width="400" height="200">
+            <canvas id="pie_chart">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
                             "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
                             var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.pie_chart = new Chart(ctx, {
-                                type: 'pie',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
-                                    datasets: [{"backgroundColor":["#e6194b","#3cb44b","#ffe119","#4363d8","#f58231","#911eb4","#46f0f0","#f032e6","#bcf60c","#fabebe","#008080","#e6beff"],"hoverBackgroundColor":["#ff2061","#4eea61","#ffff20","#5780ff","#ffa93f","#bc27ea","#5bffff","#ff41ff","#f4ff0f","#fff7f7","#00a6a6","#fff7ff"],"data":[40,60,100]}]
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: {"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.8}}
-                                                });
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
+                        })();
+                    });
+                </script>
+            </canvas>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_pie_chart_component_with_values_and_labels_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-pie-chart
+                id="pie_chart"
+                :values="[40, 60, 100]"
+                :labels="['Male', 'Female', 'Unknown']" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <canvas id="pie_chart">
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        (function() {
+                            "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
+                            var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
+                            window.pie_chart = new Chart(ctx, {
+                                type: chartType,
+                                data: {
+                                    labels: ["Male","Female","Unknown"],
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
+                                },
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
+                        })();
+                    });
+                </script>
+            </canvas>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_pie_chart_component_can_be_rendered_responsive(): void
+    {
+        $template = <<<'HTML'
+            <x-pie-chart
+                id="pie_chart"
+                :data="[
+                    'Male'    => 40,
+                    'Female'  => 60,
+                    'Unknown' => 100
+                ]"
+                responsive="true" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <canvas id="pie_chart">
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        (function() {
+                            "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
+                            var ctx = document.getElementById("pie_chart");
+                            var chartType = 'pie';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
+                            window.pie_chart = new Chart(ctx, {
+                                type: chartType,
+                                data: {
+                                    labels: ["Male","Female","Unknown"],
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
+                                },
+                                options: chartOpts
+                            });
+                            document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['pie_chart'].update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    window['pie_chart'].setActiveElements([]);
+                                    window['pie_chart'].tooltip.setActiveElements([]);
+                                    window['pie_chart'].update();
+                                });
+                            });
                         })();
                     });
                 </script>

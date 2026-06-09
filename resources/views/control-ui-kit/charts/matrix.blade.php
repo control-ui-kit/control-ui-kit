@@ -13,14 +13,13 @@
                         backgroundColor(c) {
                             const value = c.dataset.data[c.dataIndex].v;
                             const alpha = (value - 5) / {{ $highestValue }};
-                            return Chart.helpers.color('{{ $color }}').alpha(alpha).darken(0.3).rgbString();
+                            const raw = '{{ $color }}';
+                            const resolved = raw.startsWith('--')
+                                ? 'rgb(' + getComputedStyle(document.documentElement).getPropertyValue(raw).trim().split(/\s+/).join(', ') + ')'
+                                : raw;
+                            return Chart.helpers.color(resolved).alpha(alpha).darken(0.3).rgbString();
                         },
-                        borderWidth: {
-                            top: 2,
-                            right: 2,
-                            bottom: 2,
-                            left: 2
-                        },
+                        borderWidth: 0,
                         width(c) {
                             const a = c.chart.chartArea || {};
                             const nt = c.chart.scales.x.ticks.length;
@@ -46,6 +45,9 @@
                         tooltip: {
                             enabled: true,
                             displayColors: false,
+                            boxPadding: {{ $tooltipBoxPadding }},
+                            boxBorderWidth: {{ $tooltipBoxBorderWidth }},
+                            rtl: {{ $tooltipRtl ? 'true' : 'false' }},
                             callbacks: {
                                 title: function (tooltip) {
                                     return moment(tooltip[0].raw.x, 'YYYY-MM-DD').format('{{ $format }}');

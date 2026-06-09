@@ -12,6 +12,7 @@ class Matrix extends Component
 {
     use UseThemeFile;
 
+    protected string $defaults = 'charts.defaults';
     protected string $component = 'matrix';
 
     public MatrixChart $chart;
@@ -29,6 +30,9 @@ class Matrix extends Component
     public ?string $yReverse;
     public ?string $yLabelVisible;
     public ?string $yLabelPosition;
+    public int $tooltipBoxPadding;
+    public int $tooltipBoxBorderWidth;
+    public bool $tooltipRtl;
 
     public function __construct(
         string $id,
@@ -42,7 +46,10 @@ class Matrix extends Component
         ?string $yMargin = null,
         ?string $yReverse = null,
         ?string $yLabelVisible = null,
-        ?string $yLabelPosition = null
+        ?string $yLabelPosition = null,
+        ?string $tooltipBoxPadding = null,
+        ?string $tooltipBoxBorderWidth = null,
+        ?string $tooltipRtl = null
     ) {
         $this->id = $id;
         $this->data = $data;
@@ -60,6 +67,10 @@ class Matrix extends Component
         $this->yReverse = $this->parseBool($this->style($this->component, 'axes.y.reverse', $yReverse));
         $this->yLabelVisible = $this->parseBool($this->style($this->component, 'axes.y.label.visible', $yLabelVisible));
         $this->yLabelPosition = $this->style($this->component, 'axes.y.label.position', $yLabelPosition);
+
+        $this->tooltipBoxPadding = (int) $this->style($this->defaults, 'tooltips.box-padding', $tooltipBoxPadding);
+        $this->tooltipBoxBorderWidth = (int) $this->style($this->defaults, 'tooltips.box-border-width', $tooltipBoxBorderWidth);
+        $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl) === 'true';
     }
 
     public function render(): string
@@ -78,7 +89,10 @@ class Matrix extends Component
             ->assign('yReverse', $this->yReverse)
             ->assign('yVisible', $this->yLabelVisible)
             ->assign('yPosition', $this->yLabelPosition)
-            ->assign('highestValue', $this->highestValue);
+            ->assign('highestValue', $this->highestValue)
+            ->assign('tooltipBoxPadding', $this->tooltipBoxPadding)
+            ->assign('tooltipBoxBorderWidth', $this->tooltipBoxBorderWidth)
+            ->assign('tooltipRtl', $this->tooltipRtl);
 
         return <<<'blade'
             {!! $chart->render() !!}

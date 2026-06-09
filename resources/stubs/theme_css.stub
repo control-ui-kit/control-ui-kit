@@ -471,6 +471,16 @@
     --modal-button-hover             : var(--button-default-hover); /* text */
     --modal-button-bg-hover          : var(--button-default-bg-hover); /* bg */
     --modal-button-border-hover      : var(--button-default-border-hover); /* border */
+
+    /* Chart UI Colors */
+    --chart-label                    : var(--gray-500);       /* text (fallback) */
+    --chart-legend-label             : var(--gray-500);       /* legend label text */
+    --chart-axis-label               : var(--gray-500);       /* axis tick text */
+    --chart-tooltip-bg               : var(--gray-800);       /* bg */
+    --chart-tooltip-text             : var(--gray-100);       /* text */
+    --chart-tooltip-border           : var(--black);          /* border */
+    --chart-grid                     : var(--gray-100);       /* grid lines */
+    --chart-border                   : var(--panel-bg);       /* segment border */
 }
 
 :root[data-theme="{{ theme-name }}"][data-mode="dark"] {
@@ -881,4 +891,14 @@
     --modal-button-hover             : var(--button-default-hover); /* text */
     --modal-button-bg-hover          : var(--button-default-bg-hover); /* bg */
     --modal-button-border-hover      : var(--button-default-border-hover); /* border */
+
+    /* Chart UI Colors */
+    --chart-label                    : var(--gray-600);        /* text (fallback) */
+    --chart-legend-label             : var(--gray-400);        /* legend label text */
+    --chart-axis-label               : var(--gray-400);        /* axis tick text */
+    --chart-tooltip-bg               : var(--black);           /* bg */
+    --chart-tooltip-text             : var(--gray-100);        /* text */
+    --chart-tooltip-border           : var(--black);           /* border */
+    --chart-grid                     : var(--gray-850);        /* grid lines */
+    --chart-border                   : var(--panel-bg);        /* segment border */
 }

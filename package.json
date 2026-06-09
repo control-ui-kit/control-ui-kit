@@ -1,0 +1,10 @@
+{
+    "name": "control-ui-kit",
+    "private": true,
+    "scripts": {
+        "build": "node build.mjs"
+    },
+    "devDependencies": {
+        "vite": "^6.0"
+    }
+}

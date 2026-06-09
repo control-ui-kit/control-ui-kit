@@ -4,2313 +4,528 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
+use ControlUIKit\Components\Charts\Line;
+use Illuminate\View\View;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
 class LineTest extends ComponentTestCase
 {
-    protected function setUp(): void
+    private array $datasets = [['label' => 'Streams', 'data' => [60, 120, 70, 110, 80]]];
+    private array $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+
+    #[Test]
+    public function line_chart_constructor_assigns_id(): void
     {
-        parent::setUp();
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertSame('my_chart', $component->id);
     }
 
     #[Test]
-    public function a_line_chart_component_can_be_rendered(): void
+    public function line_chart_constructor_assigns_datasets(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame($this->datasets, $component->datasets);
     }
 
     #[Test]
-    public function a_line_chart_component_with_multiple_data_sets_can_be_rendered(): void
+    public function line_chart_constructor_assigns_labels(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ], [
-                            'label' => 'Downloads',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 120],
-                                ['x' => '02/01/2020', 'y' => 165],
-                                ['x' => '03/01/2020', 'y' => 40],
-                                ['x' => '04/01/2020', 'y' => 32],
-                                ['x' => '05/01/2020', 'y' => 79],
-                                ['x' => '06/01/2020', 'y' => 203],
-                                ['x' => '07/01/2020', 'y' => 3]
-                            ]
-                        ]
-                    ]
-                ]" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"},{"label":"Downloads","data":[{"x":"01\/01\/2020","y":120},{"x":"02\/01\/2020","y":165},{"x":"03\/01\/2020","y":40},{"x":"04\/01\/2020","y":32},{"x":"05\/01\/2020","y":79},{"x":"06\/01\/2020","y":203},{"x":"07\/01\/2020","y":3}],"fill":false,"borderColor":"#3cb44b","backgroundColor":"#3cb44b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame($this->labels, $component->labels);
     }
 
     #[Test]
-    public function a_line_chart_component_with_custom_colours_can_be_rendered(): void
+    public function line_chart_defaults_x_axis_type_to_category(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertSame('category', $component->xAxisType);
+    }
+
+    #[Test]
+    public function line_chart_accepts_time_x_axis_type(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, xAxisType: 'time');
+
+        $this->assertSame('time', $component->xAxisType);
+    }
+
+    #[Test]
+    public function line_chart_render_returns_correct_view(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertInstanceOf(View::class, $component->render());
+        $this->assertSame('control-ui-kit::control-ui-kit.charts.line-chart', $component->render()->getName());
+    }
+
+    #[Test]
+    public function line_chart_renders_canvas_with_correct_id(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
+                :datasets="[['label' => 'Streams', 'data' => [60, 120, 70]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('<canvas id="line_chart"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_serialises_dataset_label_and_data(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [60, 120, 70]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"label":"Streams"', $rendered);
+        $this->assertStringContainsString('"data":[60,120,70]', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_serialises_labels_as_json(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [60, 120, 70]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('["Jan","Feb","Mar"]', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_supports_multiple_datasets(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[
+                    ['label' => 'Audio', 'data' => [1, 2, 3]],
+                    ['label' => 'Video', 'data' => [4, 5, 6]]
                 ]"
-                :colors="['red', 'green', 'blue']" />
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"red","backgroundColor":"red"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"label":"Audio"', $rendered);
+        $this->assertStringContainsString('"label":"Video"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_legend_disabled_can_be_rendered(): void
+    public function line_chart_passes_dataset_color_when_provided(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'color' => '--chart-500']]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"color":"--chart-500"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_passes_gradient_stops_when_provided(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'gradientStops' => [['t' => 0.0, 'cssVar' => '--chart-100'], ['t' => 1.0, 'cssVar' => '--chart-300']]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"gradientStops"', $rendered);
+        $this->assertStringContainsString('"--chart-100"', $rendered);
+        $this->assertStringContainsString('"--chart-300"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_mixed_gradient_and_static_datasets(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[
+                    ['label' => 'Audio', 'data' => [1, 2, 3]],
+                    ['label' => 'Video', 'data' => [4, 5, 6], 'gradientStops' => [['t' => 0.5, 'cssVar' => '--chart-200']]]
                 ]"
-                legend-display="false" />
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":false,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"label":"Audio"', $rendered);
+        $this->assertStringContainsString('"label":"Video"', $rendered);
+        $this->assertStringContainsString('"cssVar":"--chart-200"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_position_changed_can_be_rendered(): void
+    public function line_chart_category_axis_does_not_emit_time_config(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]"
-                legend-position="bottom" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"bottom","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringNotContainsString('"type":"time"', $rendered);
+        $this->assertStringNotContainsString('tooltipFormat', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_legend_alignment_changed_can_be_rendered(): void
+    public function line_chart_time_axis_type_emits_time_config(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" legend-align="start" />
+                x-axis-type="time"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['01/01/2024', '02/01/2024', '03/01/2024']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"start","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"type":"time"', $rendered);
+        $this->assertStringContainsString('"tooltipFormat":"ll"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_legend_width_amended_can_be_rendered(): void
+    public function line_chart_passes_dashed_option_in_dataset(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" legend-width="100" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'dashed' => [5, 5]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":false,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"dashed":[5,5]', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_width_changed_can_be_rendered(): void
+    public function line_chart_passes_radius_in_dataset(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-width="20" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'radius' => 8]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":20,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"radius":8', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_size_changed_can_be_rendered(): void
+    public function line_chart_renders_chart_init_script(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-size="24" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":24,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('window.line_chart = new Chart(', $rendered);
+        $this->assertStringContainsString("type: 'line'", $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_style_changed_can_be_rendered(): void
+    public function line_chart_passes_colors_array_to_view(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-style="italic" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"italic","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertIsArray($component->colors);
+        $this->assertNotEmpty($component->colors);
+        $this->assertStringStartsWith('--chart-', $component->colors[0]);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_colour_changed_can_be_rendered(): void
+    public function line_chart_empty_datasets_renders_without_error(): void
     {
         $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-color="#c3c3c3" />
+            <x-line-chart id="line_chart" :datasets="[]" :labels="[]" />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#c3c3c3","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('<canvas id="line_chart"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_family_changed_can_be_rendered(): void
+    public function line_chart_hides_x_axis_grid_by_default(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-family="sans-serif" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('true', $component->hideXGrid);
     }
 
     #[Test]
-    public function a_line_chart_component_with_label_padding_changed_can_be_rendered(): void
+    public function line_chart_x_grid_can_be_shown(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" label-padding="30" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, hideXGrid: 'false');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":30}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('false', $component->hideXGrid);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_can_be_rendered(): void
+    public function line_chart_y_grid_visible_by_default(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title="Graph Title" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"Graph Title","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('false', $component->hideGrid);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_display_changed_can_be_rendered(): void
+    public function line_chart_animation_enabled_by_default(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-display="false" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('true', $component->animation);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_position_changed_can_be_rendered(): void
+    public function line_chart_animation_can_be_disabled(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-position="bottom" />
+                animation="false"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"bottom","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"animation":false', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_size_changed_can_be_rendered(): void
+    public function line_chart_animation_emits_duration_and_easing_when_enabled(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-size="20" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":20,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"animation":', $rendered);
+        $this->assertStringContainsString('"duration":', $rendered);
+        $this->assertStringContainsString('"easing":', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_family_changed_can_be_rendered(): void
+    public function line_chart_animation_duration_can_be_overridden(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-family="sans-serif" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, animationDuration: '500');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('500', $component->animationDuration);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_color_changed_can_be_rendered(): void
+    public function line_chart_animation_easing_can_be_overridden(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-color="#c3c3c3" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, animationEasing: 'linear');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#c3c3c3","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('linear', $component->animationEasing);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_style_changed_can_be_rendered(): void
+    public function line_chart_defaults_x_axis_min_unit_to_day(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-style="bold" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('day', $component->xAxisMinUnit);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_padding_changed_can_be_rendered(): void
+    public function line_chart_x_axis_min_unit_can_be_overridden(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-padding="20" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, xAxisMinUnit: 'week');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":20,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('week', $component->xAxisMinUnit);
     }
 
     #[Test]
-    public function a_line_chart_component_with_title_line_height_changed_can_be_rendered(): void
+    public function line_chart_time_axis_emits_min_unit_in_rendered_output(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" title-height="1.8" />
+                x-axis-type="time"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['01/01/2024', '02/01/2024', '03/01/2024']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.8},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"minUnit":"day"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_point_style_changed_can_be_rendered(): void
+    public function line_chart_time_axis_min_unit_can_be_overridden_in_render(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" point-style="rect" />
+                x-axis-type="time"
+                x-axis-min-unit="week"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['01/01/2024', '02/01/2024', '03/01/2024']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"rect"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"minUnit":"week"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_grid_hidden_can_be_rendered(): void
+    public function line_chart_y_min_is_null_by_default(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" hide-grid />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":false,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":false,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertNull($component->yMin);
     }
 
     #[Test]
-    public function a_line_chart_component_with_axis_labels_hidden_can_be_rendered(): void
+    public function line_chart_y_min_can_be_set(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" hide-axis />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, yMin: '0');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":false,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":false,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('0', $component->yMin);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_display_changed_can_be_rendered(): void
+    public function line_chart_y_min_is_emitted_in_rendered_output(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-display="true" />
+                y-min="0"
+                :datasets="[['label' => 'Streams', 'data' => [0, 0, 0]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"min":0', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_color_changed_can_be_rendered(): void
+    public function line_chart_y_min_is_not_emitted_when_not_set(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-color="#666" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringNotContainsString('"min":', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_family_changed_can_be_rendered(): void
+    public function line_chart_category_axis_does_not_emit_min_unit(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-family="serif" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringNotContainsString('"minUnit"', $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_size_changed_can_be_rendered(): void
+    public function line_chart_defaults_point_radius_from_config(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-size="20" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":20,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $expected = (string) config('themes.default.charts.defaults.point.radius');
+        $this->assertSame($expected, $component->pointRadius);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_style_changed_can_be_rendered(): void
+    public function line_chart_point_radius_can_be_overridden(): void
     {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-style="italic" />
-            HTML;
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, pointRadius: '10');
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"italic","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertSame('10', $component->pointRadius);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_height_changed_can_be_rendered(): void
+    public function line_chart_point_radius_is_emitted_in_rendered_output(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-height="1.8" />
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.8","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
+        $defaultRadius = config('themes.default.charts.defaults.point.radius');
+        $this->assertStringContainsString('"radius":' . $defaultRadius, $rendered);
     }
 
     #[Test]
-    public function a_line_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
+    public function line_chart_point_radius_override_is_emitted_in_rendered_output(): void
     {
         $template = <<<'HTML'
             <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-reverse="false" />
+                point-radius="10"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
             HTML;
 
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
+        $rendered = (string) $this->blade($template);
 
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-padding="20" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":20,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" x-tick-z-index="50" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":50}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_display_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-display="false" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":false,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_color_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-color="red" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"red","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_family_set_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-family="serif" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_size_changed__can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-size="30" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":30,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_style_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-style="italic" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"italic","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_height_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-height="1.8" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.8","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-reverse="true" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":true,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-padding="30" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":30,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" y-tick-z-index="150" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":150}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" tooltip-enabled="true" tooltip-mode="index" tooltip-intersect="true" tooltip-position="average" tooltip-background-color="#222" />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"index","intersect":false,"position":"average","backgroundColor":"#222","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" tooltip-title-family="serif"
-                   tooltip-title-size="14"
-                   tooltip-title-style="italic"
-                   tooltip-title-color="yellow"
-                   tooltip-title-align="right"
-                   tooltip-title-spacing="20"
-                   tooltip-title-margin-bottom="20"
-                />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"serif","titleFontSize":14,"titleFontStyle":"italic","titleFontColor":"yellow","titleAlign":"right","titleSpacing":20,"titleMarginBottom":20,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" tooltip-body-family="serif"
-                   tooltip-body-size="10"
-                   tooltip-body-style="italic"
-                   tooltip-body-color="limegreen"
-                   tooltip-body-align="right"
-                   tooltip-body-spacing="20"
-                />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"serif","bodyFontSize":10,"bodyFontStyle":"italic","bodyFontColor":"limegreen","bodyAlign":"right","bodySpacing":20,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" tooltip-footer-family="serif"
-                   tooltip-footer-size="20"
-                   tooltip-footer-style="italic"
-                   tooltip-footer-color="lightblue"
-                   tooltip-footer-align="right"
-                   tooltip-footer-spacing="20"
-                   tooltip-footer-margin-top="40"
-                />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"serif","footerFontSize":20,"footerFontStyle":"italic","footerFontColor":"lightblue","footerAlign":"right","footerSpacing":20,"footerMarginTop":40,"xPadding":6,"yPadding":6,"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"#fff","displayColors":true,"borderColor":"rgba(0, 0, 0, 0)","borderWidth":0,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
-    }
-
-    #[Test]
-    public function a_line_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
-    {
-        $template = <<<'HTML'
-            <x-line-chart id="line_chart"
-                :data="[
-                    'items' => [
-                        [
-                            'label' => 'Streams',
-                            'data' => [
-                                ['x' => '01/01/2020', 'y' => 60],
-                                ['x' => '02/01/2020', 'y' => 120],
-                                ['x' => '03/01/2020', 'y' => 70],
-                                ['x' => '04/01/2020', 'y' => 110],
-                                ['x' => '05/01/2020', 'y' => 80],
-                                ['x' => '06/01/2020', 'y' => 100],
-                                ['x' => '07/01/2020', 'y' => 90]
-                            ]
-                        ]
-                    ]
-                ]" tooltip-x-padding="50"
-                   tooltip-y-padding="50"
-                   tooltip-caret-padding="5"
-                   tooltip-caret-size="5"
-                   tooltip-corner-radius="20"
-                   tooltip-multi-key-background="purple"
-                   tooltip-display-colors="true"
-                   tooltip-border-color="purple"
-                   tooltip-border-width="5"
-                   tooltip-rtl="false"
-                />
-            HTML;
-
-        $expected = <<<'HTML'
-            <canvas id="line_chart" width="400" height="200">
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        (function() {
-                            "use strict";
-                            var ctx = document.getElementById("line_chart");
-                            window.line_chart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: [],
-                                    datasets: [{"label":"Streams","data":[{"x":"01\/01\/2020","y":60},{"x":"02\/01\/2020","y":120},{"x":"03\/01\/2020","y":70},{"x":"04\/01\/2020","y":110},{"x":"05\/01\/2020","y":80},{"x":"06\/01\/2020","y":100},{"x":"07\/01\/2020","y":90}],"fill":false,"borderColor":"#e6194b","backgroundColor":"#e6194b"}]
-                                },
-                                                    options: {"responsive":true,"legend":{"display":true,"position":"left","align":"center","fullWidth":true,"reverse":false,"labels":{"boxWidth":40,"fontSize":12,"fontStyle":"normal","fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","padding":10}},"title":{"display":false,"text":"","position":"top","fontSize":12,"fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontColor":"#666","fontStyle":"bold","padding":10,"lineHeight":1.2},"scales":{"xAxes":[{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"scaleLabel":{"display":true,"labelString":"Date"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}],"yAxes":[{"display":true,"scaleLabel":{"display":true,"labelString":"Value"},"gridLines":{"display":true,"color":"rgba(0, 0, 0, 0.1)"},"ticks":{"display":true,"fontColor":"#666","fontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","fontSize":12,"fontStyle":"normal","lineHeight":"1.2","reverse":false,"padding":0,"z":0}}]},"elements":{"point":{"pointStyle":"circle"}},"tooltips":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgba(0, 0, 0, 0.8)","titleFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","titleFontSize":12,"titleFontStyle":"bold","titleFontColor":"#fff","titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","bodyFontSize":12,"bodyFontStyle":"normal","bodyFontColor":"#fff","bodyAlign":"left","bodySpacing":2,"footerFontFamily":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","footerFontSize":12,"footerFontStyle":"bold","footerFontColor":"#fff","footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"xPadding":50,"yPadding":50,"caretPadding":5,"caretSize":5,"cornerRadius":20,"multiKeyBackground":"purple","displayColors":true,"borderColor":"purple","borderWidth":5,"rtl":true},"showLines":true,"spanGaps":false}
-                                                });
-                        })();
-                    });
-                </script>
-            </canvas>
-            HTML;
-
-        $this->assertComponentRenders($expected, $template);
+        $this->assertStringContainsString('"radius":10', $rendered);
     }
 }

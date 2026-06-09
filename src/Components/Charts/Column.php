@@ -4,42 +4,26 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Charts;
 
-use ControlUIKit\Helpers\Chart;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
-class Pie extends Component
+class Column extends Component
 {
     use UseThemeFile;
 
+    protected string $legend;
+    protected string $legendLabel;
+    protected string $defaultTitle;
     protected string $defaults = 'charts.defaults';
-    protected string $legend = 'charts.defaults.legend';
-    protected string $legendLabel = 'charts.defaults.legend.label';
-    protected string $defaultTitle = 'charts.defaults.title';
-    protected string $pieSegment = 'charts.pie.segment';
-    protected string $pieAnimation = 'charts.pie.animation';
-    protected string $pieLayout = 'charts.pie.layout';
-    protected string $component = 'chart-pie';
 
-    public Chart $chart;
     public string $id;
-    public ?string $title;
-    public $colors;
-    public ?array $data;
-    public ?array $values;
-    public ?array $labels;
-    public array $hoverColors;
-
-    public ?string $segmentBorderColor;
-    public ?string $segmentBorderWidth;
-    public ?string $segmentHoverOffset;
-    public ?string $animationDuration;
-    public ?string $animationEasing;
-    public ?string $animationRotate;
-    public ?string $animationScale;
-    public ?string $layoutPadding;
-    public ?string $responsive;
-    public ?string $maintainAspectRatio;
+    public array $datasets;
+    public array $labels;
+    public array $colors;
+    public string $xAxisType;
+    public ?string $xAxisMinUnit;
+    public string $maintainAspectRatio;
 
     public ?string $legendDisplay;
     public ?string $legendPosition;
@@ -55,6 +39,7 @@ class Pie extends Component
     public ?string $labelPadding;
     public ?string $labelBorderWidth;
 
+    public ?string $title;
     public ?bool $titleDisplay;
     public ?string $titlePosition;
     public ?string $titleSize;
@@ -64,11 +49,45 @@ class Pie extends Component
     public ?string $titlePadding;
     public ?string $titleHeight;
 
+    public ?string $pointStyle;
+    public ?string $pointRadius;
+    public ?string $gridColor;
+    public ?string $hideGrid;
+    public ?string $hideXGrid;
+    public ?string $hideAxis;
+
+    public ?string $animation;
+    public ?string $animationDuration;
+    public ?string $animationEasing;
+
+    public ?string $xAxisLabel;
+    public ?string $xTickDisplay;
+    public ?string $xTickColor;
+    public ?string $xTickFamily;
+    public ?string $xTickSize;
+    public ?string $xTickStyle;
+    public ?string $xTickHeight;
+    public ?string $xTickReverse;
+    public ?string $xTickPadding;
+    public ?string $xTickZIndex;
+
+    public ?string $yAxisLabel;
+    public ?string $yTickDisplay;
+    public ?string $yTickColor;
+    public ?string $yTickFamily;
+    public ?string $yTickSize;
+    public ?string $yTickStyle;
+    public ?string $yTickHeight;
+    public ?string $yTickReverse;
+    public ?string $yTickPadding;
+    public ?string $yTickZIndex;
+
     public ?bool $tooltipEnabled;
     public ?string $tooltipMode;
     public ?bool $tooltipIntersect;
     public ?string $tooltipPosition;
     public ?string $tooltipBackgroundColor;
+
     public ?string $tooltipTitleFamily;
     public ?string $tooltipTitleSize;
     public ?string $tooltipTitleStyle;
@@ -76,12 +95,14 @@ class Pie extends Component
     public ?string $tooltipTitleAlign;
     public ?string $tooltipTitleSpacing;
     public ?string $tooltipTitleMarginBottom;
+
     public ?string $tooltipBodyFamily;
     public ?string $tooltipBodySize;
     public ?string $tooltipBodyStyle;
     public ?string $tooltipBodyColor;
     public ?string $tooltipBodyAlign;
     public ?string $tooltipBodySpacing;
+
     public ?string $tooltipFooterFamily;
     public ?string $tooltipFooterSize;
     public ?string $tooltipFooterStyle;
@@ -89,6 +110,7 @@ class Pie extends Component
     public ?string $tooltipFooterAlign;
     public ?string $tooltipFooterSpacing;
     public ?string $tooltipFooterMarginTop;
+
     public ?string $tooltipXPadding;
     public ?string $tooltipYPadding;
     public ?string $tooltipCaretPadding;
@@ -104,21 +126,10 @@ class Pie extends Component
 
     public function __construct(
         string $id,
-        ?string $title = null,
-        $colors = null,
-        ?array $data = null,
-        ?array $values = null,
-        ?array $labels = null,
-
-        ?string $segmentBorderColor = null,
-        ?string $segmentBorderWidth = null,
-        ?string $segmentHoverOffset = null,
-        ?string $animationDuration = null,
-        ?string $animationEasing = null,
-        ?string $animationRotate = null,
-        ?string $animationScale = null,
-        ?string $layoutPadding = null,
-        ?string $responsive = null,
+        array $datasets = [],
+        array $labels = [],
+        ?string $xAxisType = null,
+        ?string $xAxisMinUnit = null,
         ?string $maintainAspectRatio = null,
 
         ?string $legendDisplay = null,
@@ -135,6 +146,7 @@ class Pie extends Component
         ?string $labelPadding = null,
         ?string $labelBorderWidth = null,
 
+        ?string $title = null,
         ?bool $titleDisplay = null,
         ?string $titlePosition = null,
         ?string $titleSize = null,
@@ -143,6 +155,39 @@ class Pie extends Component
         ?string $titleStyle = null,
         ?string $titlePadding = null,
         ?string $titleHeight = null,
+
+        ?string $pointStyle = null,
+        ?string $pointRadius = null,
+        ?string $gridColor = null,
+        ?string $hideGrid = null,
+        ?string $hideXGrid = null,
+        ?string $hideAxis = null,
+
+        ?string $animation = null,
+        ?string $animationDuration = null,
+        ?string $animationEasing = null,
+
+        ?string $xAxisLabel = null,
+        ?string $xTickDisplay = null,
+        ?string $xTickColor = null,
+        ?string $xTickFamily = null,
+        ?string $xTickSize = null,
+        ?string $xTickStyle = null,
+        ?string $xTickHeight = null,
+        ?string $xTickReverse = null,
+        ?string $xTickPadding = null,
+        ?string $xTickZIndex = null,
+
+        ?string $yAxisLabel = null,
+        ?string $yTickDisplay = null,
+        ?string $yTickColor = null,
+        ?string $yTickFamily = null,
+        ?string $yTickSize = null,
+        ?string $yTickStyle = null,
+        ?string $yTickHeight = null,
+        ?string $yTickReverse = null,
+        ?string $yTickPadding = null,
+        ?string $yTickZIndex = null,
 
         ?bool $tooltipEnabled = null,
         ?string $tooltipMode = null,
@@ -185,25 +230,17 @@ class Pie extends Component
         ?string $tooltipFooterSpacing = null,
         ?string $tooltipFooterMarginTop = null
     ) {
+        $this->legend = $this->defaults . '.legend';
+        $this->legendLabel = $this->legend . '.label';
+        $this->defaultTitle = $this->defaults . '.title';
+
         $this->id = $id;
-        $this->title = $title;
-        $this->values = $values;
+        $this->datasets = $datasets;
         $this->labels = $labels;
-        $this->data = $this->resolveData($data, $values, $labels);
-
-        $this->colors = $this->getColours($colors);
-        $this->hoverColors = $this->getHoverColours();
-
-        $this->segmentBorderColor = $this->style($this->pieSegment, 'border-color', $segmentBorderColor);
-        $this->segmentBorderWidth = $this->style($this->pieSegment, 'border-width', $segmentBorderWidth);
-        $this->segmentHoverOffset = $this->style($this->pieSegment, 'hover-offset', $segmentHoverOffset);
-        $this->animationDuration = $this->style($this->pieAnimation, 'duration', $animationDuration);
-        $this->animationEasing = $this->style($this->pieAnimation, 'easing', $animationEasing);
-        $this->animationRotate = $this->style($this->pieAnimation, 'animate-rotate', $animationRotate);
-        $this->animationScale = $this->style($this->pieAnimation, 'animate-scale', $animationScale);
-        $this->layoutPadding = $this->style($this->pieLayout, 'padding', $layoutPadding);
-        $this->responsive = $this->style($this->defaults, 'responsive', $responsive);
-        $this->maintainAspectRatio = $this->style($this->defaults, 'maintain-aspect-ratio', $maintainAspectRatio);
+        $this->colors = $this->getColors();
+        $this->xAxisType = $xAxisType ?? 'category';
+        $this->xAxisMinUnit = $this->style($this->defaults, 'x-axis-min-unit', $xAxisMinUnit);
+        $this->maintainAspectRatio = $maintainAspectRatio ?? 'true';
 
         $this->legendDisplay = $this->style($this->legend, 'display', $legendDisplay);
         $this->legendPosition = $this->position($this->style($this->legend, 'position', $legendPosition));
@@ -219,6 +256,7 @@ class Pie extends Component
         $this->labelPadding = $this->style($this->legendLabel, 'padding', $labelPadding);
         $this->labelBorderWidth = $this->style($this->legendLabel, 'label-border-width', $labelBorderWidth);
 
+        $this->title = $title;
         $this->titleDisplay = $this->style($this->defaultTitle, 'display', $titleDisplay);
         $this->titlePosition = $this->position($this->style($this->defaultTitle, 'position', $titlePosition));
         $this->titleSize = $this->style($this->defaultTitle, 'size', $titleSize);
@@ -228,11 +266,46 @@ class Pie extends Component
         $this->titlePadding = $this->style($this->defaultTitle, 'padding', $titlePadding);
         $this->titleHeight = $this->style($this->defaultTitle, 'height', $titleHeight);
 
+        $this->pointStyle = $this->style($this->defaults . '.point', 'style', $pointStyle);
+        $this->pointRadius = $this->style($this->defaults . '.point', 'radius', $pointRadius);
+
+        $this->gridColor = $this->style($this->defaults, 'grid-color', $gridColor);
+        $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
+        $this->hideXGrid = $this->style($this->defaults, 'hide-x-grid', $hideXGrid);
+        $this->hideAxis = $this->style($this->defaults, 'hide-axis', $hideAxis);
+
+        $this->animation = $this->style($this->defaults, 'animation', $animation);
+        $this->animationDuration = $this->style($this->defaults, 'animation-duration', $animationDuration);
+        $this->animationEasing = $this->style($this->defaults, 'animation-easing', $animationEasing);
+
+        $this->xAxisLabel = $this->style($this->defaults, 'axes.x.label', $xAxisLabel);
+        $this->xTickDisplay = $this->style($this->defaults, 'axes.x.ticks.display', $xTickDisplay);
+        $this->xTickColor = $this->style($this->defaults, 'axes.x.ticks.color', $xTickColor);
+        $this->xTickFamily = $this->style($this->defaults, 'axes.x.ticks.family', $xTickFamily);
+        $this->xTickSize = $this->style($this->defaults, 'axes.x.ticks.size', $xTickSize);
+        $this->xTickStyle = $this->style($this->defaults, 'axes.x.ticks.style', $xTickStyle);
+        $this->xTickHeight = $this->style($this->defaults, 'axes.x.ticks.height', $xTickHeight);
+        $this->xTickReverse = $this->style($this->defaults, 'axes.x.ticks.reverse', $xTickReverse);
+        $this->xTickPadding = $this->style($this->defaults, 'axes.x.ticks.padding', $xTickPadding);
+        $this->xTickZIndex = $this->style($this->defaults, 'axes.x.ticks.z-index', $xTickZIndex);
+
+        $this->yAxisLabel = $this->style($this->defaults, 'axes.y.label', $yAxisLabel);
+        $this->yTickDisplay = $this->style($this->defaults, 'axes.y.ticks.display', $yTickDisplay);
+        $this->yTickColor = $this->style($this->defaults, 'axes.y.ticks.color', $yTickColor);
+        $this->yTickFamily = $this->style($this->defaults, 'axes.y.ticks.family', $yTickFamily);
+        $this->yTickSize = $this->style($this->defaults, 'axes.y.ticks.size', $yTickSize);
+        $this->yTickStyle = $this->style($this->defaults, 'axes.y.ticks.style', $yTickStyle);
+        $this->yTickHeight = $this->style($this->defaults, 'axes.y.ticks.height', $yTickHeight);
+        $this->yTickReverse = $this->style($this->defaults, 'axes.y.ticks.reverse', $yTickReverse);
+        $this->yTickPadding = $this->style($this->defaults, 'axes.y.ticks.padding', $yTickPadding);
+        $this->yTickZIndex = $this->style($this->defaults, 'axes.y.ticks.z-index', $yTickZIndex);
+
         $this->tooltipEnabled = $this->style($this->defaults, 'tooltips.enabled', $tooltipEnabled);
         $this->tooltipMode = $this->style($this->defaults, 'tooltips.mode', $tooltipMode);
         $this->tooltipIntersect = $this->style($this->defaults, 'tooltips.intersect', $tooltipIntersect);
         $this->tooltipPosition = $this->style($this->defaults, 'tooltips.position', $tooltipPosition);
         $this->tooltipBackgroundColor = $this->style($this->defaults, 'tooltips.background-color', $tooltipBackgroundColor);
+
         $this->tooltipTitleFamily = $this->style($this->defaults, 'tooltips.title-family', $tooltipTitleFamily);
         $this->tooltipTitleSize = $this->style($this->defaults, 'tooltips.title-size', $tooltipTitleSize);
         $this->tooltipTitleStyle = $this->style($this->defaults, 'tooltips.title-style', $tooltipTitleStyle);
@@ -240,12 +313,14 @@ class Pie extends Component
         $this->tooltipTitleAlign = $this->style($this->defaults, 'tooltips.title-align', $tooltipTitleAlign);
         $this->tooltipTitleSpacing = $this->style($this->defaults, 'tooltips.title-spacing', $tooltipTitleSpacing);
         $this->tooltipTitleMarginBottom = $this->style($this->defaults, 'tooltips.title-margin-bottom', $tooltipTitleMarginBottom);
+
         $this->tooltipBodyFamily = $this->style($this->defaults, 'tooltips.body-family', $tooltipBodyFamily);
         $this->tooltipBodySize = $this->style($this->defaults, 'tooltips.body-size', $tooltipBodySize);
         $this->tooltipBodyStyle = $this->style($this->defaults, 'tooltips.body-style', $tooltipBodyStyle);
         $this->tooltipBodyColor = $this->style($this->defaults, 'tooltips.body-color', $tooltipBodyColor);
         $this->tooltipBodyAlign = $this->style($this->defaults, 'tooltips.body-align', $tooltipBodyAlign);
         $this->tooltipBodySpacing = $this->style($this->defaults, 'tooltips.body-spacing', $tooltipBodySpacing);
+
         $this->tooltipFooterFamily = $this->style($this->defaults, 'tooltips.footer-family', $tooltipFooterFamily);
         $this->tooltipFooterSize = $this->style($this->defaults, 'tooltips.footer-size', $tooltipFooterSize);
         $this->tooltipFooterStyle = $this->style($this->defaults, 'tooltips.footer-style', $tooltipFooterStyle);
@@ -253,6 +328,7 @@ class Pie extends Component
         $this->tooltipFooterAlign = $this->style($this->defaults, 'tooltips.footer-align', $tooltipFooterAlign);
         $this->tooltipFooterSpacing = $this->style($this->defaults, 'tooltips.footer-spacing', $tooltipFooterSpacing);
         $this->tooltipFooterMarginTop = $this->style($this->defaults, 'tooltips.footer-margin-top', $tooltipFooterMarginTop);
+
         $this->tooltipXPadding = $this->style($this->defaults, 'tooltips.x-padding', $tooltipXPadding);
         $this->tooltipYPadding = $this->style($this->defaults, 'tooltips.y-padding', $tooltipYPadding);
         $this->tooltipCaretPadding = $this->style($this->defaults, 'tooltips.caret-padding', $tooltipCaretPadding);
@@ -267,67 +343,63 @@ class Pie extends Component
         $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl);
     }
 
-    public function render(): string
+    public function render(): View
     {
-        $size = $this->responsive === 'true'
-            ? ['width' => null, 'height' => null]
-            : ['width' => 400, 'height' => 200];
+        return view('control-ui-kit::control-ui-kit.charts.column-chart', [
+            'chartOptions' => $this->chartOptions(),
+        ]);
+    }
 
-        $this->chart = app(Chart::class)
-            ->name($this->id)
-            ->type('pie')
-            ->size($size)
-            ->labels(array_keys($this->data))
-            ->datasets([
-                [
-                    'backgroundColor' => $this->colors,
-                    'hoverBackgroundColor' => $this->hoverColors,
-                    'borderColor' => $this->segmentBorderColor,
-                    'borderWidth' => (int) $this->segmentBorderWidth,
-                    'hoverOffset' => (int) $this->segmentHoverOffset,
-                    'data' => array_values($this->data),
+    private function getColors(): array
+    {
+        return config($this->theme() . '.charts.defaults.colors');
+    }
+
+    private function chartOptions(): array
+    {
+        $xAxis = [
+            'display' => $this->hideAxis === 'false',
+            'title' => [
+                'display' => true,
+                'text' => $this->xAxisLabel,
+                'color' => $this->xTickColor,
+            ],
+            'grid' => [
+                'display' => $this->hideXGrid === 'false',
+                'color' => $this->gridColor,
+            ],
+            'ticks' => [
+                'display' => $this->xTickDisplay !== 'false',
+                'color' => $this->xTickColor,
+                'font' => [
+                    'family' => $this->xTickFamily,
+                    'size' => (int) $this->xTickSize,
+                    'weight' => $this->xTickStyle,
+                    'lineHeight' => $this->xTickHeight,
                 ],
-            ])
-            ->optionsRaw($this->options());
+                'reverse' => $this->xTickReverse !== 'false',
+                'padding' => (int) $this->xTickPadding,
+                'z' => (int) $this->xTickZIndex,
+            ],
+        ];
 
-        return <<<'blade'
-            {!! $chart->render() !!}
-        blade;
-    }
-
-    private function resolveData(?array $data, ?array $values, ?array $labels): array
-    {
-        if (is_array($data)) {
-            return $data;
+        if ($this->xAxisType === 'time') {
+            $xAxis['type'] = 'time';
+            $xAxis['time'] = array_filter([
+                'format' => 'DD/MM/YYYY',
+                'tooltipFormat' => 'll',
+                'minUnit' => $this->xAxisMinUnit,
+            ]);
         }
 
-        if (is_array($values) && is_array($labels)) {
-            return array_combine($labels, $values);
-        }
+        $animation = $this->animation === 'false'
+            ? false
+            : ['duration' => (int) $this->animationDuration, 'easing' => $this->animationEasing];
 
-        return [];
-    }
-
-    private function getColours($colors = null)
-    {
-        if (! is_array($colors)) {
-            return config($this->theme() . '.charts.defaults.colors');
-        }
-
-        return $colors;
-    }
-
-    private function getHoverColours(): array
-    {
-        return $this->colors;
-    }
-
-    private function options(): array
-    {
         return [
-            'responsive' => $this->booleanFromString($this->responsive),
+            'responsive' => true,
             'maintainAspectRatio' => $this->booleanFromString($this->maintainAspectRatio),
-            'aspectRatio' => 2,
+            'animation' => $animation,
             'plugins' => [
                 'legend' => [
                     'display' => $this->booleanFromString($this->legendDisplay),
@@ -337,6 +409,7 @@ class Pie extends Component
                     'reverse' => $this->booleanFromString($this->legendReverse),
                     'labels' => [
                         'boxWidth' => (int) $this->labelWidth,
+                        'boxHeight' => (int) $this->labelSize,
                         'color' => $this->labelColor,
                         'font' => [
                             'size' => (int) $this->labelSize,
@@ -349,7 +422,7 @@ class Pie extends Component
                 ],
                 'title' => [
                     'display' => $this->booleanFromString($this->titleDisplay),
-                    'text' => (! is_null($this->title) ? $this->title : ''),
+                    'text' => $this->title ?? '',
                     'position' => $this->titlePosition,
                     'color' => $this->titleColor,
                     'font' => [
@@ -408,14 +481,39 @@ class Pie extends Component
                     'rtl' => $this->tooltipRtl === 'true',
                 ],
             ],
-            'animation' => [
-                'duration' => (int) $this->animationDuration,
-                'easing' => $this->animationEasing,
-                'animateRotate' => $this->booleanFromString($this->animationRotate),
-                'animateScale' => $this->booleanFromString($this->animationScale),
+            'scales' => [
+                'x' => $xAxis,
+                'y' => [
+                    'display' => $this->hideAxis === 'false',
+                    'title' => [
+                        'display' => true,
+                        'text' => $this->yAxisLabel,
+                        'color' => $this->yTickColor,
+                    ],
+                    'grid' => [
+                        'display' => $this->hideGrid === 'false',
+                        'color' => $this->gridColor,
+                    ],
+                    'ticks' => [
+                        'display' => $this->yTickDisplay !== 'false',
+                        'color' => $this->yTickColor,
+                        'font' => [
+                            'family' => $this->yTickFamily,
+                            'size' => (int) $this->yTickSize,
+                            'weight' => $this->yTickStyle,
+                            'lineHeight' => $this->yTickHeight,
+                        ],
+                        'reverse' => $this->yTickReverse !== 'false',
+                        'padding' => (int) $this->yTickPadding,
+                        'z' => (int) $this->yTickZIndex,
+                    ],
+                ],
             ],
-            'layout' => [
-                'padding' => (int) $this->layoutPadding,
+            'elements' => [
+                'point' => [
+                    'pointStyle' => $this->pointStyle,
+                    'radius' => (int) $this->pointRadius,
+                ],
             ],
         ];
     }
@@ -423,28 +521,6 @@ class Pie extends Component
     private function booleanFromString($arg): bool
     {
         return $arg === 'true';
-    }
-
-    private function colorLuminance($hex, $percent): string
-    {
-        /*
-         * Source : https://gist.github.com/stephenharris/5532899
-         */
-        $hex = preg_replace('/[^0-9a-f]/i', '', $hex);
-        $new = '#';
-
-        if (strlen($hex) < 6) {
-            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
-        }
-
-        for ($i = 0; $i < 3; $i++) {
-            $dec = hexdec(substr($hex, $i * 2, 2));
-            $dec = (int) min(max(0, $dec + $dec * $percent), 255);
-
-            $new .= str_pad(dechex($dec), 2, '0', STR_PAD_LEFT);
-        }
-
-        return $new;
     }
 
     private function position($position): string

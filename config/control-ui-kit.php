@@ -29,6 +29,9 @@ return [
         'code' => \ControlUIKit\Components\Code\Inline::class,
 
         'bar-chart' => \ControlUIKit\Components\Charts\Bar::class,
+        'column-chart' => \ControlUIKit\Components\Charts\Column::class,
+        'combo-chart' => \ControlUIKit\Components\Charts\Combo::class,
+        'stacked-chart' => \ControlUIKit\Components\Charts\Stacked::class,
         'donut-chart' => \ControlUIKit\Components\Charts\Donut::class,
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,

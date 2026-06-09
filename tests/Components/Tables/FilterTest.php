@@ -1549,12 +1549,28 @@ class TestFilterAutoComplete extends \ControlUIKit\AutoComplete
     public bool $focus = false;
     public bool $preload = false;
 
-    public function count(): int { return 0; }
+    public function count(): int
+    {
+        return 0;
+    }
+
     public function focus(int $limit): array
     {
         return [['id' => 1, 'text' => 'Preloaded Option', 'subtext' => null, 'image' => null]];
     }
-    public function lookup(int $id): ?object { return null; }
-    public function preload(): array { return []; }
-    public function search(string $term, int $limit): array { return []; }
+
+    public function lookup(int $id): ?object
+    {
+        return null;
+    }
+
+    public function preload(): array
+    {
+        return [];
+    }
+
+    public function search(string $term, int $limit): array
+    {
+        return [];
+    }
 }

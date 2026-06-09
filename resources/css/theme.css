@@ -1070,6 +1070,13 @@
     .bg-chart-900 { background-color: rgb(var(--chart-900)); }
     .border-chart-900 { border-color: rgb(var(--chart-900)); }
 
+    /* Chart UI Colors */
+    .text-chart-label { color: var(--chart-label); }
+    .bg-chart-tooltip { background-color: var(--chart-tooltip-bg); }
+    .text-chart-tooltip { color: var(--chart-tooltip-text); }
+    .border-chart-tooltip { border-color: var(--chart-tooltip-border); }
+    .bg-chart-grid { background-color: var(--chart-grid); }
+
     /* Fill Colors */
 
     .fill-progress-bar {
