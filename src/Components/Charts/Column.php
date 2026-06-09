@@ -54,6 +54,9 @@ class Column extends Component
     public ?string $hideGrid;
     public ?string $hideAxis;
 
+    public string $xAxisType;
+    public ?string $xAxisMinUnit;
+
     public ?string $xAxisLabel;
     public ?string $xTickDisplay;
     public ?string $xTickColor;
@@ -151,6 +154,9 @@ class Column extends Component
         ?string $gridColor = null,
         ?string $hideGrid = null,
         ?string $hideAxis = null,
+
+        ?string $xAxisType = null,
+        ?string $xAxisMinUnit = null,
 
         ?string $xAxisLabel = null,
         ?string $xTickDisplay = null,
@@ -253,6 +259,9 @@ class Column extends Component
         $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
         $this->hideAxis = $this->style($this->defaults, 'hide-axis', $hideAxis);
 
+        $this->xAxisType = $xAxisType ?? 'category';
+        $this->xAxisMinUnit = $this->style($this->defaults, 'x-axis-min-unit', $xAxisMinUnit);
+
         $this->xAxisLabel = $this->style($this->defaults, 'axes.x.label', $xAxisLabel);
         $this->xTickDisplay = $this->style($this->defaults, 'axes.x.ticks.display', $xTickDisplay);
         $this->xTickColor = $this->style($this->defaults, 'axes.x.ticks.color', $xTickColor);
@@ -346,6 +355,42 @@ class Column extends Component
 
     private function options(): array
     {
+        $xAxis = [
+            'display' => $this->hideAxis === 'false',
+            'type' => $this->xAxisType,
+        ];
+
+        if ($this->xAxisType === 'time') {
+            $xAxis['time'] = array_filter([
+                'format' => 'DD/MM/YYYY',
+                'tooltipFormat' => 'll',
+                'minUnit' => $this->xAxisMinUnit,
+            ]);
+        }
+
+        $xAxis['title'] = [
+            'display' => true,
+            'text' => $this->xAxisLabel,
+            'color' => $this->xTickColor,
+        ];
+        $xAxis['grid'] = [
+            'display' => $this->hideGrid === 'false',
+            'color' => $this->gridColor,
+        ];
+        $xAxis['ticks'] = [
+            'display' => $this->xTickDisplay !== 'false',
+            'color' => $this->xTickColor,
+            'font' => [
+                'family' => $this->xTickFamily,
+                'size' => (int) $this->xTickSize,
+                'weight' => $this->xTickStyle,
+                'lineHeight' => $this->xTickHeight,
+            ],
+            'reverse' => $this->xTickReverse !== 'false',
+            'padding' => (int) $this->xTickPadding,
+            'z' => (int) $this->xTickZIndex,
+        ];
+
         return [
             'responsive' => true,
             'plugins' => [
@@ -429,36 +474,7 @@ class Column extends Component
                 ],
             ],
             'scales' => [
-                'x' => [
-                    'display' => $this->hideAxis === 'false',
-                    'type' => 'time',
-                    'time' => [
-                        'format' => 'DD/MM/YYYY',
-                        'tooltipFormat' => 'll',
-                    ],
-                    'title' => [
-                        'display' => true,
-                        'text' => $this->xAxisLabel,
-                        'color' => $this->xTickColor,
-                    ],
-                    'grid' => [
-                        'display' => $this->hideGrid === 'false',
-                        'color' => $this->gridColor,
-                    ],
-                    'ticks' => [
-                        'display' => $this->xTickDisplay !== 'false',
-                        'color' => $this->xTickColor,
-                        'font' => [
-                            'family' => $this->xTickFamily,
-                            'size' => (int) $this->xTickSize,
-                            'weight' => $this->xTickStyle,
-                            'lineHeight' => $this->xTickHeight,
-                        ],
-                        'reverse' => $this->xTickReverse !== 'false',
-                        'padding' => (int) $this->xTickPadding,
-                        'z' => (int) $this->xTickZIndex,
-                    ],
-                ],
+                'x' => $xAxis,
                 'y' => [
                     'display' => $this->hideAxis === 'false',
                     'title' => [
