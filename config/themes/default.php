@@ -378,8 +378,8 @@ return [
             ],
             'point' => [
                 'style' => 'circle',
-                'radius' => 3,
-                'hoverRadius' => 4,
+                'radius' => 5,
+                'hoverRadius' => 6,
             ],
             'tooltips' => [
                 'enabled' => true,
@@ -425,11 +425,16 @@ return [
             ],
             'dashed' => [5, 5],
             'hide-grid' => 'false',
+            'hide-x-grid' => 'true',
             'hide-axis' => 'false',
+            'x-axis-min-unit' => 'day',
             'background-color' => 'rgb(--chart-grid)',
             'grid-color' => 'rgb(--chart-grid)',
             'responsive' => 'true',
             'maintain-aspect-ratio' => 'true',
+            'animation' => 'true',
+            'animation-duration' => 1000,
+            'animation-easing' => 'easeInOutQuart',
         ],
 
         'pie' => [

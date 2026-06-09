@@ -29,13 +29,13 @@ return [
         'code' => \ControlUIKit\Components\Code\Inline::class,
 
         'bar-chart' => \ControlUIKit\Components\Charts\Bar::class,
+        'column-chart' => \ControlUIKit\Components\Charts\Column::class,
         'donut-chart' => \ControlUIKit\Components\Charts\Donut::class,
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
         'matrix-chart' => \ControlUIKit\Components\Charts\Matrix::class,
         'change-chart' => \ControlUIKit\Components\Charts\Change::class,
 
-        'gradient-line-chart' => \ControlUIKit\Components\Charts\GradientLineChart::class,
         'gradient-bar-chart' => \ControlUIKit\Components\Charts\GradientBarChart::class,
 
         'dropdown-divider' => \ControlUIKit\Components\Dropdowns\Divider::class,

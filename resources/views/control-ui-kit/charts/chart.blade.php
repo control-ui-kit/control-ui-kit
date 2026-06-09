@@ -41,17 +41,34 @@
                     return obj;
                 };
                 var ctx = document.getElementById("{!! $element !!}");
+                var chartType = '{!! $type !!}';
+                var chartOpts = {};
+                @if(!empty($optionsRaw))
+                chartOpts = _ro({!! $optionsRaw !!});
+                @elseif(!empty($options))
+                chartOpts = _ro({!! json_encode($options) !!});
+                @endif
+                if (chartType === 'pie' || chartType === 'doughnut') {
+                    if (!chartOpts.plugins) chartOpts.plugins = {};
+                    if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                    if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                    chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                        var typeOverride = Chart.overrides[chart.config.type];
+                        var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                            && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                            || Chart.defaults.plugins.legend.labels.generateLabels;
+                        var labels = original.call(this, chart);
+                        labels.forEach(function(label) { label.lineWidth = 0; });
+                        return labels;
+                    };
+                }
                 window.{!! $element !!} = new Chart(ctx, {
-                    type: '{!! $type !!}',
+                    type: chartType,
                     data: {
                         labels: {!! json_encode($labels) !!},
                         datasets: _rd({!! json_encode($datasets) !!})
                     },
-                    @if(!empty($optionsRaw))
-                    options: _ro({!! $optionsRaw !!})
-                    @elseif(!empty($options))
-                    options: _ro({!! json_encode($options) !!})
-                    @endif
+                    options: chartOpts
                 });
                 document.querySelectorAll('[data-chart="{!! $element !!}"]').forEach(function(el) {
                     var idx = parseInt(el.dataset.index);

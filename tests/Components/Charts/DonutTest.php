@@ -71,14 +71,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -158,14 +175,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -245,14 +279,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -332,14 +383,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"end","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"end","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -419,14 +487,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -506,14 +591,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":50,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":50,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -593,14 +695,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":20,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":20,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -680,14 +799,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -767,14 +903,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -854,14 +1007,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -941,14 +1111,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":50,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":50,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1028,14 +1215,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"Chart Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"Chart Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1115,14 +1319,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1202,14 +1423,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1289,14 +1527,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1376,14 +1631,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1463,14 +1735,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1550,14 +1839,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1637,14 +1943,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":30},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":30},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1724,14 +2047,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1808,14 +2148,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
@@ -1896,14 +2253,31 @@ class DonutTest extends ComponentTestCase
                                 return obj;
                             };
                             var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
                             window.donut_chart = new Chart(ctx, {
-                                type: 'doughnut',
+                                type: chartType,
                                 data: {
                                     labels: ["Male","Female","Unknown"],
                                     datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
                                 },
-                                                    options: _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"70%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}})
-                                                });
+                                options: chartOpts
+                            });
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {

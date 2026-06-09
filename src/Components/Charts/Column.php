@@ -8,7 +8,7 @@ use ControlUIKit\Helpers\Chart;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
 
-class Bar extends Component
+class Column extends Component
 {
     use UseThemeFile;
 
@@ -348,7 +348,6 @@ class Bar extends Component
     {
         return [
             'responsive' => true,
-            'indexAxis' => 'y',
             'plugins' => [
                 'legend' => [
                     'display' => $this->booleanFromString($this->legendDisplay),
@@ -432,7 +431,11 @@ class Bar extends Component
             'scales' => [
                 'x' => [
                     'display' => $this->hideAxis === 'false',
-                    'type' => 'linear',
+                    'type' => 'time',
+                    'time' => [
+                        'format' => 'DD/MM/YYYY',
+                        'tooltipFormat' => 'll',
+                    ],
                     'title' => [
                         'display' => true,
                         'text' => $this->xAxisLabel,

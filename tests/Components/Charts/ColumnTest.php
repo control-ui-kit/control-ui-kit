@@ -7,7 +7,7 @@ namespace Tests\Components\Charts;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
 
-class BarTest extends ComponentTestCase
+class ColumnTest extends ComponentTestCase
 {
     protected function setUp(): void
     {
@@ -15,10 +15,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_can_be_rendered(): void
+    public function a_column_chart_component_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -38,7 +38,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -80,10 +80,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -98,7 +98,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -106,17 +106,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -129,10 +129,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_multiple_data_sets_can_be_rendered(): void
+    public function a_column_chart_component_with_multiple_data_sets_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -163,7 +163,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -205,10 +205,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -223,7 +223,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -231,17 +231,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -254,10 +254,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_custom_colours_can_be_rendered(): void
+    public function a_column_chart_component_with_custom_colours_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -278,7 +278,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -320,10 +320,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -338,7 +338,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -346,17 +346,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -369,10 +369,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_legend_disabled_can_be_rendered(): void
+    public function a_column_chart_component_with_legend_disabled_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -393,7 +393,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -435,10 +435,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":false,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -453,7 +453,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -461,17 +461,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -484,10 +484,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_position_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -508,7 +508,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -550,10 +550,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -568,7 +568,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -576,17 +576,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -599,10 +599,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_legend_alignment_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_legend_alignment_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -622,7 +622,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -664,10 +664,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"start","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"start","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -682,7 +682,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -690,17 +690,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -713,10 +713,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_legend_width_amended_can_be_rendered(): void
+    public function a_column_chart_component_with_legend_width_amended_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -736,7 +736,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -778,10 +778,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":false,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -796,7 +796,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -804,17 +804,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -827,10 +827,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_width_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_width_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -850,7 +850,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -892,10 +892,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":20,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":20,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -910,7 +910,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -918,17 +918,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -941,10 +941,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_size_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -964,7 +964,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1006,10 +1006,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":24,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":24,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1024,7 +1024,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1032,17 +1032,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1055,10 +1055,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_style_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1078,7 +1078,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1120,10 +1120,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"italic","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1138,7 +1138,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1146,17 +1146,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1169,10 +1169,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_colour_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_colour_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1192,7 +1192,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1234,10 +1234,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"#c3c3c3","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1252,7 +1252,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1260,17 +1260,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1283,10 +1283,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_family_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1306,7 +1306,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1348,10 +1348,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1366,7 +1366,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1374,17 +1374,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1397,10 +1397,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_label_padding_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_label_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1420,7 +1420,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1462,10 +1462,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":30,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":30,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1480,7 +1480,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1488,17 +1488,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1511,10 +1511,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_can_be_rendered(): void
+    public function a_column_chart_component_with_title_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1534,7 +1534,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1576,10 +1576,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"Graph Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"Graph Title","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1594,7 +1594,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1602,17 +1602,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1625,10 +1625,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_display_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1648,7 +1648,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1690,10 +1690,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1708,7 +1708,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1716,17 +1716,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1739,10 +1739,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_position_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_position_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1762,7 +1762,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1804,10 +1804,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"bottom","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1822,7 +1822,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1830,17 +1830,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1853,10 +1853,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_size_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1876,7 +1876,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -1918,10 +1918,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":20,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -1936,7 +1936,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -1944,17 +1944,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -1967,10 +1967,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_family_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -1990,7 +1990,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2032,10 +2032,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2050,7 +2050,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2058,17 +2058,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2081,10 +2081,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_color_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2104,7 +2104,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2146,10 +2146,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"#c3c3c3","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2164,7 +2164,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2172,17 +2172,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2195,10 +2195,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_style_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2218,7 +2218,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2260,10 +2260,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2278,7 +2278,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2286,17 +2286,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2309,10 +2309,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_padding_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2332,7 +2332,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2374,10 +2374,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":20},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":20},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2392,7 +2392,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2400,17 +2400,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2423,10 +2423,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_title_line_height_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_title_line_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2446,7 +2446,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2488,10 +2488,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.8},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2506,7 +2506,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2514,17 +2514,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2537,10 +2537,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_point_style_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_point_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2560,7 +2560,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2602,10 +2602,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"rect"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"rect"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2620,7 +2620,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2628,17 +2628,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2651,10 +2651,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_grid_hidden_can_be_rendered(): void
+    public function a_column_chart_component_with_grid_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2674,7 +2674,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2716,10 +2716,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":false,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2734,7 +2734,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2742,17 +2742,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2765,10 +2765,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_axis_labels_hidden_can_be_rendered(): void
+    public function a_column_chart_component_with_axis_labels_hidden_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2788,7 +2788,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2830,10 +2830,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":false,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":false,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":false,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":false,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2848,7 +2848,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2856,17 +2856,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2879,10 +2879,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_display_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -2902,7 +2902,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -2944,10 +2944,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -2962,7 +2962,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -2970,17 +2970,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -2993,10 +2993,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_color_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3016,7 +3016,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3058,10 +3058,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"#666"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"#666","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"#666"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"#666","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3076,7 +3076,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3084,17 +3084,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3107,10 +3107,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_family_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_family_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3130,7 +3130,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3172,10 +3172,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3190,7 +3190,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3198,17 +3198,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3221,10 +3221,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_size_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_size_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3244,7 +3244,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3286,10 +3286,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":20,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":20,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3304,7 +3304,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3312,17 +3312,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3335,10 +3335,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_style_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3358,7 +3358,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3400,10 +3400,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3418,7 +3418,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3426,17 +3426,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3449,10 +3449,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_height_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3472,7 +3472,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3514,10 +3514,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3532,7 +3532,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3540,17 +3540,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3563,10 +3563,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3586,7 +3586,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3628,10 +3628,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3646,7 +3646,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3654,17 +3654,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3677,10 +3677,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3700,7 +3700,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3742,10 +3742,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":20,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":20,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3760,7 +3760,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3768,17 +3768,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3791,10 +3791,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_x_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3814,7 +3814,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3856,10 +3856,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":50}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":50}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3874,7 +3874,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3882,17 +3882,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -3905,10 +3905,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_display_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_display_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -3928,7 +3928,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -3970,10 +3970,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":false,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":false,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -3988,7 +3988,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -3996,17 +3996,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4019,10 +4019,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_color_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_color_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4042,7 +4042,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4084,10 +4084,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"red"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"red","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"red"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"red","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4102,7 +4102,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4110,17 +4110,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4133,10 +4133,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_family_set_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_family_set_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4156,7 +4156,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4198,10 +4198,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4216,7 +4216,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4224,17 +4224,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4247,10 +4247,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_size_changed__can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_size_changed__can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4270,7 +4270,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4312,10 +4312,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":30,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":30,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4330,7 +4330,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4338,17 +4338,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4361,10 +4361,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_style_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_style_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4384,7 +4384,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4426,10 +4426,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"italic","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4444,7 +4444,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4452,17 +4452,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4475,10 +4475,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_height_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_height_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4498,7 +4498,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4540,10 +4540,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.8"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4558,7 +4558,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4566,17 +4566,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4589,10 +4589,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_reverse_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4612,7 +4612,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4654,10 +4654,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":true,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":true,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4672,7 +4672,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4680,17 +4680,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4703,10 +4703,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_padding_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4726,7 +4726,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4768,10 +4768,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":30,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":30,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4786,7 +4786,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4794,17 +4794,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4817,10 +4817,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_y_tick_z_index_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4840,7 +4840,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4882,10 +4882,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":150}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":150}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -4900,7 +4900,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -4908,17 +4908,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -4931,10 +4931,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -4954,7 +4954,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -4996,10 +4996,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"index","intersect":false,"position":"average","backgroundColor":"#222","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"index","intersect":false,"position":"average","backgroundColor":"#222","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -5014,7 +5014,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -5022,17 +5022,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -5045,10 +5045,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_tooltip_titles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -5075,7 +5075,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -5117,10 +5117,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"yellow","titleFont":{"family":"serif","size":14,"weight":"italic"},"titleAlign":"right","titleSpacing":20,"titleMarginBottom":20,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"yellow","titleFont":{"family":"serif","size":14,"weight":"italic"},"titleAlign":"right","titleSpacing":20,"titleMarginBottom":20,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -5135,7 +5135,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -5143,17 +5143,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -5166,10 +5166,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_tooltip_body_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -5195,7 +5195,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -5237,10 +5237,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"limegreen","bodyFont":{"family":"serif","size":10,"weight":"italic"},"bodyAlign":"right","bodySpacing":20,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"limegreen","bodyFont":{"family":"serif","size":10,"weight":"italic"},"bodyAlign":"right","bodySpacing":20,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -5255,7 +5255,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -5263,17 +5263,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -5286,10 +5286,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_tooltip_footer_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -5316,7 +5316,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -5358,10 +5358,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"lightblue","footerFont":{"family":"serif","size":20,"weight":"italic"},"footerAlign":"right","footerSpacing":20,"footerMarginTop":40,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"lightblue","footerFont":{"family":"serif","size":20,"weight":"italic"},"footerAlign":"right","footerSpacing":20,"footerMarginTop":40,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -5376,7 +5376,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -5384,17 +5384,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
@@ -5407,10 +5407,10 @@ class BarTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_bar_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
+    public function a_column_chart_component_with_further_tooltip_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
-            <x-bar-chart id="bar_chart"
+            <x-column-chart id="column_chart"
                 :data="[
                     'items' => [
                         [
@@ -5440,7 +5440,7 @@ class BarTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <canvas id="bar_chart" width="400" height="200">
+            <canvas id="column_chart" width="400" height="200">
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         (function() {
@@ -5482,10 +5482,10 @@ class BarTest extends ComponentTestCase
                                 }
                                 return obj;
                             };
-                            var ctx = document.getElementById("bar_chart");
+                            var ctx = document.getElementById("column_chart");
                             var chartType = 'bar';
                             var chartOpts = {};
-                                            chartOpts = _ro({"responsive":true,"indexAxis":"y","plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":50,"y":50},"caretPadding":5,"caretSize":5,"cornerRadius":20,"multiKeyBackground":"purple","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"purple","borderWidth":5,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
+                                            chartOpts = _ro({"responsive":true,"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":false,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":50,"y":50},"caretPadding":5,"caretSize":5,"cornerRadius":20,"multiKeyBackground":"purple","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"purple","borderWidth":5,"rtl":false}},"scales":{"x":{"display":true,"type":"time","time":{"format":"DD\/MM\/YYYY","tooltipFormat":"ll"},"title":{"display":true,"text":"Date","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}},"y":{"display":true,"title":{"display":true,"text":"Value","color":"rgb(--chart-axis-label)"},"grid":{"display":true,"color":"rgb(--chart-grid)"},"ticks":{"display":true,"color":"rgb(--chart-axis-label)","font":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal","lineHeight":"1.2"},"reverse":false,"padding":0,"z":0}}},"elements":{"point":{"pointStyle":"circle"}}});
                                             if (chartType === 'pie' || chartType === 'doughnut') {
                                 if (!chartOpts.plugins) chartOpts.plugins = {};
                                 if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
@@ -5500,7 +5500,7 @@ class BarTest extends ComponentTestCase
                                     return labels;
                                 };
                             }
-                            window.bar_chart = new Chart(ctx, {
+                            window.column_chart = new Chart(ctx, {
                                 type: chartType,
                                 data: {
                                     labels: [],
@@ -5508,17 +5508,17 @@ class BarTest extends ComponentTestCase
                                 },
                                 options: chartOpts
                             });
-                            document.querySelectorAll('[data-chart="bar_chart"]').forEach(function(el) {
+                            document.querySelectorAll('[data-chart="column_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['bar_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['bar_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
+                                    window['column_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    window['column_chart'].update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['bar_chart'].setActiveElements([]);
-                                    window['bar_chart'].tooltip.setActiveElements([]);
-                                    window['bar_chart'].update();
+                                    window['column_chart'].setActiveElements([]);
+                                    window['column_chart'].tooltip.setActiveElements([]);
+                                    window['column_chart'].update();
                                 });
                             });
                         })();
