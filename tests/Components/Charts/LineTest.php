@@ -432,4 +432,53 @@ class LineTest extends ComponentTestCase
 
         $this->assertStringNotContainsString('"minUnit"', $rendered);
     }
+
+    #[Test]
+    public function line_chart_defaults_point_radius_from_config(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $expected = (string) config('themes.default.charts.defaults.point.radius');
+        $this->assertSame($expected, $component->pointRadius);
+    }
+
+    #[Test]
+    public function line_chart_point_radius_can_be_overridden(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, pointRadius: '10');
+
+        $this->assertSame('10', $component->pointRadius);
+    }
+
+    #[Test]
+    public function line_chart_point_radius_is_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $defaultRadius = config('themes.default.charts.defaults.point.radius');
+        $this->assertStringContainsString('"radius":' . $defaultRadius, $rendered);
+    }
+
+    #[Test]
+    public function line_chart_point_radius_override_is_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                point-radius="10"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"radius":10', $rendered);
+    }
 }

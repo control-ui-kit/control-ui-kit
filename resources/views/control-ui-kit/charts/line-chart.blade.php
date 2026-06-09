@@ -21,6 +21,10 @@
         const defaultColors = @json($colors);
         const datasetsConfig = @json($datasets);
 
+        var opts = _ro(@json($chartOptions));
+        var defaultPointRadius = (opts.elements && opts.elements.point && opts.elements.point.radius !== undefined)
+            ? opts.elements.point.radius : 3;
+
         const datasets = datasetsConfig.map(function (ds, i) {
             const stops = ds.gradientStops || null;
             const rawColor = ds.color || defaultColors[i % defaultColors.length];
@@ -34,7 +38,7 @@
                 borderWidth: 2,
                 borderColor: color,
                 backgroundColor: color,
-                pointRadius: ds.radius !== undefined ? ds.radius : 3,
+                pointRadius: ds.radius !== undefined ? ds.radius : defaultPointRadius,
                 pointHoverRadius: ds.hoverRadius !== undefined ? ds.hoverRadius : 4,
                 pointBorderWidth: 0,
                 pointBackgroundColor: stops
@@ -57,7 +61,6 @@
             return result;
         });
 
-        var opts = _ro(@json($chartOptions));
         if (!opts.plugins) opts.plugins = {};
         if (!opts.plugins.legend) opts.plugins.legend = {};
         if (!opts.plugins.legend.labels) opts.plugins.legend.labels = {};

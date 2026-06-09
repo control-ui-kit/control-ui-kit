@@ -172,6 +172,7 @@ class Filter extends Component
             if (is_array($first) && array_key_exists('value', $first) && array_key_exists('label', $first)) {
                 return $this->flatten($filter['options']);
             }
+
             return $filter['options'];
         }
 

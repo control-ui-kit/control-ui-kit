@@ -379,7 +379,7 @@ return [
             'point' => [
                 'style' => 'circle',
                 'radius' => 5,
-                'hoverRadius' => 6,
+                'hoverRadius' => 7,
             ],
             'tooltips' => [
                 'enabled' => true,

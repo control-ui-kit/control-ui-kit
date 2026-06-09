@@ -50,6 +50,7 @@ class Line extends Component
     public ?string $titleHeight;
 
     public ?string $pointStyle;
+    public ?string $pointRadius;
     public ?string $gridColor;
     public ?string $hideGrid;
     public ?string $hideXGrid;
@@ -156,6 +157,7 @@ class Line extends Component
         ?string $titleHeight = null,
 
         ?string $pointStyle = null,
+        ?string $pointRadius = null,
         ?string $gridColor = null,
         ?string $hideGrid = null,
         ?string $hideXGrid = null,
@@ -265,6 +267,7 @@ class Line extends Component
         $this->titleHeight = $this->style($this->defaultTitle, 'height', $titleHeight);
 
         $this->pointStyle = $this->style($this->defaults . '.point', 'style', $pointStyle);
+        $this->pointRadius = $this->style($this->defaults . '.point', 'radius', $pointRadius);
 
         $this->gridColor = $this->style($this->defaults, 'grid-color', $gridColor);
         $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
@@ -509,6 +512,7 @@ class Line extends Component
             'elements' => [
                 'point' => [
                     'pointStyle' => $this->pointStyle,
+                    'radius' => (int) $this->pointRadius,
                 ],
             ],
         ];
