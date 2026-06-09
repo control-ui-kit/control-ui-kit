@@ -16,10 +16,12 @@ class Panel extends Component
 
     public string $id;
     public ?string $dynamicComponent;
+    public array $componentData;
 
     public function __construct(
         string $id,
         ?string $component = null,
+        ?array $componentData = null,
         ?string $background = null,
         ?string $border = null,
         ?string $color = null,
@@ -31,6 +33,7 @@ class Panel extends Component
     ) {
         $this->id = $id;
         $this->dynamicComponent = $component;
+        $this->componentData = $componentData ?? [];
 
         $this->setConfigStyles([
             'background' => $background,

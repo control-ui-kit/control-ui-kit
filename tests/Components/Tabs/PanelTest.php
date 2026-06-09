@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Tabs;
 
+use ControlUIKit\Components\Tabs\Panel;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -86,5 +87,47 @@ class PanelTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_tabs_panel_component_data_defaults_to_empty_array(): void
+    {
+        $component = new Panel(id: 'profile');
+
+        $this->assertSame([], $component->componentData);
+    }
+
+    #[Test]
+    public function a_tabs_panel_component_data_can_be_set(): void
+    {
+        $component = new Panel(id: 'profile', componentData: ['title' => 'Hello', 'text' => 'World']);
+
+        $this->assertSame(['title' => 'Hello', 'text' => 'World'], $component->componentData);
+    }
+
+    #[Test]
+    public function a_tabs_panel_component_renders_dynamic_component_with_data(): void
+    {
+        $template = <<<'HTML'
+            <x-tabs-panel id="profile" component="alert" :component-data="['title' => 'My Alert']">
+            </x-tabs-panel>
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('My Alert', $rendered);
+    }
+
+    #[Test]
+    public function a_tabs_panel_component_renders_dynamic_component_without_data(): void
+    {
+        $template = <<<'HTML'
+            <x-tabs-panel id="profile" component="alert">
+            </x-tabs-panel>
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('x-show="showTab == \'profile\'"', $rendered);
     }
 }
