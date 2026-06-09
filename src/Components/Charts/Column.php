@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Charts;
 
-use ControlUIKit\Helpers\Chart;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Column extends Component
 {
@@ -16,14 +16,14 @@ class Column extends Component
     protected string $legendLabel;
     protected string $defaultTitle;
     protected string $defaults = 'charts.defaults';
-    protected string $component = 'chart-line';
 
-    public Chart $chart;
     public string $id;
-    public ?array $data;
-    public $colors;
-    public array $labels;
     public array $datasets;
+    public array $labels;
+    public array $colors;
+    public string $xAxisType;
+    public ?string $xAxisMinUnit;
+    public string $maintainAspectRatio;
 
     public ?string $legendDisplay;
     public ?string $legendPosition;
@@ -50,12 +50,15 @@ class Column extends Component
     public ?string $titleHeight;
 
     public ?string $pointStyle;
+    public ?string $pointRadius;
     public ?string $gridColor;
     public ?string $hideGrid;
+    public ?string $hideXGrid;
     public ?string $hideAxis;
 
-    public string $xAxisType;
-    public ?string $xAxisMinUnit;
+    public ?string $animation;
+    public ?string $animationDuration;
+    public ?string $animationEasing;
 
     public ?string $xAxisLabel;
     public ?string $xTickDisplay;
@@ -123,8 +126,11 @@ class Column extends Component
 
     public function __construct(
         string $id,
-        ?array $data = null,
-        $colors = null,
+        array $datasets = [],
+        array $labels = [],
+        ?string $xAxisType = null,
+        ?string $xAxisMinUnit = null,
+        ?string $maintainAspectRatio = null,
 
         ?string $legendDisplay = null,
         ?string $legendPosition = null,
@@ -151,12 +157,15 @@ class Column extends Component
         ?string $titleHeight = null,
 
         ?string $pointStyle = null,
+        ?string $pointRadius = null,
         ?string $gridColor = null,
         ?string $hideGrid = null,
+        ?string $hideXGrid = null,
         ?string $hideAxis = null,
 
-        ?string $xAxisType = null,
-        ?string $xAxisMinUnit = null,
+        ?string $animation = null,
+        ?string $animationDuration = null,
+        ?string $animationEasing = null,
 
         ?string $xAxisLabel = null,
         ?string $xTickDisplay = null,
@@ -226,8 +235,12 @@ class Column extends Component
         $this->defaultTitle = $this->defaults . '.title';
 
         $this->id = $id;
-        $this->data = $data;
-        $this->colors = $this->getColours($colors);
+        $this->datasets = $datasets;
+        $this->labels = $labels;
+        $this->colors = $this->getColors();
+        $this->xAxisType = $xAxisType ?? 'category';
+        $this->xAxisMinUnit = $this->style($this->defaults, 'x-axis-min-unit', $xAxisMinUnit);
+        $this->maintainAspectRatio = $maintainAspectRatio ?? 'true';
 
         $this->legendDisplay = $this->style($this->legend, 'display', $legendDisplay);
         $this->legendPosition = $this->position($this->style($this->legend, 'position', $legendPosition));
@@ -254,13 +267,16 @@ class Column extends Component
         $this->titleHeight = $this->style($this->defaultTitle, 'height', $titleHeight);
 
         $this->pointStyle = $this->style($this->defaults . '.point', 'style', $pointStyle);
+        $this->pointRadius = $this->style($this->defaults . '.point', 'radius', $pointRadius);
 
         $this->gridColor = $this->style($this->defaults, 'grid-color', $gridColor);
         $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
+        $this->hideXGrid = $this->style($this->defaults, 'hide-x-grid', $hideXGrid);
         $this->hideAxis = $this->style($this->defaults, 'hide-axis', $hideAxis);
 
-        $this->xAxisType = $xAxisType ?? 'category';
-        $this->xAxisMinUnit = $this->style($this->defaults, 'x-axis-min-unit', $xAxisMinUnit);
+        $this->animation = $this->style($this->defaults, 'animation', $animation);
+        $this->animationDuration = $this->style($this->defaults, 'animation-duration', $animationDuration);
+        $this->animationEasing = $this->style($this->defaults, 'animation-easing', $animationEasing);
 
         $this->xAxisLabel = $this->style($this->defaults, 'axes.x.label', $xAxisLabel);
         $this->xTickDisplay = $this->style($this->defaults, 'axes.x.ticks.display', $xTickDisplay);
@@ -325,42 +341,50 @@ class Column extends Component
         $this->tooltipBoxPadding = $this->style($this->defaults, 'tooltips.box-padding', $tooltipBoxPadding);
         $this->tooltipBoxBorderWidth = $this->style($this->defaults, 'tooltips.box-border-width', $tooltipBoxBorderWidth);
         $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl);
-
-        $this->labels = $this->labels();
-        $this->datasets = $this->datasets();
     }
 
-    public function render(): string
+    public function render(): View
     {
-        $this->chart = app(Chart::class)
-            ->name($this->id)
-            ->type('bar')
-            ->size(['width' => 400, 'height' => 200])
-            ->datasets($this->datasets)
-            ->optionsRaw($this->options());
-
-        return <<<'blade'
-            {!! $chart->render() !!}
-        blade;
+        return view('control-ui-kit::control-ui-kit.charts.column-chart', [
+            'chartOptions' => $this->chartOptions(),
+        ]);
     }
 
-    private function getColours($colors = null)
+    private function getColors(): array
     {
-        if (! is_array($colors)) {
-            return config($this->theme() . '.charts.defaults.colors');
-        }
-
-        return $colors;
+        return config($this->theme() . '.charts.defaults.colors');
     }
 
-    private function options(): array
+    private function chartOptions(): array
     {
         $xAxis = [
             'display' => $this->hideAxis === 'false',
-            'type' => $this->xAxisType,
+            'title' => [
+                'display' => true,
+                'text' => $this->xAxisLabel,
+                'color' => $this->xTickColor,
+            ],
+            'grid' => [
+                'display' => $this->hideXGrid === 'false',
+                'color' => $this->gridColor,
+            ],
+            'ticks' => [
+                'display' => $this->xTickDisplay !== 'false',
+                'color' => $this->xTickColor,
+                'font' => [
+                    'family' => $this->xTickFamily,
+                    'size' => (int) $this->xTickSize,
+                    'weight' => $this->xTickStyle,
+                    'lineHeight' => $this->xTickHeight,
+                ],
+                'reverse' => $this->xTickReverse !== 'false',
+                'padding' => (int) $this->xTickPadding,
+                'z' => (int) $this->xTickZIndex,
+            ],
         ];
 
         if ($this->xAxisType === 'time') {
+            $xAxis['type'] = 'time';
             $xAxis['time'] = array_filter([
                 'format' => 'DD/MM/YYYY',
                 'tooltipFormat' => 'll',
@@ -368,31 +392,14 @@ class Column extends Component
             ]);
         }
 
-        $xAxis['title'] = [
-            'display' => true,
-            'text' => $this->xAxisLabel,
-            'color' => $this->xTickColor,
-        ];
-        $xAxis['grid'] = [
-            'display' => $this->hideGrid === 'false',
-            'color' => $this->gridColor,
-        ];
-        $xAxis['ticks'] = [
-            'display' => $this->xTickDisplay !== 'false',
-            'color' => $this->xTickColor,
-            'font' => [
-                'family' => $this->xTickFamily,
-                'size' => (int) $this->xTickSize,
-                'weight' => $this->xTickStyle,
-                'lineHeight' => $this->xTickHeight,
-            ],
-            'reverse' => $this->xTickReverse !== 'false',
-            'padding' => (int) $this->xTickPadding,
-            'z' => (int) $this->xTickZIndex,
-        ];
+        $animation = $this->animation === 'false'
+            ? false
+            : ['duration' => (int) $this->animationDuration, 'easing' => $this->animationEasing];
 
         return [
             'responsive' => true,
+            'maintainAspectRatio' => $this->booleanFromString($this->maintainAspectRatio),
+            'animation' => $animation,
             'plugins' => [
                 'legend' => [
                     'display' => $this->booleanFromString($this->legendDisplay),
@@ -402,6 +409,7 @@ class Column extends Component
                     'reverse' => $this->booleanFromString($this->legendReverse),
                     'labels' => [
                         'boxWidth' => (int) $this->labelWidth,
+                        'boxHeight' => (int) $this->labelSize,
                         'color' => $this->labelColor,
                         'font' => [
                             'size' => (int) $this->labelSize,
@@ -414,7 +422,7 @@ class Column extends Component
                 ],
                 'title' => [
                     'display' => $this->booleanFromString($this->titleDisplay),
-                    'text' => (! is_null($this->title) ? $this->title : ''),
+                    'text' => $this->title ?? '',
                     'position' => $this->titlePosition,
                     'color' => $this->titleColor,
                     'font' => [
@@ -504,6 +512,7 @@ class Column extends Component
             'elements' => [
                 'point' => [
                     'pointStyle' => $this->pointStyle,
+                    'radius' => (int) $this->pointRadius,
                 ],
             ],
         ];
@@ -530,55 +539,5 @@ class Column extends Component
         }
 
         return 'center';
-    }
-
-    private function labels(): array
-    {
-        if (! is_array($this->data) || ! array_key_exists('labels', $this->data) || ! is_array($this->data['labels'])) {
-            return [];
-        }
-
-        return $this->data['labels'];
-    }
-
-    private function datasets(): array
-    {
-        if (! is_array($this->data)) {
-            return [];
-        }
-
-        $response = [];
-
-        if (is_array($this->data['items'])) {
-            $iteration = 0;
-
-            foreach ($this->data['items'] as $array) {
-                $response[$iteration] = [
-                    'label' => $array['label'],
-                    'data' => $array['data'],
-                    'fill' => false,
-                    'borderColor' => $this->colors[$iteration] ?? 'red',
-                    'backgroundColor' => $this->colors[$iteration] ?? 'red',
-                ];
-
-                if (array_key_exists('dashed', $array)) {
-                    $response[$iteration]['borderDash'] = is_array($array['dashed'])
-                        ? $array['dashed']
-                        : $this->style('charts.defaults', 'dashed', $array['dashed'] ?? null);
-                }
-
-                if (array_key_exists('radius', $array)) {
-                    $response[$iteration]['pointRadius'] = $this->style($this->defaults . '.point', 'radius', $array['radius']);
-                }
-
-                if (array_key_exists('hover-radius', $array)) {
-                    $response[$iteration]['pointHoverRadius'] = $this->style($this->defaults . '.point', 'hoverRadius', $array['hover-radius']);
-                }
-
-                $iteration++;
-            }
-        }
-
-        return $response;
     }
 }
