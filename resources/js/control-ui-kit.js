@@ -701,7 +701,7 @@ window.Components = {
             },
             ajaxSearchUrl() {
                 return this.ajax['search_url']
-                    .replace(this.ajax['search_string'], this.filter)
+                    .replace(this.ajax['search_string'], encodeURIComponent(this.filter))
                     .replace(this.ajax['limit_string'], this.config['limit'])
             },
             ajaxFocusUrl() {
