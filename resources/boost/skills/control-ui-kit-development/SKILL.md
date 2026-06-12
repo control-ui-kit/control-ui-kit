@@ -1,19 +1,19 @@
 ---
 name: control-ui-kit-development
-description: Build and work with Control UI Kit Blade components — form fields, inputs, tables, buttons, panels, modals, tabs, alerts, icons, and theming.
+description: Build and work with Control UI Kit Blade components — form fields, inputs, tables, buttons, panels, modals, tabs, alerts, charts, maps, icons, and theming.
 ---
 
 # Control UI Kit Development
 
 ## When to use this skill
 
-Use this skill when working with the `control-ui-kit/control-ui-kit` package: building forms, rendering tables, using UI components (alerts, panels, modals, buttons, tabs), styling with the theme system, or adding/modifying components in this library.
+Use this skill when working with the `control-ui-kit/control-ui-kit` package: building forms, rendering tables, using UI components (alerts, panels, modals, buttons, tabs), rendering Chart.js charts, adding maps, styling with the theme system, or adding/modifying components in this library.
 
 ---
 
 ## Overview
 
-Control UI Kit is a Laravel Blade component library providing ~170 components across 17 categories. Components are registered via `config/control-ui-kit.php` and styled via `config/themes/default.php`. All component styles use Tailwind CSS class strings.
+Control UI Kit is a Laravel Blade component library providing ~180 components across 18 categories. Components are registered via `config/control-ui-kit.php` and styled via `config/themes/default.php`. All component styles use Tailwind CSS class strings.
 
 **Installation:**
 ```bash
@@ -347,6 +347,327 @@ Key props: `href` (renders `<a>` instead of `<button>`), `icon`, `type` (submit/
 </x-tabs>
 ```
 
+### Dynamic component in a tab panel
+
+`x-tabs-panel` can render a registered control-ui-kit component dynamically, with optional data injection:
+
+```blade
+{{-- Render a registered component in the panel (no data) --}}
+<x-tabs-panel name="chart" component="line-chart" />
+
+{{-- Render with data — component is instantiated with named args --}}
+<x-tabs-panel
+    name="chart"
+    component="line-chart"
+    :component-data="['id' => 'my_chart', 'datasets' => $datasets, 'labels' => $labels]"
+/>
+```
+
+`component` must match a key in `config/control-ui-kit.php` under `'components'`. The `component-data` array is spread as named constructor arguments using PHP 8's named argument spread (`new $class(...$componentData)`).
+
+---
+
+## Charts
+
+All chart components require Chart.js to be loaded. Use `@controlUiKitAssets` in your layout.
+
+### Modern dataset API (Line, Column, Bar, Combo, Stacked)
+
+These five charts share the same core API:
+
+| Prop | Type | Description |
+|---|---|---|
+| `id` | string | Required. Canvas element id and JS `window.{id}` variable |
+| `:datasets` | array | Array of dataset objects (see below) |
+| `:labels` | array | X-axis labels |
+| `x-axis-type` | `'category'`\|`'time'` | Default: `'category'` |
+| `x-axis-min-unit` | string | e.g. `'day'`, `'month'` — only used when `x-axis-type="time"` |
+| `animation` | `'true'`\|`'false'` | Default: `'true'` |
+| `animation-duration` | string | Milliseconds (from theme config) |
+| `animation-easing` | string | e.g. `'easeInOutQuart'` |
+| `point-radius` | string | Point dot size (from theme config) |
+| `hide-grid` | `'true'`\|`'false'` | Hide Y gridlines. Default: `'false'` |
+| `hide-x-grid` | `'true'`\|`'false'` | Hide X gridlines. Default: `'true'` |
+
+**Dataset object keys:**
+
+| Key | Description |
+|---|---|
+| `label` | Legend label string |
+| `data` | Array of values |
+| `color` | CSS variable string e.g. `'--chart-500'` (falls back to theme palette) |
+| `gradientStops` | Array of `['t' => 0.0..1.0, 'cssVar' => '--chart-xxx']` for per-bar/per-point gradient |
+| `order` | Chart.js dataset order for layering |
+
+### Line chart (`x-line-chart`)
+
+```blade
+<x-line-chart
+    id="streams_chart"
+    :datasets="[
+        ['label' => 'Streams', 'data' => [100, 200, 150, 300], 'color' => '--chart-500'],
+        ['label' => 'Downloads', 'data' => [40, 80, 60, 120]],
+    ]"
+    :labels="['Jan', 'Feb', 'Mar', 'Apr']"
+/>
+
+{{-- Time-series with min unit --}}
+<x-line-chart
+    id="daily_chart"
+    x-axis-type="time"
+    x-axis-min-unit="day"
+    :datasets="[['label' => 'Plays', 'data' => $plays]]"
+    :labels="$dates"
+/>
+```
+
+Line datasets also support:
+- `radius` — per-dataset point radius override
+- `hoverRadius` — per-dataset hover radius override
+- `dashed` — `true` to render a dashed line
+
+### Column chart (`x-column-chart`)
+
+Vertical bar chart. Supports all modern API props including `x-axis-type` time/category and per-bar `gradientStops`.
+
+```blade
+<x-column-chart
+    id="monthly_sales"
+    :datasets="[
+        ['label' => 'Revenue', 'data' => [5000, 7200, 6100], 'color' => '--chart-400'],
+    ]"
+    :labels="['Jan', 'Feb', 'Mar']"
+/>
+
+{{-- With per-bar gradient --}}
+<x-column-chart
+    id="gradient_col"
+    :datasets="[
+        [
+            'label' => 'Streams',
+            'data' => [100, 200, 150],
+            'gradientStops' => [
+                ['t' => 0.0, 'cssVar' => '--chart-100'],
+                ['t' => 1.0, 'cssVar' => '--chart-600'],
+            ],
+        ],
+    ]"
+    :labels="['Jan', 'Feb', 'Mar']"
+/>
+```
+
+### Bar chart (`x-bar-chart`)
+
+Horizontal bar chart (`indexAxis: y`). Same API as column chart but no time-axis support. The X axis is always `type: linear`.
+
+```blade
+<x-bar-chart
+    id="top_tracks"
+    :datasets="[
+        ['label' => 'Streams', 'data' => [500, 320, 210], 'color' => '--chart-500'],
+    ]"
+    :labels="['Track A', 'Track B', 'Track C']"
+/>
+```
+
+### Combo chart (`x-combo-chart`)
+
+Mixed bar + line chart. Each dataset can independently be `'bar'` (default) or `'line'` type. Supports an optional second Y axis for the line series.
+
+```blade
+<x-combo-chart
+    id="combo"
+    :datasets="[
+        ['label' => 'Revenue', 'data' => [500, 700, 600], 'type' => 'bar', 'yAxisID' => 'y'],
+        ['label' => 'Growth %', 'data' => [10, 40, 20], 'type' => 'line', 'yAxisID' => 'y1'],
+    ]"
+    :labels="['Jan', 'Feb', 'Mar']"
+    show-second-axis="true"
+    y1-axis-label="Growth %"
+/>
+```
+
+**Combo-specific props:**
+
+| Prop | Description |
+|---|---|
+| `show-second-axis` | `'true'` to render a right-hand Y axis (`y1`) |
+| `y1-axis-label` | Label text for the right axis |
+
+**Per-dataset keys specific to combo:**
+
+| Key | Description |
+|---|---|
+| `type` | `'bar'` (default) or `'line'` |
+| `yAxisID` | `'y'` or `'y1'` to assign dataset to an axis |
+
+### Stacked chart (`x-stacked-chart`)
+
+Stacked bar chart. Sets `stacked: true` on both x and y axes. Supports a `stack` key per dataset to group datasets into independent stacks.
+
+```blade
+<x-stacked-chart
+    id="stacked"
+    :datasets="[
+        ['label' => 'Physical', 'data' => [100, 120, 90], 'stack' => 'sales'],
+        ['label' => 'Digital', 'data' => [200, 180, 220], 'stack' => 'sales'],
+        ['label' => 'Returns', 'data' => [10, 15, 8], 'stack' => 'returns'],
+    ]"
+    :labels="['Jan', 'Feb', 'Mar']"
+/>
+```
+
+### Donut chart (`x-donut-chart`)
+
+```blade
+<x-donut-chart
+    id="format_split"
+    :data="[
+        'items' => [
+            ['label' => 'Streaming', 'value' => 65],
+            ['label' => 'Download', 'value' => 25],
+            ['label' => 'Physical', 'value' => 10],
+        ]
+    ]"
+    :colors="['--chart-500', '--chart-300', '--chart-100']"
+/>
+```
+
+Key props: `id`, `:data` (items array), `:colors`, `cutout` (percentage string, default from config).
+
+### Pie chart (`x-pie-chart`)
+
+Same API as donut chart without the `cutout` prop:
+
+```blade
+<x-pie-chart
+    id="genre_split"
+    :data="[
+        'items' => [
+            ['label' => 'Pop', 'value' => 40],
+            ['label' => 'Rock', 'value' => 35],
+            ['label' => 'Electronic', 'value' => 25],
+        ]
+    ]"
+    :colors="['--chart-500', '--chart-400', '--chart-200']"
+/>
+```
+
+### Matrix chart (`x-matrix-chart`)
+
+Heatmap / calendar-style intensity grid. Each data point has `x`, `y`, and `count` values. Cell color intensity scales from the maximum count.
+
+```blade
+<x-matrix-chart
+    id="activity_grid"
+    :data="$activityData"   {{-- array of ['x' => ..., 'y' => ..., 'count' => ...] --}}
+    color="--chart-500"
+    label="Activity"
+/>
+```
+
+Key props: `id`, `:data`, `color` (CSS variable), `label`, `x-margin`, `y-margin`, `y-reverse`, `x-label-visible`, `y-label-visible`.
+
+### Change / KPI chart (`x-change-chart`)
+
+Displays a metric tile with current value, comparison to previous value, and an up/down indicator.
+
+```blade
+<x-change-chart
+    title="Monthly Streams"
+    :current="125400"
+    :previous="98200"
+    :decimals="0"
+    link="/reports/streams"
+    link-text="View report"
+    icon="icon-music-note"
+/>
+```
+
+Key props: `title`, `current` (float), `previous` (float), `decimals`, `link`, `link-text`, `icon`, `icon-size`, `image`, `image-size`, `display-percent` (show % or absolute diff).
+
+### Common chart props (axis & legend fine-tuning)
+
+All modern API charts (Line, Column, Bar, Combo, Stacked) support these additional fine-tuning props:
+
+```blade
+<x-line-chart
+    id="my_chart"
+    :datasets="$datasets"
+    :labels="$labels"
+
+    {{-- Legend --}}
+    legend-display="true"
+    legend-position="top"     {{-- top | bottom | left | right --}}
+    legend-align="center"     {{-- start | center | end --}}
+
+    {{-- Title --}}
+    title="Chart Title"
+    title-display="true"
+
+    {{-- X axis ticks --}}
+    x-axis-label="Month"
+    x-tick-color="--color-muted"
+
+    {{-- Y axis ticks --}}
+    y-axis-label="Count"
+    y-tick-color="--color-muted"
+
+    {{-- Grid --}}
+    grid-color="--color-border"
+    hide-grid="false"
+    hide-x-grid="true"
+/>
+```
+
+### Chart color palette
+
+The default color palette is defined in `config/themes/default.php` under `charts.defaults.colors` as an array of CSS variable names (`'--chart-100'`, `'--chart-200'`, etc.). Datasets cycle through this palette if no `color` is specified.
+
+---
+
+## Maps
+
+### World map (`x-map-world`)
+
+Renders an interactive SVG world map. Pass an ISO 3166-1 alpha-2 country code:
+
+```blade
+<x-map-world iso="GB" />
+<x-map-world iso="US" />
+```
+
+### Region map (`x-map-region`)
+
+Renders a regional/country subdivision map:
+
+```blade
+<x-map-region iso="GB" />
+```
+
+---
+
+## Markdown (`x-markdown`, `x-toc`)
+
+Renders Markdown content as HTML:
+
+```blade
+<x-markdown>
+# Hello World
+
+This is **rendered** markdown content.
+</x-markdown>
+
+{{-- From a variable --}}
+<x-markdown>{{ $article->body }}</x-markdown>
+```
+
+Table of contents from a markdown string:
+
+```blade
+<x-toc>{{ $article->body }}</x-toc>
+```
+
 ---
 
 ## Table (`x-table`)
@@ -437,12 +758,12 @@ Over 300 icons available. All accept `size` and `color` props (Tailwind classes)
 <x-icon-spinner size="h-5 w-5" />
 
 {{-- File type icons --}}
-<x-icon-file-pdf size="h-8 w-8" />
-<x-icon-file-csv size="h-8 w-8" />
+<x-file-pdf size="h-8 w-8" />
+<x-file-csv size="h-8 w-8" />
 
 {{-- Brand/logo icons --}}
-<x-icon-logo-spotify size="h-6 w-6" />
-<x-icon-logo-stripe size="h-6 w-6" />
+<x-logo-spotify size="h-6 w-6" />
+<x-logo-stripe size="h-6 w-6" />
 ```
 
 Dynamic icon via variable:
@@ -520,7 +841,7 @@ Dynamic icon via variable:
 | File type | Location |
 |---|---|
 | PHP class | `src/Components/{Category}/{Name}.php` |
-| Blade view | `resources/views/control-ui-kit/forms/fields/{name}.blade.php` |
+| Blade view | `resources/views/control-ui-kit/{category}/{name}.blade.php` |
 | Registration | `config/control-ui-kit.php` under `'components'` |
 | Theme defaults | `config/themes/default.php` |
 | Tests | `tests/Components/{Category}/{Name}Test.php` |
@@ -562,6 +883,34 @@ class MyField extends InputField
 'field-my' => \ControlUIKit\Components\Forms\Fields\MyField::class,
 ```
 
+### Creating a new modern chart component
+
+Modern chart components (Line, Column, Bar, Combo, Stacked) follow this pattern:
+
+1. **PHP class** extends `Component`, uses `UseThemeFile` trait, reads theme from `'charts.defaults'`
+2. **Constructor** accepts `string $id`, `array $datasets = []`, `array $labels = []` plus optional axis/animation/grid/legend props
+3. **`render()`** returns `view('control-ui-kit::control-ui-kit.charts.{name}-chart', ['chartOptions' => $this->chartOptions()])`
+4. **`chartOptions()`** returns the full Chart.js options array including scales, animation, plugins
+5. **Blade template** uses `@json($datasets)`, `@json($labels)`, `@json($chartOptions)`, `@json($colors)` and the `_ro()` CSS variable resolver and `gradientColor()` helper
+6. **Registration** in `config/control-ui-kit.php` as `'{name}-chart' => \ControlUIKit\Components\Charts\{Name}::class`
+
+**Blade template gradient pattern** (for per-bar gradient support):
+```javascript
+const stops = ds.gradientStops || null;
+const rawColor = ds.color || defaultColors[i % defaultColors.length];
+
+var backgroundColor, borderColor;
+if (stops) {
+    backgroundColor = Array.from({ length: ds.data.length }, function(_, barIndex) {
+        return gradientColor(barIndex / Math.max(1, ds.data.length - 1), stops);
+    });
+    borderColor = backgroundColor;
+} else {
+    backgroundColor = _ro(rawColor);
+    borderColor = _ro(rawColor);
+}
+```
+
 ### Read-only display fields (info/link pattern)
 
 For fields that display data without an actual input, pass `input="blank"` (plain text) or `input="link"` (anchor) and set `name=""`:
@@ -580,7 +929,46 @@ For fields that display data without an actual input, pass `input="blank"` (plai
 
 Tests use `ComponentTestCase` (extends Testbench) with the `assertComponentRenders($expected, $template)` helper.
 
-### Test structure
+### Modern chart test pattern
+
+Chart tests use `$this->blade($template)` for render assertions and `new ComponentClass(...)` for constructor assertions. No `assertComponentRenders` needed — just `assertStringContainsString`.
+
+```php
+class LineTest extends ComponentTestCase
+{
+    private array $datasets = [
+        ['label' => 'Streams', 'data' => [100, 200, 150]],
+    ];
+    private array $labels = ['Jan', 'Feb', 'Mar'];
+
+    #[Test]
+    public function line_chart_renders_canvas_with_correct_id(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="my_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('<canvas id="my_chart"', $rendered);
+        $this->assertStringContainsString('"label":"Streams"', $rendered);
+        $this->assertStringContainsString('window.my_chart = new Chart(', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_constructor_assigns_id(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertSame('my_chart', $component->id);
+    }
+}
+```
+
+### Field test structure
 
 ```php
 class MyFieldTest extends ComponentTestCase
@@ -661,8 +1049,8 @@ Config::set('themes.default.form-layout-responsive.wrapper', 'wrapper');
 ### Running tests
 
 ```bash
-./vendor/bin/phpunit tests/Components/Forms/Fields/MyFieldTest.php --no-coverage
-./vendor/bin/phpunit --no-coverage   # full suite
+./vendor/bin/phpunit tests/Components/Charts/LineTest.php --no-progress
+./vendor/bin/phpunit --no-progress   # full suite
 ```
 
 ### Important: HTML indentation in tests
