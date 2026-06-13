@@ -1706,7 +1706,6 @@ return [
 
     'table' => [
 
-        // TODO - test
         'active-filters-list-background' => '',
         'active-filters-list-border' => '',
         'active-filters-list-color' => '',
@@ -1717,7 +1716,6 @@ return [
         'active-filters-list-shadow' => '',
         'active-filters-list-width' => '',
 
-        // TODO - test
         'active-filters-wrapper-background' => '',
         'active-filters-wrapper-border' => '',
         'active-filters-wrapper-color' => '',
@@ -1728,7 +1726,6 @@ return [
         'active-filters-wrapper-shadow' => '',
         'active-filters-wrapper-width' => 'w-full',
 
-        // TODO - test
         'clear-filters-event' => '',
         'clear-filters-href' => '',
         'clear-filters-text' => 'Clear Filters',
@@ -1741,7 +1738,6 @@ return [
         'clear-filters-rounded' => '',
         'clear-filters-shadow' => '',
 
-        // TODO - test
         'search-icon-background' => '',
         'search-icon-border' => 'border-0 ',
         'search-icon-color' => 'text-muted',
@@ -1752,7 +1748,6 @@ return [
         'search-icon-rounded' => '',
         'search-icon-shadow' => '',
 
-        // TODO - test
         'search-input-background' => 'bg-table-filters',
         'search-input-border' => 'border-0 focus:outline-hidden focus:ring-0',
         'search-input-color' => 'text-input placeholder-input',
@@ -1763,7 +1758,6 @@ return [
         'search-input-shadow' => '',
         'search-input-width' => 'w-full',
 
-        // TODO - test
         'search-wrapper-background' => 'bg-table-filters',
         'search-wrapper-border' => 'border border-input focus-within:border-brand',
         'search-wrapper-color' => '',
@@ -1774,7 +1768,6 @@ return [
         'search-wrapper-shadow' => '',
         'search-wrapper-width' => '',
 
-        // TODO - test
         'search-enable' => false,
         'search-bar' => 'mb-2 sm:mb-4',
         'search-bar-spacing' => 'flex space-x-2 sm:space-x-2',

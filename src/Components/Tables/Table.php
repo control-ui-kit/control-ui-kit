@@ -187,8 +187,6 @@ class Table extends Component
     ) {
 
         /* ACTIVE FILTERS */
-        // TODO - combine all these
-
         $this->setConfigStyles([
             'active-filters-list-background' => $activeFiltersListBackground,
             'active-filters-list-border' => $activeFiltersListBorder,

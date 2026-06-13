@@ -15,15 +15,15 @@ class TableTest extends ComponentTestCase
     {
         parent::setUp();
 
-        Config::set('themes.default.table.active-filter-background', 'active-filter-background');
-        Config::set('themes.default.table.active-filter-border', 'active-filter-border');
-        Config::set('themes.default.table.active-filter-color', 'active-filter-color');
-        Config::set('themes.default.table.active-filter-font', 'active-filter-font');
-        Config::set('themes.default.table.active-filter-other', 'active-filter-other');
-        Config::set('themes.default.table.active-filter-padding', 'active-filter-padding');
-        Config::set('themes.default.table.active-filter-rounded', 'active-filter-rounded');
-        Config::set('themes.default.table.active-filter-shadow', 'active-filter-shadow');
-        Config::set('themes.default.table.active-filter-width', 'active-filter-width');
+        Config::set('themes.default.table.active-filters-list-background', 'active-filters-list-background');
+        Config::set('themes.default.table.active-filters-list-border', 'active-filters-list-border');
+        Config::set('themes.default.table.active-filters-list-color', 'active-filters-list-color');
+        Config::set('themes.default.table.active-filters-list-font', 'active-filters-list-font');
+        Config::set('themes.default.table.active-filters-list-other', 'active-filters-list-other');
+        Config::set('themes.default.table.active-filters-list-padding', 'active-filters-list-padding');
+        Config::set('themes.default.table.active-filters-list-rounded', 'active-filters-list-rounded');
+        Config::set('themes.default.table.active-filters-list-shadow', 'active-filters-list-shadow');
+        Config::set('themes.default.table.active-filters-list-width', 'active-filters-list-width');
 
         Config::set('themes.default.table.active-filters-wrapper-background', 'active-filters-wrapper-background');
         Config::set('themes.default.table.active-filters-wrapper-border', 'active-filters-wrapper-border');
@@ -74,8 +74,8 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table.search-icon-background', 'search-icon-background');
         Config::set('themes.default.table.search-icon-border', 'search-icon-border');
         Config::set('themes.default.table.search-icon-color', 'search-icon-color');
-        Config::set('themes.default.table.search-icon-icon', 'icon-search');
-        Config::set('themes.default.table.search-icon-icon-size', 'search-icon-size');
+        Config::set('themes.default.table.search-icon', '');
+        Config::set('themes.default.table.search-icon-size', 'search-icon-size');
         Config::set('themes.default.table.search-icon-other', 'search-icon-other');
         Config::set('themes.default.table.search-icon-padding', 'search-icon-padding');
         Config::set('themes.default.table.search-icon-rounded', 'search-icon-rounded');
@@ -104,6 +104,7 @@ class TableTest extends ComponentTestCase
         Config::set('themes.default.table.search-enable', false);
         Config::set('themes.default.table.search-bar', 'search-bar');
         Config::set('themes.default.table.search-bar-spacing', 'search-bar-spacing');
+        Config::set('themes.default.table.search-container', 'search-container');
         Config::set('themes.default.table.search-event', 'search-event');
         Config::set('themes.default.table.search-id', 'search-id');
         Config::set('themes.default.table.search-type', 'search-type');
@@ -716,5 +717,70 @@ class TableTest extends ComponentTestCase
 
         $this->assertCount(1, $active);
         $this->assertSame('01/06/2024 - 30/06/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function a_table_component_can_be_rendered_with_search_bar(): void
+    {
+        $template = <<<'HTML'
+            <x-table :show-search="true" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="{ orderby: '', sort: '', href: function(name) { return 'http://localhost?orderby=' + name + '&sort=' + (name == this.orderby ? (this.sort == 'asc' ? 'desc' : 'asc') : 'asc'); }, }"
+            >
+                <div>
+                    <div class="search-bar-spacing search-bar">
+                        <div class="search-container">
+                            <form method="GET" action="http://localhost" name="search-form-name" id="search-form-name">
+                                <div class="search-wrapper-background search-wrapper-border search-wrapper-color search-wrapper-font search-wrapper-other search-wrapper-padding search-wrapper-rounded search-wrapper-shadow search-wrapper-width">
+                                    <input name="search-name" type="search-type" id="search-id" value="" placeholder="search-placeholder" onchange="document.search.submit();" class="search-input-background search-input-border search-input-color search-input-font search-input-other search-input-padding search-input-rounded search-input-shadow search-input-width" autocomplete="off" autofocus />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrapper-background table-wrapper-border table-wrapper-color table-wrapper-font table-wrapper-other table-wrapper-padding table-wrapper-rounded table-wrapper-shadow">
+                    <table class="table-background table-border table-color table-font table-other table-padding table-rounded table-shadow">
+                        <tbody class="table-body-background table-body-border table-body-color table-body-font table-body-other table-body-padding table-body-rounded table-body-shadow"></tbody>
+                    </table>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function active_filter_list_classes_returns_correct_classes(): void
+    {
+        $table = new Table;
+
+        $this->assertSame(
+            'active-filters-list-background active-filters-list-border active-filters-list-color active-filters-list-font active-filters-list-other active-filters-list-padding active-filters-list-rounded active-filters-list-shadow',
+            $table->activeFilterListClasses()
+        );
+    }
+
+    #[Test]
+    public function active_filter_wrapper_classes_returns_correct_classes(): void
+    {
+        $table = new Table;
+
+        $this->assertSame(
+            'active-filters-wrapper-background active-filters-wrapper-border active-filters-wrapper-color active-filters-wrapper-font active-filters-wrapper-other active-filters-wrapper-padding active-filters-wrapper-rounded active-filters-wrapper-shadow',
+            $table->activeFilterWrapperClasses()
+        );
+    }
+
+    #[Test]
+    public function clear_filter_classes_returns_correct_classes(): void
+    {
+        $table = new Table;
+
+        $this->assertSame(
+            'clear-filters-background clear-filters-border clear-filters-color clear-filters-font clear-filters-other clear-filters-padding clear-filters-rounded clear-filters-shadow',
+            $table->clearFilterClasses()
+        );
     }
 }
