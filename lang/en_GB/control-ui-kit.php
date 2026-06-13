@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'change-chart' => [
+        'no-change' => 'No Change',
+    ],
     'date-picker' => [
         'today' => 'Today',
         'close' => 'Close',

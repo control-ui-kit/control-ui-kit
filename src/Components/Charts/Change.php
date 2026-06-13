@@ -21,12 +21,13 @@ class Change extends Component
     public ?string $link;
     public ?string $linkText;
     public ?string $icon;
-    public ?string $iconSize;
     public ?string $image;
-    public ?string $imageSize;
+    public ?string $imageAlt;
+    public ?string $imageStyle;
     public ?string $increase;
     public ?string $decrease;
     public ?string $displayPercent;
+    public ?string $hideDifferenceIcon;
 
     public ?string $increaseIcon;
     public ?string $decreaseIcon;
@@ -53,10 +54,11 @@ class Change extends Component
         ?string $link = null,
         ?string $linkText = null,
         ?string $icon = null,
-        ?string $iconSize = null,
         ?string $image = null,
-        ?string $imageSize = null,
+        ?string $imageStyle = null,
+        ?string $imageAlt = null,
         ?string $percentDifference = null,
+        ?string $hideDifferenceIcon = null,
 
         ?string $increaseIcon = null,
         ?string $decreaseIcon = null,
@@ -178,11 +180,12 @@ class Change extends Component
         $this->link = $link;
         $this->linkText = $linkText;
         $this->icon = $icon;
-        $this->iconSize = $iconSize;
         $this->image = $image;
-        $this->imageSize = $imageSize;
+        $this->imageStyle = $imageStyle;
+        $this->imageAlt = $imageAlt ?? '';
 
         $this->displayPercent = $this->style($this->component, 'percent-difference', $percentDifference);
+        $this->hideDifferenceIcon = $this->style($this->component, 'hide-difference-icon', $hideDifferenceIcon);
 
         $this->increase = (string) $this->increase();
         $this->decrease = (string) $this->decrease();
@@ -388,19 +391,13 @@ class Change extends Component
 
     public function wrapperClasses(): string
     {
-        if ($this->link && $this->linkText) {
-            $this->wrapperStyles['wrapper-other'] .= ' pb-12';
-        }
+        $styles = $this->wrapperStyles;
 
-        return $this->classList($this->wrapperStyles);
+        return $this->classList($styles);
     }
 
     public function titleClasses(): string
     {
-        if ($this->icon || $this->image) {
-            $this->titleStyles['title-other'] .= ' ml-16';
-        }
-
         return $this->classList($this->titleStyles);
     }
 
@@ -426,11 +423,12 @@ class Change extends Component
 
     public function containerClasses(): string
     {
-        if ($this->icon || $this->image) {
-            $this->containerStyles['container-other'] .= ' ml-16';
+        $styles = $this->containerStyles;
+        if ($this->image) {
+            $styles['container-other'] = trim(($styles['container-other'] ?? '') . ' flex-1');
         }
 
-        return $this->classList($this->containerStyles);
+        return $this->classList($styles);
     }
 
     public function increaseClasses(): string
