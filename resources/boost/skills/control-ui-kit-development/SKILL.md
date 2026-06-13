@@ -570,9 +570,10 @@ Key props: `id`, `:data`, `color` (CSS variable), `label`, `x-margin`, `y-margin
 
 ### Change / KPI chart (`x-change-chart`)
 
-Displays a metric tile with current value, comparison to previous value, and an up/down indicator.
+Displays a metric tile with current value, comparison to previous value, and an up/down indicator. The wrapper uses `flex flex-col` by default so the `link` is pinned to the bottom of the card — useful when cards of different heights appear in a grid row.
 
 ```blade
+{{-- Basic usage --}}
 <x-change-chart
     title="Monthly Streams"
     :current="125400"
@@ -582,9 +583,44 @@ Displays a metric tile with current value, comparison to previous value, and an 
     link-text="View report"
     icon="icon-music-note"
 />
+
+{{-- With image instead of icon --}}
+<x-change-chart
+    title="Top Artist"
+    :current="980"
+    :previous="850"
+    image="/images/artist.jpg"
+    image-alt="Artist photo"
+    link="/reports/artist"
+    link-text="View"
+/>
+
+{{-- Show absolute difference instead of percentage --}}
+<x-change-chart
+    title="New Signups"
+    :current="340"
+    :previous="290"
+    percent-difference="false"
+    hide-difference-icon="true"
+/>
 ```
 
-Key props: `title`, `current` (float), `previous` (float), `decimals`, `link`, `link-text`, `icon`, `icon-size`, `image`, `image-size`, `display-percent` (show % or absolute diff).
+| Prop | Type | Description |
+|---|---|---|
+| `title` | string | Card heading (required) |
+| `current` | float | Current value |
+| `previous` | float | Previous value for comparison |
+| `decimals` | int | Decimal places for the difference display |
+| `link` | string | URL for the bottom link |
+| `link-text` | string | Text for the bottom link |
+| `icon` | string | Icon component name (e.g. `icon-music-note`) |
+| `image` | string | Image URL (replaces icon; fills left third of card) |
+| `image-alt` | string | Alt text for the image |
+| `image-style` | string | Custom CSS class string that overrides all image style props |
+| `percent-difference` | `'true'`\|`'false'` | Show percentage diff (default: `'true'`); set `'false'` for absolute |
+| `hide-difference-icon` | `'true'`\|`'false'` | Hide the up/down trend icon next to the diff value |
+| `increase-icon` | string | Icon for positive change (overrides theme default) |
+| `decrease-icon` | string | Icon for negative change (overrides theme default) |
 
 ### Common chart props (axis & legend fine-tuning)
 

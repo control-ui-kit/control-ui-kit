@@ -160,17 +160,6 @@ class ControlUIKitServiceProviderTest extends TestCase
     }
 
     // ---------------------------------------------------------------------------
-    // Middleware registration (registerMiddleware())
-    // ---------------------------------------------------------------------------
-
-    #[Test]
-    public function it_registers_theme_middleware_in_web_group(): void
-    {
-        $middleware = $this->app['router']->getMiddlewareGroups()['web'] ?? [];
-        $this->assertContains(ControlUIKitThemeMiddleware::class, $middleware);
-    }
-
-    // ---------------------------------------------------------------------------
     // Component registration via callAfterResolving
     // ---------------------------------------------------------------------------
 

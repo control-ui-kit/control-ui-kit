@@ -25,7 +25,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         $this->registerComponents();
         $this->registerBladeDirectives();
-        $this->registerMiddleware();
         $this->registerPublishes();
         $this->registerRoutes();
         $this->registerTranslations();
@@ -105,12 +104,6 @@ class ControlUIKitServiceProvider extends ServiceProvider
     public static function packageVersion(): string
     {
         return \Composer\InstalledVersions::getVersion('control-ui-kit/control-ui-kit') ?? 'dev';
-    }
-
-    protected function registerMiddleware(): void
-    {
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', ControlUIKitThemeMiddleware::class);
     }
 
     private function registerPublishes(): void
