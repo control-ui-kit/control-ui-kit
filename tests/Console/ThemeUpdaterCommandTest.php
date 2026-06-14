@@ -352,6 +352,52 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
     }
 
     // ---------------------------------------------------------------------------
+    // Extra variables alongside missing variables (showReport extras branch)
+    // ---------------------------------------------------------------------------
+
+    #[Test]
+    public function it_shows_extra_variables_in_report_when_file_also_has_missing_variables(): void
+    {
+        $path = $this->writeThemeCss('test');
+
+        // Remove a variable so missingCount > 0 (triggers showReport instead of early return)
+        $this->removeLineContaining($path, '--chart-900:');
+
+        // Add a custom variable not in the stub
+        $content = str_replace(':root {', ":root {\n    --my-custom-extra: 100 200 300;", file_get_contents($path));
+        file_put_contents($path, $content);
+
+        $this->artisan('uikit:theme-updater', ['--css-path' => $this->tempDir])
+            ->expectsConfirmation('Apply changes to this file?', 'no')
+            ->expectsOutputToContain('Extra variables not in stub')
+            ->expectsOutputToContain('--my-custom-extra')
+            ->assertExitCode(0);
+    }
+
+    // ---------------------------------------------------------------------------
+    // filterOrphanedComments — comment preceding a missing variable
+    // ---------------------------------------------------------------------------
+
+    #[Test]
+    public function it_inserts_section_comment_header_alongside_its_missing_variable(): void
+    {
+        $path = $this->writeThemeCss('test');
+
+        // Remove a section comment line AND the first variable beneath it so that
+        // filterOrphanedComments receives [comment_entry, variable_entry] and must
+        // retain both (the comment is not orphaned).
+        $this->removeLineContaining($path, '/* Login Screens */');
+        $this->removeLineContaining($path, '--login-bg');
+
+        $this->artisan('uikit:theme-updater', ['--css-path' => $this->tempDir])
+            ->expectsConfirmation('Apply changes to this file?', 'yes')
+            ->assertExitCode(0);
+
+        $content = file_get_contents($path);
+        $this->assertStringContainsString('--login-bg', $content);
+    }
+
+    // ---------------------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------------------
 

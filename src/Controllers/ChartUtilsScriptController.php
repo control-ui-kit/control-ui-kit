@@ -7,23 +7,25 @@ use Illuminate\Routing\Controller;
 
 class ChartUtilsScriptController extends Controller
 {
-    public function __invoke(): string
+    public function __invoke(): \Illuminate\Http\Response
     {
         $this->disablePackageConflicts();
 
         $etag = '"' . ControlUIKitServiceProvider::packageVersion() . '"';
 
-        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
-            http_response_code(304);
-            exit;
+        if (request()->header('If-None-Match') === $etag) {
+            return response('', 304);
         }
 
-        header('Content-Type: text/javascript; charset=UTF-8');
-        header('Cache-Control: public, max-age=31536000, immutable');
-        header('ETag: ' . $etag);
-
-        echo file_get_contents(__DIR__ . '/../../dist/chart-utils.min.js');
-        exit;
+        return response(
+            file_get_contents(__DIR__ . '/../../dist/chart-utils.min.js'),
+            200,
+            [
+                'Content-Type' => 'text/javascript; charset=UTF-8',
+                'Cache-Control' => 'public, max-age=31536000, immutable',
+                'ETag' => $etag,
+            ]
+        );
     }
 
     private function disablePackageConflicts(): void

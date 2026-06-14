@@ -39,4 +39,10 @@ class DateTimeFormatterTest extends TestCase
 
         self::assertSame($expected, app(DateTimeFormatter::class)->format($value, $options));
     }
+
+    #[Test]
+    public function date_formatter_returns_dash_for_empty_string(): void
+    {
+        self::assertSame('-', app(DateTimeFormatter::class)->format('', null));
+    }
 }

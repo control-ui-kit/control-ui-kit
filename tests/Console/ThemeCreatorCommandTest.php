@@ -371,4 +371,17 @@ class ThemeCreatorCommandTest extends ConsoleTestCase
             $this->assertFileExists($this->tempDir . "/test_{$palette}.css");
         }
     }
+
+    #[Test]
+    public function it_uses_default_resources_css_path_when_option_not_provided(): void
+    {
+        $this->artisan('uikit:create-new-theme', [
+            '--color' => '#FF0000',
+            '--grey' => 'gray',
+            '--name' => 'test',
+        ])
+            ->expectsConfirmation('Proceed?', 'no')
+            ->expectsOutputToContain('resources/css')
+            ->assertExitCode(0);
+    }
 }

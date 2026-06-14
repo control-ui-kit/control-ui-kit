@@ -1501,11 +1501,22 @@ return [
         'shadow' => '',
     ],
 
-    'map-region' => [
+    'world-map-chart' => [
+        'min-color' => '--chart-map-min',
+        'mid-color' => '',
+        'max-color' => '--chart-map-max',
+        'no-data-color' => '--chart-map-no-data',
+        'border-color' => '--chart-map-outline',
+        'border-width' => '0.5',
+        'background-color' => 'transparent',
+        'tooltip-background' => '--chart-tooltip-bg',
+        'tooltip-color' => '--chart-tooltip-text',
+        'tooltip-border' => '--chart-tooltip-border',
+        'tooltip-font' => 'text-xs',
+        'tooltip-padding' => 'px-2 py-1',
+        'tooltip-rounded' => 'rounded',
         'width' => 'w-full',
-        'height' => 'h-full',
-        'other' => '',
-        'name' => 'Count',
+        'height' => 'h-auto',
     ],
 
     'matrix' => [

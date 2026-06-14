@@ -120,11 +120,7 @@ return [
         'layout-header' => \ControlUIKit\Components\Layouts\Header::class,
         'layout-toolbar' => \ControlUIKit\Components\Layouts\Toolbar::class,
 
-        'map-world' => \ControlUIKit\Components\Maps\World::class,
-        'map-region' => \ControlUIKit\Components\Maps\Region::class,
-
-        'map.world' => \ControlUIKit\Components\Maps\World::class,
-        'map.region' => \ControlUIKit\Components\Maps\Region::class,
+        'world-map-chart' => \ControlUIKit\Components\Charts\WorldMap::class,
 
         'markdown' => \ControlUIKit\Components\Markdown\Markdown::class,
         'toc' => \ControlUIKit\Components\Markdown\ToC::class,

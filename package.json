@@ -5,6 +5,9 @@
         "build": "node build.mjs"
     },
     "devDependencies": {
-        "vite": "^6.0"
+        "d3-geo": "^3.1",
+        "topojson-client": "^3.1",
+        "vite": "^6.0",
+        "world-atlas": "^2.0.2"
     }
 }

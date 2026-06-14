@@ -8,12 +8,10 @@ use ControlUIKit\Console\ThemeUpdaterCommand;
 use ControlUIKit\Controllers\AjaxClassController;
 use ControlUIKit\Controllers\AjaxModelController;
 use ControlUIKit\Controllers\ChartUtilsScriptController;
-use ControlUIKit\Controllers\ControlUIKitMapController;
-use ControlUIKit\Controllers\ControlUIKitMapDataController;
-use ControlUIKit\Controllers\ControlUIKitMapWorldDataController;
+use ControlUIKit\Controllers\ControlUIKitMapTopologyController;
 use ControlUIKit\Controllers\ControlUIKitScriptController;
 use ControlUIKit\Controllers\FlatPickrYearPluginController;
-use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
+use ControlUIKit\Controllers\MapUtilsScriptController;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -75,6 +73,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 $controlUiKitVersion = \ControlUIKit\ControlUIKitServiceProvider::packageVersion();
                 $controlUiScriptUrl = url('control-ui-kit/javascript/control-ui-kit.js?v=' . $controlUiKitVersion);
                 $chartUtilsScriptUrl = url('control-ui-kit/javascript/chart-utils.js?v=' . $controlUiKitVersion);
+                $mapUtilsScriptUrl = url('control-ui-kit/javascript/map-utils.js?v=' . $controlUiKitVersion);
                 $flatpickrPluginUrl = url('control-ui-kit/javascript/flatpickr.year-plugin.js?v=' . $controlUiKitVersion);
                 $locale = config('app.locale');
 
@@ -86,6 +85,7 @@ class ControlUIKitServiceProvider extends ServiceProvider
                 echo <<<scripts
                 <script src="$controlUiScriptUrl"></script>
                 <script src="$chartUtilsScriptUrl"></script>
+                <script src="$mapUtilsScriptUrl"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
@@ -136,10 +136,10 @@ class ControlUIKitServiceProvider extends ServiceProvider
     {
         Route::get('control-ui-kit/javascript/control-ui-kit.js', ControlUIKitScriptController::class);
         Route::get('control-ui-kit/javascript/chart-utils.js', ChartUtilsScriptController::class);
+        Route::get('control-ui-kit/javascript/map-utils.js', MapUtilsScriptController::class);
         Route::get('control-ui-kit/javascript/flatpickr.year-plugin.js', FlatPickrYearPluginController::class);
-        Route::get('control-ui-kit/map-data/countries.json', ControlUIKitMapDataController::class);
-        Route::get('control-ui-kit/map-data/world.json', ControlUIKitMapWorldDataController::class);
-        Route::get('control-ui-kit/map-data/{iso}.json', ControlUIKitMapController::class);
+        Route::get('control-ui-kit/map-data/world-110m.json', [ControlUIKitMapTopologyController::class, 'world']);
+        Route::get('control-ui-kit/map-data/world-country-names.json', [ControlUIKitMapTopologyController::class, 'countryNames']);
         Route::get('control-ui-kit/ajax-model', AjaxModelController::class)
             ->name('control-ui-kit.ajax-model')
             ->middleware(config('control-ui-kit.middleware_group', ''));
