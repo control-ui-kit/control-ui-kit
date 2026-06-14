@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use ControlUIKit\ControlUIKitServiceProvider;
-use ControlUIKit\Middleware\ControlUIKitThemeMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase;
@@ -136,7 +135,7 @@ class ControlUIKitServiceProviderTest extends TestCase
     public function it_registers_map_data_route(): void
     {
         $routes = collect(Route::getRoutes())->map(fn ($r) => $r->uri());
-        $this->assertTrue($routes->contains('control-ui-kit/map-data/countries.json'));
+        $this->assertTrue($routes->contains('control-ui-kit/map-data/world-110m.json'));
     }
 
     // ---------------------------------------------------------------------------

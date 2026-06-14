@@ -179,6 +179,7 @@
     /* Panels / Forms / Modals */
 
     .bg-panel { background-color: rgb(var(--panel-bg)); }
+    .bg-panel-muted { background-color: rgb(var(--panel-muted-bg)); }
     .bg-panel-header { background-color: rgb(var(--panel-header-bg)); }
     .bg-panel-footer { background-color: rgb(var(--panel-footer-bg)); }
 

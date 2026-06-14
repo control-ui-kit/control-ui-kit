@@ -31,4 +31,18 @@ class ComponentStylesTest extends TestCase
 
         self::assertSame($expected, (new ComponentStyles)->get('panel'));
     }
+
+    #[Test]
+    public function panel_stacked_returns_style_string_without_size_keys(): void
+    {
+        $expected = 'background border color font other padding rounded shadow stacked';
+
+        self::assertSame($expected, (new ComponentStyles)->get('panel-stacked'));
+    }
+
+    #[Test]
+    public function unknown_component_returns_empty_string(): void
+    {
+        self::assertSame('', (new ComponentStyles)->get('unknown-component'));
+    }
 }

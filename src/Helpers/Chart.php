@@ -145,14 +145,6 @@ class Chart
     }
 
     /**
-     * @return mixed
-     */
-    private function get($key)
-    {
-        return Arr::get($this->charts[$this->name], $key);
-    }
-
-    /**
      * @return $this|Chart
      */
     private function set($key, $value)

@@ -23,4 +23,5 @@ const buildLib = (name, entry) => build({
 
 await buildLib('control-ui-kit', 'resources/js/control-ui-kit.js')
 await buildLib('chart-utils', 'resources/js/chart-utils.js')
+await buildLib('map-utils', 'resources/js/map-utils.js')
 await buildLib('flatpickr.year-plugin', 'resources/js/flatpickr.year-select-plugin.js')

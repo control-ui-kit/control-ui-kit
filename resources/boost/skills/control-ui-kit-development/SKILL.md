@@ -664,22 +664,61 @@ The default color palette is defined in `config/themes/default.php` under `chart
 
 ## Maps
 
-### World map (`x-map-world`)
+### World map choropleth (`x-world-map-chart`)
 
-Renders an interactive SVG world map. Pass an ISO 3166-1 alpha-2 country code:
+Renders an SVG choropleth (heat map) of the world. Countries are coloured by value intensity using CSS variable colour interpolation — fully integrated with the theming system.
+
+**Library stack:** D3-geo (ISC) + TopoJSON client (ISC) + Natural Earth 110m data (public domain). No Highcharts dependency.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | string | required | SVG element ID |
+| `data` | array | `[]` | ISO-A2 → numeric value map, e.g. `['GB' => 1200, 'US' => 5000]` |
+| `projection` | string | `'natural-earth'` | `natural-earth` \| `mercator` \| `equal-earth` |
+| `show-tooltip` | string | `'true'` | Show country name + value on hover |
+| `number-format` | string | `''` | Max decimal places for tooltip value |
+
+**Style props** (all override the `world-map-chart` theme section):
+
+| Prop | Default CSS var | Description |
+|---|---|---|
+| `min-color` | `--chart-100` | Country fill at minimum/zero value |
+| `max-color` | `--chart-500` | Country fill at maximum value |
+| `no-data-color` | `--color-border` | Fill for countries absent from data |
+| `border-color` | `--color-panel` | Country border stroke colour |
+| `border-width` | `0.5` | Stroke width in SVG user units |
+| `background-color` | `--color-panel` | SVG background (ocean) colour |
+| `tooltip-background` | `--color-panel` | Tooltip background CSS var |
+| `tooltip-color` | `--color-panel-text` | Tooltip text CSS var |
+| `tooltip-font` | `text-xs` | Tailwind font classes for tooltip |
+| `tooltip-padding` | `px-2 py-1` | Tailwind padding classes for tooltip |
+| `tooltip-rounded` | `rounded` | Tailwind border-radius for tooltip |
+| `width` | `w-full` | Tailwind width of wrapper div |
+| `height` | `h-auto` | Tailwind height of wrapper div |
+
+**Basic usage:**
 
 ```blade
-<x-map-world iso="GB" />
-<x-map-world iso="US" />
+<x-world-map-chart
+    id="sales_map"
+    :data="['GB' => 12400, 'US' => 98000, 'DE' => 8300, 'FR' => 7100, 'AU' => 5400]"
+/>
 ```
 
-### Region map (`x-map-region`)
-
-Renders a regional/country subdivision map:
+**Custom colours and projection:**
 
 ```blade
-<x-map-region iso="GB" />
+<x-world-map-chart
+    id="plays_map"
+    :data="$countryPlays"
+    projection="mercator"
+    min-color="--chart-100"
+    max-color="--chart-700"
+    no-data-color="--color-muted"
+/>
 ```
+
+**Data format:** ISO 3166-1 alpha-2 country codes as keys, numeric values as values. Countries not present in the array are shown in `no-data-color`. The maximum value in the data set maps to `max-color`; zero/minimum maps to `min-color`.
 
 ---
 

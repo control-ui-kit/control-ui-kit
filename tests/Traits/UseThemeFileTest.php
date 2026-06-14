@@ -82,4 +82,14 @@ class UseThemeFileTest extends TestCase
         $this->expectExceptionMessage("Merge config key not found [{$error_key}] in [{$theme}]");
         $this->style('title', 'background', null, 'merge-key');
     }
+
+    #[Test]
+    public function theme_registers_default_singleton_when_not_bound(): void
+    {
+        unset($this->app['control-ui-kit.theme']);
+
+        $result = $this->theme();
+
+        $this->assertSame(self::THEME, $result);
+    }
 }

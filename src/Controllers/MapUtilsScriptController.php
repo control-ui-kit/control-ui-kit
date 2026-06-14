@@ -5,7 +5,7 @@ namespace ControlUIKit\Controllers;
 use ControlUIKit\ControlUIKitServiceProvider;
 use Illuminate\Routing\Controller;
 
-class ControlUIKitScriptController extends Controller
+class MapUtilsScriptController extends Controller
 {
     public function __invoke(): \Illuminate\Http\Response
     {
@@ -18,7 +18,7 @@ class ControlUIKitScriptController extends Controller
         }
 
         return response(
-            file_get_contents(__DIR__ . '/../../dist/control-ui-kit.min.js'),
+            file_get_contents(__DIR__ . '/../../dist/map-utils.min.js'),
             200,
             [
                 'Content-Type' => 'text/javascript; charset=UTF-8',
