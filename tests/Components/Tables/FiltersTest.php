@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Tables;
 
+use ControlUIKit\Components\Tables\Filters;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -333,5 +334,40 @@ class FiltersTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template, ['filters' => $filters]);
+    }
+
+    #[Test]
+    public function filters_processes_date_range_without_selected_key(): void
+    {
+        $filters = [
+            'period' => [
+                'label' => 'Period',
+                'type' => 'date-range',
+                'from' => '2024-01-01',
+                'to' => '2024-01-31',
+            ],
+        ];
+
+        $component = new Filters(filters: $filters);
+
+        $this->assertSame('2024-01-01#2024-01-31', $component->filters['period']['selected']);
+    }
+
+    #[Test]
+    public function filters_processes_date_range_with_null_selected(): void
+    {
+        $filters = [
+            'period' => [
+                'label' => 'Period',
+                'type' => 'date-range',
+                'selected' => null,
+                'from' => '2024-06-01',
+                'to' => '2024-06-30',
+            ],
+        ];
+
+        $component = new Filters(filters: $filters);
+
+        $this->assertSame('2024-06-01#2024-06-30', $component->filters['period']['selected']);
     }
 }

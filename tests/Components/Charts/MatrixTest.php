@@ -1363,4 +1363,16 @@ class MatrixTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function a_matrix_chart_component_can_be_rendered_without_data(): void
+    {
+        $template = <<<'HTML'
+            <x-matrix-chart id="matrix" />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('<canvas id="matrix">', $rendered);
+    }
 }

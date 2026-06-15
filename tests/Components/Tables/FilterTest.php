@@ -1540,6 +1540,25 @@ class FilterTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function filter_select_classes_excludes_text_other(): void
+    {
+        $filter = new \ControlUIKit\Components\Tables\Filter([
+            'id' => 'status',
+            'name' => 'status',
+            'label' => 'Status',
+            'type' => 'select',
+            'selected' => '',
+            'unset' => '',
+            'options' => ['active' => 'Active'],
+        ]);
+
+        $classes = $filter->filterSelectClasses();
+
+        $this->assertStringContainsString('select-other', $classes);
+        $this->assertStringNotContainsString('text-other', $classes);
+    }
 }
 
 class TestFilterAutoComplete extends \ControlUIKit\AutoComplete

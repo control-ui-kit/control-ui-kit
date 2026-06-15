@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
+use ControlUIKit\Components\Charts\Pie;
 use PHPUnit\Framework\Attributes\Test;
+use ReflectionMethod;
 use Tests\Components\ComponentTestCase;
 
 class PieTest extends ComponentTestCase
@@ -2298,5 +2300,98 @@ class PieTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_pie_chart_renders_with_fixed_size_when_not_responsive(): void
+    {
+        $template = <<<'HTML'
+            <x-pie-chart
+                id="pie_chart"
+                responsive="false"
+                :data="['Male' => 40, 'Female' => 60]" />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('id="pie_chart"', $rendered);
+    }
+
+    #[Test]
+    public function a_pie_chart_can_be_created_from_values_and_labels_arrays(): void
+    {
+        $component = new Pie(
+            id: 'pie_chart',
+            values: [40, 60],
+            labels: ['Male', 'Female'],
+        );
+
+        $this->assertSame(['Male' => 40, 'Female' => 60], $component->data);
+    }
+
+    #[Test]
+    public function a_pie_chart_accepts_custom_colors_array(): void
+    {
+        $colors = ['#ff0000', '#00ff00', '#0000ff'];
+
+        $component = new Pie(
+            id: 'pie_chart',
+            data: ['A' => 1, 'B' => 2, 'C' => 3],
+            colors: $colors,
+        );
+
+        $this->assertSame($colors, $component->colors);
+    }
+
+    #[Test]
+    public function pie_chart_color_luminance_handles_six_char_hex(): void
+    {
+        $component = new Pie(id: 'pie_chart', data: ['A' => 1]);
+
+        $method = new ReflectionMethod(Pie::class, 'colorLuminance');
+        $method->setAccessible(true);
+
+        $result = $method->invoke($component, '#ff0000', 0.2);
+
+        $this->assertStringStartsWith('#', $result);
+        $this->assertSame(7, strlen($result));
+    }
+
+    #[Test]
+    public function pie_chart_color_luminance_handles_short_hex(): void
+    {
+        $component = new Pie(id: 'pie_chart', data: ['A' => 1]);
+
+        $method = new ReflectionMethod(Pie::class, 'colorLuminance');
+        $method->setAccessible(true);
+
+        $result = $method->invoke($component, '#f00', 0.2);
+
+        $this->assertStringStartsWith('#', $result);
+        $this->assertSame(7, strlen($result));
+    }
+
+    #[Test]
+    public function pie_chart_resolve_data_returns_empty_array_when_no_data_provided(): void
+    {
+        $component = new Pie(id: 'pie_chart');
+
+        $this->assertSame([], $component->data);
+    }
+
+    #[Test]
+    public function pie_chart_invalid_legend_position_falls_back_to_left(): void
+    {
+        $component = new Pie(id: 'pie_chart', data: ['A' => 1], legendPosition: 'invalid');
+
+        $this->assertSame('left', $component->legendPosition);
+    }
+
+    #[Test]
+    public function pie_chart_invalid_legend_align_falls_back_to_center(): void
+    {
+        $component = new Pie(id: 'pie_chart', data: ['A' => 1], legendAlign: 'invalid');
+
+        $this->assertSame('center', $component->legendAlign);
     }
 }

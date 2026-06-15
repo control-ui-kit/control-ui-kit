@@ -92,4 +92,20 @@ class UseThemeFileTest extends TestCase
 
         $this->assertSame(self::THEME, $result);
     }
+
+    #[Test]
+    public function classList_filters_to_only_specified_keys(): void
+    {
+        $classes = [
+            'background' => 'bg-white',
+            'color' => 'text-black',
+            'border' => 'border-gray-200',
+        ];
+
+        $result = $this->classList($classes, '', ['background', 'color']);
+
+        $this->assertStringContainsString('bg-white', $result);
+        $this->assertStringContainsString('text-black', $result);
+        $this->assertStringNotContainsString('border-gray-200', $result);
+    }
 }

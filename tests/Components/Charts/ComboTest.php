@@ -573,4 +573,20 @@ class ComboTest extends ComponentTestCase
 
         $this->assertStringContainsString('"dashed":[5,5]', $rendered);
     }
+
+    #[Test]
+    public function combo_chart_invalid_legend_position_falls_back_to_left(): void
+    {
+        $component = new Combo(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, legendPosition: 'invalid');
+
+        $this->assertSame('left', $component->legendPosition);
+    }
+
+    #[Test]
+    public function combo_chart_invalid_legend_align_falls_back_to_center(): void
+    {
+        $component = new Combo(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, legendAlign: 'invalid');
+
+        $this->assertSame('center', $component->legendAlign);
+    }
 }

@@ -54,4 +54,15 @@ class ChartTest extends TestCase
 
         $this->assertInstanceOf(Chart::class, $result);
     }
+
+    #[Test]
+    public function type_throws_exception_for_invalid_chart_type(): void
+    {
+        $chart = $this->makeChart();
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid Chart type.');
+
+        $chart->type('invalid');
+    }
 }

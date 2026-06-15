@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Components\Charts;
 
+use ControlUIKit\Components\Charts\Change;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -728,5 +729,32 @@ class ChangeTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function change_chart_icon_container_classes_are_returned(): void
+    {
+        $component = new Change(title: 'Test', current: 100, icon: 'icon-arrow-up');
+
+        $this->assertIsString($component->iconContainerClasses());
+        $this->assertStringContainsString('icon-container-background', $component->iconContainerClasses());
+    }
+
+    #[Test]
+    public function change_chart_icon_classes_are_returned(): void
+    {
+        $component = new Change(title: 'Test', current: 100, icon: 'icon-arrow-up');
+
+        $this->assertIsString($component->iconClasses());
+        $this->assertStringContainsString('icon-background', $component->iconClasses());
+    }
+
+    #[Test]
+    public function change_chart_difference_icon_classes_are_returned(): void
+    {
+        $component = new Change(title: 'Test', current: 100, previous: 50, increaseIcon: 'icon-arrow-up');
+
+        $this->assertIsString($component->differenceIconClasses());
+        $this->assertStringContainsString('difference-icon-background', $component->differenceIconClasses());
     }
 }
