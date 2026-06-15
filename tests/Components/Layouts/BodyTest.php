@@ -132,4 +132,22 @@ class BodyTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function a_layout_body_component_with_mode_none_defaults_to_light(): void
+    {
+        $template = <<<'HTML'
+            <x-layout-body mode="none">
+                Document html
+            </x-layout-body>
+            HTML;
+
+        $expected = <<<'HTML'
+            <body class="background border color font other padding rounded shadow" data-mode="light">
+            Document html
+            </body>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

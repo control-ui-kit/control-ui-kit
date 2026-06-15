@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Tests\Console;
 
 use ControlUIKit\BrandColorPalette;
+use ControlUIKit\Console\ThemeUpdaterCommand;
 use ControlUIKit\GreyColors;
 use PHPUnit\Framework\Attributes\Test;
+use ReflectionMethod;
 
 class ThemeUpdaterCommandTest extends ConsoleTestCase
 {
@@ -395,6 +397,23 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
 
         $content = file_get_contents($path);
         $this->assertStringContainsString('--login-bg', $content);
+    }
+
+    // ---------------------------------------------------------------------------
+    // trimEdgeBlanks — leading blank removal (private method)
+    // ---------------------------------------------------------------------------
+
+    #[Test]
+    public function trim_edge_blanks_removes_leading_and_trailing_blank_lines(): void
+    {
+        $command = new ThemeUpdaterCommand();
+
+        $method = new ReflectionMethod(ThemeUpdaterCommand::class, 'trimEdgeBlanks');
+        $method->setAccessible(true);
+
+        $result = $method->invoke($command, ['', '  ', '--foo: bar;', '--baz: qux;', '']);
+
+        $this->assertSame(['--foo: bar;', '--baz: qux;'], $result);
     }
 
     // ---------------------------------------------------------------------------

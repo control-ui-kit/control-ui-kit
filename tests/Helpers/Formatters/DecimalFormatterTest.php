@@ -6,6 +6,8 @@ use ControlUIKit\Exceptions\DecimalFormatterException;
 use ControlUIKit\Helpers\Formatters\DecimalFormatter;
 use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use ReflectionMethod;
+use ReflectionProperty;
 
 class DecimalFormatterTest extends TestCase
 {
@@ -330,5 +332,26 @@ class DecimalFormatterTest extends TestCase
         $expected = '0.00';
 
         self::assertSame($expected, app(DecimalFormatter::class)->format($value, $options));
+    }
+
+    #[Test]
+    public function decimal_formatter_parse_falls_back_to_raw_data_for_unrecognised_rounding(): void
+    {
+        $formatter = new DecimalFormatter();
+
+        $rounding = new ReflectionProperty(DecimalFormatter::class, 'rounding');
+        $rounding->setAccessible(true);
+        $rounding->setValue($formatter, 'custom-rounding');
+
+        $decimals = new ReflectionProperty(DecimalFormatter::class, 'decimals');
+        $decimals->setAccessible(true);
+        $decimals->setValue($formatter, 2);
+
+        $parse = new ReflectionMethod(DecimalFormatter::class, 'parse');
+        $parse->setAccessible(true);
+
+        $result = $parse->invoke($formatter, '2.1234');
+
+        $this->assertSame('2.1234', $result);
     }
 }

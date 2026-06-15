@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Components\Tables;
 
 use ControlUIKit\Components\Tables\Table;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -782,5 +783,349 @@ class TableTest extends ComponentTestCase
             'clear-filters-background clear-filters-border clear-filters-color clear-filters-font clear-filters-other clear-filters-padding clear-filters-rounded clear-filters-shadow',
             $table->clearFilterClasses()
         );
+    }
+
+    #[Test]
+    public function table_table_filters_classes_excludes_container_and_empty(): void
+    {
+        $table = new Table();
+
+        $classes = $table->tableFiltersClasses();
+
+        $this->assertStringContainsString('table-filters-background', $classes);
+        $this->assertStringNotContainsString('table-filters-container', $classes);
+        $this->assertStringNotContainsString('table-filters-empty', $classes);
+    }
+
+    #[Test]
+    public function table_table_filters_container_returns_container_value(): void
+    {
+        $table = new Table();
+
+        $this->assertSame('table-filters-container', $table->tableFiltersContainer());
+    }
+
+    #[Test]
+    public function table_table_filters_empty_returns_empty_value(): void
+    {
+        $table = new Table();
+
+        $this->assertNotEmpty($table->tableFiltersEmpty());
+    }
+
+    #[Test]
+    public function table_table_wrapper_with_filters_returns_value(): void
+    {
+        $table = new Table();
+
+        $this->assertSame('table-wrapper-with-filters', $table->tableWrapperWithFilters());
+    }
+
+    #[Test]
+    public function table_table_wrapper_without_filters_returns_value(): void
+    {
+        $table = new Table();
+
+        $this->assertSame('table-wrapper-without-filters', $table->tableWrapperWithoutFilters());
+    }
+
+    #[Test]
+    public function table_search_icon_classes_excludes_icon_and_size_keys(): void
+    {
+        $table = new Table();
+
+        $classes = $table->searchIconClasses();
+
+        $this->assertStringNotContainsString('search-icon-size', $classes);
+    }
+
+    #[Test]
+    public function table_search_icon_size_returns_configured_value(): void
+    {
+        $table = new Table();
+
+        $this->assertSame('search-icon-size', $table->searchIconSize());
+    }
+
+    #[Test]
+    public function table_has_filters_returns_false_when_empty(): void
+    {
+        $table = new Table();
+
+        $this->assertFalse($table->hasFilters());
+    }
+
+    #[Test]
+    public function table_has_filters_returns_true_when_active_filters_present(): void
+    {
+        $table = new Table(activeFilters: [['name' => 'status', 'type' => 'select', 'label' => 'Status', 'text' => 'Active', 'index' => '', 'unset' => '']]);
+
+        $this->assertTrue($table->hasFilters());
+    }
+
+    #[Test]
+    public function table_wire_search_forces_show_search_true(): void
+    {
+        $table = new Table(wireSearch: true);
+
+        $this->assertTrue($table->showSearch());
+    }
+
+    #[Test]
+    public function table_show_search_returns_false_when_config_enabled_but_hide_search_set(): void
+    {
+        Config::set('themes.default.table.search-enable', true);
+
+        $table = new Table(hideSearch: true);
+
+        $this->assertFalse($table->showSearch());
+    }
+
+    #[Test]
+    public function table_active_filters_returns_search_type_entries(): void
+    {
+        $table = new Table(filters: [
+            'q' => [
+                'name' => 'q',
+                'label' => 'Search',
+                'type' => 'search',
+                'index' => 'q',
+                'selected' => 'hello',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('hello', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_text_type_entries(): void
+    {
+        $table = new Table(filters: [
+            'title' => [
+                'name' => 'title',
+                'label' => 'Title',
+                'type' => 'text',
+                'selected' => 'foo',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('foo', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_autocomplete_type_with_selected_text(): void
+    {
+        $table = new Table(filters: [
+            'artist' => [
+                'name' => 'artist',
+                'label' => 'Artist',
+                'type' => 'autocomplete',
+                'selected' => '1',
+                'selected-text' => 'Taylor Swift',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Taylor Swift', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_toggle_type_on_text(): void
+    {
+        $table = new Table(filters: [
+            'enabled' => [
+                'name' => 'enabled',
+                'label' => 'Enabled',
+                'type' => 'toggle',
+                'selected' => '1',
+                'unset' => '0',
+                'on-text' => 'Yes',
+                'off-text' => 'No',
+                'on' => '1',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Yes', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_date_type_formatted(): void
+    {
+        $table = new Table(filters: [
+            'created_at' => [
+                'name' => 'created_at',
+                'label' => 'Created',
+                'type' => 'date',
+                'selected' => '2024-01-15',
+                'unset' => '',
+                'data' => 'Y-m-d',
+                'format' => 'd/m/Y',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('15/01/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_date_range_type_formatted(): void
+    {
+        $table = new Table(filters: [
+            'period' => [
+                'name' => 'period',
+                'label' => 'Period',
+                'type' => 'date-range',
+                'selected' => '2024-01-01#2024-01-31',
+                'unset' => '',
+                'data' => 'Y-m-d',
+                'format' => 'd/m/Y',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('01/01/2024 - 31/01/2024', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_select_type_with_array_options(): void
+    {
+        $table = new Table(filters: [
+            'status' => [
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'select',
+                'options' => ['active' => 'Active', 'inactive' => 'Inactive'],
+                'selected' => 'active',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Active', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_select_type_with_collection_options(): void
+    {
+        $opt = new \stdClass();
+        $opt->value = 'active';
+        $opt->label = 'Active';
+
+        $table = new Table(filters: [
+            'status' => [
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'select',
+                'options' => new EloquentCollection([$opt]),
+                'selected' => 'active',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Active', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_select_type_with_multidimensional_options(): void
+    {
+        $table = new Table(filters: [
+            'status' => [
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'select',
+                'options' => [
+                    ['value' => 'active', 'label' => 'Active'],
+                    ['value' => 'inactive', 'label' => 'Inactive'],
+                ],
+                'selected' => 'active',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Active', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_returns_empty_text_when_selected_is_empty(): void
+    {
+        $table = new Table(filters: [
+            'status' => [
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'select',
+                'options' => ['active' => 'Active'],
+                'selected' => '',
+                'unset' => 'none',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('', $active[0]['text']);
+    }
+
+    #[Test]
+    public function table_active_filters_skips_filter_when_selected_equals_unset(): void
+    {
+        $table = new Table(filters: [
+            'status' => [
+                'name' => 'status',
+                'label' => 'Status',
+                'type' => 'select',
+                'options' => ['all' => 'All', 'active' => 'Active'],
+                'selected' => 'all',
+                'unset' => 'all',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(0, $active);
+    }
+
+    #[Test]
+    public function table_active_filters_date_range_returns_empty_string_for_missing_from_date(): void
+    {
+        $table = new Table(filters: [
+            'period' => [
+                'name' => 'period',
+                'label' => 'Period',
+                'type' => 'date-range',
+                'selected' => '#2024-01-31',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertStringStartsWith(' - ', $active[0]['text']);
     }
 }
