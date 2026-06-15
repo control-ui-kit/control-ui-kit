@@ -262,6 +262,81 @@ Key props: `href` (renders `<a>` instead of `<button>`), `icon`, `type` (submit/
 
 ---
 
+## Button Group (`x-button-group`, `x-button-group-item`)
+
+A connected row of buttons that share a single visual border — used for mutually exclusive option selectors (e.g. metric switchers, date range toggles).
+
+```blade
+<x-button-group>
+    <x-button-group-item first active text="Years" />
+    <x-button-group-item text="Months" />
+    <x-button-group-item last text="Days" />
+</x-button-group>
+```
+
+### Position props
+
+| Prop | Effect |
+|---|---|
+| `first` | Applies left-only rounding (`rounded-l-sm rounded-r-none`) |
+| `last` | Applies right-only rounding (`rounded-l-none rounded-r-sm`) |
+| `first` + `last` | Standalone button — uses base `rounded` |
+| neither | Middle item — `rounded-none` |
+
+The `x-button-group` wrapper uses `isolate inline-flex` so adjacent `ring-1 ring-inset` borders collapse into a single 1 px line. Non-first items automatically receive `-ml-px` to prevent double borders.
+
+### Style variants
+
+Same boolean variant flags as `x-button`:
+
+```blade
+<x-button-group>
+    <x-button-group-item first brand text="Brand" />
+    <x-button-group-item brand text="Brand" />
+    <x-button-group-item last brand text="Brand" />
+</x-button-group>
+```
+
+Available variants: `default` (default), `brand`, `danger`, `info`, `success`, `warning`, `muted`, `link`.
+
+### Active (selected) state
+
+```blade
+<x-button-group-item first active text="Streams" />
+```
+
+`active` applies variant-specific active background and ring classes (`bg-button-{variant}-active`, `ring-button-{variant}-active`) which use `!important` to persist through hover. Also adds `aria-pressed="true"` for accessibility.
+
+### Responsive wrap
+
+Pass `wrap` to apply a breakpoint-specific wrapping class on the container:
+
+```blade
+<x-button-group wrap="md">
+    ...
+</x-button-group>
+```
+
+This adds `btn-grp-{wrap}` (e.g. `btn-grp-md`) to the wrapper `<div>`, letting your CSS wrap the group at that breakpoint. Default is no wrapping.
+
+### Additional props
+
+| Prop | Description |
+|---|---|
+| `text` | Button label (alternative to slot) |
+| `trans` | Laravel translation key — resolved via `trans()` and used as label text |
+| `href` | Renders an `<a>` instead of `<button>` |
+| `disabled` | Disables the button; strips `href` if present |
+| `icon` | Icon component name (e.g. `icon-audio-stream`) |
+| `rounded` | Override the position-computed rounding |
+| `margin` | Override the default `-ml-px` negative margin |
+
+### Theme config keys
+
+`button-group` controls the wrapper (`other`, `rounded`, `shadow`, `wrap`); `button-group-item` controls each item. Per-variant sub-keys (`default`, `brand`, etc.) each have `background`, `border`, `color`, `icon`, and `active` keys.
+
+---
+
 ## Alert (`x-alert`)
 
 ```blade
@@ -519,21 +594,27 @@ Stacked bar chart. Sets `stacked: true` on both x and y axes. Supports a `stack`
 
 ### Donut chart (`x-donut-chart`)
 
+Pass data as a label-keyed array of numeric values:
+
 ```blade
 <x-donut-chart
     id="format_split"
-    :data="[
-        'items' => [
-            ['label' => 'Streaming', 'value' => 65],
-            ['label' => 'Download', 'value' => 25],
-            ['label' => 'Physical', 'value' => 10],
-        ]
-    ]"
+    :data="['Streaming' => 65, 'Download' => 25, 'Physical' => 10]"
     :colors="['--chart-500', '--chart-300', '--chart-100']"
 />
 ```
 
-Key props: `id`, `:data` (items array), `:colors`, `cutout` (percentage string, default from config).
+Alternatively use separate `:values` and `:labels` arrays:
+
+```blade
+<x-donut-chart
+    id="format_split"
+    :values="[65, 25, 10]"
+    :labels="['Streaming', 'Download', 'Physical']"
+/>
+```
+
+Key props: `id`, `:data` (label-keyed value array), `:values` + `:labels` (alternative to `:data`), `:colors`, `cutout` (percentage string, default from config).
 
 ### Pie chart (`x-pie-chart`)
 
@@ -542,13 +623,7 @@ Same API as donut chart without the `cutout` prop:
 ```blade
 <x-pie-chart
     id="genre_split"
-    :data="[
-        'items' => [
-            ['label' => 'Pop', 'value' => 40],
-            ['label' => 'Rock', 'value' => 35],
-            ['label' => 'Electronic', 'value' => 25],
-        ]
-    ]"
+    :data="['Pop' => 40, 'Rock' => 35, 'Electronic' => 25]"
     :colors="['--chart-500', '--chart-400', '--chart-200']"
 />
 ```
@@ -844,6 +919,26 @@ Over 300 icons available. All accept `size` and `color` props (Tailwind classes)
 Dynamic icon via variable:
 ```blade
 <x-dynamic-component :component="'icon-' . $iconName" size="h-5 w-5" />
+```
+
+### Media & download icons
+
+Four domain-specific icons for music/streaming dashboards:
+
+| Component | Description |
+|---|---|
+| `x-icon-audio-stream` | Equaliser waveform — 5 symmetric vertical bars |
+| `x-icon-video-stream` | Screen outline with a play triangle inside |
+| `x-icon-track-download` | Single bold bar (one track) + block down-arrow + tray |
+| `x-icon-release-download` | Three stacked bars (multiple tracks) + block down-arrow + tray |
+
+```blade
+<x-button-group>
+    <x-button-group-item first active icon="icon-audio-stream" text="Audio Streams" />
+    <x-button-group-item icon="icon-video-stream" text="Video Streams" />
+    <x-button-group-item icon="icon-track-download" text="Track Downloads" />
+    <x-button-group-item last icon="icon-release-download" text="Release Downloads" />
+</x-button-group>
 ```
 
 ---

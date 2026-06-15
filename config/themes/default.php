@@ -185,6 +185,97 @@ return [
         ],
     ],
 
+    'button-group' => [
+        'other' => 'isolate inline-flex justify-center overflow-hidden',
+        'rounded' => 'rounded-sm',
+        'shadow' => '',
+        'wrap' => '',
+    ],
+
+    'button-group-item' => [
+        'background' => '',
+        'border' => '',
+        'color' => '',
+        'cursor' => 'cursor-pointer',
+        'disabled' => 'opacity-60 cursor-default',
+        'active' => '',
+        'font' => 'text-sm',
+        'icon-size' => 'w-4 h-4',
+        'other' => 'relative flex items-center justify-center hover:z-10 focus:z-10 outline-hidden focus:outline-hidden overflow-hidden',
+        'padding' => 'space-x-1 px-3 py-1.5',
+        'rounded' => 'rounded-sm',
+        'rounded-first' => 'rounded-l-sm rounded-r-none',
+        'rounded-last' => 'rounded-l-none rounded-r-sm',
+        'rounded-middle' => 'rounded-none',
+        'shadow' => '',
+        'width' => 'w-max',
+        'margin' => '-ml-px',
+
+        'default' => [
+            'background' => 'bg-button-default hover:bg-button-default-hover',
+            'border' => 'ring-1 ring-inset ring-button-default hover:ring-button-default-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-default hover:text-button-default-hover',
+            'icon' => 'text-button-default-icon group-hover:text-button-default-icon-hover',
+            'active' => 'bg-button-default-active ring-button-default-active z-10',
+        ],
+
+        'brand' => [
+            'background' => 'bg-button-brand hover:bg-button-brand-hover',
+            'border' => 'ring-1 ring-inset ring-button-brand hover:ring-button-brand-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-brand hover:text-button-brand-hover',
+            'icon' => 'text-button-brand-icon group-hover:text-button-brand-icon-hover',
+            'active' => 'bg-button-brand-active ring-button-brand-active z-10',
+        ],
+
+        'danger' => [
+            'background' => 'bg-button-danger hover:bg-button-danger-hover',
+            'border' => 'ring-1 ring-inset ring-button-danger hover:ring-button-danger-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-danger hover:text-button-danger-hover',
+            'icon' => 'text-button-danger-icon group-hover:text-button-danger-icon-hover',
+            'active' => 'bg-button-danger-active ring-button-danger-active z-10',
+        ],
+
+        'info' => [
+            'background' => 'bg-button-info hover:bg-button-info-hover',
+            'border' => 'ring-1 ring-inset ring-button-info hover:ring-button-info-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-info hover:text-button-info-hover',
+            'icon' => 'text-button-info-icon group-hover:text-button-info-icon-hover',
+            'active' => 'bg-button-info-active ring-button-info-active z-10',
+        ],
+
+        'link' => [
+            'background' => 'bg-button-link hover:bg-button-link-hover',
+            'border' => 'ring-1 ring-inset ring-button-link hover:ring-button-link-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-link hover:text-button-link-hover hover:underline',
+            'icon' => 'text-button-link-icon group-hover:text-button-link-icon-hover',
+            'active' => 'bg-button-link-active ring-button-link-active z-10',
+        ],
+
+        'muted' => [
+            'background' => 'bg-button-muted hover:bg-button-muted-hover',
+            'border' => 'ring-1 ring-inset ring-button-muted hover:ring-button-muted-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-muted hover:text-button-muted-hover',
+            'icon' => 'text-button-muted-icon group-hover:text-button-muted-icon-hover',
+            'active' => 'bg-button-muted-active ring-button-muted-active z-10',
+        ],
+
+        'success' => [
+            'background' => 'bg-button-success hover:bg-button-success-hover',
+            'border' => 'ring-1 ring-inset ring-button-success hover:ring-button-success-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-success hover:text-button-success-hover',
+            'icon' => 'text-button-success-icon group-hover:text-button-success-icon-hover',
+            'active' => 'bg-button-success-active ring-button-success-active z-10',
+        ],
+
+        'warning' => [
+            'background' => 'bg-button-warning hover:bg-button-warning-hover',
+            'border' => 'ring-1 ring-inset ring-button-warning hover:ring-button-warning-hover focus:ring-2 focus:ring-brand',
+            'color' => 'text-button-warning hover:text-button-warning-hover',
+            'icon' => 'text-button-warning-icon group-hover:text-button-warning-icon-hover',
+            'active' => 'bg-button-warning-active ring-button-warning-active z-10',
+        ],
+    ],
+
     'change-chart' => [
         'percent-difference' => 'true',
         'decimals' => 0,
