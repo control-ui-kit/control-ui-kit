@@ -474,7 +474,6 @@ return [
             'tooltips' => [
                 'enabled' => true,
                 'mode' => 'nearest',
-                'intersect' => true,
                 'position' => 'average',
                 'background-color' => 'rgb(--chart-tooltip-bg)',
                 'x-padding' => 6,
@@ -528,6 +527,7 @@ return [
         ],
 
         'pie' => [
+            'tooltip-intersect' => true,
             'segment' => [
                 'border-color' => '--chart-border',
                 'border-width' => 2,
@@ -545,6 +545,7 @@ return [
         ],
 
         'donut' => [
+            'tooltip-intersect' => true,
             'segment' => [
                 'border-color' => '--chart-border',
                 'border-width' => 2,
@@ -560,6 +561,26 @@ return [
             'layout' => [
                 'padding' => 0,
             ],
+        ],
+
+        'bar' => [
+            'tooltip-intersect' => true,
+        ],
+
+        'line' => [
+            'tooltip-intersect' => false,
+        ],
+
+        'column' => [
+            'tooltip-intersect' => true,
+        ],
+
+        'stacked' => [
+            'tooltip-intersect' => true,
+        ],
+
+        'combo' => [
+            'tooltip-intersect' => true,
         ],
     ],
 

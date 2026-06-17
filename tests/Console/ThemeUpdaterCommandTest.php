@@ -406,7 +406,7 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
     #[Test]
     public function trim_edge_blanks_removes_leading_and_trailing_blank_lines(): void
     {
-        $command = new ThemeUpdaterCommand();
+        $command = new ThemeUpdaterCommand;
 
         $method = new ReflectionMethod(ThemeUpdaterCommand::class, 'trimEdgeBlanks');
         $method->setAccessible(true);

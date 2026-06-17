@@ -94,7 +94,7 @@ class UseThemeFileTest extends TestCase
     }
 
     #[Test]
-    public function classList_filters_to_only_specified_keys(): void
+    public function class_list_filters_to_only_specified_keys(): void
     {
         $classes = [
             'background' => 'bg-white',
