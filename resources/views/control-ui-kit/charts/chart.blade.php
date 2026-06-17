@@ -35,7 +35,7 @@
                     if (typeof obj === 'object' && obj !== null) {
                         if (Array.isArray(obj)) return obj.map(_ro);
                         var r = {};
-                        Object.keys(obj).forEach(function(k) { r[k] = _ro(obj[k]); });
+                        Object.keys(obj).forEach(function(k) { r[k] = (k === 'tooltip') ? obj[k] : _ro(obj[k]); });
                         return r;
                     }
                     return obj;
