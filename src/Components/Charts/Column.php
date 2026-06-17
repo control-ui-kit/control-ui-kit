@@ -56,6 +56,11 @@ class Column extends Component
     public ?string $hideXGrid;
     public ?string $hideAxis;
 
+    public ?string $paddingTop;
+    public ?string $paddingBottom;
+    public ?string $paddingLeft;
+    public ?string $paddingRight;
+
     public ?string $animation;
     public ?string $animationDuration;
     public ?string $animationEasing;
@@ -82,9 +87,9 @@ class Column extends Component
     public ?string $yTickPadding;
     public ?string $yTickZIndex;
 
-    public ?bool $tooltipEnabled;
+    public $tooltipEnabled;
     public ?string $tooltipMode;
-    public ?bool $tooltipIntersect;
+    public $tooltipIntersect;
     public ?string $tooltipPosition;
     public ?string $tooltipBackgroundColor;
 
@@ -117,7 +122,7 @@ class Column extends Component
     public ?string $tooltipCaretSize;
     public ?string $tooltipCornerRadius;
     public ?string $tooltipMultiKeyBackground;
-    public ?bool $tooltipDisplayColors;
+    public $tooltipDisplayColors;
     public ?string $tooltipBorderColor;
     public ?string $tooltipBorderWidth;
     public ?string $tooltipBoxPadding;
@@ -163,6 +168,11 @@ class Column extends Component
         ?string $hideXGrid = null,
         ?string $hideAxis = null,
 
+        ?string $paddingTop = null,
+        ?string $paddingBottom = null,
+        ?string $paddingLeft = null,
+        ?string $paddingRight = null,
+
         ?string $animation = null,
         ?string $animationDuration = null,
         ?string $animationEasing = null,
@@ -189,9 +199,9 @@ class Column extends Component
         ?string $yTickPadding = null,
         ?string $yTickZIndex = null,
 
-        ?bool $tooltipEnabled = null,
+        $tooltipEnabled = null,
         ?string $tooltipMode = null,
-        ?bool $tooltipIntersect = null,
+        $tooltipIntersect = null,
         ?string $tooltipPosition = null,
         ?string $tooltipBackgroundColor = null,
         ?string $tooltipXPadding = null,
@@ -200,7 +210,7 @@ class Column extends Component
         ?string $tooltipCaretSize = null,
         ?string $tooltipCornerRadius = null,
         ?string $tooltipMultiKeyBackground = null,
-        ?bool $tooltipDisplayColors = null,
+        $tooltipDisplayColors = null,
         ?string $tooltipBorderColor = null,
         ?string $tooltipBorderWidth = null,
         ?string $tooltipBoxPadding = null,
@@ -273,6 +283,11 @@ class Column extends Component
         $this->hideGrid = $this->style($this->defaults, 'hide-grid', $hideGrid);
         $this->hideXGrid = $this->style($this->defaults, 'hide-x-grid', $hideXGrid);
         $this->hideAxis = $this->style($this->defaults, 'hide-axis', $hideAxis);
+
+        $this->paddingTop = $paddingTop;
+        $this->paddingBottom = $paddingBottom;
+        $this->paddingLeft = $paddingLeft;
+        $this->paddingRight = $paddingRight;
 
         $this->animation = $this->style($this->defaults, 'animation', $animation);
         $this->animationDuration = $this->style($this->defaults, 'animation-duration', $animationDuration);
@@ -513,6 +528,14 @@ class Column extends Component
                 'point' => [
                     'pointStyle' => $this->pointStyle,
                     'radius' => (int) $this->pointRadius,
+                ],
+            ],
+            'layout' => [
+                'padding' => [
+                    'top' => (int) $this->paddingTop,
+                    'bottom' => (int) $this->paddingBottom,
+                    'left' => (int) $this->paddingLeft,
+                    'right' => (int) $this->paddingRight,
                 ],
             ],
         ];

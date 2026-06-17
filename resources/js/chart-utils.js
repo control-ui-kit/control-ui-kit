@@ -40,6 +40,12 @@ const _resolveColor = (val) => {
     return val;
 };
 
+const _isCssVarRef = (v) => {
+    if (v === undefined || v === null) return true;
+    if (typeof v !== 'string') return false;
+    return /^--[\w-]+$/.test(v) || /^rgb\(\s*--[\w-]/.test(v) || /^rgba\(\s*--[\w-]/.test(v);
+};
+
 const _resolveColors = (obj) => {
     if (typeof obj === 'string') return _resolveColor(obj);
     if (Array.isArray(obj)) return obj.map(_resolveColors);
@@ -95,13 +101,14 @@ const _applyChartColors = (chart) => {
                   chart.config.options.plugins &&
                   chart.config.options.plugins.tooltip;
     if (srcTT) {
-        srcTT.backgroundColor    = tooltipBg;
-        srcTT.titleColor         = tooltipText;
-        srcTT.bodyColor          = tooltipText;
-        srcTT.footerColor        = tooltipText;
-        srcTT.borderColor        = tooltipBorder;
-        srcTT.multiKeyBackground = tooltipBg;
-        const _border      = tooltipBorder;
+        const origTT = chart.__origTooltipConfig || {};
+        if (_isCssVarRef(origTT.backgroundColor))   srcTT.backgroundColor    = tooltipBg;
+        if (_isCssVarRef(origTT.titleColor))         srcTT.titleColor         = tooltipText;
+        if (_isCssVarRef(origTT.bodyColor))          srcTT.bodyColor          = tooltipText;
+        if (_isCssVarRef(origTT.footerColor))        srcTT.footerColor        = tooltipText;
+        if (_isCssVarRef(origTT.borderColor))        srcTT.borderColor        = tooltipBorder;
+        if (_isCssVarRef(origTT.multiKeyBackground)) srcTT.multiKeyBackground = tooltipBg;
+        const _border      = srcTT.borderColor;
         const _borderWidth = srcTT.boxBorderWidth ?? 0;
         if (!srcTT.callbacks) srcTT.callbacks = {};
         srcTT.callbacks.labelColor = function(context) {
@@ -126,7 +133,9 @@ window.gradientColor = gradientColor;
 
         window.Chart = new Proxy(window.Chart, {
             construct: (Target, args) => {
-                const chart = new Target(args[0], _resolveColors(args[1]));
+                const origConfig = args[1];
+                const chart = new Target(args[0], _resolveColors(origConfig));
+                chart.__origTooltipConfig = (origConfig?.options?.plugins?.tooltip) || {};
                 requestAnimationFrame(() => _applyChartColors(chart));
                 return chart;
             }

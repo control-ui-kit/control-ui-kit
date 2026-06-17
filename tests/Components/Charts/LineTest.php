@@ -544,4 +544,195 @@ class LineTest extends ComponentTestCase
 
         $this->assertSame('center', $component->legendAlign);
     }
+
+    #[Test]
+    public function line_chart_padding_props_are_null_by_default(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertNull($component->paddingTop);
+        $this->assertNull($component->paddingBottom);
+        $this->assertNull($component->paddingLeft);
+        $this->assertNull($component->paddingRight);
+    }
+
+    #[Test]
+    public function line_chart_padding_props_can_be_set(): void
+    {
+        $component = new Line(
+            id: 'my_chart',
+            datasets: $this->datasets,
+            labels: $this->labels,
+            paddingTop: '20',
+            paddingBottom: '10',
+            paddingLeft: '5',
+            paddingRight: '5'
+        );
+
+        $this->assertSame('20', $component->paddingTop);
+        $this->assertSame('10', $component->paddingBottom);
+        $this->assertSame('5', $component->paddingLeft);
+        $this->assertSame('5', $component->paddingRight);
+    }
+
+    #[Test]
+    public function line_chart_default_padding_is_zero_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"layout":{"padding":{"top":0,"bottom":0,"left":0,"right":0}}', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_padding_values_are_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                padding-top="20"
+                padding-bottom="10"
+                padding-left="5"
+                padding-right="5"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"layout":{"padding":{"top":20,"bottom":10,"left":5,"right":5}}', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_fill_is_false_by_default_in_dataset(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringNotContainsString('"fill":true', $rendered);
+        $this->assertStringNotContainsString('"fillGradient"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_fill_true_appears_in_rendered_output_when_passed(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'fill' => true]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"fill":true', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_point_color_appears_in_rendered_output_when_set(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'pointColor' => '#ffffff']]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"pointColor":"#ffffff"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_tooltip_display_colors_is_true_by_default(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"displayColors":true', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_tooltip_display_colors_can_be_disabled(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                tooltip-display-colors="false"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"displayColors":false', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_tooltip_background_color_defaults_from_config(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $expected = config('themes.default.charts.defaults.tooltips.background-color');
+        $this->assertSame($expected, $component->tooltipBackgroundColor);
+    }
+
+    #[Test]
+    public function line_chart_tooltip_background_color_can_be_overridden(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, tooltipBackgroundColor: '#ff0000');
+
+        $this->assertSame('#ff0000', $component->tooltipBackgroundColor);
+    }
+
+    #[Test]
+    public function line_chart_tooltip_background_color_is_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                tooltip-background-color="#ff0000"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"backgroundColor":"#ff0000"', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_fill_gradient_appears_in_rendered_output_when_set(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'fillGradient' => [['t' => 0, 'color' => 'rgba(255,255,255,0.45)'], ['t' => 1, 'color' => 'rgba(255,255,255,0.05)']]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"fillGradient"', $rendered);
+        $this->assertStringContainsString('"rgba(255,255,255,0.45)"', $rendered);
+        $this->assertStringContainsString('"rgba(255,255,255,0.05)"', $rendered);
+    }
 }
