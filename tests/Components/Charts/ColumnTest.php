@@ -396,4 +396,104 @@ class ColumnTest extends ComponentTestCase
 
         $this->assertSame('center', $component->legendAlign);
     }
+
+    #[Test]
+    public function column_chart_padding_props_are_null_by_default(): void
+    {
+        $component = new Column(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertNull($component->paddingTop);
+        $this->assertNull($component->paddingBottom);
+        $this->assertNull($component->paddingLeft);
+        $this->assertNull($component->paddingRight);
+    }
+
+    #[Test]
+    public function column_chart_padding_props_can_be_set(): void
+    {
+        $component = new Column(
+            id: 'my_chart',
+            datasets: $this->datasets,
+            labels: $this->labels,
+            paddingTop: '20',
+            paddingBottom: '10',
+            paddingLeft: '5',
+            paddingRight: '5'
+        );
+
+        $this->assertSame('20', $component->paddingTop);
+        $this->assertSame('10', $component->paddingBottom);
+        $this->assertSame('5', $component->paddingLeft);
+        $this->assertSame('5', $component->paddingRight);
+    }
+
+    #[Test]
+    public function column_chart_default_padding_is_zero_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-column-chart id="col_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"layout":{"padding":{"top":0,"bottom":0,"left":0,"right":0}}', $rendered);
+    }
+
+    #[Test]
+    public function column_chart_padding_values_are_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-column-chart id="col_chart"
+                padding-top="20"
+                padding-bottom="10"
+                padding-left="5"
+                padding-right="5"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"layout":{"padding":{"top":20,"bottom":10,"left":5,"right":5}}', $rendered);
+    }
+
+    #[Test]
+    public function column_chart_dataset_options_present_when_passed(): void
+    {
+        $template = <<<'HTML'
+            <x-column-chart id="col_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3], 'hoverColor' => '#ff0000', 'borderRadius' => 4, 'barPercentage' => 0.8, 'categoryPercentage' => 0.9]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"hoverColor":"#ff0000"', $rendered);
+        $this->assertStringContainsString('"borderRadius":4', $rendered);
+        $this->assertStringContainsString('"barPercentage":0.8', $rendered);
+        $this->assertStringContainsString('"categoryPercentage":0.9', $rendered);
+    }
+
+    #[Test]
+    public function column_chart_dataset_options_absent_when_not_passed(): void
+    {
+        $template = <<<'HTML'
+            <x-column-chart id="col_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringNotContainsString('"hoverColor"', $rendered);
+        $this->assertStringNotContainsString('"borderRadius"', $rendered);
+        $this->assertStringNotContainsString('"barPercentage"', $rendered);
+        $this->assertStringNotContainsString('"categoryPercentage"', $rendered);
+    }
 }

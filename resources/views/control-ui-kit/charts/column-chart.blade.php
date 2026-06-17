@@ -7,6 +7,8 @@
                 if (obj.charAt(0) === '-') { var _v = _s.getPropertyValue(obj).trim(); return _v ? 'rgb(' + _v + ')' : obj; }
                 var m = obj.match(/^rgba?\((--[^)]+)\)$/);
                 if (m) { var _v = _s.getPropertyValue(m[1]).trim(); return _v ? 'rgb(' + _v + ')' : obj; }
+                var ma = obj.match(/^rgba\(\s*(--[\w-]+)\s*,\s*([0-9.]+)\s*\)$/);
+                if (ma) { var _va = _s.getPropertyValue(ma[1]).trim(); return _va ? 'rgba(' + _va.split(/\s+/).join(',') + ',' + ma[2] + ')' : obj; }
             }
             if (typeof obj === 'object' && obj !== null) {
                 if (Array.isArray(obj)) return obj.map(_ro);
@@ -46,9 +48,11 @@
                 borderWidth: 0,
             };
 
-            if (ds.order !== undefined) {
-                result.order = ds.order;
-            }
+            if (ds.order !== undefined) { result.order = ds.order; }
+            if (ds.hoverColor !== undefined) { result.hoverBackgroundColor = _ro(ds.hoverColor); }
+            if (ds.borderRadius !== undefined) { result.borderRadius = ds.borderRadius; }
+            if (ds.barPercentage !== undefined) { result.barPercentage = ds.barPercentage; }
+            if (ds.categoryPercentage !== undefined) { result.categoryPercentage = ds.categoryPercentage; }
 
             return result;
         });
