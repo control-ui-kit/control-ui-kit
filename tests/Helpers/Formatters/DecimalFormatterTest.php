@@ -337,7 +337,7 @@ class DecimalFormatterTest extends TestCase
     #[Test]
     public function decimal_formatter_parse_falls_back_to_raw_data_for_unrecognised_rounding(): void
     {
-        $formatter = new DecimalFormatter();
+        $formatter = new DecimalFormatter;
 
         $rounding = new ReflectionProperty(DecimalFormatter::class, 'rounding');
         $rounding->setAccessible(true);

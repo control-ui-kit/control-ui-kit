@@ -788,7 +788,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_table_filters_classes_excludes_container_and_empty(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $classes = $table->tableFiltersClasses();
 
@@ -800,7 +800,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_table_filters_container_returns_container_value(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertSame('table-filters-container', $table->tableFiltersContainer());
     }
@@ -808,7 +808,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_table_filters_empty_returns_empty_value(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertNotEmpty($table->tableFiltersEmpty());
     }
@@ -816,7 +816,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_table_wrapper_with_filters_returns_value(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertSame('table-wrapper-with-filters', $table->tableWrapperWithFilters());
     }
@@ -824,7 +824,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_table_wrapper_without_filters_returns_value(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertSame('table-wrapper-without-filters', $table->tableWrapperWithoutFilters());
     }
@@ -832,7 +832,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_search_icon_classes_excludes_icon_and_size_keys(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $classes = $table->searchIconClasses();
 
@@ -842,7 +842,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_search_icon_size_returns_configured_value(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertSame('search-icon-size', $table->searchIconSize());
     }
@@ -850,7 +850,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_has_filters_returns_false_when_empty(): void
     {
-        $table = new Table();
+        $table = new Table;
 
         $this->assertFalse($table->hasFilters());
     }
@@ -1027,7 +1027,7 @@ class TableTest extends ComponentTestCase
     #[Test]
     public function table_active_filters_returns_select_type_with_collection_options(): void
     {
-        $opt = new \stdClass();
+        $opt = new \stdClass;
         $opt->value = 'active';
         $opt->label = 'Active';
 

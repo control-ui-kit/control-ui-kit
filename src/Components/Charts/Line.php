@@ -16,6 +16,7 @@ class Line extends Component
     protected string $legendLabel;
     protected string $defaultTitle;
     protected string $defaults = 'charts.defaults';
+    protected string $lineConfig = 'charts.line';
 
     public string $id;
     public array $datasets;
@@ -320,7 +321,7 @@ class Line extends Component
 
         $this->tooltipEnabled = $this->style($this->defaults, 'tooltips.enabled', $tooltipEnabled);
         $this->tooltipMode = $this->style($this->defaults, 'tooltips.mode', $tooltipMode);
-        $this->tooltipIntersect = $this->style($this->defaults, 'tooltips.intersect', $tooltipIntersect);
+        $this->tooltipIntersect = $this->style($this->lineConfig, 'tooltip-intersect', $tooltipIntersect);
         $this->tooltipPosition = $this->style($this->defaults, 'tooltips.position', $tooltipPosition);
         $this->tooltipBackgroundColor = $this->style($this->defaults, 'tooltips.background-color', $tooltipBackgroundColor);
 
@@ -454,7 +455,7 @@ class Line extends Component
                 'tooltip' => [
                     'enabled' => $this->tooltipEnabled !== 'false',
                     'mode' => $this->tooltipMode,
-                    'intersect' => $this->tooltipIntersect === 'false',
+                    'intersect' => filter_var($this->tooltipIntersect, FILTER_VALIDATE_BOOLEAN),
                     'position' => $this->tooltipPosition,
                     'backgroundColor' => $this->tooltipBackgroundColor,
                     'titleColor' => $this->tooltipTitleColor,
