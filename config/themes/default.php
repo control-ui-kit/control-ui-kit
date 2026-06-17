@@ -279,6 +279,8 @@ return [
     'change-chart' => [
         'percent-difference' => 'true',
         'decimals' => 0,
+        'prefix' => '',
+        'suffix' => '',
         'hide-difference-icon' => 'false',
         'difference-increase-icon' => 'icon-trend-up',
         'difference-decrease-icon' => 'icon-trend-down',

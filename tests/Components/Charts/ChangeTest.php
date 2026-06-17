@@ -17,6 +17,8 @@ class ChangeTest extends ComponentTestCase
 
         Config::set('themes.default.change-chart.percent-difference', 'true');
         Config::set('themes.default.change-chart.decimals', 0);
+        Config::set('themes.default.change-chart.prefix', '');
+        Config::set('themes.default.change-chart.suffix', '');
         Config::set('themes.default.change-chart.hide-difference-icon', 'false');
         Config::set('themes.default.change-chart.difference-increase-icon', '');
         Config::set('themes.default.change-chart.difference-decrease-icon', '');
@@ -364,7 +366,7 @@ class ChangeTest extends ComponentTestCase
                 <div class="flex-1">
                     <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
                         <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
-                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 100,000 </p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 100,000.00 </p>
                         <p class="difference-background difference-border increase-color difference-font difference-other difference-padding difference-rounded difference-shadow">+222.75%</p>
                     </div>
                 </div>
@@ -756,5 +758,107 @@ class ChangeTest extends ComponentTestCase
 
         $this->assertIsString($component->differenceIconClasses());
         $this->assertStringContainsString('difference-icon-background', $component->differenceIconClasses());
+    }
+
+    #[Test]
+    public function a_change_chart_component_with_decimal_current_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    current="1234.56"
+                    decimals="2"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 1,234.56 </p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_change_chart_component_with_prefix_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    current="100000"
+                    prefix="$"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> $100,000 </p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_change_chart_component_with_suffix_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    current="100000"
+                    suffix="%"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 100,000% </p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_change_chart_component_with_prefix_and_suffix_can_be_rendered(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    current="1234.56"
+                    decimals="2"
+                    prefix="$"
+                    suffix=" USD"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> $1,234.56 USD </p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
     }
 }
