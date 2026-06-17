@@ -18,6 +18,8 @@ class Change extends Component
     public ?float $current;
     public ?float $previous;
     public ?int $decimals;
+    public ?string $prefix;
+    public ?string $suffix;
     public ?string $link;
     public ?string $linkText;
     public ?string $icon;
@@ -51,6 +53,8 @@ class Change extends Component
         ?float $current = null,
         ?float $previous = null,
         ?int $decimals = null,
+        ?string $prefix = null,
+        ?string $suffix = null,
         ?string $link = null,
         ?string $linkText = null,
         ?string $icon = null,
@@ -177,6 +181,8 @@ class Change extends Component
         $this->current = $current;
         $this->previous = $previous;
         $this->decimals = (int) $this->style($this->component, 'decimals', (string) $decimals);
+        $this->prefix = $this->style($this->component, 'prefix', $prefix);
+        $this->suffix = $this->style($this->component, 'suffix', $suffix);
         $this->link = $link;
         $this->linkText = $linkText;
         $this->icon = $icon;

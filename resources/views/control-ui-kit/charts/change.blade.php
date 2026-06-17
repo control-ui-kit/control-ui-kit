@@ -12,7 +12,7 @@
         <div class="{{ $containerClasses() }}">
             <p class="{{ $titleClasses() }}">{{ $title }}</p>
             <p class="{{ $numberClasses() }}">
-                {{ number_format((float) $current) }}
+                {{ $prefix }}{{ number_format((float) $current, $decimals) }}{{ $suffix }}
             </p>
             @if ($increase)
                 <p class="{{ $increaseClasses() }}">@if ($increaseIcon && $hideDifferenceIcon !== 'true')<x-dynamic-component :component="$increaseIcon" :class="$differenceIconClasses()" /> @endif+{{ $increase }}</p>
