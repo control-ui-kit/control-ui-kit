@@ -735,6 +735,29 @@ All modern API charts (Line, Column, Bar, Combo, Stacked) support these addition
 
 The default color palette is defined in `config/themes/default.php` under `charts.defaults.colors` as an array of CSS variable names (`'--chart-100'`, `'--chart-200'`, etc.). Datasets cycle through this palette if no `color` is specified.
 
+### Tooltip intersect (per chart type)
+
+Chart.js's `tooltip.intersect` option controls whether the tooltip requires the cursor to be visually inside a chart element before it shows. The default is **split per chart type** so each chart can ship with the right behaviour out of the box:
+
+| Chart | Config key | Default |
+|---|---|---|
+| Pie | `charts.pie.tooltip-intersect` | `true` |
+| Donut | `charts.donut.tooltip-intersect` | `true` |
+| Bar | `charts.bar.tooltip-intersect` | `false` |
+| Line | `charts.line.tooltip-intersect` | `false` |
+| Column | `charts.column.tooltip-intersect` | `false` |
+| Stacked | `charts.stacked.tooltip-intersect` | `false` |
+| Combo | `charts.combo.tooltip-intersect` | `false` |
+
+`true` is the right default for pie/donut — `mode: 'nearest'` + `intersect: false` on a circular chart can highlight a segment whose anchor is nearest the cursor rather than the one the cursor is actually over, producing wrong-segment tooltips. `false` is friendlier for bar/line where users expect the nearest data point to highlight without needing pixel-perfect hover.
+
+Override per instance with the `:tooltip-intersect` prop (note the leading colon — `strict_types=1` rejects bare string attributes against the `?bool` parameter):
+
+```blade
+<x-donut-chart id="d1" :data="$data" :tooltip-intersect="false" />
+<x-line-chart id="l1" :datasets="$ds" :labels="$lb" :tooltip-intersect="true" />
+```
+
 ---
 
 ## Maps
