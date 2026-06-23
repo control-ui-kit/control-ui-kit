@@ -14,6 +14,8 @@ class InputField extends Component
     public string $help;
     public string $value;
     public string $layout;
+    public string $inputTooltip;
+    public string $inputTooltipPosition;
 
     public function __construct(
         ?string $name = null,
@@ -21,12 +23,16 @@ class InputField extends Component
         ?string $help = null,
         ?string $value = null,
         ?string $layout = null,
+        ?string $tooltip = null,
+        ?string $tooltipPosition = null,
     ) {
         $this->name = $name ?? '';
         $this->label = $label ?? '';
         $this->value = $value ?? '';
         $this->help = $help ?? '';
         $this->layout = $this->getLayout($layout);
+        $this->inputTooltip = $tooltip ?? '';
+        $this->inputTooltipPosition = $tooltipPosition ?? (string) config(app('control-ui-kit.theme') . '.tooltip.field-position', 'bottom');
     }
 
     public function render(): View

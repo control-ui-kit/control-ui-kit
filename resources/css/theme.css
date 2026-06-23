@@ -116,6 +116,32 @@
     .bg-pill-muted { background-color: rgb(var(--pill-muted-bg)); }
     .bg-pill-warning { background-color: rgb(var(--pill-warning-bg)); }
 
+    /* Tooltips */
+
+    .bg-tooltip-default { background-color: rgb(var(--tooltip-default-bg)); }
+    .bg-tooltip-brand { background-color: rgb(var(--tooltip-brand-bg)); }
+    .bg-tooltip-danger { background-color: rgb(var(--tooltip-danger-bg)); }
+    .bg-tooltip-info { background-color: rgb(var(--tooltip-info-bg)); }
+    .bg-tooltip-muted { background-color: rgb(var(--tooltip-muted-bg)); }
+    .bg-tooltip-success { background-color: rgb(var(--tooltip-success-bg)); }
+    .bg-tooltip-warning { background-color: rgb(var(--tooltip-warning-bg)); }
+
+    .border-tooltip-default { border-color: rgb(var(--tooltip-default-border)); }
+    .border-tooltip-brand { border-color: rgb(var(--tooltip-brand-border)); }
+    .border-tooltip-danger { border-color: rgb(var(--tooltip-danger-border)); }
+    .border-tooltip-info { border-color: rgb(var(--tooltip-info-border)); }
+    .border-tooltip-muted { border-color: rgb(var(--tooltip-muted-border)); }
+    .border-tooltip-success { border-color: rgb(var(--tooltip-success-border)); }
+    .border-tooltip-warning { border-color: rgb(var(--tooltip-warning-border)); }
+
+    .text-tooltip-default { color: rgb(var(--tooltip-default)); }
+    .text-tooltip-brand { color: rgb(var(--tooltip-brand)); }
+    .text-tooltip-danger { color: rgb(var(--tooltip-danger)); }
+    .text-tooltip-info { color: rgb(var(--tooltip-info)); }
+    .text-tooltip-muted { color: rgb(var(--tooltip-muted)); }
+    .text-tooltip-success { color: rgb(var(--tooltip-success)); }
+    .text-tooltip-warning { color: rgb(var(--tooltip-warning)); }
+
     /* Progress Bar */
 
     .bg-progress-track { background-color: rgb(var(--progress-track-bg)); }
@@ -1084,9 +1110,9 @@
 
     /* Chart UI Colors */
     .text-chart-label { color: var(--chart-label); }
-    .bg-chart-tooltip { background-color: var(--chart-tooltip-bg); }
-    .text-chart-tooltip { color: var(--chart-tooltip-text); }
-    .border-chart-tooltip { border-color: var(--chart-tooltip-border); }
+    .bg-chart-tooltip { background-color: rgb(var(--chart-tooltip-bg)); }
+    .text-chart-tooltip { color: rgb(var(--chart-tooltip-text)); }
+    .border-chart-tooltip { border-color: rgb(var(--chart-tooltip-border)); }
     .bg-chart-grid { background-color: var(--chart-grid); }
 
     /* Fill Colors */

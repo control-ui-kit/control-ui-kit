@@ -1,16 +1,11 @@
 <div id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()" {{ $attributes->merge($classes()) }}>
 
-    <div class="sm:hidden">
-        <select id="{{ $name }}" name="{{ $name }}" x-model="showTab"
-                class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
-            @foreach($getHeadingsArray($headings) as $tab => $heading)
-                <option value="{{ str_replace("#{$name}-", "", $tab) }}">{{ $heading }}</option>
-            @endforeach
-        </select>
+    <div class="{{ $breakpoint }}:hidden">
+        <x-input-select native :name="$name" :options="$getSelectOptions($headings)" :value="$selected" :show-please-select="false" x-model="showTab" button-width="w-full" />
     </div>
 
-    <div class="hidden sm:block">
-        <nav class="flex items-center {{ $spacing }}" aria-label="Tabs">
+    <div class="hidden {{ $breakpoint }}:block overflow-x-auto">
+        <nav class="flex items-center flex-wrap {{ $spacing }}" aria-label="Tabs">
             {{ $headings }}
         </nav>
     </div>

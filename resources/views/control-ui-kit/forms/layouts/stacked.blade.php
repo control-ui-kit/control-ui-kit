@@ -52,7 +52,13 @@
     <div class="{{ $contentStyle }}">
         @if ($input && $slot->isEmpty())
             <div class="{{ $slotStyle }}">
-                <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except(['class', 'required']) }} />
+                @if ($inputTooltip)
+                    <x-tooltip :text="$inputTooltip" :position="$inputTooltipPosition" wrapper="block w-full">
+                        <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except(['class', 'required']) }} />
+                    </x-tooltip>
+                @else
+                    <x-dynamic-component :component="$input" :name="$name" {{ $attributes->except(['class', 'required']) }} />
+                @endif
             </div>
         @else
             <div class="{{ $slotStyle }}" {{ $attributes->except(['class', 'required']) }}>

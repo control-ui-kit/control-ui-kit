@@ -326,6 +326,29 @@
     --pill-warning-bg                : var(--warning-200);    /* bg */
     --pill-warning                   : var(--warning-800);    /* text */
 
+    /* Tooltips */
+    --tooltip-brand-bg               : var(--brand-300);      /* bg */
+    --tooltip-brand-border           : var(--brand-400);      /* border */
+    --tooltip-brand                  : var(--brand-800);      /* text */
+    --tooltip-danger-bg              : var(--danger-200);     /* bg */
+    --tooltip-danger-border          : var(--danger-300);     /* border */
+    --tooltip-danger                 : var(--danger-800);     /* text */
+    --tooltip-default-bg             : var(--gray-800);       /* bg */
+    --tooltip-default-border         : var(--black);          /* border */
+    --tooltip-default                : var(--gray-100);       /* text */
+    --tooltip-info-bg                : var(--info-200);       /* bg */
+    --tooltip-info-border            : var(--info-300);       /* border */
+    --tooltip-info                   : var(--info-800);       /* text */
+    --tooltip-muted-bg               : var(--gray-100);       /* bg */
+    --tooltip-muted-border           : var(--gray-200);       /* border */
+    --tooltip-muted                  : var(--gray-600);       /* text */
+    --tooltip-success-bg             : var(--success-200);    /* bg */
+    --tooltip-success-border         : var(--success-300);    /* border */
+    --tooltip-success                : var(--success-800);    /* text */
+    --tooltip-warning-bg             : var(--warning-200);    /* bg */
+    --tooltip-warning-border         : var(--warning-300);    /* border */
+    --tooltip-warning                : var(--warning-800);    /* text */
+
     /* Progress Bar */
     --progress-bg                    : var(--brand-50);       /* fill */
     --progress-bar                   : var(--brand-500);      /* fill */
@@ -752,6 +775,29 @@
     --pill-muted                     : var(--gray-700);       /* text */
     --pill-warning-bg                : var(--warning-800);    /* bg */
     --pill-warning                   : var(--warning-200);    /* text */
+
+    /* Tooltips */
+    --tooltip-brand-bg               : var(--brand-800);      /* bg */
+    --tooltip-brand-border           : var(--brand-700);      /* border */
+    --tooltip-brand                  : var(--brand-200);      /* text */
+    --tooltip-danger-bg              : var(--danger-800);     /* bg */
+    --tooltip-danger-border          : var(--danger-700);     /* border */
+    --tooltip-danger                 : var(--danger-200);     /* text */
+    --tooltip-default-bg             : var(--black);          /* bg */
+    --tooltip-default-border         : var(--black);          /* border */
+    --tooltip-default                : var(--gray-100);       /* text */
+    --tooltip-info-bg                : var(--info-800);       /* bg */
+    --tooltip-info-border            : var(--info-700);       /* border */
+    --tooltip-info                   : var(--info-200);       /* text */
+    --tooltip-muted-bg               : var(--gray-850);       /* bg */
+    --tooltip-muted-border           : var(--gray-800);       /* border */
+    --tooltip-muted                  : var(--gray-400);       /* text */
+    --tooltip-success-bg             : var(--success-800);    /* bg */
+    --tooltip-success-border         : var(--success-700);    /* border */
+    --tooltip-success                : var(--success-200);    /* text */
+    --tooltip-warning-bg             : var(--warning-800);    /* bg */
+    --tooltip-warning-border         : var(--warning-700);    /* border */
+    --tooltip-warning                : var(--warning-200);    /* text */
 
     /* Progress Bar */
     --progress-bg                    : var(--brand-900);      /* fill */

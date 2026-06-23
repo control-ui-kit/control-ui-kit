@@ -17,11 +17,13 @@ class Tabs extends Component
 
     public string $name;
     public ?string $selected;
+    public string $breakpoint;
     public string $spacing;
 
     public function __construct(
         ?string $background = null,
         ?string $border = null,
+        ?string $breakpoint = null,
         ?string $color = null,
         ?string $font = null,
         ?string $other = null,
@@ -46,6 +48,7 @@ class Tabs extends Component
             'shadow' => $shadow,
         ]);
 
+        $this->breakpoint = $this->style($this->component, 'breakpoint', $breakpoint);
         $this->spacing = $this->style($this->component, 'spacing', $spacing);
     }
 
@@ -70,5 +73,17 @@ class Tabs extends Component
         }
 
         return $matches;
+    }
+
+    public function getSelectOptions(string $html): array
+    {
+        $options = [];
+        $prefix = "#{$this->name}-";
+
+        foreach ($this->getHeadingsArray($html) as $tab => $heading) {
+            $options[str_replace($prefix, '', $tab)] = $heading;
+        }
+
+        return $options;
     }
 }
