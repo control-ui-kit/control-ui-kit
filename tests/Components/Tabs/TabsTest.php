@@ -22,7 +22,21 @@ class TabsTest extends ComponentTestCase
         Config::set('themes.default.tabs.padding', 'padding');
         Config::set('themes.default.tabs.rounded', 'rounded');
         Config::set('themes.default.tabs.shadow', 'shadow');
+        Config::set('themes.default.tabs.breakpoint', 'sm');
         Config::set('themes.default.tabs.spacing', 'spacing');
+
+        Config::set('themes.default.input-select.please-select-text', 'Please Select ...');
+        Config::set('themes.default.input-select.please-select-value', null);
+        Config::set('themes.default.input-select.please-select-trans', '');
+        Config::set('themes.default.input-select.button-background', 'button-background');
+        Config::set('themes.default.input-select.button-border', 'button-border');
+        Config::set('themes.default.input-select.button-color', 'button-color');
+        Config::set('themes.default.input-select.button-font', 'button-font');
+        Config::set('themes.default.input-select.button-other', 'button-other');
+        Config::set('themes.default.input-select.button-padding', 'button-padding');
+        Config::set('themes.default.input-select.button-rounded', 'button-rounded');
+        Config::set('themes.default.input-select.button-shadow', 'button-shadow');
+        Config::set('themes.default.input-select.button-width', 'button-width');
 
         Config::set('themes.default.tabs-heading.background', 'background');
         Config::set('themes.default.tabs-heading.border', 'border');
@@ -70,13 +84,13 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()" class="background border color font other padding rounded shadow">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
-                        <option value="profile">Profile</option>
-                        <option value="settings">Settings</option>
+                    <select id="tabs" name="tabs" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-full" x-model="showTab">
+                        <option value="profile" selected> Profile </option>
+                        <option value="settings"> Settings </option>
                     </select>
                 </div>
-                <div class="hidden sm:block">
-                    <nav class="flex items-center spacing" aria-label="Tabs">
+                <div class="hidden sm:block overflow-x-auto">
+                    <nav class="flex items-center flex-wrap spacing" aria-label="Tabs">
                         <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile"> Profile </a>
                         <a href="#tabs-settings" x-on:click="tab('settings')" :class="{ 'active' : showTab == 'settings' , 'inactive' : showTab != 'settings'}" class="background border color font other padding rounded shadow" id="tabs_settings"> Settings </a>
                     </nav>
@@ -133,13 +147,13 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
-                        <option value="profile">Profile</option>
-                        <option value="settings">Settings</option>
+                    <select id="tabs" name="tabs" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-full" x-model="showTab">
+                        <option value="profile" selected> Profile </option>
+                        <option value="settings"> Settings </option>
                     </select>
                 </div>
-                <div class="hidden sm:block">
-                    <nav class="flex items-center " aria-label="Tabs">
+                <div class="hidden sm:block overflow-x-auto">
+                    <nav class="flex items-center flex-wrap " aria-label="Tabs">
                         <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile"> Profile </a>
                         <a href="#tabs-settings" x-on:click="tab('settings')" :class="{ 'active' : showTab == 'settings' , 'inactive' : showTab != 'settings'}" class="background border color font other padding rounded shadow" id="tabs_settings"> Settings </a>
                     </nav>
@@ -196,13 +210,76 @@ class TabsTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div id="tabs" x-data="tabsData()" x-init="init()" class="1 2 3 4 5 6 7 8">
                 <div class="sm:hidden">
-                    <select id="tabs" name="tabs" x-model="showTab" class="block w-full focus:border-input focus:outline-hidden focus:ring-brand rounded">
-                        <option value="profile">Profile</option>
-                        <option value="settings">Settings</option>
+                    <select id="tabs" name="tabs" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-full" x-model="showTab">
+                        <option value="profile" selected> Profile </option>
+                        <option value="settings"> Settings </option>
                     </select>
                 </div>
-                <div class="hidden sm:block">
-                    <nav class="flex items-center 9" aria-label="Tabs">
+                <div class="hidden sm:block overflow-x-auto">
+                    <nav class="flex items-center flex-wrap 9" aria-label="Tabs">
+                        <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile"> Profile </a>
+                        <a href="#tabs-settings" x-on:click="tab('settings')" :class="{ 'active' : showTab == 'settings' , 'inactive' : showTab != 'settings'}" class="background border color font other padding rounded shadow" id="tabs_settings"> Settings </a>
+                    </nav>
+                </div>
+                <div x-show="showTab == 'profile'" x-cloak class="background border color font other padding rounded shadow"> Profile content </div>
+                <div x-show="showTab == 'settings'" x-cloak class="background border color font other padding rounded shadow"> Settings content </div>
+                <script>
+                    const tabsData = () => ({
+                        name: 'tabs',
+                        showTab:  document.querySelector('#tabs a').id.replace('tabs_', '') ,
+                        tab(id) {
+                            this.showTab = id;
+                        },
+                        init() {
+                            if (window.location.hash) {
+                                let name = '#tabs-';
+                                if (window.location.hash.indexOf(name) !== -1) {
+                                    let tab = window.location.hash.replace(name, '');
+                                    if (document.querySelector('#tabs #tabs_' + tab)) {
+                                        this.showTab = tab;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_tabs_component_can_be_rendered_with_a_custom_breakpoint(): void
+    {
+        $template = <<<'HTML'
+            <x-tabs breakpoint="md">
+                <x-slot name="headings">
+                    <x-tabs-heading id="profile">Profile</x-tabs-heading>
+                    <x-tabs-heading id="settings">Settings</x-tabs-heading>
+                </x-slot>
+                <x-slot name="panels">
+                    <x-tabs-panel id="profile">
+                        Profile content
+                    </x-tabs-panel>
+
+                    <x-tabs-panel id="settings">
+                        Settings content
+                    </x-tabs-panel>
+                </x-slot>
+            </x-tabs>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div id="tabs" x-data="tabsData()" x-init="init()" class="background border color font other padding rounded shadow">
+                <div class="md:hidden">
+                    <select id="tabs" name="tabs" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow w-full" x-model="showTab">
+                        <option value="profile" selected> Profile </option>
+                        <option value="settings"> Settings </option>
+                    </select>
+                </div>
+                <div class="hidden md:block overflow-x-auto">
+                    <nav class="flex items-center flex-wrap spacing" aria-label="Tabs">
                         <a href="#tabs-profile" x-on:click="tab('profile')" :class="{ 'active' : showTab == 'profile' , 'inactive' : showTab != 'profile'}" class="background border color font other padding rounded shadow" id="tabs_profile"> Profile </a>
                         <a href="#tabs-settings" x-on:click="tab('settings')" :class="{ 'active' : showTab == 'settings' , 'inactive' : showTab != 'settings'}" class="background border color font other padding rounded shadow" id="tabs_settings"> Settings </a>
                     </nav>
