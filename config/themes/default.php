@@ -1444,7 +1444,7 @@ return [
     'input-toggle' => [
         'background' => '',
         'border' => '',
-        'other' => '',
+        'other' => 'inline-block',
         'padding' => '',
         'shadow' => '',
 
@@ -1666,7 +1666,7 @@ return [
 
     'panel' => [
         'background' => 'bg-panel',
-        'border' => 'border border-panel overflow-hidden',
+        'border' => 'border border-panel',
         'color' => 'text-panel',
         'divider' => 'divide-y divide-panel',
         'font' => 'text-sm leading-6',
@@ -2336,5 +2336,61 @@ return [
         'padding' => 'py-3',
         'rounded' => '',
         'shadow' => '',
+    ],
+
+    'tooltip' => [
+        'background'     => '',
+        'border'         => '',
+        'color'          => '',
+        'field-position' => 'bottom',
+        'font'           => 'text-xs',
+        'other'          => 'whitespace-nowrap',
+        'padding'        => 'px-3 py-2',
+        'position'       => 'top',
+        'rounded'        => 'rounded',
+        'shadow'         => 'shadow-sm',
+
+        'default' => [
+            'background' => 'bg-tooltip-default',
+            'border'     => 'border border-tooltip-default',
+            'color'      => 'text-tooltip-default',
+            'arrow'      => 'rgb(var(--tooltip-default-bg))',
+        ],
+        'brand' => [
+            'background' => 'bg-tooltip-brand',
+            'border'     => 'border border-tooltip-brand',
+            'color'      => 'text-tooltip-brand',
+            'arrow'      => 'rgb(var(--tooltip-brand-bg))',
+        ],
+        'danger' => [
+            'background' => 'bg-tooltip-danger',
+            'border'     => 'border border-tooltip-danger',
+            'color'      => 'text-tooltip-danger',
+            'arrow'      => 'rgb(var(--tooltip-danger-bg))',
+        ],
+        'info' => [
+            'background' => 'bg-tooltip-info',
+            'border'     => 'border border-tooltip-info',
+            'color'      => 'text-tooltip-info',
+            'arrow'      => 'rgb(var(--tooltip-info-bg))',
+        ],
+        'muted' => [
+            'background' => 'bg-tooltip-muted',
+            'border'     => 'border border-tooltip-muted',
+            'color'      => 'text-tooltip-muted',
+            'arrow'      => 'rgb(var(--tooltip-muted-bg))',
+        ],
+        'success' => [
+            'background' => 'bg-tooltip-success',
+            'border'     => 'border border-tooltip-success',
+            'color'      => 'text-tooltip-success',
+            'arrow'      => 'rgb(var(--tooltip-success-bg))',
+        ],
+        'warning' => [
+            'background' => 'bg-tooltip-warning',
+            'border'     => 'border border-tooltip-warning',
+            'color'      => 'text-tooltip-warning',
+            'arrow'      => 'rgb(var(--tooltip-warning-bg))',
+        ],
     ],
 ];

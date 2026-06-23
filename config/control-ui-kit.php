@@ -161,6 +161,8 @@ return [
         'text' => \ControlUIKit\Components\Text\Text::class,
         'link' => \ControlUIKit\Components\Text\Link::class,
 
+        'tooltip' => \ControlUIKit\Components\Tooltips\Tooltip::class,
+
     ],
 
     /*

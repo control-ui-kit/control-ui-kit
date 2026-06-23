@@ -16,6 +16,8 @@ class FormField extends Component
     public string $help;
     public string $tooltip;
     public string $underneath;
+    public string $inputTooltip;
+    public string $inputTooltipPosition;
 
     public function __construct(
         ?string $layout = null,
@@ -23,6 +25,8 @@ class FormField extends Component
         ?string $help = null,
         ?string $tooltip = null,
         ?string $underneath = null,
+        ?string $inputTooltip = null,
+        ?string $inputTooltipPosition = null,
     ) {
         if ($input === 'input') {
             $this->input = 'input';
@@ -34,6 +38,8 @@ class FormField extends Component
         $this->tooltip = $tooltip ?? '';
         $this->underneath = $underneath ?? '';
         $this->layout = $this->getLayout($layout);
+        $this->inputTooltip = $inputTooltip ?? '';
+        $this->inputTooltipPosition = $inputTooltipPosition ?? '';
     }
 
     public function render(): View
