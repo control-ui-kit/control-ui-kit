@@ -166,10 +166,88 @@ class TextFieldTest extends ComponentTestCase
     #[Test]
     public function the_field_text_component_can_be_rendered_with_a_tooltip(): void
     {
-        $this->withViewErrors(['track' => 'This is a test message']);
+        $this->withViewErrors([]);
 
         $template = <<<'HTML'
             <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>Track</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">Enter your full name</div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_a_tooltip_using_a_custom_icon(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" tooltip-icon="icon-info-circle" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>Track</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15v-4c0-.552-.448-1-1-1h-2v2h1v3H9v2h6v-2h-2zM13.25 8c0 .69-.56 1.25-1.25 1.25S10.75 8.69 10.75 8s.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">Enter your full name</div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_an_input_tooltip(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" tooltip-type="input" />
             HTML;
 
         $expected = <<<'HTML'
@@ -189,7 +267,6 @@ class TextFieldTest extends ComponentTestCase
                             </template>
                         </div>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
                 </div>
             </div>
             HTML;
@@ -198,12 +275,12 @@ class TextFieldTest extends ComponentTestCase
     }
 
     #[Test]
-    public function the_field_text_component_can_be_rendered_with_a_tooltip_and_custom_position(): void
+    public function the_field_text_component_can_be_rendered_with_an_input_tooltip_and_custom_position(): void
     {
-        $this->withViewErrors(['track' => 'This is a test message']);
+        $this->withViewErrors([]);
 
         $template = <<<'HTML'
-            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" tooltip-position="right" />
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" tooltip-type="input" tooltip-position="right" />
             HTML;
 
         $expected = <<<'HTML'
@@ -223,7 +300,6 @@ class TextFieldTest extends ComponentTestCase
                             </template>
                         </div>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
                 </div>
             </div>
             HTML;
@@ -232,17 +308,17 @@ class TextFieldTest extends ComponentTestCase
     }
 
     #[Test]
-    public function the_field_text_component_tooltip_styling_can_be_overridden_via_config(): void
+    public function the_field_text_component_input_tooltip_styling_can_be_overridden_via_config(): void
     {
         Config::set('themes.default.tooltip.default.background', 'custom-tooltip-bg');
         Config::set('themes.default.tooltip.default.border', 'custom-tooltip-border');
         Config::set('themes.default.tooltip.default.color', 'custom-tooltip-color');
         Config::set('themes.default.tooltip.default.arrow', 'custom-tooltip-arrow');
 
-        $this->withViewErrors(['track' => 'This is a test message']);
+        $this->withViewErrors([]);
 
         $template = <<<'HTML'
-            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" />
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="Enter your full name" tooltip-type="input" />
             HTML;
 
         $expected = <<<'HTML'
@@ -262,10 +338,311 @@ class TextFieldTest extends ComponentTestCase
                             </template>
                         </div>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
                 </div>
             </div>
             HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_renders_an_html_tooltip_for_the_icon_type(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="<strong>Full</strong> name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>Track</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow"><strong>Full</strong> name</div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_renders_an_html_tooltip_passed_as_a_bound_attribute(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" :tooltip="$tip" tooltip-type="input" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Track</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="block w-full" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.bottom + gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            <template x-teleport="body">
+                                <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, 0)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                    <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[5px]" style="border-bottom-color: tooltip-arrow"></div>
+                                    <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow"><strong>Full</strong> name</div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template, ['tip' => '<strong>Full</strong> name']);
+    }
+
+    #[Test]
+    public function the_field_text_component_renders_an_html_tooltip_for_the_field_type(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="<strong>Full</strong> name" tooltip-type="field" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>Track</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow"><strong>Full</strong> name</div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_renders_an_html_tooltip_for_the_input_type(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-text name="track" label="Track" placeholder="Track Name" tooltip="<strong>Full</strong> name" tooltip-type="input" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>Track</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="block w-full" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.bottom + gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <input name="track" type="text" id="track" placeholder="Track Name" class="background border color font other padding rounded shadow width" />
+                            <template x-teleport="body">
+                                <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, 0)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                    <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[5px]" style="border-bottom-color: tooltip-arrow"></div>
+                                    <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow"><strong>Full</strong> name</div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_a_tooltip_slot(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'TIP'
+            <x-field-text name="city" label="City"><x-slot:tooltip>Start typing the name of your city</x-slot:tooltip></x-field-text>
+            TIP;
+
+        $expected = <<<'TIP'
+            <div class="wrapper">
+                <label for="city" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>City</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">Start typing the name of your city</div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="city" type="text" id="city" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            TIP;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_an_html_tooltip_slot(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'TIP'
+            <x-field-text name="pc" label="PC"><x-slot:tooltip><strong>First line</strong><br />Second line</x-slot:tooltip></x-field-text>
+            TIP;
+
+        $expected = <<<'TIP'
+            <div class="wrapper">
+                <label for="pc" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>PC</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">
+                                                <strong>First line</strong>
+                                                <br />
+                                                Second line
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="pc" type="text" id="pc" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            TIP;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_an_image_tooltip_slot(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'TIP'
+            <x-field-text name="place" label="Place"><x-slot:tooltip>HTML Tooltip <br /><img src="http://loremflickr.com/400/400" alt="Placeholder" class="w-32 h-24 object-cover"></x-slot:tooltip></x-field-text>
+            TIP;
+
+        $expected = <<<'TIP'
+            <div class="wrapper">
+                <label for="place" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style">
+                        <span>Place</span>
+                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
+                                    <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                    </svg>
+                                    <template x-teleport="body">
+                                        <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                            <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">
+                                                HTML Tooltip
+                                                <br />
+                                                <img src="http://loremflickr.com/400/400" alt="Placeholder" class="w-32 h-24 object-cover">
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: tooltip-arrow"></div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </p>
+                        </label>
+                        <div class="content-style">
+                            <div class="slot-style">
+                                <input name="place" type="text" id="place" class="background border color font other padding rounded shadow width" />
+                            </div>
+                        </div>
+                    </div>
+            TIP;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function the_field_text_component_can_be_rendered_with_an_input_type_tooltip_slot(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'TIP'
+            <x-field-text name="city" label="City" tooltip-type="input"><x-slot:tooltip>Start typing</x-slot:tooltip></x-field-text>
+            TIP;
+
+        $expected = <<<'TIP'
+            <div class="wrapper">
+                <label for="city" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <p class="text-style"> <span>City</span> </p>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div class="block w-full" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.bottom + gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                            <input name="city" type="text" id="city" class="background border color font other padding rounded shadow width" />
+                            <template x-teleport="body">
+                                <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, 0)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                                    <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[5px]" style="border-bottom-color: tooltip-arrow"></div>
+                                    <div class="tooltip-background tooltip-border tooltip-color tooltip-font tooltip-other tooltip-padding tooltip-rounded tooltip-shadow">Start typing</div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            TIP;
 
         $this->assertComponentRenders($expected, $template);
     }

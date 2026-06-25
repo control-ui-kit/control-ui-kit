@@ -415,4 +415,60 @@ class TooltipTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function a_tooltip_component_can_be_rendered_with_html_content(): void
+    {
+        $template = <<<'HTML'
+            <x-tooltip text="<strong>Bold</strong> and <em>more</em>">
+                <button>Hover me</button>
+            </x-tooltip>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="inline-block" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                <button>Hover me</button>
+                <template x-teleport="body">
+                    <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                        <div class="background-default border-default color-default font other padding rounded shadow"><strong>Bold</strong> and <em>more</em></div>
+                        <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: arrow-default"></div>
+                    </div>
+                </template>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_tooltip_component_can_be_rendered_with_a_text_slot(): void
+    {
+        $template = <<<'TIP'
+            <x-tooltip position="top">
+                <x-slot name="text">
+                    HTML Tooltip <br />
+                    with line break
+                </x-slot>
+                <button>Hover me</button>
+            </x-tooltip>
+            TIP;
+
+        $expected = <<<'TIP'
+            <div class="inline-block" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                <button>Hover me</button>
+                <template x-teleport="body">
+                    <div x-show="open" :style="`position:fixed;top:${top}px;left:${left}px;transform:translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                        <div class="background-default border-default color-default font other padding rounded shadow">
+                            HTML Tooltip
+                            <br />
+                            with line break
+                        </div>
+                        <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" style="border-top-color: arrow-default"></div>
+                    </div>
+                </template>
+            </div>
+            TIP;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

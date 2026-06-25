@@ -20,6 +20,9 @@ class Inline extends Component
     public ?string $label;
     public ?string $help;
     public string $tooltip;
+    public string $tooltipType;
+    public string $tooltipIcon;
+    public string $tooltipPosition;
     public string $underneath;
     public bool $required = false;
 
@@ -69,6 +72,9 @@ class Inline extends Component
         ?string $input = null,
         ?string $help = null,
         ?string $tooltip = null,
+        ?string $tooltipType = null,
+        ?string $tooltipIcon = null,
+        ?string $tooltipPosition = null,
         ?string $underneath = null,
         bool $required = false
     ) {
@@ -78,6 +84,9 @@ class Inline extends Component
         $this->label = $label;
         $this->help = $help;
         $this->tooltip = $tooltip ?? '';
+        $this->tooltipType = $tooltipType ?? '';
+        $this->tooltipIcon = $tooltipIcon ?? '';
+        $this->tooltipPosition = $tooltipPosition ?? '';
         $this->underneath = $underneath ?? '';
         $this->required = $required;
 

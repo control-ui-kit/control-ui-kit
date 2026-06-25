@@ -33,7 +33,7 @@ class Tooltip extends Component
     ];
 
     public function __construct(
-        string $text,
+        string $text = '',
         ?string $position = null,
         ?string $type = null,
         string $wrapper = 'inline-block',
@@ -60,23 +60,23 @@ class Tooltip extends Component
 
         $this->type = $this->resolveType($type, [
             'default' => $default,
-            'brand'   => $brand,
-            'danger'  => $danger,
-            'info'    => $info,
+            'brand' => $brand,
+            'danger' => $danger,
+            'info' => $info,
             'success' => $success,
-            'muted'   => $muted,
+            'muted' => $muted,
             'warning' => $warning,
         ]);
 
         $this->setConfigStyles([
             'background' => $background,
-            'border'     => $border,
-            'color'      => $color,
-            'font'       => $font,
-            'other'      => $other,
-            'padding'    => $padding,
-            'rounded'    => $rounded,
-            'shadow'     => $shadow,
+            'border' => $border,
+            'color' => $color,
+            'font' => $font,
+            'other' => $other,
+            'padding' => $padding,
+            'rounded' => $rounded,
+            'shadow' => $shadow,
         ], ['background', 'border', 'color'], 'tooltip.' . $this->type, 'tooltipStyles');
 
         $this->arrow = $this->style('tooltip.' . $this->type, 'arrow', $arrow);
