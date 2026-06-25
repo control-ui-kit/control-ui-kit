@@ -20,9 +20,10 @@ class Responsive extends Component
     public ?string $label;
     public ?string $help;
     public string $tooltip;
+    public string $tooltipType;
+    public string $tooltipIcon;
+    public string $tooltipPosition;
     public string $underneath;
-    public string $inputTooltip;
-    public string $inputTooltipPosition;
     public bool $required = false;
 
     public ?string $contentStyle;
@@ -73,9 +74,10 @@ class Responsive extends Component
         ?string $input = null,
         ?string $help = null,
         ?string $tooltip = null,
+        ?string $tooltipType = null,
+        ?string $tooltipIcon = null,
+        ?string $tooltipPosition = null,
         ?string $underneath = null,
-        ?string $inputTooltip = null,
-        ?string $inputTooltipPosition = null,
         bool $required = false
     ) {
         $this->name = $name;
@@ -84,9 +86,10 @@ class Responsive extends Component
         $this->label = $label;
         $this->help = $help;
         $this->tooltip = $tooltip ?? '';
+        $this->tooltipType = $tooltipType ?? '';
+        $this->tooltipIcon = $tooltipIcon ?? '';
+        $this->tooltipPosition = $tooltipPosition ?? '';
         $this->underneath = $underneath ?? '';
-        $this->inputTooltip = $inputTooltip ?? '';
-        $this->inputTooltipPosition = $inputTooltipPosition ?? '';
         $this->required = $required;
 
         $this->errorStyles = [

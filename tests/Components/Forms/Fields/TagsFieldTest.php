@@ -86,7 +86,7 @@ class TagsFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="genres" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Genres</span> </p>
+                    <div class="text-style"> <span>Genres</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -121,7 +121,7 @@ class TagsFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="genres" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Genres</span> </p>
+                    <div class="text-style"> <span>Genres</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -156,7 +156,7 @@ class TagsFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="genres" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Genres</span> </p>
+                    <div class="text-style"> <span>Genres</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -191,7 +191,7 @@ class TagsFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="genres" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Genres</span> </p>
+                    <div class="text-style"> <span>Genres</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">

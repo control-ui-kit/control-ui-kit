@@ -42,7 +42,7 @@
                 <div class="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-r-[5px]"
                      style="border-right-color: {{ $arrow }}"></div>
             @endif
-            <div class="{{ $tooltipClasses() }}">{{ $text }}</div>
+            <div class="{{ $tooltipClasses() }}">{!! $text !!}</div>
             @if ($position === 'left')
                 <div class="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[5px]"
                      style="border-left-color: {{ $arrow }}"></div>

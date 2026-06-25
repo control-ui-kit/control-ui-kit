@@ -81,12 +81,12 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
                             </svg>
-                        </p>
+                        </div>
                         <p class="help-style">::Help</p>
                     </label>
                     <div class="content-style">
@@ -138,12 +138,12 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="">
                 <label for="test" class="">
-                    <p class="">
+                    <div class="">
                         <span>::Label</span>
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
                             </svg>
-                        </p>
+                        </div>
                         <p class="">::Help</p>
                     </label>
                     <div class="">
@@ -195,12 +195,12 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="9">
                 <label for="test" class="14 15 16 17 18 19 20 21 2">
-                    <p class="3">
+                    <div class="3">
                         <span>::Label</span>
                         <svg class="6 7 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
                             </svg>
-                        </p>
+                        </div>
                         <p class="4">::Help</p>
                     </label>
                     <div class="1">
@@ -226,7 +226,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                     <p class="help-style">::Help</p>
                 </label>
                 <div class="content-style">
@@ -252,7 +252,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                     <p class="help-style">::Help</p>
                 </label>
                 <div class="content-style">
@@ -280,7 +280,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                     <p class="help-style">::Help</p>
                 </label>
                 <div class="content-style">
@@ -306,7 +306,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                     <p class="help-style">::Help</p>
                 </label>
                 <div class="content-style">
@@ -334,12 +334,12 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test_custom" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
                             </svg>
-                        </p>
+                        </div>
                         <p class="help-style">::Help</p>
                     </label>
                     <div class="content-style">
@@ -365,12 +365,12 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test_custom" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>::Label</span>
                         <svg class="required-color required-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18.0002 22.001c-.193 0-.387-.056-.555-.168l-5.445-3.63-5.44497 3.63c-.348.232-.805.224-1.145-.024-.338-.247-.486-.679-.371-1.082l1.838-6.435-4.584-4.58399c-.286-.28499-.371-.716-.217-1.09.154-.373.52-.61699.924-.61699h5.382l2.72397-5.44701c.339-.677 1.45-.677 1.789 0l2.724 5.44701h5.381c.404 0 .77.24399.924.61699.154.374.069.80501-.217 1.09l-4.584 4.58399 1.838 6.435c.115.403-.033.835-.371 1.082-.176.128-.383.192-.59.192zm-6-6c.193 0 .387.057.555.168l3.736 2.491-1.252-4.384c-.101-.35-.003-.726.254-.982l3.293-3.293h-3.586c-.379 0-.725-.21399-.895-.55299l-2.105-4.211-2.10497 4.211c-.17.339-.516.55299-.895.55299h-3.586l3.293 3.293c.257.257.354.633.254.982l-1.252 4.384 3.73597-2.491c.168-.111.362-.168.555-.168z"/>
                             </svg>
-                        </p>
+                        </div>
                         <p class="help-style">::Help</p>
                     </label>
                     <div class="content-style">
@@ -397,7 +397,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-1/2 label-other-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="w-1/2 content-other-style">
                     <div class="slot-style"> ::SLOT </div>
@@ -421,7 +421,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-2/5 label-other-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="w-3/5 content-other-style">
                     <div class="slot-style"> ::SLOT </div>
@@ -445,7 +445,7 @@ class ResponsiveTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow w-1/3 label-other-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="w-2/3 content-other-style">
                     <div class="slot-style"> ::SLOT </div>

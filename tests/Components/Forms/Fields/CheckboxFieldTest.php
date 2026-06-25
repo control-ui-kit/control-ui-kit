@@ -63,7 +63,7 @@ class CheckboxFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="enable" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Enable</span> </p>
+                    <div class="text-style"> <span>Enable</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -94,7 +94,7 @@ class CheckboxFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="enable" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Enable</span> </p>
+                    <div class="text-style"> <span>Enable</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -125,7 +125,7 @@ class CheckboxFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="enable" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Enable</span> </p>
+                    <div class="text-style"> <span>Enable</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
