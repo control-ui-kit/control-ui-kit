@@ -88,7 +88,7 @@ class DateRangeFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="range_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>range</span> </p>
+                    <div class="text-style"> <span>range</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -117,7 +117,7 @@ class DateRangeFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="range_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>range</span> </p>
+                    <div class="text-style"> <span>range</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -146,7 +146,7 @@ class DateRangeFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="range_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>range</span> </p>
+                    <div class="text-style"> <span>range</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">

@@ -71,7 +71,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -97,7 +97,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -123,7 +123,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -149,7 +149,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -175,9 +175,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>Track</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -189,7 +189,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -214,9 +214,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>Track</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15v-4c0-.552-.448-1-1-1h-2v2h1v3H9v2h6v-2h-2zM13.25 8c0 .69-.56 1.25-1.25 1.25S10.75 8.69 10.75 8s.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -228,7 +228,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -253,7 +253,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -286,7 +286,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -324,7 +324,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -357,9 +357,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>Track</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -371,7 +371,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -396,7 +396,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -429,9 +429,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>Track</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -443,7 +443,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -468,7 +468,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="track" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Track</span> </p>
+                    <div class="text-style"> <span>Track</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -501,9 +501,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'TIP'
             <div class="wrapper">
                 <label for="city" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>City</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -515,7 +515,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -540,9 +540,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'TIP'
             <div class="wrapper">
                 <label for="pc" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>PC</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -558,7 +558,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -583,9 +583,9 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'TIP'
             <div class="wrapper">
                 <label for="place" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style">
+                    <div class="text-style">
                         <span>Place</span>
-                        <div class="inline-block ml-1 align-middle" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                        <div class="ml-auto float-right" x-data="{ open: false, top: 0, left: 0, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.open = true; }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                             <svg class="h-4 w-4 fill-current text-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 18C6.486 22 2 17.515 2 12 2 6.486 6.486 2 12 2s10 4.486 10 10c0 5.515-4.486 10-10 10z"/>
                                     <path clip-rule="evenodd" d="M13 15h-2v-3h1c1.103 0 2-.897 2-2 0-1.104-.897-2-2-2s-2 .896-2 2H8c0-2.206 1.794-4 4-4s4 1.794 4 4c0 1.86-1.277 3.428-3 3.874V15zM13.25 17c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
@@ -601,7 +601,7 @@ class TextFieldTest extends ComponentTestCase
                                         </div>
                                     </template>
                                 </div>
-                            </p>
+                            </div>
                         </label>
                         <div class="content-style">
                             <div class="slot-style">
@@ -626,7 +626,7 @@ class TextFieldTest extends ComponentTestCase
         $expected = <<<'TIP'
             <div class="wrapper">
                 <label for="city" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>City</span> </p>
+                    <div class="text-style"> <span>City</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">

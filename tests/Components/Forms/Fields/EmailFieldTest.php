@@ -63,7 +63,7 @@ class EmailFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="email" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>email</span> </p>
+                    <div class="text-style"> <span>email</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -89,7 +89,7 @@ class EmailFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="email" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>email</span> </p>
+                    <div class="text-style"> <span>email</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -115,7 +115,7 @@ class EmailFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="email" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>email</span> </p>
+                    <div class="text-style"> <span>email</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">

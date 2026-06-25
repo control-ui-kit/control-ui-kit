@@ -51,7 +51,7 @@ class SlotFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="slot" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Slot</span> </p>
+                    <div class="text-style"> <span>Slot</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style"> Some text goes here </div>
@@ -74,7 +74,7 @@ class SlotFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="slot" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Slot</span> </p>
+                    <div class="text-style"> <span>Slot</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style"> Some text goes here </div>
@@ -97,7 +97,7 @@ class SlotFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="slot" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Slot</span> </p>
+                    <div class="text-style"> <span>Slot</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style" onclick="test()"> Some text goes here </div>

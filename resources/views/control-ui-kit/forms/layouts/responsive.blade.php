@@ -1,19 +1,19 @@
 <div {{ $attributes->only('class')->merge(['class' => $wrapper]) }}>
     <x-label :for="is_null($for) ? $name : $for" class="{{ $labelStyle }}" :styles="$labelStyles">
-        <p class="{{ $textStyle }}">
+        <div class="{{ $textStyle }}">
             <span>{!! $label !!}</span>
             @if ($required)
                 <x-icon-star size="{{ $requiredSize }}" color="{{ $requiredColor }}" />
             @endif
             @if (($tooltip || isset($tooltipContent)) && in_array($tooltipType, ['icon', 'field'], true))
-                <x-tooltip :text="$tooltip" wrapper="inline-block ml-1 align-middle">
+                <x-tooltip :text="$tooltip" wrapper="ml-auto float-right">
                     @isset($tooltipContent)
                         <x-slot:text>{{ $tooltipContent }}</x-slot:text>
                     @endisset
                     <x-dynamic-component :component="$tooltipIcon" size="h-4 w-4" class="text-muted" />
                 </x-tooltip>
             @endif
-        </p>
+        </div>
         @if ($help)
             <p class="{{ $helpStyle }}">{!! $help !!}</p>
         @endif

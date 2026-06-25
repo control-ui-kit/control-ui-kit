@@ -72,7 +72,7 @@ class FormFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -100,7 +100,7 @@ class FormFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -126,7 +126,7 @@ class FormFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style"></div>
@@ -150,7 +150,7 @@ class FormFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>::Label</span> </p>
+                    <div class="text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -177,7 +177,7 @@ class FormFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="r-wrapper">
                 <label for="test" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow r-label-style">
-                    <p class="r-text-style"> <span>::Label</span> </p>
+                    <div class="r-text-style"> <span>::Label</span> </div>
                 </label>
                 <div class="r-content-style">
                     <div class="r-slot-style"></div>

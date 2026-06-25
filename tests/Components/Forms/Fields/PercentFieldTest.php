@@ -86,7 +86,7 @@ class PercentFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="value_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Value</span> </p>
+                    <div class="text-style"> <span>Value</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -115,7 +115,7 @@ class PercentFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper float-right">
                 <label for="value_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Value</span> </p>
+                    <div class="text-style"> <span>Value</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
@@ -144,7 +144,7 @@ class PercentFieldTest extends ComponentTestCase
         $expected = <<<'HTML'
             <div class="wrapper">
                 <label for="value_display" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
-                    <p class="text-style"> <span>Value</span> </p>
+                    <div class="text-style"> <span>Value</span> </div>
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
