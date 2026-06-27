@@ -40,9 +40,6 @@
             .then(function(res) {
                 var countries = mapUtils.topoFeature(res.world, res.world.objects.countries);
                 var names = res.names;
-                var resolvedBorderColor = mapUtils.resolveColor(borderColor);
-                var resolvedNoDataColor = mapUtils.resolveColor(noDataColor);
-                var resolvedStops = mapUtils.resolveGradientStops(gradientStops);
 
                 countries.features.forEach(function(feature) {
                     var numId = String(feature.id).padStart(3, '0');
@@ -51,17 +48,11 @@
                     var countryName = meta.name || numId;
                     var value = (iso2 && data[iso2] !== undefined) ? Number(data[iso2]) : null;
 
-                    var fill = value === null
-                        ? resolvedNoDataColor
-                        : mapUtils.interpolateGradient(value / maxVal, resolvedStops);
-
                     var d = path(feature);
                     if (!d) return;
 
                     var pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                     pathEl.setAttribute('d', d);
-                    pathEl.setAttribute('fill', fill);
-                    pathEl.setAttribute('stroke', resolvedBorderColor);
                     pathEl.setAttribute('stroke-width', borderWidth);
                     pathEl.dataset.iso = iso2 || '';
                     pathEl.dataset.name = countryName;
@@ -98,7 +89,43 @@
 
                     svg.appendChild(pathEl);
                 });
+
+                applyColors();
             });
+
+        // Re-resolve every country's fill and stroke from the active theme's CSS
+        // variables and apply them to the already-rendered paths. Country values are
+        // read back from the `data-value` set during render, so this can run any time
+        // after the initial paint.
+        function applyColors() {
+            var resolvedBorderColor = mapUtils.resolveColor(borderColor);
+            var resolvedNoDataColor = mapUtils.resolveColor(noDataColor);
+            var resolvedStops = mapUtils.resolveGradientStops(gradientStops);
+
+            svg.querySelectorAll('path').forEach(function(pathEl) {
+                var val = pathEl.dataset.value;
+                pathEl.setAttribute('fill', val === ''
+                    ? resolvedNoDataColor
+                    : mapUtils.interpolateGradient(Number(val) / maxVal, resolvedStops));
+                pathEl.setAttribute('stroke', resolvedBorderColor);
+            });
+        }
+
+        // SVG fills/strokes are baked at render time, so they don't follow CSS variable
+        // changes the way the ocean and tooltip (which reference vars live) do. Watch
+        // <html> for theme/mode changes and repaint so the choropleth tracks light/dark
+        // toggles without a page refresh. Self-disconnects once the chart is gone.
+        var themeObserver = new MutationObserver(function() {
+            if (!document.getElementById(id)) {
+                themeObserver.disconnect();
+                return;
+            }
+            applyColors();
+        });
+        themeObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-mode', 'data-theme', 'class']
+        });
     })();
     </script>
 </div>
