@@ -771,10 +771,12 @@ Renders an SVG choropleth (heat map) of the world. Countries are coloured by val
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `id` | string | required | SVG element ID |
-| `data` | array | `[]` | ISO-A2 → numeric value map, e.g. `['GB' => 1200, 'US' => 5000]` |
+| `data` | array | `[]` | ISO-A2 → value map. Each value is either a number, or `['value' => 1200, 'id' => 42]` to also attach an `id` for use in links. e.g. `['GB' => ['value' => 1200, 'id' => 42], 'US' => 5000]` |
 | `projection` | string | `'natural-earth'` | `natural-earth` \| `mercator` \| `equal-earth` |
 | `show-tooltip` | string | `'true'` | Show country name + value on hover |
 | `number-format` | string | `''` | Max decimal places for tooltip value |
+| `url` | string | `''` | When set, every country becomes clickable and navigates to this URL. Supports `{id}`, `{iso}`, `{name}` and `{value}` placeholders (each URL-encoded from the clicked country) |
+| `url-target` | string | `'_self'` | Where the clicked URL opens, like an `<a target>` — `_self`, `_blank`, etc. Default set in the `world-map-chart` theme section |
 
 **Style props** (all override the `world-map-chart` theme section):
 
@@ -791,6 +793,7 @@ Renders an SVG choropleth (heat map) of the world. Countries are coloured by val
 | `tooltip-font` | `text-xs` | Tailwind font classes for tooltip |
 | `tooltip-padding` | `px-2 py-1` | Tailwind padding classes for tooltip |
 | `tooltip-rounded` | `rounded` | Tailwind border-radius for tooltip |
+| `url-target` | `_self` | Default link target for clickable countries (overridable per-instance via the `url-target` prop) |
 | `width` | `w-full` | Tailwind width of wrapper div |
 | `height` | `h-auto` | Tailwind height of wrapper div |
 
@@ -816,7 +819,28 @@ Renders an SVG choropleth (heat map) of the world. Countries are coloured by val
 />
 ```
 
-**Data format:** ISO 3166-1 alpha-2 country codes as keys, numeric values as values. Countries not present in the array are shown in `no-data-color`. The maximum value in the data set maps to `max-color`; zero/minimum maps to `min-color`.
+**Clickable countries:**
+
+Pass a `url` to make every country a clickable link. Use placeholders to build a per-country
+destination — `{id}` (from the dataset entry's `id`), `{iso}` (ISO-A2 code), `{name}` (country
+name) and `{value}` (its value). Each is URL-encoded at click time. Use `url-target="_blank"` to
+open in a new window.
+
+```blade
+<x-world-map-chart
+    id="reports_map"
+    :data="['GB' => ['value' => 12400, 'id' => 42], 'US' => ['value' => 98000, 'id' => 17]]"
+    url="/reports/country/{id}/{iso}"
+    url-target="_blank"
+/>
+```
+
+**Data format:** ISO 3166-1 alpha-2 country codes as keys. Each value is either a number, or an
+array `['value' => 1200, 'id' => 42]` where `value` drives the choropleth shading and `id` is
+available to the `url` via the `{id}` placeholder (the array form is only needed when you want an
+`id` in links; a plain number still works everywhere). Countries not present in the array are shown
+in `no-data-color`. The maximum value in the data set maps to `max-color`; zero/minimum maps to
+`min-color`.
 
 ---
 
