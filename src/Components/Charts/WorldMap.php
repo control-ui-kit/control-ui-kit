@@ -21,6 +21,8 @@ class WorldMap extends Component
     public string $showTooltip;
     public string $numberFormat;
     public string $label;
+    public string $url;
+    public string $urlTarget;
 
     public string $minColor;
     public string $midColor;
@@ -46,6 +48,8 @@ class WorldMap extends Component
         ?string $showTooltip = null,
         ?string $numberFormat = null,
         ?string $label = null,
+        ?string $url = null,
+        ?string $urlTarget = null,
 
         ?string $minColor = null,
         ?string $midColor = null,
@@ -69,6 +73,8 @@ class WorldMap extends Component
         $this->showTooltip = $showTooltip ?? 'true';
         $this->numberFormat = $numberFormat ?? '';
         $this->label = $label ?? '';
+        $this->url = $url ?? '';
+        $this->urlTarget = $this->style($this->component, 'url-target', $urlTarget);
 
         $this->minColor = $this->style($this->component, 'min-color', $minColor);
         $this->midColor = $this->style($this->component, 'mid-color', $midColor);

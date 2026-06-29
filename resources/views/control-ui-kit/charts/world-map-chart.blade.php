@@ -1,5 +1,5 @@
-<div class="{{ $width }} {{ $height }}" style="position:relative;">
-    <svg id="{{ $id }}" width="100%" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet"
+<div class="{{ $width }}" style="position:relative;">
+    <svg id="{{ $id }}" width="100%" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" class="{{ $height }}"
          @if($backgroundColor !== 'transparent') style="display:block;background-color:rgb(var({{ $backgroundColor }}));" @else style="display:block;" @endif></svg>
     @if($showTooltip === 'true')
     <div id="{{ $id }}_tooltip" style="position:absolute;pointer-events:none;display:none;white-space:nowrap;background-color:rgb(var({{ $tooltipBackground }}));color:rgb(var({{ $tooltipColor }}));border:1px solid rgb(var({{ $tooltipBorder }}));"
@@ -16,6 +16,8 @@
         var tooltipLabel = '{{ $label }}';
         var projection = '{{ $projection }}';
         var numberFormat = '{{ $numberFormat }}';
+        var url = {!! json_encode($url, JSON_UNESCAPED_SLASHES) !!};
+        var urlTarget = '{{ $urlTarget }}';
         var data = {!! $mapData() !!};
 
         var svg = document.getElementById(id);
@@ -28,7 +30,10 @@
                 : mapUtils.geoNaturalEarth1().scale(160).translate([480, 250]);
 
         var path = mapUtils.geoPath().projection(proj);
-        var maxVal = Object.values(data).reduce(function(m, v) { return Math.max(m, Number(v)); }, 0) || 1;
+        var maxVal = Object.values(data).reduce(function(m, v) {
+            var n = (v !== null && typeof v === 'object') ? Number(v.value) : Number(v);
+            return Math.max(m, isNaN(n) ? 0 : n);
+        }, 0) || 1;
 
         fetch('{{ url("control-ui-kit/map-data/world-110m.json") }}')
             .then(function(r) { return r.json(); })
@@ -46,7 +51,10 @@
                     var meta = names[numId] || {};
                     var iso2 = meta.iso2 || null;
                     var countryName = meta.name || numId;
-                    var value = (iso2 && data[iso2] !== undefined) ? Number(data[iso2]) : null;
+                    var entry = (iso2 && data[iso2] !== undefined) ? data[iso2] : null;
+                    var isObject = entry !== null && typeof entry === 'object';
+                    var value = entry === null ? null : (isObject ? (entry.value !== undefined ? Number(entry.value) : null) : Number(entry));
+                    var rowId = isObject && entry.id !== undefined && entry.id !== null ? entry.id : '';
 
                     var d = path(feature);
                     if (!d) return;
@@ -57,6 +65,7 @@
                     pathEl.dataset.iso = iso2 || '';
                     pathEl.dataset.name = countryName;
                     pathEl.dataset.value = value !== null ? value : '';
+                    pathEl.dataset.id = rowId;
 
                     if (showTooltip && tooltip) {
                         pathEl.addEventListener('mousemove', function(e) {
@@ -84,6 +93,18 @@
                         });
                         pathEl.addEventListener('mouseleave', function() {
                             tooltip.style.display = 'none';
+                        });
+                    }
+
+                    if (url !== '') {
+                        pathEl.style.cursor = 'pointer';
+                        pathEl.addEventListener('click', function() {
+                            var href = url
+                                .replace(/\{id\}/g, encodeURIComponent(pathEl.dataset.id))
+                                .replace(/\{iso\}/g, encodeURIComponent(pathEl.dataset.iso))
+                                .replace(/\{name\}/g, encodeURIComponent(pathEl.dataset.name))
+                                .replace(/\{value\}/g, encodeURIComponent(pathEl.dataset.value));
+                            window.open(href, urlTarget);
                         });
                     }
 

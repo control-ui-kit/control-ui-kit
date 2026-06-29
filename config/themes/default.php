@@ -1629,6 +1629,7 @@ return [
         'tooltip-font' => 'text-xs',
         'tooltip-padding' => 'px-2 py-1',
         'tooltip-rounded' => 'rounded',
+        'url-target' => '_self',
         'width' => 'w-full',
         'height' => 'h-auto',
     ],
