@@ -55,6 +55,15 @@ class SearchTest extends ComponentTestCase
         Config::set('themes.default.input-search.icon-right-padding', 'search-icon-padding');
         Config::set('themes.default.input-search.icon-right-rounded', 'search-icon-rounded');
         Config::set('themes.default.input-search.icon-right-shadow', 'search-icon-shadow');
+
+        Config::set('themes.default.input-search.clear-background', 'clear-background');
+        Config::set('themes.default.input-search.clear-border', 'clear-border');
+        Config::set('themes.default.input-search.clear-color', 'clear-color');
+        Config::set('themes.default.input-search.clear-size', 'clear-size');
+        Config::set('themes.default.input-search.clear-other', 'clear-other');
+        Config::set('themes.default.input-search.clear-padding', 'clear-padding');
+        Config::set('themes.default.input-search.clear-rounded', 'clear-rounded');
+        Config::set('themes.default.input-search.clear-shadow', 'clear-shadow');
     }
 
     #[Test]
@@ -145,6 +154,89 @@ class SearchTest extends ComponentTestCase
                     </div>
                 </div>
             HTML;
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_input_search_component_with_clear_url_shows_the_clear_icon_when_a_value_is_present(): void
+    {
+        $template = <<<'HTML'
+            <x-input-search name="search" clear-url="/search" value="term" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <input name="search" type="search" id="search" value="term" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <a href="/search" aria-label="Clear search">
+                    <div class="clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow">
+                        <svg class="clear-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_input_search_component_with_clear_url_hides_the_clear_icon_when_no_value_is_present(): void
+    {
+        $template = <<<'HTML'
+            <x-input-search name="search" clear-url="/search" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <input name="search" type="search" id="search" class="background border color font other padding rounded shadow width" />
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_input_search_component_with_clear_url_can_use_a_custom_clear_icon(): void
+    {
+        $template = <<<'HTML'
+            <x-input-search name="search" clear-url="/search" value="term" clear-icon="icon-dot" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <input name="search" type="search" id="search" value="term" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <a href="/search" aria-label="Clear search">
+                    <div class="clear-background clear-border clear-color clear-other clear-padding clear-rounded clear-shadow">
+                        <svg class="clear-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_input_search_component_with_clear_url_can_override_the_clear_icon_color(): void
+    {
+        $template = <<<'HTML'
+            <x-input-search name="search" clear-url="/search" value="term" clear-color="text-red-500" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow wrapper-width">
+                <input name="search" type="search" id="search" value="term" class="input-background input-border input-color input-font input-other input-padding input-rounded input-shadow" />
+                <a href="/search" aria-label="Clear search">
+                    <div class="clear-background clear-border text-red-500 clear-other clear-padding clear-rounded clear-shadow">
+                        <svg class="clear-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            HTML;
+
         $this->assertComponentRenders($expected, $template);
     }
 
