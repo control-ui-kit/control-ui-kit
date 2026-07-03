@@ -1302,6 +1302,15 @@ return [
     ],
 
     'input-search' => [
+        'clear-icon' => 'icon-close',
+        'clear-background' => '',
+        'clear-border' => '',
+        'clear-color' => 'text-brand hover:text-brand-hover animate',
+        'clear-size' => 'w-4 h-4',
+        'clear-other' => 'flex items-center justify-center self-stretch w-10',
+        'clear-padding' => 'px-2.5',
+        'clear-rounded' => '',
+        'clear-shadow' => '',
         'icon-left' => 'icon-search',
         'type' => 'search',
     ],

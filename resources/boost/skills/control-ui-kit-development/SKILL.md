@@ -85,7 +85,7 @@ Change the default globally in `config/control-ui-kit.php`:
 | `x-field-url` | URL input | — |
 | `x-field-password` | Password with reveal toggle | — |
 | `x-field-textarea` | Multi-line text | — |
-| `x-field-search` | Search input | — |
+| `x-field-search` | Search input | `clear-url`, `clear-icon` |
 | `x-field-number` | Integer input | `min`, `max`, `step` |
 | `x-field-decimal` | Decimal input | `decimals` |
 | `x-field-currency` | Currency input | `symbol` |
@@ -192,6 +192,46 @@ Use input components without label/layout — e.g. inside a custom slot or `x-fi
 | `icon-left` / `icon-right` | string | Icon component name |
 | `prefix-text` / `suffix-text` | string | Wrapper text |
 | `required-input` | bool | Native required attribute |
+
+### Search input clear button (`x-input-search` / `x-field-search`)
+
+The search input can render a clickable clear (✕) icon that links to a route. Pass `clear-url`:
+
+```blade
+{{-- Standalone --}}
+<x-input-search name="search" :value="request('search')" :clear-url="route('users.index')" />
+
+{{-- As a field --}}
+<x-field-search name="search" label="Search" :value="request('search')" :clear-url="route('users.index')" />
+```
+
+Behaviour:
+
+- The clear icon **only appears when the input has a value** (the server-rendered `value` / `old()`), so it shows once a search term is present.
+- Clicking it navigates to `clear-url` — typically the index route without the query string, resetting the search.
+- The clear icon renders **before** the `icon-right` block, so a search can have both a clear link and a right icon.
+
+The clear icon has its own themeable style region — override per-instance or via the `input-search` theme section:
+
+| Prop | Config key | Default | Description |
+|---|---|---|---|
+| `clear-icon` | `input-search.clear-icon` | `icon-close` | Icon component used for the clear button |
+| `clear-color` | `input-search.clear-color` | `text-muted` | Icon colour |
+| `clear-background` | `input-search.clear-background` | `''` | Background |
+| `clear-border` | `input-search.clear-border` | `border-l border-input` | Border |
+| `clear-size` | `input-search.clear-size` | `w-4 h-4` | Icon size |
+| `clear-other` | `input-search.clear-other` | `flex items-center justify-center self-stretch w-10` | Layout/other classes |
+| `clear-padding` | `input-search.clear-padding` | `px-2.5` | Padding |
+| `clear-rounded` | `input-search.clear-rounded` | `''` | Border radius |
+| `clear-shadow` | `input-search.clear-shadow` | `''` | Shadow |
+
+```blade
+{{-- Custom clear icon and colour --}}
+<x-input-search name="search" :value="request('search')"
+    :clear-url="route('users.index')" clear-icon="icon-trash" clear-color="text-red-500" />
+```
+
+> The clear link is a plain `<a href>` (full-page navigation). For a live client-side toggle while typing, add an Alpine binding.
 
 ---
 
