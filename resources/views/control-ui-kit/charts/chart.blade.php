@@ -62,6 +62,19 @@
                         return labels;
                     };
                 }
+@if(!empty($cutoutBreakpoints))
+                var _cutoutBps = {!! json_encode($cutoutBreakpoints) !!};
+                var _cutoutWidths = { sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 };
+                var _pickCutout = function() {
+                    var w = window.innerWidth;
+                    var val = _cutoutBps.base;
+                    ['sm', 'md', 'lg', 'xl', '2xl'].forEach(function(bp) {
+                        if (_cutoutBps[bp] !== undefined && w >= _cutoutWidths[bp]) { val = _cutoutBps[bp]; }
+                    });
+                    return val;
+                };
+                chartOpts.cutout = _pickCutout();
+@endif
                 window.{!! $element !!} = new Chart(ctx, {
                     type: chartType,
                     data: {
@@ -70,17 +83,36 @@
                     },
                     options: chartOpts
                 });
+@if(!empty($cutoutBreakpoints))
+                window.addEventListener('resize', function() {
+                    var chart = window['{!! $element !!}'];
+                    var next = _pickCutout();
+                    if (chart.options.cutout !== next) { chart.options.cutout = next; chart.update(); }
+                });
+@endif
                 document.querySelectorAll('[data-chart="{!! $element !!}"]').forEach(function(el) {
                     var idx = parseInt(el.dataset.index);
                     el.addEventListener('mouseenter', function() {
-                        window['{!! $element !!}'].setActiveElements([{datasetIndex:0, index:idx}]);
-                        window['{!! $element !!}'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                        window['{!! $element !!}'].update();
+                        var chart = window['{!! $element !!}'];
+                        if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                        chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                        chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                        chart.update();
                     });
                     el.addEventListener('mouseleave', function() {
-                        window['{!! $element !!}'].setActiveElements([]);
-                        window['{!! $element !!}'].tooltip.setActiveElements([]);
-                        window['{!! $element !!}'].update();
+                        var chart = window['{!! $element !!}'];
+                        chart.setActiveElements([]);
+                        chart.tooltip.setActiveElements([]);
+                        chart.update();
+                    });
+                    el.addEventListener('click', function() {
+                        var chart = window['{!! $element !!}'];
+                        if (typeof chart.toggleDataVisibility !== 'function') return;
+                        chart.toggleDataVisibility(idx);
+                        chart.update();
+                        var hidden = !chart.getDataVisibility(idx);
+                        el.style.opacity = hidden ? '0.4' : '';
+                        el.style.textDecoration = hidden ? 'line-through' : '';
                     });
                 });
             })();

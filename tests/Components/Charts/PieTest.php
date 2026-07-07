@@ -101,14 +101,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -205,14 +217,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -309,14 +333,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -413,14 +449,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -517,14 +565,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -621,14 +681,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -725,14 +797,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -829,14 +913,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -933,14 +1029,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1037,14 +1145,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1141,14 +1261,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1245,14 +1377,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1349,14 +1493,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1453,14 +1609,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1557,14 +1725,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1661,14 +1841,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1765,14 +1957,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1869,14 +2073,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1973,14 +2189,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2077,14 +2305,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2178,14 +2418,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2283,14 +2535,26 @@ class PieTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="pie_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['pie_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['pie_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['pie_chart'].setActiveElements([]);
-                                    window['pie_chart'].tooltip.setActiveElements([]);
-                                    window['pie_chart'].update();
+                                    var chart = window['pie_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['pie_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();

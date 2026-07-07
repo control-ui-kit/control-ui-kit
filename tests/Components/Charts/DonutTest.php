@@ -101,14 +101,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -205,14 +217,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -309,14 +333,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -413,14 +449,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -517,14 +565,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -621,14 +681,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -725,14 +797,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -829,14 +913,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -933,14 +1029,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1037,14 +1145,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1141,14 +1261,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1245,14 +1377,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1349,14 +1493,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1453,14 +1609,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1557,14 +1725,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1661,14 +1841,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1765,14 +1957,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1869,14 +2073,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -1973,14 +2189,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2077,14 +2305,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2178,14 +2418,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2283,14 +2535,26 @@ class DonutTest extends ComponentTestCase
                             document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
                                 var idx = parseInt(el.dataset.index);
                                 el.addEventListener('mouseenter', function() {
-                                    window['donut_chart'].setActiveElements([{datasetIndex:0, index:idx}]);
-                                    window['donut_chart'].tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
                                 });
                                 el.addEventListener('mouseleave', function() {
-                                    window['donut_chart'].setActiveElements([]);
-                                    window['donut_chart'].tooltip.setActiveElements([]);
-                                    window['donut_chart'].update();
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
                                 });
                             });
                         })();
@@ -2393,5 +2657,140 @@ class DonutTest extends ComponentTestCase
         $component = new Donut(id: 'donut_chart', data: ['A' => 1], legendAlign: 'invalid');
 
         $this->assertSame('center', $component->legendAlign);
+    }
+
+    #[Test]
+    public function a_donut_chart_component_can_be_rendered_with_responsive_cutout_breakpoints(): void
+    {
+        $template = <<<'HTML'
+            <x-donut-chart
+                id="donut_chart"
+                cutout="80%"
+                sm:cutout="78%"
+                md:cutout="75%"
+                :data="[
+                    'Male'    => 40,
+                    'Female'  => 60,
+                    'Unknown' => 100
+                ]" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <canvas id="donut_chart">
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        (function() {
+                            "use strict";
+                            var _s = getComputedStyle(document.documentElement);
+                            var _rc = function(c, dk) {
+                                if (typeof c === 'string' && c.charAt(0) === '-') {
+                                    var p = _s.getPropertyValue(c).trim().split(/\s+/).map(Number);
+                                    if (dk) { p = p.map(function(v) { return Math.round(v * (1 + dk)); }); }
+                                    return 'rgb(' + p.join(', ') + ')';
+                                }
+                                return c;
+                            };
+                            var _rd = function(datasets) {
+                                return datasets.map(function(d) {
+                                    var r = Object.assign({}, d);
+                                    ['borderColor', 'backgroundColor', 'hoverBorderColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0); }) : _rc(r[k], 0);
+                                    });
+                                    ['hoverBackgroundColor'].forEach(function(k) {
+                                        if (!(k in r)) return;
+                                        r[k] = Array.isArray(r[k]) ? r[k].map(function(c) { return _rc(c, 0.3); }) : _rc(r[k], 0.3);
+                                    });
+                                    return r;
+                                });
+                            };
+                            var _ro = function(obj) {
+                                if (typeof obj === 'string') {
+                                    if (obj.charAt(0) === '-') { return _s.getPropertyValue(obj).trim() || obj; }
+                                    var m = obj.match(/^rgba?\((--[^)]+)\)$/);
+                                    if (m) { return _s.getPropertyValue(m[1]).trim() || obj; }
+                                }
+                                if (typeof obj === 'object' && obj !== null) {
+                                    if (Array.isArray(obj)) return obj.map(_ro);
+                                    var r = {};
+                                    Object.keys(obj).forEach(function(k) { r[k] = (k === 'tooltip') ? obj[k] : _ro(obj[k]); });
+                                    return r;
+                                }
+                                return obj;
+                            };
+                            var ctx = document.getElementById("donut_chart");
+                            var chartType = 'doughnut';
+                            var chartOpts = {};
+                                            chartOpts = _ro({"plugins":{"legend":{"display":true,"position":"bottom","align":"center","fullSize":true,"reverse":false,"labels":{"boxWidth":40,"color":"rgb(--chart-legend-label)","font":{"size":12,"weight":"normal","family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"},"padding":10,"borderWidth":0}},"title":{"display":false,"text":"","position":"top","color":"rgb(--chart-label)","font":{"size":12,"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","weight":"bold","lineHeight":1.2},"padding":10},"tooltip":{"enabled":true,"mode":"nearest","intersect":true,"position":"average","backgroundColor":"rgb(--chart-tooltip-bg)","titleColor":"rgb(--chart-tooltip-text)","titleFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"titleAlign":"left","titleSpacing":2,"titleMarginBottom":6,"bodyColor":"rgb(--chart-tooltip-text)","bodyFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"normal"},"bodyAlign":"left","bodySpacing":2,"footerColor":"rgb(--chart-tooltip-text)","footerFont":{"family":"'Helvetica Neue', 'Helvetica', 'Arial', sans-serif","size":12,"weight":"bold"},"footerAlign":"left","footerSpacing":2,"footerMarginTop":6,"padding":{"x":6,"y":6},"caretPadding":2,"caretSize":5,"cornerRadius":6,"multiKeyBackground":"rgb(--chart-tooltip-text)","displayColors":true,"boxPadding":4,"boxBorderWidth":0,"borderColor":"rgb(--chart-tooltip-border)","borderWidth":1,"rtl":false}},"cutout":"80%","responsive":true,"maintainAspectRatio":true,"aspectRatio":2,"animation":{"duration":1000,"easing":"easeInOutQuart","animateRotate":true,"animateScale":false},"layout":{"padding":0}});
+                                            if (chartType === 'pie' || chartType === 'doughnut') {
+                                if (!chartOpts.plugins) chartOpts.plugins = {};
+                                if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
+                                if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
+                                chartOpts.plugins.legend.labels.generateLabels = function(chart) {
+                                    var typeOverride = Chart.overrides[chart.config.type];
+                                    var original = (typeOverride && typeOverride.plugins && typeOverride.plugins.legend
+                                        && typeOverride.plugins.legend.labels && typeOverride.plugins.legend.labels.generateLabels)
+                                        || Chart.defaults.plugins.legend.labels.generateLabels;
+                                    var labels = original.call(this, chart);
+                                    labels.forEach(function(label) { label.lineWidth = 0; });
+                                    return labels;
+                                };
+                            }
+                            var _cutoutBps = {"base":"80%","sm":"78%","md":"75%"};
+                            var _cutoutWidths = { sm: 640, md: 768, lg: 1024, xl: 1280, '2xl': 1536 };
+                            var _pickCutout = function() {
+                                var w = window.innerWidth;
+                                var val = _cutoutBps.base;
+                                ['sm', 'md', 'lg', 'xl', '2xl'].forEach(function(bp) {
+                                    if (_cutoutBps[bp] !== undefined && w>= _cutoutWidths[bp]) { val = _cutoutBps[bp]; }
+                                });
+                                return val;
+                            };
+                            chartOpts.cutout = _pickCutout();
+                            window.donut_chart = new Chart(ctx, {
+                                type: chartType,
+                                data: {
+                                    labels: ["Male","Female","Unknown"],
+                                    datasets: _rd([{"backgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"hoverBackgroundColor":["--chart-100","--chart-200","--chart-300","--chart-400","--chart-500","--chart-600","--chart-700","--chart-800","--chart-900","--chart-1000","--chart-1100","--chart-1200"],"borderColor":"--chart-border","borderWidth":2,"hoverOffset":4,"data":[40,60,100]}])
+                                },
+                                options: chartOpts
+                            });
+                            window.addEventListener('resize', function() {
+                                var chart = window['donut_chart'];
+                                var next = _pickCutout();
+                                if (chart.options.cutout !== next) { chart.options.cutout = next; chart.update(); }
+                            });
+                            document.querySelectorAll('[data-chart="donut_chart"]').forEach(function(el) {
+                                var idx = parseInt(el.dataset.index);
+                                el.addEventListener('mouseenter', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                                    chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                                    chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                                    chart.update();
+                                });
+                                el.addEventListener('mouseleave', function() {
+                                    var chart = window['donut_chart'];
+                                    chart.setActiveElements([]);
+                                    chart.tooltip.setActiveElements([]);
+                                    chart.update();
+                                });
+                                el.addEventListener('click', function() {
+                                    var chart = window['donut_chart'];
+                                    if (typeof chart.toggleDataVisibility !== 'function') return;
+                                    chart.toggleDataVisibility(idx);
+                                    chart.update();
+                                    var hidden = !chart.getDataVisibility(idx);
+                                    el.style.opacity = hidden ? '0.4' : '';
+                                    el.style.textDecoration = hidden ? 'line-through' : '';
+                                });
+                            });
+                        })();
+                    });
+                </script>
+            </canvas>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
     }
 }

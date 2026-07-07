@@ -656,9 +656,30 @@ Alternatively use separate `:values` and `:labels` arrays:
 
 Key props: `id`, `:data` (label-keyed value array), `:values` + `:labels` (alternative to `:data`), `:colors`, `cutout` (percentage string, default from config).
 
+**Responsive cutout.** The `cutout` value can be varied per breakpoint using Tailwind-style prefixed attributes (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`). It is mobile-first: `cutout` is the base value and each `{breakpoint}:cutout` overrides it at that screen width and up. The chart picks the largest matching breakpoint on load and re-evaluates on window resize.
+
+```blade
+<x-donut-chart
+    id="format_split"
+    :data="['Streaming' => 65, 'Download' => 25, 'Physical' => 10]"
+    cutout="80%"
+    sm:cutout="78%"
+    md:cutout="75%"
+    lg:cutout="72%"
+    xl:cutout="70%"
+    2xl:cutout="68%"
+/>
+```
+
+Breakpoint widths follow Tailwind defaults: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px. This is donut-only (pie has no cutout). Implementation note: these colon-prefixed attributes are not constructor params — `Donut::withAttributes()` reads them from the attribute bag and pushes the resolved map onto the chart, which the shared `charts/chart.blade.php` template applies client-side.
+
+### Legend segment toggling (pie & donut)
+
+Clicking a legend entry hides/shows that segment — this is Chart.js's built-in behaviour and works out of the box (the components don't override `legend.onClick`). External custom legends carrying `data-chart="{id}"` + `data-index` are also wired for click-to-toggle (dim + line-through on the hidden row) and hover highlighting via the shared template.
+
 ### Pie chart (`x-pie-chart`)
 
-Same API as donut chart without the `cutout` prop:
+Same API as donut chart without the `cutout` prop (and no responsive cutout):
 
 ```blade
 <x-pie-chart
