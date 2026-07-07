@@ -272,6 +272,43 @@ class Donut extends Component
         $this->tooltipRtl = $this->style($this->defaults, 'tooltips.rtl', $tooltipRtl);
     }
 
+    /**
+     * Breakpoint-prefixed cutout attributes (e.g. sm:cutout, md:cutout) are not
+     * constructor parameters, so they only become available once Laravel applies
+     * the attribute bag - which happens after render() has built the chart. We
+     * read them here and push the resolved map onto the already-built chart
+     * instance (shared by reference with the view data) before it is rendered.
+     */
+    public function withAttributes(array $attributes)
+    {
+        parent::withAttributes($attributes);
+
+        if (isset($this->chart)) {
+            $breakpoints = $this->resolveCutoutBreakpoints();
+
+            if ($breakpoints !== []) {
+                $this->chart->cutoutBreakpoints($breakpoints);
+            }
+        }
+
+        return $this;
+    }
+
+    private function resolveCutoutBreakpoints(): array
+    {
+        $breakpoints = [];
+
+        foreach (['sm', 'md', 'lg', 'xl', '2xl'] as $breakpoint) {
+            $value = $this->attributes->get("{$breakpoint}:cutout");
+
+            if (! is_null($value) && $value !== '') {
+                $breakpoints[$breakpoint] = $value;
+            }
+        }
+
+        return $breakpoints === [] ? [] : ['base' => $this->cutout] + $breakpoints;
+    }
+
     public function render(): string
     {
         $size = $this->responsive === 'true'

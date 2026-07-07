@@ -28,7 +28,10 @@
             const rawColor = ds.color || defaultColors[i % defaultColors.length];
 
             var backgroundColor, borderColor;
-            if (stops) {
+            if (Array.isArray(ds.colors)) {
+                backgroundColor = _ro(ds.colors);
+                borderColor = backgroundColor;
+            } else if (stops) {
                 backgroundColor = Array.from({ length: ds.data.length }, function(_, barIndex) {
                     return gradientColor(barIndex / Math.max(1, ds.data.length - 1), stops);
                 });
@@ -72,6 +75,32 @@
                 datasets: datasets
             },
             options: opts
+        });
+
+        document.querySelectorAll('[data-chart="{{ $id }}"]').forEach(function(el) {
+            var idx = parseInt(el.dataset.index);
+            el.addEventListener('mouseenter', function() {
+                var chart = window['{{ $id }}'];
+                if (typeof chart.getDataVisibility === 'function' && !chart.getDataVisibility(idx)) return;
+                chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                chart.update();
+            });
+            el.addEventListener('mouseleave', function() {
+                var chart = window['{{ $id }}'];
+                chart.setActiveElements([]);
+                chart.tooltip.setActiveElements([]);
+                chart.update();
+            });
+            el.addEventListener('click', function() {
+                var chart = window['{{ $id }}'];
+                if (typeof chart.toggleDataVisibility !== 'function') return;
+                chart.toggleDataVisibility(idx);
+                chart.update();
+                var hidden = !chart.getDataVisibility(idx);
+                el.style.opacity = hidden ? '0.4' : '';
+                el.style.textDecoration = hidden ? 'line-through' : '';
+            });
         });
     });
 </script>

@@ -111,6 +111,14 @@ class Chart
     }
 
     /**
+     * @return $this|Chart
+     */
+    public function cutoutBreakpoints(array $cutoutBreakpoints)
+    {
+        return $this->set('cutoutBreakpoints', $cutoutBreakpoints);
+    }
+
+    /**
      * @param  string|array  $optionsRaw
      * @return \self
      */
@@ -140,6 +148,7 @@ class Chart
             ->with('labels', $chart['labels'])
             ->with('options', isset($chart['options']) ? $chart['options'] : '')
             ->with('optionsRaw', isset($chart['optionsRaw']) ? $chart['optionsRaw'] : '')
+            ->with('cutoutBreakpoints', isset($chart['cutoutBreakpoints']) ? $chart['cutoutBreakpoints'] : [])
             ->with('type', $chart['type'])
             ->with('size', $chart['size']);
     }
