@@ -466,6 +466,53 @@ class LineTest extends ComponentTestCase
     }
 
     #[Test]
+    public function line_chart_y_tick_precision_is_null_by_default(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertNull($component->yTickPrecision);
+    }
+
+    #[Test]
+    public function line_chart_y_tick_precision_can_be_set(): void
+    {
+        $component = new Line(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, yTickPrecision: '0');
+
+        $this->assertSame('0', $component->yTickPrecision);
+    }
+
+    #[Test]
+    public function line_chart_y_tick_precision_is_emitted_in_rendered_output(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                y-tick-precision="0"
+                :datasets="[['label' => 'Streams', 'data' => [0, 0, 0]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"precision":0', $rendered);
+    }
+
+    #[Test]
+    public function line_chart_y_tick_precision_is_not_emitted_when_not_set(): void
+    {
+        $template = <<<'HTML'
+            <x-line-chart id="line_chart"
+                :datasets="[['label' => 'Streams', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringNotContainsString('"precision":', $rendered);
+    }
+
+    #[Test]
     public function line_chart_category_axis_does_not_emit_min_unit(): void
     {
         $template = <<<'HTML'

@@ -88,6 +88,7 @@ class Line extends Component
     public ?string $yTickPadding;
     public ?string $yTickZIndex;
     public ?string $yMin;
+    public ?string $yTickPrecision;
 
     public $tooltipEnabled;
     public ?string $tooltipMode;
@@ -201,6 +202,7 @@ class Line extends Component
         ?string $yTickPadding = null,
         ?string $yTickZIndex = null,
         ?string $yMin = null,
+        ?string $yTickPrecision = null,
 
         $tooltipEnabled = null,
         ?string $tooltipMode = null,
@@ -318,6 +320,7 @@ class Line extends Component
         $this->yTickPadding = $this->style($this->defaults, 'axes.y.ticks.padding', $yTickPadding);
         $this->yTickZIndex = $this->style($this->defaults, 'axes.y.ticks.z-index', $yTickZIndex);
         $this->yMin = $yMin;
+        $this->yTickPrecision = $yTickPrecision;
 
         $this->tooltipEnabled = $this->style($this->defaults, 'tooltips.enabled', $tooltipEnabled);
         $this->tooltipMode = $this->style($this->defaults, 'tooltips.mode', $tooltipMode);
@@ -411,6 +414,40 @@ class Line extends Component
             ]);
         }
 
+        $yAxis = [
+            'display' => $this->hideAxis === 'false',
+            'title' => [
+                'display' => true,
+                'text' => $this->yAxisLabel,
+                'color' => $this->yTickColor,
+            ],
+            'grid' => [
+                'display' => $this->hideGrid === 'false',
+                'color' => $this->gridColor,
+            ],
+            'ticks' => [
+                'display' => $this->yTickDisplay !== 'false',
+                'color' => $this->yTickColor,
+                'font' => [
+                    'family' => $this->yTickFamily,
+                    'size' => (int) $this->yTickSize,
+                    'weight' => $this->yTickStyle,
+                    'lineHeight' => $this->yTickHeight,
+                ],
+                'reverse' => $this->yTickReverse !== 'false',
+                'padding' => (int) $this->yTickPadding,
+                'z' => (int) $this->yTickZIndex,
+            ],
+        ];
+
+        if ($this->yTickPrecision !== null) {
+            $yAxis['ticks']['precision'] = (int) $this->yTickPrecision;
+        }
+
+        if ($this->yMin !== null) {
+            $yAxis['min'] = (float) $this->yMin;
+        }
+
         $animation = $this->animation === 'false'
             ? false
             : ['duration' => (int) $this->animationDuration, 'easing' => $this->animationEasing];
@@ -502,34 +539,7 @@ class Line extends Component
             ],
             'scales' => [
                 'x' => $xAxis,
-                'y' => array_merge(
-                    [
-                        'display' => $this->hideAxis === 'false',
-                        'title' => [
-                            'display' => true,
-                            'text' => $this->yAxisLabel,
-                            'color' => $this->yTickColor,
-                        ],
-                        'grid' => [
-                            'display' => $this->hideGrid === 'false',
-                            'color' => $this->gridColor,
-                        ],
-                        'ticks' => [
-                            'display' => $this->yTickDisplay !== 'false',
-                            'color' => $this->yTickColor,
-                            'font' => [
-                                'family' => $this->yTickFamily,
-                                'size' => (int) $this->yTickSize,
-                                'weight' => $this->yTickStyle,
-                                'lineHeight' => $this->yTickHeight,
-                            ],
-                            'reverse' => $this->yTickReverse !== 'false',
-                            'padding' => (int) $this->yTickPadding,
-                            'z' => (int) $this->yTickZIndex,
-                        ],
-                    ],
-                    $this->yMin !== null ? ['min' => (float) $this->yMin] : []
-                ),
+                'y' => $yAxis,
             ],
             'elements' => [
                 'point' => [
