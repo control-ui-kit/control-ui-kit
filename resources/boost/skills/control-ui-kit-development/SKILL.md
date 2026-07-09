@@ -632,6 +632,12 @@ Stacked bar chart. Sets `stacked: true` on both x and y axes. Supports a `stack`
 />
 ```
 
+Orientation defaults to vertical (stacked columns). Pass `index-axis="y"` for a **horizontal** stacked bar chart (bars stack left-to-right); any other value falls back to `"x"`.
+
+```blade
+<x-stacked-chart id="stacked" index-axis="y" :datasets="$datasets" :labels="$labels" />
+```
+
 ### Donut chart (`x-donut-chart`)
 
 Pass data as a label-keyed array of numeric values:
@@ -688,6 +694,32 @@ Same API as donut chart without the `cutout` prop (and no responsive cutout):
     :colors="['--chart-500', '--chart-400', '--chart-200']"
 />
 ```
+
+### Gauge chart (`x-gauge-chart`)
+
+Single-metric gauge: a full-circle doughnut ring where the filled arc is `value` out of `max`,
+the remainder is a muted track, and the value is drawn in the centre. Styled identically to the
+donut (fonts, tooltip, animation, segment border) — it reuses the same `chart.blade.php` pipeline.
+
+```blade
+<x-gauge-chart id="uptime" value="72" suffix="%" label="Uptime" />
+
+{{-- value out of a custom max, custom colours --}}
+<x-gauge-chart id="storage" value="18" max="32" display="18 GB" value-color="--chart-300" track-color="--chart-grid" />
+```
+
+Key props: `id`, `value` (number), `max` (default `100`), `suffix` (appended to the centre value,
+e.g. `%`), `label` (small caption drawn beneath the value), `display` (override the centre text
+entirely), `value-color` / `track-color` (CSS vars, default `--chart-100` / `--chart-grid`),
+`cutout` (default `75%`). It is a **complete circle**, not a semicircle gauge. Legend and tooltip
+The built-in legend is hidden by default (`legend-display` to show it). Tooltips behave exactly
+like the donut/pie charts — enabled and themed identically, and driven by external legends
+(`data-chart="{id}"` + `data-index`) for hover-highlight and click-to-toggle; set
+`tooltip-enabled="false"` to turn them off. All other donut legend/title/tooltip/animation props are also accepted. The centre text is drawn by a small inline
+Chart.js plugin; centre styling is themeable via `charts.gauge.center`. The value and label font
+sizes are **Tailwind text-size classes** (`size` default `text-3xl`, `label-size` default `text-sm`) —
+overridable per instance with `center-size` / `center-label-size` — resolved to pixels at draw time.
+Other centre keys: `color`, `family`, `weight`.
 
 ### Matrix chart (`x-matrix-chart`)
 
@@ -804,6 +836,7 @@ Chart.js's `tooltip.intersect` option controls whether the tooltip requires the 
 |---|---|---|
 | Pie | `charts.pie.tooltip-intersect` | `true` |
 | Donut | `charts.donut.tooltip-intersect` | `true` |
+| Gauge | `charts.gauge.tooltip-intersect` | `true` |
 | Bar | `charts.bar.tooltip-intersect` | `false` |
 | Line | `charts.line.tooltip-intersect` | `false` |
 | Column | `charts.column.tooltip-intersect` | `false` |

@@ -66,6 +66,26 @@
             },
             options: opts
         });
+
+        // In a stacked chart each external legend row maps to a dataset (a stack
+        // segment), so a legend row's data-index is the dataset index. Clicking it
+        // toggles that whole series with Chart.js's own hide()/show(), which animate
+        // the stack recomputing and the axis rescaling.
+        document.querySelectorAll('[data-chart="{{ $id }}"]').forEach(function(el) {
+            var idx = parseInt(el.dataset.index);
+            el.addEventListener('click', function() {
+                var chart = window['{{ $id }}'];
+                if (chart.isDatasetVisible(idx)) {
+                    chart.hide(idx);
+                    el.style.opacity = '0.4';
+                    el.style.textDecoration = 'line-through';
+                } else {
+                    chart.show(idx);
+                    el.style.opacity = '';
+                    el.style.textDecoration = '';
+                }
+            });
+        });
     });
 </script>
 </canvas>

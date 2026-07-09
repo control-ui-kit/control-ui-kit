@@ -58,6 +58,61 @@ class StackedTest extends ComponentTestCase
     }
 
     #[Test]
+    public function stacked_chart_defaults_to_vertical_orientation(): void
+    {
+        $component = new Stacked(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);
+
+        $this->assertSame('x', $component->indexAxis);
+    }
+
+    #[Test]
+    public function stacked_chart_accepts_horizontal_orientation(): void
+    {
+        $component = new Stacked(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, indexAxis: 'y');
+
+        $this->assertSame('y', $component->indexAxis);
+    }
+
+    #[Test]
+    public function stacked_chart_invalid_orientation_falls_back_to_vertical(): void
+    {
+        $component = new Stacked(id: 'my_chart', datasets: $this->datasets, labels: $this->labels, indexAxis: 'diagonal');
+
+        $this->assertSame('x', $component->indexAxis);
+    }
+
+    #[Test]
+    public function stacked_chart_emits_vertical_index_axis_by_default(): void
+    {
+        $template = <<<'HTML'
+            <x-stacked-chart id="stacked_chart"
+                :datasets="[['label' => 'Series A', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"indexAxis":"x"', $rendered);
+    }
+
+    #[Test]
+    public function stacked_chart_emits_horizontal_index_axis_when_set(): void
+    {
+        $template = <<<'HTML'
+            <x-stacked-chart id="stacked_chart"
+                index-axis="y"
+                :datasets="[['label' => 'Series A', 'data' => [1, 2, 3]]]"
+                :labels="['Jan', 'Feb', 'Mar']"
+            />
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('"indexAxis":"y"', $rendered);
+    }
+
+    #[Test]
     public function stacked_chart_defaults_x_axis_min_unit_to_day(): void
     {
         $component = new Stacked(id: 'my_chart', datasets: $this->datasets, labels: $this->labels);

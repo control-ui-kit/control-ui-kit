@@ -119,6 +119,14 @@ class Chart
     }
 
     /**
+     * @return $this|Chart
+     */
+    public function centerText(array $centerText)
+    {
+        return $this->set('centerText', $centerText);
+    }
+
+    /**
      * @param  string|array  $optionsRaw
      * @return \self
      */
@@ -149,6 +157,7 @@ class Chart
             ->with('options', isset($chart['options']) ? $chart['options'] : '')
             ->with('optionsRaw', isset($chart['optionsRaw']) ? $chart['optionsRaw'] : '')
             ->with('cutoutBreakpoints', isset($chart['cutoutBreakpoints']) ? $chart['cutoutBreakpoints'] : [])
+            ->with('centerText', isset($chart['centerText']) ? $chart['centerText'] : [])
             ->with('type', $chart['type'])
             ->with('size', $chart['size']);
     }

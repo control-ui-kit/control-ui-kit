@@ -565,6 +565,36 @@ return [
             ],
         ],
 
+        'gauge' => [
+            'tooltip-intersect' => true,
+            'value-color' => '--chart-100',
+            'track-color' => '--chart-grid',
+            'legend-display' => 'false',
+            'tooltip-enabled' => 'true',
+            'segment' => [
+                'border-color' => '--chart-border',
+                'border-width' => 2,
+                'hover-offset' => 0,
+            ],
+            'cutout' => '75%',
+            'center' => [
+                'size' => 'text-3xl',
+                'label-size' => 'text-sm',
+                'color' => '--chart-label',
+                'family' => "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                'weight' => 'bold',
+            ],
+            'animation' => [
+                'duration' => 1000,
+                'easing' => 'easeInOutQuart',
+                'animate-rotate' => 'true',
+                'animate-scale' => 'false',
+            ],
+            'layout' => [
+                'padding' => 0,
+            ],
+        ],
+
         'bar' => [
             'tooltip-intersect' => true,
         ],
