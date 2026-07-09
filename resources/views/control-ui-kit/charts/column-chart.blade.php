@@ -77,6 +77,47 @@
             },
             options: opts
         });
+
+        // Bar controllers ignore Chart.js data-visibility state, so hiding a column
+        // is done by collapsing its value to 0 across every dataset (snapshotting
+        // originals so the toggle is reversible). Using 0 rather than null lets
+        // update() animate the bar shrinking and the axis rescaling, matching the
+        // donut/pie toggle behaviour, then animate back up when re-enabled.
+        var _hiddenIndices = {};
+        var _originalData = datasets.map(function(ds) { return ds.data.slice(); });
+        var _applyColumnVisibility = function(chart) {
+            chart.data.datasets.forEach(function(ds, di) {
+                ds.data = _originalData[di].map(function(v, i) {
+                    return _hiddenIndices[i] ? 0 : v;
+                });
+            });
+        };
+
+        document.querySelectorAll('[data-chart="{{ $id }}"]').forEach(function(el) {
+            var idx = parseInt(el.dataset.index);
+            el.addEventListener('mouseenter', function() {
+                var chart = window['{{ $id }}'];
+                if (_hiddenIndices[idx]) return;
+                chart.setActiveElements([{datasetIndex:0, index:idx}]);
+                chart.tooltip.setActiveElements([{datasetIndex:0, index:idx}], {x:0,y:0});
+                chart.update();
+            });
+            el.addEventListener('mouseleave', function() {
+                var chart = window['{{ $id }}'];
+                chart.setActiveElements([]);
+                chart.tooltip.setActiveElements([]);
+                chart.update();
+            });
+            el.addEventListener('click', function() {
+                var chart = window['{{ $id }}'];
+                _hiddenIndices[idx] = !_hiddenIndices[idx];
+                _applyColumnVisibility(chart);
+                chart.update();
+                var hidden = !!_hiddenIndices[idx];
+                el.style.opacity = hidden ? '0.4' : '';
+                el.style.textDecoration = hidden ? 'line-through' : '';
+            });
+        });
     });
 </script>
 </canvas>

@@ -35,6 +35,7 @@ return [
         'combo-chart' => \ControlUIKit\Components\Charts\Combo::class,
         'stacked-chart' => \ControlUIKit\Components\Charts\Stacked::class,
         'donut-chart' => \ControlUIKit\Components\Charts\Donut::class,
+        'gauge-chart' => \ControlUIKit\Components\Charts\Gauge::class,
         'line-chart' => \ControlUIKit\Components\Charts\Line::class,
         'pie-chart' => \ControlUIKit\Components\Charts\Pie::class,
         'matrix-chart' => \ControlUIKit\Components\Charts\Matrix::class,
