@@ -50,6 +50,16 @@
                 @endif
                 if (chartType === 'pie' || chartType === 'doughnut') {
                     if (!chartOpts.plugins) chartOpts.plugins = {};
+                    // Hide the tooltip for segments with a blank label (e.g. the
+                    // gauge's max/track segment) so only labelled data reacts to
+                    // hover. Author-supplied filters are left untouched.
+                    if (!chartOpts.plugins.tooltip) chartOpts.plugins.tooltip = {};
+                    if (typeof chartOpts.plugins.tooltip.filter !== 'function') {
+                        chartOpts.plugins.tooltip.filter = function(item) {
+                            var label = item.chart.data.labels[item.dataIndex];
+                            return label !== undefined && label !== null && String(label).trim() !== '';
+                        };
+                    }
                     if (!chartOpts.plugins.legend) chartOpts.plugins.legend = {};
                     if (!chartOpts.plugins.legend.labels) chartOpts.plugins.legend.labels = {};
                     chartOpts.plugins.legend.labels.generateLabels = function(chart) {
@@ -110,7 +120,10 @@
                 })();
                 var _centerTextPlugin = {
                     id: 'centerText',
-                    afterDraw: function(chart) {
+                    // Draw in afterDatasetsDraw (not afterDraw) so the center text
+                    // paints before the tooltip's afterDraw hook, keeping the
+                    // tooltip layered on top of the text rather than behind it.
+                    afterDatasetsDraw: function(chart) {
                         var area = chart.chartArea;
                         if (!area) { return; }
                         var g = chart.ctx;

@@ -243,6 +243,23 @@ class GaugeTest extends ComponentTestCase
     }
 
     #[Test]
+    public function gauge_chart_track_segment_has_blank_label(): void
+    {
+        $rendered = (string) $this->blade('<x-gauge-chart id="uptime" value="72" label="Uptime" />');
+
+        $this->assertStringContainsString('labels: ["Uptime",""]', $rendered);
+    }
+
+    #[Test]
+    public function gauge_chart_hides_tooltip_for_blank_label_segments(): void
+    {
+        $rendered = (string) $this->blade('<x-gauge-chart id="uptime" value="72" />');
+
+        $this->assertStringContainsString('chartOpts.plugins.tooltip.filter = function(item)', $rendered);
+        $this->assertStringContainsString('return label !== undefined && label !== null && String(label).trim() !== \'\';', $rendered);
+    }
+
+    #[Test]
     public function gauge_chart_wires_external_legend_handlers(): void
     {
         $rendered = (string) $this->blade('<x-gauge-chart id="uptime" value="72" />');
