@@ -20,6 +20,29 @@
         var urlTarget = '{{ $urlTarget }}';
         var data = {!! $mapData() !!};
 
+        // Open a country link like a native <a>: build a real anchor with the
+        // configured target and dispatch a click that carries the keyboard
+        // modifiers from the original event, so Cmd/Ctrl+Click (new tab),
+        // Shift+Click (new window) etc. are honoured by the browser as usual.
+        var openCountryLink = function(href, e) {
+            var a = document.createElement('a');
+            a.href = href;
+            a.target = urlTarget;
+            a.rel = 'noopener';
+            document.body.appendChild(a);
+            a.dispatchEvent(new MouseEvent('click', {
+                bubbles: false,
+                cancelable: true,
+                view: window,
+                button: 0,
+                ctrlKey: e.ctrlKey,
+                metaKey: e.metaKey,
+                shiftKey: e.shiftKey,
+                altKey: e.altKey
+            }));
+            document.body.removeChild(a);
+        };
+
         var svg = document.getElementById(id);
         var tooltip = showTooltip ? document.getElementById(id + '_tooltip') : null;
 
@@ -98,13 +121,13 @@
 
                     if (url !== '') {
                         pathEl.style.cursor = 'pointer';
-                        pathEl.addEventListener('click', function() {
+                        pathEl.addEventListener('click', function(e) {
                             var href = url
                                 .replace(/\{id\}/g, encodeURIComponent(pathEl.dataset.id))
                                 .replace(/\{iso\}/g, encodeURIComponent(pathEl.dataset.iso))
                                 .replace(/\{name\}/g, encodeURIComponent(pathEl.dataset.name))
                                 .replace(/\{value\}/g, encodeURIComponent(pathEl.dataset.value));
-                            window.open(href, urlTarget);
+                            openCountryLink(href, e);
                         });
                     }
 
