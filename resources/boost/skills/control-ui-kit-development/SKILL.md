@@ -918,7 +918,9 @@ Renders an SVG choropleth (heat map) of the world. Countries are coloured by val
 Pass a `url` to make every country a clickable link. Use placeholders to build a per-country
 destination — `{id}` (from the dataset entry's `id`), `{iso}` (ISO-A2 code), `{name}` (country
 name) and `{value}` (its value). Each is URL-encoded at click time. Use `url-target="_blank"` to
-open in a new window.
+open in a new window. Clicks behave like a real `<a>`: the click is dispatched onto a native
+anchor carrying the event's keyboard modifiers, so Cmd/Ctrl+Click opens a new tab and Shift+Click
+a new window (honouring the browser's own behaviour) regardless of `url-target`.
 
 ```blade
 <x-world-map-chart

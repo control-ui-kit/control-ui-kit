@@ -227,7 +227,32 @@ class WorldMapTest extends ComponentTestCase
         $this->assertStringContainsString('var url = "/country/{iso}";', $html);
         $this->assertStringContainsString("pathEl.style.cursor = 'pointer';", $html);
         $this->assertStringContainsString("pathEl.addEventListener('click'", $html);
-        $this->assertStringContainsString('window.open(href, urlTarget);', $html);
+        $this->assertStringContainsString('openCountryLink(href, e);', $html);
+    }
+
+    #[Test]
+    public function a_world_map_chart_click_opens_a_native_anchor_using_the_configured_target(): void
+    {
+        $template = '<x-world-map-chart id="click_map" url="/country/{iso}" url-target="_blank" />';
+
+        $html = (string) $this->blade($template);
+
+        $this->assertStringContainsString("var a = document.createElement('a');", $html);
+        $this->assertStringContainsString('a.target = urlTarget;', $html);
+        $this->assertStringContainsString('a.dispatchEvent(new MouseEvent(\'click\', {', $html);
+    }
+
+    #[Test]
+    public function a_world_map_chart_click_forwards_keyboard_modifiers_like_a_link(): void
+    {
+        $template = '<x-world-map-chart id="click_map" url="/country/{iso}" />';
+
+        $html = (string) $this->blade($template);
+
+        $this->assertStringContainsString('ctrlKey: e.ctrlKey', $html);
+        $this->assertStringContainsString('metaKey: e.metaKey', $html);
+        $this->assertStringContainsString('shiftKey: e.shiftKey', $html);
+        $this->assertStringContainsString('altKey: e.altKey', $html);
     }
 
     #[Test]
