@@ -771,6 +771,14 @@ Displays a metric tile with current value, comparison to previous value, and an 
     percent-difference="false"
     hide-difference-icon="true"
 />
+
+{{-- Reverse the direction: down is good (uses increase-color), up is bad (uses decrease-color) --}}
+<x-change-chart
+    title="Churn Rate"
+    :current="4.2"
+    :previous="5.8"
+    reverse="true"
+/>
 ```
 
 | Prop | Type | Description |
@@ -787,6 +795,7 @@ Displays a metric tile with current value, comparison to previous value, and an 
 | `image-style` | string | Custom CSS class string that overrides all image style props |
 | `percent-difference` | `'true'`\|`'false'` | Show percentage diff (default: `'true'`); set `'false'` for absolute |
 | `hide-difference-icon` | `'true'`\|`'false'` | Hide the up/down trend icon next to the diff value |
+| `reverse` | `'true'`\|`'false'` | Reverse which direction is positive: a down number uses `increase-color`, an up number uses `decrease-color` (default: `'false'`). Sign and trend icon still follow actual movement |
 | `increase-icon` | string | Icon for positive change (overrides theme default) |
 | `decrease-icon` | string | Icon for negative change (overrides theme default) |
 
