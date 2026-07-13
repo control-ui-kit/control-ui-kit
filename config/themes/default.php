@@ -284,6 +284,7 @@ return [
         'hide-difference-icon' => 'false',
         'difference-increase-icon' => 'icon-trend-up',
         'difference-decrease-icon' => 'icon-trend-down',
+        'reverse' => 'false',
 
         'wrapper-background' => 'bg-panel',
         'wrapper-border' => 'border border-panel overflow-hidden',

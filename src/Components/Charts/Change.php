@@ -30,6 +30,7 @@ class Change extends Component
     public ?string $decrease;
     public ?string $displayPercent;
     public ?string $hideDifferenceIcon;
+    public ?string $reverse;
 
     public ?string $increaseIcon;
     public ?string $decreaseIcon;
@@ -63,6 +64,7 @@ class Change extends Component
         ?string $imageAlt = null,
         ?string $percentDifference = null,
         ?string $hideDifferenceIcon = null,
+        ?string $reverse = null,
 
         ?string $increaseIcon = null,
         ?string $decreaseIcon = null,
@@ -192,6 +194,7 @@ class Change extends Component
 
         $this->displayPercent = $this->style($this->component, 'percent-difference', $percentDifference);
         $this->hideDifferenceIcon = $this->style($this->component, 'hide-difference-icon', $hideDifferenceIcon);
+        $this->reverse = $this->style($this->component, 'reverse', $reverse);
 
         $this->increase = (string) $this->increase();
         $this->decrease = (string) $this->decrease();
@@ -276,10 +279,19 @@ class Change extends Component
             'container-shadow' => $containerShadow,
         ], [], null, 'containerStyles');
 
+        // When reversed, a "down" number is treated as positive (increase-color)
+        // and an "up" number as negative (decrease-color), so swap the colour
+        // applied to each direction. Sign and trend icon still follow the actual movement.
+        $reversed = $this->reverse === 'true';
+        $increaseColorKey = $reversed ? 'decrease-color' : 'increase-color';
+        $increaseColorValue = $reversed ? $decreaseColor : $increaseColor;
+        $decreaseColorKey = $reversed ? 'increase-color' : 'decrease-color';
+        $decreaseColorValue = $reversed ? $increaseColor : $decreaseColor;
+
         $this->setConfigStyles([
             'difference-background' => $differenceBackground,
             'difference-border' => $differenceBorder,
-            'increase-color' => $increaseColor,
+            $increaseColorKey => $increaseColorValue,
             'difference-font' => $differenceFont,
             'difference-other' => $differenceOther,
             'difference-padding' => $differencePadding,
@@ -290,7 +302,7 @@ class Change extends Component
         $this->setConfigStyles([
             'difference-background' => $differenceBackground,
             'difference-border' => $differenceBorder,
-            'decrease-color' => $decreaseColor,
+            $decreaseColorKey => $decreaseColorValue,
             'difference-font' => $differenceFont,
             'difference-other' => $differenceOther,
             'difference-padding' => $differencePadding,

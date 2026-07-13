@@ -569,6 +569,60 @@ class ChangeTest extends ComponentTestCase
     }
 
     #[Test]
+    public function a_reversed_change_chart_component_with_an_increase_uses_the_decrease_color(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    previous="50000"
+                    current="100000"
+                    reverse="true"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 100,000 </p>
+                        <p class="difference-background difference-border decrease-color difference-font difference-other difference-padding difference-rounded difference-shadow">+100%</p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_reversed_change_chart_component_with_a_decrease_uses_the_increase_color(): void
+    {
+        $template = <<<'HTML'
+            <x-change-chart
+                    title="Chart Title"
+                    previous="100000"
+                    current="50000"
+                    reverse="true"
+            />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                <div class="flex-1">
+                    <div class="container-background container-border container-color container-font container-other container-padding container-rounded container-shadow">
+                        <p class="title-background title-border title-color title-font title-other title-padding title-rounded title-shadow">Chart Title</p>
+                        <p class="number-background number-border number-color number-font number-other number-padding number-rounded number-shadow"> 50,000 </p>
+                        <p class="difference-background difference-border increase-color difference-font difference-other difference-padding difference-rounded difference-shadow">-50%</p>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
     public function a_change_chart_component_with_number_styles_changed_can_be_rendered(): void
     {
         $template = <<<'HTML'
