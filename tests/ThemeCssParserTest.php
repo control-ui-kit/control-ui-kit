@@ -96,7 +96,7 @@ class ThemeCssParserTest extends TestCase
     #[Test]
     public function it_detects_light_section(): void
     {
-        $css = ":root[data-theme=\"t\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
+        $css = ":root[data-ui-theme=\"t\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
         $light = $this->parse($css)['sections']['light'];
         $this->assertSame(0, $light['start']);
         $this->assertSame(2, $light['end']);
@@ -105,7 +105,7 @@ class ThemeCssParserTest extends TestCase
     #[Test]
     public function it_detects_dark_section(): void
     {
-        $css = ":root[data-theme=\"t\"][data-mode=\"dark\"] {\n    --link: blue;\n}\n";
+        $css = ":root[data-ui-theme=\"t\"][data-mode=\"dark\"] {\n    --link: blue;\n}\n";
         $dark = $this->parse($css)['sections']['dark'];
         $this->assertSame(0, $dark['start']);
         $this->assertSame(2, $dark['end']);
@@ -132,8 +132,8 @@ class ThemeCssParserTest extends TestCase
     #[Test]
     public function it_does_not_match_root_when_selector_has_extra_attributes(): void
     {
-        // :root[data-theme="x"] { should NOT match root — use light matcher instead
-        $css = ":root[data-theme=\"x\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
+        // :root[data-ui-theme="x"] { should NOT match root — use light matcher instead
+        $css = ":root[data-ui-theme=\"x\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
         $root = $this->parse($css)['sections']['root'];
         $this->assertNull($root['start']);
     }
@@ -145,10 +145,10 @@ class ThemeCssParserTest extends TestCase
             ':root {',
             '    --white: 255 255 255;',
             '}',
-            ':root[data-theme="t"][data-mode="light"] {',
+            ':root[data-ui-theme="t"][data-mode="light"] {',
             '    --link: red;',
             '}',
-            ':root[data-theme="t"][data-mode="dark"] {',
+            ':root[data-ui-theme="t"][data-mode="dark"] {',
             '    --link: blue;',
             '}',
         ]);

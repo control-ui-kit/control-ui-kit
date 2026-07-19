@@ -63,7 +63,7 @@
     --warning-900: 120 53 15;
 }
 
-:root[data-theme="{{ theme-name }}"][data-mode="light"] {
+:root[data-ui-theme="{{ theme-name }}"][data-mode="light"] {
 
     /* Login Screens */
     --login-bg                       : var(--gray-1000);      /* bg */
@@ -513,7 +513,7 @@
     --chart-map-outline              : var(--gray-300);       /* country border stroke */
 }
 
-:root[data-theme="{{ theme-name }}"][data-mode="dark"] {
+:root[data-ui-theme="{{ theme-name }}"][data-mode="dark"] {
 
     /* Login Screens */
     --login-bg                       : var(--gray-1000);      /* bg */

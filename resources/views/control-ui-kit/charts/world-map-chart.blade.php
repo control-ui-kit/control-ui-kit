@@ -168,7 +168,7 @@
         });
         themeObserver.observe(document.documentElement, {
             attributes: true,
-            attributeFilter: ['data-mode', 'data-theme', 'class']
+            attributeFilter: ['data-mode', 'data-ui-theme', 'class']
         });
     })();
     </script>

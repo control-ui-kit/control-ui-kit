@@ -186,7 +186,7 @@ class ThemeCreatorCommandTest extends ConsoleTestCase
             ->assertExitCode(0);
 
         $content = file_get_contents($this->tempDir . '/my_brand.css');
-        $this->assertStringContainsString('[data-theme="my_brand"]', $content);
+        $this->assertStringContainsString('[data-ui-theme="my_brand"]', $content);
     }
 
     #[Test]
