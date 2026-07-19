@@ -218,7 +218,7 @@ class ThemeStubParserTest extends TestCase
     #[Test]
     public function it_resolves_theme_name_placeholder_to_sentinel(): void
     {
-        $stub = ":root[data-theme=\"{{ theme-name }}\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
+        $stub = ":root[data-ui-theme=\"{{ theme-name }}\"][data-mode=\"light\"] {\n    --link: red;\n}\n";
         $entries = $this->parser->parse($this->writeStub($stub))['light'];
 
         $this->assertNotEmpty($entries);
