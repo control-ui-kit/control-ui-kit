@@ -200,7 +200,7 @@ return [
         'disabled' => 'opacity-60 cursor-default',
         'active' => '',
         'font' => 'text-sm',
-        'icon-size' => 'w-4 h-4 m-0',
+        'icon-size' => 'w-4 h-4',
         'other' => 'relative flex items-center justify-center hover:z-10 focus:z-10 outline-hidden focus:outline-hidden overflow-hidden',
         'padding' => 'space-x-1 px-3 py-1.5',
         'rounded' => 'rounded-sm',
