@@ -44,6 +44,7 @@ class Table extends Component
     public array $activeFilterListStyles;
     public array $activeFilterWrapperStyles;
     //    public array $clearFilterStyles;
+    public array $clearFilterStyles;
     public array $tableBodyStyles;
     public array $tableFiltersStyles;
     public array $tableHeadingsStyles;
@@ -480,15 +481,17 @@ class Table extends Component
                 continue;
             }
 
-            if (in_array($filter['type'], ['search', 'text'])) {
+            if ($filter['type'] === 'search') {
                 $text = $filter['selected'];
-            } elseif ($filter['type'] === 'autocomplete') {
-                $text = $filter['selected-text'] ?? $filter['selected'];
+            } elseif (isset($filter['selected-text'])) {
+                $text = $filter['selected-text'];
+            } elseif (in_array($filter['type'], ['text', 'autocomplete'])) {
+                $text = $filter['selected'];
             } elseif ($filter['type'] === 'toggle') {
                 $onText = $filter['on-text'] ?? 'true';
                 $offText = $filter['off-text'] ?? 'false';
                 $on = $filter['on'] ?? '1';
-                $text = ($filter['selected'] == $on ? $onText : $offText);
+                $text = $filter['selected'] === $on ? $onText : $offText;
             } elseif ($filter['type'] === 'date') {
                 $text = $this->formatFilterDate($filter['selected'], $filter['data'] ?? 'Y-m-d', $filter['format'] ?? 'd/m/Y');
             } elseif ($filter['type'] === 'date-range') {

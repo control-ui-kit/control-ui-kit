@@ -615,6 +615,96 @@ class TableTest extends ComponentTestCase
     }
 
     #[Test]
+    public function active_filters_text_returns_selected_text_when_provided(): void
+    {
+        // A text filter is how a screen filters on an id it was handed by another screen —
+        // a playlist, say. The dropdown keeps the id, so the chip is the only place the
+        // user can be told what they are filtering on.
+        $table = new Table(filters: [
+            'playlist_id' => [
+                'id' => 'playlist_id',
+                'name' => 'playlist_id',
+                'label' => 'Playlist',
+                'type' => 'text',
+                'selected' => '37905',
+                'selected-text' => 'Chill Vibes',
+                'unset' => null,
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('Chill Vibes', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_text_falls_back_to_the_raw_value_when_selected_text_absent(): void
+    {
+        $table = new Table(filters: [
+            'catalog' => [
+                'id' => 'catalog',
+                'name' => 'catalog',
+                'label' => 'Catalog',
+                'type' => 'text',
+                'selected' => 'ABC001',
+                'unset' => null,
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('ABC001', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_text_treats_a_null_selected_text_as_no_override(): void
+    {
+        // Controllers resolve the display text from the id, which yields null when there is
+        // nothing selected — that must not blank the chip.
+        $table = new Table(filters: [
+            'playlist_id' => [
+                'id' => 'playlist_id',
+                'name' => 'playlist_id',
+                'label' => 'Playlist',
+                'type' => 'text',
+                'selected' => '37905',
+                'selected-text' => null,
+                'unset' => null,
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('37905', $active[0]['text']);
+    }
+
+    #[Test]
+    public function active_filters_search_ignores_selected_text(): void
+    {
+        // The search chip's clear link is built from its text, so overriding it would break
+        // clearing the search.
+        $table = new Table(filters: [
+            'search' => [
+                'id' => 'search',
+                'name' => 'search',
+                'label' => 'Search',
+                'type' => 'search',
+                'selected' => 'chill',
+                'selected-text' => 'Something Else',
+                'unset' => '',
+            ],
+        ]);
+
+        $active = $table->activeFilters();
+
+        $this->assertCount(1, $active);
+        $this->assertSame('chill', $active[0]['text']);
+    }
+
+    #[Test]
     public function active_filters_date_returns_formatted_date(): void
     {
         $table = new Table(filters: [
