@@ -18,6 +18,9 @@ return [
         'icon-color' => '',
         'icon-size' => 'w-5 h-5',
 
+        'close-button-icon' => 'icon-close',
+        'close-button-color' => '', // Falls back to the resolved icon-color.
+
         'text-color' => '',
         'text-font' => '',
         'text-size' => 'text-sm leading-[unset]',
