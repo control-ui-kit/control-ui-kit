@@ -1,4 +1,4 @@
-<div {{ $attributes->merge($classes()) }}>
+<div {{ $attributes->whereDoesntStartWith('close-button-')->merge($classes()) }}>
     <div class="flex items-center">
         @if ($icon)
         <div class="shrink-0 mr-3">
@@ -28,5 +28,14 @@
             </div>
             @endif
         </div>
+        @if ($closeButtonUrl)
+        <div class="shrink-0 ml-auto pl-3">
+            <a href="{{ $closeButtonUrl }}" {{ $closeButtonAttributes() }}>
+                @if ($closeButtonIcon)
+                <x-dynamic-component :component="$closeButtonIcon" :size="$iconSize" :color="$closeButtonColor" />
+                @endif
+            </a>
+        </div>
+        @endif
     </div>
 </div>

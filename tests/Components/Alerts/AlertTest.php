@@ -707,4 +707,310 @@ class AlertTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    #[Test]
+    public function an_alert_component_does_not_render_a_close_button_without_a_close_button_url(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-icon="icon-dot" close-button-color="custom-color">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_can_be_rendered_with_a_close_button(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-url="https://example.com">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="https://example.com">
+                            <svg class="default-icon-color icon-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_color_matches_an_inline_icon_color(): void
+    {
+        $template = <<<'HTML'
+            <x-alert icon="icon-dot" icon-color="custom-color" close-button-url="#">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="shrink-0 mr-3">
+                        <svg class="custom-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                        </div>
+                        <div class="shrink-0 ml-auto pl-3">
+                            <a href="#">
+                                <svg class="custom-color icon-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_can_be_rendered_with_inline_close_button_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-url="#" close-button-icon="icon-dot" close-button-color="custom-color">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#">
+                            <svg class="custom-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="3" cy="3" r="3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_can_be_rendered_with_no_close_button_styles(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-url="#" close-button-color="none">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#">
+                            <svg class="icon-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_icon_can_be_disabled(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-url="#" close-button-icon="none">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#"></a>
+                    </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_styles_can_be_set_by_the_theme(): void
+    {
+        Config::set('themes.default.alert.close-button-icon', 'icon-dot');
+        Config::set('themes.default.alert.close-button-color', 'theme-close-color');
+
+        $template = <<<'HTML'
+            <x-alert close-button-url="#">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#">
+                            <svg class="theme-close-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="3" cy="3" r="3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_styles_can_be_set_by_the_theme_type(): void
+    {
+        Config::set('themes.default.alert.close-button-icon', 'icon-dot');
+        Config::set('themes.default.alert.close-button-color', 'theme-close-color');
+        Config::set('themes.default.alert.warning.close-button-icon', 'icon-close-circle');
+        Config::set('themes.default.alert.warning.close-button-color', 'warning-close-color');
+
+        $template = <<<'HTML'
+            <x-alert warning close-button-url="#">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background warning-background border warning-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="shrink-0 mr-3">
+                        <svg class="warning-icon-color icon-size fill-current" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="3" cy="3" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <div class="text-color text-alert-warning-text text-font text-size text-other"> Alert content </div>
+                        </div>
+                        <div class="shrink-0 ml-auto pl-3">
+                            <a href="#">
+                                <svg class="warning-close-color icon-size fill-current" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0z"/>
+                                        <path d="M12.042 22c-5.514 0-10-4.486-10-10s4.486-10 10-10 10 4.486 10 10-4.486 10-10 10zm0-18c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8z" />
+                                            <path d="M16.749 8.707l-1.415-1.414-3.292 3.293-3.293-3.293-1.415 1.414L10.627 12l-3.293 3.293 1.415 1.414 3.293-3.292 3.292 3.292 1.415-1.414L13.456 12z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_can_be_wired_up_to_alpine(): void
+    {
+        $template = <<<'HTML'
+            <x-alert
+                x-data="{ show: true }"
+                x-show="show"
+                close-button-url="#"
+                close-button-x-on:click.prevent="show = false"
+                close-button-class="cursor-pointer"
+                close-button-aria-label="Dismiss"
+            >
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width" x-data="{ show: true }" x-show="show">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#" x-on:click.prevent="show = false" class="cursor-pointer" aria-label="Dismiss">
+                            <svg class="default-icon-color icon-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function an_alert_component_close_button_can_be_wired_up_to_livewire(): void
+    {
+        $template = <<<'HTML'
+            <x-alert close-button-url="#" close-button-wire:click.prevent="dismiss">
+                Alert content
+            </x-alert>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="background default-background border default-border other padding rounded shadow width">
+                <div class="flex items-center">
+                    <div class="flex flex-col space-y-2">
+                        <div class="text-color text-alert-default-text text-font text-size text-other"> Alert content </div>
+                    </div>
+                    <div class="shrink-0 ml-auto pl-3">
+                        <a href="#" wire:click.prevent="dismiss">
+                            <svg class="default-icon-color icon-size fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M19.5669 5.29918L18.2677 4l-6.7008 6.7008L4.86608 4 3.56689 5.29918 10.2677 12l-6.70081 6.7008L4.86608 20l6.70082-6.7008L18.2677 20l1.2992-1.2992L12.8661 12l6.7008-6.70082z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }

@@ -6,7 +6,9 @@ namespace ControlUIKit\Components\Alerts;
 
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Illuminate\View\ComponentAttributeBag;
 
 class Alert extends Component
 {
@@ -14,12 +16,17 @@ class Alert extends Component
 
     protected string $component = 'alert';
 
+    private const CLOSE_BUTTON_PREFIX = 'close-button-';
+
     public ?string $title;
     public ?string $text;
     public array $urls;
     public ?string $icon;
     public string $iconSize;
     public ?string $iconColor;
+    public ?string $closeButtonUrl;
+    public ?string $closeButtonIcon;
+    public ?string $closeButtonColor;
     public string $type;
 
     private array $titleStyles;
@@ -65,6 +72,10 @@ class Alert extends Component
         ?string $icon = null,
         ?string $iconColor = null,
         ?string $iconSize = null,
+
+        ?string $closeButtonUrl = null,
+        ?string $closeButtonIcon = null,
+        ?string $closeButtonColor = null,
 
         ?string $type = null,
 
@@ -153,11 +164,50 @@ class Alert extends Component
         $this->icon = ($icon === 'none') ? null : $this->style('alert.' . $this->type, 'icon', $icon);
         $this->iconColor = ($iconColor === 'none') ? null : $this->style('alert.' . $this->type, 'icon-color', $iconColor);
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
+
+        $this->closeButtonUrl = $closeButtonUrl;
+        $this->closeButtonIcon = $this->closeButtonStyle('close-button-icon', $closeButtonIcon, 'icon-close');
+        $this->closeButtonColor = $this->closeButtonStyle('close-button-color', $closeButtonColor, $this->iconColor);
     }
 
     public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.alerts.alert');
+    }
+
+    private function closeButtonStyle(string $attribute, ?string $input, ?string $default): ?string
+    {
+        if ($input === 'none') {
+            return null;
+        }
+
+        if ($input) {
+            return $input;
+        }
+
+        $theme = $this->theme();
+
+        return config("{$theme}.alert.{$this->type}.{$attribute}")
+            ?: config("{$theme}.alert.{$attribute}")
+            ?: $default;
+    }
+
+    /**
+     * Attributes prefixed with `close-button-` are passed through to the close
+     * button with the prefix stripped, so it can be wired up to Alpine,
+     * Livewire, etc - for example close-button-x-on:click="show = false".
+     */
+    public function closeButtonAttributes(): ComponentAttributeBag
+    {
+        $attributes = $this->attributes ?: new ComponentAttributeBag;
+
+        $passthrough = [];
+
+        foreach ($attributes->whereStartsWith(self::CLOSE_BUTTON_PREFIX)->getAttributes() as $key => $value) {
+            $passthrough[Str::after($key, self::CLOSE_BUTTON_PREFIX)] = $value;
+        }
+
+        return new ComponentAttributeBag($passthrough);
     }
 
     private array $types = [
