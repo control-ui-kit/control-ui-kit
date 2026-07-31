@@ -1193,12 +1193,14 @@ return [
         'background' => 'bg-input',
         'border' => 'border border-input focus:border-input focus:outline-hidden focus:ring-brand',
         'color' => 'text-input placeholder-input',
+        'fieldset' => 'flex flex-nowrap gap-2',
         'font' => 'text-3xl text-center',
         'other' => '',
         'padding' => 'p-0',
         'rounded' => 'rounded-sm',
         'shadow' => '',
-        'width' => 'w-10 h-14',
+        'width' => 'w-10',
+        'height' => 'h-14',
 
         // Config
         'digits' => 6,
