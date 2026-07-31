@@ -29,9 +29,11 @@ abstract class ComponentTestCase extends TestCase
 
     protected function flashOld(array $input): void
     {
-        session()->flashInput($input);
+        $session = session()->driver();
 
-        request()->setLaravelSession(session());
+        $session->flashInput($input);
+
+        request()->setLaravelSession($session);
     }
 
     protected function getPackageProviders($app): array

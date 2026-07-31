@@ -235,6 +235,56 @@ class OneTimeCodeTest extends ComponentTestCase
     }
 
     #[Test]
+    public function a_one_time_passcode_field_is_not_repopulated_from_old_input(): void
+    {
+        Config::set('themes.default.input-one-time-code.digits', 2);
+
+        $this->flashOld(['code' => '56']);
+
+        $template = <<<'HTML'
+            <x-input-otc name="code" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="Components.inputOneTimeCode({ name: 'code', 'digit_1': '', 'digit_2': '', digits: 2, value: '' })" x-modelable="value">
+                <fieldset class="fs-code-otc fieldset">
+                    <input id="code-1" data-digit="1" x-model="digit_1" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                    <input id="code-2" data-digit="2" x-model="digit_2" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                </fieldset>
+                <input type="hidden" name="code" id="code" x-model="value" />
+                <style> fieldset.fs-code-otc input::-webkit-outer-spin-button, fieldset.fs-code-otc input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } </style>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_one_time_passcode_field_with_a_value_ignores_old_input(): void
+    {
+        Config::set('themes.default.input-one-time-code.digits', 2);
+
+        $this->flashOld(['code' => '99']);
+
+        $template = <<<'HTML'
+            <x-input-otc name="code" value="56" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div x-data="Components.inputOneTimeCode({ name: 'code', 'digit_1': '', 'digit_2': '', digits: 2, value: '56' })" x-modelable="value">
+                <fieldset class="fs-code-otc fieldset">
+                    <input id="code-1" data-digit="1" x-model="digit_1" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                    <input id="code-2" data-digit="2" x-model="digit_2" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                </fieldset>
+                <input type="hidden" name="code" id="code" x-model="value" />
+                <style> fieldset.fs-code-otc input::-webkit-outer-spin-button, fieldset.fs-code-otc input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } </style>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
     public function a_one_time_passcode_field_with_required_input_can_be_rendered(): void
     {
         Config::set('themes.default.input-one-time-code.digits', 2);
