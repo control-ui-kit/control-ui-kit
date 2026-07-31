@@ -63,9 +63,9 @@
     --warning-900: 120 53 15;
 }
 
-:root[data-ui-theme="{{ theme-name }}"][data-mode="light"] {
+/* Login Screen */
+:root[data-ui-theme~="{{ theme-name }}"] {
 
-    /* Login Screens */
     --login-bg                       : var(--gray-1000);      /* bg */
     --login                          : var(--white);          /* text */
     --login-input-bg                 : var(--gray-900);       /* bg */
@@ -74,6 +74,41 @@
     --login-link-hover               : var(--brand-600);      /* text */
     --login-input-border             : var(--gray-850);       /* border */
     --login-placeholder              : var(--gray-700);       /* text */
+
+    --login-muted                    : var(--gray-500);       /* text */
+    --login-muted-hover              : var(--gray-400);       /* text */
+
+    --login-alert-danger-bg          : var(--danger-900);      /* bg */
+    --login-alert-danger-border      : var(--danger-800);      /* border */
+    --login-alert-danger-icon        : var(--danger-400);      /* text */
+    --login-alert-danger-text        : var(--danger-200);      /* text */
+    --login-alert-danger-title       : var(--danger-100);      /* text */
+    --login-alert-danger-url         : var(--danger-100);      /* text */
+
+    --login-alert-success-bg         : var(--success-900);     /* bg */
+    --login-alert-success-border     : var(--success-800);     /* border */
+    --login-alert-success-icon       : var(--success-400);     /* text */
+    --login-alert-success-text       : var(--success-200);     /* text */
+    --login-alert-success-title      : var(--success-100);     /* text */
+    --login-alert-success-url        : var(--success-100);     /* text */
+
+    --login-alert-info-bg            : var(--info-900);        /* bg */
+    --login-alert-info-border        : var(--info-800);        /* border */
+    --login-alert-info-icon          : var(--info-400);        /* text */
+    --login-alert-info-text          : var(--info-200);        /* text */
+    --login-alert-info-title         : var(--info-100);        /* text */
+    --login-alert-info-url           : var(--info-100);        /* text */
+
+    --login-alert-warning-bg         : var(--warning-900);     /* bg */
+    --login-alert-warning-border     : var(--warning-800);     /* border */
+    --login-alert-warning-icon       : var(--warning-400);     /* text */
+    --login-alert-warning-text       : var(--warning-200);     /* text */
+    --login-alert-warning-title      : var(--warning-100);     /* text */
+    --login-alert-warning-url        : var(--warning-100);     /* text */
+
+}
+
+:root[data-ui-theme="{{ theme-name }}"][data-mode="light"] {
 
     /* Framework Defaults */
     --app-bg                         : var(--gray-50);        /* bg */
@@ -514,16 +549,6 @@
 }
 
 :root[data-ui-theme="{{ theme-name }}"][data-mode="dark"] {
-
-    /* Login Screens */
-    --login-bg                       : var(--gray-1000);      /* bg */
-    --login                          : var(--white);          /* text */
-    --login-input-bg                 : var(--gray-900);       /* bg */
-    --login-input                    : var(--white);          /* text */
-    --login-link                     : var(--brand-500);      /* text */
-    --login-link-hover               : var(--brand-600);      /* text */
-    --login-input-border             : var(--gray-850);       /* border */
-    --login-placeholder              : var(--gray-700);       /* text */
 
     /* Framework Defaults */
     --app-bg                         : var(--black);          /* bg */
