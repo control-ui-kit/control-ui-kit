@@ -153,6 +153,45 @@ class OneTimeCodeFieldTest extends ComponentTestCase
     }
 
     #[Test]
+    public function the_field_otc_component_is_not_repopulated_from_old_input(): void
+    {
+        $this->withViewErrors(['code' => 'This is a test message']);
+
+        $this->flashOld(['code' => '123456']);
+
+        $template = <<<'HTML'
+            <x-field-otc name="code" label="Pass Code" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="wrapper">
+                <label for="code" class="label-background label-border label-color label-font label-other label-padding label-rounded label-shadow label-style">
+                    <div class="text-style"> <span>Pass Code</span> </div>
+                </label>
+                <div class="content-style">
+                    <div class="slot-style">
+                        <div x-data="Components.inputOneTimeCode({ name: 'code', 'digit_1': '', 'digit_2': '', 'digit_3': '', 'digit_4': '', 'digit_5': '', 'digit_6': '', digits: 6, value: '' })" x-modelable="value">
+                            <fieldset class="fs-code-otc fieldset">
+                                <input id="code-1" data-digit="1" x-model="digit_1" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                                <input id="code-2" data-digit="2" x-model="digit_2" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                                <input id="code-3" data-digit="3" x-model="digit_3" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                                <input id="code-4" data-digit="4" x-model="digit_4" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                                <input id="code-5" data-digit="5" x-model="digit_5" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                                <input id="code-6" data-digit="6" x-model="digit_6" type="number" class="background border color font other padding rounded shadow width height" pattern="[0-9]*" min="0" max="9" maxlength="1" />
+                            </fieldset>
+                            <input type="hidden" name="code" id="code" x-model="value" />
+                            <style> fieldset.fs-code-otc input::-webkit-outer-spin-button, fieldset.fs-code-otc input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } </style>
+                        </div>
+                    </div>
+                    <div class="color font other padding"> This is a test message </div>
+                </div>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
     public function the_field_otc_component_can_be_rendered_with_custom_class(): void
     {
         $this->withViewErrors(['code' => 'This is a test message']);

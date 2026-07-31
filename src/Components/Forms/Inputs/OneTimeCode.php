@@ -179,6 +179,14 @@ class OneTimeCode extends Input
         $this->digits = $this->style($this->component, 'digits', $digits);
     }
 
+    protected function formatValue($value, $default): void
+    {
+        // A one time code is single use, so it is never repopulated from old input after a form error
+        $value = $value ?? $default;
+
+        $this->value = $value === '' ? null : $value;
+    }
+
     public function render(): View
     {
         return view('control-ui-kit::control-ui-kit.forms.inputs.one-time-code');

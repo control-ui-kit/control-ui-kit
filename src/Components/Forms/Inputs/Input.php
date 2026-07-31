@@ -319,7 +319,7 @@ class Input extends Component
         throw (new InputNumberException)::make("nonNumeric{$type}Solution", 'Number not numeric [' . $type . ']');
     }
 
-    private function formatValue($value, $default): void
+    protected function formatValue($value, $default): void
     {
         $value = $value ?? $default;
         $this->value = old($this->name, $value ?? '') === '' ? null : old($this->name, $value ?? '');
