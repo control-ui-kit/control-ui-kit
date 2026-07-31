@@ -388,8 +388,8 @@ class ThemeUpdaterCommandTest extends ConsoleTestCase
         // Remove a section comment line AND the first variable beneath it so that
         // filterOrphanedComments receives [comment_entry, variable_entry] and must
         // retain both (the comment is not orphaned).
-        $this->removeLineContaining($path, '/* Login Screens */');
-        $this->removeLineContaining($path, '--login-bg');
+        $this->removeLineContaining($path, '/* Framework Defaults */');
+        $this->removeLineContaining($path, '--app-bg');
 
         $this->artisan('uikit:theme-updater', ['--css-path' => $this->tempDir])
             ->expectsConfirmation('Apply changes to this file?', 'yes')
