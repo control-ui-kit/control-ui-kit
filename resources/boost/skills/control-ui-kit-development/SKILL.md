@@ -104,7 +104,7 @@ Change the default globally in `config/control-ui-kit.php`:
 | `x-field-autocomplete` | AJAX autocomplete | `url`, `min-length` |
 | `x-field-file-upload` | File upload | `accept` |
 | `x-field-image-upload` | Image upload with preview | `accept` |
-| `x-field-otc` | One-time code (6-digit) | `digits` |
+| `x-field-otc` | One-time code (6-digit) | `digits`, `width`, `height`, `fieldset` |
 | `x-field-range` | Range slider | `min`, `max`, `step` |
 | `x-field-info` | Read-only display field | — |
 | `x-field-link` | Read-only link display | `href` |

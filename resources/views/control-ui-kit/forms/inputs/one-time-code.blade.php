@@ -12,7 +12,7 @@
     })"
     x-modelable="value"
     {{ $attributes->whereStartsWith(['class', 'x-model']) }}>
-    <fieldset class="fs-{{ $name }}-otc">
+    <fieldset class="{{ trim("fs-{$name}-otc {$fieldset}") }}">
         @for($i = 1; $i <= $digits; $i++)
             <input id="{{ $name }}-{{ $i }}" data-digit="{{ $i }}" x-model="digit_{{ $i }}" type="number" {{ $attributes->whereDoesntStartWith(['class', 'x-model', 'wire:model'])->merge($basicClasses()) }} pattern="[0-9]*" min="0" max="9" maxlength="1" @if($requiredInput) required @endif />
         @endfor

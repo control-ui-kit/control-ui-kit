@@ -16,6 +16,10 @@ class OneTimeCode extends Input
 
     public string $digits;
 
+    public string $height;
+
+    public string $fieldset;
+
     public function __construct(
         string $name,
         ?string $id = null,
@@ -90,6 +94,8 @@ class OneTimeCode extends Input
         ?string $suffixText = null,
         ?bool $requiredInput = null,
         ?string $digits = null,
+        ?string $height = null,
+        ?string $fieldset = null,
     ) {
         parent::__construct(
             $name,
@@ -166,6 +172,10 @@ class OneTimeCode extends Input
             $requiredInput
         );
 
+        $this->height = $this->style($this->component, 'height', $height);
+        $this->basicStyles['height'] = $this->height;
+
+        $this->fieldset = $this->style($this->component, 'fieldset', $fieldset);
         $this->digits = $this->style($this->component, 'digits', $digits);
     }
 
