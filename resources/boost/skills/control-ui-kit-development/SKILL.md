@@ -121,8 +121,69 @@ Change the default globally in `config/control-ui-kit.php`:
     help="No spaces allowed"  {{-- help text below label --}}
     layout="stacked"          {{-- inline | stacked | responsive --}}
     required                  {{-- shows required indicator --}}
+    for="username_alt"        {{-- label's for attribute; defaults to name, pair with id --}}
 />
 ```
+
+### Styling the label inline
+
+Every style option the `x-label` component exposes is reachable from any `x-field-*`
+component by prefixing it with `label-`. The attribute travels
+`x-field-*` → `x-form-field` → `x-form-layout-*` → `x-label`, and works with all three
+layouts:
+
+```blade
+<x-field-otc
+    name="code"
+    :label="trans('security-audit.two-factor.code-label')"
+    label-color="text-danger"
+    label-font="font-bold tracking-wide"
+    label-padding="pt-1"
+/>
+```
+
+| Field attribute | Sets the `x-label` option | Theme default |
+|---|---|---|
+| `label-background` | `background` | `label.background` |
+| `label-border` | `border` | `label.border` |
+| `label-color` | `color` | `label.color` |
+| `label-font` | `font` | `label.font` |
+| `label-other` | `other` | `label.other` |
+| `label-padding` | `padding` | `label.padding` |
+| `label-rounded` | `rounded` | `label.rounded` |
+| `label-shadow` | `shadow` | `label.shadow` |
+
+As everywhere else in the kit, an inline value **replaces** the theme default for that
+option rather than appending to it. `label.other` is empty in the default theme, so
+`label-other` is the slot to use for arbitrary extra classes:
+
+```blade
+<x-field-text name="title" label="Title" label-other="mb-4 uppercase" />
+```
+
+Note that `class` on a field styles the **wrapper**, not the label. The surrounding
+layout chrome has its own attributes, all of which replace the matching
+`form-layout-{layout}` theme key:
+
+| Field attribute | Styles |
+|---|---|
+| `label-style` | the label's width/leading block (`label-width` + `label-other` for sized layouts) |
+| `text` | the wrapper around the label text, required star and tooltip |
+| `help-style` / `help-mobile` | help text beside the label / below the input |
+| `underneath-style` | the `underneath` paragraph |
+| `content`, `wrapper` | the content column, the outer wrapper |
+| `error-color`, `error-font`, `error-other`, `error-padding` | the validation error message |
+| `required-color`, `required-size` | the required indicator star |
+
+The layouts also accept `slot` to style the input slot, but Blade reserves `slot` as an
+attribute name, so it only works when you use `x-form-layout-*` directly — passing it to
+an `x-field-*` silently does nothing. Set `form-layout-{layout}.slot` in the theme
+instead.
+
+**Exception — `x-field-radio-group`.** `x-input-radio-group` defines its own `label-*`
+attributes for the *per-option* labels. On the field wrapper the layout consumes them
+first, so `label-*` styles the field label and the option labels are not reachable. Use
+`x-input-radio-group` inside an `x-field-slot` if you need to style both.
 
 ### Info and Link fields (read-only)
 

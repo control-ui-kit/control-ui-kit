@@ -263,14 +263,23 @@ window.Components = {
             ...options,
             init() {
 
-                let watch = [];
+                /**
+                 * One watcher per digit, not a single comma-separated expression.
+                 *
+                 * Alpine compiles a watch expression to `__self.result = <expression>`, and
+                 * assignment binds tighter than the comma operator - so a combined
+                 * `$watch('digit_1, digit_2, ...')` resolves to digit_1 alone. Alpine's
+                 * watch() then skips the callback whenever that value is unchanged, so
+                 * typing into any box but the first never reached updateValue() and the
+                 * hidden field kept whatever it held after the first box was filled. A
+                 * pasted code was unaffected, because populateNext() fills every digit
+                 * synchronously before the digit_1 callback runs.
+                 */
                 for (let i = 1; i <= this.digits; i++) {
-                    watch.push('digit_' + i)
+                    this.$watch('digit_' + i, () => {
+                        this.updateValue()
+                    })
                 }
-
-                this.$watch(watch.join(', '), () => {
-                    this.updateValue()
-                })
 
                 this.$watch('value', () => {
                     this.updateDigits()
