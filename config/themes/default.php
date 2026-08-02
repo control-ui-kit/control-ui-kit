@@ -364,11 +364,11 @@ return [
         'decrease-color' => 'text-danger',
 
         'link-container-background' => 'bg-panel-footer',
-        'link-container-border' => '',
+        'link-container-border' => 'border-t border-panel',
         'link-container-color' => '',
         'link-container-font' => '',
         'link-container-other' => '',
-        'link-container-padding' => 'px-4 py-2 sm:px-6',
+        'link-container-padding' => 'px-4 py-1 sm:px-6',
         'link-container-rounded' => '',
         'link-container-shadow' => '',
 
