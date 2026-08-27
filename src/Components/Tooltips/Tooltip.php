@@ -45,6 +45,7 @@ class Tooltip extends Component
         ?string $padding = null,
         ?string $rounded = null,
         ?string $shadow = null,
+        ?string $width = null,
         ?string $arrow = null,
         bool $default = false,
         bool $brand = false,
@@ -77,6 +78,7 @@ class Tooltip extends Component
             'padding' => $padding,
             'rounded' => $rounded,
             'shadow' => $shadow,
+            'width' => $width,
         ], ['background', 'border', 'color'], 'tooltip.' . $this->type, 'tooltipStyles');
 
         $this->arrow = $this->style('tooltip.' . $this->type, 'arrow', $arrow);
