@@ -295,6 +295,19 @@ class Select extends Component
         return $this->classList($this->buttonStyles);
     }
 
+    /**
+     * A native select is styled as the custom select's trigger button, with two differences.
+     *
+     * The width moves to the wrapper, which is what the chevron is positioned against, and the
+     * browser's own picker indicator is suppressed: it is drawn hard against the right-hand
+     * border and ignores the padding that reserves room for it, so a native select looked
+     * nothing like every other select on the page. The theme's chevron is used instead.
+     */
+    public function nativeClasses(): string
+    {
+        return $this->classList($this->buttonStyles, 'appearance-none w-full', [], ['button-width']);
+    }
+
     public function listClasses(): string
     {
         return $this->classList($this->listStyles);

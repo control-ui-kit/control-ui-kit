@@ -1,3 +1,10 @@
+/*
+ * The tabs component composes its responsive classes from the theme `tabs.breakpoint` value at
+ * runtime (for example `sm:hidden` / `sm:flex`), so Tailwind's scanner never sees the finished
+ * class names in any source file.  They are declared here so they are always generated.
+ */
+@source inline("{sm,md,lg,xl,2xl}:{block,flex,hidden}");
+
 @layer utilities {
 
     /* Backgrounds */

@@ -107,4 +107,67 @@ class SlotFieldTest extends ComponentTestCase
 
         $this->assertComponentRenders($expected, $template);
     }
+
+    /**
+     * x-field-slot has no input of its own to hand to x-form-field, so it renders its layout
+     * directly - which meant the layout received a tooltip with no type, and the type is what
+     * the template gates the tooltip on. The tooltip was accepted and then silently dropped.
+     */
+    #[Test]
+    public function the_field_slot_component_renders_a_tooltip(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-slot name="isrc_prefix" label="ISRC Prefix" tooltip="The prefix new codes are built from.">
+                <input type="text" name="isrc_prefix" />
+            </x-field-slot>
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('The prefix new codes are built from.', $rendered);
+
+        // The default type is the question-mark icon beside the label, not an input wrapper.
+        $this->assertStringContainsString('@mouseenter="show($el)"', $rendered);
+    }
+
+    /**
+     * A form posted over XHR never reaches Laravel's error bag - the 422 comes back as JSON and
+     * the page is never re-rendered - so a field can name the Alpine object its errors arrive
+     * in instead, and the same error element renders them client-side.
+     */
+    #[Test]
+    public function the_field_slot_component_renders_errors_from_an_alpine_source(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-slot name="description" label="Description" alpine-errors="ui.expenseErrors">
+                <input type="text" name="description" />
+            </x-field-slot>
+            HTML;
+
+        $rendered = (string) $this->blade($template);
+
+        $this->assertStringContainsString('x-show="ui.expenseErrors?.description"', $rendered);
+        $this->assertStringContainsString('x-text="Array.isArray(ui.expenseErrors?.description)', $rendered);
+    }
+
+    /**
+     * Without one it stays on the server bag, so nothing else changes.
+     */
+    #[Test]
+    public function the_field_slot_component_renders_nothing_for_a_field_with_no_error(): void
+    {
+        $this->withViewErrors([]);
+
+        $template = <<<'HTML'
+            <x-field-slot name="description" label="Description">
+                <input type="text" name="description" />
+            </x-field-slot>
+            HTML;
+
+        $this->assertStringNotContainsString('x-show="', (string) $this->blade($template));
+    }
 }

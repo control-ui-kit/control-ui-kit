@@ -148,16 +148,23 @@ class SelectFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                            <option value="" selected> Please Select ... </option>
-                            <option value="1"> English </option>
-                            <option value="2"> Spanish </option>
-                        </select>
+                        <div class="relative button-width">
+                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                                <option value="" selected> Please Select ... </option>
+                                <option value="1"> English </option>
+                                <option value="2"> Spanish </option>
+                            </select>
+                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="color font other padding"> This is a test message </div>
+                        <p class="help-mobile">Some help text</p>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
-                    <p class="help-mobile">Some help text</p>
                 </div>
-            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -187,16 +194,23 @@ class SelectFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                            <option value="" selected> Please Select ... </option>
-                            <option value="1"> English </option>
-                            <option value="2"> Spanish </option>
-                        </select>
+                        <div class="relative button-width">
+                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                                <option value="" selected> Please Select ... </option>
+                                <option value="1"> English </option>
+                                <option value="2"> Spanish </option>
+                            </select>
+                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="color font other padding"> This is a test message </div>
+                        <p class="help-mobile">Some help text</p>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
-                    <p class="help-mobile">Some help text</p>
                 </div>
-            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -226,16 +240,23 @@ class SelectFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" onclick="alert('here')">
-                            <option value="" selected> Please Select ... </option>
-                            <option value="1"> English </option>
-                            <option value="2"> Spanish </option>
-                        </select>
+                        <div class="relative button-width">
+                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full" onclick="alert('here')">
+                                <option value="" selected> Please Select ... </option>
+                                <option value="1"> English </option>
+                                <option value="2"> Spanish </option>
+                            </select>
+                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="color font other padding"> This is a test message </div>
+                        <p class="help-mobile">Some help text</p>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
-                    <p class="help-mobile">Some help text</p>
                 </div>
-            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -270,15 +291,22 @@ class SelectFieldTest extends ComponentTestCase
                     </label>
                     <div class="content-style">
                         <div class="slot-style">
-                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                                <option value="1" selected> English </option>
-                                <option value="2"> Spanish </option>
-                            </select>
+                            <div class="relative button-width">
+                                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                                    <option value="1" selected> English </option>
+                                    <option value="2"> Spanish </option>
+                                </select>
+                                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="color font other padding"> This is a test message </div>
+                            <p class="help-mobile">Some help text</p>
                         </div>
-                        <div class="color font other padding"> This is a test message </div>
-                        <p class="help-mobile">Some help text</p>
                     </div>
-                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -313,16 +341,23 @@ class SelectFieldTest extends ComponentTestCase
                     </label>
                     <div class="content-style">
                         <div class="slot-style">
-                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                                <option value="" selected> Please Select ... </option>
-                                <option value="1"> English </option>
-                                <option value="2"> Spanish </option>
-                            </select>
+                            <div class="relative button-width">
+                                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                                    <option value="" selected> Please Select ... </option>
+                                    <option value="1"> English </option>
+                                    <option value="2"> Spanish </option>
+                                </select>
+                                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="color font other padding"> This is a test message </div>
+                            <p class="help-mobile">Some help text</p>
                         </div>
-                        <div class="color font other padding"> This is a test message </div>
-                        <p class="help-mobile">Some help text</p>
                     </div>
-                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -352,16 +387,23 @@ class SelectFieldTest extends ComponentTestCase
                 </label>
                 <div class="content-style">
                     <div class="slot-style">
-                        <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                            <option value="" selected> Please Select ... </option>
-                            <option value="1"> English </option>
-                            <option value="2"> Spanish </option>
-                        </select>
+                        <div class="relative button-width">
+                            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                                <option value="" selected> Please Select ... </option>
+                                <option value="1"> English </option>
+                                <option value="2"> Spanish </option>
+                            </select>
+                            <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                                <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="color font other padding"> This is a test message </div>
+                        <p class="help-mobile">Some help text</p>
                     </div>
-                    <div class="color font other padding"> This is a test message </div>
-                    <p class="help-mobile">Some help text</p>
                 </div>
-            </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

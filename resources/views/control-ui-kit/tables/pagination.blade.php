@@ -5,6 +5,7 @@
 
     <div class="{{ $wrapperClasses }}">
         <div class="{{ $resultsClasses }}">
+            @if ($showLimit)
             <span>{!! __('Display') !!} #</span>
             <form method="get" action="{{ $formUrl }}" name="pagination" id="pagination">
                 <select id="limit" name="limit" class="{{ $limitClasses }}" onchange="document.pagination.submit();">
@@ -15,6 +16,7 @@
                     @endforeach
                 </select>
             </form>
+            @endif
             <span></span>
             @if ($paginator->total() === 0)
             <span>{!! __('No Results') !!}</span>

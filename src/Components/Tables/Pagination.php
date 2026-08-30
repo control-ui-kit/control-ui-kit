@@ -20,6 +20,7 @@ class Pagination extends Component
     public string $iconSize;
     public int $limit;
     public bool $showAlways;
+    public bool $showLimit;
     public int $eachSide;
     public bool $wire = false;
 
@@ -43,6 +44,7 @@ class Pagination extends Component
         ?string $limit = null,
 
         ?bool $showAlways = null,
+        ?bool $showLimit = null,
         ?int $eachSide = null,
         bool $wire = false,
 
@@ -114,6 +116,7 @@ class Pagination extends Component
         $this->iconSize = $this->style($this->component, 'icon-size', $iconSize);
         $this->limit = (int) $this->style($this->component, 'limit', $limit);
         $this->showAlways = (bool) $this->style($this->component, 'show-always', $showAlways);
+        $this->showLimit = (bool) $this->style($this->component, 'show-limit', $showLimit);
         $this->eachSide = (int) $this->style($this->component, 'each-side', $eachSide);
         $this->wire = $wire;
         $this->formUrl = request()->getRequestUri();
@@ -222,6 +225,7 @@ class Pagination extends Component
             'iconSize' => $this->iconSize,
             'limit' => $this->limit,
             'showAlways' => $this->showAlways,
+            'showLimit' => $this->showLimit,
             'buttonClasses' => $this->buttonClasses(),
             'buttonActive' => $this->buttonActiveClasses(),
             'buttonContainer' => $this->buttonStyles['button-container'],

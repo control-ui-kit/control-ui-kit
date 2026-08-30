@@ -1,16 +1,32 @@
 <div id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()" {{ $attributes->merge($classes()) }}>
 
-    <div class="{{ $breakpoint }}:hidden">
+    <div class="{{ $breakpoint }}:hidden {{ $selectSpacing }}">
         <x-input-select native :name="$name" :options="$getSelectOptions($headings)" :value="$selected" :show-please-select="false" x-model="showTab" button-width="w-full" />
     </div>
 
-    <div class="hidden {{ $breakpoint }}:block overflow-x-auto">
-        <nav class="flex items-center flex-wrap {{ $spacing }}" aria-label="Tabs">
-            {{ $headings }}
-        </nav>
-    </div>
+    @if ($position === 'side')
 
-    {{ $panels }}
+        <div class="{{ $breakpoint }}:flex {{ $sideGap }}">
+            <nav class="hidden {{ $breakpoint }}:flex shrink-0 flex-col {{ $sideWidth }} {{ $sideSpacing }} {{ $sideHeading }}" aria-label="Tabs">
+                {{ $headings }}
+            </nav>
+
+            <div class="flex-1 min-w-0">
+                {{ $panels }}
+            </div>
+        </div>
+
+    @else
+
+        <div class="hidden {{ $breakpoint }}:block overflow-x-auto">
+            <nav class="flex items-center flex-wrap {{ $spacing }}" aria-label="Tabs">
+                {{ $headings }}
+            </nav>
+        </div>
+
+        {{ $panels }}
+
+    @endif
 
     <script>
         const {{ Str::camel($name) }}Data = () => ({

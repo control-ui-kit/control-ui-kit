@@ -180,11 +180,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2238,11 +2245,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value="0" selected> ::please-select-text </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value="0" selected> ::please-select-text </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2500,11 +2514,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value=""> Please Select ... </option>
-                <option value="1"> 1 </option>
-                <option value="2" selected> 2 </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value=""> Please Select ... </option>
+                    <option value="1"> 1 </option>
+                    <option value="2" selected> 2 </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2522,11 +2543,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value="" selected> Please Select ... </option>
-                <option value="english"> English </option>
-                <option value="spanish"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="english"> English </option>
+                    <option value="spanish"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2545,11 +2573,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value=""> Please Select ... </option>
-                <option value="a"> a </option>
-                <option value="b" selected> b </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value=""> Please Select ... </option>
+                    <option value="a"> a </option>
+                    <option value="b" selected> b </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2568,11 +2603,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="enable" name="enable" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value=""> Please Select ... </option>
-                <option value="1"> Yes </option>
-                <option value="0" selected> No </option>
-            </select>
+            <div class="relative button-width">
+                <select id="enable" name="enable" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value=""> Please Select ... </option>
+                    <option value="1"> Yes </option>
+                    <option value="0" selected> No </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2792,11 +2834,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" x-model="value">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full" x-model="value">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2879,11 +2928,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" wire:model="value">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full" wire:model="value">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -2966,11 +3022,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width float-right">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width float-right">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -3053,11 +3116,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width" onchange="alert('here')">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full" onchange="alert('here')">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);
@@ -3139,11 +3209,18 @@ class SelectTest extends ComponentTestCase
             HTML;
 
         $expected = <<<'HTML'
-            <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-width">
-                <option value="" selected> Please Select ... </option>
-                <option value="1"> English </option>
-                <option value="2"> Spanish </option>
-            </select>
+            <div class="relative button-width">
+                <select id="language" name="language" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow appearance-none w-full">
+                    <option value="" selected> Please Select ... </option>
+                    <option value="1"> English </option>
+                    <option value="2"> Spanish </option>
+                </select>
+                <span class="icon-background icon-border icon-color icon-other icon-padding icon-rounded icon-shadow">
+                    <svg class="icon-size fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.11508 8.29502l-1.41 1.41L11.7051 15.705l6-5.99998-1.41-1.41-4.59 4.57998-4.59002-4.57998z"/>
+                        </svg>
+                    </span>
+                </div>
             HTML;
 
         $this->assertComponentRenders($expected, $template);

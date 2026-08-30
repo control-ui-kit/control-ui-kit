@@ -2273,6 +2273,7 @@ return [
 
         // Config
         'show-always' => true,
+        'show-limit' => true,
         'each-side' => 1,
         'limit' => 10,
     ],
@@ -2285,8 +2286,14 @@ return [
         'font' => '',
         'other' => '',
         'padding' => '',
+        'position' => 'top',
         'rounded' => '',
+        'select-spacing' => 'pb-2',
         'shadow' => '',
+        'side-gap' => 'gap-x-6',
+        'side-heading' => '[&>a]:w-full [&>a]:border-b-0 [&>a]:border-l-2 [&>a]:pl-3',
+        'side-spacing' => 'space-y-1',
+        'side-width' => 'min-w-48',
         'spacing' => 'space-x-6',
     ],
 
@@ -2310,7 +2317,7 @@ return [
         'color' => '',
         'font' => '',
         'other' => '',
-        'padding' => 'pt-2',
+        'padding' => 'sm:pt-2',
         'rounded' => '',
         'shadow' => '',
     ],

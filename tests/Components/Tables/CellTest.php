@@ -1069,4 +1069,25 @@ class CellTest extends ComponentTestCase
 
         $this->assertComponentRenders('', $template);
     }
+
+    /**
+     * Alpine writes to the element carrying the directive, so an x-text on the cell used to
+     * replace the <td> and take the padding div with it - the column then sat flush against the
+     * edge while its heading kept its padding. The binding is carried by a span instead.
+     */
+    #[Test]
+    public function a_table_cell_component_carries_alpine_content_bindings_on_the_content(): void
+    {
+        $template = <<<'HTML'
+            <x-table-cell x-text="row.name" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <td class="align background border color font other rounded shadow">
+                <div class="padding"> <span x-text="row.name"></span> </div>
+            </td>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template);
+    }
 }
