@@ -25,6 +25,7 @@ class Responsive extends Component
     public string $tooltipPosition;
     public string $underneath;
     public bool $required = false;
+    public ?string $alpineErrors;
 
     public ?string $contentStyle;
     public ?string $helpStyle;
@@ -78,19 +79,27 @@ class Responsive extends Component
         ?string $tooltipIcon = null,
         ?string $tooltipPosition = null,
         ?string $underneath = null,
-        bool $required = false
+        bool $required = false,
+        ?string $alpineErrors = null
     ) {
         $this->name = $name;
         $this->for = $for;
         $this->input = $input;
         $this->label = $label;
         $this->help = $help;
-        $this->tooltip = $tooltip ?? '';
-        $this->tooltipType = $tooltipType ?? '';
-        $this->tooltipIcon = $tooltipIcon ?? '';
-        $this->tooltipPosition = $tooltipPosition ?? '';
+        // Defaulted from the theme the same way x-form-field does. A layout reached directly -
+        // which is how x-field-slot renders, since it has no input of its own to hand to
+        // x-form-field - would otherwise be given a tooltip with no type, and the type is what
+        // the template gates on, so the tooltip was accepted and then silently dropped.
+        $theme = app('control-ui-kit.theme');
+
+        $this->tooltip = $tooltip !== null ? html_entity_decode($tooltip, ENT_QUOTES) : '';
+        $this->tooltipType = $tooltipType ?? (string) config($theme . '.tooltip.field-type', 'icon');
+        $this->tooltipIcon = $tooltipIcon ?? (string) config($theme . '.tooltip.field-icon', 'icon-question');
+        $this->tooltipPosition = $tooltipPosition ?? (string) config($theme . '.tooltip.field-position', 'bottom');
         $this->underneath = $underneath ?? '';
         $this->required = $required;
+        $this->alpineErrors = $alpineErrors;
 
         $this->errorStyles = [
             'color' => $errorColor,

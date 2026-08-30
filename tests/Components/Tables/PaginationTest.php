@@ -91,6 +91,7 @@ class PaginationTest extends ComponentTestCase
         Config::set('themes.default.table-pagination.icon-size', 'icon-size');
         Config::set('themes.default.table-pagination.limit', 10);
         Config::set('themes.default.table-pagination.show-always', true);
+        Config::set('themes.default.table-pagination.show-limit', true);
         Config::set('themes.default.table-pagination.each-side', 1);
     }
 
@@ -206,5 +207,51 @@ class PaginationTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template, ['rows' => $paginator]);
+    }
+
+    /**
+     * The limit selector carries its own GET form, which cannot be rendered inside another
+     * form - the parser drops the inner tag and the select is adopted by the outer one. A
+     * paginated table that sits inside a form therefore has to be able to turn it off.
+     */
+    #[Test]
+    public function a_table_pagination_component_can_hide_the_limit_selector(): void
+    {
+        $template = <<<'HTML'
+            <x-table-pagination :rows="$rows" :show-limit="false" />
+            HTML;
+
+        $expected = <<<'HTML'
+            <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
+                <div class="wrapper-background wrapper-border wrapper-color wrapper-font wrapper-other wrapper-padding wrapper-rounded wrapper-shadow">
+                    <div class="results-background results-border results-color results-font results-other results-padding results-rounded results-shadow"> <span></span> <span>Results</span> <span class="font-medium">1-10</span> <span>of</span> <span class="font-medium">50</span> </div>
+                    <div class="button-container">
+                        <span aria-disabled="true" aria-label="&amp;laquo; Previous">
+                            <span class="button-disabled-background button-disabled-border button-disabled-color button-disabled-font button-disabled-other button-disabled-padding button-disabled-rounded button-disabled-shadow button-disabled-width" aria-hidden="true">
+                                <svg class="icon-size fill-current" viewBox="0 0 24 24">
+                                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                                        <path fill="none" d="M0 0h24v24H0z"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <div class="button-numbers button-spacing">
+                                    <div aria-current="page"> <span class="button-active-background button-active-border button-active-color button-active-font button-active-other button-active-padding button-active-rounded button-active-shadow button-active-width">1</span> </div>
+                                    <a href="/test?page=2" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-spacing button-width" aria-label="Go to page 2"> 2 </a>
+                                    <a href="/test?page=3" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-spacing button-width" aria-label="Go to page 3"> 3 </a>
+                                    <a href="/test?page=4" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-spacing button-width" aria-label="Go to page 4"> 4 </a>
+                                    <a href="/test?page=5" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-spacing button-width" aria-label="Go to page 5"> 5 </a>
+                                </div>
+                                <a href="/test?page=2" rel="next" class="button-background button-border button-color button-font button-other button-padding button-rounded button-shadow button-spacing button-width" aria-label="Next &amp;raquo;">
+                                    <svg class="icon-size fill-current" viewBox="0 0 24 24">
+                                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                                            <path fill="none" d="M0 0h24v24H0z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </nav>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template, ['rows' => $this->paginator]);
     }
 }

@@ -7,7 +7,7 @@
                     <x-icon-star size="{{ $requiredSize }}" color="{{ $requiredColor }}" />
                 @endif
                 @if (($tooltip || isset($tooltipContent)) && in_array($tooltipType, ['icon', 'field'], true))
-                    <x-tooltip :text="$tooltip" wrapper="ml-auto float-right">
+                    <x-tooltip :text="$tooltip" wrapper="ml-auto float-right self-start min-h-[2rem] flex items-center">
                         @isset($tooltipContent)
                             <x-slot:text>{{ $tooltipContent }}</x-slot:text>
                         @endisset
@@ -38,7 +38,7 @@
                     {{ $slot }}
                 </div>
             @endif
-            <x-error field="{{ $name }}" :styles="$errorStyles" />
+            <x-error field="{{ $name }}" :styles="$errorStyles" :alpine="$alpineErrors" />
             @if ($underneath)
                 <p class="{{ $underneathStyle }}">{!! $underneath !!}</p>
             @endif

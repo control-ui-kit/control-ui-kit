@@ -1,4 +1,4 @@
-<x-dynamic-component :component="$layout" :input="$input" :help="$help" :tooltip="$tooltip" :tooltip-type="$tooltipType" :tooltip-icon="$tooltipIcon" :tooltip-position="$tooltipPosition" :underneath="$underneath" {{ $attributes }}>
+<x-dynamic-component :component="$layout" :input="$input" :help="$help" :tooltip="$tooltip" :tooltip-type="$tooltipType" :tooltip-icon="$tooltipIcon" :tooltip-position="$tooltipPosition" :underneath="$underneath" :alpine-errors="$alpineErrors" {{ $attributes }}>
     @isset($tooltipContent)
         <x-slot:tooltip-content>{{ $tooltipContent }}</x-slot:tooltip-content>
     @endisset

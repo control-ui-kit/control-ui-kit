@@ -19,6 +19,7 @@ class FormField extends Component
     public string $tooltipIcon;
     public string $tooltipPosition;
     public string $underneath;
+    public ?string $alpineErrors;
 
     public function __construct(
         ?string $layout = null,
@@ -29,6 +30,7 @@ class FormField extends Component
         ?string $tooltipIcon = null,
         ?string $tooltipPosition = null,
         ?string $underneath = null,
+        ?string $alpineErrors = null,
     ) {
         if ($input === 'input') {
             $this->input = 'input';
@@ -44,6 +46,7 @@ class FormField extends Component
         $this->tooltipIcon = $tooltipIcon ?? (string) config($theme . '.tooltip.field-icon', 'icon-question');
         $this->tooltipPosition = $tooltipPosition ?? (string) config($theme . '.tooltip.field-position', 'bottom');
         $this->underneath = $underneath ?? '';
+        $this->alpineErrors = $alpineErrors;
         $this->layout = $this->getLayout($layout);
     }
 

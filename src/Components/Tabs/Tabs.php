@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Tabs;
 
+use ControlUIKit\Exceptions\ControlUIKitException;
 use ControlUIKit\Traits\UseThemeFile;
 use DOMDocument;
 use Illuminate\Contracts\View\View;
@@ -13,12 +14,20 @@ class Tabs extends Component
 {
     use UseThemeFile;
 
+    private const array POSITIONS = ['top', 'side'];
+
     protected string $component = 'tabs';
 
     public string $name;
     public ?string $selected;
     public string $breakpoint;
+    public string $position;
+    public string $selectSpacing;
     public string $spacing;
+    public string $sideGap;
+    public string $sideHeading;
+    public string $sideSpacing;
+    public string $sideWidth;
 
     public function __construct(
         ?string $background = null,
@@ -29,9 +38,15 @@ class Tabs extends Component
         ?string $other = null,
         string $name = 'tabs',
         ?string $padding = null,
+        ?string $position = null,
         ?string $rounded = null,
         ?string $selected = null,
+        ?string $selectSpacing = null,
         ?string $shadow = null,
+        ?string $sideGap = null,
+        ?string $sideHeading = null,
+        ?string $sideSpacing = null,
+        ?string $sideWidth = null,
         ?string $spacing = null
     ) {
         $this->name = $name;
@@ -49,7 +64,13 @@ class Tabs extends Component
         ]);
 
         $this->breakpoint = $this->style($this->component, 'breakpoint', $breakpoint);
+        $this->position = $this->validatePosition($this->style($this->component, 'position', $position));
+        $this->selectSpacing = $this->style($this->component, 'select-spacing', $selectSpacing);
         $this->spacing = $this->style($this->component, 'spacing', $spacing);
+        $this->sideGap = $this->style($this->component, 'side-gap', $sideGap);
+        $this->sideHeading = $this->style($this->component, 'side-heading', $sideHeading);
+        $this->sideSpacing = $this->style($this->component, 'side-spacing', $sideSpacing);
+        $this->sideWidth = $this->style($this->component, 'side-width', $sideWidth);
     }
 
     public function render(): View
@@ -78,12 +99,24 @@ class Tabs extends Component
     public function getSelectOptions(string $html): array
     {
         $options = [];
-        $prefix = "#{$this->name}-";
+        $prefix = '#' . $this->name . '-';
 
         foreach ($this->getHeadingsArray($html) as $tab => $heading) {
             $options[str_replace($prefix, '', $tab)] = $heading;
         }
 
         return $options;
+    }
+
+    /**
+     * @throws ControlUIKitException
+     */
+    private function validatePosition(string $position): string
+    {
+        if (! in_array($position, self::POSITIONS, true)) {
+            throw new ControlUIKitException('Tabs position [' . $position . '] is invalid, please use one of [' . implode(', ', self::POSITIONS) . ']');
+        }
+
+        return $position;
     }
 }
