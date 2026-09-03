@@ -22,12 +22,16 @@ class Tabs extends Component
     public ?string $selected;
     public string $breakpoint;
     public string $position;
+    public string $query;
     public string $selectSpacing;
     public string $spacing;
     public string $sideGap;
     public string $sideHeading;
     public string $sideSpacing;
     public string $sideWidth;
+
+    private ?string $resolvedTab = null;
+    private bool $tabResolved = false;
 
     public function __construct(
         ?string $background = null,
@@ -39,6 +43,7 @@ class Tabs extends Component
         string $name = 'tabs',
         ?string $padding = null,
         ?string $position = null,
+        ?string $query = null,
         ?string $rounded = null,
         ?string $selected = null,
         ?string $selectSpacing = null,
@@ -65,6 +70,7 @@ class Tabs extends Component
 
         $this->breakpoint = $this->style($this->component, 'breakpoint', $breakpoint);
         $this->position = $this->validatePosition($this->style($this->component, 'position', $position));
+        $this->query = (string) $this->style($this->component, 'query', $query);
         $this->selectSpacing = $this->style($this->component, 'select-spacing', $selectSpacing);
         $this->spacing = $this->style($this->component, 'spacing', $spacing);
         $this->sideGap = $this->style($this->component, 'side-gap', $sideGap);
@@ -96,6 +102,31 @@ class Tabs extends Component
         return $matches;
     }
 
+    /**
+     * The tab to open the component on.
+     *
+     * The query string takes precedence over the `selected` attribute: `selected` is the
+     * screen's own default, where `?t=` is a request for this one page view. A tab can be
+     * addressed by its id - `?t=royalty` - or by its position in the rendered tab strip,
+     * one-based, so `?t=4` opens the fourth tab, which is how the legacy screens did it.
+     *
+     * Positions count only the tabs actually rendered, so on a screen whose tabs are
+     * permission-gated the same number means different tabs to different users. Ids are the
+     * stable way to link to a tab.
+     *
+     * A value naming no rendered tab is ignored, so a stale or mistyped link opens the screen
+     * on its first tab rather than on nothing at all.
+     */
+    public function selectedTab(string $html): ?string
+    {
+        if (! $this->tabResolved) {
+            $this->resolvedTab = $this->requestedTab($this->tabIds($html)) ?? $this->selected;
+            $this->tabResolved = true;
+        }
+
+        return $this->resolvedTab;
+    }
+
     public function getSelectOptions(string $html): array
     {
         $options = [];
@@ -106,6 +137,44 @@ class Tabs extends Component
         }
 
         return $options;
+    }
+
+    /**
+     * @param  list<string>  $tabs
+     */
+    private function requestedTab(array $tabs): ?string
+    {
+        if ($this->query === '') {
+            return null;
+        }
+
+        $requested = request()->query($this->query);
+
+        if (! is_string($requested) || $requested === '') {
+            return null;
+        }
+
+        if (in_array($requested, $tabs, true)) {
+            return $requested;
+        }
+
+        return ctype_digit($requested) ? ($tabs[(int) $requested - 1] ?? null) : null;
+    }
+
+    /**
+     * The ids of the rendered tabs, in the order they appear.
+     *
+     * Cast to string because a heading given a numeric id would otherwise come back from
+     * getSelectOptions() as an integer array key and never match the query string.
+     *
+     * @return list<string>
+     */
+    private function tabIds(string $html): array
+    {
+        return array_map(
+            static fn ($id): string => (string) $id,
+            array_keys($this->getSelectOptions($html))
+        );
     }
 
     /**
