@@ -2287,6 +2287,7 @@ return [
         'other' => '',
         'padding' => '',
         'position' => 'top',
+        'query' => 't',
         'rounded' => '',
         'select-spacing' => 'pb-2',
         'shadow' => '',

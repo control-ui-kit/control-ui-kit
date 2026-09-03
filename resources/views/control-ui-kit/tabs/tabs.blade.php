@@ -1,7 +1,7 @@
 <div id="{{ $name }}" x-data="{{ Str::camel($name) }}Data()" x-init="init()" {{ $attributes->merge($classes()) }}>
 
     <div class="{{ $breakpoint }}:hidden {{ $selectSpacing }}">
-        <x-input-select native :name="$name" :options="$getSelectOptions($headings)" :value="$selected" :show-please-select="false" x-model="showTab" button-width="w-full" />
+        <x-input-select native :name="$name" :options="$getSelectOptions($headings)" :value="$selectedTab($headings)" :show-please-select="false" x-model="showTab" button-width="w-full" />
     </div>
 
     @if ($position === 'side')
@@ -31,7 +31,7 @@
     <script>
         const {{ Str::camel($name) }}Data = () => ({
             name: '{{ $name }}',
-            showTab: @if($selected) '{{ $selected }}' @else document.querySelector('#{{ $name }} a').id.replace('{{ $name }}_', '') @endif,
+            showTab: @if($tab = $selectedTab($headings)) '{{ $tab }}' @else document.querySelector('#{{ $name }} a').id.replace('{{ $name }}_', '') @endif,
             tab(id) {
                 this.showTab = id;
             },

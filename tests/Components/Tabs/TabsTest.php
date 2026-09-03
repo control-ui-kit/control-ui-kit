@@ -26,6 +26,7 @@ class TabsTest extends ComponentTestCase
         Config::set('themes.default.tabs.shadow', 'shadow');
         Config::set('themes.default.tabs.breakpoint', 'sm');
         Config::set('themes.default.tabs.position', 'top');
+        Config::set('themes.default.tabs.query', 't');
         Config::set('themes.default.tabs.select-spacing', 'select-spacing');
         Config::set('themes.default.tabs.spacing', 'spacing');
         Config::set('themes.default.tabs.side-gap', 'side-gap');
@@ -632,5 +633,175 @@ class TabsTest extends ComponentTestCase
         $this->expectExceptionMessage('Tabs position [bottom] is invalid, please use one of [top, side]');
 
         new Tabs;
+    }
+
+    #[Test]
+    public function a_tab_can_be_opened_by_id_from_the_query_string(): void
+    {
+        request()->query->set('t', 'royalty');
+
+        $rendered = $this->renderTabs($this->threeTabs());
+
+        $this->assertStringContainsString("showTab:  'royalty'", $rendered);
+        $this->assertStringContainsString('<option value="royalty" selected>', $rendered);
+    }
+
+    #[Test]
+    public function a_tab_can_be_opened_by_its_position_in_the_query_string(): void
+    {
+        request()->query->set('t', '2');
+
+        $rendered = $this->renderTabs($this->threeTabs());
+
+        $this->assertStringContainsString("showTab:  'settings'", $rendered);
+        $this->assertStringContainsString('<option value="settings" selected>', $rendered);
+    }
+
+    #[Test]
+    public function a_position_in_the_query_string_is_one_based(): void
+    {
+        request()->query->set('t', '1');
+
+        $rendered = $this->renderTabs($this->threeTabs());
+
+        $this->assertStringContainsString("showTab:  'profile'", $rendered);
+    }
+
+    #[Test]
+    public function a_position_past_the_last_rendered_tab_is_ignored(): void
+    {
+        request()->query->set('t', '4');
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs())
+        );
+    }
+
+    #[Test]
+    public function a_position_of_zero_is_ignored(): void
+    {
+        request()->query->set('t', '0');
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs())
+        );
+    }
+
+    #[Test]
+    public function a_query_string_naming_no_rendered_tab_is_ignored(): void
+    {
+        request()->query->set('t', 'billing');
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs())
+        );
+    }
+
+    #[Test]
+    public function an_empty_query_string_value_is_ignored(): void
+    {
+        request()->query->set('t', '');
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs())
+        );
+    }
+
+    #[Test]
+    public function an_array_query_string_value_is_ignored(): void
+    {
+        request()->query->set('t', ['royalty']);
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs())
+        );
+    }
+
+    #[Test]
+    public function the_query_string_parameter_can_be_renamed(): void
+    {
+        request()->query->set('t', 'royalty');
+        request()->query->set('b', 'settings');
+
+        $rendered = $this->renderTabs($this->threeTabs('query="b"'));
+
+        $this->assertStringContainsString("showTab:  'settings'", $rendered);
+    }
+
+    #[Test]
+    public function the_query_string_can_be_switched_off(): void
+    {
+        request()->query->set('t', 'royalty');
+
+        $this->assertStringContainsString(
+            'showTab:  document.querySelector',
+            $this->renderTabs($this->threeTabs('query="none"'))
+        );
+    }
+
+    #[Test]
+    public function the_query_string_takes_precedence_over_the_selected_attribute(): void
+    {
+        request()->query->set('t', 'royalty');
+
+        $rendered = $this->renderTabs($this->threeTabs('selected="settings"'));
+
+        $this->assertStringContainsString("showTab:  'royalty'", $rendered);
+    }
+
+    #[Test]
+    public function the_selected_attribute_is_used_when_the_query_string_asks_for_nothing(): void
+    {
+        $rendered = $this->renderTabs($this->threeTabs('selected="settings"'));
+
+        $this->assertStringContainsString("showTab:  'settings'", $rendered);
+        $this->assertStringContainsString('<option value="settings" selected>', $rendered);
+    }
+
+    #[Test]
+    public function the_selected_attribute_is_used_when_the_query_string_names_no_rendered_tab(): void
+    {
+        request()->query->set('t', 'billing');
+
+        $this->assertStringContainsString(
+            "showTab:  'settings'",
+            $this->renderTabs($this->threeTabs('selected="settings"'))
+        );
+    }
+
+    /**
+     * Rendered and indented the same way assertComponentRenders() does it, so these
+     * assertions can be written against the same normalised markup as the tests above.
+     */
+    private function renderTabs(string $template): string
+    {
+        return $this->indent((string) $this->blade($template));
+    }
+
+    /**
+     * Three tabs whose ids are not their positions, so a test cannot pass by confusing one
+     * for the other.
+     */
+    private function threeTabs(string $attributes = ''): string
+    {
+        return <<<HTML
+            <x-tabs {$attributes}>
+                <x-slot name="headings">
+                    <x-tabs-heading id="profile">Profile</x-tabs-heading>
+                    <x-tabs-heading id="settings">Settings</x-tabs-heading>
+                    <x-tabs-heading id="royalty">Royalty</x-tabs-heading>
+                </x-slot>
+                <x-slot name="panels">
+                    <x-tabs-panel id="profile">Profile content</x-tabs-panel>
+                    <x-tabs-panel id="settings">Settings content</x-tabs-panel>
+                    <x-tabs-panel id="royalty">Royalty content</x-tabs-panel>
+                </x-slot>
+            </x-tabs>
+            HTML;
     }
 }
