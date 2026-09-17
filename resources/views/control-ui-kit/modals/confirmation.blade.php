@@ -1,8 +1,8 @@
-@props(['id' => null, 'maxWidth' => null])
+@props(['id' => null, 'maxWidth' => null, 'body' => null, 'footerClass' => null, 'titleClass' => null, 'scroll' => null])
 
-<x-modal :id="$id" :maxWidth="$maxWidth" {{ $attributes }}>
+<x-modal :id="$id" :maxWidth="$maxWidth" :scroll="$scroll" {{ $attributes }}>
 
-    <div class="p-4">
+    <div class="{{ $titleClass }}">
 
         <x-alert type="default" x-show="detail.type == 'default'">
             @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
@@ -28,13 +28,13 @@
             @isset($title) {{ $title }} @else <div x-html="detail.title"></div> @endif
         </x-alert>
 
-        <div class="pt-4 text-sm">
-            @isset($content) {{ $content }} @else <div x-html="detail.content" class="leading-6"></div> @endif
-        </div>
-
     </div>
 
-    <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
+    <div class="{{ $body }} text-sm">
+        @isset($content) {{ $content }} @else <div x-html="detail.content" class="leading-6"></div> @endif
+    </div>
+
+    <div class="{{ $footerClass }}">
         {{ $footer }}
     </div>
 
