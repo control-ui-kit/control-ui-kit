@@ -2,21 +2,8 @@
     x-data="{
         show: false,
         loading: false,
-        focusables() {
-            // All focusable element types...
-            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-
-            return [...$el.querySelectorAll(selector)]
-                // All non-disabled elements...
-                .filter(el => ! el.hasAttribute('disabled'))
-        },
-        firstFocusable() { return this.focusables()[0] },
-        lastFocusable() { return this.focusables().slice(-1)[0] },
-        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-        autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() },
+        @include('control-ui-kit::control-ui-kit.modals.partials.focus-trap')
+        @include('control-ui-kit::control-ui-kit.modals.partials.scroll-lock')
         detail: {
             type: '{{ $type }}',
         },
@@ -61,21 +48,7 @@
             })
         },
         @endif
-        width(maxWidth) {
-            switch (maxWidth) {
-                case 'sm':
-                    return 'sm:max-w-sm';
-                case 'md':
-                    return 'sm:max-w-md';
-                case 'lg':
-                    return 'sm:max-w-lg';
-                case '2xl':
-                    return 'sm:max-w-2xl';
-                case 'xl':
-                default:
-                    return 'sm:max-w-xl';
-            }
-        }
+        @include('control-ui-kit::control-ui-kit.modals.partials.max-width')
     }"
     x-init="$watch('show', value => value && setTimeout(autofocus, 50))"
     x-on:close.stop="show = false"
@@ -84,7 +57,7 @@
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
     id="{{ $id }}"
-    class="fixed top-0 inset-x-0 z-100 px-0 flex items-top justify-center h-72"
+    class="{{ $overlay }}"
     style="display: none;"
     {{ $attributes->except('model') }}
 >
@@ -101,8 +74,11 @@
     </div>
 
     <div x-show="show"
-         class="text-modal absolute top-1/2 bg-modal border border-modal rounded overflow-hidden shadow-xl transform transition-all w-11/12 sm:w-full leading-5"
+         class="{{ $panel }}"
          :class="{ [maxWidth]: true }"
+         role="dialog"
+         aria-modal="true"
+         tabindex="-1"
          x-transition:enter="ease-out duration-300"
          x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
          x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -110,29 +86,30 @@
          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     >
-        <form method="POST" action="{{ $route }}"
+        <form method="POST" action="{{ $route }}" class="{{ $form }}"
               @if($action === 'ajax') x-on:submit.prevent="submitAction($event.target)"@endif>
             @csrf
             @if($needsMethodSpoofing)
                 @method($method)
             @endif
 
-            <div class="p-4 text-sm leading-6">
-                @isset($title)
-                    <div class="mb-4">
-                        <x-alert type="default" x-show="detail.type == 'default'">{{ $title }}</x-alert>
-                        <x-alert type="brand" x-show="detail.type == 'brand'">{{ $title }}</x-alert>
-                        <x-alert type="danger" x-show="detail.type == 'danger'">{{ $title }}</x-alert>
-                        <x-alert type="info" x-show="detail.type == 'info'">{{ $title }}</x-alert>
-                        <x-alert type="success" x-show="detail.type == 'success'">{{ $title }}</x-alert>
-                        <x-alert type="warning" x-show="detail.type == 'warning'">{{ $title }}</x-alert>
-                    </div>
-                @endisset
+            @isset($title)
+                <div class="{{ $titleClass }}">
+                    <x-alert type="default" x-show="detail.type == 'default'">{{ $title }}</x-alert>
+                    <x-alert type="brand" x-show="detail.type == 'brand'">{{ $title }}</x-alert>
+                    <x-alert type="danger" x-show="detail.type == 'danger'">{{ $title }}</x-alert>
+                    <x-alert type="info" x-show="detail.type == 'info'">{{ $title }}</x-alert>
+                    <x-alert type="success" x-show="detail.type == 'success'">{{ $title }}</x-alert>
+                    <x-alert type="warning" x-show="detail.type == 'warning'">{{ $title }}</x-alert>
+                </div>
+            @endisset
+
+            <div class="{{ $body }} text-sm leading-6">
                 {{ $slot }}
             </div>
 
             <div
-                class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3">
+                class="{{ $footer }}">
                 <x-button type="submit" x-bind:disabled="loading" width="min-w-20 space-x-0!" :single-click="false">
                     <span x-show="!loading">{{ $yes }}</span>
                     <span x-show="loading">{{ $confirming }}</span>

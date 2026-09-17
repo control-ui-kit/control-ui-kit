@@ -4,26 +4,46 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Modals;
 
+use ControlUIKit\Exceptions\ControlUIKitException;
+use ControlUIKit\Traits\ResolvesModalWidth;
 use ControlUIKit\Traits\UseThemeFile;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Modal extends Component
 {
+    use ResolvesModalWidth;
     use UseThemeFile;
+
+    private const array SCROLLS = ['panel', 'body', 'clip'];
+
+    protected string $component = 'modal';
 
     public ?string $id;
     public string $maxWidth;
     public string $close;
     public string $yes;
     public string $no;
+    public string $overlay;
+    public string $panel;
+    public string $scroll;
 
     public function __construct(
         ?string $id = null,
-        string $maxWidth = '2xl'
+        string $maxWidth = '2xl',
+        ?string $overlay = null,
+        ?string $panel = null,
+        ?string $scroll = null
     ) {
         $this->id = $id;
-        $this->maxWidth = $this->maxWidth($maxWidth);
+        $this->maxWidth = $this->resolveModalWidth($maxWidth);
+
+        $this->overlay = $this->style($this->component, 'overlay', $overlay);
+        $this->scroll = $this->validateScroll($this->style($this->component, 'scroll', $scroll));
+        $this->panel = $this->classList([
+            $this->style($this->component, 'panel', $panel),
+            $this->componentStyle($this->component, 'scroll-' . $this->scroll),
+        ]);
 
         $this->translations();
     }
@@ -40,16 +60,15 @@ class Modal extends Component
         return view('control-ui-kit::control-ui-kit.modals.modal');
     }
 
-    private function maxWidth($maxWidth): string
+    /**
+     * @throws ControlUIKitException
+     */
+    private function validateScroll(string $scroll): string
     {
-        return match ($maxWidth) {
-            'sm' => 'sm:max-w-sm',
-            'md' => 'sm:max-w-md',
-            'lg' => 'sm:max-w-lg',
-            '2xl' => 'sm:max-w-2xl',
-            '3xl' => 'sm:max-w-3xl',
-            '4xl' => 'sm:max-w-4xl',
-            default => 'sm:max-w-xl',
-        };
+        if (! in_array($scroll, self::SCROLLS, true)) {
+            throw new ControlUIKitException('Modal scroll [' . $scroll . '] is invalid, please use one of [' . implode(', ', self::SCROLLS) . ']');
+        }
+
+        return $scroll;
     }
 }

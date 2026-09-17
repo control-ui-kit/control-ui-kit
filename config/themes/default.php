@@ -1702,12 +1702,22 @@ return [
     ],
 
     'modal' => [
+        'body' => 'flex-1 min-h-0 overflow-y-auto overscroll-contain p-4',
+        'footer' => 'shrink-0 flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3',
+        'form' => 'flex flex-1 flex-col min-h-0',
         'lang-keys' => [
             'close' => 'buttons.close',
             'confirming' => 'buttons.confirming',
             'no' => 'buttons.no',
             'yes' => 'buttons.yes',
         ],
+        'overlay' => 'fixed inset-0 z-100 flex justify-center overflow-y-auto overscroll-contain p-4 sm:p-6',
+        'panel' => 'text-modal relative z-10 my-auto w-full bg-modal border border-modal rounded shadow-xl transform transition-all leading-5',
+        'scroll' => 'panel',
+        'scroll-body' => 'flex flex-col max-h-full overflow-hidden',
+        'scroll-clip' => 'overflow-hidden',
+        'scroll-panel' => 'max-h-full overflow-y-auto overscroll-contain',
+        'title' => 'shrink-0 px-4 pt-4',
     ],
 
     'panel' => [

@@ -5,6 +5,14 @@
  */
 @source inline("{sm,md,lg,xl,2xl}:{block,flex,hidden}");
 
+/*
+ * The modal overlay and panel geometry lives in the `modal.*` theme values, which Tailwind's
+ * scanner never sees either, and these four utilities appear in no other source file in the
+ * kit.  A modal overlay missing them fails catastrophically rather than cosmetically - the
+ * panel is no longer capped to the viewport - so they are declared here as well.
+ */
+@source inline("{overscroll-contain,my-auto,max-h-full,min-h-0}");
+
 @layer utilities {
 
     /* Backgrounds */

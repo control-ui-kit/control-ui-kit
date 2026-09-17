@@ -5,21 +5,8 @@
         @else
         show: false,
         @endif
-        focusables() {
-            // All focusable element types...
-            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-
-            return [...$el.querySelectorAll(selector)]
-                // All non-disabled elements...
-                .filter(el => ! el.hasAttribute('disabled'))
-        },
-        firstFocusable() { return this.focusables()[0] },
-        lastFocusable() { return this.focusables().slice(-1)[0] },
-        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-        autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() },
+        @include('control-ui-kit::control-ui-kit.modals.partials.focus-trap')
+        @include('control-ui-kit::control-ui-kit.modals.partials.scroll-lock')
         detail: {
             type: 'default',
             button: '{{ $close }}',
@@ -36,30 +23,12 @@
             this.detail.no_button = this.detail.no_button ?? '{{ $no }}'
             this.detail.yes_action = this.detail.yes_action ?? 'show = false'
             this.detail.no_action = this.detail.no_action ?? 'show = false'
-            this.maxWidth = this.width(this.maxWidth)
+            this.maxWidth = this.width(this.detail.width ?? this.maxWidth)
             if (Array.isArray(this.detail.content)) {
                 this.detail.content = '<p>' + this.detail.content.join('</p><p>') + '</p>';
             }
         },
-        width(maxWidth) {
-            switch (maxWidth) {
-                case 'sm':
-                    return 'sm:max-w-sm';
-                case 'md':
-                    return 'sm:max-w-md';
-                case 'lg':
-                    return 'sm:max-w-lg';
-                case '2xl':
-                    return 'sm:max-w-2xl';
-                case '3xl':
-                    return 'sm:max-w-3xl';
-                case '4xl':
-                    return 'sm:max-w-4xl';
-                case 'xl':
-                default:
-                    return 'sm:max-w-xl';
-            }
-        }
+        @include('control-ui-kit::control-ui-kit.modals.partials.max-width')
     }"
     x-init="$watch('show', value => value && setTimeout(autofocus, 50))"
     x-on:close.stop="show = false"
@@ -68,7 +37,7 @@
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
     id="{{ $id }}"
-    class="fixed top-0 inset-x-0 z-100 px-0 flex items-top justify-center h-72"
+    class="{{ $overlay }}"
     style="display: none;"
     {{ $attributes->except('model') }}
 >
@@ -85,8 +54,11 @@
     </div>
 
     <div x-show="show"
-         class="text-modal absolute top-1/2 bg-modal border border-modal rounded overflow-hidden shadow-xl transform transition-all w-11/12 sm:w-full leading-5"
+         class="{{ $panel }}"
          :class="{ [maxWidth]: true }"
+         role="dialog"
+         aria-modal="true"
+         tabindex="-1"
          x-transition:enter="ease-out duration-300"
          x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
          x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

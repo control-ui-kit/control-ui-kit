@@ -1227,6 +1227,17 @@ function openDangerConfirm(title, content, width, yes_button, no_button, yes_act
 
 
 function maxWidth(maxWidth) {
+    // Nothing given is not the same as `xl`: the dialog keeps whatever `max-width` it was
+    // declared with, so the value has to stay falsy for `detail.width ?? this.maxWidth` to
+    // fall back to it rather than pinning every widthless dialog to the default.
+    if (! maxWidth) {
+        return maxWidth;
+    }
+
+    if (String(maxWidth).startsWith('sm:max-w-')) {
+        return maxWidth;
+    }
+
     switch (maxWidth) {
         case 'sm':
             return 'sm:max-w-sm';
@@ -1236,6 +1247,10 @@ function maxWidth(maxWidth) {
             return 'sm:max-w-lg';
         case '2xl':
             return 'sm:max-w-2xl';
+        case '3xl':
+            return 'sm:max-w-3xl';
+        case '4xl':
+            return 'sm:max-w-4xl';
         case 'xl':
         default:
             return 'sm:max-w-xl';

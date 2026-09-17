@@ -98,6 +98,16 @@ class ConfirmationTest extends ComponentTestCase
         Config::set('themes.default.alert.warning.title-color', 'warning-title-color');
         Config::set('themes.default.alert.warning.text-other', 'warning-text-other');
         Config::set('themes.default.alert.warning.url-color', 'warning-url-color');
+
+        Config::set('themes.default.modal.body', 'body');
+        Config::set('themes.default.modal.footer', 'footer');
+        Config::set('themes.default.modal.form', 'form');
+        Config::set('themes.default.modal.overlay', 'overlay');
+        Config::set('themes.default.modal.panel', 'panel');
+        Config::set('themes.default.modal.scroll-body', 'scroll-body');
+        Config::set('themes.default.modal.scroll-clip', 'scroll-clip');
+        Config::set('themes.default.modal.scroll-panel', 'scroll-panel');
+        Config::set('themes.default.modal.title', 'title');
     }
 
     #[Test]
@@ -111,15 +121,15 @@ class ConfirmationTest extends ComponentTestCase
 
         $expected = <<<'HTML'
             <div x-data="{ show: false, focusables() { // All focusable element types... let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])' return [...$el.querySelectorAll(selector)] // All non-disabled elements... .filter(el =>
-                ! el.hasAttribute('disabled')) }, firstFocusable() { return this.focusables()[0] }, lastFocusable() { return this.focusables().slice(-1)[0] }, nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() }, prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() }, nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) }, prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }, autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() }, detail: { type: 'default', button: 'buttons.close', yes_button: 'buttons.yes', no_button: 'buttons.no', yes_action: 'show = false', no_action: 'show = false', }, maxWidth: 'sm:max-w-2xl', openModal() { this.show = true this.detail.button = this.detail.button ?? 'buttons.close' this.detail.yes_button = this.detail.yes_button ?? 'buttons.yes' this.detail.no_button = this.detail.no_button ?? 'buttons.no' this.detail.yes_action = this.detail.yes_action ?? 'show = false' this.detail.no_action = this.detail.no_action ?? 'show = false' this.maxWidth = this.width(this.maxWidth) if (Array.isArray(this.detail.content)) { this.detail.content = '
+                ! el.hasAttribute('disabled')) }, firstFocusable() { return this.focusables()[0] }, lastFocusable() { return this.focusables().slice(-1)[0] }, nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() }, prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() }, nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) }, prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 }, autofocus() { let focusable = $el.querySelector('[autofocus]'); if (focusable) focusable.focus() }, scrollLocked: false, trigger: null, init() { this.$watch('show', this.toggleScroll.bind(this)) if (this.show) { this.lockScroll() } }, toggleScroll(value) { if (value) { this.trigger = document.activeElement; this.lockScroll(); return } this.unlockScroll() if (this.trigger) { this.trigger.focus() } this.trigger = null }, lockScroll() { if (this.scrollLocked) { return } this.scrollLocked = true window.controlUiKitScrollLock = window.controlUiKitScrollLock ?? { depth: 0, overflow: '', paddingRight: '' } let store = window.controlUiKitScrollLock let root = document.documentElement store.depth++ if (store.depth !== 1) { return } let gutter = Math.max(0, window.innerWidth - root.clientWidth) store.overflow = root.style.overflow store.paddingRight = root.style.paddingRight root.style.overflow = 'hidden' if (gutter !== 0) { root.style.paddingRight = gutter + 'px' } }, unlockScroll() { if (! this.scrollLocked) { return } this.scrollLocked = false let store = window.controlUiKitScrollLock if (! store) { return } store.depth = Math.max(0, store.depth - 1) if (store.depth !== 0) { return } let root = document.documentElement root.style.overflow = store.overflow root.style.paddingRight = store.paddingRight }, destroy() { this.unlockScroll() }, detail: { type: 'default', button: 'buttons.close', yes_button: 'buttons.yes', no_button: 'buttons.no', yes_action: 'show = false', no_action: 'show = false', }, maxWidth: 'sm:max-w-2xl', openModal() { this.show = true this.detail.button = this.detail.button ?? 'buttons.close' this.detail.yes_button = this.detail.yes_button ?? 'buttons.yes' this.detail.no_button = this.detail.no_button ?? 'buttons.no' this.detail.yes_action = this.detail.yes_action ?? 'show = false' this.detail.no_action = this.detail.no_action ?? 'show = false' this.maxWidth = this.width(this.detail.width ?? this.maxWidth) if (Array.isArray(this.detail.content)) { this.detail.content = '
                 <p>' + this.detail.content.join('</p>
                 <p>') + '</p>
-                '; } }, width(maxWidth) { switch (maxWidth) { case 'sm': return 'sm:max-w-sm'; case 'md': return 'sm:max-w-md'; case 'lg': return 'sm:max-w-lg'; case '2xl': return 'sm:max-w-2xl'; case '3xl': return 'sm:max-w-3xl'; case '4xl': return 'sm:max-w-4xl'; case 'xl': default: return 'sm:max-w-xl'; } } }" x-init="$watch('show', value => value && setTimeout(autofocus, 50))" x-on:close.stop="show = false" x-on:keydown.escape.window="show = false" x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()" x-on:keydown.shift.tab.prevent="prevFocusable().focus()" x-show="show" id="" class="fixed top-0 inset-x-0 z-100 px-0 flex items-top justify-center h-72" style="display: none;">
+                '; } }, width(maxWidth) { if (String(maxWidth).startsWith('sm:max-w-')) { return maxWidth } switch (maxWidth) { case 'sm': return 'sm:max-w-sm'; case 'md': return 'sm:max-w-md'; case 'lg': return 'sm:max-w-lg'; case '2xl': return 'sm:max-w-2xl'; case '3xl': return 'sm:max-w-3xl'; case '4xl': return 'sm:max-w-4xl'; case 'xl': default: return 'sm:max-w-xl'; } } }" x-init="$watch('show', value => value && setTimeout(autofocus, 50))" x-on:close.stop="show = false" x-on:keydown.escape.window="show = false" x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()" x-on:keydown.shift.tab.prevent="prevFocusable().focus()" x-show="show" id="" class="overlay" style="display: none;">
                 <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                     <div class="absolute inset-0 bg-modal-blur opacity-75"></div>
                 </div>
-                <div x-show="show" class="text-modal absolute top-1/2 bg-modal border border-modal rounded overflow-hidden shadow-xl transform transition-all w-11/12 sm:w-full leading-5" :class="{ [maxWidth]: true }" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <div class="p-4">
+                <div x-show="show" class="panel scroll-body" :class="{ [maxWidth]: true }" role="dialog" aria-modal="true" tabindex="-1" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <div class="title">
                         <div class="background default-background border default-border other padding rounded shadow width" x-show="detail.type == 'default'">
                             <div class="flex items-center">
                                 <div class="flex flex-col space-y-2">
@@ -199,11 +209,11 @@ class ConfirmationTest extends ComponentTestCase
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="pt-4 text-sm">
-                                                <div x-html="detail.content" class="leading-6"></div>
-                                            </div>
                                         </div>
-                                        <div class="flex items-center space-x-2 justify-end border-t border-modal text-right bg-modal-footer px-4 py-3"></div>
+                                        <div class="body text-sm">
+                                            <div x-html="detail.content" class="leading-6"></div>
+                                        </div>
+                                        <div class="footer"></div>
                                     </div>
                                 </div>
             HTML;
