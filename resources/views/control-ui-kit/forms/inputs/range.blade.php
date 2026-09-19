@@ -3,7 +3,7 @@
 @endphp
 <div x-data="Components.inputRange({
     id: '{{ $id }}',
-    value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else '{{ $value }}'@endif
+    value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else @js($value ?? '', JSON_UNESCAPED_SLASHES)@endif
 })"
      x-modelable="value"
     {{ $attributes->merge($classes())->whereStartsWith(['class', 'x-model']) }}>

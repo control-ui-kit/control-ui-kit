@@ -4,7 +4,7 @@
 <div x-cloak
      x-data="Components.inputSelect({
          id: '{{ $id }}',
-         value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else {!! $jsonValue() !!}@endif
+         value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else @js($jsonValue(), JSON_UNESCAPED_SLASHES)@endif
      })"
      x-init="init()"
      x-modelable="value"

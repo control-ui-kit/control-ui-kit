@@ -2,8 +2,8 @@
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
 <div x-data='Components.inputAutocomplete({
-         value:@if($wireModel) window.Livewire.find("{{ $_instance->id }}").entangle("{{ $wireModel }}"){{ $wireSuffix }}@else "{{ $value }}"@endif,
-         filter: "{{ $selected }}",
+         value:@if($wireModel) window.Livewire.find("{{ $_instance->id }}").entangle("{{ $wireModel }}"){{ $wireSuffix }}@else @js($value, JSON_UNESCAPED_SLASHES)@endif,
+         filter: @js($selected ?? '', JSON_UNESCAPED_SLASHES),
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          preload: @json($preloadConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),

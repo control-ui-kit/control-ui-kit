@@ -8,7 +8,7 @@
         'digit_{{ $i }}': '',
         @endfor
         digits: {{ $digits }},
-        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else '{{ $value }}'@endif
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else @js($value ?? '', JSON_UNESCAPED_SLASHES)@endif
     })"
     x-modelable="value"
     {{ $attributes->whereStartsWith(['class', 'x-model'])->class('min-w-0') }}>

@@ -13,7 +13,7 @@ class Url extends Input
 
     protected string $component = 'input-url';
 
-    public string $urlPrefix;
+    public ?string $urlPrefix;
 
     public function __construct(
         string $name,
@@ -175,8 +175,7 @@ class Url extends Input
             'width' => 'w-full',
         ], $this->component, 'basicStyles', 'input');
 
-        $this->urlPrefix = $urlPrefix ? "'" . addslashes($urlPrefix) . "'" : 'null';
-        $this->value = $this->value ? "'" . addslashes($this->value) . "'" : 'null';
+        $this->urlPrefix = $urlPrefix ?: null;
     }
 
     public function render(): View

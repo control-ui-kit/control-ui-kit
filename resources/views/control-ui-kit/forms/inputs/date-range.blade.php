@@ -5,7 +5,7 @@
     x-data="Components.flatpickr({
         mode: 'range',
         id: '{{ $id }}',
-        data:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else '{{ $setValue() }}'@endif,
+        data:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else @js($setValue() ?? '', JSON_UNESCAPED_SLASHES)@endif,
         dataFormat: '{{ $dataFormat }}',
         format: '{{ $format }}',
         today: '{{ $today }}',

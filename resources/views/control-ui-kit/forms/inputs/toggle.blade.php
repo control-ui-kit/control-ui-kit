@@ -2,9 +2,9 @@
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
 <div x-data="Components.inputToggle({
-        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else '{!! $value !!}'@endif,
-        on: '{{ $on }}',
-        off: '{{ $off }}'
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else @js($value, JSON_UNESCAPED_SLASHES)@endif,
+        on: @js($on, JSON_UNESCAPED_SLASHES),
+        off: @js($off, JSON_UNESCAPED_SLASHES)
     })"
     x-modelable="value"
     {{ $attributes->merge($classes()) }}>

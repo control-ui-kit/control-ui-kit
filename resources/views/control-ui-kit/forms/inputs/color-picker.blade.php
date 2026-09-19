@@ -2,7 +2,7 @@
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
 <div x-data="Components.inputColorPicker({
-        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else {!! $setValue() !!}@endif,
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }} @else @js($value, JSON_UNESCAPED_SLASHES)@endif,
         popup: '{{ $popup }}',
         alpha: {{ $alpha ? 'true' : 'false' }},
         editor: {{ $editor ? 'true' : 'false' }},

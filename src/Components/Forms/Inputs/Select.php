@@ -450,13 +450,13 @@ class Select extends Component
         return [$value => $this->transPleaseSelectText($pleaseSelect, $text)];
     }
 
-    public function jsonValue()
+    public function jsonValue(): int|float|string|null
     {
         if (is_null($this->value)) {
-            return 'null';
+            return null;
         }
 
-        return is_numeric($this->value) ? $this->value : "'{$this->value}'";
+        return is_numeric($this->value) ? $this->value + 0 : $this->value;
     }
 
     private function setFirstValue(): void
