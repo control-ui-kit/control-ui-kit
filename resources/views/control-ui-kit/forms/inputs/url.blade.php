@@ -3,8 +3,8 @@
 @endphp
 <div {{ $attributes->merge($wrapperClasses())->only(['class', 'x-model']) }}
     x-data="Components.inputUrl({
-        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else {!! $value !!}@endif,
-        prefix: {!! $urlPrefix !!}
+        value:@if($wireModel) @entangle($wireModel){{ $wireSuffix }}@else @js($value, JSON_UNESCAPED_SLASHES)@endif,
+        prefix: @js($urlPrefix, JSON_UNESCAPED_SLASHES)
     })"
     x-modelable="value">
     @if ($iconLeft)

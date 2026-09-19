@@ -20,6 +20,7 @@ class FormField extends Component
     public string $tooltipPosition;
     public string $underneath;
     public ?string $alpineErrors;
+    public ?string $value;
 
     public function __construct(
         ?string $layout = null,
@@ -31,6 +32,7 @@ class FormField extends Component
         ?string $tooltipPosition = null,
         ?string $underneath = null,
         ?string $alpineErrors = null,
+        mixed $value = null,
     ) {
         if ($input === 'input') {
             $this->input = 'input';
@@ -47,7 +49,20 @@ class FormField extends Component
         $this->tooltipPosition = $tooltipPosition ?? (string) config($theme . '.tooltip.field-position', 'bottom');
         $this->underneath = $underneath ?? '';
         $this->alpineErrors = $alpineErrors;
+        $this->value = is_null($value) ? null : (string) $value;
         $this->layout = $this->getLayout($layout);
+    }
+
+    /**
+     * The value has to be handed on to the input through the attribute bag rather than as a
+     * named attribute. Blade runs every named attribute it cannot match to a constructor
+     * argument through sanitizeComponentAttribute(), which html-escapes it - and the input
+     * then escapes it again when it renders, so "We'll" arrives as "We&amp;#039;ll". Values
+     * carried in the bag are passed through untouched, leaving exactly one escape at output.
+     */
+    public function valueAttribute(): array
+    {
+        return is_null($this->value) ? [] : ['value' => $this->value];
     }
 
     public function render(): View

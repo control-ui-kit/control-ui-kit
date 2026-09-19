@@ -17,6 +17,7 @@ class SelectField extends Component
     public mixed $options;
     public ?bool $showPleaseSelect;
     public string $layout;
+    public ?string $value;
 
     public function __construct(
         string $name,
@@ -26,7 +27,8 @@ class SelectField extends Component
         ?string $label = null,
         ?string $placeholder = null,
         ?string $help = null,
-        ?string $layout = null
+        ?string $layout = null,
+        ?string $value = null
     ) {
         if ($mode === 'new') {
             $this->required = true;
@@ -44,6 +46,7 @@ class SelectField extends Component
         $this->label = $label ?? '';
         $this->placeholder = $placeholder ?? '';
         $this->help = $help ?? '';
+        $this->value = $value;
         $this->layout = $this->getLayout($layout);
     }
 

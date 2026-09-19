@@ -2,6 +2,7 @@
 
 namespace Tests\Components\Forms\Inputs;
 
+use ControlUIKit\Components\Forms\Inputs\ColorPicker;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Components\ComponentTestCase;
@@ -459,5 +460,25 @@ class ColorPickerTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    /**
+     * setValue() is no longer reached by the view - the x-data value is encoded with @js
+     * since the double-encoding fix - so it is covered here directly.
+     */
+    #[Test]
+    public function an_input_color_picker_component_wraps_its_value_as_a_javascript_literal(): void
+    {
+        $component = app(ColorPicker::class, ['name' => 'color', 'value' => '#ff0000']);
+
+        self::assertSame("'#ff0000'", $component->setValue());
+    }
+
+    #[Test]
+    public function an_input_color_picker_component_without_a_value_is_a_javascript_null(): void
+    {
+        $component = app(ColorPicker::class, ['name' => 'color']);
+
+        self::assertSame('null', $component->setValue());
     }
 }
