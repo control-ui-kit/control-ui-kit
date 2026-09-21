@@ -56,7 +56,6 @@ class FieldValueEncodingTest extends ComponentTestCase
     {
         return [
             'url' => ['<x-field-url name="n" label="L" :value="$value" />'],
-            'autocomplete' => ['<x-field-autocomplete name="n" label="L" :src="[]" :value="$value" />'],
             'select' => ['<x-field-select name="n" label="L" :options="[]" :value="$value" />'],
             'radio-group' => ['<x-field-radio-group name="n" label="L" options="Yes|No" :value="$value" />'],
         ];
@@ -64,7 +63,9 @@ class FieldValueEncodingTest extends ComponentTestCase
 
     /**
      * Values handed to Alpine sit in a javascript literal inside an html attribute, so they
-     * have to survive both the html parser and the javascript one - @js covers both.
+     * have to survive both the html parser and the javascript one - @js covers both, for as
+     * long as the attribute is double quoted. @js wraps a string in single quotes, so a field
+     * whose x-data is single quoted needs its own encoding and is tested separately below.
      */
     #[Test]
     #[DataProvider('alpineFields')]
@@ -78,6 +79,31 @@ class FieldValueEncodingTest extends ComponentTestCase
             (string) Js::from(self::VALUE, JSON_UNESCAPED_SLASHES),
             $rendered
         );
+    }
+
+    /**
+     * The autocomplete is the one field whose x-data is a single-quoted attribute, so @js is
+     * the wrong tool for it: the single quotes @js wraps a string in close the attribute at
+     * the first value, Alpine is handed a fragment it cannot parse and the whole component
+     * stops responding. JSON_HEX_APOS and JSON_HEX_AMP are what keep the value inside the
+     * attribute, and json_decode round-tripping it is what proves nothing was lost doing so.
+     */
+    #[Test]
+    public function an_autocomplete_field_value_is_encoded_for_a_single_quoted_attribute(): void
+    {
+        $this->withViewErrors([]);
+
+        $rendered = (string) $this->blade(
+            '<x-field-autocomplete name="n" label="L" :src="[]" :value="$value" />',
+            ['value' => self::VALUE]
+        );
+
+        $encoded = json_encode(self::VALUE, JSON_THROW_ON_ERROR | JSON_HEX_APOS | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES);
+
+        self::assertStringNotContainsString("'", $encoded);
+        self::assertStringNotContainsString('&', $encoded);
+        self::assertSame(self::VALUE, json_decode($encoded, true, 512, JSON_THROW_ON_ERROR));
+        self::assertStringContainsString('value: ' . $encoded, $rendered);
     }
 
     #[Test]

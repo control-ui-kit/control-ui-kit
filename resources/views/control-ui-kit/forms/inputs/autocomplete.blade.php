@@ -1,9 +1,17 @@
 @php
     [$wireModel, $wireSuffix] = $livewireAttribute($attributes->whereStartsWith('wire:model'));
 @endphp
+{{--
+    `value` and `filter` carry user data into a single-quoted `x-data='...'` attribute, so they
+    are encoded with `@@json(... JSON_HEX_APOS)` like every other value in the object and not with
+    `@@js()`. `@@js()` wraps a string in single quotes - it is built for the double-quoted `x-data`
+    the rest of the inputs use - and one of those quotes closes this attribute at `value:`, which
+    leaves Alpine an unparsable expression and the whole component dead. `JSON_HEX_AMP` stops a
+    value that itself contains `&amp;` from being entity-decoded back by the HTML parser.
+--}}
 <div x-data='Components.inputAutocomplete({
-         value:@if($wireModel) window.Livewire.find("{{ $_instance->id }}").entangle("{{ $wireModel }}"){{ $wireSuffix }}@else @js($value, JSON_UNESCAPED_SLASHES)@endif,
-         filter: @js($selected ?? '', JSON_UNESCAPED_SLASHES),
+         value:@if($wireModel) window.Livewire.find("{{ $_instance->id }}").entangle("{{ $wireModel }}"){{ $wireSuffix }}@else @json($value, JSON_THROW_ON_ERROR | JSON_HEX_APOS | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES)@endif,
+         filter: @json($selected ?? '', JSON_THROW_ON_ERROR | JSON_HEX_APOS | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES),
          config: @json($optionConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          ajax: @json($ajaxConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
          preload: @json($preloadConfig ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
@@ -13,8 +21,8 @@
      x-cloak
      x-modelable="value"
      x-init='setup(
-        @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS),
-        @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS)
+        @json($options ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS | JSON_HEX_AMP),
+        @json($focus ?? [], JSON_THROW_ON_ERROR | JSON_HEX_APOS | JSON_HEX_AMP)
      )'
      {{ $attributes->merge(['class' => $basicClasses()])->whereStartsWith(['class', 'x-model']) }}>
     <div class="{{ $wrapperClasses() }}" @click.away="close()">
