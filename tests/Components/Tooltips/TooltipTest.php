@@ -70,7 +70,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -94,7 +94,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -118,7 +118,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.bottom + gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, 0)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, 0)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[5px]" :style="`border-bottom-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                     </div>
@@ -142,7 +142,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top + r.height / 2; this.left = r.left - gap; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.top, 0) - Math.max(b.bottom - window.innerHeight + edge, 0); const limit = Math.max(b.height / 2 - edge, 0); this.top += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-100%, -50%)`" class="z-50 pointer-events-none flex flex-row items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-100%, -50%)`" class="z-110 pointer-events-none flex flex-row items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[5px]" :style="`border-left-color: arrow-default;transform:translateY(${nudge}px)`"></div>
                     </div>
@@ -166,7 +166,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top + r.height / 2; this.left = r.right + gap; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.top, 0) - Math.max(b.bottom - window.innerHeight + edge, 0); const limit = Math.max(b.height / 2 - edge, 0); this.top += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(0, -50%)`" class="z-50 pointer-events-none flex flex-row items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(0, -50%)`" class="z-110 pointer-events-none flex flex-row items-center" role="tooltip">
                         <div class="w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-r-[5px]" :style="`border-right-color: arrow-default;transform:translateY(${nudge}px)`"></div>
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                     </div>
@@ -190,7 +190,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -214,7 +214,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-brand border-brand color-brand font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-brand;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -238,7 +238,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-danger border-danger color-danger font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-danger;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -262,7 +262,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-info border-info color-info font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-info;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -286,7 +286,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-muted border-muted color-muted font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-muted;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -310,7 +310,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-success border-success color-success font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-success;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -334,7 +334,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-warning border-warning color-warning font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-warning;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -358,7 +358,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-danger border-danger color-danger font other padding rounded shadow width">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-danger;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -382,7 +382,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="1 2 3 4 5 6 7 8 9">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: 10;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -406,7 +406,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow max-w-lg">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -439,7 +439,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="">Hello World</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -463,7 +463,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">&lt;strong&gt;Bold&lt;/strong&gt; and &lt;em&gt;more&lt;/em&gt;</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -487,7 +487,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">&lt;script&gt;alert(1)&lt;/script&gt; &quot;Tom&quot; &amp; &#039;Jerry&#039;</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
@@ -515,7 +515,7 @@ class TooltipTest extends ComponentTestCase
             <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
                 <button>Hover me</button>
                 <template x-teleport="body">
-                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-110 pointer-events-none flex flex-col items-center" role="tooltip">
                         <div class="background-default border-default color-default font other padding rounded shadow width">
                             HTML Tooltip
                             <br />

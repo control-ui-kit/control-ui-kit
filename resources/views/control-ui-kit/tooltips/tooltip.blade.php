@@ -51,7 +51,7 @@
         <div x-show="open"
              x-init="tip = $el"
              :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) {{ $transform }}`"
-             class="z-50 pointer-events-none flex {{ $isHorizontal ? 'flex-row' : 'flex-col' }} items-center"
+             class="z-110 pointer-events-none flex {{ $isHorizontal ? 'flex-row' : 'flex-col' }} items-center"
              role="tooltip">
             @if ($position === 'bottom')
                 <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[5px]"

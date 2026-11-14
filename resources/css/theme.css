@@ -13,6 +13,14 @@
  */
 @source inline("{overscroll-contain,my-auto,max-h-full,min-h-0}");
 
+/*
+ * Layering for the floating elements that sit at the root of <body>.  The modal overlay's
+ * `z-100` lives only in the theme file, and tooltips are teleported to <body> with `z-110` so
+ * a tooltip inside a modal is painted above the overlay rather than hidden behind it.  Both
+ * are declared here so the pair is always generated, whatever the consuming app scans.
+ */
+@source inline("{z-100,z-110}");
+
 @layer utilities {
 
     /* Backgrounds */
