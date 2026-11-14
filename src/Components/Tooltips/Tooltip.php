@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Tooltips;
 
 use ControlUIKit\Traits\UseThemeFile;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -14,7 +15,8 @@ class Tooltip extends Component
 
     protected string $component = 'tooltip';
 
-    public string $text;
+    // A plain string is escaped by the view; an Htmlable (e.g. HtmlString) is trusted and rendered as-is.
+    public string|Htmlable $text;
     public string $position;
     public string $type;
     public string $arrow;
@@ -33,7 +35,7 @@ class Tooltip extends Component
     ];
 
     public function __construct(
-        string $text = '',
+        string|Htmlable $text = '',
         ?string $position = null,
         ?string $type = null,
         string $wrapper = 'inline-block',

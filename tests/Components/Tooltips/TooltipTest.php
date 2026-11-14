@@ -451,7 +451,7 @@ class TooltipTest extends ComponentTestCase
     }
 
     #[Test]
-    public function a_tooltip_component_can_be_rendered_with_html_content(): void
+    public function a_tooltip_component_escapes_html_in_the_text_attribute(): void
     {
         $template = <<<'HTML'
             <x-tooltip text="<strong>Bold</strong> and <em>more</em>">
@@ -464,7 +464,7 @@ class TooltipTest extends ComponentTestCase
                 <button>Hover me</button>
                 <template x-teleport="body">
                     <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
-                        <div class="background-default border-default color-default font other padding rounded shadow width"><strong>Bold</strong> and <em>more</em></div>
+                        <div class="background-default border-default color-default font other padding rounded shadow width">&lt;strong&gt;Bold&lt;/strong&gt; and &lt;em&gt;more&lt;/em&gt;</div>
                         <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
                     </div>
                 </template>
@@ -472,6 +472,30 @@ class TooltipTest extends ComponentTestCase
             HTML;
 
         $this->assertComponentRenders($expected, $template);
+    }
+
+    #[Test]
+    public function a_tooltip_component_escapes_a_bound_text_value_exactly_once(): void
+    {
+        $template = <<<'HTML'
+            <x-tooltip :text="$payload">
+                <button>Hover me</button>
+            </x-tooltip>
+            HTML;
+
+        $expected = <<<'HTML'
+            <div class="inline-block" x-data="{ open: false, top: 0, left: 0, nudge: 0, tip: null, show(el) { const r = el.getBoundingClientRect(), gap = 4; this.top = r.top - gap; this.left = r.left + r.width / 2; this.nudge = 0; this.open = true; this.$nextTick(this.constrain.bind(this)); }, constrain() { if (! this.tip) { return; } const b = this.tip.getBoundingClientRect(), edge = 8; if (! b.width) { return; } const shift = Math.max(edge - b.left, 0) - Math.max(b.right - window.innerWidth + edge, 0); const limit = Math.max(b.width / 2 - edge, 0); this.left += shift; this.nudge = Math.min(Math.max(-shift, -limit), limit); }, hide() { this.open = false; } }" @mouseenter="show($el)" @mouseleave="hide()">
+                <button>Hover me</button>
+                <template x-teleport="body">
+                    <div x-show="open" x-init="tip = $el" :style="`position:fixed;top:0;left:0;transform:translate(${left}px, ${top}px) translate(-50%, -100%)`" class="z-50 pointer-events-none flex flex-col items-center" role="tooltip">
+                        <div class="background-default border-default color-default font other padding rounded shadow width">&lt;script&gt;alert(1)&lt;/script&gt; &quot;Tom&quot; &amp; &#039;Jerry&#039;</div>
+                        <div class="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[5px]" :style="`border-top-color: arrow-default;transform:translateX(${nudge}px)`"></div>
+                    </div>
+                </template>
+            </div>
+            HTML;
+
+        $this->assertComponentRenders($expected, $template, ['payload' => '<script>alert(1)</script> "Tom" & \'Jerry\'']);
     }
 
     #[Test]

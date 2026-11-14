@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ControlUIKit\Components\Forms\Layouts;
 
 use ControlUIKit\Traits\UseInputTheme;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -19,7 +20,7 @@ class Responsive extends Component
     public ?string $input;
     public ?string $label;
     public ?string $help;
-    public string $tooltip;
+    public string|Htmlable $tooltip;
     public string $tooltipType;
     public string $tooltipIcon;
     public string $tooltipPosition;
@@ -74,7 +75,7 @@ class Responsive extends Component
         ?string $label = null,
         ?string $input = null,
         ?string $help = null,
-        ?string $tooltip = null,
+        string|Htmlable|null $tooltip = null,
         ?string $tooltipType = null,
         ?string $tooltipIcon = null,
         ?string $tooltipPosition = null,
@@ -93,7 +94,14 @@ class Responsive extends Component
         // the template gates on, so the tooltip was accepted and then silently dropped.
         $theme = app('control-ui-kit.theme');
 
-        $this->tooltip = $tooltip !== null ? html_entity_decode($tooltip, ENT_QUOTES) : '';
+        // An Htmlable is trusted HTML and is passed to x-tooltip untouched. A string has the e() Blade
+        // applies when the attribute is forwarded down the component chain undone; x-tooltip escapes
+        // it itself, so decoding here keeps the output escaped exactly once.
+        $this->tooltip = match (true) {
+            $tooltip instanceof Htmlable => $tooltip,
+            $tooltip !== null => html_entity_decode($tooltip, ENT_QUOTES),
+            default => '',
+        };
         $this->tooltipType = $tooltipType ?? (string) config($theme . '.tooltip.field-type', 'icon');
         $this->tooltipIcon = $tooltipIcon ?? (string) config($theme . '.tooltip.field-icon', 'icon-question');
         $this->tooltipPosition = $tooltipPosition ?? (string) config($theme . '.tooltip.field-position', 'bottom');

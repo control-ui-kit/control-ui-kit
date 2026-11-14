@@ -5,7 +5,7 @@
             @if ($required)
                 <x-icon-star size="{{ $requiredSize }}" color="{{ $requiredColor }}" />
             @endif
-            @if (($tooltip || isset($tooltipContent)) && in_array($tooltipType, ['icon', 'field'], true))
+            @if ((filled((string) $tooltip) || isset($tooltipContent)) && in_array($tooltipType, ['icon', 'field'], true))
                 <x-tooltip :text="$tooltip" wrapper="ml-auto float-right self-start min-h-[2rem] flex items-center">
                     @isset($tooltipContent)
                         <x-slot:text>{{ $tooltipContent }}</x-slot:text>
@@ -21,7 +21,7 @@
     <div class="{{ $contentStyle }}">
         @if ($input && $slot->isEmpty())
             <div class="{{ $slotStyle }}">
-                @if (($tooltip || isset($tooltipContent)) && $tooltipType === 'input')
+                @if ((filled((string) $tooltip) || isset($tooltipContent)) && $tooltipType === 'input')
                     <x-tooltip :text="$tooltip" :position="$tooltipPosition" wrapper="block w-full">
                         @isset($tooltipContent)
                             <x-slot:text>{{ $tooltipContent }}</x-slot:text>
