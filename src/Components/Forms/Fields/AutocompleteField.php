@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Fields;
 
+use ControlUIKit\Traits\ForwardsTooltip;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class AutocompleteField extends Component
 {
+    use ForwardsTooltip;
+
     public string $name;
     public string $label;
     public string $help;
@@ -23,6 +27,7 @@ class AutocompleteField extends Component
         ?string $value = null,
         ?string $layout = null,
         ?string $text = null,
+        string|Htmlable|null $tooltip = null,
     ) {
         $this->name = $name ?? '';
         $this->label = $label ?? '';
@@ -30,6 +35,7 @@ class AutocompleteField extends Component
         $this->help = $help ?? '';
         $this->layout = $this->getLayout($layout);
         $this->text = $text ?? '';
+        $this->tooltip = $tooltip;
     }
 
     public function render(): View

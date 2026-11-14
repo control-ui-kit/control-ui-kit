@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Fields;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 
 class LinkField extends InputField
@@ -17,8 +18,9 @@ class LinkField extends InputField
         ?string $value = null,
         ?string $layout = null,
         ?string $href = null,
+        string|Htmlable|null $tooltip = null,
     ) {
-        parent::__construct($name, $label, $help, $value, $layout);
+        parent::__construct($name, $label, $help, $value, $layout, $tooltip);
         $this->href = $href ?? '';
     }
 

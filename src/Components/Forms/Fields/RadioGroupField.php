@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Fields;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 
 class RadioGroupField extends InputField
@@ -16,9 +17,10 @@ class RadioGroupField extends InputField
         ?string $label = null,
         ?string $help = null,
         ?string $value = null,
-        ?string $layout = null
+        ?string $layout = null,
+        string|Htmlable|null $tooltip = null,
     ) {
-        parent::__construct($name, $label, $help, $value, $layout);
+        parent::__construct($name, $label, $help, $value, $layout, $tooltip);
 
         $this->options = $options;
     }

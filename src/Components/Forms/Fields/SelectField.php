@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace ControlUIKit\Components\Forms\Fields;
 
+use ControlUIKit\Traits\ForwardsTooltip;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class SelectField extends Component
 {
+    use ForwardsTooltip;
+
     public string $name;
     public string $label;
     public string $placeholder;
@@ -28,7 +32,8 @@ class SelectField extends Component
         ?string $placeholder = null,
         ?string $help = null,
         ?string $layout = null,
-        ?string $value = null
+        ?string $value = null,
+        string|Htmlable|null $tooltip = null,
     ) {
         if ($mode === 'new') {
             $this->required = true;
@@ -48,6 +53,7 @@ class SelectField extends Component
         $this->help = $help ?? '';
         $this->value = $value;
         $this->layout = $this->getLayout($layout);
+        $this->tooltip = $tooltip;
     }
 
     public function render(): View
