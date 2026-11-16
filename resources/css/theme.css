@@ -1156,6 +1156,25 @@
 
     /* Ring Colors */
 
+    /* Core semantic rings - the same tokens as the core semantic borders, so a ring drawn
+       beside a border (e.g. `border border-brand ring-1 ring-brand`) is one colour. Without
+       these a ring falls back to currentColor and reads as the text colour. */
+
+    .ring-brand { --tw-ring-color: rgb(var(--border-brand)); }
+    .hover\:ring-brand-hover:hover { --tw-ring-color: rgb(var(--border-brand-hover)); }
+    .ring-default { --tw-ring-color: rgb(var(--border-default)); }
+    .hover\:ring-default-hover:hover { --tw-ring-color: rgb(var(--border-default-hover)); }
+    .ring-danger { --tw-ring-color: rgb(var(--border-danger)); }
+    .hover\:ring-danger-hover:hover { --tw-ring-color: rgb(var(--border-danger-hover)); }
+    .ring-info { --tw-ring-color: rgb(var(--border-info)); }
+    .hover\:ring-info-hover:hover { --tw-ring-color: rgb(var(--border-info-hover)); }
+    .ring-muted { --tw-ring-color: rgb(var(--border-muted)); }
+    .hover\:ring-muted-hover:hover { --tw-ring-color: rgb(var(--border-muted-hover)); }
+    .ring-success { --tw-ring-color: rgb(var(--border-success)); }
+    .hover\:ring-success-hover:hover { --tw-ring-color: rgb(var(--border-success-hover)); }
+    .ring-warning { --tw-ring-color: rgb(var(--border-warning)); }
+    .hover\:ring-warning-hover:hover { --tw-ring-color: rgb(var(--border-warning-hover)); }
+
     /* Button Group Item Rings */
 
     .ring-button-brand { --tw-ring-color: rgb(var(--button-brand-border)); }
